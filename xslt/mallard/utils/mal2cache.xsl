@@ -23,22 +23,51 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:output omit-xml-declaration="yes"/>
 
+<xsl:template name="mal.cache.id">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="node_in"/>
+  <xsl:choose>
+    <xsl:when test="not($node/@id)"/>
+    <xsl:when test="$node/self::mal:page">
+      <xsl:attribute name="id">
+        <xsl:value-of select="$node/@id"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:attribute name="id">
+        <xsl:value-of select="ancestor::mal:page[1]/@id"/>
+        <xsl:text>#</xsl:text>
+        <xsl:value-of select="@id"/>
+      </xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal.cache.xref">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="node_in"/>
+  <xsl:attribute name="xref">
+    <xsl:value-of select="$node/@xref"/>
+  </xsl:attribute>
+</xsl:template>
+
 <xsl:template match='/mal:cache'>
   <cache>
     <xsl:for-each select="mal:page">
       <xsl:apply-templates select="document(@href)/*">
-        <xsl:with-param name="href" select="@href"/>
+        <xsl:with-param name="node_in" select="."/>
       </xsl:apply-templates>
     </xsl:for-each>
   </cache>
 </xsl:template>
 
 <xsl:template match="mal:page">
-  <xsl:param name="href"/>
+  <xsl:param name="node_in"/>
+  <xsl:param name="href" select="$node_in/@href"/>
   <page>
-    <xsl:attribute name="id">
-      <xsl:value-of select="@id"/>
-    </xsl:attribute>
+    <xsl:call-template name="mal.cache.id">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
     <xsl:attribute name="href">
       <xsl:value-of select="$href"/>
     </xsl:attribute>
@@ -51,28 +80,31 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
       <xsl:call-template name="info">
         <xsl:with-param name="info" select="mal:info"/>
         <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="node_in" select="$node_in"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates>
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:apply-templates>
   </page>
 </xsl:template>
 
 <xsl:template match="mal:section">
+  <xsl:param name="node_in"/>
   <section>
-    <xsl:if test="@id">
-      <xsl:attribute name="id">
-        <xsl:value-of select="ancestor::mal:page[1]/@id"/>
-        <xsl:text>#</xsl:text>
-        <xsl:value-of select="@id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="mal.cache.id">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
     <xsl:if test="not(mal:info)">
       <xsl:call-template name="info">
         <xsl:with-param name="info" select="mal:info"/>
         <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="node_in" select="$node_in"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates>
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:apply-templates>
   </section>
 </xsl:template>
 
@@ -83,6 +115,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:template name="info" match="mal:info">
   <xsl:param name="info" select="."/>
   <xsl:param name="node" select="$info/.."/>
+  <xsl:param name="node_in"/>
   <info>
     <xsl:if test="not($info/mal:title[@type = 'link'])">
       <title type="link">
@@ -103,8 +136,20 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
     </xsl:if>
     <xsl:for-each select="$info/*">
       <xsl:choose>
-        <xsl:when test="self::mal:link[@type = 'guide' and not(@weight)]">
-          <link type="guide" xref="{@xref}" weight="0"/>
+        <xsl:when test="self::mal:link">
+          <link>
+            <xsl:call-template name="mal.cache.xref">
+              <xsl:with-param name="node_in" select="$node_in"/>
+            </xsl:call-template>
+            <xsl:if test="@type = 'guide' and not(@weight)">
+              <xsl:attribute name="weight">
+                <xsl:text>0</xsl:text>
+              </xsl:attribute>
+            </xsl:if>
+            <xsl:for-each select="attribute::*[not(name(.) = 'xref')] | *">
+              <xsl:copy-of select="."/>
+            </xsl:for-each>
+          </link>
         </xsl:when>
         <xsl:otherwise>
           <xsl:copy-of select="."/>

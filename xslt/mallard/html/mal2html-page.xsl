@@ -19,6 +19,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:str="http://exslt.org/strings"
+                xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -53,123 +54,79 @@ REMARK: Describe this template
 
 
 <!--**==========================================================================
-mal2html.page.pagelinks
+mal2html.page.topiclinks
 Outputs the automatic links from a guide page or guide section
 $node: The #{page} or #{section} element containing the links
 
 REMARK: Describe this template
 -->
-<xsl:template name="mal2html.page.pagelinks">
+<xsl:template name="mal2html.page.topiclinks">
   <xsl:param name="node" select="."/>
-  <xsl:variable name="id">
+  <xsl:variable name="topiclinks">
+    <xsl:call-template name="mal.link.topiclinks"/>
+  </xsl:variable>
+  <xsl:variable name="topicnodes" select="exsl:node-set($topiclinks)/*"/>
+  <div class="topiclinks">
     <xsl:choose>
-      <xsl:when test="$node/self::mal:section">
-        <xsl:value-of select="concat($node/ancestor::mal:page[1]/@id, '#', $node/@id)"/>
+      <xsl:when test="contains(concat(' ', $node/@style, ' '), ' 2column ')">
+        <xsl:variable name="coltot" select="ceiling(count($topicnodes) div 2)"/>
+        <table class="twocolumn"><tr>
+          <td class="twocolumnleft">
+            <xsl:for-each select="$topicnodes">
+              <xsl:sort select="mal:title[@type = 'sort']"/>
+              <xsl:if test="position() &lt;= $coltot">
+                <xsl:variable name="xref" select="@xref"/>
+                <xsl:for-each select="$mal.cache">
+                  <xsl:call-template name="mal2html.page.linkdiv">
+                    <xsl:with-param name="source" select="$node"/>
+                    <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+                  </xsl:call-template>
+                </xsl:for-each>
+              </xsl:if>
+            </xsl:for-each>
+          </td>
+          <td class="twocolumnright">
+            <xsl:for-each select="$topicnodes">
+              <xsl:sort select="mal:title[@type = 'sort']"/>
+              <xsl:if test="position() &gt; $coltot">
+                <xsl:variable name="xref" select="@xref"/>
+                <xsl:for-each select="$mal.cache">
+                  <xsl:call-template name="mal2html.page.linkdiv">
+                    <xsl:with-param name="source" select="$node"/>
+                    <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+                  </xsl:call-template>
+                </xsl:for-each>
+              </xsl:if>
+            </xsl:for-each>
+          </td>
+        </tr></table>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$node/@id"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="pagelinks"
-                select="$node/mal:info/mal:link[@type = 'topic']"/>
-  <!-- FIXME: // selectors are slow -->
-  <xsl:variable name="guidelinks"
-                select="$mal.cache//*[mal:info/mal:link[@type = 'guide'][@xref = $id]]
-                                     [not(@id = $pagelinks/@xref)]"/>
-  <xsl:if test="$pagelinks or $guidelinks">
-    <div class="pagelinks">
-      <xsl:choose>
-        <xsl:when test="contains(concat(' ', $node/@style, ' '), ' 2column ')">
-          <xsl:variable name="coltot" select="ceiling(count($pagelinks | $guidelinks) div 2)"/>
-          <table class="twocolumn"><tr>
-            <td class="twocolumnleft">
-              <xsl:for-each select="$pagelinks[position() &lt;= $coltot]">
-                <xsl:variable name="xref" select="@xref"/>
-                <xsl:for-each select="$mal.cache">
-                  <xsl:call-template name="mal2html.page.pagelink">
-                    <xsl:with-param name="source" select="$node"/>
-                    <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-                  </xsl:call-template>
-                </xsl:for-each>
-              </xsl:for-each>
-              <xsl:for-each select="$guidelinks">
-                <xsl:sort select="mal:info/mal:link[@type = 'guide'][@xref = $id]/@weight"
-                          data-type="number" order="descending"/>
-                <!-- FIXME: lang -->
-                <xsl:sort select="mal:info/mal:title[@type = 'sort']"
-                          data-type="text" order="ascending"/>
-                <xsl:if test="(position() + count($pagelinks)) &lt;= $coltot">
-                  <xsl:call-template name="mal2html.page.pagelink">
-                    <xsl:with-param name="source" select="$node"/>
-                    <xsl:with-param name="target" select="."/>
-                  </xsl:call-template>
-                </xsl:if>
-              </xsl:for-each>
-            </td>
-            <td class="twocolumnright">
-              <xsl:for-each select="$pagelinks[position() &gt; $coltot]">
-                <xsl:variable name="xref" select="@xref"/>
-                <xsl:for-each select="$mal.cache">
-                  <xsl:call-template name="mal2html.page.pagelink">
-                    <xsl:with-param name="source" select="$node"/>
-                    <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-                  </xsl:call-template>
-                </xsl:for-each>
-              </xsl:for-each>
-              <xsl:for-each select="$guidelinks">
-                <xsl:sort select="mal:info/mal:link[@type = 'guide'][@xref = $id]/@weight"
-                          data-type="number" order="descending"/>
-                <!-- FIXME: lang -->
-                <xsl:sort select="mal:info/mal:title[@type = 'sort']"
-                          data-type="text" order="ascending"/>
-                <xsl:if test="(position() + count($pagelinks)) &gt; $coltot">
-                  <xsl:call-template name="mal2html.page.pagelink">
-                    <xsl:with-param name="source" select="$node"/>
-                    <xsl:with-param name="target" select="."/>
-                  </xsl:call-template>
-                </xsl:if>
-              </xsl:for-each>
-            </td>
-          </tr></table>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:for-each select="$pagelinks">
-            <xsl:variable name="xref" select="@xref"/>
-            <xsl:for-each select="$mal.cache">
-              <xsl:call-template name="mal2html.page.pagelink">
-                <xsl:with-param name="source" select="$node"/>
-                <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </xsl:for-each>
-          <xsl:for-each select="$guidelinks">
-            <xsl:sort select="mal:info/mal:link[@type = 'guide'][@xref = $id]/@weight"
-                      data-type="number" order="descending"/>
-            <!-- FIXME: lang -->
-            <xsl:sort select="mal:info/mal:title[@type = 'sort']"
-                      data-type="text" order="ascending"/>
-            <xsl:call-template name="mal2html.page.pagelink">
+        <xsl:for-each select="$topicnodes">
+          <xsl:sort select="mal:title[@type = 'sort']"/>
+          <xsl:variable name="xref" select="@xref"/>
+          <xsl:for-each select="$mal.cache">
+            <xsl:call-template name="mal2html.page.linkdiv">
               <xsl:with-param name="source" select="$node"/>
-              <xsl:with-param name="target" select="."/>
+              <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
             </xsl:call-template>
           </xsl:for-each>
-        </xsl:otherwise>
-      </xsl:choose>
-    </div>
-  </xsl:if>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:template>
 
 
 <!--**==========================================================================
-mal2html.page.pagelink
+mal2html.page.linkdiv
 Outputs an automatic link block from a guide to a page
 $source: The #{page} or #{section} element containing the link
 $target: The element from the cache file of the page being linked to
 
 REMARK: Describe this template
 -->
-<xsl:template name="mal2html.page.pagelink">
+<xsl:template name="mal2html.page.linkdiv">
   <xsl:param name="source" select="."/>
   <xsl:param name="target"/>
   <a>
@@ -179,7 +136,7 @@ REMARK: Describe this template
         <xsl:with-param name="xref" select="$target/@id"/>
       </xsl:call-template>
     </xsl:attribute>
-    <div class="pagelink">
+    <div class="linkdiv">
       <div class="title">
         <xsl:call-template name="mal.link.content">
           <xsl:with-param name="link" select="$source"/>
@@ -382,6 +339,38 @@ REMARK: Describe this template
 
 
 <!--**==========================================================================
+mal2html.page.headbar
+FIXME
+
+REMARK: FIXME
+-->
+<xsl:template name="mal2html.page.headbar">
+  <xsl:param name="node" select="."/>
+  <div class="headbar">
+    <xsl:call-template name="mal2html.page.linktrails">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </div>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.page.footbar
+FIXME
+
+REMARK: FIXME
+-->
+<xsl:template name="mal2html.page.footbar">
+  <xsl:param name="node" select="."/>
+  <div class="footbar">
+    <xsl:call-template name="mal2html.page.copyrights">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </div>
+</xsl:template>
+
+
+<!--**==========================================================================
 mal2html.page.linktrails
 FIXME
 
@@ -522,11 +511,9 @@ REMARK: Describe this template
       <xsl:call-template name="mal2html.css"/>
     </head>
     <body>
-      <div class="head">
-        <xsl:call-template name="mal2html.page.linktrails">
-          <xsl:with-param name="node" select="."/>
-        </xsl:call-template>
-      </div>
+      <xsl:call-template name="mal2html.page.headbar">
+        <xsl:with-param name="node" select="."/>
+      </xsl:call-template>
       <div class="body">
         <xsl:if test="$mal2html.editor_mode and $revision/@status != ''">
           <div class="version">
@@ -572,7 +559,7 @@ REMARK: Describe this template
         </xsl:if>
         <xsl:apply-templates select="."/>
       </div>
-      <xsl:call-template name="mal2html.page.copyrights">
+      <xsl:call-template name="mal2html.page.footbar">
         <xsl:with-param name="node" select="."/>
       </xsl:call-template>
     </body>
@@ -595,7 +582,7 @@ REMARK: Describe this template
       </xsl:apply-templates>
     </xsl:for-each>
     <xsl:if test="@type = 'guide'">
-      <xsl:call-template name="mal2html.page.pagelinks"/>
+      <xsl:call-template name="mal2html.page.topiclinks"/>
     </xsl:if>
   </div>
   <xsl:apply-templates select="mal:section"/>
@@ -621,7 +608,7 @@ REMARK: Describe this template
         </xsl:apply-templates>
       </xsl:for-each>
       <xsl:if test="/mal:page/@type = 'guide'">
-        <xsl:call-template name="mal2html.page.pagelinks"/>
+        <xsl:call-template name="mal2html.page.topiclinks"/>
       </xsl:if>
     </div>
     <xsl:apply-templates select="mal:section"/>
