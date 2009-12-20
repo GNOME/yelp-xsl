@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/docbook/html
+xsldir=$(datadir)/yelp-xsl/xslt/docbook/html
 
 xsl_DATA =				\
 	db2html-autotoc.xsl		\

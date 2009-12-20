@@ -3,7 +3,7 @@
 # translated docs to be rebuilt, which requires xml2po, which breaks
 # --disable-build-utils
 
-xsldir=$(datadir)/xml/gnome/xslt/docbook/common
+xsldir=$(datadir)/yelp-xsl/xslt/docbook/common
 
 xsl_DATA =			\
 	db-chunk.xsl		\

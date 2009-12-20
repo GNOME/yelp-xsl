@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/mallard/html
+xsldir=$(datadir)/yelp-xsl/xslt/mallard/html
 
 xsl_DATA =				\
 	mal2html-block.xsl		\

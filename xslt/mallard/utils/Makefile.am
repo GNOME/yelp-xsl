@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/mallard/utils
+xsldir=$(datadir)/yelp-xsl/xslt/mallard/utils
 
 xsl_DATA = mal2cache.xsl
 

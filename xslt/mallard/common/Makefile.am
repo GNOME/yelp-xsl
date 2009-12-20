@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/mallard/common
+xsldir=$(datadir)/yelp-xsl/xslt/mallard/common
 
 xsl_DATA = mal-chunk.xsl mal-link.xsl
 

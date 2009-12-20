@@ -1,4 +1,4 @@
-AC_INIT([gnome-doc-utils], [0.18.0],
+AC_INIT([yelp-xsl], [0.99.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-doc-utils])
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
 
@@ -21,23 +21,13 @@ AC_PROG_LN_S
 gdu_cv_have_gdu=yes
 GNOME_DOC_DEFINES
 
-AC_ARG_ENABLE([build-utils],
-	AC_HELP_STRING([--enable-build-utils],
-	[build and install the build utilities [default=yes]]),,
-	enable_build_utils=yes)
-AM_CONDITIONAL(ENABLE_BUILD_UTILS, test x$enable_build_utils = xyes)
-
-if test x$enable_build_utils = xyes; then
-AM_PATH_PYTHON([2.4])
-fi
-
-PKG_CHECK_MODULES(GNOME_DOC_UTILS,
+PKG_CHECK_MODULES(YELP_XSL,
 [
 	libxml-2.0 >= 2.6.12
 	libxslt    >= 1.1.8
 ])
 
-GETTEXT_PACKAGE=gnome-doc-utils
+GETTEXT_PACKAGE=yelp-xsl
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
@@ -46,6 +36,7 @@ AX_GLIB_GNU_GETTEXT
 
 AC_CONFIG_FILES([
 Makefile
+yelp-xsl.pc
 data/Makefile
 data/icons/Makefile
 data/icons/hicolor/Makefile
@@ -55,21 +46,8 @@ data/icons/hicolor/scalable/Makefile
 data/icons/hicolor/scalable/status/Makefile
 data/templates/Makefile
 data/watermarks/Makefile
-doc/Makefile
-doc/gnome-doc-make/Makefile
-doc/mallard/Makefile
-doc/xslt/Makefile
 po/Makefile.in
-rng/Makefile
-rng/mallard/Makefile
-tools/Makefile
-tools/gnome-doc-utils.pc
 xslt/Makefile
-xml2po/Makefile
-xml2po/xml2po.pc
-xml2po/xml2po/Makefile
-xml2po/xml2po/modes/Makefile
-xml2po/examples/Makefile
 xslt/common/Makefile
 xslt/docbook/Makefile
 xslt/docbook/common/Makefile
@@ -82,8 +60,5 @@ xslt/mallard/html/Makefile
 xslt/mallard/utils/Makefile
 xslt/gettext/Makefile
 ])
-
-AC_CONFIG_FILES([tools/gnome-doc-tool],[chmod +x tools/gnome-doc-tool])
-AC_CONFIG_FILES([tools/gnome-doc-prepare],[chmod +x tools/gnome-doc-prepare])
 
 AC_OUTPUT

@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/docbook/omf
+xsldir=$(datadir)/yelp-xsl/xslt/docbook/omf
 
 xsl_DATA = db2omf.xsl
 

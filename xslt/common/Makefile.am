@@ -1,4 +1,4 @@
-xsldir=$(datadir)/xml/gnome/xslt/common
+xsldir=$(datadir)/yelp-xsl/xslt/common
 
 xsl_DATA = theme.xsl utils.xsl
 
