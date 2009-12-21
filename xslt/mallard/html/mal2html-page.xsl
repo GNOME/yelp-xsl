@@ -231,11 +231,13 @@ REMARK: Describe this template
                 select="$mal.cache//*[mal:info/mal:link[@type = 'seealso'][@xref = $id]]"/>
   <xsl:variable name="outlinks"
                 select="$node/mal:info/mal:link[@type = 'seealso']"/>
-  <xsl:variable name="pagelinks"
-                select="$mal.cache//*[mal:info/mal:link[@type = 'topic'][@xref = $id]]"/>
-  <xsl:variable name="guidelinks"
-                select="$node/mal:info/mal:link[@type = 'guide']"/>
-  <xsl:if test="$inlinks or $outlinks or $pagelinks or $guidelinks">
+  <xsl:variable name="guidelinks">
+    <xsl:call-template name="mal.link.guidelinks">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="guidenodes" select="exsl:node-set($guidelinks)/*"/>
+  <xsl:if test="$inlinks or $outlinks or $guidenodes">
     <div class="section autolinkssection">
       <div class="header">
         <xsl:element name="{concat('h', $depth)}" namespace="{$mal2html.namespace}">
@@ -249,7 +251,7 @@ REMARK: Describe this template
         </xsl:element>
       </div>
       <div class="autolinks">
-        <xsl:if test="$pagelinks or $guidelinks">
+        <xsl:if test="$guidenodes">
           <div class="title"><span>
             <!-- FIXME: i18n -->
             <xsl:call-template name="l10n.gettext">
@@ -257,14 +259,7 @@ REMARK: Describe this template
             </xsl:call-template>
           </span></div>
           <ul>
-            <xsl:for-each select="$pagelinks">
-              <xsl:call-template name="mal2html.page.autolink">
-                <xsl:with-param name="page" select="."/> 
-                <xsl:with-param name="role" select="'guide'"/>
-             </xsl:call-template>
-            </xsl:for-each>
-            <!-- FIXME: exclude pagelinks -->
-            <xsl:for-each select="$guidelinks">
+            <xsl:for-each select="$guidenodes">
               <xsl:call-template name="mal2html.page.autolink">
                 <xsl:with-param name="xref" select="@xref"/>
                 <xsl:with-param name="role" select="'guide'"/>

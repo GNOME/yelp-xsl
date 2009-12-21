@@ -180,6 +180,47 @@ $href: The #{href} attribute of ${link}
 
 
 <!--**==========================================================================
+mal.link.guidelinks
+FIXME
+
+REMARK: FIXME
+-->
+<xsl:template name="mal.link.guidelinks">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="id">
+    <xsl:choose>
+      <xsl:when test="$node/self::mal:section">
+        <xsl:value-of select="concat($node/ancestor::mal:page[1]/@id, '#', $node/@id)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$node/@id"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:for-each select="$node/mal:info/mal:link[@type = 'guide']">
+    <xsl:variable name="xref" select="@xref"/>
+    <mal:link xref="{$xref}">
+      <mal:title type="sort">
+        <xsl:for-each select="$mal.cache">
+          <xsl:value-of select="key('mal.cache.key', $xref)/mal:info/mal:title[@type = 'sort'][1]"/>
+        </xsl:for-each>
+      </mal:title>
+    </mal:link>
+  </xsl:for-each>
+  <xsl:for-each select="$mal.cache//*[mal:info/mal:link[@type = 'topic'][@xref = $id]]">
+    <xsl:variable name="xref" select="@id"/>
+    <xsl:if test="not($node/mal:info/mal:link[@type = 'guide'][@xref = $xref])">
+      <mal:link xref="{$xref}">
+        <mal:title type="sort">
+          <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
+        </mal:title>
+      </mal:link>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+
+<!--**==========================================================================
 mal.link.topiclinks
 FIXME
 
