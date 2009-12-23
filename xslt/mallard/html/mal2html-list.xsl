@@ -75,6 +75,9 @@ REMARK: Describe this module
       <xsl:if test="not(preceding-sibling::mal:item)">
         <xsl:text> first-child</xsl:text>
       </xsl:if>
+      <xsl:if test="contains(concat(' ', ../@style, ' '), ' condensed ')">
+        <xsl:text> condensed</xsl:text>
+      </xsl:if>
     </xsl:attribute>
     <xsl:for-each
      select="mal:*[

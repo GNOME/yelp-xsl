@@ -107,6 +107,7 @@ body {
 ul, ol, dl, dd { margin: 0; }
 div, pre, p, li, dt { margin: 1em 0 0 0; padding: 0; }
 .first-child { margin-top: 0; }
+li.condensed { margin-top: 0.2em; }
 a {
   text-decoration: none;
   color: </xsl:text>
