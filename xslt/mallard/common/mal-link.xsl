@@ -282,6 +282,7 @@ REMARK: FIXME
             <xsl:with-param name="node" select="$page"/>
             <xsl:with-param name="trail">
               <mal:link xref="{$page/@id}" child="section">
+                <xsl:copy-of select="$page/mal:info/mal:title[@type='sort']"/>
                 <xsl:copy-of select="$trail"/>
               </mal:link>
             </xsl:with-param>
@@ -299,6 +300,7 @@ REMARK: FIXME
         <xsl:choose>
           <xsl:when test="$self/@xref = $root">
             <mal:link xref="{$self/@xref}">
+              <xsl:copy-of select="$self/mal:title"/>
               <xsl:copy-of select="$trail"/>
             </mal:link>
           </xsl:when>
@@ -308,6 +310,7 @@ REMARK: FIXME
                 <xsl:with-param name="node" select="key('mal.cache.key', $self/@xref)"/>
                 <xsl:with-param name="trail">
                   <mal:link xref="{$self/@xref}">
+                    <xsl:copy-of select="$self/mal:title"/>
                     <xsl:copy-of select="$trail"/>
                   </mal:link>
                 </xsl:with-param>

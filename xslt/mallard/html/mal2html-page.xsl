@@ -382,6 +382,11 @@ REMARK: Describe this template
   <xsl:if test="count($trailnodes) &gt; 0">
     <div class="linktrails">
       <xsl:for-each select="$trailnodes">
+        <xsl:sort select="(.//mal:title[@type='sort'])[1]"/>
+        <xsl:sort select="(.//mal:title[@type='sort'])[2]"/>
+        <xsl:sort select="(.//mal:title[@type='sort'])[3]"/>
+        <xsl:sort select="(.//mal:title[@type='sort'])[4]"/>
+        <xsl:sort select="(.//mal:title[@type='sort'])[5]"/>
         <xsl:call-template name="mal2html.page.linktrails.trail"/>
       </xsl:for-each>
     </div>
