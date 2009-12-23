@@ -173,6 +173,9 @@ div.autolinks div.title span {
 }
 li.autolink { margin: 0.5em 0 0 0; padding: 0 0 0 1em; list-style-type: none; }
 
+div.linktrails {
+  margin: 0;
+}
 div.linktrail {
   font-size: 0.83em;
   margin: 0 1px 0.2em 1px;

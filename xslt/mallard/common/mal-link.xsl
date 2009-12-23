@@ -18,6 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:exsl="http://exslt.org/common"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -258,6 +259,66 @@ REMARK: FIXME
       </mal:link>
     </xsl:if>
   </xsl:for-each>
+</xsl:template>
+
+<xsl:param name="mal.link.default_root" select="'index'"/>
+
+<xsl:template name="mal.link.linktrails">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="trail" select="/false"/>
+  <xsl:param name="root" select="$mal.link.default_root"/>
+  <xsl:variable name="guidelinks">
+    <xsl:call-template name="mal.link.guidelinks">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="guidenodes" select="exsl:node-set($guidelinks)/*"/>
+  <xsl:choose>
+    <xsl:when test="count($guidenodes) = 0">
+      <xsl:choose>
+        <xsl:when test="$node/self::mal:section">
+          <xsl:variable name="page" select="$node/ancestor::mal:page"/>
+          <xsl:call-template name="mal.link.linktrails">
+            <xsl:with-param name="node" select="$page"/>
+            <xsl:with-param name="trail">
+              <mal:link xref="{$page/@id}" child="section">
+                <xsl:copy-of select="$trail"/>
+              </mal:link>
+            </xsl:with-param>
+            <xsl:with-param name="root" select="$root"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$trail"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:for-each select="$guidenodes">
+        <xsl:variable name="self" select="."/>
+        <xsl:choose>
+          <xsl:when test="$self/@xref = $root">
+            <mal:link xref="{$self/@xref}">
+              <xsl:copy-of select="$trail"/>
+            </mal:link>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:for-each select="$mal.cache">
+              <xsl:call-template name="mal.link.linktrails">
+                <xsl:with-param name="node" select="key('mal.cache.key', $self/@xref)"/>
+                <xsl:with-param name="trail">
+                  <mal:link xref="{$self/@xref}">
+                    <xsl:copy-of select="$trail"/>
+                  </mal:link>
+                </xsl:with-param>
+                <xsl:with-param name="root" select="$root"/>
+              </xsl:call-template>
+            </xsl:for-each>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
