@@ -252,6 +252,11 @@ REMARK: Document this template
   <xsl:text>"</xsl:text>
 </xsl:template>
 
+<!-- = span = -->
+<xsl:template mode="mal2html.inline.mode" match="mal:span">
+  <xsl:call-template name="mal2html.span"/>
+</xsl:template>
+
 <!-- = sys = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:sys">
   <xsl:call-template name="mal2html.span"/>
