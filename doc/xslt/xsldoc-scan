@@ -1,0 +1,19 @@
+#!/bin/sh
+# -*- indent-tabs-mode: nil -*-
+outdir=`pwd`
+while [ "$#" != "0" ]; do
+    if [ "x$1" = "x-o" ]; then
+        outdir="$2";
+        if [ ! -d "$outdir" ]; then mkdir -p "$outdir"; fi
+        shift;
+    else
+        fullfile=$(cd $(dirname "$1") && pwd)/$(basename "$1")
+        outfile=$(basename "$1" .xsl)
+        awk -f $(dirname "$0")/xsldoc-scan.awk "$1" | \
+            xsltproc -o "$outdir/$outfile".page \
+            --stringparam xsldoc.id "$outfile" \
+            --stringparam xsldoc.xslt_file "$fullfile" \
+            $(dirname "$0")/xsldoc-scan.xsl -
+    fi
+    shift;
+done
