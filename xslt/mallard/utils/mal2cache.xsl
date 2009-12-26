@@ -76,6 +76,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
         <xsl:value-of select="@type"/>
       </xsl:attribute>
     </xsl:if>
+    <xsl:call-template name="groups"/>
     <xsl:if test="not(mal:info)">
       <xsl:call-template name="info">
         <xsl:with-param name="info" select="mal:info"/>
@@ -95,6 +96,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
+    <xsl:call-template name="groups"/>
     <xsl:if test="not(mal:info)">
       <xsl:call-template name="info">
         <xsl:with-param name="info" select="mal:info"/>
@@ -106,6 +108,16 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:apply-templates>
   </section>
+</xsl:template>
+
+<xsl:template name="groups">
+  <xsl:param name="node" select="."/>
+  <xsl:attribute name="groups">
+    <xsl:value-of select="$node/@groups"/>
+    <xsl:if test="not(contains(concat(' ', $node/@groups, ' '), ' #default '))">
+      <xsl:text> #default</xsl:text>
+    </xsl:if>
+  </xsl:attribute>
 </xsl:template>
 
 <xsl:template match="mal:title">

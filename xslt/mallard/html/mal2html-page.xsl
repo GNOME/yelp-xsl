@@ -73,6 +73,7 @@ REMARK: Describe this template
         <table class="twocolumn"><tr>
           <td class="twocolumnleft">
             <xsl:for-each select="$topicnodes">
+              <xsl:sort data-type="number" select="@groupsort"/>
               <xsl:sort select="mal:title[@type = 'sort']"/>
               <xsl:if test="position() &lt;= $coltot">
                 <xsl:variable name="xref" select="@xref"/>
@@ -87,6 +88,7 @@ REMARK: Describe this template
           </td>
           <td class="twocolumnright">
             <xsl:for-each select="$topicnodes">
+              <xsl:sort data-type="number" select="@groupsort"/>
               <xsl:sort select="mal:title[@type = 'sort']"/>
               <xsl:if test="position() &gt; $coltot">
                 <xsl:variable name="xref" select="@xref"/>
@@ -103,6 +105,7 @@ REMARK: Describe this template
       </xsl:when>
       <xsl:otherwise>
         <xsl:for-each select="$topicnodes">
+          <xsl:sort data-type="number" select="@groupsort"/>
           <xsl:sort select="mal:title[@type = 'sort']"/>
           <xsl:variable name="xref" select="@xref"/>
           <xsl:for-each select="$mal.cache">

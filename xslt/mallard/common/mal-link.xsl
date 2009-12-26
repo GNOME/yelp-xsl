@@ -19,6 +19,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:str="http://exslt.org/strings"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -221,6 +222,30 @@ REMARK: FIXME
 </xsl:template>
 
 
+<xsl:template name="mal.link.linkid">
+  <xsl:param name="node" select="."/>
+  <xsl:choose>
+    <xsl:when test="contains($node/@id, '#')">
+      <xsl:value-of select="$node/@id"/>
+    </xsl:when>
+    <xsl:when test="$node/self::mal:section">
+      <xsl:value-of select="concat($node/ancestor::mal:page[1]/@id, '#', $node/@id)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$node/@id"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal.link.xref.linkid">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:if test="starts-with($xref, '#')">
+    <xsl:value-of select="$node/ancestor-or-self::mal:page/@id"/>
+  </xsl:if>
+  <xsl:value-of select="$xref"/>
+</xsl:template>
+
 <!--**==========================================================================
 mal.link.topiclinks
 FIXME
@@ -230,18 +255,51 @@ REMARK: FIXME
 <xsl:template name="mal.link.topiclinks">
   <xsl:param name="node" select="."/>
   <xsl:variable name="id">
-    <xsl:choose>
-      <xsl:when test="$node/self::mal:section">
-        <xsl:value-of select="concat($node/ancestor::mal:page[1]/@id, '#', $node/@id)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$node/@id"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="groups">
+    <xsl:value-of select="$node/@groups"/>
+    <xsl:if test="not(contains(concat(' ', $node/@groups, ' '), ' #default '))">
+      <xsl:text> #default</xsl:text>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="groupslist" select="str:split($groups)"/>
+  <xsl:variable name="defaultpos">
+    <xsl:for-each select="$groupslist">
+      <xsl:if test="string(.) = '#default'">
+        <xsl:value-of select="position()"/>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:variable>
   <xsl:for-each select="$node/mal:info/mal:link[@type = 'topic']">
-    <xsl:variable name="xref" select="@xref"/>
-    <mal:link xref="{@xref}">
+    <xsl:variable name="xref">
+      <xsl:call-template name="mal.link.xref.linkid"/>
+    </xsl:variable>
+    <xsl:variable name="link" select="."/>
+    <xsl:variable name="grouppos">
+      <xsl:if test="$link/@group">
+        <xsl:for-each select="$groupslist">
+          <xsl:if test="string(.) = $link/@group">
+            <xsl:value-of select="position()"/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="groupsort">
+      <xsl:value-of select="$grouppos"/>
+      <xsl:if test="string($grouppos) = ''">
+        <xsl:value-of select="$defaultpos"/>
+      </xsl:if>
+    </xsl:variable>
+    <mal:link xref="{$xref}">
+      <xsl:attribute name="group">
+        <xsl:value-of select="$groupslist[number($groupsort)]"/>
+      </xsl:attribute>
+      <xsl:attribute name="groupsort">
+        <xsl:value-of select="$groupsort"/>
+      </xsl:attribute>
       <mal:title type="sort">
         <xsl:for-each select="$mal.cache">
           <xsl:value-of select="key('mal.cache.key', $xref)/mal:info/mal:title[@type = 'sort'][1]"/>
@@ -249,12 +307,40 @@ REMARK: FIXME
       </mal:title>
     </mal:link>
   </xsl:for-each>
-  <xsl:for-each select="$mal.cache//*[mal:info/mal:link[@type = 'guide'][@xref = $id]]">
-    <xsl:variable name="xref" select="@id"/>
+  <xsl:for-each select="$mal.cache//mal:info/mal:link[@type = 'guide'][@xref = $id]">
+    <xsl:variable name="source" select="../.."/>
+    <xsl:variable name="xref">
+      <xsl:call-template name="mal.link.xref.linkid">
+        <xsl:with-param name="node" select="$source"/>
+        <xsl:with-param name="xref" select="$source/@id"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:if test="not($node/mal:info/mal:link[@type = 'topic'][@xref = $xref])">
+      <xsl:variable name="link" select="."/>
+      <xsl:variable name="grouppos">
+        <xsl:if test="$link/@group">
+          <xsl:for-each select="$groupslist">
+            <xsl:if test="string(.) = $link/@group">
+              <xsl:value-of select="position()"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:variable>
+      <xsl:variable name="groupsort">
+        <xsl:value-of select="$grouppos"/>
+        <xsl:if test="string($grouppos) = ''">
+          <xsl:value-of select="$defaultpos"/>
+        </xsl:if>
+      </xsl:variable>
       <mal:link xref="{$xref}">
+        <xsl:attribute name="group">
+          <xsl:value-of select="$groupslist[number($groupsort)]"/>
+        </xsl:attribute>
+        <xsl:attribute name="groupsort">
+          <xsl:value-of select="$groupsort"/>
+        </xsl:attribute>
         <mal:title type="sort">
-          <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
+          <xsl:value-of select="$source/mal:info/mal:title[@type = 'sort'][1]"/>
         </mal:title>
       </mal:link>
     </xsl:if>
