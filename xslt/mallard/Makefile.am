@@ -1,1 +1,1 @@
-SUBDIRS = common html utils
+SUBDIRS = common html cache

@@ -11,7 +11,7 @@ BEGIN {
 {
   for (i = 1; i <= length($0); i++) {
     c = substr($0, i, 1);
-    if (c ~ /[a-zA-Z0-9:_\.\-]/)
+    if (c ~ /[a-zA-Z0-9:_\.\-\/]/)
       printf("%s", c);
     else
       printf("%%%02X", bytes[c]);
@@ -24,7 +24,7 @@ shift
 xsl_file="$1"
 shift
 (
-    echo '<cache:cache xmlns:cache="http://projectmallard.org/1.0/"'
+    echo '<cache:cache xmlns:cache="http://projectmallard.org/cache/1.0/"'
     echo '             xmlns="http://projectmallard.org/1.0/">'
     while [ "$#" != "0" ]; do
         input="$1"
@@ -40,7 +40,7 @@ shift
         fi
     done | while read input; do
         input_esc=$(urlencode "$input" | sed -e 's/\&/\&amp;/g' -e 's/</\&lt;/g' -e "s/'/\&apos;/g")
-        echo "<page href='file://$input_esc'/>"
+        echo "<page cache:href='file://$input_esc'/>"
     done
     echo '</cache:cache>'
 ) | xsltproc -o "$cache_file" "$xsl_file" -

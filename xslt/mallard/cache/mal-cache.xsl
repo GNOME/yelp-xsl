@@ -18,31 +18,39 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
                 xmlns:mal='http://projectmallard.org/1.0/'
+                xmlns:cache='http://projectmallard.org/cache/1.0/'
                 xmlns='http://projectmallard.org/1.0/'
                 version='1.0'>
 
+<!--!!==========================================================================
+Mallard Cache Files
+Generate Mallard cache files from cache input files.
+
+FIXME
+-->
+
 <xsl:output omit-xml-declaration="yes"/>
 
+<xsl:include href="../common/mal-link.xsl"/>
+
+
+<!--**==========================================================================
+mal.cache.id
+-->
 <xsl:template name="mal.cache.id">
   <xsl:param name="node" select="."/>
   <xsl:param name="node_in"/>
-  <xsl:choose>
-    <xsl:when test="not($node/@id)"/>
-    <xsl:when test="$node/self::mal:page">
-      <xsl:attribute name="id">
-        <xsl:value-of select="$node/@id"/>
-      </xsl:attribute>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:attribute name="id">
-        <xsl:value-of select="ancestor::mal:page[1]/@id"/>
-        <xsl:text>#</xsl:text>
-        <xsl:value-of select="@id"/>
-      </xsl:attribute>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:attribute name="id">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:attribute>
 </xsl:template>
 
+
+<!--**==========================================================================
+mal.cache.xref
+-->
 <xsl:template name="mal.cache.xref">
   <xsl:param name="node" select="."/>
   <xsl:param name="node_in"/>
@@ -51,67 +59,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
   </xsl:attribute>
 </xsl:template>
 
-<xsl:template match='/mal:cache'>
-  <cache>
-    <xsl:for-each select="mal:page">
-      <xsl:apply-templates select="document(@href)/*">
-        <xsl:with-param name="node_in" select="."/>
-      </xsl:apply-templates>
-    </xsl:for-each>
-  </cache>
-</xsl:template>
 
-<xsl:template match="mal:page">
-  <xsl:param name="node_in"/>
-  <xsl:param name="href" select="$node_in/@href"/>
-  <page>
-    <xsl:call-template name="mal.cache.id">
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:call-template>
-    <xsl:attribute name="href">
-      <xsl:value-of select="$href"/>
-    </xsl:attribute>
-    <xsl:if test="@type">
-      <xsl:attribute name="type">
-        <xsl:value-of select="@type"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:call-template name="groups"/>
-    <xsl:if test="not(mal:info)">
-      <xsl:call-template name="info">
-        <xsl:with-param name="info" select="mal:info"/>
-        <xsl:with-param name="node" select="."/>
-        <xsl:with-param name="node_in" select="$node_in"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:apply-templates>
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:apply-templates>
-  </page>
-</xsl:template>
-
-<xsl:template match="mal:section">
-  <xsl:param name="node_in"/>
-  <section>
-    <xsl:call-template name="mal.cache.id">
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:call-template>
-    <xsl:call-template name="groups"/>
-    <xsl:if test="not(mal:info)">
-      <xsl:call-template name="info">
-        <xsl:with-param name="info" select="mal:info"/>
-        <xsl:with-param name="node" select="."/>
-        <xsl:with-param name="node_in" select="$node_in"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:apply-templates>
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:apply-templates>
-  </section>
-</xsl:template>
-
-<xsl:template name="groups">
+<!--**==========================================================================
+mal.cache.groups
+-->
+<xsl:template name="mal.cache.groups">
   <xsl:param name="node" select="."/>
+  <xsl:param name="node_in"/>
   <xsl:attribute name="groups">
     <xsl:value-of select="$node/@groups"/>
     <xsl:if test="not(contains(concat(' ', $node/@groups, ' '), ' #default '))">
@@ -120,13 +74,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
   </xsl:attribute>
 </xsl:template>
 
-<xsl:template match="mal:title">
-  <xsl:copy-of select="."/>
-</xsl:template>
 
-<xsl:template name="info" match="mal:info">
-  <xsl:param name="info" select="."/>
-  <xsl:param name="node" select="$info/.."/>
+<!--**==========================================================================
+mal.cache.info
+-->
+<xsl:template name="mal.cache.info">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="info" select="$node/mal:info"/>
   <xsl:param name="node_in"/>
   <info>
     <xsl:if test="not($info/mal:title[@type = 'link'])">
@@ -169,6 +123,68 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
       </xsl:choose>
     </xsl:for-each>
   </info>
+</xsl:template>
+
+
+<!-- == Matched Templates == -->
+
+<!-- = /cache:cache = -->
+<xsl:template match='/cache:cache'>
+  <cache>
+    <xsl:for-each select="mal:page">
+      <xsl:apply-templates select="document(@cache:href)/*">
+        <xsl:with-param name="node_in" select="."/>
+      </xsl:apply-templates>
+    </xsl:for-each>
+  </cache>
+</xsl:template>
+
+<!-- = mal:page = -->
+<xsl:template match="mal:page">
+  <xsl:param name="node_in"/>
+  <page cache:href="{$node_in/@cache:href}">
+    <xsl:call-template name="mal.cache.id">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:call-template name="mal.cache.groups">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:if test="@type">
+      <xsl:attribute name="type">
+        <xsl:value-of select="@type"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="mal.cache.info">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:apply-templates>
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:apply-templates>
+  </page>
+</xsl:template>
+
+<!-- = mal:section = -->
+<xsl:template match="mal:section">
+  <xsl:param name="node_in"/>
+  <section>
+    <xsl:call-template name="mal.cache.id">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:call-template name="mal.cache.groups">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:call-template name="mal.cache.info">
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:call-template>
+    <xsl:apply-templates>
+      <xsl:with-param name="node_in" select="$node_in"/>
+    </xsl:apply-templates>
+  </section>
+</xsl:template>
+
+<!-- = mal:title = -->
+<xsl:template match="mal:title">
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="node() | text()"/>

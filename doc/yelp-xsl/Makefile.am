@@ -6,6 +6,7 @@ xsldoc_dirs = 						\
 	$(ABS_SRCDIR)/../../xslt/docbook/common		\
 	$(ABS_SRCDIR)/../../xslt/docbook/html		\
 	$(ABS_SRCDIR)/../../xslt/docbook/omf		\
+	$(ABS_SRCDIR)/../../xslt/mallard/cache		\
 	$(ABS_SRCDIR)/../../xslt/mallard/common		\
 	$(ABS_SRCDIR)/../../xslt/mallard/html
 
@@ -26,7 +27,7 @@ $(xsldoc_pages): $(xsldoc_xsls) xsldoc-scan.awk xsldoc-scan.xsl
 	"$(srcdir)/xsldoc-scan.xsl" -
 
 C/index.cache: $(xsldoc_pages)
-	$(srcdir)/mal2cache "$@" "$(ABS_SRCDIR)/../../xslt/mallard/utils/mal2cache.xsl" C/*.page
+	$(srcdir)/mal2cache "$@" "$(ABS_SRCDIR)/../../xslt/mallard/cache/mal-cache.xsl" C/*.page
 
 .PHONY: yelp-xsl-check-links
 check: yelp-xsl-check-links

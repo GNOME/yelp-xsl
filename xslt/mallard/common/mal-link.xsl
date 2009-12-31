@@ -18,6 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:cache="http://projectmallard.org/cache/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
                 version="1.0">
@@ -33,7 +34,7 @@ mal.cache.file
 The location of the cache file.
 -->
 <xsl:param name="mal.cache.file"/>
-<xsl:param name="mal.cache" select="document($mal.cache.file)/mal:cache"/>
+<xsl:param name="mal.cache" select="document($mal.cache.file)/cache:cache"/>
 <xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
 
 
