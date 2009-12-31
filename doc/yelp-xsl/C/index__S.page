@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index__S">
+  <info>
+    <link type="guide" xref="index"/>
+  </info>
+
+  <title>Index of XSLT Stylesheets</title>
+</page>

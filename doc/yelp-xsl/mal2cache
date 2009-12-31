@@ -1,0 +1,46 @@
+#!/bin/sh
+# -*- indent-tabs-mode: nil -*-
+export LANG=C
+urlencode() {
+    echo "$1" | awk --posix '
+BEGIN {
+  for (i = 1; i <= 256; i++) {
+    bytes[sprintf("%c", i)] = i;
+  }
+}
+{
+  for (i = 1; i <= length($0); i++) {
+    c = substr($0, i, 1);
+    if (c ~ /[a-zA-Z0-9:_\.\-]/)
+      printf("%s", c);
+    else
+      printf("%%%02X", bytes[c]);
+  }
+}
+'
+}
+cache_file="$1"
+shift
+xsl_file="$1"
+shift
+(
+    echo '<cache:cache xmlns:cache="http://projectmallard.org/1.0/"'
+    echo '             xmlns="http://projectmallard.org/1.0/">'
+    while [ "$#" != "0" ]; do
+        input="$1"
+        shift
+        if [ -d "$input" ]; then
+            input_full=$(cd "$doc_input" && pwd)
+            for input_file in "$input_full/"*.page; do
+                echo "$input_file"
+            done
+            unset input_full
+        else
+            echo "$(pwd)/$input"
+        fi
+    done | while read input; do
+        input_esc=$(urlencode "$input" | sed -e 's/\&/\&amp;/g' -e 's/</\&lt;/g' -e "s/'/\&apos;/g")
+        echo "<page href='file://$input_esc'/>"
+    done
+    echo '</cache:cache>'
+) | xsltproc -o "$cache_file" "$xsl_file" -

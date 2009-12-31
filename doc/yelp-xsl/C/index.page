@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index">
+  <info>
+  </info>
+
+  <title>Yelp XSLT Stylesheets</title>
+</page>

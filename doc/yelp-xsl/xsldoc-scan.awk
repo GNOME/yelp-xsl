@@ -262,7 +262,6 @@ cur_line_mode == "params" && end_mode {
     cur_line_mode = "body";
     cur_block = "";
     print "  </terms></synopsis>";
-    next;
 }
 # Continuation of previous param
 cur_line_mode == "params" {

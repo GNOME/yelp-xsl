@@ -27,6 +27,12 @@ Mallard to HTML - Media Elements
 REMARK: Describe this module
 -->
 
+<!--**==========================================================================
+mal2html.media.image
+FIXME
+
+FIXME
+-->
 <xsl:template name="mal2html.media.image">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
@@ -58,6 +64,12 @@ REMARK: Describe this module
   </img>
 </xsl:template>
 
+<!--**==========================================================================
+mal2html.media.video
+FIXME
+
+FIXME
+-->
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
@@ -75,6 +87,12 @@ REMARK: Describe this module
   </video>
 </xsl:template>
 
+<!--**==========================================================================
+mal2html.media.audio
+FIXME
+
+FIXME
+-->
 <xsl:template name="mal2html.media.audio">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
@@ -132,7 +150,7 @@ REMARK: Describe this module
     </xsl:when>
     <xsl:otherwise>
       <xsl:for-each select="mal:*">
-        <xsl:apply-templates mode="db2html.block.mode" select=".">
+        <xsl:apply-templates mode="mal2html.block.mode" select=".">
           <xsl:with-param name="first_child" select="position() = 1 and $first_child"/>
         </xsl:apply-templates>
       </xsl:for-each>
@@ -165,7 +183,7 @@ REMARK: Describe this module
       </span>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="db2html.inline.mode"/>
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

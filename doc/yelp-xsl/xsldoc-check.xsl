@@ -38,7 +38,44 @@ free software.
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:mal="http://projectmallard.org/1.0/"
                 version="1.0">
+
+<xsl:output method="text"/>
+
+<xsl:param name="xsldoc.cache.file"/>
+<xsl:param name="xsldoc.cache" select="document($xsldoc.cache.file)/mal:cache"/>
+<xsl:key name="xsldoc.cache.key" match="mal:page | mal:section" use="@id"/>
+
+<xsl:template match="/mal:page">
+  <xsl:variable name="page" select="."/>
+  <xsl:for-each select="//mal:link[@xref]">
+    <xsl:variable name="linkid">
+      <xsl:if test="starts-with(@xref, '#')">
+        <xsl:value-of select="ancestor::mal:page/@id"/>
+      </xsl:if>
+      <xsl:value-of select="@xref"/>
+    </xsl:variable>
+    <xsl:for-each select="$xsldoc.cache">
+      <xsl:if test="count(key('xsldoc.cache.key', $linkid)) = 0">
+        <xsl:message terminate="yes">
+          <xsl:text>The page </xsl:text>
+          <xsl:value-of select="$page/@id"/>
+          <xsl:text> links to an undefined </xsl:text>
+          <xsl:choose>
+            <xsl:when test="contains($linkid, '#')">
+              <xsl:text>section </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>page </xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:value-of select="$linkid"/>
+        </xsl:message>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
 
 <xsl:template match="section">
   <xsl:variable name="section" select="."/>

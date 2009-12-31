@@ -221,7 +221,12 @@ REMARK: FIXME
   </xsl:for-each>
 </xsl:template>
 
+<!--**==========================================================================
+mal.link.linkid
+FIXME
 
+FIXME
+-->
 <xsl:template name="mal.link.linkid">
   <xsl:param name="node" select="."/>
   <xsl:choose>
@@ -237,6 +242,12 @@ REMARK: FIXME
   </xsl:choose>
 </xsl:template>
 
+<!--**==========================================================================
+mal.link.xref.linkid
+FIXME
+
+FIXME
+-->
 <xsl:template name="mal.link.xref.linkid">
   <xsl:param name="node" select="."/>
   <xsl:param name="xref" select="$node/@xref"/>
@@ -349,6 +360,12 @@ REMARK: FIXME
 
 <xsl:param name="mal.link.default_root" select="'index'"/>
 
+<!--**==========================================================================
+mal.link.linktrails
+FIXME
+
+FIXME
+-->
 <xsl:template name="mal.link.linktrails">
   <xsl:param name="node" select="."/>
   <xsl:param name="trail" select="/false"/>

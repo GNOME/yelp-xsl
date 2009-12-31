@@ -34,7 +34,7 @@ REMARK: Describe this module
 
 
 <!--**==========================================================================
-mal2html.page.copyright
+mal2html.page.copyrights
 Outputs the copyright notice at the bottom of a page
 $node: The top-level #{page} element
 
@@ -396,6 +396,12 @@ REMARK: Describe this template
   </xsl:if>
 </xsl:template>
 
+<!--**==========================================================================
+mal2html.page.linktrails.trail
+FIXME
+
+REMARK: Describe this template
+-->
 <xsl:template name="mal2html.page.linktrails.trail">
   <xsl:param name="node" select="."/>
   <div class="linktrail">
@@ -405,6 +411,12 @@ REMARK: Describe this template
   </div>
 </xsl:template>
 
+<!--**==========================================================================
+mal2html.page.linktrails.link
+FIXME
+
+REMARK: Describe this template
+-->
 <xsl:template name="mal2html.page.linktrails.link">
   <xsl:param name="node" select="."/>
   <a class="linktrail">
@@ -576,6 +588,13 @@ REMARK: Describe this template
   </div>
 </xsl:template>
 
+
+<!--%%==========================================================================
+mal2html.title.mode
+FIXME
+
+FIXE
+-->
 <!-- = subtitle = -->
 <xsl:template mode="mal2html.title.mode" match="mal:subtitle">
   <!-- FIXME -->

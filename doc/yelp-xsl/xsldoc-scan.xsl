@@ -51,6 +51,7 @@ free software.
 <xsl:variable name="xslt_file" select="document($xsldoc.xslt_file)/xsl:stylesheet"/>
 
 <xsl:template match="mal:page">
+  <xsl:variable name="page" select="."/>
   <page id="{$xsldoc.id}" type="guide" style="xslt-stylesheet">
     <xsl:copy-of select="processing-instruction()"/>
     <info>
@@ -59,24 +60,39 @@ free software.
         <xsl:copy-of select="mal:desc"/>
       </xsl:if>
       <xsl:copy-of select="mal:info/*[not(self::mal:desc)]"/>
+      <!-- xslt-calls-template -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:call-template/@name)">
-        <xsl:variable name="id" select="concat('T__', translate(., '.', '_'))"/>
-        <link type="xslt-calls-template" xref="{$id}"/>
+        <xsl:variable name="name" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
+          <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
+          <link type="xslt-calls-template" xref="{$id}"/>
+        </xsl:if>
       </xsl:for-each>
+      <!-- xslt-calls-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:apply-templates/@mode)">
-        <xsl:variable name="id" select="concat('M__', translate(., '.', '_'))"/>
-        <link type="xslt-calls-mode" xref="{$id}"/>
+        <xsl:variable name="mode" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
+          <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
+          <link type="xslt-calls-mode" xref="{$id}"/>
+        </xsl:if>
       </xsl:for-each>
+      <!-- xslt-uses-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:template/@mode)">
+        <!-- FIXME: xslt-private -->
         <xsl:variable name="id" select="concat('M__', translate(., '.', '_'))"/>
         <link type="xslt-uses-mode" xref="{$id}"/>
       </xsl:for-each>
+      <!-- xslt-uses-param -->
+      <!-- Disable for now, until we can do it better.  We should look deeper into
+           select attributes, and checking descendent-or-self/preceding-sibling for
+           params and variables.
       <xsl:for-each select="set:distinct($xslt_file//xsl:value-of
                             [starts-with(@select, '$') and contains(@select, '.')]/@select)">
         <xsl:variable name="id"
-                      select="concat('M__', translate(substring-after(., '$'), '.', '_'))"/>
+                      select="concat('P__', translate(substring-after(., '$'), '.', '_'))"/>
         <link type="xslt-uses-param" xref="{$id}"/>
       </xsl:for-each>
+      -->
     </info>
     <xsl:copy-of select="mal:title"/>
     <xsl:if test="string(mal:info/mal:desc) != ''">

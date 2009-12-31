@@ -1,4 +1,4 @@
-SUBDIRS = data xslt
+SUBDIRS = data xslt doc
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -11,10 +11,11 @@ EXTRA_DIST = 						\
 	COPYING.LGPL					\
 	intltool-extract.in  				\
 	intltool-merge.in    				\
-	intltool-update.in				\
-	gnome-doc-utils.pc.in
+	intltool-update.in
 
 DISTCLEANFILES =					\
 	intltool-extract  				\
 	intltool-merge    				\
 	intltool-update
+
+DISTCHECK_CONFIGURE_FLAGS = --enable-doc
