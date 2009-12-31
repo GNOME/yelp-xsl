@@ -135,14 +135,14 @@ REMARK: Describe this template
   <a>
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
-        <xsl:with-param name="link" select="$source"/>
+        <xsl:with-param name="node" select="$source"/>
         <xsl:with-param name="xref" select="$target/@id"/>
       </xsl:call-template>
     </xsl:attribute>
     <div class="linkdiv">
       <div class="title">
         <xsl:call-template name="mal.link.content">
-          <xsl:with-param name="link" select="$source"/>
+          <xsl:with-param name="node" select="$source"/>
           <xsl:with-param name="xref" select="$target/@id"/>
           <xsl:with-param name="role" select="'topic'"/>
         </xsl:call-template>
@@ -426,6 +426,7 @@ REMARK: Describe this template
       </xsl:call-template>
     </xsl:attribute>
     <xsl:call-template name="mal.link.content">
+      <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="xref" select="$node/@xref"/>
       <xsl:with-param name="role" select="'guide'"/>
     </xsl:call-template>

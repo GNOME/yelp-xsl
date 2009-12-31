@@ -49,7 +49,7 @@ free software.
 
 <xsl:template match="/mal:page">
   <xsl:variable name="page" select="."/>
-  <xsl:for-each select="//mal:link[@xref]">
+  <xsl:for-each select="//mal:*[@xref]">
     <xsl:variable name="linkid">
       <xsl:if test="starts-with(@xref, '#')">
         <xsl:value-of select="ancestor::mal:page/@id"/>

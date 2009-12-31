@@ -62,15 +62,15 @@ function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
 	char = substr(line, ix, 1);
 	name = substr(line, ix + 2, jx - ix - 3);
 	id = name;
-	while (sub(/[\.-]/, "_", id));
+	while (sub(/[\.]/, "_", id));
 	if (char == "!")
-	    fmt = "<file xref='xslt-stylesheet:%s'>%s</file>";
+	    fmt = "<file xref='%s'>%s</file>";
 	else if (char == "*")
-	    fmt = "<code style='xslt-template' xref='xslt-template:%s'>%s</code>";
+	    fmt = "<code style='xslt-template' xref='T__%s'>%s</code>";
 	else if (char == "%")
-	    fmt = "<code style='xslt-mode' xref='xslt-mode:%s'>%s</code>";
+	    fmt = "<code style='xslt-mode' xref='M__%s'>%s</code>";
 	else if (char == "@") 
-	    fmt = "<code style='xslt-param' xref='xslt-param:%s'>%s</code>";
+	    fmt = "<code style='xslt-param' xref='P__%s'>%s</code>";
 	else if (char == "$") 
 	    fmt = "<code style='xslt-param'>"name"</code>";
 	else if (char == "#")
@@ -223,7 +223,7 @@ cur_line_mode == "meta" && /^:Requires:.+$/ {
     next;
 }
 # Unknown meta
-cur_line_mode == "desc" && /^:.+:.+$/ {
+cur_line_mode == "meta" && /^:.+:.+$/ {
     next;
 }
 # Closing off meta, directly to body

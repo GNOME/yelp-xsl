@@ -103,16 +103,34 @@ free software.
     <xsl:apply-templates/>
     <xsl:if test="mal:section[@style = 'xslt-param']">
       <section id="P">
-        <title>Templates</title>
-      </section>
-    </xsl:if>
-    <xsl:if test="mal:section[@style = 'xslt-template']">
-      <section id="T">
-        <title>Templates</title>
+        <info>
+          <title type="link">
+            <xsl:text>Parameters for </xsl:text>
+            <xsl:copy-of select="mal:title/node()"/>
+          </title>
+        </info>
+        <title>Parameters</title>
       </section>
     </xsl:if>
     <xsl:if test="mal:section[@style = 'xslt-mode']">
       <section id="M">
+        <info>
+          <title type="link">
+            <xsl:text>Modes for </xsl:text>
+            <xsl:copy-of select="mal:title/node()"/>
+          </title>
+        </info>
+        <title>Modes</title>
+      </section>
+    </xsl:if>
+    <xsl:if test="mal:section[@style = 'xslt-template']">
+      <section id="T">
+        <info>
+          <title type="link">
+            <xsl:text>Templates for </xsl:text>
+            <xsl:copy-of select="mal:title/node()"/>
+          </title>
+        </info>
         <title>Templates</title>
       </section>
     </xsl:if>
