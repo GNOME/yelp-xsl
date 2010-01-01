@@ -1,4 +1,4 @@
-SUBDIRS = data xslt doc
+SUBDIRS = data xslt doc po
 
 ACLOCAL_AMFLAGS = -I m4
 

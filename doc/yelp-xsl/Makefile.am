@@ -61,4 +61,9 @@ clean-doc-dir: clean_xsldoc
 clean_xsldoc:
 	rm -f $(xsldoc_pages)
 
-EXTRA_DIST = xsldoc-scan.awk xsldoc-scan.xsl
+EXTRA_DIST = 			\
+	mal2cache		\
+	xsldoc-check.xsl	\
+	xsldoc-scan		\
+	xsldoc-scan.awk		\
+	xsldoc-scan.xsl
