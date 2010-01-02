@@ -130,13 +130,13 @@ mal.cache.info
 
 <!-- = /cache:cache = -->
 <xsl:template match='/cache:cache'>
-  <cache>
+  <cache:cache>
     <xsl:for-each select="mal:page">
       <xsl:apply-templates select="document(@cache:href)/*">
         <xsl:with-param name="node_in" select="."/>
       </xsl:apply-templates>
     </xsl:for-each>
-  </cache>
+  </cache:cache>
 </xsl:template>
 
 <!-- = mal:page = -->

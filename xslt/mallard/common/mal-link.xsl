@@ -17,8 +17,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:cache="http://projectmallard.org/cache/1.0/"
+                xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
                 version="1.0">
@@ -158,32 +158,17 @@ page or section cannot be found, ${xref} is used as the text content.
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
   <xsl:param name="role" select="''"/>
-  <xsl:choose>
-    <xsl:when test="contains($xref, '/') or contains($xref, ':')">
-      <!--
-      This is a link to another document, which we don't handle in these
-      stylesheets.  Extensions such as library or yelp should override
-      this template to provide this functionality.
-      -->
-      <xsl:choose>
-        <xsl:when test="$href">
-          <xsl:value-of select="$href"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$xref"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="linkid">
-        <xsl:call-template name="mal.link.xref.linkid">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="xref" select="$xref"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:for-each select="$mal.cache">
-        <xsl:variable name="titles" select="key('mal.cache.key', $linkid)
-                                           /mal:info/mal:title[@type = 'link']"/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.xref.linkid">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="xref" select="$xref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:for-each select="$mal.cache">
+    <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
+    <xsl:choose>
+      <xsl:when test="$target">
+        <xsl:variable name="titles" select="$target/mal:info/mal:title[@type = 'link']"/>
         <xsl:choose>
           <xsl:when test="$role != '' and $titles[@role = $role]">
             <xsl:apply-templates mode="mal.link.content.mode"
@@ -194,9 +179,19 @@ page or section cannot be found, ${xref} is used as the text content.
                                  select="$titles[not(@role)][1]/node()"/>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:for-each>
-    </xsl:otherwise>
-  </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$href">
+            <xsl:value-of select="$href"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$xref"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
 </xsl:template>
 
 
