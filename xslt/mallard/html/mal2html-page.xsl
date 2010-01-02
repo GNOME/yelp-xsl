@@ -30,15 +30,29 @@ REMARK: Describe this module
 -->
 
 
+<!--@@==========================================================================
+mal2html.editor.mode
+Add information that's useful to writers and editors.
+
+When this parameter is set to true, these stylesheets will output editorial
+comments, status markers, and other information that's useful to writers and
+editors.
+-->
 <xsl:param name="mal2html.editor_mode" select="false()"/>
 
 
 <!--**==========================================================================
 mal2html.page.copyrights
-Outputs the copyright notice at the bottom of a page
-$node: The top-level #{page} element
+Output the copyright notice at the bottom of a page.
+:Revision:version="1.0" date="2010-01-02"
+$node: The top-level #{page} element.
 
-REMARK: Describe this template
+This template outputs copyright information.  By default, it is placed at the
+bottom of the page by *{mal2html.page.footbar}.  Copyrights are taken from the
+#{credit} elements in the #{info} element in ${node}.
+
+Copyright information is output in a #{div} element with #{class="copyrights"}.
+Each copyright is output in a nested #{div} element with #{class="copyright"}.
 -->
 <xsl:template name="mal2html.page.copyrights">
   <xsl:param name="node"/>
