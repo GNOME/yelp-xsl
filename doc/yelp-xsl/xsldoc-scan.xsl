@@ -68,6 +68,14 @@ free software.
           <link type="xslt-calls-template" xref="{$id}"/>
         </xsl:if>
       </xsl:for-each>
+      <!-- xslt-defines-template -->
+      <xsl:for-each select="$xslt_file/xsl:template/@name">
+        <xsl:variable name="name" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
+          <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
+          <link type="xslt-defines-template" xref="{$id}"/>
+        </xsl:if>
+      </xsl:for-each>
       <!-- xslt-calls-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:apply-templates/@mode)">
         <xsl:variable name="mode" select="string(.)"/>
@@ -76,11 +84,19 @@ free software.
           <link type="xslt-calls-mode" xref="{$id}"/>
         </xsl:if>
       </xsl:for-each>
-      <!-- xslt-uses-mode -->
+      <!-- xslt-implements-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:template/@mode)">
         <!-- FIXME: xslt-private -->
         <xsl:variable name="id" select="concat('M__', translate(., '.', '_'))"/>
-        <link type="xslt-uses-mode" xref="{$id}"/>
+        <link type="xslt-implements-mode" xref="{$id}"/>
+      </xsl:for-each>
+      <!-- xslt-defines-param -->
+      <xsl:for-each select="$xslt_file/xsl:param/@name">
+        <xsl:variable name="name" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
+          <xsl:variable name="id" select="concat('P__', translate($name, '.', '_'))"/>
+          <link type="xslt-defines-param" xref="{$id}"/>
+        </xsl:if>
       </xsl:for-each>
       <!-- xslt-uses-param -->
       <!-- Disable for now, until we can do it better.  We should look deeper into

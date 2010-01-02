@@ -1,4 +1,5 @@
 #!/bin/awk
+# -*- indent-tabs-mode: nil -*-
 # xsldoc.awk - Convert inline documentation to XML suitable for xsldoc.xsl
 # Copyright (C) 2006 Shaun McCance <shaunm@gnome.org>
 #
@@ -56,7 +57,7 @@
 function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
     ix = match(line, /[\*\$\@\%\!\#]\{[^\}]*\}/)
     if (ix > 0) {
-	jx = ix + index(substr(line, ix), "}");
+        jx = ix + index(substr(line, ix), "}");
 	pre = substr(line, 1, ix - 1);
 	aft = substr(line, jx);
 	char = substr(line, ix, 1);
@@ -218,8 +219,15 @@ cur_line_mode == "meta" && /^:Requires:.+$/ {
     sub(/^[^:]*:[ \t]*/, "", val);
     split(val, vals);
     for (valsi in vals) {
-	printf "    <link type='xslt-requires' xref='%s'/>\n", vals[valsi];
+        printf "    <link type='xslt-requires' xref='%s'/>\n", vals[valsi];
     }
+    next;
+}
+cur_line_mode == "meta" && /^:Revision:.+$/ {
+    val = $0;
+    sub(/^\:/, "", val);
+    sub(/^[^:]*:[ \t]*/, "", val);
+    printf "    <revision %s/>\n", val;
     next;
 }
 # Unknown meta

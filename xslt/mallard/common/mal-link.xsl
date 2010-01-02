@@ -26,32 +26,74 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Mallard Links
 Common linking utilities for Mallard documents.
+:Revision:version="1.0" date="2010-01-02"
+
+This stylesheets contains various utilities for handling links in Mallard
+documents.  The templates in this stylesheet make it easier to handle the
+different linking mechanisms in Mallard, including the dynamic automatic
+linking systems.
 -->
 
 
 <!--@@==========================================================================
 mal.cache.file
 The location of the cache file.
+:Revision:version="1.0" date="2010-01-02"
+
+In order to locate and process links between pages, this stylesheet requires
+a Mallard cache file.  Use this parameter to pass the path to a valid cache
+file.
 -->
 <xsl:param name="mal.cache.file"/>
+
+
+<!--@@==========================================================================
+mal.cache
+The cache document as a node set.
+:Revision:version="1.0" date="2010-01-02"
+
+This parameter points to the root #{cache:cache} element of a Mallard cache
+document.  By default, it selects the root element from the file provided in
+@{mal.cache.file}.
+
+Some processing tools may create a Mallard cache document without outputting
+it to a file.  Those tools can use this parameter directly.
+-->
 <xsl:param name="mal.cache" select="document($mal.cache.file)/cache:cache"/>
+
+
+<!--============================================================================
+mal.cache.key
+-->
 <xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
+
+
+<!--@@==========================================================================
+mal.link.default_root
+The default root ID.
+
+This parameter provides the default ID for the page that is taken to be the
+root of the document.  By default, #{'index'} is used.  This should not be
+changed for normal Mallard documents.  It may be necessary to change it for
+some Mallard extension formats.
+-->
+<xsl:param name="mal.link.default_root" select="'index'"/>
 
 
 <!--**==========================================================================
 mal.link.linkid
-Generate the fully qualified link ID for a page or section.
-:DONE:2009-12-31
+Output the fully qualified link ID for a page or section.
+:Revision:version="1.0" date="2010-01-02"
 $node: The #{page} or #{section} element to generate a link ID for.
 
-This template generates the fully qualified link ID for a page or section.
-For #{page} elements, the link ID is identical to the ID.  For #{section}
-elements, however, the link ID is the containing page ID and the section
-ID, joined with the #{#} character.
+This template outputs the fully qualified link ID for a page or section.  For
+#{page} elements, the link ID is identical to the ID.  For #{section} elements,
+however, the link ID is the containing page ID and the section ID, joined with
+the #{#} character.
 
-The link ID is used in Mallard cache files to ensure all #{id} attributes
-are unique.  All of the templates in this stylesheet that use a link ID use
-this template or *{mal.link.xref.linkid}.
+The link ID is used in Mallard cache files to ensure all #{id} attributes are
+unique.  All of the templates in this stylesheet that use a link ID use this
+template or *{mal.link.xref.linkid}.
 -->
 <xsl:template name="mal.link.linkid">
   <xsl:param name="node" select="."/>
@@ -71,12 +113,12 @@ this template or *{mal.link.xref.linkid}.
 
 <!--**==========================================================================
 mal.link.xref.linkid
-Generate the fully qualified link ID for an #{xref} attribute.
-:DONE:2009-12-31
+Output the fully qualified link ID for an #{xref} attribute.
+:Revision:version="1.0" date="2010-01-02"
 $node: The element containing an #{xref} attribute.
 $xref: The #{xref} value to generate a link ID from.
 
-This template generates the fully qualified link ID for an #{xref} attribute.
+This template outputs the fully qualified link ID for an #{xref} attribute.
 This may simply be ${xref}, but if ${xref} starts with the #{#} character, it
 is prefixed with the ID of the page that contains ${node}.
 
@@ -94,14 +136,14 @@ See *{mal.link.linkid} for more on link IDs.
 
 <!--**==========================================================================
 mal.link.content
-Generate the content for a #{link} element.
-:DONE:2009-12-31
+Output the content for a #{link} element.
+:Revision:version="1.0" date="2010-01-02"
 $node: The #{link} or other element creating the link.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
 $role: A link role, used to select the appropriate title.
 
-This template generates the automatic text content for a link.  It should only
+This template outputs the automatic text content for a link.  It should only
 be used for links that do not have specified content.  If ${xref} points to a
 valid page or section, the appropriate link title from that page or section
 will be selected, based on ${role}.  The %{mal.link.content.mode} mode will
@@ -160,12 +202,12 @@ page or section cannot be found, ${xref} is used as the text content.
 
 <!--%%==========================================================================
 mal.link.content.mode
-Generate the content for a link from the contents of a #{title} element.
-:DONE:2009-12-31
+Output the content for a link from the contents of a #{title} element.
+:Revision:version="1.0" date="2010-01-02"
 
 This mode is applied to the contents of a #{title} element by *{mal.link.content}.
-By default, it returns the string value of its input.  Stylesheets that use this
-stylesheet should map that mode to inline processing.
+By default, it returns the string value of its input.  Stylesheets that use
+*{mal.link.content} should map this mode to inline processing.
 -->
 <xsl:template mode="mal.link.content.mode" match="* | text()">
   <xsl:value-of select="."/>
@@ -174,13 +216,13 @@ stylesheet should map that mode to inline processing.
 
 <!--**==========================================================================
 mal.link.target
-Generate the target URL for a #{link} or other linking element.
-:DONE:2009-12-31
+Output the target URL for a #{link} or other linking element.
+:Revision:version="1.0" date="2010-01-02"
 $node: The #{link} or other element creating the link.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
 
-This template generates a URL for a #{link} element or another element using
+This template outputs a URL for a #{link} element or another element using
 linking attributes.  If ${xref} points to a valid page or section, it uses
 a file name based on the ID of the target page plus @{mal.chunk.extension}.
 Otherwise, the link will point to ${href}.
@@ -218,14 +260,14 @@ Otherwise, the link will point to ${href}.
 
 <!--**==========================================================================
 mal.link.tooltip
-Generates the tooltip for a #{link} or other linking element.
-:DONE:2009-12-31
+Output the tooltip for a #{link} or other linking element.
+:Revision:version="1.0" date="2010-01-02"
 $node: The #{link} or other element creating the link.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
 
-This template generates a tooltip for a link.  Currently it only generates
-a tooltip for #{mailto:} URLs in ${href}.
+This template outputs a tooltip for a link.  Currently, it only outputs a
+tooltip for #{mailto:} URLs in ${href}.
 -->
 <xsl:template name="mal.link.tooltip">
   <xsl:param name="link" select="."/>
@@ -252,10 +294,11 @@ a tooltip for #{mailto:} URLs in ${href}.
 
 <!--**==========================================================================
 mal.link.guidelinks
-Generate the guide links for a page or section.
+Output the guide links for a page or section.
+:Revision:version="1.0" date="2010-01-02"
 $node: The #{page} or #{section} element to generate links for.
 
-This template generates all the guide links for a page or section, whether
+This template outputs all the guide links for a page or section, whether
 declared as guide links in the page or section or as topic links from another
 guide page.  It outputs each of the links as a #{link} element within the
 Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
@@ -298,11 +341,33 @@ The output is a result tree fragment.  To use these results, call
   </xsl:for-each>
 </xsl:template>
 
+
 <!--**==========================================================================
 mal.link.topiclinks
-FIXME
+Output the topic links for a page or section.
+:Revision:version="1.0" date="2010-01-02"
+$node: The #{page} or #{section} element to generate links for.
 
-REMARK: FIXME
+This template outputs all the topic links for a guide page or section, whether
+declared as topic links in the page or section or as guide links from another
+page or section.  It outputs each of the links as a #{link} element within the
+Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
+to the target page or section.
+
+Each #{link} element contains a #{title} with #{type="sort"} providing the
+sort title of the target page or section.
+
+Each #{link} element also contains a #{group} attribute.  The #{group}
+attribute is normalized.  It will either point to a link group declared
+in ${node}, or it will be set to #{#default}.  Each #{link} element also
+contains a #{groupsort} attribute giving the numerical position of the
+#{group} attribute in the normalized group list for ${node}.
+
+The results are not sorted when returned from this template.  Use #{xsl:sort}
+on the #{groupsort} attribute and the sort titles to sort the results.
+
+The output is a result tree fragment.  To use these results, call
+#{exsl:node-set} on them.
 -->
 <xsl:template name="mal.link.topiclinks">
   <xsl:param name="node" select="."/>
@@ -399,13 +464,45 @@ REMARK: FIXME
   </xsl:for-each>
 </xsl:template>
 
-<xsl:param name="mal.link.default_root" select="'index'"/>
 
 <!--**==========================================================================
 mal.link.linktrails
-FIXME
+Output link trails for a page or section.
+$node: The #{page} or #{section} element to generate links for.
+$trail: The link trail leading to ${node}.
+$root: The ID of the root page.
 
-FIXME
+This template outputs lists of links, where each list is a path of topic links
+that leads to ${node}.  Each link list is output as a #{link} element in the
+Mallard namespace with an #{xref} attribute pointing to the target page or
+section.  Each #{link} has a #{title} element with #{type="sort"} providing
+the sort title of the target page or section.
+
+Each #{link} element may also contain another #{link} element providing the
+next link in the trail.  Each of these links also contains a sort titles and
+may also contain another link.
+
+The results are not sorted when returned from this template.  Use #{xsl:sort}
+on the nested sort titles to sort the results.  The output is a result tree
+fragment.  To use these results, call #{exsl:node-set} on them.
+
+This template calls itself recursively.  It finds the guide links for ${node}
+using *{mal.link.guidelinks}.  It then calls *{mal.link.linktrails} on each
+guide, wrapping ${trail} with a link to the guide as the new ${trail} parameter.
+
+If there are no guide links for ${node} and ${node} is a #{section} element,
+this template calls itself on the containing page, wrapping ${trails} with a
+link to that page.  This #{link} element has the attribute #{child="section"}
+to indicate the link from it to its child is not a topic link.
+
+Recursion stops when the ID of ${node} is ${root}.  Link trails are only
+output if they reach ${root}.
+-->
+<!--
+FIXME:
+* Terminate at $root
+* Only output if we reach $root
+* Cycle detection
 -->
 <xsl:template name="mal.link.linktrails">
   <xsl:param name="node" select="."/>
