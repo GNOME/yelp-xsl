@@ -1,4 +1,4 @@
-watermarkdir = $(datadir)/gnome-doc-utils/watermarks
+watermarkdir = $(datadir)/yelp-xsl/icons/hicolor/watermarks
 watermark_DATA =			\
 	watermark-blockquote-00AB.png	\
 	watermark-blockquote-00BB.png	\

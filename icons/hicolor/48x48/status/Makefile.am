@@ -1,4 +1,4 @@
-icondir = $(datadir)/gnome-doc-utils/icons/hicolor/48x48/status
+icondir = $(datadir)/yelp-xsl/icons/hicolor/48x48/status
 icon_DATA =			\
 	admon-bug.png		\
 	admon-caution.png	\

@@ -1,4 +1,4 @@
-icondir = $(datadir)/gnome-doc-utils/icons/hicolor/scalable/status
+icondir = $(datadir)/yelp-xsl/icons/hicolor/scalable/status
 icon_DATA =			\
 	admon-caution.svg	\
 	admon-bug.svg		\

@@ -1,7 +1,7 @@
 prefix=@prefix@
 datarootdir=@datarootdir@
 datadir=@datadir@
-icondir=${datadir}/gnome-doc-utils/icons
+icondir=${datadir}/yelp-xsl/icons
 xsltdir=${datadir}/yelp-xsl/xslt
 gettext=${xsltdir}/gettext/gettext.xsl
 db2html=${xsltdir}/docbook/html/db2html.xsl
