@@ -16,6 +16,8 @@ xsldoc_xsls = $(filter-out %db2html-suppressed.xsl,			\
 xsldoc_base = $(sort $(foreach xsl,$(xsldoc_xsls), $(basename $(notdir $(xsl)))))
 xsldoc_pages = $(patsubst %, C/%.page, $(xsldoc_base))
 
+.PHONY: xsldoc-check-links xsldoc-clean
+
 if ENABLE_DOC
 all: $(xsldoc_pages)
 
@@ -29,10 +31,9 @@ $(xsldoc_pages): $(xsldoc_xsls) xsldoc-scan.awk xsldoc-scan.xsl
 C/index.cache: $(xsldoc_pages)
 	$(srcdir)/mal2cache "$@" "$(ABS_SRCDIR)/../../xslt/mallard/cache/mal-cache.xsl" C/*.page
 
-.PHONY: yelp-xsl-check-links
-check: yelp-xsl-check-links
+check: xsldoc-check
 
-yelp-xsl-check-links: C/index.cache
+xsldoc-check: C/index.cache
 	for page in $(wildcard C/*.page); do \
 	  xsltproc --stringparam xsldoc.cache.file C/index.cache "$(srcdir)/xsldoc-check.xsl" "$$page" || exit 1; \
 	done
@@ -55,11 +56,10 @@ gnome-doc-xslt-check-xsldoc: $(xsldoc_docs)
 	@(echo "<xsldoc>"; cat $(xsldoc_docs); echo "</xsldoc>") \
 	| xsltproc "$(srcdir)/xsldoc-check.xsl" - 1> /dev/null
 
-#.PHONY: clean-xsldoc
-clean-local: clean_xsldoc
-clean-doc-dir: clean_xsldoc
-clean_xsldoc:
-	rm -f $(xsldoc_pages)
+.PHONY: xsldoc-clean
+clean-local: xsldoc-clean
+xsldoc-clean:
+	rm -f $(xsldoc_pages) C/T__*.page C/P__*.page C/M__*.page C/index.cache
 
 EXTRA_DIST = 			\
 	mal2cache		\
