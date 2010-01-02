@@ -270,7 +270,7 @@ This template outputs a tooltip for a link.  Currently, it only outputs a
 tooltip for #{mailto:} URLs in ${href}.
 -->
 <xsl:template name="mal.link.tooltip">
-  <xsl:param name="link" select="."/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
   <xsl:choose>
