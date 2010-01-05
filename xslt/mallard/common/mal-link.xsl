@@ -315,23 +315,23 @@ The output is a result tree fragment.  To use these results, call
     </xsl:call-template>
   </xsl:variable>
   <xsl:for-each select="$node/mal:info/mal:link[@type = 'guide']">
-    <xsl:variable name="linkid">
+    <xsl:variable name="linklinkid">
       <xsl:call-template name="mal.link.xref.linkid"/>
     </xsl:variable>
-    <mal:link xref="{$linkid}">
+    <mal:link xref="{$linklinkid}">
       <mal:title type="sort">
         <xsl:for-each select="$mal.cache">
-          <xsl:value-of select="key('mal.cache.key', $linkid)/mal:info/mal:title[@type = 'sort'][1]"/>
+          <xsl:value-of select="key('mal.cache.key', $linklinkid)/mal:info/mal:title[@type = 'sort'][1]"/>
         </xsl:for-each>
       </mal:title>
     </mal:link>
   </xsl:for-each>
   <xsl:for-each select="$mal.cache//*[mal:info/mal:link[@type = 'topic'][@xref = $linkid]]">
-    <xsl:variable name="linkid">
+    <xsl:variable name="linklinkid">
       <xsl:call-template name="mal.link.linkid"/>
     </xsl:variable>
-    <xsl:if test="not($node/mal:info/mal:link[@type = 'guide'][@xref = $linkid])">
-      <mal:link xref="{$linkid}">
+    <xsl:if test="not($node/mal:info/mal:link[@type = 'guide'][@xref = $linklinkid])">
+      <mal:link xref="{$linklinkid}">
         <mal:title type="sort">
           <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
         </mal:title>
