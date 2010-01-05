@@ -495,7 +495,7 @@ REMARK: Describe this template
       </title>
       <xsl:call-template name="mal2html.css"/>
     </head>
-    <body>
+    <body class="{@style}">
       <xsl:call-template name="mal2html.page.headbar">
         <xsl:with-param name="node" select="."/>
       </xsl:call-template>
