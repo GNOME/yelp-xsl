@@ -7,6 +7,7 @@ pkgconfig_DATA = yelp-xsl.pc
 
 EXTRA_DIST = 						\
 	$(pkgdata_DATA)					\
+	ChangeLog					\
 	COPYING.GPL					\
 	COPYING.LGPL					\
 	intltool-extract.in  				\
@@ -19,3 +20,11 @@ DISTCLEANFILES =					\
 	intltool-update
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-doc
+
+ChangeLog:
+	@if test -f $(top_srcdir)/.git/HEAD; then \
+	  git log --stat > $@; \
+	fi
+
+dist: ChangeLog
+.PHONY: ChangeLog
