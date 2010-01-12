@@ -114,14 +114,26 @@ FIXME
 <!-- = mal2html.block.mode % media = -->
 <xsl:template mode="mal2html.block.mode" match="mal:media">
   <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
+  <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
+  <xsl:variable name="class">
+    <xsl:choose>
+      <xsl:when test="contains($style, 'floatleft')">
+        <xsl:text> floatleft</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($style, 'floatright')">
+        <xsl:text> floatright</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:if test="$first_child">
+      <xsl:text> first-child</xsl:text>
+    </xsl:if>
+  </xsl:variable>
   <xsl:choose>
     <xsl:when test="@type = 'image'">
       <div>
         <xsl:attribute name="class">
           <xsl:text>media media-image</xsl:text>
-          <xsl:if test="$first_child">
-            <xsl:text> first-child</xsl:text>
-          </xsl:if>
+          <xsl:value-of select="$class"/>
         </xsl:attribute>
         <xsl:call-template name="mal2html.media.image"/>
       </div>
@@ -130,9 +142,7 @@ FIXME
       <div>
         <xsl:attribute name="class">
           <xsl:text>media media-video</xsl:text>
-          <xsl:if test="$first_child">
-            <xsl:text> first-child</xsl:text>
-          </xsl:if>
+          <xsl:value-of select="$class"/>
         </xsl:attribute>
         <xsl:call-template name="mal2html.media.video"/>
       </div>
@@ -141,9 +151,7 @@ FIXME
       <div>
         <xsl:attribute name="class">
           <xsl:text>media media-audio</xsl:text>
-          <xsl:if test="$first_child">
-            <xsl:text> first-child</xsl:text>
-          </xsl:if>
+          <xsl:value-of select="$class"/>
         </xsl:attribute>
         <xsl:call-template name="mal2html.media.audio"/>
       </div>

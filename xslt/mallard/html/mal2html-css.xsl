@@ -107,6 +107,16 @@ body {
 ul, ol, dl, dd { margin: 0; }
 div, pre, p, li, dt { margin: 1em 0 0 0; padding: 0; }
 .first-child { margin-top: 0; }
+div.floatleft {
+  float: left;
+  margin-top: 0;
+  margin-right: 1em;
+}
+div.floatright {
+  float: right;
+  margin-top: 0;
+  margin-left: 1em;
+}
 li.condensed { margin-top: 0.2em; }
 a {
   text-decoration: none;
