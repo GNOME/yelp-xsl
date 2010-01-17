@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -14,12 +15,19 @@
    id="svg2"
    inkscape:label="Pozadí"
    sodipodi:version="0.32"
-   inkscape:version="0.45.1"
+   inkscape:version="0.47 r22583"
    version="1.0"
    sodipodi:docname="admon-important.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective189" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient5551">
@@ -1077,6 +1085,36 @@
        y1="37.451565"
        x2="6.525744"
        y2="12.530458" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5588"
+       id="linearGradient3003"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.996842,0.3004032,-0.3028517,0.993998,-30.427347,12.985169)"
+       x1="32.735748"
+       y1="45.385857"
+       x2="1.9991667"
+       y2="0.34891111" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5588"
+       id="linearGradient3009"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.996842,0.3004032,-0.3028517,0.993998,-30.427347,12.985169)"
+       x1="32.735748"
+       y1="45.385857"
+       x2="1.9991667"
+       y2="0.34891111" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5588"
+       id="linearGradient3013"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.48816392,0.14711058,-0.14830964,0.4867712,-31.82908,14.391907)"
+       x1="32.735748"
+       y1="45.385857"
+       x2="1.9991667"
+       y2="0.34891111" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1085,25 +1123,29 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="4.5"
-     inkscape:cx="62.955862"
-     inkscape:cy="30.701119"
+     inkscape:zoom="14.104167"
+     inkscape:cx="-14.742603"
+     inkscape:cy="22.663646"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="48px"
      height="48px"
      inkscape:showpageshadow="false"
-     gridtolerance="10"
-     inkscape:window-width="795"
-     inkscape:window-height="868"
+     gridtolerance="1"
+     inkscape:window-width="1043"
+     inkscape:window-height="907"
      inkscape:window-x="162"
      inkscape:window-y="51"
-     showgrid="false">
+     showgrid="true"
+     objecttolerance="1"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
-       id="grid4907"
-       spacingx="1px"
-       spacingy="1px" />
+       id="grid2995"
+       empspacing="4"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata6">
@@ -1113,6 +1155,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1153,5 +1196,28 @@
        style="fill:none;fill-rule:evenodd;stroke:#edd400;stroke-width:0.90890175px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter5524)"
        id="path5540"
        sodipodi:nodetypes="cc" />
+    <rect
+       style="opacity:0.25;fill:#3465a4;fill-opacity:1;stroke:none"
+       id="rect2997"
+       width="24.070911"
+       height="24"
+       x="-40.0709"
+       y="8" />
+    <path
+       sodipodi:nodetypes="ccccccccccc"
+       id="path2999"
+       d="m -21.472388,29.633917 -6.494919,-3.915386 -6.497507,3.930157 1.626992,-7.36643 -5.637927,-4.944825 7.010848,-1.330587 3.502683,-6.2929601 L -24.463795,16 l 7.010232,1.313532 -5.640967,4.957648 1.622142,7.362737 z"
+       style="color:#000000;fill:url(#linearGradient3013);fill-opacity:1;fill-rule:evenodd;stroke:#cca800;stroke-width:0.97781348;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-important.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="ccccccccccc"
+       id="path3001"
+       d="m -23,27.410134 -5.016139,-2.971368 -4.962519,2.950929 1.311175,-5.461147 -4.50943,-3.926499 5.44707,-1.052548 2.729528,-4.87367 2.726263,4.868779 5.408679,1.013236 -4.473642,3.962787 L -23,27.410134 z"
+       style="color:#000000;fill:none;stroke:#ffffff;stroke-width:0.891;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.64864860999999996;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-important.png" />
   </g>
 </svg>

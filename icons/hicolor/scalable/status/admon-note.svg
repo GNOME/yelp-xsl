@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -13,8 +14,7 @@
    height="48"
    id="svg4118"
    sodipodi:version="0.32"
-   inkscape:version="0.45.1"
-   sodipodi:docbase="/shaunm/projects/gnome-doc-utils/data/icons/hicolor/scalable"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="admon-note.svg"
    inkscape:export-filename="/home/cornelius/GFX/ikony/yelp/note2.png"
    inkscape:export-xdpi="90"
@@ -23,6 +23,13 @@
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4120">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective150" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient6074">
@@ -800,6 +807,140 @@
        r="2.3650992"
        gradientTransform="matrix(1,0,0,0.9714286,0,0.5180622)"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5068"
+       id="linearGradient2988"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1666666,0,0,1.0007593,-50.60446,-4.5256941)"
+       x1="8.3546944"
+       y1="34.109348"
+       x2="8.245904"
+       y2="16.159151" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5976"
+       id="linearGradient2990"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1936569,0,0,1.2051891,-51.167554,-6.8508224)"
+       x1="12.24654"
+       y1="12.425668"
+       x2="12.24654"
+       y2="41.648232" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6074"
+       id="radialGradient2992"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.9714286,0,0.5180622)"
+       cx="18.177475"
+       cy="18.132177"
+       fx="18.177475"
+       fy="18.132177"
+       r="2.3650992" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6025"
+       id="radialGradient2994"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9358152,1.153619,-0.8528402,1.0513312,5.7441162,-10.83752)"
+       cx="9.4521093"
+       cy="6.3353066"
+       fx="9.4521093"
+       fy="6.3353066"
+       r="4.025767" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6048"
+       id="linearGradient2996"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9090909,0,0,0.875,-50.899915,-2.8661489)"
+       x1="4.1781459"
+       y1="-3.3374889"
+       x2="10.5"
+       y2="17.336283" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5068"
+       id="linearGradient3015"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1666666,0,0,1.0007593,-50.60446,-4.5256941)"
+       x1="8.3546944"
+       y1="34.109348"
+       x2="8.245904"
+       y2="16.159151" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5976"
+       id="linearGradient3017"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1936569,0,0,1.2051891,-51.167554,-6.8508224)"
+       x1="12.24654"
+       y1="12.425668"
+       x2="12.24654"
+       y2="41.648232" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6074"
+       id="radialGradient3019"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.9714286,0,0.5180622)"
+       cx="18.177475"
+       cy="18.132177"
+       fx="18.177475"
+       fy="18.132177"
+       r="2.3650992" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6025"
+       id="radialGradient3021"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9358152,1.153619,-0.8528402,1.0513312,5.7441162,-10.83752)"
+       cx="9.4521093"
+       cy="6.3353066"
+       fx="9.4521093"
+       fy="6.3353066"
+       r="4.025767" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6048"
+       id="linearGradient3023"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9090909,0,0,0.875,-50.899915,-2.8661489)"
+       x1="4.1781459"
+       y1="-3.3374889"
+       x2="10.5"
+       y2="17.336283" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6048"
+       id="linearGradient3030"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.50121388,0,0,0.48241836,-40.921567,7.1877445)"
+       x1="4.1781459"
+       y1="-3.3374889"
+       x2="10.5"
+       y2="17.336283" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5976"
+       id="linearGradient3041"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.60450796,0,0,0.61034826,-40.038846,6.6689718)"
+       x1="12.24654"
+       y1="12.425668"
+       x2="12.24654"
+       y2="41.648232" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5068"
+       id="linearGradient3044"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.63555816,0,0,0.54517781,-40.716045,6.7906041)"
+       x1="8.3546944"
+       y1="34.109348"
+       x2="8.245904"
+       y2="16.159151" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -808,28 +949,35 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.464144"
-     inkscape:cx="34.477354"
-     inkscape:cy="22.109207"
+     inkscape:zoom="29.597069"
+     inkscape:cx="-21.270689"
+     inkscape:cy="27.722119"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
      inkscape:showpageshadow="false"
      showguides="true"
-     inkscape:window-width="872"
-     inkscape:window-height="691"
-     inkscape:window-x="32"
-     inkscape:window-y="26"
+     inkscape:window-width="1222"
+     inkscape:window-height="949"
+     inkscape:window-x="0"
+     inkscape:window-y="45"
      inkscape:object-bbox="false"
      inkscape:object-paths="false"
      inkscape:grid-points="false"
      width="48px"
      height="48px"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     objecttolerance="1"
+     gridtolerance="1"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
-       id="grid5651" />
+       id="grid5651"
+       empspacing="4"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
   <metadata
      id="metadata4123">
@@ -954,5 +1102,132 @@
        style="fill:none;fill-rule:evenodd;stroke:#edd400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 12.5,31.491149 L 31.35446,31.491149"
        id="path6095" />
+    <rect
+       style="opacity:0.25;fill:#3465a4;fill-opacity:1;stroke:none"
+       id="rect2956"
+       width="24"
+       height="24"
+       x="-40"
+       y="8" />
+    <path
+       sodipodi:nodetypes="cccccccccc"
+       id="path2958"
+       d="m -36.300394,12.529447 18.225322,0 c 0.308524,0 0.556901,0.213057 0.556901,0.477708 l 0.03622,13.459975 c 0,1.61139 0.06334,3.039395 -0.561717,4.066549 l -19.494093,-0.02702 c -0.327223,0 -0.590655,-0.225969 -0.590655,-0.506659 0.493595,-0.404468 0.627156,-2.113555 0.719716,-3.483901 l 0.44728,-13.50895 c 0,-0.264651 0.3525,-0.477708 0.661024,-0.477708 z"
+       style="color:#000000;fill:url(#linearGradient3044);fill-opacity:1;fill-rule:evenodd;stroke:#c8a300;stroke-width:0.99576366;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:none;stroke:url(#linearGradient3041);stroke-width:0.9185583;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m -35.25559,13.688141 16.241572,0 c 0.275668,0 0.327044,-0.01392 0.327044,0.2139 l 0.044,11.78198 c -0.141034,1.26036 0.08797,2.890756 -0.510615,3.693565 l -17.485294,0 c 0.564241,-0.692862 0.269706,-1.170583 0.382021,-1.685746 l 0.494932,-13.789799 c 0,-0.227818 0.230679,-0.2139 0.506345,-0.2139 z"
+       id="path2960"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.58278239,0,0,0.59992301,-42.705911,6.9398237)"
+       d="m 20.542574,18.132177 a 2.3650992,2.2975249 0 1 1 -4.730198,0 2.3650992,2.2975249 0 1 1 4.730198,0 z"
+       sodipodi:ry="2.2975249"
+       sodipodi:rx="2.3650992"
+       sodipodi:cy="18.132177"
+       sodipodi:cx="18.177475"
+       id="path2962"
+       style="color:#000000;fill:url(#radialGradient3019);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       style="stroke:#ead200;stroke-width:1;stroke-opacity:1"
+       transform="matrix(0.53282893,0.14164718,-0.14164718,0.53282893,-37.912545,5.0237426)"
+       id="g2964"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="fill:none;stroke:#ead200;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 16.567262,20.023409 c 0,0 0,-2.117204 2.874704,-3.669408"
+         id="path2966" />
+      <path
+         style="fill:none;stroke:#ead200;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 15.12991,20.728398 c 0,0 -2.256312,-0.489384 -3.62991,0.141108"
+         id="path2968" />
+      <path
+         style="fill:none;stroke:#ead200;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 15.12991,20.023409 c 0,0 1.437352,1.476591 2.874704,1.476591"
+         id="path2970" />
+    </g>
+    <path
+       sodipodi:nodetypes="cccc"
+       id="path2972"
+       d="m -36.46358,13.846619 4.432927,4.291681 -2.056044,-6.057455 -2.376883,1.765774 z"
+       style="fill:#729fcf;fill-rule:evenodd;stroke:#3465a4;stroke-width:0.55133528;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.5999999;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="cccc"
+       id="path2974"
+       d="m -32.715865,17.13225 -2.101078,-3.524043 1.363463,0.402311 0.737615,3.121732 z"
+       style="fill:#ffffff;fill-opacity:0.543379;fill-rule:evenodd;stroke:none"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.9230803,0,0,0.75213786,-44.954334,6.8391081)"
+       d="m 13.952407,7.6718087 a 3.5836663,4.3959641 0 1 1 -7.1673323,0 3.5836663,4.3959641 0 1 1 7.1673323,0 z"
+       sodipodi:ry="4.3959641"
+       sodipodi:rx="3.5836663"
+       sodipodi:cy="7.6718087"
+       sodipodi:cx="10.368741"
+       id="path2976"
+       style="color:#000000;fill:url(#radialGradient3021);fill-opacity:1;fill-rule:evenodd;stroke:#a40000;stroke-width:0.66167891px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="cccscc"
+       id="path2978"
+       d="m -35.429098,9.5998363 c -1.648493,0 -2.933712,1.0008757 -2.933712,2.5580227 0.397642,1.01595 1.491658,1.283786 2.474266,1.301324 1.648492,0 2.986399,-0.781897 2.986399,-2.339044 0,-0.0742 -0.0084,-0.146378 -0.01436,-0.219143 -0.530052,-0.787007 -1.452635,-1.3011597 -2.512596,-1.3011597 z"
+       style="color:#000000;fill:url(#linearGradient3030);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:none;stroke:#ffffff;stroke-width:0.79381776px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.35159816;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path2980"
+       sodipodi:cx="10.368741"
+       sodipodi:cy="7.6718087"
+       sodipodi:rx="3.5836663"
+       sodipodi:ry="4.3959641"
+       d="m 13.952407,7.6718087 a 3.5836663,4.3959641 0 1 1 -7.1673323,0 3.5836663,4.3959641 0 1 1 7.1673323,0 z"
+       transform="matrix(0.76923355,0,0,0.62709254,-43.359137,7.8212463)"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       id="path2982"
+       d="m -34,19.524362 14.113545,0"
+       style="fill:none;stroke:#edd400;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#edd400;stroke-width:0.99552888;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m -33.946845,22.506807 14.050442,0"
+       id="path2984"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       id="path2986"
+       d="m -34,25.421678 10.395129,0"
+       style="fill:none;stroke:#edd400;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/home/shaunm/Projects/yelp-xsl/icons/hicolor/24x24/status/admon-note.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

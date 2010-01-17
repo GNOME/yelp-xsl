@@ -40,6 +40,8 @@ Makefile
 yelp-xsl.pc
 icons/Makefile
 icons/hicolor/Makefile
+icons/hicolor/24x24/Makefile
+icons/hicolor/24x24/status/Makefile
 icons/hicolor/48x48/Makefile
 icons/hicolor/48x48/status/Makefile
 icons/hicolor/scalable/Makefile

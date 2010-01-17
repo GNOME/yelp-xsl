@@ -1,0 +1,10 @@
+icondir = $(datadir)/yelp-xsl/icons/hicolor/24x24/status
+icon_DATA =			\
+	admon-bug.png		\
+	admon-caution.png	\
+	admon-important.png	\
+	admon-note.png		\
+	admon-tip.png		\
+	admon-warning.png
+
+EXTRA_DIST = $(icon_DATA)
