@@ -41,6 +41,7 @@ free software.
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://projectmallard.org/1.0/"
                 extension-element-prefixes="exsl"
                 exclude-result-prefixes="mal set"
@@ -99,16 +100,34 @@ free software.
         </xsl:if>
       </xsl:for-each>
       <!-- xslt-uses-param -->
-      <!-- Disable for now, until we can do it better.  We should look deeper into
-           select attributes, and checking descendent-or-self/preceding-sibling for
-           params and variables.
-      <xsl:for-each select="set:distinct($xslt_file//xsl:value-of
-                            [starts-with(@select, '$') and contains(@select, '.')]/@select)">
-        <xsl:variable name="id"
-                      select="concat('P__', translate(substring-after(., '$'), '.', '_'))"/>
+      <xsl:variable name="uses-params">
+        <!-- FIXME
+        -->
+        <xsl:for-each select="$xslt_file//xsl:value-of/@select |
+                              $xslt_file//xsl:if/@test         | 
+                              $xslt_file//xsl:when/@test       ">
+          <xsl:variable name="xpath_node" select="."/>
+          <xsl:variable name="params">
+            <xsl:call-template name="extract-params">
+              <xsl:with-param name="string" select="string(.)"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:for-each select="str:split($params)">
+            <xsl:variable name="paramname" select="string(.)"/>
+            <xsl:if test="
+              not($xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:param[@name = $paramname]
+               or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable[@name = $paramname])">
+              <param>
+                <xsl:value-of select="$paramname"/>
+              </param>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:for-each select="set:distinct(exsl:node-set($uses-params)/mal:param)">
+        <xsl:variable name="id" select="concat('P__', translate(string(.), '.', '_'))"/>
         <link type="xslt-uses-param" xref="{$id}"/>
       </xsl:for-each>
-      -->
     </info>
     <xsl:copy-of select="mal:title"/>
     <xsl:if test="string(mal:info/mal:desc) != ''">
@@ -196,6 +215,53 @@ free software.
 
 <xsl:template match="*">
   <xsl:copy-of select="."/>
+</xsl:template>
+
+<xsl:template name="extract-params">
+  <xsl:param name="string" select="''"/>
+  <xsl:param name="position" select="1"/>
+  <xsl:param name="in_param" select="false()"/>
+  <xsl:if test="$position &lt;= string-length($string)">
+    <xsl:variable name="char" select="substring($string, $position, 1)"/>
+    <xsl:choose>
+      <xsl:when test="$in_param">
+        <xsl:choose>
+          <xsl:when test="contains(
+                          'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_',
+                          $char)">
+            <xsl:value-of select="$char"/>
+            <xsl:call-template name="extract-params">
+              <xsl:with-param name="string" select="$string"/>
+              <xsl:with-param name="position" select="$position + 1"/>
+              <xsl:with-param name="in_param" select="true()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text> </xsl:text>
+            <xsl:call-template name="extract-params">
+              <xsl:with-param name="string" select="$string"/>
+              <xsl:with-param name="position" select="$position + 1"/>
+              <xsl:with-param name="in_param" select="false()"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$char = '$'">
+        <xsl:call-template name="extract-params">
+          <xsl:with-param name="string" select="$string"/>
+          <xsl:with-param name="position" select="$position + 1"/>
+          <xsl:with-param name="in_param" select="true()"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="extract-params">
+          <xsl:with-param name="string" select="$string"/>
+          <xsl:with-param name="position" select="$position + 1"/>
+          <xsl:with-param name="in_param" select="false()"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -39,12 +39,13 @@ free software.
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:cache="http://projectmallard.org/cache/1.0/"
                 version="1.0">
 
 <xsl:output method="text"/>
 
 <xsl:param name="xsldoc.cache.file"/>
-<xsl:param name="xsldoc.cache" select="document($xsldoc.cache.file)/mal:cache"/>
+<xsl:param name="xsldoc.cache" select="document($xsldoc.cache.file)/cache:cache"/>
 <xsl:key name="xsldoc.cache.key" match="mal:page | mal:section" use="@id"/>
 
 <xsl:template match="/mal:page">
