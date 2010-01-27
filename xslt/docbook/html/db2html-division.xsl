@@ -564,6 +564,17 @@ REMARK: Document this template
 -->
 <xsl:template name="db2html.navbar">
   <xsl:param name="node"/>
+  <xsl:param name="info" select="/false"/>
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
   <xsl:param name="prev_id">
     <xsl:choose>
       <xsl:when test="$depth_of_chunk = 0">

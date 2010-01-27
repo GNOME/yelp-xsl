@@ -254,6 +254,7 @@ REMARK: Describe this module
   </tfoot>
 </xsl:template>
 
+<!--#* repeat -->
 <xsl:template name="repeat">
   <xsl:param name="str" select="''"/>
   <xsl:param name="num" select="0"/>
@@ -308,6 +309,7 @@ REMARK: Describe this module
   </xsl:apply-templates>
 </xsl:template>
 
+<!--#* rowspans -->
 <xsl:template name="rowspans">
   <xsl:param name="spans"/>
   <xsl:param name="pos" select="1"/>

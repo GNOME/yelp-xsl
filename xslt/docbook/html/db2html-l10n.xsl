@@ -75,7 +75,7 @@ the parameters can do.
         <xsl:value-of select="concat('font-size: ', $font_size, '; ')"/>
       </xsl:if>
       <xsl:if test="$text_decoration != ''">
-        <xsl:value-of select="concat('text-decoration: ', $text-decoration, '; ')"/>
+        <xsl:value-of select="concat('text-decoration: ', $text_decoration, '; ')"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:apply-templates mode="l10n.format.mode">
