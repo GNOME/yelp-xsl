@@ -8,7 +8,8 @@ xsldoc_dirs = 						\
 	$(ABS_SRCDIR)/../../xslt/docbook/omf		\
 	$(ABS_SRCDIR)/../../xslt/mallard/cache		\
 	$(ABS_SRCDIR)/../../xslt/mallard/common		\
-	$(ABS_SRCDIR)/../../xslt/mallard/html
+	$(ABS_SRCDIR)/../../xslt/mallard/html		\
+	$(ABS_SRCDIR)/../../xslt/theme
 
 xsldoc_xsls = $(filter-out %db2html-suppressed.xsl,			\
 	$(sort $(patsubst ./%, %,					\

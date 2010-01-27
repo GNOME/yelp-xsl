@@ -1,1 +1,2 @@
-SUBDIRS = gettext docbook mallard common # gettext needs to be first
+# gettext needs to be first
+SUBDIRS = gettext docbook mallard common theme

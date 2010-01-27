@@ -261,7 +261,7 @@ pre.code {
    * watermark, or we need a separate RTL version.
    */
   background: url('</xsl:text>
-    <xsl:value-of select="$theme.watermark.code"/><xsl:text>') no-repeat top right;
+    <xsl:value-of select="$theme.icons.watermark.code"/><xsl:text>') no-repeat top right;
   border: solid 2px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
   padding: 0.5em 1em 0.5em 1em;
@@ -305,28 +305,28 @@ div.note {
 div.note-inner {
   margin: 0;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icon.admon.size + 12"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.emblem.size + 12"/><xsl:text>px;
   background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
   background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$theme.icon.admon.size"/><xsl:text>px;
+  min-height: </xsl:text><xsl:value-of select="$theme.icons.emblem.size"/><xsl:text>px;
   background-image: url("</xsl:text>
-    <xsl:value-of select="$theme.icon.admon.note"/><xsl:text>");
+    <xsl:value-of select="$theme.icons.emblem.note"/><xsl:text>");
 }
 div.note-advanced div.note-inner { <!-- background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.advanced"/><xsl:text>"); --> }
+  <xsl:value-of select="$theme.icons.emblem.note.advanced"/><xsl:text>"); --> }
 div.note-bug div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.bug"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.bug"/><xsl:text>"); }
 div.note-important div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.important"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.important"/><xsl:text>"); }
 div.note-tip div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.tip"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.tip"/><xsl:text>"); }
 div.note-warning div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.warning"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
 div.note-contents { margin: 0; padding: 0; }
 div.quote-inner {
   margin: 0;
   background-image: url('</xsl:text>
-    <xsl:value-of select="$theme.watermark.blockquote"/><xsl:text>');
+    <xsl:value-of select="$theme.icons.watermark.quote"/><xsl:text>');
   background-repeat: no-repeat;
   background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   padding: 0.5em;

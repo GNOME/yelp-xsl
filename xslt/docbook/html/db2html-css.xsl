@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - CSS
-:Requires: db2html-footnote db2html-callout db2html-qanda gettext theme
+:Requires: db2html-footnote db2html-callout db2html-qanda gettext theme-colors theme-icons
 
 REMARK: Describe this module
 -->
@@ -283,27 +283,27 @@ div.admonition {
 }
 div.caution-inner, div.important-inner, div.note-inner, div.tip-inner, div.warning-inner {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icon.admon.size + 12"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.emblem.size + 12"/><xsl:text>px;
   background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
   background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$theme.icon.admon.size"/><xsl:text>px;
+  min-height: </xsl:text><xsl:value-of select="$theme.icons.emblem.size"/><xsl:text>px;
 }
 div.caution-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.caution"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
 div.important-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.important"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.important"/><xsl:text>"); }
 div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.note"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note"/><xsl:text>"); }
 div.note-bug div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.bug"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.bug"/><xsl:text>"); }
 div.tip-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.tip"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.tip"/><xsl:text>"); }
 div.warning-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icon.admon.warning"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
 div.blockquote {
   <!-- FIXME: i18n -->
   background-image: url('</xsl:text>
-    <xsl:value-of select="$theme.watermark.blockquote"/><xsl:text>');
+    <xsl:value-of select="$theme.icons.watermark.quote"/><xsl:text>');
   background-repeat: no-repeat;
   background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   padding: 0.5em;
