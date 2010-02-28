@@ -485,10 +485,14 @@ REMARK: Describe this module
     </xsl:choose>
     <xsl:choose>
       <xsl:when test="$shaderow = 1 and $shadecol = 1">
-        <xsl:text>background-color: #d3d7cf;</xsl:text>
+        <xsl:text>background-color: </xsl:text>
+        <xsl:value-of select="$theme.color.dark_background"/>
+        <xsl:text>;</xsl:text>
       </xsl:when>
       <xsl:when test="$shaderow = 1 or $shadecol = 1">
-        <xsl:text>background-color: #eeeeec;</xsl:text>
+        <xsl:text>background-color: </xsl:text>
+        <xsl:value-of select="$theme.color.gray_background"/>
+        <xsl:text>;</xsl:text>
       </xsl:when>
     </xsl:choose>
   </xsl:variable>

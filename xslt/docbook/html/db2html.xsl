@@ -43,7 +43,8 @@ DocBook to HTML
 <!--#@ db.chunk.extension -->
 <xsl:param name="db.chunk.extension" select="'.html'"/>
 
-<xsl:include href="../../common/theme.xsl"/>
+<xsl:include href="../../theme/theme-colors.xsl"/>
+<xsl:include href="../../theme/theme-icons.xsl"/>
 
 <xsl:include href="../common/db-chunk.xsl"/>
 <xsl:include href="../common/db-common.xsl"/>

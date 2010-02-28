@@ -77,7 +77,18 @@ This parameter specifies the color for light text.  The light text
 color is used to make bold headings and certain parenthetical text
 less intense.  It should be legible on all background colors.
 -->
-<xsl:param name="theme.color.text_light" select="'#444'"/>
+<xsl:param name="theme.color.text_light" select="'#2e3436'"/>
+
+<!--@@==========================================================================
+theme.color.text_error
+The error text color.
+:Revision:version="1.0" date="2010-01-26"
+
+This parameter specifies the color for error text.  The error text
+color is used to style error messages from command line sessions.
+It should be legible on all background colors.
+-->
+<xsl:param name="theme.color.text_error" select="'#a40000'"/>
 
 <!--@@==========================================================================
 theme.color.blue_background
@@ -88,7 +99,7 @@ This parameter specifies the blue background color.  The blue
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.blue_background" select="'#c6d8eb'"/>
+<xsl:param name="theme.color.blue_background" select="'#d9ebff'"/>
 
 <!--@@==========================================================================
 theme.color.blue_border
@@ -98,7 +109,7 @@ The blue border color.
 This parameter specifies the blue border color.  The blue
 border color may be used by certain types of block elements.
 -->
-<xsl:param name="theme.color.blue_border" select="'#3465a4'"/>
+<xsl:param name="theme.color.blue_border" select="'#729fcf'"/>
 
 <!--@@==========================================================================
 theme.color.gray_background
@@ -109,7 +120,7 @@ This parameter specifies the gray background color.  The gray
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.gray_background" select="'#dfe1d3'"/>
+<xsl:param name="theme.color.gray_background" select="'#f3f3f0'"/>
 
 <!--@@==========================================================================
 theme.color.dark_background
@@ -120,7 +131,7 @@ This parameter specifies the dark gray background color.  The dark
 gray background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.dark_background" select="'#d3d7cf'"/>
+<xsl:param name="theme.color.dark_background" select="'#eeeeec'"/>
 
 <!--@@==========================================================================
 theme.color.gray_border
@@ -130,7 +141,7 @@ The gray border color.
 This parameter specifies the gray border color.  The gray
 border color may be used by certain types of block elements.
 -->
-<xsl:param name="theme.color.gray_border" select="'#888a85'"/>
+<xsl:param name="theme.color.gray_border" select="'#babdb6'"/>
 
 <!--@@==========================================================================
 theme.color.red_background
@@ -141,7 +152,7 @@ This parameter specifies the red background color.  The red
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.red_background" select="'#f8a9a9'"/>
+<xsl:param name="theme.color.red_background" select="'#ffcccc'"/>
 
 <!--@@==========================================================================
 theme.color.red_border
@@ -151,7 +162,7 @@ The red border color.
 This parameter specifies the red border color.  The red
 border color may be used by certain types of block elements.
 -->
-<xsl:param name="theme.color.red_border" select="'#cc0000'"/>
+<xsl:param name="theme.color.red_border" select="'#ef2929'"/>
 
 <!--@@==========================================================================
 theme.color.yellow_background
@@ -162,7 +173,7 @@ This parameter specifies the yellow background color.  The yellow
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.yellow_background" select="'#fdf3a6'"/>
+<xsl:param name="theme.color.yellow_background" select="'#fff8bf'"/>
 
 <!--@@==========================================================================
 theme.color.yellow_border
@@ -172,6 +183,6 @@ The yellow border color.
 This parameter specifies the yellow border color.  The yellow
 border color may be used by certain types of block elements.
 -->
-<xsl:param name="theme.color.yellow_border" select="'#c4a000'"/>
+<xsl:param name="theme.color.yellow_border" select="'#edd400'"/>
 
 </xsl:stylesheet>

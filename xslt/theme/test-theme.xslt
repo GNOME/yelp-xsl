@@ -26,17 +26,20 @@ h2 {
 }
 div {
   min-height: 4em;
-  min-width: 4em;
-  margin: 1em 1em 0 0;
+  min-width: 6em;
+  margin: 1em 0.5em 0 0.5em;
   padding: 2px;
 }
 p { margin: 0.5em 0 0.5em 0; }
-td div { text-align: center; }
+td { text-align: center; }
 p.text {
   color:  </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
 }
 p.light {
   color:  </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+p.error {
+  color:  </xsl:text><xsl:value-of select="$theme.color.text_error"/><xsl:text>;
 }
 p.link {
   color:  </xsl:text><xsl:value-of select="$theme.color.link"/><xsl:text>;
@@ -83,45 +86,52 @@ div.yellowbr {
 </xsl:template>
 
 <xsl:template name="boxes">
-  <h2>Background Colors</h2>
+  <h2>Backgrounds and Borders</h2>
   <table>
     <tr>
-      <td><div/></td>
+      <td></td>
+      <td style="color: {$theme.color.gray_border}"><xsl:value-of select="$theme.color.gray_border"/></td>
+      <td style="color: {$theme.color.blue_border}"><xsl:value-of select="$theme.color.blue_border"/></td>
+      <td style="color: {$theme.color.red_border}"><xsl:value-of select="$theme.color.red_border"/></td>
+      <td style="color: {$theme.color.yellow_border}"><xsl:value-of select="$theme.color.yellow_border"/></td>
+    </tr>
+    <tr>
+      <td><div><xsl:value-of select="$theme.color.background"/></div></td>
       <td><div class="graybr"/></td>
       <td><div class="bluebr"/></td>
       <td><div class="redbr"/></td>
       <td><div class="yellowbr"/></td>
     </tr>
     <tr>
-      <td><div class="graybg"/></td>
+      <td><div class="graybg"><xsl:value-of select="$theme.color.gray_background"/></div></td>
       <td><div class="graybg graybr"/></td>
       <td><div class="graybg bluebr"/></td>
       <td><div class="graybg redbr"/></td>
       <td><div class="graybg yellowbr"/></td>
     </tr>
     <tr>
-      <td><div class="darkbg"/></td>
+      <td><div class="darkbg"><xsl:value-of select="$theme.color.dark_background"/></div></td>
       <td><div class="darkbg graybr"/></td>
       <td><div class="darkbg bluebr"/></td>
       <td><div class="darkbg redbr"/></td>
       <td><div class="darkbg yellowbr"/></td>
     </tr>
     <tr>
-      <td><div class="bluebg"/></td>
+      <td><div class="bluebg"><xsl:value-of select="$theme.color.blue_background"/></div></td>
       <td><div class="bluebg graybr"/></td>
       <td><div class="bluebg bluebr"/></td>
       <td><div class="bluebg redbr"/></td>
       <td><div class="bluebg yellowbr"/></td>
     </tr>
     <tr>
-      <td><div class="redbg"/></td>
+      <td><div class="redbg"><xsl:value-of select="$theme.color.red_background"/></div></td>
       <td><div class="redbg graybr"/></td>
       <td><div class="redbg bluebr"/></td>
       <td><div class="redbg redbr"/></td>
       <td><div class="redbg yellowbr"/></td>
     </tr>
     <tr>
-      <td><div class="yellowbg"/></td>
+      <td><div class="yellowbg"><xsl:value-of select="$theme.color.yellow_background"/></div></td>
       <td><div class="yellowbg graybr"/></td>
       <td><div class="yellowbg bluebr"/></td>
       <td><div class="yellowbg redbr"/></td>
@@ -135,38 +145,44 @@ div.yellowbr {
   <table>
     <tr>
       <td><div>
-        <p class="text">text</p>
-        <p class="light">light</p>
-        <p class="link">link</p>
-        <p class="visited">visited</p>
+        <p class="text"><xsl:value-of select="$theme.color.text"/></p>
+        <p class="light"><xsl:value-of select="$theme.color.text_light"/></p>
+        <p class="error"><xsl:value-of select="$theme.color.text_error"/></p>
+        <p class="link"><xsl:value-of select="$theme.color.link"/></p>
+        <p class="visited"><xsl:value-of select="$theme.color.link_visited"/></p>
       </div></td>
       <td><div class="graybg">
         <p class="text">text</p>
         <p class="light">light</p>
+        <p class="error">error</p>
         <p class="link">link</p>
         <p class="visited">visited</p>
       </div></td>
       <td><div class="darkbg">
         <p class="text">text</p>
         <p class="light">light</p>
+        <p class="error">error</p>
         <p class="link">link</p>
         <p class="visited">visited</p>
       </div></td>
       <td><div class="bluebg">
         <p class="text">text</p>
         <p class="light">light</p>
+        <p class="error">error</p>
         <p class="link">link</p>
         <p class="visited">visited</p>
       </div></td>
       <td><div class="redbg">
         <p class="text">text</p>
         <p class="light">light</p>
+        <p class="error">error</p>
         <p class="link">link</p>
         <p class="visited">visited</p>
       </div></td>
       <td><div class="yellowbg">
         <p class="text">text</p>
         <p class="light">light</p>
+        <p class="error">error</p>
         <p class="link">link</p>
         <p class="visited">visited</p>
       </div></td>

@@ -58,8 +58,10 @@ REMARK: Describe this module
 <xsl:include href="mal2html-page.xsl"/>
 <xsl:include href="mal2html-table.xsl"/>
 
-<xsl:include href="../../common/theme.xsl"/>
 <xsl:include href="../../common/utils.xsl"/>
+
+<xsl:include href="../../theme/theme-colors.xsl"/>
+<xsl:include href="../../theme/theme-icons.xsl"/>
 
 <!-- FIXME -->
 <xsl:template match="*">
