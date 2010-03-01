@@ -459,7 +459,14 @@ element to output the next #{td}.
             <xsl:value-of select="$charoff"/>
           </xsl:attribute>
         </xsl:if>
-        <xsl:apply-templates select="$entry/node()"/>
+        <xsl:choose>
+          <xsl:when test="$entry/self::entrytbl">
+            <xsl:apply-templates select="$entry"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="$entry/node()"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:element>
       <!-- And process the next entry -->
       <xsl:variable name="following" select="$entry/following-sibling::*[1]"/>
@@ -938,9 +945,52 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 </xsl:template>
 
 
-
-
-
+<!-- = entrytbl = -->
+<xsl:template match="entrytbl">
+  <xsl:variable name="colsep">
+    <xsl:choose>
+      <xsl:when test="@colsep">
+        <xsl:value-of select="string(@colsep)"/>
+      </xsl:when>
+      <xsl:when test="not(.//*[@colsep][1])"/>
+      <xsl:otherwise>
+        <xsl:text>0</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="rowsep">
+    <xsl:choose>
+      <xsl:when test="@rowsep">
+        <xsl:value-of select="string(@rowsep)"/>
+      </xsl:when>
+      <xsl:when test="not(//*[@rowsep][1])"/>
+      <xsl:otherwise>
+        <xsl:text>0</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <table>
+    <xsl:if test="@lang">
+      <xsl:attribute name="dir">
+        <xsl:call-template name="l10n.direction">
+          <xsl:with-param name="lang" select="@lang"/>
+        </xsl:call-template>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates select="thead">
+      <xsl:with-param name="colspecs" select="colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colsep" select="$colsep"/>
+      <xsl:with-param name="rowsep" select="$rowsep"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="tbody">
+      <xsl:with-param name="colspecs" select="colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colsep" select="$colsep"/>
+      <xsl:with-param name="rowsep" select="$rowsep"/>
+    </xsl:apply-templates>
+  </table>
+</xsl:template>
 
 <!-- = table = -->
 <xsl:template match="table | informaltable">
