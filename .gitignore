@@ -25,3 +25,4 @@ yelp-xsl.pc
 /sandbox/mallard/html/*.xhtml
 /sandbox/mallard/html/figures/*.png
 /xslt/theme/test-theme.html
+/test/testdocs/html

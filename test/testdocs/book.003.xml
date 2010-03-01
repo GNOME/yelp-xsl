@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
 <!ENTITY blah "<para>Blah blah blah blah. Blah blah blah blah. Blah blah blah blah.
 Blah blah blah blah blah blah blah blah. Blah blah blah blah.
 Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
@@ -23,7 +23,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <book id="book">
 <bookinfo>
 <title>Unit Test: book.003</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: book.003.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
 <authorgroup>
 <corpauthor>SomeCorp</corpauthor>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
@@ -94,11 +94,12 @@ Some abstract. Some abstract. Some abstract. Some abstract.
 </revhistory>
 </bookinfo>
 
-<chapter id="chap1"><title>First Chapter</title>
+<chapter id="chap1">
 <chapterinfo>
 <abstract><para>bla in the first chapter</para>
 </abstract>
 </chapterinfo>
+<title>First Chapter</title>
 
 &blah;
 
@@ -109,7 +110,17 @@ A figure. Just to test the numeration.</programlisting>
 
 <section><title>First Section</title>
 
+<figure id="figduck2"><title>Another Test Figure</title>
+<programlisting>
+A figure. Just to test the numeration.</programlisting>
+</figure>
+
  &blah;
+
+<example id="example"><title>Test Example</title>
+<programlisting>
+An example.</programlisting>
+</example>
 
 <section><title>First Subsection</title>
 

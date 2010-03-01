@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
 <!ENTITY blah "<para>Blah blah blah blah. Blah blah blah blah. Blah blah blah blah.
 Blah blah blah blah blah blah blah blah. Blah blah blah blah.
 Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
@@ -23,7 +23,7 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <book>
 <bookinfo>
 <title>Unit Test: xref.001</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: xref.001.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
@@ -47,6 +47,10 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 <listitem><para>appendix: <xref linkend="appendix"/>.</para>
 </listitem>
 <listitem><para>para: <xref linkend="para"/>.</para>
+</listitem>
+<listitem><para>varlistentry: <xref linkend="varlistentry"/>.</para>
+</listitem>
+<listitem><para>orderedlistitem: <xref linkend="orderedlistitem"/>.</para>
 </listitem>
 </itemizedlist>
 
@@ -83,6 +87,24 @@ Blah. Blah blah blah blah. Blah blah. Blah blah blah blah.
 &blah;
 <para id="para">This paragraph has an ID.</para>
 
+
+<variablelist>
+<varlistentry id="varlistentry">
+<term>VarList Term</term>
+<listitem>
+<para>Test cross-ref to varlistentries, should use term text.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+      <orderedlist>
+        <listitem>
+          <para>first item</para>
+        </listitem>
+        <listitem id="orderedlistitem" xreflabel="ol1">
+          <para>second item, xref as "ol1".</para>
+        </listitem>
+      </orderedlist>
 </chapter>
 
 </part>

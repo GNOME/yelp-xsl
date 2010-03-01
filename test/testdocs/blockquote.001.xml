@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article>
 <articleinfo>
 <title>Unit Test: blockquote.001.xml</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: blockquote.001.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
 <!-- Change this: -->
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
@@ -23,6 +23,13 @@ of our enemies, we should find in in each one's life sorrow and
 suffering enough to disarm all hostility.</para>
 </blockquote>
 
+<blockquote><attribution>H. W. Longfellow</attribution>
+<simpara>If we could read the secret history
+of our enemies, we should find in in each one's life sorrow and
+suffering enough to disarm all hostility. (simpara)</simpara>
+</blockquote>
+
+
 <para>The following block quotation occurs inside a paragraph.
 
 <blockquote>
@@ -31,5 +38,9 @@ things towards making a man's fortune, next to interest and opportunity.</para>
 </blockquote>
 
 This line of text occurs after the quote, but inside the same para.</para>
+
+<blockquote><title>With A Title</title>
+<para>This block quote has a title.</para>
+</blockquote>
 
 </article>

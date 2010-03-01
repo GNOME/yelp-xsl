@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <book>
 <bookinfo>
 <title>Unit Test: indexterm.001</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: indexterm.002.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
@@ -18,6 +18,9 @@
 </indexterm>
 <indexterm>
 <primary>ap2</primary>
+</indexterm>
+<indexterm id="spanstart" class="startofrange">
+<primary>spanning</primary>
 </indexterm>
 
 <indexterm>
@@ -692,6 +695,8 @@
 <indexterm>
   <primary>gq</primary>
 </indexterm></para>
+
+<indexterm startref="spanstart" class="endofrange"/>
 
 </appendix>
 

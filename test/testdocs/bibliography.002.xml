@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE bibliography PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                       "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE bibliography PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <bibliography>
 <bibliographyinfo>
 <title>Unit Test: bibliography.002</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: bibliography.002.xml 5266 2005-10-12 23:49:28Z xmldoc $</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
@@ -29,7 +29,7 @@
   <editor><firstname>James T.</firstname><surname>DeWolf</surname></editor>
 </biblioentry>
 
-<biblioentry id="Walsh97">
+<biblioentry id="Walsh97-2">
   <abbrev>Walsh97</abbrev>
   <biblioset relation="article">
     <title>A Guide to XML</title>
@@ -164,7 +164,7 @@ PrintHistory, printhistory, printhistory. PrintHistory, printhistory.
 </bibliodiv>
 <bibliodiv><title>Entries using bibliomixed</title>
 
-<bibliomixed id="Walsh96">
+<bibliomixed id="Walsh96-2">
   <bibliomset relation="article">
     <surname>Walsh</surname>, <firstname>Norman</firstname>.
     <title role="article">Introduction to Cascading Style Sheets</title>.

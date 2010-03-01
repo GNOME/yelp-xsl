@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <article>
 <articleinfo>
 <title>Unit Test: literallayout.002</title>
-<releaseinfo role="CVS">$Id$</releaseinfo>
+<releaseinfo role="CVS">$Id: literallayout.002.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
 </articleinfo>
 
-<literallayout>LiteralLayout: This is a test
+<literallayout><ulink url="http://docbook.org/tdg/en/html/literallayout.html">LiteralLayout</ulink>: This is a test
     This is a test with <emphasis>    embedded
   markup</emphasis>; but still
   Only a test.
