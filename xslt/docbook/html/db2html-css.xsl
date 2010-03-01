@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - CSS
-:Requires: db2html-footnote db2html-callout db2html-qanda gettext theme-colors theme-icons
+:Requires: db2html-footnote db2html-callout db2html-qanda gettext theme-colors theme-icons theme-html
 
 REMARK: Describe this module
 -->
@@ -95,17 +95,9 @@ by extension stylesheets to extend or override the CSS.
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:variable>
+  <xsl:call-template name="theme.html.css"/>
   <xsl:text>
 <!-- == common == -->
-html { height: 100%; }
-body {
-  margin: 0px; padding: 12px;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  min-height: 100%;
-  direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
-}
-div, p, pre, blockquote { margin: 0; padding: 0; }
-p img { vertical-align: middle; }
 sub { font-size: 0.83em; }
 sub sub { font-size: 1em; }
 sup { font-size: 0.83em; }
@@ -122,32 +114,11 @@ td.td-colsep { border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: soli
 td.td-rowsep { border-bottom: solid 1px; }
 thead { border-top: solid 2px; border-bottom: solid 2px; }
 tfoot { border-top: solid 2px; border-bottom: solid 2px; }
-div.body {
-  padding: 1em;
-  max-width: 60em;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.body-sidebar {
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 13em;
-}
-div.division div.division { margin-top: 1.72em; }
-div.division div.division div.division { margin-top: 1.44em; }
-div.header {
-  margin: 0;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-h1, h2, h3, h4, h5, h6, h7 {
-  margin: 0; padding: 0;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-h1.title { font-size: 1.72em; }
-h2.title { font-size: 1.44em; }
-h3.title { font-size: 1.2em; }
-h4.title, h5.title, h6.title, h7.title { font-size: 1em; }
+
+/*
 .block { margin-top: 1em; }
 .block .block-first { margin-top: 0; }
+*/
 .block-indent {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text> left: 1.72em;
   margin-</xsl:text><xsl:value-of select="right"/><xsl:text>: 1em;
@@ -163,27 +134,6 @@ div.title {
 }
 div.title-formal { padding-left: 0.2em; padding-right: 0.2em; }
 div.title-formal .label { font-weight: normal; }
-a {
-  color: </xsl:text><xsl:value-of select="$theme.color.link"/><xsl:text>;
-  text-decoration: none;
-}
-a:hover { text-decoration: underline; }
-a:visited { color: </xsl:text><xsl:value-of select="$theme.color.link_visited"/><xsl:text>; }
-ul, ol, dl { margin: 0; padding: 0; }
-li {
-  margin-top: 1em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em;
-  padding: 0;
-}
-li.li-first { margin-top: 0; }
-dt { margin: 1em 0 0 0; }
-dt.dt-first { margin: 0; }
-dd {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-  margin-top: 0.5em;
-}
-dl.dl-compact dt { margin-top: 0; }
-dl.dl-compact dd { margin-top: 0; margin-bottom: 0; }
 
 <!-- == linktrail == -->
 ul.linktrail {
@@ -202,13 +152,13 @@ li.linktrail-first::before, li.linktrail-only::before { content: ''; }
 
 <!-- == navbar == -->
 div.navbar {
+ margin: 1em 0 1em 0;
   padding: 0.5em 1em 0.5em 1em;
-  max-width: 60em;
+  clear: both;
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
-div.navbar-top { margin-bottom: 1em; }
-div.navbar-bottom { margin-top: 1em; clear: both; }
+div.head div.navbar:first-child { margin-top: 0; }
 div.navbar img { border: 0; vertical-align: -0.4em; }
 table.navbar { width: 100%; margin: 0; border: none; }
 table.navbar td { padding: 0; border: none; }
@@ -232,11 +182,6 @@ a.navbar-next::after {
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 
-<!-- == sidebar == -->
-div.sidebar {
-  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  padding: 0; margin: 0; width: 12em;
-}
 div.sidenav {
   padding: 0.5em 1em 0 1em;
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
@@ -276,77 +221,11 @@ span.bibliolabel {
 }
 
 <!-- == block == -->
-div.admonition {
-  padding: 0.5em 6px 0.5em 6px;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
-}
-div.caution-inner, div.important-inner, div.note-inner, div.tip-inner, div.warning-inner {
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.size + 12"/><xsl:text>px;
-  background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
-  background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$theme.icons.emblem.size"/><xsl:text>px;
-}
-div.caution-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
-div.important-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.important"/><xsl:text>"); }
-div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note"/><xsl:text>"); }
-div.note-bug div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.bug"/><xsl:text>"); }
-div.tip-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.tip"/><xsl:text>"); }
-div.warning-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
-div.blockquote {
-  <!-- FIXME: i18n -->
-  background-image: url('</xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.quote"/><xsl:text>');
-  background-repeat: no-repeat;
-  background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  padding: 0.5em;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 4em;
-}
-div.attribution {
-  margin-top: 0.5em;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.attribution::before {
-  <!-- FIXME: i18n -->
-  content: '&#x2015; ';
-}
 div.epigraph {
   text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 20%;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.figure, div.informalfigure {
-  <!-- FIXME: hack -->
-  display: table;
-  padding: 0.5em;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.figure-inner, div.informalfigure-inner {
-  padding: 0.5em;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.caption { margin-top: 0.5em; }
-div.programlisting {
-  padding: 0.5em;
-  <!-- FIXME: watermark -->
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.screen {
-  padding: 0.5em;
-  <!-- FIXME: watermark -->
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
 div.screen .prompt {
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
@@ -358,13 +237,6 @@ div.screen .userinput {
 div.programlisting .userinput {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-pre.linenumbering {
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-  margin: 0;
-  padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
 }
 
 
@@ -387,10 +259,12 @@ div.simplelist td {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
+/*
 div.simplelist td.td-first {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
 }
+*/
 div.synopsis {
   padding: 0.5em;
   <!-- FIXME: watermarks -->
@@ -403,7 +277,9 @@ div.synopsis div.synopsis {
   border: none;
 }
 div.synopsis div.block { margin-top: 0.2em; }
+/*
 div.synopsis div.block-first { margin-top: 0; }
+*/
 div.cmdsynopsis { font-family: monospace; }
 
 span.accel { text-decoration: underline; }

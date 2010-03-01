@@ -32,7 +32,7 @@ REMARK: Describe this module
 
 <!-- = variablelist = -->
 <xsl:template match="glosslist">
-  <div class="block list glosslist">
+  <div class="list glosslist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -50,7 +50,7 @@ REMARK: Describe this module
 
 <!-- = itemizedlist = -->
 <xsl:template match="itemizedlist">
-  <div class="block list itemizedlist">
+  <div class="list itemizedlist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -61,6 +61,12 @@ REMARK: Describe this module
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="*[not(self::listitem)]"/>
     <ul class="itemizedlist">
+      <xsl:attribute name="class">
+        <xsl:text>itemizedlist</xsl:text>
+        <xsl:if test="@spacing = 'compact'">
+          <xsl:text> compact</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
       <xsl:if test="@mark">
         <xsl:attribute name="style">
           <xsl:text>list-style-type: </xsl:text>
@@ -71,11 +77,6 @@ REMARK: Describe this module
           </xsl:choose>
         </xsl:attribute>
       </xsl:if>
-      <xsl:if test="@spacing = 'compact'">
-        <xsl:attribute name="compact">
-          <xsl:value-of select="@spacing"/>
-        </xsl:attribute>
-      </xsl:if>
       <xsl:apply-templates select="listitem"/>
     </ul>
   </div>
@@ -83,20 +84,12 @@ REMARK: Describe this module
 
 <!-- = itemizedlist/listitem = -->
 <xsl:template match="itemizedlist/listitem">
-  <xsl:variable name="first"
-             select="not(preceding-sibling::*
-                     [not(self::blockinfo) and not(self::title) and not(self::titleabbrev)])"/>
   <li>
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
           <xsl:with-param name="lang" select="@lang"/>
         </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$first">
-      <xsl:attribute name="class">
-        <xsl:text>li-first</xsl:text>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="@override">
@@ -131,7 +124,7 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <!-- FIXME: auto-numeration for nested lists -->
-  <div class="block list orderedlist">
+  <div class="list orderedlist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -142,6 +135,12 @@ REMARK: Describe this module
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="*[not(self::listitem)]"/>
     <ol class="orderedlist">
+      <xsl:attribute name="class">
+        <xsl:text>orderedlist</xsl:text>
+        <xsl:if test="@spacing = 'compact'">
+          <xsl:text> compact</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
       <xsl:if test="@numeration">
         <xsl:attribute name="type">
           <xsl:choose>
@@ -159,11 +158,6 @@ REMARK: Describe this module
           <xsl:value-of select="$start"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:if test="@spacing = 'compact'">
-        <xsl:attribute name="compact">
-          <xsl:value-of select="@spacing"/>
-        </xsl:attribute>
-      </xsl:if>
       <!-- FIXME: @inheritnum -->
       <xsl:apply-templates select="listitem"/>
     </ol>
@@ -172,20 +166,12 @@ REMARK: Describe this module
 
 <!-- = orderedlist/listitem = -->
 <xsl:template match="orderedlist/listitem">
-  <xsl:variable name="first"
-             select="not(preceding-sibling::*
-                     [not(self::blockinfo) and not(self::title) and not(self::titleabbrev)])"/>
   <li>
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
           <xsl:with-param name="lang" select="@lang"/>
         </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$first">
-      <xsl:attribute name="class">
-        <xsl:text>li-first</xsl:text>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="@override">
@@ -200,7 +186,7 @@ REMARK: Describe this module
 
 <!-- = procedure = -->
 <xsl:template match="procedure">
-  <div class="block list procedure">
+  <div class="list procedure">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -228,17 +214,12 @@ REMARK: Describe this module
 <!-- = seg = -->
 <xsl:template match="seg">
   <xsl:variable name="position" select="count(preceding-sibling::seg) + 1"/>
-  <p class="block seg">
+  <p class="seg">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
           <xsl:with-param name="lang" select="@lang"/>
         </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$position = 1">
-      <xsl:attribute name="class">
-        <xsl:text>segfirst</xsl:text>
       </xsl:attribute>
     </xsl:if>
     <xsl:apply-templates select="../../segtitle[position() = $position]"/>
@@ -249,7 +230,7 @@ REMARK: Describe this module
 <!-- = seglistitem = -->
 <xsl:template match="seglistitem">
   <xsl:param name="position" select="count(preceding-sibling::seglistitem) + 1"/>
-  <div class="block seglistitem">
+  <div class="seglistitem">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -276,7 +257,7 @@ REMARK: Describe this module
 <!-- FIXME: Implement tabular segmentedlists -->
 <!-- = segmentedlist = -->
 <xsl:template match="segmentedlist">
-  <div class="block list segmentedlist">
+  <div class="list segmentedlist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -341,7 +322,7 @@ REMARK: Describe this module
       </span>
     </xsl:when>
     <xsl:when test="@type = 'horiz'">
-      <div class="block list simplelist">
+      <div class="list simplelist">
         <xsl:if test="@lang">
           <xsl:attribute name="dir">
             <xsl:call-template name="l10n.direction">
@@ -353,7 +334,7 @@ REMARK: Describe this module
         <table class="simplelist">
           <xsl:for-each select="member[$columns = 1 or position() mod $columns = 1]">
             <tr>
-              <td class="td-first">
+              <td>
                 <xsl:apply-templates select="."/>
               </td>
               <xsl:for-each select="following-sibling::member[
@@ -372,7 +353,7 @@ REMARK: Describe this module
       </div>
     </xsl:when>
     <xsl:otherwise>
-      <div class="block list simplelist">
+      <div class="list simplelist">
         <xsl:if test="@lang">
           <xsl:attribute name="dir">
             <xsl:call-template name="l10n.direction">
@@ -385,7 +366,7 @@ REMARK: Describe this module
         <table class="simplelist">
           <xsl:for-each select="member[position() &lt;= $rows]">
             <tr>
-              <td class="td-first">
+              <td>
                 <xsl:apply-templates select="."/>
               </td>
               <xsl:for-each select="following-sibling::member[
@@ -412,20 +393,12 @@ REMARK: Describe this module
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step">
-  <xsl:variable name="first"
-             select="not(preceding-sibling::*
-                     [not(self::blockinfo) and not(self::title) and not(self::titleabbrev)])"/>
   <li>
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
           <xsl:with-param name="lang" select="@lang"/>
         </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$first">
-      <xsl:attribute name="class">
-        <xsl:text>li-first</xsl:text>
       </xsl:attribute>
     </xsl:if>
     <xsl:apply-templates/>
@@ -436,7 +409,7 @@ REMARK: Describe this module
 <!-- = substeps = -->
 <xsl:template match="substeps">
   <xsl:variable name="depth" select="count(ancestor::substeps)"/>
-  <div class="block list substeps">
+  <div class="list substeps">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -479,9 +452,6 @@ REMARK: Describe this module
     </xsl:choose>
     <xsl:attribute name="class">
       <xsl:text>term</xsl:text>
-      <xsl:if test="not(../preceding-sibling::varlistentry)">
-        <xsl:text> dt-first</xsl:text>
-      </xsl:if>
     </xsl:attribute>
     <xsl:if test="../varlistentry/@id and not(preceding-sibling::term)">
       <xsl:call-template name="db2html.anchor">
@@ -494,7 +464,7 @@ REMARK: Describe this module
 
 <!-- = variablelist = -->
 <xsl:template match="variablelist">
-  <div class="block list variablelist">
+  <div class="list variablelist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">

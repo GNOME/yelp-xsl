@@ -44,6 +44,7 @@ DocBook to XHTML
 
 <xsl:include href="../../theme/theme-colors.xsl"/>
 <xsl:include href="../../theme/theme-icons.xsl"/>
+<xsl:include href="../../theme/theme-html.xsl"/>
 
 <xsl:include href="../common/db-chunk.xsl"/>
 <xsl:include href="../common/db-common.xsl"/>

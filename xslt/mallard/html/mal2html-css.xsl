@@ -24,6 +24,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML - CSS
+:Requires: theme-html
 
 REMARK: Describe this module
 -->
@@ -94,19 +95,8 @@ by extension stylesheets to extend or override the CSS.
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:variable>
+  <xsl:call-template name="theme.html.css"/>
   <xsl:text>
-html { height: 100%; }
-body {
-  margin: 0px;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  padding: 12px;
-  min-height: 100%;
-  direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
-}
-ul, ol, dl, dd { margin: 0; }
-div, pre, p, li, dt { margin: 1em 0 0 0; padding: 0; }
-.first-child { margin-top: 0; }
 div.floatleft {
   float: left;
   margin-top: 0;
@@ -117,37 +107,7 @@ div.floatright {
   margin-top: 0;
   margin-left: 1em;
 }
-li.condensed { margin-top: 0.2em; }
-a {
-  text-decoration: none;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.link"/><xsl:text>;
-}
-a:visited {
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.link_visited"/><xsl:text>;
-}
-a:hover { text-decoration: underline; }
 
-div.headbar {
-  margin: 0;
-  max-width: 48em;
-}
-div.footbar {
-  margin: 0;
-  max-width: 48em;
-}
-div.body {
-  margin: 0;
-  padding: 1em;
-  max-width: 48em;
-  min-height: 20em;
-  -moz-border-radius: 6px;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.background"/><xsl:text>;
-}
 div.navbar {
   margin: 0;
   float: right;
@@ -171,27 +131,7 @@ div.copyrights {
   color: </xsl:text>
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-div.section { margin-top: 2.4em; clear: both; }
-div.section div.section {
-  margin-top: 1.72em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-}
-div.section div.section div.section { margin-top: 1.44em; }
-div.header {
-  margin: 0;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-h1 {
-  font-size: 1.44em;
-  margin: 0;
-}
-h2, h3, h4, h5, h6, h7 {
-  font-size: 1.2em;
-  margin: 0;
-}
+
 table { border-collapse: collapse; }
 
 div.autolinks ul { margin: 0; padding: 0; }
@@ -246,116 +186,21 @@ div.linkdivsep {
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
 
-div.title {
-  margin: 0 0 0.2em 0;
-  font-weight: bold;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.desc { margin: 0 0 0.2em 0; }
 div.desc-listing, div.desc-synopsis { font-style: italic; }
-div.desc-figure { margin: 0.2em 0 0 0; }
-pre.code {
-  /* FIXME: In RTL locales, we really want to align this left, but the watermark
-   * we have is designed to fit in the top right corner.  Either we need a new
-   * watermark, or we need a separate RTL version.
-   */
-  background: url('</xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.code"/><xsl:text>') no-repeat top right;
-  border: solid 2px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  padding: 0.5em 1em 0.5em 1em;
-}
+
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
-div.figure {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-  padding: 4px;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-}
-div.figure-contents {
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-  text-align: center;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.background"/><xsl:text>;
-}
-div.listing-contents { margin: 0; padding: 0; }
-div.note {
-  padding: 0.5em 6px 0.5em 6px;
-  border-top: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
-}
-div.note-inner {
-  margin: 0;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.size + 12"/><xsl:text>px;
-  background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
-  background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$theme.icons.emblem.size"/><xsl:text>px;
-  background-image: url("</xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.note"/><xsl:text>");
-}
-div.note-advanced div.note-inner { <!-- background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.advanced"/><xsl:text>"); --> }
-div.note-bug div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.bug"/><xsl:text>"); }
-div.note-important div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.important"/><xsl:text>"); }
-div.note-tip div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.tip"/><xsl:text>"); }
-div.note-warning div.note-inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
-div.note-contents { margin: 0; padding: 0; }
-div.quote-inner {
-  margin: 0;
-  background-image: url('</xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.quote"/><xsl:text>');
-  background-repeat: no-repeat;
-  background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  padding: 0.5em;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 4em;
-}
-div.title-quote {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 4em;
-}
-blockquote { margin: 0; padding: 0; }
+div.listing-inner { margin: 0; padding: 0; }
+
 div.cite-comment {
   margin-top: 0.5em;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-div.cite-quote {
-  margin-top: 0.5em;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.cite-quote::before {
-  <!-- FIXME: i18n -->
-  content: '&#x2015; ';
-}
-pre.screen {
-  padding: 0.5em 1em 0.5em 1em;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border: solid 2px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.synopsis-contents {
+
+div.synopsis-inner {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 2px;
@@ -365,18 +210,18 @@ div.synopsis-contents {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
 }
-div.synopsis pre.code {
+div.synopsis div.code {
   background: none;
   border: none;
   padding: 0;
 }
+div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
 
-div.list-contents { margin: 0; padding: 0; }
+div.list-inner { margin: 0; padding: 0; }
 div.title-list { margin-bottom: 0.5em; }
 ol.list, ul.list { margin: 0; padding: 0; }
-li.item-list { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 
-div.steps-contents {
+div.steps-inner {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 2px;
@@ -386,27 +231,22 @@ div.steps-contents {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
 }
-div.steps-contents div.steps-contents {
+div.steps-inner div.steps-inner {
   padding: 0;
   border: none;
   background-color: none;
 }
-ol.steps, ul.steps { margin: 0; padding: 0; }
-li.item-steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
+li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em; }
+li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
 
-div.terms-contents { margin: 0; }
-dt.item-next { margin-top: 0; }
-dd.item-terms {
-  margin-top: 0.2em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-}
+div.terms-inner { margin: 0; }
 
 ul.tree {
   margin: 0; padding: 0;
   list-style-type: none;
 }
-li.item-tree { margin: 0; padding: 0; }
-div.item-tree { margin: 0; padding: 0; }
+li.tree { margin: 0; padding: 0; }
+li.tree div { margin: 0; padding: 0; }
 ul.tree ul.tree { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 div.tree-lines ul.tree { margin-left: 0; }
 

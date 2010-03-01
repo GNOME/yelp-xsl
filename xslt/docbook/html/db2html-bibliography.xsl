@@ -603,9 +603,6 @@ a bibliography entry.
   <div>
     <xsl:attribute name="class">
       <xsl:text>bibliomixed block</xsl:text>
-      <xsl:if test="not(preceding-sibling::biblioentry | preceding-sibling::bibliomixed)">
-        <xsl:text> block-first</xsl:text>
-      </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
@@ -620,9 +617,6 @@ a bibliography entry.
   <div>
     <xsl:attribute name="class">
       <xsl:text>bibliomixed block</xsl:text>
-      <xsl:if test="not(preceding-sibling::biblioentry | preceding-sibling::bibliomixed)">
-        <xsl:text> block-first</xsl:text>
-      </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>

@@ -68,11 +68,6 @@ REMARK: Describe this param
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:variable name="first"
-                select="not(preceding-sibling::*
-                        [not(self::blockinfo) and not(self::title) and
-                         not(self::titleabbrev) and not(self::attribution) ])"/>
-
   <div>
     <xsl:choose>
       <xsl:when test="@lang">
@@ -91,9 +86,6 @@ REMARK: Describe this param
     <xsl:attribute name="class">
       <xsl:text>block synopsis </xsl:text>
       <xsl:value-of select="local-name(.)"/>
-      <xsl:if test="$first">
-        <xsl:text> block-first</xsl:text>
-      </xsl:if>
       <xsl:value-of select="concat(' watermark-code-', $language)"/>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>

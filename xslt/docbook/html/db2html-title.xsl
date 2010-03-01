@@ -48,7 +48,7 @@ REMARK: Talk about the different kinds of title blocks
       <xsl:with-param name="node" select="$referent"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="block block-first {local-name($node)}">
+  <div class="block {local-name($node)}">
     <xsl:choose>
       <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
         <xsl:attribute name="dir">

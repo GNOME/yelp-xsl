@@ -171,8 +171,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($authors)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$authors"/>
         </dl>
       </div>
@@ -202,8 +202,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($editors)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$editors"/>
         </dl>
       </div>
@@ -233,8 +233,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($collabs)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$collabs"/>
         </dl>
       </div>
@@ -268,8 +268,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($translators)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$translators"/>
         </dl>
       </div>
@@ -298,8 +298,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($publishers)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$publishers"/>
         </dl>
       </div>
@@ -334,8 +334,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($othercredits)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$othercredits"/>
         </dl>
       </div>
@@ -364,8 +364,8 @@ REMARK: Describe this template
           <xsl:with-param name="number" select="count($copyrights)"/>
         </xsl:call-template>
       </h2>
-      <div class="block block-first">
-        <dl class="dl-compact">
+      <div class="block">
+        <dl class="compact">
           <xsl:apply-templates mode="db2html.info.mode" select="$copyrights"/>
         </dl>
       </div>

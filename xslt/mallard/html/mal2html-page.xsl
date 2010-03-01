@@ -255,7 +255,7 @@ REMARK: Describe this template
   </xsl:variable>
   <xsl:variable name="guidenodes" select="exsl:node-set($guidelinks)/*"/>
   <xsl:if test="$inlinks or $outlinks or $guidenodes">
-    <div class="section autolinkssection">
+    <div class="sect autolinkssection">
       <div class="header">
         <xsl:element name="{concat('h', $depth)}" namespace="{$mal2html.namespace}">
           <xsl:attribute name="class">
@@ -358,7 +358,7 @@ REMARK: FIXME
 -->
 <xsl:template name="mal2html.page.headbar">
   <xsl:param name="node" select="."/>
-  <div class="headbar">
+  <div class="head">
     <xsl:call-template name="mal2html.page.linktrails">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -374,7 +374,7 @@ REMARK: FIXME
 -->
 <xsl:template name="mal2html.page.footbar">
   <xsl:param name="node" select="."/>
-  <div class="footbar">
+  <div class="foot">
     <xsl:call-template name="mal2html.page.copyrights">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -606,14 +606,10 @@ REMARK: Describe this template
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
-  <div class="contents">
+  <div class="page-inner">
     <xsl:for-each
-        select="mal:*[not(self::mal:section or self::mal:title or self::mal:subtitle)
-                and ($mal2html.editor_mode or not(self::mal:comment)
-                or processing-instruction('mal2html.show_comment'))]">
-      <xsl:apply-templates mode="mal2html.block.mode" select=".">
-        <xsl:with-param name="first_child" select="position() = 1"/>
-      </xsl:apply-templates>
+        select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
+      <xsl:apply-templates mode="mal2html.block.mode" select="."/>
     </xsl:for-each>
     <xsl:if test="@type = 'guide'">
       <xsl:call-template name="mal2html.page.topiclinks"/>
@@ -627,19 +623,15 @@ REMARK: Describe this template
 
 <!-- = section = -->
 <xsl:template match="mal:section">
-  <div class="section" id="{@id}">
+  <div class="sect section" id="{@id}">
     <div class="header">
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
     </div>
-    <div class="contents">
+    <div class="section-inner">
       <xsl:for-each
-          select="mal:*[not(self::mal:section or self::mal:title or self::mal:subtitle)
-                  and ($mal2html.editor_mode or not(self::mal:comment)
-                  or processing-instruction('mal2html.show_comment'))]">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1"/>
-        </xsl:apply-templates>
+          select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
+        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
       </xsl:for-each>
       <xsl:if test="/mal:page/@type = 'guide'">
         <xsl:call-template name="mal2html.page.topiclinks"/>

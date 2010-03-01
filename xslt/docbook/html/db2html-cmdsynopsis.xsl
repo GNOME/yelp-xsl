@@ -176,11 +176,6 @@ REMARK: Describe this param
     </xsl:choose>
     <xsl:attribute name="class">
       <xsl:text>synopsis cmdsynopsis block</xsl:text>
-      <xsl:if test="not(preceding-sibling::*
-                    [not(self::blockinfo) and not(self::title) and
-                     not(self::titleabbrev) and not(self::attribution) ])">
-        <xsl:text> block-first</xsl:text>
-      </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
     <pre class="cmdsynopsis">

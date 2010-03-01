@@ -5,10 +5,14 @@
 
 <xsl:import href="../../xslt/docbook/html/db2html.xsl"/>
 
+<xsl:param name="annotate" select="true()"/>
+
 <xsl:template match="/*/*[preceding-sibling::*][name(.) != 'title']">
-  <pre style="margin: 16px; padding: 0.8em; background-color: #9EB6D1; -moz-border-radius: 8px;">
-    <xsl:apply-templates mode="source.mode" select="."/>
-  </pre>
+  <xsl:if test="$annotate">
+    <pre style="margin: 16px; padding: 0.8em; background-color: #9EB6D1; -moz-border-radius: 8px;">
+      <xsl:apply-templates mode="source.mode" select="."/>
+    </pre>
+  </xsl:if>
   <xsl:apply-imports/>
 </xsl:template>
 

@@ -35,33 +35,31 @@ FIXME
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
-  <pre>
+  <div>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
     </xsl:attribute>
-    <xsl:if test="$first">
-      <xsl:call-template name="utils.strip_newlines">
-        <xsl:with-param name="string" select="$first"/>
-        <xsl:with-param name="leading" select="true()"/>
-        <xsl:with-param name="trailing" select="count(node()) = 1"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:apply-templates mode="mal2html.inline.mode"
-                         select="node()[not(self::text() and (position() = 1 or position() = last()))]"/>
-    <xsl:if test="$last and (count(node()) != 1)">
-      <xsl:call-template name="utils.strip_newlines">
-        <xsl:with-param name="string" select="$last"/>
-        <xsl:with-param name="leading" select="false()"/>
-        <xsl:with-param name="trailing" select="true()"/>
-      </xsl:call-template>
-    </xsl:if>
-  </pre>
+    <pre class="contents">
+      <xsl:if test="$first">
+        <xsl:call-template name="utils.strip_newlines">
+          <xsl:with-param name="string" select="$first"/>
+          <xsl:with-param name="leading" select="true()"/>
+          <xsl:with-param name="trailing" select="count(node()) = 1"/>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:apply-templates mode="mal2html.inline.mode"
+                           select="node()[not(self::text() and (position() = 1 or position() = last()))]"/>
+      <xsl:if test="$last and (count(node()) != 1)">
+        <xsl:call-template name="utils.strip_newlines">
+          <xsl:with-param name="string" select="$last"/>
+          <xsl:with-param name="leading" select="false()"/>
+          <xsl:with-param name="trailing" select="true()"/>
+        </xsl:call-template>
+      </xsl:if>
+    </pre>
+  </div>
 </xsl:template>
 
 
@@ -83,33 +81,21 @@ FIXME
 
 <!-- = code = -->
 <xsl:template mode="mal2html.block.mode" match="mal:code">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <xsl:call-template name="mal2html.pre">
-    <xsl:with-param name="first_child" select="$first_child"/>
-  </xsl:call-template>
+  <xsl:call-template name="mal2html.pre"/>
 </xsl:template>
 
 <!-- = comment = -->
 <xsl:template mode="mal2html.block.mode" match="mal:comment">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
-    <div>
-      <xsl:attribute name="class">
-        <xsl:text>comment</xsl:text>
-        <xsl:if test="$first_child">
-          <xsl:text> first-child</xsl:text>
-        </xsl:if>
-      </xsl:attribute>
+    <div class="comment">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
-      <xsl:for-each select="mal:*[not(self::mal:title or self::mal:cite)
-                            and ($mal2html.editor_mode or not(self::mal:comment)
-                            or processing-instruction('mal2html.show_comment'))]">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1"/>
-        </xsl:apply-templates>
-      </xsl:for-each>
+      <div class="comment-inner">
+        <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+        </xsl:for-each>
+      </div>
     </div>
   </xsl:if>
 </xsl:template>
@@ -138,66 +124,34 @@ FIXME
 
 <!-- = example = -->
 <xsl:template mode="mal2html.block.mode" match="mal:example">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <div>
-    <xsl:attribute name="class">
-      <xsl:text>example</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
-    <xsl:for-each select="mal:*[$mal2html.editor_mode or not(self::mal:comment)
-                          or processing-instruction('mal2html.show_comment')]">
-      <xsl:apply-templates mode="mal2html.block.mode" select=".">
-        <xsl:with-param name="first_child" select="position() = 1"/>
-      </xsl:apply-templates>
-    </xsl:for-each>
+  <div class="example">
+    <xsl:apply-templates mode="mal2html.block.mode"/>
   </div>
 </xsl:template>
 
 <!-- = figure = -->
 <xsl:template mode="mal2html.block.mode" match="mal:figure">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <div>
-    <xsl:attribute name="class">
-      <xsl:text>figure</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <div class="figure-contents">
-      <xsl:for-each select="mal:*[not(self::mal:title or self::mal:desc)
-                            and ($mal2html.editor_mode or not(self::mal:comment)
-                            or processing-instruction('mal2html.show_comment'))]">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1"/>
-        </xsl:apply-templates>
-      </xsl:for-each>
+  <div class="figure">
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="contents">
+        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+        </xsl:for-each>
+      </div>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
     </div>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
   </div>
 </xsl:template>
 
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <div>
-    <xsl:attribute name="class">
-      <xsl:text>listing</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+  <div class="listing">
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-    <div class="listing-contents">
-      <xsl:for-each select="mal:*[not(self::mal:title or self::mal:desc)
-                            and ($mal2html.editor_mode or not(self::mal:comment)
-                            or processing-instruction('mal2html.show_comment'))]">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1"/>
-        </xsl:apply-templates>
+    <div class="listing-inner">
+      <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
       </xsl:for-each>
     </div>
   </div>
@@ -205,7 +159,6 @@ FIXME
 
 <!-- = note = -->
 <xsl:template mode="mal2html.block.mode" match="mal:note">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
   <xsl:variable name="notestyle">
     <xsl:choose>
       <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
@@ -231,20 +184,11 @@ FIXME
       <xsl:if test="normalize-space($notestyle) != ''">
         <xsl:value-of select="concat(' note-', $notestyle)"/>
       </xsl:if>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
     </xsl:attribute>
-    <div class="note-inner">
+    <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <div class="note-contents">
-        <xsl:for-each select="mal:*[not(self::mal:title)
-                              and ($mal2html.editor_mode or not(self::mal:comment)
-                              or processing-instruction('mal2html.show_comment'))]">
-          <xsl:apply-templates mode="mal2html.block.mode" select=".">
-            <xsl:with-param name="first_child" select="position() = 1"/>
-          </xsl:apply-templates>
-        </xsl:for-each>
+      <div class="contents">
+        <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
       </div>
     </div>
   </div>
@@ -255,37 +199,19 @@ FIXME
 
 <!-- = p = -->
 <xsl:template mode="mal2html.block.mode" match="mal:p">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <p>
-    <xsl:attribute name="class">
-      <xsl:text>p</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+  <p class="p">
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </p>
 </xsl:template>
 
 <!-- = quote = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
   <div class="quote">
-    <xsl:attribute name="class">
-      <xsl:text>quote</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <div class="quote-inner">
-      <blockquote class="quote-contents">
-        <xsl:for-each select="mal:*[not(self::mal:title or self::mal:cite)
-                              and ($mal2html.editor_mode or not(self::mal:comment)
-                              or processing-instruction('mal2html.show_comment'))]">
-          <xsl:apply-templates mode="mal2html.block.mode" select=".">
-            <xsl:with-param name="first_child" select="position() = 1"/>
-          </xsl:apply-templates>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <blockquote class="quote-inner">
+        <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
         </xsl:for-each>
       </blockquote>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
@@ -317,31 +243,17 @@ FIXME
 
 <!-- = screen = -->
 <xsl:template mode="mal2html.block.mode" match="mal:screen">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
-  <xsl:call-template name="mal2html.pre">
-    <xsl:with-param name="first_child" select="$first_child"/>
-  </xsl:call-template>
+  <xsl:call-template name="mal2html.pre"/>
 </xsl:template>
 
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
   <div class="synopsis">
-    <xsl:attribute name="class">
-      <xsl:text>synopsis</xsl:text>
-      <xsl:if test="$first_child">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-    <div class="synopsis-contents">
-      <xsl:for-each select="mal:*[not(self::mal:title or self::mal:desc)
-                            and ($mal2html.editor_mode or not(self::mal:comment)
-                            or processing-instruction('mal2html.show_comment'))]">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1"/>
-        </xsl:apply-templates>
+    <div class="synopsis-inner">
+      <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
       </xsl:for-each>
     </div>
   </div>
