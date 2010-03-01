@@ -235,9 +235,6 @@ dl.indexdiv dt { margin-top: 0; }
 dl.indexdiv dd { margin-top: 0; margin-bottom: 0; }
 dl.setindex dt { margin-top: 0; }
 dl.setindex dd { margin-top: 0; margin-bottom: 0; }
-div.list div.title-formal span.title {
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
 div.simplelist {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
 }

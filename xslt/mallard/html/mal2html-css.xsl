@@ -197,30 +197,6 @@ div.cite-comment {
 }
 
 
-div.list-inner { margin: 0; padding: 0; }
-div.title-list { margin-bottom: 0.5em; }
-ol.list, ul.list { margin: 0; padding: 0; }
-
-div.steps-inner {
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-  border-top: solid 2px;
-  border-bottom: solid 2px;
-  border-color: </xsl:text>
-    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
-}
-div.steps-inner div.steps-inner {
-  padding: 0;
-  border: none;
-  background-color: none;
-}
-li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em; }
-li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
-
-div.terms-inner { margin: 0; }
-
 ul.tree {
   margin: 0; padding: 0;
   list-style-type: none;

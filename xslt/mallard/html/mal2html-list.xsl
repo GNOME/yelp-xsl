@@ -70,22 +70,20 @@ FIXME
   </xsl:variable>
   <div class="list">
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <div class="list-inner">
-      <xsl:element name="{$el}" namespace="{$mal2html.namespace}">
-        <xsl:attribute name="class">
-          <xsl:text>list</xsl:text>
-          <xsl:if test="contains($style, ' compact ')">
-            <xsl:text> compact</xsl:text>
-          </xsl:if>
-        </xsl:attribute>
-        <xsl:if test="@type">
-          <xsl:attribute name="style">
-            <xsl:value-of select="concat('list-style-type:', @type)"/>
-          </xsl:attribute>
+    <xsl:element name="{$el}" namespace="{$mal2html.namespace}">
+      <xsl:attribute name="class">
+        <xsl:text>list</xsl:text>
+        <xsl:if test="contains($style, ' compact ')">
+          <xsl:text> compact</xsl:text>
         </xsl:if>
-        <xsl:apply-templates mode="mal2html.list.list.mode" select="mal:item"/>
-      </xsl:element>
-    </div>
+      </xsl:attribute>
+      <xsl:if test="@type">
+        <xsl:attribute name="style">
+          <xsl:value-of select="concat('list-style-type:', @type)"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates mode="mal2html.list.list.mode" select="mal:item"/>
+    </xsl:element>
   </div>
 </xsl:template>
 
@@ -100,11 +98,9 @@ FIXME
 <xsl:template mode="mal2html.block.mode" match="mal:steps">
   <div class="steps">
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <div class="steps-inner">
-      <ol class="steps">
-        <xsl:apply-templates mode="mal2html.list.steps.mode" select="mal:item"/>
-      </ol>
-    </div>
+    <ol class="steps">
+      <xsl:apply-templates mode="mal2html.list.steps.mode" select="mal:item"/>
+    </ol>
   </div>
 </xsl:template>
 
@@ -120,17 +116,15 @@ FIXME
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div class="terms">
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <div class="terms-inner">
-      <dl>
-        <xsl:attribute name="class">
-          <xsl:text>terms</xsl:text>
-          <xsl:if test="contains($style, ' compact ')">
-            <xsl:text> compact</xsl:text>
-          </xsl:if>
-        </xsl:attribute>
-        <xsl:apply-templates mode="mal2html.list.terms.mode" select="mal:item"/>
-      </dl>
-    </div>
+    <dl class="terms">
+      <xsl:attribute name="class">
+        <xsl:text>terms</xsl:text>
+        <xsl:if test="contains($style, ' compact ')">
+          <xsl:text> compact</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:apply-templates mode="mal2html.list.terms.mode" select="mal:item"/>
+    </dl>
   </div>
 </xsl:template>
 

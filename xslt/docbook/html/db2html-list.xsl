@@ -60,9 +60,9 @@ REMARK: Describe this module
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="*[not(self::listitem)]"/>
-    <ul class="itemizedlist">
+    <ul>
       <xsl:attribute name="class">
-        <xsl:text>itemizedlist</xsl:text>
+        <xsl:text>list itemizedlist</xsl:text>
         <xsl:if test="@spacing = 'compact'">
           <xsl:text> compact</xsl:text>
         </xsl:if>
@@ -84,7 +84,7 @@ REMARK: Describe this module
 
 <!-- = itemizedlist/listitem = -->
 <xsl:template match="itemizedlist/listitem">
-  <li>
+  <li class="list itemizedlist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -134,9 +134,9 @@ REMARK: Describe this module
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="*[not(self::listitem)]"/>
-    <ol class="orderedlist">
+    <ol>
       <xsl:attribute name="class">
-        <xsl:text>orderedlist</xsl:text>
+        <xsl:text>list orderedlist</xsl:text>
         <xsl:if test="@spacing = 'compact'">
           <xsl:text> compact</xsl:text>
         </xsl:if>
@@ -166,7 +166,7 @@ REMARK: Describe this module
 
 <!-- = orderedlist/listitem = -->
 <xsl:template match="orderedlist/listitem">
-  <li>
+  <li class="list orderedlist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -186,7 +186,7 @@ REMARK: Describe this module
 
 <!-- = procedure = -->
 <xsl:template match="procedure">
-  <div class="list procedure">
+  <div class="steps">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -198,12 +198,12 @@ REMARK: Describe this module
     <xsl:apply-templates select="*[not(self::step)]"/>
     <xsl:choose>
       <xsl:when test="count(step) = 1">
-        <ul class="procedure">
+        <ul class="steps">
           <xsl:apply-templates select="step"/>
         </ul>
       </xsl:when>
       <xsl:otherwise>
-        <ol class="procedure">
+        <ol class="steps">
           <xsl:apply-templates select="step"/>
         </ol>
       </xsl:otherwise>
@@ -393,7 +393,7 @@ REMARK: Describe this module
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step">
-  <li>
+  <li class="steps">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -409,7 +409,7 @@ REMARK: Describe this module
 <!-- = substeps = -->
 <xsl:template match="substeps">
   <xsl:variable name="depth" select="count(ancestor::substeps)"/>
-  <div class="list substeps">
+  <div class="steps substeps">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -418,7 +418,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
-    <ol class="substeps">
+    <ol class="steps substeps">
       <xsl:attribute name="type">
         <xsl:choose>
           <xsl:when test="$depth mod 3 = 0">a</xsl:when>
@@ -433,7 +433,7 @@ REMARK: Describe this module
 
 <!-- = term = -->
 <xsl:template match="term">
-  <dt>
+  <dt class="terms">
     <xsl:choose>
       <xsl:when test="@lang">
         <xsl:attribute name="dir">
@@ -450,9 +450,6 @@ REMARK: Describe this module
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
-    <xsl:attribute name="class">
-      <xsl:text>term</xsl:text>
-    </xsl:attribute>
     <xsl:if test="../varlistentry/@id and not(preceding-sibling::term)">
       <xsl:call-template name="db2html.anchor">
         <xsl:with-param name="node" select=".."/>
@@ -464,7 +461,7 @@ REMARK: Describe this module
 
 <!-- = variablelist = -->
 <xsl:template match="variablelist">
-  <div class="list variablelist">
+  <div class="terms variablelist">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
@@ -474,7 +471,7 @@ REMARK: Describe this module
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="*[not(self::varlistentry)]"/>
-    <dl class="variablelist">
+    <dl class="terms variablelist">
       <xsl:apply-templates select="varlistentry"/>
     </dl>
   </div>
@@ -488,7 +485,7 @@ REMARK: Describe this module
 
 <!-- = varlistentry/listitem = -->
 <xsl:template match="varlistentry/listitem">
-  <dd>
+  <dd class="terms">
     <xsl:choose>
       <xsl:when test="@lang">
         <xsl:attribute name="dir">
@@ -508,27 +505,6 @@ REMARK: Describe this module
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </dd>
-</xsl:template>
-
-
-<!--
-FIXME: are these still necessary with block-first?
-These templates strip the p tag around single-paragraph list items to avoid
-introducing extra spacing.  We don't do this for list items in varlistentry
-elements because it adds a non-negligable amount of processing time for
-non-trivial documents.
--->
-<xsl:template match="itemizedlist/listitem/para[
-              not(preceding-sibling::* or following-sibling::*)  and
-              not(../preceding-sibling::listitem[count(*) != 1]) and
-              not(../following-sibling::listitem[count(*) != 1]) ]">
-  <xsl:call-template name="db2html.inline"/>
-</xsl:template>
-<xsl:template match="orderedlist/listitem/para[
-              not(preceding-sibling::* or following-sibling::*)  and
-              not(../preceding-sibling::listitem[count(*) != 1]) and
-              not(../following-sibling::listitem[count(*) != 1]) ]">
-  <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 </xsl:stylesheet>

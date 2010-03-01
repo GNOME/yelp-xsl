@@ -147,7 +147,7 @@ td, th {
   border-width: 1px;
 }
 
-ul, ol, dl { margin: 0; }
+ul, ol, dl { margin: 0; padding: 0; }
 li {
   margin: 1em 0 0 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em;
@@ -244,6 +244,7 @@ div.figure > div.inner > div.contents {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.background"/><xsl:text>;
 }
+div.list > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
 div.listing > div.inner > div.desc { font-style: italic; }
 div.note {
@@ -317,6 +318,23 @@ div.screen {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
+ol.steps, ul.steps {
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: </xsl:text>
+    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+}
+ol.steps .steps {
+  padding: 0;
+  border: none;
+  background-color: none;
+}
+li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
+li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
 div.synopsis {
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 1px;
