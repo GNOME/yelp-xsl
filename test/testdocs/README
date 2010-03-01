@@ -12,6 +12,7 @@ versions of testdocs.
 These files are not found in testdocs:
 classsynopsis.x001.xml
 funcsynopsis.x001.xml
+inline.x001.xml
 simplelist.x001.xml
 table.x001.xml
 
