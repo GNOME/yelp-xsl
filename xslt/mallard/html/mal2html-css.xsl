@@ -132,8 +132,6 @@ div.copyrights {
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 
-table { border-collapse: collapse; }
-
 div.autolinks ul { margin: 0; padding: 0; }
 div.autolinks div.title { margin: 1em 0 0 1em; }
 div.autolinks div.title span {
@@ -186,36 +184,18 @@ div.linkdivsep {
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
 
-div.desc-listing, div.desc-synopsis { font-style: italic; }
 
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
-div.listing-inner { margin: 0; padding: 0; }
 
 div.cite-comment {
   margin-top: 0.5em;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 
-div.synopsis-inner {
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-  border-top: solid 2px;
-  border-bottom: solid 2px;
-  border-color: </xsl:text>
-    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-}
-div.synopsis div.code {
-  background: none;
-  border: none;
-  padding: 0;
-}
-div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
 
 div.list-inner { margin: 0; padding: 0; }
 div.title-list { margin-bottom: 0.5em; }
@@ -250,18 +230,6 @@ li.tree div { margin: 0; padding: 0; }
 ul.tree ul.tree { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 div.tree-lines ul.tree { margin-left: 0; }
 
-table.table {
-  border-collapse: collapse;
-  border-color: #555753;
-  border-width: 1px;
-}
-table.table td {
-  padding: 0.1em 0.5em 0.1em 0.5em;
-  border-color: #888a85;
-  border-width: 1px;
-  vertical-align: top;
-}
-
 span.app { font-style: italic; }
 span.cmd {
   font-family: monospace;
@@ -292,15 +260,6 @@ span.keyseq {
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 span.output { font-family: monospace; }
-pre.screen span.output {
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-pre.screen span.output-error {
-<!-- FIXME: theme -->
-  color: #ff0000;
-}
-pre.screen span.output-prompt { font-weight: bold; }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
 </xsl:text>

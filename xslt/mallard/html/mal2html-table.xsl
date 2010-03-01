@@ -285,7 +285,37 @@ REMARK: Describe this module
       </xsl:if>
     </xsl:for-each>
   </xsl:param>
+  <xsl:variable name="trpos" select="count(preceding-sibling::mal:tr) + 1"/>
+  <xsl:variable name="shaderow">
+    <xsl:choose>
+      <xsl:when test="$rowshade = 'all'">
+        <xsl:choose>
+          <xsl:when test="../self::mal:table">
+            <xsl:value-of select="($trpos + 1) mod 2"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="bodies"
+                          select="../preceding-sibling::mal:tbody |
+                                  ../preceding-sibling::mal:thead "/>
+            <xsl:variable name="trcount" select="count($bodies/mal:tr) + $trpos"/>
+            <xsl:value-of select="($trcount + 1) mod 2"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="$rowshade = 'groups'">
+        <xsl:variable name="bodies"
+                      select="../preceding-sibling::mal:tbody |
+                              ../preceding-sibling::mal:thead "/>
+        <xsl:value-of select="count($bodies) mod 2"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
   <tr>
+    <xsl:if test="$shaderow = 1">
+      <xsl:attribute name="class">
+        <xsl:text>shade</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates select="mal:td">
       <xsl:with-param name="cols" select="$cols"/>
       <xsl:with-param name="rowrules" select="$rowrules"/>
@@ -395,31 +425,6 @@ REMARK: Describe this module
     </xsl:for-each>
   </xsl:variable>
   <xsl:variable name="tdpos" select="string-length($tdstr) + 1"/>
-  <!-- FIXME: this all breaks with rowspan/colspan -->
-  <xsl:variable name="shaderow">
-    <xsl:choose>
-      <xsl:when test="$rowshade = 'all'">
-        <xsl:choose>
-          <xsl:when test="../../self::mal:table">
-            <xsl:value-of select="($trpos + 1) mod 2"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:variable name="bodies"
-                          select="../../preceding-sibling::mal:tbody |
-                                  ../../preceding-sibling::mal:thead "/>
-            <xsl:variable name="trcount" select="count($bodies/mal:tr) + $trpos"/>
-            <xsl:value-of select="($trcount + 1) mod 2"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:when test="$rowshade = 'groups'">
-        <xsl:variable name="bodies"
-                      select="../../preceding-sibling::mal:tbody |
-                              ../../preceding-sibling::mal:thead "/>
-        <xsl:value-of select="count($bodies) mod 2"/>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:variable>
   <xsl:variable name="shadecol">
     <xsl:choose>
       <xsl:when test="$colshade = 'all'">
@@ -483,20 +488,13 @@ REMARK: Describe this module
         </xsl:if>
       </xsl:when>
     </xsl:choose>
-    <xsl:choose>
-      <xsl:when test="$shaderow = 1 and $shadecol = 1">
-        <xsl:text>background-color: </xsl:text>
-        <xsl:value-of select="$theme.color.dark_background"/>
-        <xsl:text>;</xsl:text>
-      </xsl:when>
-      <xsl:when test="$shaderow = 1 or $shadecol = 1">
-        <xsl:text>background-color: </xsl:text>
-        <xsl:value-of select="$theme.color.gray_background"/>
-        <xsl:text>;</xsl:text>
-      </xsl:when>
-    </xsl:choose>
   </xsl:variable>
   <td>
+    <xsl:if test="$shadecol = 1">
+      <xsl:attribute name="class">
+        <xsl:text>shade</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:if test="$style != ''">
       <xsl:attribute name="style">
         <xsl:value-of select="$style"/>

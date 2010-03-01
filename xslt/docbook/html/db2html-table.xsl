@@ -50,7 +50,7 @@ FIXME
   <tr>
     <xsl:if test="$row/../self::tbody and (count($row/preceding-sibling::row) mod 2 = 1)">
       <xsl:attribute name="class">
-        <xsl:text>tr-shade</xsl:text>
+        <xsl:text>shade</xsl:text>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$row/*[1]">

@@ -175,10 +175,10 @@ REMARK: Describe this param
       </xsl:otherwise>
     </xsl:choose>
     <xsl:attribute name="class">
-      <xsl:text>synopsis cmdsynopsis block</xsl:text>
+      <xsl:text>synopsis cmdsynopsis</xsl:text>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
-    <pre class="cmdsynopsis">
+    <pre class="contents cmdsynopsis">
       <xsl:for-each select="command | arg | group | sbr">
         <xsl:choose>
           <xsl:when test="position() = 1"/>

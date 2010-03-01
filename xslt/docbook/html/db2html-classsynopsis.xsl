@@ -84,12 +84,11 @@ REMARK: Describe this param
       </xsl:otherwise>
     </xsl:choose>
     <xsl:attribute name="class">
-      <xsl:text>block synopsis </xsl:text>
+      <xsl:text>synopsis </xsl:text>
       <xsl:value-of select="local-name(.)"/>
-      <xsl:value-of select="concat(' watermark-code-', $language)"/>
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
-    <pre class="{local-name(.)} classsynopsis-{$language}">
+    <pre class="contents {local-name(.)} classsynopsis-{$language}">
       <xsl:choose>
         <xsl:when test="$language = 'cpp'">
           <xsl:apply-templates mode="db2html.class.cpp.mode" select="."/>

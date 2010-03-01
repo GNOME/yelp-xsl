@@ -131,7 +131,7 @@ This parameter specifies the dark gray background color.  The dark
 gray background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.dark_background" select="'#eeeeec'"/>
+<xsl:param name="theme.color.dark_background" select="'#e5e5e3'"/>
 
 <!--@@==========================================================================
 theme.color.gray_border

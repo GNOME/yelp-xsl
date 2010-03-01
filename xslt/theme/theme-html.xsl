@@ -135,6 +135,18 @@ div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.contents, pre.contents { margin-top: 0; }
 p img { vertical-align: middle; }
 
+table {
+  border-collapse: collapse;
+  border-color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border-width: 1px;
+}
+td, th {
+  padding: 0.1em 0.5em 0.1em 0.5em;
+  vertical-align: top;
+  border-color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border-width: 1px;
+}
+
 ul, ol, dl { margin: 0; }
 li {
   margin: 1em 0 0 0;
@@ -191,6 +203,9 @@ div.title {
 }
 div.desc { margin: 0 0 0.2em 0; }
 div.contents + div.desc { margin: 0.2em 0 0 0; }
+pre.contents {
+  padding: 0.5em 1em 0.5em 1em;
+}
 pre.linenumbering {
   margin: 0;
   padding: 0.5em;
@@ -200,9 +215,6 @@ pre.linenumbering {
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
-}
-pre.contents {
-  padding: 0.5em 1em 0.5em 1em;
 }
 div.code {
   background: url('</xsl:text>
@@ -232,6 +244,8 @@ div.figure > div.inner > div.contents {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.background"/><xsl:text>;
 }
+div.listing > div.inner { margin: 0; padding: 0; }
+div.listing > div.inner > div.desc { font-style: italic; }
 div.note {
   padding: 6px;
   border-top: solid 1px </xsl:text>
@@ -297,13 +311,59 @@ div.quote > div.inner > div.cite::before {
   <!-- FIXME: i18n -->
   content: '&#x2015; ';
 }
-pre.screen {
-  padding: 0.5em 1em 0.5em 1em;
+div.screen {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border: solid 2px </xsl:text>
+  border: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
+div.synopsis {
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: </xsl:text>
+    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+div.synopsis > pre.contents { margin: 0; padding: 0; }
+div.synopsis > div.inner > div.desc { font-style: italic; }
+div.synopsis div.code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
+.table {}
+tr.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+td.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+tr.shade td.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.dark_background"/><xsl:text>;
+}
+
+
+/* FIXME */
+div.screen .prompt {
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+div.screen .userinput {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+pre.screen span.output {
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+pre.screen span.output-error {
+<!-- FIXME: theme -->
+  color: #ff0000;
+}
+pre.screen span.output-prompt { font-weight: bold; }
+
 </xsl:text>
 </xsl:template>
 

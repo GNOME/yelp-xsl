@@ -102,14 +102,9 @@ sub { font-size: 0.83em; }
 sub sub { font-size: 1em; }
 sup { font-size: 0.83em; }
 sup sup { font-size: 1em; }
-table { border-collapse: collapse; }
 table.table-pgwide { width: 100%; }
-td { vertical-align: top; }
-td { padding: 0.2em 0.83em 0.2em 0.83em; }
-th { padding: 0 0.83em 0 0.83em; }
-tr.tr-shade {
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-}
+
+
 td.td-colsep { border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px; }
 td.td-rowsep { border-bottom: solid 1px; }
 thead { border-top: solid 2px; border-bottom: solid 2px; }
@@ -227,13 +222,6 @@ div.epigraph {
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-div.screen .prompt {
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.screen .userinput {
-  font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
 div.programlisting .userinput {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
@@ -265,22 +253,6 @@ div.simplelist td.td-first {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
 }
 */
-div.synopsis {
-  padding: 0.5em;
-  <!-- FIXME: watermarks -->
-  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  border-top: solid 2px </xsl:text><xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
-  border-bottom: solid 2px </xsl:text><xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
-}
-div.synopsis div.synopsis {
-  padding: 0;
-  border: none;
-}
-div.synopsis div.block { margin-top: 0.2em; }
-/*
-div.synopsis div.block-first { margin-top: 0; }
-*/
-div.cmdsynopsis { font-family: monospace; }
 
 span.accel { text-decoration: underline; }
 span.acronym { font-family: sans-serif; }
