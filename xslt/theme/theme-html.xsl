@@ -363,6 +363,28 @@ tr.shade td.shade {
   background-color: </xsl:text><xsl:value-of select="$theme.color.dark_background"/><xsl:text>;
 }
 
+span.app { font-style: italic; }
+span.cmd {
+  font-family: monospace;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  padding: 0 0.2em 0 0.2em;
+}
+span.cmd span.cmd { background-color: none; padding: 0; }
+pre span.cmd { background-color: none; padding: 0; }
+span.code {
+  font-family: monospace;
+  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+  padding: 0 0.2em 0 0.2em;
+}
+span.code span.code { border: none; padding: 0; }
+pre span.code { border: none; padding: 0; }
+span.gui, span.guiseq { color: </xsl:text>
+  <xsl:value-of select="$theme.color.text_light"/><xsl:text>; }
+span.input { font-family: monospace; }
+span.output { font-family: monospace; }
+span.sys { font-family: monospace; }
+span.var { font-style: italic; }
 
 /* FIXME */
 div.screen .prompt {

@@ -252,26 +252,7 @@ div.simplelist td.td-first {
 */
 
 span.accel { text-decoration: underline; }
-span.acronym { font-family: sans-serif; }
-span.application { font-style: italic; }
-span.classname, span.exceptionname, span.interfacename { font-family: monospace; }
-span.code {
-  font-family: monospace;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
-}
-pre span.code { border: none; padding: 0; }
-span.command {
-  font-family: monospace;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
-}
-pre span.command { border: none; padding: 0; }
-span.computeroutput { font-family: monospace; }
 <!-- FIXME: stderr red text -->
-span.constant { font-family: monospace; }
 span.database { font-family: monospace; }
 span.email { font-family: monospace; }
 span.emphasis { font-style: italic; }
@@ -292,36 +273,22 @@ dd.glossdef, dd.glosssee, dd.glossseealso { margin-top: 0em;  margin-bottom: 0; 
 
 span.glossterm { font-style: italic; }
 
-span.guibutton, span.guilabel, span.guimenu, span.guimenuitem, span.guisubmenu, span.interface {
-  font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
 span.keycap {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 span.lineannotation { font-style: italic; }
 span.literal { font-family: monospace; }
-span.markup  { font-family: monospace; }
 span.medialabel { font-style: italic; }
-span.methodname { font-family: monospace; }
 span.ooclass, span.ooexception, span.oointerface { font-family: monospace; }
 span.option { font-family: monospace; }
-span.parameter { font-family: monospace; }
+.methodparam span.parameter { font-style: italic; }
 span.paramdef span.parameter { font-style: italic; }
 span.prompt { font-family: monospace; }
 span.property { font-family: monospace; }
-span.replaceable  { font-style: italic; }
-span.returnvalue { font-family: monospace; }
 span.sgmltag { font-family: monospace; }
-span.structfield, span.structname { font-family: monospace; }
 span.symbol { font-family: monospace; }
-span.systemitem { font-family: monospace; }
 span.token { font-family: monospace; }
-span.type { font-family: monospace; }
-span.uri { font-family: monospace; }
-span.userinput { font-family: monospace; }
-span.varname { font-family: monospace; }
 span.wordasword { font-style: italic; }
 <!-- FIXME below -->
 

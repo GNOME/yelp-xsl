@@ -59,7 +59,12 @@
 <para><mousebutton>mousebutton</mousebutton></para>
 <para><option>option</option></para>
 <para><optional>optional</optional></para>
-<para><parameter>parameter</parameter></para>
+<para>
+<parameter>parameter</parameter>
+<parameter class="command">command</parameter>
+<parameter class="function">function</parameter>
+<parameter class="option">option</parameter>
+</para>
 <para><phrase>phrase</phrase></para>
 <para><productname>productname</productname></para>
 <para><productnumber>productnumber</productnumber></para>
@@ -70,8 +75,8 @@
 <para><sgmltag>sgmltag</sgmltag></para>
 <para><structfield>structfield</structfield></para>
 <para><structname>structname</structname></para>
-<para><subscript>subscript</subscript></para>
-<para><superscript>superscript</superscript></para>
+<para>sub<subscript>script</subscript></para>
+<para>super<superscript>script</superscript></para>
 <para><symbol>symbol</symbol></para>
 <para><systemitem>systemitem</systemitem></para>
 <para><token>token</token></para>

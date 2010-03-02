@@ -127,14 +127,6 @@ REMARK: Describe this param
   </span>
 </xsl:template>
 
-<!-- = methodparam/parameter = -->
-<xsl:template match="methodparam/parameter">
-  <xsl:call-template name="db2html.inline">
-    <xsl:with-param name="mono" select="true()"/>
-    <xsl:with-param name="italic" select="true()"/>
-  </xsl:call-template>
-</xsl:template>
-
 <!--#* db2html.class.cpp.modifier -->
 <xsl:template name="db2html.class.cpp.modifier">
   <!-- For C++, we expect the first modifier to be the visibility -->

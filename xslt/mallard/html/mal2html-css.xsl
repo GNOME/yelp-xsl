@@ -206,20 +206,9 @@ li.tree div { margin: 0; padding: 0; }
 ul.tree ul.tree { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 div.tree-lines ul.tree { margin-left: 0; }
 
-span.app { font-style: italic; }
-span.cmd {
-  font-family: monospace;
-  background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
-  padding: 0 0.2em 0 0.2em;
-}
-span.code { font-family: monospace; }
 span.em { font-style: italic; }
 span.email { color: red; }
 span.file { font-family: monospace; }
-span.gui, span.guiseq { color: </xsl:text>
-  <xsl:value-of select="$theme.color.text_light"/><xsl:text>; }
-span.input { font-family: monospace; }
 span.hi {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
@@ -235,9 +224,6 @@ span.keyseq {
   color: </xsl:text>
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-span.output { font-family: monospace; }
-span.sys { font-family: monospace; }
-span.var { font-style: italic; }
 </xsl:text>
 <xsl:call-template name="mal2html.css.editor"/>
 <xsl:call-template name="mal2html.css.custom"/>
