@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:str="http://exslt.org/strings"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="exsl"
+                exclude-result-prefixes="mal"
                 version="1.0">
 
 <!--!!==========================================================================

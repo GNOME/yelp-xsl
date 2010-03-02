@@ -20,7 +20,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                extension-element-prefixes="str"
+                exclude-result-prefixes="mal str"
                 version="1.0">
 
 <!--!!==========================================================================

@@ -21,6 +21,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
+                exclude-result-prefixes="mal str"
                 version="1.0">
 
 <!--!!==========================================================================
