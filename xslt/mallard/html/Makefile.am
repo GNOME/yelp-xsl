@@ -7,6 +7,7 @@ xsl_DATA =				\
 	mal2html-list.xsl		\
 	mal2html-media.xsl		\
 	mal2html-page.xsl		\
+	mal2html-svg.xsl		\
 	mal2html-table.xsl		\
 	mal2html.xsl			\
 	mal2xhtml.xsl

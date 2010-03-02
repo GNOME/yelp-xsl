@@ -55,6 +55,7 @@ REMARK: Describe this module
 <xsl:include href="mal2html-list.xsl"/>
 <xsl:include href="mal2html-media.xsl"/>
 <xsl:include href="mal2html-page.xsl"/>
+<xsl:include href="mal2html-svg.xsl"/>
 <xsl:include href="mal2html-table.xsl"/>
 
 <xsl:include href="../../common/utils.xsl"/>
