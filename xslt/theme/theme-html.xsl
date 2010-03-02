@@ -130,6 +130,7 @@ h2 { font-size: 1.2em; }
 h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
 h3, h4, h5, h6, h7 { font-size: 1em; } 
 
+p { line-height: 1.72em; }
 div, pre, p { margin: 1em 0 0 0; padding: 0; }
 div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.contents, pre.contents { margin-top: 0; }
@@ -198,8 +199,7 @@ a img { border: none; }
 div.title {
   margin: 0 0 0.2em 0;
   font-weight: bold;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 div.desc { margin: 0 0 0.2em 0; }
 div.contents + div.desc { margin: 0.2em 0 0 0; }
@@ -374,35 +374,46 @@ span.cmd span.cmd { background-color: none; padding: 0; }
 pre span.cmd { background-color: none; padding: 0; }
 span.code {
   font-family: monospace;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-  padding: 0 0.2em 0 0.2em;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$theme.color.dark_background"/><xsl:text>;
 }
-span.code span.code { border: none; padding: 0; }
-pre span.code { border: none; padding: 0; }
+span.code span.code { border: none; }
+pre span.code { border: none; }
+span.em { font-style: italic; }
+span.em-bold {
+  font-style: normal; font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+pre span.error {
+  color: </xsl:text><xsl:value-of select="$theme.color.text_error"/><xsl:text>;
+}
+span.file { font-family: monospace; }
 span.gui, span.guiseq { color: </xsl:text>
   <xsl:value-of select="$theme.color.text_light"/><xsl:text>; }
 span.input { font-family: monospace; }
-span.output { font-family: monospace; }
-span.sys { font-family: monospace; }
-span.var { font-style: italic; }
-
-/* FIXME */
-div.screen .prompt {
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.screen .userinput {
+pre span.input {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-pre.screen span.output {
+span.key {
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_border"/><xsl:text>;
+  padding: 0 0.2em 0 0.2em;
+}
+span.keyseq {
   color: </xsl:text>
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
-pre.screen span.output-error {
-<!-- FIXME: theme -->
-  color: #ff0000;
+span.output { font-family: monospace; }
+pre span.output {
+  color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
 }
-pre.screen span.output-prompt { font-weight: bold; }
+pre span.prompt {
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+span.sys { font-family: monospace; }
+span.var { font-style: italic; }
 
 </xsl:text>
 </xsl:template>

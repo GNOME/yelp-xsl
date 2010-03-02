@@ -294,6 +294,7 @@ FIXME
 <!-- = database = -->
 <xsl:template match="database">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'sys'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -341,9 +342,9 @@ FIXME
   <xsl:variable name="bold" select="@role = 'bold' or @role = 'strong'"/>
   <xsl:call-template name="db2html.inline">
     <xsl:with-param name="class">
-      <xsl:text>emphasis</xsl:text>
+      <xsl:text>em</xsl:text>
       <xsl:if test="$bold">
-        <xsl:text> emphasis-bold</xsl:text>
+        <xsl:text> em-bold</xsl:text>
       </xsl:if>
     </xsl:with-param>
   </xsl:call-template>
@@ -352,6 +353,7 @@ FIXME
 <!-- = envar = -->
 <xsl:template match="envar">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'sys'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -359,6 +361,7 @@ FIXME
 <!-- = errorcode = -->
 <xsl:template match="errorcode">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'error'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -366,18 +369,23 @@ FIXME
 <!-- = errorname = -->
 <xsl:template match="errorname">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'error'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = errortext = -->
 <xsl:template match="errortext">
-  <xsl:call-template name="db2html.inline"/>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'error'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = errortype = -->
 <xsl:template match="errortype">
-  <xsl:call-template name="db2html.inline"/>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'error'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = exceptionname = -->
@@ -396,6 +404,7 @@ FIXME
 <!-- = filename = -->
 <xsl:template match="filename">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'file'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -434,7 +443,9 @@ FIXME
 
 <!-- = function = -->
 <xsl:template match="function">
-  <xsl:call-template name="db2html.inline"/>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = glosskey = -->
@@ -578,7 +589,9 @@ FIXME
 
 <!-- = keycap = -->
 <xsl:template match="keycap">
-  <xsl:call-template name="db2html.inline"/>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'key'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = keycode = -->
@@ -590,7 +603,9 @@ FIXME
 
 <!-- = keycombo = -->
 <xsl:template match="keycombo">
-  <xsl:call-template name="db2html.inline"/>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'keyseq'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = keycombo % db2html.inline.content.mode = -->
@@ -634,6 +649,7 @@ FIXME
 <!-- = literal = -->
 <xsl:template match="literal">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -816,6 +832,7 @@ FIXME
 <!-- = prompt = -->
 <xsl:template match="prompt">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'output'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -823,6 +840,7 @@ FIXME
 <!-- = property = -->
 <xsl:template match="property">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'sys'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -840,6 +858,7 @@ FIXME
 <!-- = ooclass = -->
 <xsl:template match="ooclass">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -857,6 +876,7 @@ FIXME
 <!-- = ooexception = -->
 <xsl:template match="ooexception">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -874,6 +894,7 @@ FIXME
 <!-- = oointerface = -->
 <xsl:template match="oointerface">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -931,7 +952,7 @@ FIXME
 <xsl:template match="sgmltag">
   <xsl:call-template name="db2html.inline">
     <xsl:with-param name="class">
-      <xsl:text>sgmltag</xsl:text>
+      <xsl:text>code sgmltag</xsl:text>
       <xsl:if test="@class">
         <xsl:value-of select="concat(' sgmltag-', @class)"/>
       </xsl:if>
@@ -1075,6 +1096,7 @@ FIXME
 <!-- = symbol = -->
 <xsl:template match="symbol">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>
@@ -1090,6 +1112,7 @@ FIXME
 <!-- = token = -->
 <xsl:template match="token">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
 </xsl:template>

@@ -110,25 +110,7 @@ td.td-rowsep { border-bottom: solid 1px; }
 thead { border-top: solid 2px; border-bottom: solid 2px; }
 tfoot { border-top: solid 2px; border-bottom: solid 2px; }
 
-/*
-.block { margin-top: 1em; }
-.block .block-first { margin-top: 0; }
-*/
-.block-indent {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text> left: 1.72em;
-  margin-</xsl:text><xsl:value-of select="right"/><xsl:text>: 1em;
-}
-.block-indent .block-indent { margin-left: 0em; margin-right: 0em; }
-td .block-indent  { margin-left: 0em; margin-right: 0em; }
-dd .block-indent  { margin-left: 0em; margin-right: 0em; }
-.block-verbatim { white-space: pre; }
-div.title {
-  margin-bottom: 0.2em;
-  font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-div.title-formal { padding-left: 0.2em; padding-right: 0.2em; }
-div.title-formal .label { font-weight: normal; }
+div.title span.label { font-weight: normal; }
 
 <!-- == linktrail == -->
 ul.linktrail {
@@ -244,25 +226,17 @@ div.simplelist td {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
-/*
+<!--
 div.simplelist td.td-first {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
 }
-*/
+-->
 
 span.accel { text-decoration: underline; }
-<!-- FIXME: stderr red text -->
-span.database { font-family: monospace; }
 span.email { font-family: monospace; }
-span.emphasis { font-style: italic; }
-span.emphasis-bold { font-style: normal; font-weight: bold; }
-span.envar { font-family: monospace; }
-<!-- FIXME: error* red text -->
-span.filename { font-family: monospace; }
 span.firstterm { font-style: italic; }
 span.foreignphrase { font-style: italic; }
-span.function { font-family: monospace; }
 
 dt.glossterm span.glossterm { font-style: normal; }
 <!--
@@ -273,22 +247,11 @@ dd.glossdef, dd.glosssee, dd.glossseealso { margin-top: 0em;  margin-bottom: 0; 
 
 span.glossterm { font-style: italic; }
 
-span.keycap {
-  font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
 span.lineannotation { font-style: italic; }
-span.literal { font-family: monospace; }
 span.medialabel { font-style: italic; }
-span.ooclass, span.ooexception, span.oointerface { font-family: monospace; }
-span.option { font-family: monospace; }
 .methodparam span.parameter { font-style: italic; }
 span.paramdef span.parameter { font-style: italic; }
 span.prompt { font-family: monospace; }
-span.property { font-family: monospace; }
-span.sgmltag { font-family: monospace; }
-span.symbol { font-family: monospace; }
-span.token { font-family: monospace; }
 span.wordasword { font-style: italic; }
 <!-- FIXME below -->
 

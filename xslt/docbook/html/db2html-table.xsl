@@ -994,7 +994,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 
 <!-- = table = -->
 <xsl:template match="table | informaltable">
-  <div class="table block block-indent">
+  <div class="table">
     <xsl:if test="@lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">

@@ -112,12 +112,13 @@ REMARK: Document this template
 
 <!-- = em = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:em">
-  <xsl:call-template name="mal2html.span"/>
-</xsl:template>
-
-<!-- = email = -->
-<xsl:template mode="mal2html.inline.mode" match="mal:email">
-  <xsl:call-template name="mal2html.span"/>
+  <xsl:call-template name="mal2html.span">
+    <xsl:with-param name="class">
+      <xsl:if test="contains(concat(' ', @style, ' '), ' strong ')">
+        <xsl:text>em-bold</xsl:text>
+      </xsl:if>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = file = -->
@@ -231,26 +232,15 @@ REMARK: Document this template
   <xsl:call-template name="mal2html.span">
     <xsl:with-param name="class">
       <xsl:choose>
-        <xsl:when test="contains($style, ' output ')">
-          <xsl:text>output-output</xsl:text>
-        </xsl:when>
         <xsl:when test="contains($style, ' error ')">
-          <xsl:text>output-error</xsl:text>
+          <xsl:text>error</xsl:text>
         </xsl:when>
         <xsl:when test="contains($style, ' prompt ')">
-          <xsl:text>output-prompt</xsl:text>
+          <xsl:text>prompt</xsl:text>
         </xsl:when>
       </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
-</xsl:template>
-
-<!-- = quote = -->
-<xsl:template mode="mal2html.inline.mode" match="mal:quote">
-  <!-- FIXME: do smart quoting -->
-  <xsl:text>"</xsl:text>
-  <xsl:call-template name="mal2html.span"/>
-  <xsl:text>"</xsl:text>
 </xsl:template>
 
 <!-- = span = -->

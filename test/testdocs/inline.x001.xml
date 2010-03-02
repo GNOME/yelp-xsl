@@ -26,7 +26,11 @@
 <para><corpauthor>corpauthor</corpauthor></para>
 <para><database>database</database></para>
 <para><email>email</email></para>
-<para><emphasis>emphasis</emphasis></para>
+<para>
+  <emphasis>emphasis</emphasis>
+  <emphasis role="bold">bold</emphasis>
+  <emphasis role="strong">strong</emphasis>
+</para>
 <para><envar>envar</envar></para>
 <para><errorcode>errorcode</errorcode></para>
 <para><errorname>errorname</errorname></para>
