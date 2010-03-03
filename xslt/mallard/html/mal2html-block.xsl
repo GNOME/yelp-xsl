@@ -90,12 +90,14 @@ FIXME
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
     <div class="comment">
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
-      <div class="comment-inner">
-        <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
-          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-        </xsl:for-each>
+      <div class="inner">
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
+        <div class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </div>
       </div>
     </div>
   </xsl:if>
@@ -148,12 +150,14 @@ FIXME
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
   <div class="listing">
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-    <div class="listing-inner">
-      <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
-        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-      </xsl:for-each>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+      <div class="contents">
+        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+        </xsl:for-each>
+      </div>
     </div>
   </div>
 </xsl:template>
@@ -210,7 +214,7 @@ FIXME
   <div class="quote">
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <blockquote class="quote-inner">
+      <blockquote class="contents">
         <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
           <xsl:apply-templates mode="mal2html.block.mode" select="."/>
         </xsl:for-each>
@@ -250,12 +254,14 @@ FIXME
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
   <div class="synopsis">
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-    <div class="synopsis-inner">
-      <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
-        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-      </xsl:for-each>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+      <div class="contents">
+        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+        </xsl:for-each>
+      </div>
     </div>
   </div>
 </xsl:template>
@@ -267,13 +273,19 @@ FIXME
   </div>
 </xsl:template>
 
-<!-- FIXME -->
+<xsl:template mode="mal2html.block.mode" match="text()"/>
+
 <xsl:template mode="mal2html.block.mode" match="*">
-  <xsl:message>
-    <xsl:text>Unmatched block element: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-  </xsl:message>
-  <xsl:apply-templates mode="mal2html.inline.mode"/>
+  <xsl:param name="restricted" select="false()"/>
+  <xsl:if test="not($restricted)">
+    <xsl:message>
+      <xsl:text>Unmatched block element: </xsl:text>
+      <xsl:value-of select="local-name(.)"/>
+    </xsl:message>
+    <xsl:apply-templates mode="mal2html.block.mode">
+      <xsl:with-param name="restricted" select="true()"/>
+    </xsl:apply-templates>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

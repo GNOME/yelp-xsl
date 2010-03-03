@@ -335,7 +335,7 @@ ol.steps .steps {
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
-div.synopsis {
+div.synopsis > div.inner > div.contents, div.synopsis > pre.contents {
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 1px;
   border-bottom: solid 1px;
@@ -344,7 +344,6 @@ div.synopsis {
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
 }
-div.synopsis > pre.contents { margin: 0; padding: 0; }
 div.synopsis > div.inner > div.desc { font-style: italic; }
 div.synopsis div.code {
   background: none;
