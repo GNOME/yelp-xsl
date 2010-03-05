@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - CSS
-:Requires: db2html-footnote db2html-callout db2html-qanda gettext theme-colors theme-icons theme-html
+:Requires: db2html-footnote db2html-callout db2html-qanda theme-colors theme-html
 
 REMARK: Describe this module
 -->

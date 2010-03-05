@@ -1,10 +1,9 @@
 icondir = $(datadir)/yelp-xsl/icons/hicolor/scalable/status
-icon_DATA =			\
-	admon-caution.svg	\
-	admon-bug.svg		\
-	admon-important.svg	\
-	admon-note.svg		\
-	admon-tip.svg		\
-	admon-warning.svg
+icon_DATA =				\
+	yelp-note.svg			\
+	yelp-note-bug.svg		\
+	yelp-note-important.svg		\
+	yelp-note-tip.svg		\
+	yelp-note-warning.svg
 
 EXTRA_DIST = $(icon_DATA)

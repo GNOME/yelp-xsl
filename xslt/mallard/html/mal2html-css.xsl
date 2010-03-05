@@ -24,7 +24,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML - CSS
-:Requires: theme-html
+:Requires: theme-colors theme-html
 
 REMARK: Describe this module
 -->

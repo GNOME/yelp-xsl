@@ -218,7 +218,7 @@ pre.linenumbering {
 }
 div.code {
   background: url('</xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.code"/><xsl:text>') no-repeat top </xsl:text>
+    <xsl:value-of select="$theme.icons.code"/><xsl:text>') no-repeat top </xsl:text>
     <xsl:value-of select="$right"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
@@ -258,54 +258,54 @@ div.note {
 }
 div.note > div.inner > div.title {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.size + 6"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.note + 6"/><xsl:text>px;
 }
 div.note > div.inner > div.contents {
   margin: 0; padding: 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.size + 6"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.note + 6"/><xsl:text>px;
 }
 div.note > div.inner {
   margin: 0; padding: 0;
   background-image: url("</xsl:text>
-    <xsl:value-of select="$theme.icons.emblem.note"/><xsl:text>");
+    <xsl:value-of select="$theme.icons.note"/><xsl:text>");
   background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
   background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$theme.icons.emblem.size"/><xsl:text>px;
+  min-height: </xsl:text><xsl:value-of select="$theme.icons.size.note"/><xsl:text>px;
 }
 div.note-advanced div.inner { <!-- background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.advanced"/><xsl:text>"); --> }
+  <xsl:value-of select="$theme.icons.note.advanced"/><xsl:text>"); --> }
 div.note-bug div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.bug"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.note.bug"/><xsl:text>"); }
 div.note-important div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.important"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.note.important"/><xsl:text>"); }
 div.note-tip div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.tip"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.note.tip"/><xsl:text>"); }
 div.note-warning div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$theme.icons.emblem.note.warning"/><xsl:text>"); }
+  <xsl:value-of select="$theme.icons.note.warning"/><xsl:text>"); }
 div.quote {
+  padding: 0;
   background-image: url('</xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.quote"/><xsl:text>');
+    <xsl:value-of select="$theme.icons.quote"/><xsl:text>');
   background-repeat: no-repeat;
   background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  padding: 0.5em;
   min-height: </xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.size"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
 }
 div.quote > div.inner > div.title {
   margin: 0 0 0.5em 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.size"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
 }
 blockquote {
   margin: 0; padding: 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.size"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
 }
 div.quote > div.inner > div.cite {
   margin-top: 0.5em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$theme.icons.watermark.size"/><xsl:text>px;
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 div.quote > div.inner > div.cite::before {

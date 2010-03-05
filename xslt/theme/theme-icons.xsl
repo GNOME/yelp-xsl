@@ -26,11 +26,8 @@ Theme Icons
 This module provides a common interface to specify icons for transformations
 to presentation-oreinted formats.  This allows similar output for different
 types of input documents.
-
-Icons are divided into two groups: emblems and watermarks.  Emblems are placed
-next to text content, and are generally smaller and more colorful.  Watermarks
-may be used as a background, and are generally larger and without color.
 -->
+
 
 <!--@@==========================================================================
 theme.icons.base_url
@@ -46,112 +43,125 @@ has no effect.  This parameter should end with a trailing slash.
 
 
 <!--@@==========================================================================
-theme.icons.emblem.size
-The size of the emblem icons.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.size.note
+The size of the note icons.
+:Revision:version="1.0" date="2010-03-05"
 
-This parameter specifies the size of the emblem icons.  Use an integer giving
-the width of the image files in pixels.  Icons are assumed to be square, and all
-emblem icons are assumed to have the same size.
+This parameter specifies the size of the note icons.  Use an integer giving
+the width of the image files in pixels.  Icons are assumed to be square, and
+all note icons are assumed to have the same size.
 -->
-<xsl:param name="theme.icons.emblem.size" select="24"/>
+<xsl:param name="theme.icons.size.note" select="24"/>
 
 
 <!--@@==========================================================================
-theme.icons.watermark.size
-The size of the emblem icons.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.note
+The URL for the note icon.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the size of the watermark icons.  Use an integer giving
-the width of the image files in pixels.  Icons are assumed to be square, and all
-watermark icons are assumed to have the same size.
+This parameter specifies the URL for the icon used for regular notes.
 -->
-<xsl:param name="theme.icons.watermark.size" select="72"/>
-
-
-<!--@@==========================================================================
-theme.icons.emblem.note
-The URL for the note emblem.
-:Revision:version="1.0" date="2010-01-26"
-
-This parameter specifies the URL for emblem icon used for regular notes.
--->
-<xsl:param name="theme.icons.emblem.note"
+<xsl:param name="theme.icons.note"
            select="concat($theme.icons.base_url, 'yelp-note.png')"/>
 
 
 <!--@@==========================================================================
-theme.icons.emblem.note.bug
-The URL for the bug note emblem.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.note.bug
+The URL for the bug note icon.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the URL for emblem icon used for bug notes.
+This parameter specifies the URL for the icon used for bug notes.
 -->
-<xsl:param name="theme.icons.emblem.note.bug"
+<xsl:param name="theme.icons.note.bug"
            select="concat($theme.icons.base_url, 'yelp-note-bug.png')"/>
 
 
 <!--@@==========================================================================
-theme.icons.emblem.note.important
-The URL for the important note emblem.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.note.important
+The URL for the important note icon.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the URL for emblem icon used for important notes.
+This parameter specifies the URL for the icon used for important notes.
 -->
-<xsl:param name="theme.icons.emblem.note.important"
+<xsl:param name="theme.icons.note.important"
            select="concat($theme.icons.base_url, 'yelp-note-important.png')"/>
 
 
 <!--@@==========================================================================
-theme.icons.emblem.note.tip
-The URL for the tip note emblem.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.note.tip
+The URL for the tip note icon.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the URL for emblem icon used for tip notes.
+This parameter specifies the URL for the icon used for tip notes.
 -->
-<xsl:param name="theme.icons.emblem.note.tip"
+<xsl:param name="theme.icons.note.tip"
            select="concat($theme.icons.base_url, 'yelp-note-tip.png')"/>
 
 
 <!--@@==========================================================================
-theme.icons.emblem.note.warning
-The URL for the warning note emblem.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.note.warning
+The URL for the warning note icon.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the URL for emblem icon used for warning notes.
+This parameter specifies the URL for the icon used for warning notes.
 -->
-<xsl:param name="theme.icons.emblem.note.warning"
+<xsl:param name="theme.icons.note.warning"
            select="concat($theme.icons.base_url, 'yelp-note-warning.png')"/>
 
 
 <!--@@==========================================================================
-theme.icons.watermark.quote
+theme.icons.size.quote
+The size of the quote icons.
+:Revision:version="1.0" date="2010-05-03"
+
+This parameter specifies the size of the quote icons.  Use an integer giving
+the width of the image files in pixels.  Icons are assumed to be square, and
+all quote icons are assumed to have the same size.
+-->
+<xsl:param name="theme.icons.size.quote" select="48"/>
+
+
+<!--@@==========================================================================
+theme.icons.quote
 The URL for the block quote watermark.
-:Revision:version="1.0" date="2010-01-26"
+:Revision:version="1.0" date="2010-05-03"
 
 This parameter specifies the URL for the watermark for block quotes.  The
 default name of the image file is translatable.  If you set this parameter,
 you should ensure that your graphic uses a suitable quote character for the
 language your document is written in.
 -->
-<xsl:param name="theme.icons.watermark.quote">
+<xsl:param name="theme.icons.quote">
   <xsl:value-of select="$theme.icons.base_url"/>
   <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'yelp-watermark-quote-201C.png'"/>
+    <xsl:with-param name="msgid" select="'yelp-quote-201C.png'"/>
   </xsl:call-template>
 </xsl:param>
 
 
 <!--@@==========================================================================
-theme.icons.watermark.code
-The URL for the block code watermark.
-:Revision:version="1.0" date="2010-01-26"
+theme.icons.size.code
+The size of the code icons.
+:Revision:version="1.0" date="2010-05-03"
 
-This parameter specifies the URL for the watermark for block code.
+This parameter specifies the size of the code icons.  Use an integer giving
+the width of the image files in pixels.  Icons are assumed to be square, and
+all code icons are assumed to have the same size.
 -->
-<xsl:param name="theme.icons.watermark.code">
+<xsl:param name="theme.icons.size.quote" select="128"/>
+
+
+<!--@@==========================================================================
+theme.icons.code
+The URL for the block code watermark.
+:Revision:version="1.0" date="2010-05-03"
+
+This parameter specifies the URL for the watermark for code blocks.
+-->
+<xsl:param name="theme.icons.code">
   <xsl:value-of select="$theme.icons.base_url"/>
-  <xsl:text>yelp-watermark-code.png</xsl:text>
+  <xsl:text>yelp-code.png</xsl:text>
 </xsl:param>
+
 
 </xsl:stylesheet>
