@@ -80,7 +80,7 @@ DocBook to HTML
 <xsl:template match="*">
   <xsl:message>
     <xsl:text>Unmatched element: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
+    <xsl:value-of select="name(.)"/>
   </xsl:message>
   <xsl:apply-templates select="node()"/>
 </xsl:template>
