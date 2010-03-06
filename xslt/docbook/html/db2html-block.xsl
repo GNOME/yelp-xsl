@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:set="http://exslt.org/sets"
-                xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
+								xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
+								xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="msg set"
+                exclude-result-prefixes="db msg set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -54,11 +55,11 @@ is then used by the CSS for styling.
 <xsl:template name="db2html.block">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
-  <xsl:param name="verbatim" select="false()"/>
+	<xsl:param name="verbatim" select="$node[@xml:space = 'preserve']"/>
   <xsl:param name="formal" select="false()"/>
-  <xsl:param name="title" select="$node/title"/>
+	<xsl:param name="title" select="$node/title|$node/db:title|$node/db:info/db:title"/>
   <xsl:param name="caption" select="$node/caption"/>
-  <xsl:param name="lang" select="$node/@lang"/>
+	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
 
@@ -128,8 +129,8 @@ element.  It is called by *{db2html.block} for formal block elements.
 -->
 <xsl:template name="db2html.block.title">
   <xsl:param name="node" select="."/>
-  <xsl:param name="title" select="$node/title"/>
-  <xsl:param name="lang" select="$title/@lang"/>
+	<xsl:param name="title" select="$node/title|$node/db:title|$node/db:info/db:title"/>
+	<xsl:param name="lang" select="$title/@lang|$title/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
 
@@ -182,7 +183,7 @@ element.
 -->
 <xsl:template name="db2html.blockquote">
   <xsl:param name="node" select="."/>
-  <xsl:param name="lang" select="$node/@lang"/>
+	<xsl:param name="lang" select="$node/@lang|node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
 
@@ -214,9 +215,9 @@ element.
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <div class="inner">
-      <xsl:apply-templates select="$node/title"/>
+			<xsl:apply-templates select="$node/title|$node/db:title|$node/db:info/db:title"/>
       <blockquote class="{local-name($node)}">
-        <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution)]"/>
+        <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
       </blockquote>
       <xsl:apply-templates select="$node/attribution"/>
     </div>
@@ -236,7 +237,7 @@ This template creates an HTML #{p} element for the given DocBook element.
 -->
 <xsl:template name="db2html.para">
   <xsl:param name="node" select="."/>
-  <xsl:param name="lang" select="$node/@lang"/>
+	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
 
@@ -293,7 +294,7 @@ template.
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <xsl:param name="children" select="$node/node()"/>
-  <xsl:param name="lang" select="$node/@lang"/>
+	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="true()"/>
 
@@ -363,43 +364,43 @@ template.
 <!-- == Matched Templates == -->
 
 <!-- = abstract = -->
-<xsl:template match="abstract">
+<xsl:template match="abstract | db:abstract">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
 <!-- = ackno = -->
-<xsl:template match="ackno">
+<xsl:template match="ackno | db:acknowledgements">
   <xsl:call-template name="db2html.para"/>
 </xsl:template>
 
 <!-- = address = -->
-<xsl:template match="address">
+<xsl:template match="address | db:address">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="verbatim" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = attribution = -->
-<xsl:template match="attribution">
+<xsl:template match="attribution | db:attribution">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'cite'"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = blockquote = -->
-<xsl:template match="blockquote">
+<xsl:template match="blockquote | db:blockquote">
   <xsl:call-template name="db2html.blockquote"/>
 </xsl:template>
 
 <!-- = caption = -->
-<xsl:template match="caption">
+<xsl:template match="caption | db:caption">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'desc'"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = caution = -->
-<xsl:template match="caution">
+<xsl:template match="caution | db:caution">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-warning'"/>
     <xsl:with-param name="formal" select="true()"/>
@@ -407,27 +408,27 @@ template.
 </xsl:template>
 
 <!-- = epigraph = -->
-<xsl:template match="epigraph">
+<xsl:template match="epigraph | db:epigraph">
   <xsl:call-template name="db2html.blockquote"/>
 </xsl:template>
 
 <!-- = equation = -->
-<xsl:template match="equation">
+<xsl:template match="equation | db:equation">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
 <!-- = example = -->
-<xsl:template match="example">
+<xsl:template match="example | db:example">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="formal" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = figure = -->
-<xsl:template match="figure | informalfigure">
+<xsl:template match="figure | informalfigure | db:figure | db:informalfigure">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class">
-      <xsl:if test="self::informalfigure">
+      <xsl:if test="self::informalfigure | self::db:informalfigure">
         <xsl:text>figure</xsl:text>
       </xsl:if>
     </xsl:with-param>
@@ -435,44 +436,46 @@ template.
     <!-- When a figure contains only a single mediaobject, it eats the caption -->
     <xsl:with-param name="caption"
                     select="*[not(self::blockinfo) and not(self::title) and not(self::titleabbrev)]
-                             [last() = 1]/self::mediaobject/caption"/>
+														[last() = 1]/self::mediaobject/caption |
+														*[not(self::db:info) and not(self::db:title) and not(self::db:titleabbrev)]
+                            [last() = 1]/self::db:mediaobject/db:caption"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = formalpara = -->
-<xsl:template match="formalpara">
+<xsl:template match="formalpara | db:formalpara">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
 <!-- = glossdef = -->
-<xsl:template match="glossdef">
+<xsl:template match="glossdef | db:glossdef">
   <dd class="glossdef">
-    <xsl:apply-templates select="*[not(self::glossseealso)]"/>
+    <xsl:apply-templates select="*[not(self::glossseealso) and not(self::db:glossseealso)]"/>
   </dd>
-  <xsl:apply-templates select="glossseealso[1]"/>
+  <xsl:apply-templates select="glossseealso[1] | db:glossseealso[1]"/>
 </xsl:template>
 
 <!-- = glossentry = -->
-<xsl:template match="glossentry">
+<xsl:template match="glossentry | db:glossentry">
   <dt>
     <xsl:attribute name="class">
       <xsl:text>glossterm</xsl:text>
     </xsl:attribute>
-    <xsl:apply-templates select="glossterm"/>
-    <xsl:if test="acronym or abbrev">
+    <xsl:apply-templates select="glossterm | db:glossterm"/>
+    <xsl:if test="acronym or abbrev or db:acronym or db:abbrev">
       <xsl:text> </xsl:text>
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'glossentry.abbrev.format'"/>
-        <xsl:with-param name="node" select="(acronym | abbrev)[1]"/>
+        <xsl:with-param name="node" select="(acronym | abbrev | db:acronym | db:abbrev)[1]"/>
         <xsl:with-param name="format" select="true()"/>
       </xsl:call-template>
     </xsl:if>
   </dt>
-  <xsl:apply-templates select="glossdef | glosssee[1]"/>
+  <xsl:apply-templates select="glossdef | glosssee[1] | db:glossdef | db:glosssee[1]"/>
 </xsl:template>
 
 <!-- = glosssee(also) = -->
-<xsl:template match="glosssee | glossseealso">
+<xsl:template match="glosssee | glossseealso | db:glosssee | db:glossseealso">
   <dd class="{local-name(.)}">
     <p class="block">
       <xsl:call-template name="l10n.gettext">
@@ -533,7 +536,7 @@ template.
 </xsl:template>
 
 <!-- = important = -->
-<xsl:template match="important">
+<xsl:template match="important | db:important">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-important'"/>
     <xsl:with-param name="formal" select="true()"/>
@@ -541,24 +544,24 @@ template.
 </xsl:template>
 
 <!-- = informalequation = -->
-<xsl:template match="informalequation">
+<xsl:template match="informalequation | db:informalequation">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
 <!-- = informalexample = -->
-<xsl:template match="informalexample">
+<xsl:template match="informalexample | db:informalexample">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
 <!-- = literallayout = -->
-<xsl:template match="literallayout">
+<xsl:template match="literallayout | db:literallayout">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="verbatim" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = note = -->
-<xsl:template match="note">
+<xsl:template match="note | db:note">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class">
       <xsl:text>note</xsl:text>
@@ -571,34 +574,34 @@ template.
 </xsl:template>
 
 <!-- = para = -->
-<xsl:template match="para">
+<xsl:template match="para | db:para">
   <xsl:call-template name="db2html.para"/>
 </xsl:template>
 
 <!-- = programlisting = -->
-<xsl:template match="programlisting">
+<xsl:template match="programlisting | db:programlisting">
   <xsl:call-template name="db2html.pre">
     <xsl:with-param name="class" select="'code'"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = screen = -->
-<xsl:template match="screen">
+<xsl:template match="screen | db:screen">
   <xsl:call-template name="db2html.pre"/>
 </xsl:template>
 
 <!-- = simpara = -->
-<xsl:template match="simpara">
+<xsl:template match="simpara | db:simpara">
   <xsl:call-template name="db2html.para"/>
 </xsl:template>
 
 <!-- = synopsis = -->
-<xsl:template match="synopsis">
+<xsl:template match="synopsis | db:synopsis">
   <xsl:call-template name="db2html.pre"/>
 </xsl:template>
 
 <!-- = tip = -->
-<xsl:template match="tip">
+<xsl:template match="tip | db:tip">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-tip'"/>
     <xsl:with-param name="formal" select="true()"/>
@@ -606,7 +609,7 @@ template.
 </xsl:template>
 
 <!-- = title = -->
-<xsl:template match="title">
+<xsl:template match="title | db:title">
   <xsl:call-template name="db2html.block.title">
     <xsl:with-param name="node" select=".."/>
     <xsl:with-param name="title" select="."/>
@@ -614,7 +617,7 @@ template.
 </xsl:template>
 
 <!-- = warning = -->
-<xsl:template match="warning">
+<xsl:template match="warning | db:warning">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-warning'"/>
     <xsl:with-param name="formal" select="true()"/>
