@@ -201,7 +201,7 @@ FIXME
         <xsl:choose>
           <xsl:when test="$entry_label">
             <xsl:call-template name="db2html.xref">
-							<xsl:with-param name="linkend" select="$entry_label/@id | $entry_label/@xml:id"/>
+              <xsl:with-param name="linkend" select="$entry_label/@id | $entry_label/@xml:id"/>
               <xsl:with-param name="target" select="$entry_label"/>
               <xsl:with-param name="content">
                 <xsl:apply-templates select="node()"/>
