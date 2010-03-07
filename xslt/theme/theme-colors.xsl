@@ -99,7 +99,7 @@ This parameter specifies the blue background color.  The blue
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.blue_background" select="'#d9ebff'"/>
+<xsl:param name="theme.color.blue_background" select="'#e6f2ff'"/>
 
 <!--@@==========================================================================
 theme.color.blue_border
@@ -152,7 +152,7 @@ This parameter specifies the red background color.  The red
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.red_background" select="'#ffcccc'"/>
+<xsl:param name="theme.color.red_background" select="'#ffdede'"/>
 
 <!--@@==========================================================================
 theme.color.red_border
@@ -173,7 +173,7 @@ This parameter specifies the yellow background color.  The yellow
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.yellow_background" select="'#fff8bf'"/>
+<xsl:param name="theme.color.yellow_background" select="'#fffbd9'"/>
 
 <!--@@==========================================================================
 theme.color.yellow_border
