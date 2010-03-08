@@ -17,7 +17,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:xl="http://www.w3.org/1999/xlink"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="xl db"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -36,9 +39,9 @@ $name: The text to use for the #{name} attribute
 
 REMARK: Describe this template
 -->
-<xsl:template name="db2html.anchor" match="anchor">
+<xsl:template name="db2html.anchor" match="anchor | db:anchor">
   <xsl:param name="node" select="."/>
-  <xsl:param name="name" select="$node/@id"/>
+  <xsl:param name="name" select="$node/@id | $node/@xml:id"/>
   <xsl:if test="$name"><a name="{$name}"/></xsl:if>
 </xsl:template>
 
@@ -109,6 +112,36 @@ REMARK: Describe this template
 
 
 <!--**==========================================================================
+db2html.xlink
+Generates a hyperlink from a DocBook 5 #{link} element
+$linkend: The ID of the element to link to
+$url: The URL to link to
+$content: Optional content to use for the text of the link
+
+Note that this template is also called for inline elements that use DocBook 5's ubiquitous linking.
+-->
+<xsl:template name="db2html.xlink" match="db:link">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="linkend" select="$node/@linkend"/>
+  <xsl:param name="url" select="$node/@xl:href"/>
+  <xsl:param name="content" select="false()"/>
+  <xsl:choose>
+    <xsl:when test="$url">
+      <xsl:call-template name="db2html.ulink">
+        <xsl:with-param name="url" select="$url"/>
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$linkend">
+      <xsl:call-template name="db2html.link">
+        <xsl:with-param name="linkend" select="$linkend"/>
+      </xsl:call-template>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
 db2html.xref
 Generates a hyperlink from an #{xref} element
 $linkend: The id of the element being linked to
@@ -119,7 +152,7 @@ $content: Optional content to use for the text of the link
 
 REMARK: Describe this template
 -->
-<xsl:template name="db2html.xref" match="xref">
+<xsl:template name="db2html.xref" match="xref | db:xref">
   <xsl:param name="linkend"   select="@linkend"/>
   <xsl:param name="target"    select="key('idkey', $linkend)"/>
   <xsl:param name="endterm"   select="@endterm"/>
