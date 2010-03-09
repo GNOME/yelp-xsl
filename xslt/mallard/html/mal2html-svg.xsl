@@ -41,7 +41,13 @@ REMARK: Describe this module
           <xsl:with-param name="xref" select="@mal:xref"/>
         </xsl:call-template>
       </xsl:variable>
-      <svg:a xlink:href="{$target}">
+      <xsl:variable name="title">
+        <xsl:call-template name="mal.link.content">
+          <xsl:with-param name="xref" select="@mal:xref"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <svg:a xlink:href="{$target}" xlink:show="replace"
+             xlink:title="{$title}" target="_top">
         <xsl:copy>
           <xsl:for-each select="@*">
             <xsl:copy/>
@@ -66,13 +72,32 @@ REMARK: Describe this module
 </xsl:template>
 
 <xsl:template mode="mal2html.block.mode" match="svg:svg">
-  <xsl:variable name="id" select="generate-id(.)"/>
-  <div>
-    <img src="{$id}.svg"/>
-  </div>
-  <exsl:document href="{$id}.svg">
-    <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-  </exsl:document>
+  <xsl:variable name="id">
+    <xsl:choose>
+      <xsl:when test="@xml:id">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="generate-id(.)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$mal2html.namespace = ''">
+      <div>
+        <object data="{$id}.svg" type="image/svg+xml">
+          <xsl:copy-of select="@width"/>
+          <xsl:copy-of select="@height"/>
+        </object>
+      </div>
+      <exsl:document href="{$id}.svg">
+        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+      </exsl:document>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
