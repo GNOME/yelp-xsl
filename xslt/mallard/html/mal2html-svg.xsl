@@ -84,7 +84,7 @@ REMARK: Describe this module
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$mal2html.namespace = ''">
-      <div>
+      <div class="svg">
         <object data="{$id}.svg" type="image/svg+xml">
           <xsl:copy-of select="@width"/>
           <xsl:copy-of select="@height"/>
@@ -95,7 +95,9 @@ REMARK: Describe this module
       </exsl:document>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+      <div class="svg">
+        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+      </div>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
