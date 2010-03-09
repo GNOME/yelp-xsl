@@ -16,7 +16,7 @@ PKG_NAME="yelp-xsl"
 }
 
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from the GNOME CVS"
+    echo "You need to install gnome-common from git.gnome.org"
     exit 1
 }
 
