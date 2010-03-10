@@ -18,8 +18,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="set"
+                exclude-result-prefixes="db set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -172,14 +173,14 @@ For a description of the other parameters, see *{db2html.autotoc}.
     <xsl:choose>
       <xsl:when test="set:has-same-node(., $selected) and not($is_info)">
         <xsl:call-template name="db.xref.content">
-          <xsl:with-param name="linkend" select="@id"/>
+          <xsl:with-param name="linkend" select="@id | @xml:id"/>
           <xsl:with-param name="target" select="."/>
           <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="db2html.xref">
-          <xsl:with-param name="linkend" select="@id"/>
+          <xsl:with-param name="linkend" select="@id | @xml:id"/>
           <xsl:with-param name="target" select="."/>
           <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:call-template>
@@ -195,7 +196,12 @@ For a description of the other parameters, see *{db2html.autotoc}.
                     chapter   | colophon | dedication   | glossary   | glossdiv |
                     index     | lot      | part         | preface    | refentry |
                     reference | sect1    | sect2        | sect3      | sect4    |
-                    sect5     | section  | setindex     | simplesect | toc      "/>
+                    sect5     | section  | setindex     | simplesect | toc      |
+                    db:appendix  | db:article  | db:bibliography | db:bibliodiv  | db:book     |
+                    db:chapter   | db:colophon | db:dedication   | db:glossary   | db:glossdiv |
+                    db:index     | db:lot      | db:part         | db:preface    | db:refentry |
+                    db:reference | db:sect1    | db:sect2        | db:sect3      | db:sect4    |
+                    db:sect5     | db:section  | db:setindex     | db:simplesect | db:toc      "/>
         <xsl:with-param name="labels" select="$labels"/>
         <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
       </xsl:call-template>
@@ -204,7 +210,7 @@ For a description of the other parameters, see *{db2html.autotoc}.
 </xsl:template>
 
 <!-- = refentry % db2html.autotoc.mode = -->
-<xsl:template mode="db2html.autotoc.mode" match="refentry">
+<xsl:template mode="db2html.autotoc.mode" match="refentry | db:refentry">
   <xsl:param name="is_info" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="toc_depth" select="0"/>
@@ -220,14 +226,14 @@ For a description of the other parameters, see *{db2html.autotoc}.
     <xsl:choose>
       <xsl:when test="set:has-same-node(., $selected)">
         <xsl:call-template name="db.xref.content">
-          <xsl:with-param name="linkend" select="@id"/>
+          <xsl:with-param name="linkend" select="@id | @xml:id"/>
           <xsl:with-param name="target" select="."/>
           <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="db2html.xref">
-          <xsl:with-param name="linkend" select="@id"/>
+          <xsl:with-param name="linkend" select="@id | @xml:id"/>
           <xsl:with-param name="target" select="."/>
           <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:call-template>
@@ -238,7 +244,8 @@ For a description of the other parameters, see *{db2html.autotoc}.
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="' — '"/>
         </xsl:call-template>
-        <xsl:apply-templates select="refnamediv/refpurpose[1]"/>
+        <xsl:apply-templates select="refnamediv/refpurpose[1] |
+                                     db:refnamediv/db:refpurpose[1]"/>
       </xsl:if>
     </xsl:if>
   </li>
