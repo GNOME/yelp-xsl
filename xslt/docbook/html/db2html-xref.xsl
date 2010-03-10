@@ -97,7 +97,12 @@ REMARK: Describe this template
       <xsl:call-template name="db.ulink.tooltip"/>
     </xsl:attribute>
     <xsl:choose>
-      <xsl:when test="$content">
+      <!--
+        Other templates, such as db2html.xlink (from ubiquitously linked
+        inlines) may pass us $content as a result tree fragment.  If $content
+        is empty, it may still be evaluated as true, which isn't what we want.
+        -->
+      <xsl:when test="$content and string-length($content) != 0">
         <xsl:copy-of select="$content"/>
       </xsl:when>
       <xsl:when test="string-length(normalize-space(node())) != 0">
@@ -114,6 +119,7 @@ REMARK: Describe this template
 <!--**==========================================================================
 db2html.xlink
 Generates a hyperlink from a DocBook 5 #{link} element
+$node: The node in question
 $linkend: The ID of the element to link to
 $url: The URL to link to
 $content: Optional content to use for the text of the link
@@ -125,6 +131,7 @@ Note that this template is also called for inline elements that use DocBook 5's 
   <xsl:param name="linkend" select="$node/@linkend"/>
   <xsl:param name="url" select="$node/@xl:href"/>
   <xsl:param name="content" select="false()"/>
+
   <xsl:choose>
     <xsl:when test="$url">
       <xsl:call-template name="db2html.ulink">

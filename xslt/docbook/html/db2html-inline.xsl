@@ -18,8 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
+                xmlns:xl="http://www.w3.org/1999/xlink"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="db xl msg xsl"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -29,6 +31,28 @@ DocBook to HTML - Inline Elements
 REMARK: Describe this module
 -->
 <!--#% l10n.format.mode -->
+
+<!--**==========================================================================
+db2html.inline.children
+Renders the children of an inline element.
+$node: The element to render
+$children: The child elements to process
+
+REMARK: Document this template
+-->
+<xsl:template name="db2html.inline.children">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="children" select="false()"/>
+
+  <xsl:choose>
+    <xsl:when test="$children">
+      <xsl:apply-templates select="$children"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="db2html.inline.content.mode" select="$node"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 
 <!--**==========================================================================
@@ -50,6 +74,8 @@ REMARK: Document this template
   <xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
+  <xsl:variable name="xlink" select="$node/@xl:href"/>
+  <xsl:variable name="linkend" select="$node/@linkend"/>
 
   <!-- FIXME: do CSS classes, rather than inline styles -->
   <span class="{$class} {local-name($node)}">
@@ -76,11 +102,22 @@ REMARK: Document this template
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:choose>
-      <xsl:when test="$children">
-        <xsl:apply-templates select="$children"/>
+      <xsl:when test="$xlink or $linkend">
+        <xsl:call-template name="db2html.xlink">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="content">
+            <xsl:call-template name="db2html.inline.children">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="children" select="$children"/>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates mode="db2html.inline.content.mode" select="$node"/>
+        <xsl:call-template name="db2html.inline.children">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="children" select="$children"/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </span>
