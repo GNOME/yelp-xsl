@@ -95,7 +95,11 @@ by extension stylesheets to extend or override the CSS.
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:call-template name="theme.html.css"/>
+  <xsl:call-template name="theme.html.css">
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
   <xsl:text>
 <!-- == common == -->
 sub { font-size: 0.83em; }

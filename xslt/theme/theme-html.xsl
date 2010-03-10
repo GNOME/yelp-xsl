@@ -21,27 +21,44 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Common HTML Styling
+Output CSS for transformations to HTML.
+:Revision: version="1.0" date="2010-03-10"
 :Requires: gettext theme-colors theme-icons
 
+This stylesheet provides common CSS for all transformations to HTML.
+Stylesheets which generate HTML should use the common elements and
+classes references by the CSS rules in this stylesheet.
 -->
+
 
 <!--**==========================================================================
 theme.html.css
+Output CSS for transformations to HTML.
+:Revision: version="1.0" date="2010-03-10"
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template outputs the common CSS for HTML transformations.  It is a wrapper
+template that calls *{theme.html.css.core}, *{theme.html.css.elements}, and
+*{theme.html.css.custom}.
+
+All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="theme.html.css">
-  <xsl:variable name="direction">
+  <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
-  </xsl:variable>
-  <xsl:variable name="left">
+  </xsl:param>
+  <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="right">
+  </xsl:param>
+  <xsl:param name="right">
     <xsl:call-template name="l10n.align.end">
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
-  </xsl:variable>
+  </xsl:param>
   <xsl:call-template name="theme.html.css.core">
     <xsl:with-param name="direction" select="$direction"/>
     <xsl:with-param name="left" select="$left"/>
@@ -52,8 +69,30 @@ theme.html.css
     <xsl:with-param name="left" select="$left"/>
     <xsl:with-param name="right" select="$right"/>
   </xsl:call-template>
+  <xsl:call-template name="theme.html.css.custom">
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
 </xsl:template>
 
+
+<!--**==========================================================================
+theme.html.css.core
+Output CSS that does not reference source elements.
+:Revision: version="1.0" date="2010-03-10"
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template outputs CSS that can be used in any HTML.  It does not reference
+elements from DocBook, Mallard, or other source languages.  It provides the
+common spacings for block-level elements lik paragraphs and lists, defines
+styles for links, and defines four common wrapper divs: #{head}, #{side},
+#{body}, and #{foot}.
+
+All parameters can be automatically computed if not provided.
+-->
 <xsl:template name="theme.html.css.core">
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
@@ -181,6 +220,23 @@ a img { border: none; }
 </xsl:text>
 </xsl:template>
 
+
+<!--**==========================================================================
+theme.html.css.elements
+Output CSS for common elements from source formats.
+:Revision: version="1.0" date="2010-03-10"
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template outputs CSS for elements from source languages like DocBook and
+Mallard.  It defines them using common class names.  The common names are often
+the simpler element names from Mallard, although there some class names which
+are not taken from Mallard.  Stylesheets which convert to HTML should use the
+appropriate common classes.
+
+All parameters can be automatically computed if not provided.
+-->
 <xsl:template name="theme.html.css.elements">
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
@@ -413,8 +469,36 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
-
 </xsl:text>
+</xsl:template>
+
+
+<!--**==========================================================================
+theme.html.css.custom
+Stub to output custom CSS common to all HTML transformations.
+:Revision: version="1.0" date="2010-03-10"
+:Stub: true
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template is a stub, called by *{theme.html.css}.  You can override this
+template to provide additional CSS that will be used by all HTML output.
+-->
+<xsl:template name="theme.html.css.custom">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
 </xsl:template>
 
 </xsl:stylesheet>

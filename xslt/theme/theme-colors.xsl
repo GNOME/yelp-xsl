@@ -21,6 +21,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Theme Colors
+Specify common named colors to style output.
 :Revision:version="1.0" date="2010-01-26"
 
 This stylesheet provides a common interface to specify custom colors for
