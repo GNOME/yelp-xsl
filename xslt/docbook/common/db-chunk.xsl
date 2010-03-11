@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:db="http://docbook.org/ns/docbook"
                 extension-element-prefixes="exsl"
-                exclude-result-prefixes="set"
+                exclude-result-prefixes="db set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -66,7 +67,7 @@ REMARK: Describe what this does
       <xsl:value-of
        select="number(processing-instruction('db.chunk.max_depth'))"/>
     </xsl:when>
-    <xsl:when test="/book">
+    <xsl:when test="/book | /db:book">
       <xsl:value-of select="2"/>
     </xsl:when>
     <xsl:otherwise>
@@ -82,7 +83,7 @@ The base filename of the output file, without an extension
 
 REMARK: Describe what this does
 -->
-<xsl:param name="db.chunk.basename" select="/*/@id"/>
+<xsl:param name="db.chunk.basename" select="/*/@id | /*/@xml:id"/>
 
 
 <!--@@==========================================================================
@@ -258,7 +259,16 @@ REMARK: We need a lot more explanation about chunk flow
                   $node/preface    | $node/refentry   | $node/reference    |
                   $node/sect1      | $node/sect2      | $node/sect3        |
                   $node/sect4      | $node/sect5      | $node/section      |
-                  $node/setindex   | $node/simplesect | $node/toc          ">
+                  $node/setindex   | $node/simplesect | $node/toc          |
+                  $node/db:appendix   | $node/db:article    | $node/db:bibliography |
+                  $node/db:bibliodiv  |
+                  $node/db:book       | $node/db:chapter    | $node/db:colophon     |
+                  $node/db:dedication | $node/db:glossary   | $node/db:glossdiv     |
+                  $node/db:index      | $node/db:lot        | $node/db:part         |
+                  $node/db:preface    | $node/db:refentry   | $node/db:reference    |
+                  $node/db:sect1      | $node/db:sect2      | $node/db:sect3        |
+                  $node/db:sect4      | $node/db:sect5      | $node/db:section      |
+                  $node/db:setindex   | $node/db:simplesect | $node/db:toc          ">
       <xsl:call-template name="db.chunk">
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk + 1"/>
       </xsl:call-template>
@@ -285,31 +295,56 @@ REMARK: Explain how this works
   <xsl:param name="node" select="."/>
   <xsl:variable name="divs"
                 select="
-                        count($node/ancestor-or-self::appendix     ) + 
-                        count($node/ancestor-or-self::article      ) + 
-                        count($node/ancestor-or-self::bibliography ) + 
-                        count($node/ancestor-or-self::bibliodiv    ) +
-                        count($node/ancestor-or-self::book         ) + 
-                        count($node/ancestor-or-self::chapter      ) + 
-                        count($node/ancestor-or-self::colophon     ) + 
-                        count($node/ancestor-or-self::dedication   ) + 
-                        count($node/ancestor-or-self::glossary     ) + 
-                        count($node/ancestor-or-self::glossdiv     ) + 
-                        count($node/ancestor-or-self::index        ) + 
-                        count($node/ancestor-or-self::lot          ) + 
-                        count($node/ancestor-or-self::part         ) + 
-                        count($node/ancestor-or-self::preface      ) + 
-                        count($node/ancestor-or-self::refentry     ) + 
-                        count($node/ancestor-or-self::reference    ) + 
-                        count($node/ancestor-or-self::sect1        ) + 
-                        count($node/ancestor-or-self::sect2        ) + 
-                        count($node/ancestor-or-self::sect3        ) + 
-                        count($node/ancestor-or-self::sect4        ) + 
-                        count($node/ancestor-or-self::sect5        ) + 
-                        count($node/ancestor-or-self::section      ) + 
-                        count($node/ancestor-or-self::setindex     ) + 
-                        count($node/ancestor-or-self::simplesect   ) + 
-                        count($node/ancestor-or-self::toc          )"/>
+                        count($node/ancestor-or-self::appendix        ) + 
+                        count($node/ancestor-or-self::article         ) + 
+                        count($node/ancestor-or-self::bibliography    ) + 
+                        count($node/ancestor-or-self::bibliodiv       ) +
+                        count($node/ancestor-or-self::book            ) + 
+                        count($node/ancestor-or-self::chapter         ) + 
+                        count($node/ancestor-or-self::colophon        ) + 
+                        count($node/ancestor-or-self::dedication      ) + 
+                        count($node/ancestor-or-self::glossary        ) + 
+                        count($node/ancestor-or-self::glossdiv        ) + 
+                        count($node/ancestor-or-self::index           ) + 
+                        count($node/ancestor-or-self::lot             ) + 
+                        count($node/ancestor-or-self::part            ) + 
+                        count($node/ancestor-or-self::preface         ) + 
+                        count($node/ancestor-or-self::refentry        ) + 
+                        count($node/ancestor-or-self::reference       ) + 
+                        count($node/ancestor-or-self::sect1           ) + 
+                        count($node/ancestor-or-self::sect2           ) + 
+                        count($node/ancestor-or-self::sect3           ) + 
+                        count($node/ancestor-or-self::sect4           ) + 
+                        count($node/ancestor-or-self::sect5           ) + 
+                        count($node/ancestor-or-self::section         ) + 
+                        count($node/ancestor-or-self::setindex        ) + 
+                        count($node/ancestor-or-self::simplesect      ) + 
+                        count($node/ancestor-or-self::toc             ) +
+                        count($node/ancestor-or-self::db:appendix     ) + 
+                        count($node/ancestor-or-self::db:article      ) + 
+                        count($node/ancestor-or-self::db:bibliography ) + 
+                        count($node/ancestor-or-self::db:bibliodiv    ) +
+                        count($node/ancestor-or-self::db:book         ) + 
+                        count($node/ancestor-or-self::db:chapter      ) + 
+                        count($node/ancestor-or-self::db:colophon     ) + 
+                        count($node/ancestor-or-self::db:dedication   ) + 
+                        count($node/ancestor-or-self::db:glossary     ) + 
+                        count($node/ancestor-or-self::db:glossdiv     ) + 
+                        count($node/ancestor-or-self::db:index        ) + 
+                        count($node/ancestor-or-self::db:lot          ) + 
+                        count($node/ancestor-or-self::db:part         ) + 
+                        count($node/ancestor-or-self::db:preface      ) + 
+                        count($node/ancestor-or-self::db:refentry     ) + 
+                        count($node/ancestor-or-self::db:reference    ) + 
+                        count($node/ancestor-or-self::db:sect1        ) + 
+                        count($node/ancestor-or-self::db:sect2        ) + 
+                        count($node/ancestor-or-self::db:sect3        ) + 
+                        count($node/ancestor-or-self::db:sect4        ) + 
+                        count($node/ancestor-or-self::db:sect5        ) + 
+                        count($node/ancestor-or-self::db:section      ) + 
+                        count($node/ancestor-or-self::db:setindex     ) + 
+                        count($node/ancestor-or-self::db:simplesect   ) + 
+                        count($node/ancestor-or-self::db:toc          )"/>
   <xsl:choose>
     <xsl:when test="$divs &lt; ($db.chunk.max_depth + 1)">
       <xsl:value-of select="count($node/ancestor-or-self::*) - $divs"/>
@@ -355,7 +390,7 @@ $depth_in_chunk: The depth of ${node} in the containing chunk
 REMARK: Explain how this works
 -->
 <xsl:template name="db.chunk.chunk-id">
-  <xsl:param name="id" select="@id"/>
+  <xsl:param name="id" select="@id | @xml:id"/>
   <xsl:param name="node" select="key('idkey', $id)"/>
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk">
@@ -369,6 +404,9 @@ REMARK: Explain how this works
     </xsl:when>
     <xsl:when test="$chunk/@id">
       <xsl:value-of select="string($chunk/@id)"/>
+    </xsl:when>
+    <xsl:when test="$chunk/@xml:id">
+      <xsl:value-of select="string($chunk/@xml:id)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="generate-id($chunk)"/>
