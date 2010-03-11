@@ -19,7 +19,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
                 xmlns:set="http://exslt.org/sets"
-                exclude-result-prefixes="msg set"
+                xmlns:db="http://docbook.org/ns/docbook"
+                exclude-result-prefixes="db msg set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -74,9 +75,10 @@ REMARK: Document this mode, and the role param
 -->
 
 <!-- = db.label.mode % answer = -->
-<xsl:template mode="db.label.mode" match="answer">
+<xsl:template mode="db.label.mode" match="answer | db:answer">
   <xsl:param name="role"/>
-  <xsl:variable name="qandaset" select="ancestor::qandaset[1]"/>
+  <xsl:variable name="qandaset" select="ancestor::qandaset[1] |
+                                        ancestor::db:qandaset[1]"/>
   <xsl:if test="$qandaset/@defaultlabel = 'qanda'">
     <xsl:call-template name="l10n.gettext">
       <xsl:with-param name="msgid" select="'A:'"/>
@@ -85,7 +87,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % appendix = -->
-<xsl:template mode="db.label.mode" match="appendix">
+<xsl:template mode="db.label.mode" match="appendix | db:appendix">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'appendix.label'"/>
@@ -96,16 +98,21 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % bibliography = -->
-<xsl:template mode="db.label.mode" match="bibliography"/>
+<xsl:template mode="db.label.mode" match="bibliography | db:bibliography"/>
 
 <!-- = db.label.mode % biblioentry | bibliomixed = -->
-<xsl:template mode="db.label.mode" match="biblioentry | bibliomixed">
-  <xsl:if test="*[1]/self::abbrev | @xreflabel | @id">
+<xsl:template mode="db.label.mode" match="biblioentry    | bibliomixed |
+                                          db:biblioentry | db:bibliomixed">
+  <xsl:if test="*[1]/self::abbrev    | @xreflabel | @id |
+                *[1]/self::db:abbrev | @xml:id">
     <!-- FIXME: I18N -->
     <xsl:text>[</xsl:text>
     <xsl:choose>
       <xsl:when test="*[1]/self::abbrev">
         <xsl:apply-templates select="abbrev[1]"/>
+      </xsl:when>
+      <xsl:when test="*[1]/self::db:abbrev">
+        <xsl:apply-templates select="db:abbrev[1]"/>
       </xsl:when>
       <xsl:when test="@xreflabel">
         <xsl:value-of select="@xreflabel"/>
@@ -113,13 +120,16 @@ REMARK: Document this mode, and the role param
       <xsl:when test="@id">
         <xsl:value-of select="@id"/>
       </xsl:when>
+      <xsl:when test="@xml:id">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:when>
     </xsl:choose>
     <xsl:text>]</xsl:text>
   </xsl:if>
 </xsl:template>
 
 <!-- = db.label.mode % book = -->
-<xsl:template mode="db.label.mode" match="book">
+<xsl:template mode="db.label.mode" match="book | db:book">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'book.label'"/>
@@ -130,7 +140,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % chapter = -->
-<xsl:template mode="db.label.mode" match="chapter">
+<xsl:template mode="db.label.mode" match="chapter | db:chapter">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'chapter.label'"/>
@@ -141,7 +151,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % example = -->
-<xsl:template mode="db.label.mode" match="example">
+<xsl:template mode="db.label.mode" match="example | db:example">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'example.label'"/>
@@ -152,7 +162,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % figure = -->
-<xsl:template mode="db.label.mode" match="figure">
+<xsl:template mode="db.label.mode" match="figure | db:figure">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'figure.label'"/>
@@ -163,10 +173,10 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % glossary = -->
-<xsl:template mode="db.label.mode" match="glossary"/>
+<xsl:template mode="db.label.mode" match="glossary | db:glossary"/>
 
 <!-- = db.label.mode % part = -->
-<xsl:template mode="db.label.mode" match="part">
+<xsl:template mode="db.label.mode" match="part | db:part">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'part.label'"/>
@@ -177,15 +187,16 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % preface = -->
-<xsl:template mode="db.label.mode" match="preface"/>
+<xsl:template mode="db.label.mode" match="preface | db:preface"/>
 
 <!-- = db.label.mode % question = -->
-<xsl:template mode="db.label.mode" match="question">
+<xsl:template mode="db.label.mode" match="question | db:question">
   <xsl:param name="role"/>
-  <xsl:variable name="qandaset" select="ancestor::qandaset[1]"/>
+  <xsl:variable name="qandaset" select="ancestor::qandaset[1] |
+                                        ancestor::db:qandaset[1]"/>
   <xsl:choose>
-    <xsl:when test="label">
-      <xsl:apply-templates select="label/node()"/>
+    <xsl:when test="label | db:label">
+      <xsl:apply-templates select="label/node() | db:label/node()"/>
     </xsl:when>
     <xsl:when test="$qandaset/@defaultlabel = 'none'"/>
     <xsl:when test="$qandaset/@defaultlabel = 'qanda'">
@@ -205,14 +216,18 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % reference = -->
-<xsl:template mode="db.label.mode" match="referece"/>
+<xsl:template mode="db.label.mode" match="reference | db:reference"/>
 
 <!-- = db.label.mode % refsection = -->
-<xsl:template mode="db.label.mode" match="refsection | refsect1 | refsect2 | refsect3"/>
+<xsl:template mode="db.label.mode"
+              match="refsection    | refsect1    | refsect2    | refsect3 |
+                     db:refsection | db:refsect1 | db:refsect2 | db:refsect3"/>
 
 <!-- = db.label.mode % section = -->
 <xsl:template mode="db.label.mode" match="
-              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect">
+              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect |
+              db:section | db:sect1 | db:sect2 | db:sect3 | db:sect4 |
+              db:sect5 | db:simplesect">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'section.label'"/>
@@ -223,7 +238,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % table = -->
-<xsl:template mode="db.label.mode" match="table">
+<xsl:template mode="db.label.mode" match="table | db:table">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'table.label'"/>
@@ -234,7 +249,7 @@ REMARK: Document this mode, and the role param
 </xsl:template>
 
 <!-- = db.label.mode % synopfragment = -->
-<xsl:template mode="db.label.mode" match="synopfragment">
+<xsl:template mode="db.label.mode" match="synopfragment | db:synopfragment">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'synopfragment.label'"/>
@@ -244,7 +259,8 @@ REMARK: Document this mode, and the role param
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template mode="db.label.mode" match="title | subtitle">
+<xsl:template mode="db.label.mode" match="title | subtitle |
+                                          db:title | db:subtitle">
   <xsl:param name="role"/>
   <xsl:call-template name="db.label">
     <xsl:with-param name="node" select=".."/>
@@ -255,7 +271,11 @@ REMARK: Document this mode, and the role param
               article  |
               colophon |    index     |
               qandadiv | qandaset |
-              set      | setindex ">
+              set      | setindex |
+              db:article  |
+              db:colophon |    db:index     |
+              db:qandadiv | db:qandaset |
+              db:set      | db:setindex ">
   <xsl:param name="role"/>
 <!-- FIXME 
   <xsl:call-template name="db.label.name"/>
@@ -270,7 +290,7 @@ REMARK: Document this mode, and the role param
               prefaceinfo  | refentryinfo | referenceinfo    | refsect1info |
               refsect2info | refsect3info | refsectioninfo   | sect1info    |
               sect2info    | sect3info    | sect4info        | sect5info    |
-              sectioninfo  | setindexinfo | setinfo          ">
+              sectioninfo  | setindexinfo | setinfo          | db:info">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'About This Document'"/>
@@ -311,9 +331,9 @@ REMARK: Document this mode
 -->
 
 <!-- = db.number.mode % appendix = -->
-<xsl:template mode="db.number.mode" match="appendix">
+<xsl:template mode="db.number.mode" match="appendix | db:appendix">
   <xsl:choose>
-    <xsl:when test="parent::part">
+    <xsl:when test="parent::part or parent::db:part">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'appendix.number'"/>
         <xsl:with-param name="node" select="."/>
@@ -327,12 +347,12 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % book = -->
-<xsl:template mode="db.number.mode" match="book">
+<xsl:template mode="db.number.mode" match="book | db:book">
   <xsl:call-template name="db.digit"/>
 </xsl:template>
 
 <!-- = db.number.mode % chapter = -->
-<xsl:template mode="db.number.mode" match="chapter">
+<xsl:template mode="db.number.mode" match="chapter | db:chapter">
   <xsl:choose>
     <xsl:when test="parent::part">
       <xsl:call-template name="l10n.gettext">
@@ -348,9 +368,10 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % example = -->
-<xsl:template mode="db.number.mode" match="example">
+<xsl:template mode="db.number.mode" match="example | db:example">
   <xsl:choose>
-    <xsl:when test="ancestor::appendix or ancestor::chapter">
+    <xsl:when test="ancestor::appendix or ancestor::chapter or
+                    ancestor::db:appendix or ancestor::db:chapter">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'example.number'"/>
         <xsl:with-param name="node" select="."/>
@@ -364,9 +385,10 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % figure = -->
-<xsl:template mode="db.number.mode" match="figure">
+<xsl:template mode="db.number.mode" match="figure | db:figure">
   <xsl:choose>
-    <xsl:when test="ancestor::appendix or ancestor::chapter">
+    <xsl:when test="ancestor::appendix or ancestor::chapter or
+                    ancestor::db:appendix or ancestor::db:chapter">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'figure.number'"/>
         <xsl:with-param name="node" select="."/>
@@ -380,13 +402,14 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % footnote = -->
-<xsl:template mode="db.number.mode" match="footnote">
+<xsl:template mode="db.number.mode" match="footnote | db:footnote">
   <xsl:variable name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk">
       <xsl:with-param name="node" select="."/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="notes" select="preceding::footnote"/>
+  <xsl:variable name="notes" select="preceding::footnote |
+                                     preceding::db:footnote"/>
   <xsl:choose>
     <xsl:when test="count($notes) != 0">
       <xsl:call-template name="db.number.footnote.tally">
@@ -433,26 +456,27 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % glossary = -->
-<xsl:template mode="db.number.mode" match="glossary"/>
+<xsl:template mode="db.number.mode" match="glossary | db:glossary"/>
 
 <!-- = db.number.mode % part = -->
-<xsl:template mode="db.number.mode" match="part">
+<xsl:template mode="db.number.mode" match="part | db:part">
   <xsl:call-template name="db.digit"/>
 </xsl:template>
 
 <!-- = db.number.mode % preface = -->
-<xsl:template mode="db.number.mode" match="preface"/>
+<xsl:template mode="db.number.mode" match="preface | db:preface"/>
 
 <!-- = db.number.mode % question = -->
-<xsl:template mode="db.number.mode" match="question">
+<xsl:template mode="db.number.mode" match="question | db:question">
   <xsl:call-template name="db.digit"/>
 </xsl:template>
 
 <!-- = db.number.mode % refsection = -->
 <xsl:template mode="db.number.mode" match="
-              refsection | refsect1 | refsect2 | refsect3">
+              refsection | refsect1 | refsect2 | refsect3 |
+              db:refsection | db:refsect1 | db:refsect2 | db:refsect3">
   <xsl:choose>
-    <xsl:when test="parent::refentry">
+    <xsl:when test="parent::refentry or parent::db:refentry">
       <xsl:call-template name="db.digit"/>
     </xsl:when>
     <xsl:otherwise>
@@ -467,7 +491,9 @@ REMARK: Document this mode
 
 <!-- = db.number.mode % section = -->
 <xsl:template mode="db.number.mode" match="
-              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect">
+              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect |
+              db:section | db:sect1 | db:sect2 | db:sect3 | db:sect4 |
+              db:sect5 | db:simplesect">
   <xsl:choose>
     <xsl:when test="local-name(..) != 'article'   and
                     local-name(..) != 'partintro' and
@@ -486,14 +512,15 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.mode % synopfragment = -->
-<xsl:template mode="db.number.mode" match="synopfragment">
+<xsl:template mode="db.number.mode" match="synopfragment | db:synopfragment">
   <xsl:call-template name="db.digit"/>
 </xsl:template>
 
 <!-- = db.number.mode % table = -->
-<xsl:template mode="db.number.mode" match="table">
+<xsl:template mode="db.number.mode" match="table | db:table">
   <xsl:choose>
-    <xsl:when test="ancestor::appendix or ancestor::chapter">
+    <xsl:when test="ancestor::appendix or ancestor::chapter or
+                    ancestor::db:appendix or ancestor::db:chapter">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'table.number'"/>
         <xsl:with-param name="node" select="."/>
@@ -508,31 +535,39 @@ REMARK: Document this mode
 
 <!-- FIXME: need to use formatters -->
 
-<xsl:template mode="db.number.mode" match="answer">
+<xsl:template mode="db.number.mode" match="answer | db:answer">
   <!-- FIXME -->
 </xsl:template>
 
-<xsl:template mode="db.number.mode" match="article">
+<xsl:template mode="db.number.mode" match="article | db:article">
   <xsl:number format="I" value="
               count(preceding-sibling::article) + 1 +
-              count(parent::part/preceding-sibling::part/article)"/>
+              count(preceding-sibling::db:article) +
+              count(parent::part/preceding-sibling::part/article) +
+              count(parent::db:part/preceding-sibling::db:part/db:article)"/>
 </xsl:template>
 
 <xsl:template mode="db.number.mode" match="reference">
   <xsl:number format="I" value="
               count(preceding-sibling::reference) + 1 +
-              count(parent::part/preceding-sibling::part/reference)"/>
+              count(preceding-sibling::db:reference) +
+              count(parent::part/preceding-sibling::part/reference) +
+              count(parent::db:part/preceding-sibling::db:part/db:reference)"/>
 </xsl:template>
 
 <xsl:template mode="db.number.mode" match="
               book  | bibliography | colophon | glossary |
-              index    | set      | setindex "/>
+              index    | set      | setindex |
+              db:book  | db:bibliography | db:colophon | db:glossary |
+              db:index    | db:set      | db:setindex "/>
 
-<xsl:template mode="db.number.mode" match="synopfragment">
-  <xsl:value-of select="count(preceding-sibling::synopfragment) + 1"/>
+<xsl:template mode="db.number.mode" match="synopfragment | db:synopfragment">
+  <xsl:value-of select="count(preceding-sibling::synopfragment) + 1 +
+                        count(preceding-sibling::db:synopfragment)"/>
 </xsl:template>
 
-<xsl:template mode="db.number.mode" match="title | subtitle">
+<xsl:template mode="db.number.mode" match="title | subtitle |
+                                           db:title | db:subtitle">
   <xsl:call-template name="db.number">
     <xsl:with-param name="node" select=".."/>
   </xsl:call-template>
@@ -595,12 +630,14 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 -->
 
 <!-- = db.digit.mode % appendix = -->
-<xsl:template mode="db.digit.mode" match="appendix">
+<xsl:template mode="db.digit.mode" match="appendix | db:appendix">
   <xsl:call-template name="db.digit.format">
     <!-- FIXME: use xsl:number -->
     <xsl:with-param name="digit" select="
                     count(preceding-sibling::appendix) + 1 +
-                    count(parent::part/preceding-sibling::part/appendix)"/>
+                    count(preceding-sibling::db:appendix) +
+                    count(parent::part/preceding-sibling::part/appendix) +
+                    count(parent::db:part/preceding-sibling::db:part/db:appendix)"/>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'appendix.digit'"/>
@@ -610,9 +647,10 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % book = -->
-<xsl:template mode="db.digit.mode" match="book">
+<xsl:template mode="db.digit.mode" match="book | db:book">
   <xsl:call-template name="db.digit.format">
-    <xsl:with-param name="digit" select="count(preceding-sibling::book) + 1"/>
+    <xsl:with-param name="digit" select="count(preceding-sibling::book) + 1 +
+                                         count(preceding-sibling::db:book)"/>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'book.digit'"/>
@@ -622,12 +660,14 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % chapter = -->
-<xsl:template mode="db.digit.mode" match="chapter">
+<xsl:template mode="db.digit.mode" match="chapter | db:chapter">
   <xsl:call-template name="db.digit.format">
     <!-- FIXME: use xsl:number -->
     <xsl:with-param name="digit" select="
                     count(preceding-sibling::chapter) + 1 +
-                    count(parent::part/preceding-sibling::part/chapter)"/>
+                    count(preceding-sibling::db:chapter) +
+                    count(parent::part/preceding-sibling::part/chapter) +
+                    count(parent::db:part/preceding-sibling::db:part/db:chapter)"/>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'chapter.digit'"/>
@@ -637,10 +677,12 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % example = -->
-<xsl:template mode="db.digit.mode" match="example">
+<xsl:template mode="db.digit.mode" match="example | db:example">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
-      <xsl:number level="any" count="example" from="chapter | appendix"/>
+      <xsl:number level="any" count="example | db:example"
+                              from="chapter | appendix |
+                                    db:chapter | db:appendix"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -651,10 +693,12 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % figure = -->
-<xsl:template mode="db.digit.mode" match="figure">
+<xsl:template mode="db.digit.mode" match="figure | db:figure">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
-      <xsl:number level="any" count="figure" from="chapter | appendix"/>
+      <xsl:number level="any" count="figure | db:figure"
+                              from="chapter | appendix
+                                    db:chapter | db:appendix"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -665,12 +709,13 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % glossary = -->
-<xsl:template mode="db.digit.mode" match="glossary"/>
+<xsl:template mode="db.digit.mode" match="glossary | db:glossary"/>
 
 <!-- = db.digit.mode % part = -->
-<xsl:template mode="db.digit.mode" match="part">
+<xsl:template mode="db.digit.mode" match="part | db:part">
   <xsl:call-template name="db.digit.format">
-    <xsl:with-param name="digit" select="count(preceding-sibling::part) + 1"/>
+    <xsl:with-param name="digit" select="count(preceding-sibling::part) + 1 +
+                                         count(preceding-sibling::db:part)"/>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'part.digit'"/>
@@ -680,13 +725,14 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % preface = -->
-<xsl:template mode="db.digit.mode" match="preface"/>
+<xsl:template mode="db.digit.mode" match="preface | db:preface"/>
 
 <!-- = db.digit.mode % question = -->
-<xsl:template mode="db.digit.mode" match="question">
+<xsl:template mode="db.digit.mode" match="question | db:question">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
-      <xsl:number level="any" format="1" count="question" from="qandaset"/>
+      <xsl:number level="any" format="1" count="question | db:question"
+                                         from="qandaset | db:qandaset"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -698,11 +744,13 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 
 <!-- = db.digit.mode % refsection = -->
 <xsl:template mode="db.digit.mode" match="
-              refsection | refsect1 | refsect2 | refsect3">
+              refsection | refsect1 | refsect2 | refsect3 |
+              db:refsection | db:refsect1 | db:refsect2 | db:refsect3">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
       <xsl:number level="single" format="1" count="
-                  refsection | refsect1 | refsect2 | refsect3"/>
+                  refsection | refsect1 | refsect2 | refsect3 |
+                  db:refsection | db:refsect1 | db:refsect2 | db:refsect3"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -714,11 +762,15 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 
 <!-- = db.digit.mode % section = -->
 <xsl:template mode="db.digit.mode" match="
-              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect">
+              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect |
+              db:section | db:sect1 | db:sect2 | db:sect3 | db:sect4 |
+              db:sect5 | db:simplesect">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
       <xsl:number level="single" format="1" count="
-                  section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect"/>
+                  section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect |
+                  db:section | db:sect1 | db:sect2 | db:sect3 | db:sect4 |
+                  db:sect5 | db:simplesect"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -729,9 +781,10 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % synopfragment = -->
-<xsl:template mode="db.digit.mode" match="synopfragment">
+<xsl:template mode="db.digit.mode" match="synopfragment | db:synopfragment">
   <xsl:call-template name="db.digit.format">
-    <xsl:with-param name="digit" select="count(preceding-sibling::synopfragment) + 1"/>
+    <xsl:with-param name="digit" select="count(preceding-sibling::synopfragment) + 1 +
+                                         count(preceding-sibling::db:synopfragment)"/>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'synopfragment.digit'"/>
@@ -741,10 +794,12 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
 </xsl:template>
 
 <!-- = db.digit.mode % table = -->
-<xsl:template mode="db.digit.mode" match="table">
+<xsl:template mode="db.digit.mode" match="table | db:table">
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
-      <xsl:number level="any" count="table" from="chapter | appendix"/>
+      <xsl:number level="any" count="table | db:table"
+                              from="chapter | appendix |
+                                    db:chapter | db:appendix"/>
     </xsl:with-param>
     <xsl:with-param name="format">
       <xsl:call-template name="l10n.gettext">
@@ -768,26 +823,32 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.number.parent.mode % example = -->
-<xsl:template mode="db.number.parent.mode" match="example">
+<xsl:template mode="db.number.parent.mode" match="example | db:example">
   <xsl:call-template name="db.number">
     <xsl:with-param name="node"
-                    select="(ancestor::appendix | ancestor::chapter)[last()]"/>
+                    select="(ancestor::appendix | ancestor::chapter |
+                            ancestor::db:appendix | ancestor::db:chapter)
+                            [last()]"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = db.number.parent.mode % figure = -->
-<xsl:template mode="db.number.parent.mode" match="figure">
+<xsl:template mode="db.number.parent.mode" match="figure | db:figure">
   <xsl:call-template name="db.number">
     <xsl:with-param name="node"
-                    select="(ancestor::appendix | ancestor::chapter)[last()]"/>
+                    select="(ancestor::appendix | ancestor::chapter |
+                            ancestor::db:appendix | ancestor::db:chapter)
+                            [last()]"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = db.number.parent.mode % table = -->
-<xsl:template mode="db.number.parent.mode" match="table">
+<xsl:template mode="db.number.parent.mode" match="table | db:table">
   <xsl:call-template name="db.number">
     <xsl:with-param name="node"
-                    select="(ancestor::appendix | ancestor::chapter)[last()]"/>
+                    select="(ancestor::appendix | ancestor::chapter |
+                            ancestor::db:appendix | ancestor::db:chapter)
+                            [last()]"/>
   </xsl:call-template>
 </xsl:template>
 
