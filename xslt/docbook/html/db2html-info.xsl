@@ -321,7 +321,7 @@ REMARK: Describe this template
   <xsl:param name="info" select="'FIXME'"/>
   <!-- FIXME: new class attribute on credit -->
   <xsl:variable name="othercredits" select="
-                $info/conbrib                                        |
+                $info/contrib                                        |
                 $info/corpcredit[@role != 'translator']              |
                 $info/othercredit[@role != 'translator']             |
                 $info/authorgroup/corpcredit[@role != 'translator']  |
