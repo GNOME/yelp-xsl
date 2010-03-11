@@ -212,6 +212,7 @@ div.programlisting .userinput {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
+div.verbatim { white-space: pre; }
 
 
 <!-- == unsorted == -->

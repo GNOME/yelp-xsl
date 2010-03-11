@@ -65,6 +65,9 @@ is then used by the CSS for styling.
   <div>
     <xsl:attribute name="class">
       <xsl:value-of select="concat($class, ' ', local-name($node))"/>
+      <xsl:if test="$verbatim">
+        <xsl:text> verbatim</xsl:text>
+      </xsl:if>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
