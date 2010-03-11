@@ -18,7 +18,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="str"
+                xmlns:db="http://docbook.org/ns/docbook"
+                exclude-result-prefixes="db str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -29,7 +30,7 @@ This stylesheet module provides utility templates for DocBook that are
 independant of the target format.
 -->
 
-<xsl:key name="idkey" match="*" use="@id"/>
+<xsl:key name="idkey" match="*" use="@id | @xml:id"/>
 
 
 <!--**==========================================================================
@@ -44,7 +45,7 @@ notice, beginning with the copyright symbol "©".
 <xsl:template name="db.copyright">
   <xsl:param name="node" select="."/>
   <xsl:text>©&#x00A0;</xsl:text>
-  <xsl:for-each select="$node/year">
+  <xsl:for-each select="$node/year | $node/db:year">
     <xsl:if test="position() != 1">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="', '"/>
@@ -52,9 +53,9 @@ notice, beginning with the copyright symbol "©".
     </xsl:if>
     <xsl:apply-templates select="."/>
   </xsl:for-each>
-  <xsl:if test="$node/holder">
+  <xsl:if test="$node/holder | $node/db:holder">
     <xsl:text>&#x00A0;&#x00A0;</xsl:text>
-    <xsl:for-each select="$node/holder">
+    <xsl:for-each select="$node/holder | $node/db:holder">
       <xsl:if test="position() != 1">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="', '"/>
@@ -195,57 +196,68 @@ assembles those into a string.
 <xsl:template name="db.personname">
   <xsl:param name="node" select="."/>
   <!-- FIXME: call i18n.locale -->
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
 
   <!-- FIXME: Use xsl:choose for different language rules -->
-  <xsl:if test="$node/honorific">
-    <xsl:apply-templates select="$node/honorific[1]"/>
+  <xsl:if test="$node/honorific or $node/db:honorific">
+    <xsl:apply-templates select="$node/honorific[1] | $node/db:honorific[1]"/>
   </xsl:if>
   <xsl:choose>
     <xsl:when test="$node/@role = 'family-given'">
-      <xsl:if test="$node/surname">
-        <xsl:if test="$node/honorific">
+      <xsl:if test="$node/surname or $node/db:surname">
+        <xsl:if test="$node/honorific or $node/db:honorific">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/surname[1]"/>
+        <xsl:apply-templates select="$node/surname[1] | $node/db:surname[1]"/>
       </xsl:if>
-      <xsl:if test="$node/othername">
-        <xsl:if test="$node/honorific or $node/surname">
+      <xsl:if test="$node/othername or $node/db:othername">
+        <xsl:if test="$node/honorific or $node/surname or
+                      $node/db:honorific or $node/db:surname">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/othername[1]"/>
+        <xsl:apply-templates select="$node/othername[1] |
+                                     $node/db:othername[1]"/>
       </xsl:if>
-      <xsl:if test="$node/firstname">
-        <xsl:if test="$node/honorific or $node/surname or $node/othername">
+      <xsl:if test="$node/firstname or $node/db:firstname">
+        <xsl:if test="$node/honorific or $node/surname or $node/othername or
+                      $node/db:honorific or $node/db:surname or
+                      $node/db:othername">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/firstname[1]"/>
+        <xsl:apply-templates select="$node/firstname[1] |
+                                     $node/db:firstname[1]"/>
       </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:if test="$node/firstname">
-        <xsl:if test="$node/honorific">
+      <xsl:if test="$node/firstname or $node/db:firstname">
+        <xsl:if test="$node/honorific or $node/db:honorific">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/firstname[1]"/>
+        <xsl:apply-templates select="$node/firstname[1] |
+                                     $node/db:firstname[1]"/>
       </xsl:if>
-      <xsl:if test="$node/othername">
-        <xsl:if test="$node/honorific or $node/firstname">
+      <xsl:if test="$node/othername or $node/db:othername">
+        <xsl:if test="$node/honorific or $node/firstname or
+                      $node/db:honorific or $node/db:firstname">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/othername[1]"/>
+        <xsl:apply-templates select="$node/othername[1] |
+                                     $node/db:othername[1]"/>
       </xsl:if>
-      <xsl:if test="$node/surname">
-        <xsl:if test="$node/honorific or $node/firstname or $node/othername">
+      <xsl:if test="$node/surname or $node/db:surname">
+        <xsl:if test="$node/honorific or $node/firstname or $node/othername or
+                      $node/db:honorific or $node/db:firstname or
+                      $node/db:othername">
           <xsl:text> </xsl:text>
         </xsl:if>
-        <xsl:apply-templates select="$node/surname[1]"/>
+        <xsl:apply-templates select="$node/surname[1] | $node/db:surname[1]"/>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:if test="$node/lineage">
+  <xsl:if test="$node/lineage or $node/db:lineage">
     <xsl:text>, </xsl:text>
-    <xsl:apply-templates select="$node/lineage[1]"/>
+    <xsl:apply-templates select="$node/lineage[1] | $node/db:lineage[1]"/>
   </xsl:if>
 </xsl:template>
 
@@ -265,7 +277,8 @@ a list formatted according to the locale set in ${lang} and calls the template
 <xsl:template name="db.personname.list">
   <xsl:param name="nodes"/>
   <!-- FIXME: call i18n.locale -->
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:for-each select="$nodes">
     <xsl:choose>
       <xsl:when test="position() = 1"/>
