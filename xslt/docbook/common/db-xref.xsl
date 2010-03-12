@@ -18,7 +18,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:set="http://exslt.org/sets"
-                exclude-result-prefixes="set"
+                xmlns:xl="http://www.w3.org/1999/xlink"
+                xmlns:db="http://docbook.org/ns/docbook"
+                exclude-result-prefixes="db xl set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -35,7 +37,7 @@ $url: The URL of the link, usually from the #{url} attribute
 -->
 <xsl:template name="db.ulink.tooltip">
   <xsl:param name="node" select="."/>
-  <xsl:param name="url" select="$node/@url"/>
+  <xsl:param name="url" select="$node/@url | $node/@xl:href"/>
   <xsl:choose>
     <xsl:when test="starts-with($url, 'mailto:')">
       <xsl:variable name="addy" select="substring-after($url, 'mailto:')"/>
@@ -140,7 +142,7 @@ REMARK: Document this mode
           <xsl:copy-of select="$title"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="@id | @xml:id"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -148,7 +150,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % appendix = -->
-<xsl:template mode="db.xref.content.mode" match="appendix">
+<xsl:template mode="db.xref.content.mode" match="appendix | db:appendix">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -160,14 +162,14 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % biblioentry = -->
-<xsl:template mode="db.xref.content.mode" match="biblioentry">
+<xsl:template mode="db.xref.content.mode" match="biblioentry | db:biblioentry">
   <xsl:call-template name="db.label">
     <xsl:with-param name="node" select="."/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = db.xref.content.mode % bibliography = -->
-<xsl:template mode="db.xref.content.mode" match="bibliography">
+<xsl:template mode="db.xref.content.mode" match="bibliography | db:bibliography">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -179,14 +181,14 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % bibliomixed = -->
-<xsl:template mode="db.xref.content.mode" match="bibliomixed">
+<xsl:template mode="db.xref.content.mode" match="bibliomixed | db:bibliomixed">
   <xsl:call-template name="db.label">
     <xsl:with-param name="node" select="."/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = db.xref.content.mode % book = -->
-<xsl:template mode="db.xref.content.mode" match="book">
+<xsl:template mode="db.xref.content.mode" match="book | db:book">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -198,7 +200,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % chapter = -->
-<xsl:template mode="db.xref.content.mode" match="chapter">
+<xsl:template mode="db.xref.content.mode" match="chapter | db:chapter">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -210,7 +212,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % example = -->
-<xsl:template mode="db.xref.content.mode" match="example">
+<xsl:template mode="db.xref.content.mode" match="example | db:example">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -222,7 +224,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % figure = -->
-<xsl:template mode="db.xref.content.mode" match="figure">
+<xsl:template mode="db.xref.content.mode" match="figure | db:figure">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -234,7 +236,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % glossary = -->
-<xsl:template mode="db.xref.content.mode" match="glossary">
+<xsl:template mode="db.xref.content.mode" match="glossary | db:glossary">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -246,7 +248,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % glossentry = -->
-<xsl:template mode="db.xref.content.mode" match="glossentry">
+<xsl:template mode="db.xref.content.mode" match="glossentry | db:glossentry">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -258,7 +260,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % part = -->
-<xsl:template mode="db.xref.content.mode" match="part">
+<xsl:template mode="db.xref.content.mode" match="part | db:part">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -270,7 +272,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % preface = -->
-<xsl:template mode="db.xref.content.mode" match="preface">
+<xsl:template mode="db.xref.content.mode" match="preface | db:preface">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -282,7 +284,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % qandaentry = -->
-<xsl:template mode="db.xref.content.mode" match="qandaentry">
+<xsl:template mode="db.xref.content.mode" match="qandaentry | db:qandaentry">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:apply-templates mode="db.xref.content.mode" select="question">
@@ -292,7 +294,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % question = -->
-<xsl:template mode="db.xref.content.mode" match="question">
+<xsl:template mode="db.xref.content.mode" match="question | db:question">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -304,7 +306,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % refentry = -->
-<xsl:template mode="db.xref.content.mode" match="refentry">
+<xsl:template mode="db.xref.content.mode" match="refentry | db:refentry">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -317,7 +319,8 @@ REMARK: Document this mode
 
 <!-- = db.xref.content.mode % refsection = -->
 <xsl:template mode="db.xref.content.mode" match="
-              refsection | refsect1 | refsect2 | refsect3">
+              refsection    | refsect1    | refsect2    | refsect3 |
+              db:refsection | db:refsect1 | db:refsect2 | db:refsect3  ">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -329,13 +332,16 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % refsynopsisdiv = -->
-<xsl:template mode="db.xref.content.mode" match="refsynopsisdiv">
+<xsl:template mode="db.xref.content.mode" match="refsynopsisdiv |
+                                                 db:refsynopsisdiv">
   <xsl:call-template name="db.title"/>
 </xsl:template>
 
 <!-- = db.xref.content.mode % section = -->
 <xsl:template mode="db.xref.content.mode" match="
-              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect">
+              section | sect1 | sect2 | sect3 | sect4 | sect5 | simplesect |
+              db:section | db:sect1 | db:sect2 | db:sect3 | db:sect4 |
+              db:sect5 | db:simplesect">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -347,7 +353,8 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % synopfragment = -->
-<xsl:template mode="db.xref.content.mode" match="synopfragment">
+<xsl:template mode="db.xref.content.mode" match="synopfragment |
+                                                 db:synopfragment">
   <xsl:param name="xrefstyle"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'synopfragment.label'"/>
@@ -357,7 +364,7 @@ REMARK: Document this mode
 </xsl:template>
 
 <!-- = db.xref.content.mode % table = -->
-<xsl:template mode="db.xref.content.mode" match="table">
+<xsl:template mode="db.xref.content.mode" match="table | db:table">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
   <xsl:call-template name="l10n.gettext">
@@ -436,7 +443,8 @@ REMARK: Document this
 </xsl:template>
 
 <!-- = db.xref.tooltip.mode % biblioentry | bibliomixed = -->
-<xsl:template mode="db.xref.tooltip.mode" match="biblioentry | bibliomixed">
+<xsl:template mode="db.xref.tooltip.mode" match="biblioentry | bibliomixed |
+                                                 db:biblioentry | db:bibliomixed">
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'biblioentry.tooltip'"/>
     <xsl:with-param name="node" select="."/>
@@ -445,7 +453,7 @@ REMARK: Document this
 </xsl:template>
 
 <!-- = db.xref.tooltip.mode % glossentry = -->
-<xsl:template mode="db.xref.tooltip.mode" match="glossentry">
+<xsl:template mode="db.xref.tooltip.mode" match="glossentry | db:glossentry">
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'glossentry.tooltip'"/>
     <xsl:with-param name="node" select="."/>
