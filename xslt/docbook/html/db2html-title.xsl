@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -41,7 +42,7 @@ REMARK: Talk about the different kinds of title blocks
 <xsl:template name="db2html.title.block">
   <xsl:param name="node" select="."/>
   <xsl:param name="referent" select="$node/.."/>
-  <xsl:param name="lang" select="$node/@lang"/>
+  <xsl:param name="lang" select="$node/@lang | $node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:variable name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk">
@@ -94,31 +95,31 @@ This template is going away
 
 <!-- = subtitle = -->
 <!-- Handled in db2html.title.header -->
-<xsl:template match="subtitle"/>
+<xsl:template match="subtitle | db:subtitle"/>
 
 
 <!-- = equation/title = -->
-<xsl:template match="equation/title">
+<xsl:template match="equation/title | db:equation/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
 <!-- = msg/title = -->
-<xsl:template match="msg/title">
+<xsl:template match="msg/title | db:msg/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
 <!-- = msgrel/title = -->
-<xsl:template match="msgrel/title">
+<xsl:template match="msgrel/title | db:msgrel/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
 <!-- = msgset/title = -->
-<xsl:template match="msgset/title">
+<xsl:template match="msgset/title | db:msgset/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
 <!-- = msgsub/title  = -->
-<xsl:template match="msgsub/title">
+<xsl:template match="msgsub/title | db:msgsub/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
