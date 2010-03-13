@@ -290,7 +290,8 @@ REMARK: Document this mode, and the role param
               prefaceinfo  | refentryinfo | referenceinfo    | refsect1info |
               refsect2info | refsect3info | refsectioninfo   | sect1info    |
               sect2info    | sect3info    | sect4info        | sect5info    |
-              sectioninfo  | setindexinfo | setinfo          | db:info">
+              sectioninfo  | setindexinfo | setinfo          |
+              db:info[not(db:title)]">
   <xsl:param name="role"/>
   <xsl:call-template name="l10n.gettext">
     <xsl:with-param name="msgid" select="'About This Document'"/>
