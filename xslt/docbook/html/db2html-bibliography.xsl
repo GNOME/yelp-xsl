@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="msg set"
+                exclude-result-prefixes="db msg set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -45,7 +46,8 @@ use the #{xreflabel} or #{id} attribute.
 -->
 <xsl:template name="db2html.biblioentry.label">
   <xsl:param name="node" select="."/>
-  <xsl:if test="$node/*[1]/self::abbrev or $node/@xreflabel or $node/@id">
+  <xsl:if test="$node/*[1]/self::abbrev or $node/@xreflabel or $node/@id or
+                $node/*[1]/self::db:abbrev or $node/@xml:id">
     <span class="bibliolabel">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'bibliolabel.format'"/>
@@ -64,11 +66,17 @@ use the #{xreflabel} or #{id} attribute.
     <xsl:when test="$node/*[1]/self::abbrev">
       <xsl:apply-templates select="$node/abbrev[1]"/>
     </xsl:when>
+    <xsl:when test="$node/*[1]/self::db:abbrev">
+      <xsl:apply-templates select="$node/db:abbrev[1]"/>
+    </xsl:when>
     <xsl:when test="$node/@xreflabel">
       <xsl:value-of select="$node/@xreflabel"/>
     </xsl:when>
     <xsl:when test="$node/@id">
       <xsl:value-of select="$node/@id"/>
+    </xsl:when>
+    <xsl:when test="$node/@xml:id">
+      <xsl:value-of select="$node/@xml:id"/>
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -87,16 +95,17 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = abstract % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="abstract"/>
+<xsl:template mode="db2html.biblioentry.mode" match="abstract | db:abstract"/>
 
 <!-- = address % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="address">
+<xsl:template mode="db2html.biblioentry.mode" match="address | db:address">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = affiliation % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="affiliation">
+<xsl:template mode="db2html.biblioentry.mode" match="affiliation |
+                                                     db:affiliation">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -108,13 +117,14 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = articleinfo % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="articleinfo">
+<xsl:template mode="db2html.biblioentry.mode" match="articleinfo |
+                                                     db:article/db:info">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = author % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="author">
+<xsl:template mode="db2html.biblioentry.mode" match="author | db:author">
   <xsl:call-template name="db.personname"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -123,7 +133,8 @@ a bibliography entry.
 <xsl:template mode="db2html.biblioentry.mode" match="authorblurb"/>
 
 <!-- = authorgroup % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="authorgroup">
+<xsl:template mode="db2html.biblioentry.mode" match="authorgroup |
+                                                     db:authorgroup">
   <xsl:call-template name="db.personname.list">
     <xsl:with-param name="nodes" select="*"/>
   </xsl:call-template>
@@ -131,48 +142,53 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = authorinitials % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="authorinitials">
+<xsl:template mode="db2html.biblioentry.mode" match="authorinitials |
+                                                     db:authorinitials">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = bibliocoverage % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="bibliocoverage">
+<xsl:template mode="db2html.biblioentry.mode" match="bibliocoverage |
+                                                     db:bibliocoverage">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = biblioid % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="biblioid">
+<xsl:template mode="db2html.biblioentry.mode" match="biblioid | db:biblioid">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = bibliomisc % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="bibliomisc">
+<xsl:template mode="db2html.biblioentry.mode" match="bibliomisc |
+                                                     db:bibliomisc">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = bibliorelation % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="bibliorelation">
+<xsl:template mode="db2html.biblioentry.mode" match="bibliorelation |
+                                                     db:bibliorelation">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = biblioset % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="biblioset">
+<xsl:template mode="db2html.biblioentry.mode" match="biblioset | db:biblioset">
   <xsl:apply-templates mode="db2html.biblioentry.mode"/>
 </xsl:template>
 
 <!-- = bibliosource % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="bibliosource">
+<xsl:template mode="db2html.biblioentry.mode" match="bibliosource |
+                                                     db:bibliosource">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = citetitle % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="citetitle">
+<xsl:template mode="db2html.biblioentry.mode" match="citetitle | db:citetitle">
   <xsl:call-template name="db2html.inline">
     <xsl:with-param name="class" select="'bibliotitle'"/>
   </xsl:call-template>
@@ -180,7 +196,7 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = collab % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="collab">
+<xsl:template mode="db2html.biblioentry.mode" match="collab | db:collab">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -192,49 +208,52 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = confgroup % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="confgroup">
+<xsl:template mode="db2html.biblioentry.mode" match="confgroup | db:confgroup">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = confdates % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="confdates">
+<xsl:template mode="db2html.biblioentry.mode" match="confdates | db:confdates">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = conftitle % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="conftitle">
+<xsl:template mode="db2html.biblioentry.mode" match="conftitle | db:conftitle">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = confnum % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="confnum">
+<xsl:template mode="db2html.biblioentry.mode" match="confnum | db:confnum">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = confsponsor % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="confsponsor">
+<xsl:template mode="db2html.biblioentry.mode" match="confsponsor |
+                                                     db:confsponsor">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = contractnum % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="contractnum">
+<xsl:template mode="db2html.biblioentry.mode" match="contractnum |
+                                                     db:contractnum">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = contractsponsor % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="contractsponsor">
+<xsl:template mode="db2html.biblioentry.mode" match="contractsponsor |
+                                                     db:contractsponsor">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = contrib % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="contrib">
+<xsl:template mode="db2html.biblioentry.mode" match="contrib | db:contrib">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -258,43 +277,43 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = copyright % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="copyright">
+<xsl:template mode="db2html.biblioentry.mode" match="copyright | db:copyright">
   <xsl:call-template name="db.copyright"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = date % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="date">
+<xsl:template mode="db2html.biblioentry.mode" match="date | db:date">
   <xsl:call-template name="db.copyright"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = edition % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="edition">
+<xsl:template mode="db2html.biblioentry.mode" match="edition | db:edition">
   <xsl:call-template name="db.copyright"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = editor % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="editor">
+<xsl:template mode="db2html.biblioentry.mode" match="editor | db:editor">
   <xsl:call-template name="db.personname"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = firstname % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="firstname">
+<xsl:template mode="db2html.biblioentry.mode" match="firstname | db:firstname">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = honorific % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="honorific">
+<xsl:template mode="db2html.biblioentry.mode" match="honorific | db:honorific">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = indexterm % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="indexterm">
+<xsl:template mode="db2html.biblioentry.mode" match="indexterm | db:indexterm">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -318,84 +337,90 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = issuenum % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="issuenum">
+<xsl:template mode="db2html.biblioentry.mode" match="issuenum | db:issuenum">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = jobtitle % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="jobtitle">
+<xsl:template mode="db2html.biblioentry.mode" match="jobtitle | db:jobtitle">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = lineage % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="lineage">
+<xsl:template mode="db2html.biblioentry.mode" match="lineage | db:lineage">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = orgname % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="orgname">
+<xsl:template mode="db2html.biblioentry.mode" match="orgname | db:orgname">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = orgdiv % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="orgdiv">
+<xsl:template mode="db2html.biblioentry.mode" match="orgdiv | db:orgdiv">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = othercredit % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="othercredit">
+<xsl:template mode="db2html.biblioentry.mode" match="othercredit |
+                                                     db:othercredit">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = othername % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="othername">
+<xsl:template mode="db2html.biblioentry.mode" match="othername | db:othername">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = pagenums % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="pagenums">
+<xsl:template mode="db2html.biblioentry.mode" match="pagenums | db:pagenums">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = personblurb % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="personblurb"/>
+<xsl:template mode="db2html.biblioentry.mode" match="personblurb |
+                                                     db:personblurb"/>
 
 <!-- = printhistory % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="printhistory"/>
+<xsl:template mode="db2html.biblioentry.mode" match="printhistory |
+                                                     db:printhistory"/>
 
 <!-- = productname % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="productname">
+<xsl:template mode="db2html.biblioentry.mode" match="productname |
+                                                     db:productname">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = productnumber % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="productnumber">
+<xsl:template mode="db2html.biblioentry.mode" match="productnumber |
+                                                     db:productnumber">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = pubdate % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="pubdate">
+<xsl:template mode="db2html.biblioentry.mode" match="pubdate | db:pubdate">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = publisher % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="publisher">
+<xsl:template mode="db2html.biblioentry.mode" match="publisher | db:publisher">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = publishername % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="publishername">
+<xsl:template mode="db2html.biblioentry.mode" match="publishername |
+                                                     db:publishername">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -407,40 +432,42 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = releaseinfo % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="releaseinfo">
+<xsl:template mode="db2html.biblioentry.mode" match="releaseinfo |
+                                                     db:releaseinfo">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = revhistory % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="revhistory"/>
+<xsl:template mode="db2html.biblioentry.mode" match="revhistory | db:revhistory"/>
 
 <!-- = seriesvolnums % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="seriesvolnums">
+<xsl:template mode="db2html.biblioentry.mode" match="seriesvolnums |
+                                                     db:seriesvolnums">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = shortaffil % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="shortaffil">
+<xsl:template mode="db2html.biblioentry.mode" match="shortaffil | db:shortaffil">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = subtitle % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="subtitle">
+<xsl:template mode="db2html.biblioentry.mode" match="subtitle | db:subtitle">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = surname % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="surname">
+<xsl:template mode="db2html.biblioentry.mode" match="surname | db:surname">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = title % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="title">
+<xsl:template mode="db2html.biblioentry.mode" match="title | db:title">
   <span class="bibliotitle">
     <xsl:call-template name="l10n.gettext">
       <xsl:with-param name="msgid" select="'citetitle.format'"/>
@@ -453,13 +480,14 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = titleabbrev % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="titleabbrev">
+<xsl:template mode="db2html.biblioentry.mode" match="titleabbrev |
+                                                     db:titleabbrev">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = volumenum % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="volumenum">
+<xsl:template mode="db2html.biblioentry.mode" match="volumenum | db:volumenum">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
@@ -478,22 +506,23 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = absract % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="abstract">
+<xsl:template mode="db2html.bibliomixed.mode" match="abstract | db:abstract">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = address % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="address">
+<xsl:template mode="db2html.bibliomixed.mode" match="address | db:address">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = affiliation % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="affiliation">
+<xsl:template mode="db2html.bibliomixed.mode" match="affiliation |
+                                                     db:affiliation">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = author % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="author">
+<xsl:template mode="db2html.bibliomixed.mode" match="author | db:author">
   <xsl:call-template name="db.personname"/>
 </xsl:template>
 
@@ -503,40 +532,44 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = authorgroup % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="authorgroup">
+<xsl:template mode="db2html.bibliomixed.mode" match="authorgroup |
+                                                     db:authorgroup">
   <xsl:call-template name="db.personname.list">
     <xsl:with-param name="nodes" select="*"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = bibliomset % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="bibliomset">
+<xsl:template mode="db2html.bibliomixed.mode" match="bibliomset |
+                                                     db:bibliomset">
   <xsl:apply-templates mode="db2html.bibliomixed.mode"/>
 </xsl:template>
 
 <!-- = bibliomisc % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="bibliomisc">
+<xsl:template mode="db2html.bibliomixed.mode" match="bibliomisc |
+                                                     db:bibliomisc">
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = editor % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="editor">
+<xsl:template mode="db2html.bibliomixed.mode" match="editor | db:editor">
   <xsl:call-template name="db.personname"/>
 </xsl:template>
 
 <!-- = personblurb % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="personblurb">
+<xsl:template mode="db2html.bibliomixed.mode" match="personblurb |
+                                                     db:personblurb">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = shortaffil % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="shortaffil">
+<xsl:template mode="db2html.bibliomixed.mode" match="shortaffil | db:shortaffil">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = title % db2html.bibliomixed.mode = -->
-<xsl:template mode="db2html.bibliomixed.mode" match="title">
+<xsl:template mode="db2html.bibliomixed.mode" match="title | db:title">
   <span class="bibliotitle">
     <xsl:call-template name="l10n.gettext">
       <xsl:with-param name="msgid" select="'citetitle.format'"/>
@@ -551,7 +584,7 @@ a bibliography entry.
 <!-- == Matched Templates == -->
 
 <!-- = bibliography = -->
-<xsl:template match="bibliography">
+<xsl:template match="bibliography | db:bibliography">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -559,10 +592,11 @@ a bibliography entry.
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:choose>
-    <xsl:when test="not(title) and not(bibliographyinfo/title)">
+    <xsl:when test="not(title) and not(bibliographyinfo/title) and
+                    not(db:title) and not(db:info/db:title)">
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="bibliographyinfo"/>
-        <xsl:with-param name="divisions" select="bibliodiv"/>
+        <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
+        <xsl:with-param name="divisions" select="bibliodiv | db:bibliodiv"/>
         <xsl:with-param name="title_content">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'Bibliography'"/>
@@ -574,8 +608,8 @@ a bibliography entry.
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="bibliographyinfo"/>
-        <xsl:with-param name="divisions" select="bibliodiv"/>
+        <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
+        <xsl:with-param name="divisions" select="bibliodiv | db:bibliodiv"/>
         <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
@@ -584,7 +618,7 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = bibliodiv = -->
-<xsl:template match="bibliodiv">
+<xsl:template match="bibliodiv | db:bibliodiv">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -598,7 +632,7 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = biblioentry = -->
-<xsl:template match="biblioentry">
+<xsl:template match="biblioentry | db:biblioentry">
   <xsl:variable name="node" select="."/>
   <div>
     <xsl:attribute name="class">
@@ -607,12 +641,13 @@ a bibliography entry.
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.biblioentry.mode"
-                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev))]"/>
+                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev)) and
+                                 not(set:has-same-node(., $node/*[1]/self::db:abbrev))]"/>
   </div>
 </xsl:template>
 
 <!-- = bibliomixed = -->
-<xsl:template match="bibliomixed">
+<xsl:template match="bibliomixed | db:bibliomixed">
   <xsl:variable name="node" select="."/>
   <div>
     <xsl:attribute name="class">
@@ -621,12 +656,13 @@ a bibliography entry.
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.bibliomixed.mode"
-                         select="node()[not(set:has-same-node(., $node/*[1]/self::abbrev))]"/>
+                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev)) and
+                                 not(set:has-same-node(., $node/*[1]/self::db:abbrev))]"/>
   </div>
 </xsl:template>
 
 <!-- = bibliolist = -->
-<xsl:template match="bibliolist">
+<xsl:template match="bibliolist | db:bibliolist">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'list'"/>
     <xsl:with-param name="indent" select="true()"/>
