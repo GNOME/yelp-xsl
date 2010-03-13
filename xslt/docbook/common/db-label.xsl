@@ -698,7 +698,7 @@ REMARK: Document this mode.  Rename to db.number.digit.mode?
   <xsl:call-template name="db.digit.format">
     <xsl:with-param name="digit">
       <xsl:number level="any" count="figure | db:figure"
-                              from="chapter | appendix
+                              from="chapter | appendix |
                                     db:chapter | db:appendix"/>
     </xsl:with-param>
     <xsl:with-param name="format">
