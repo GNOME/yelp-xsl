@@ -57,7 +57,7 @@ is then used by the CSS for styling.
   <xsl:param name="class" select="''"/>
 	<xsl:param name="verbatim" select="$node[@xml:space = 'preserve']"/>
   <xsl:param name="formal" select="false()"/>
-	<xsl:param name="title" select="$node/title|$node/db:title|$node/db:info/db:title"/>
+	<xsl:param name="title" select="$node/title | $node/db:title"/>
   <xsl:param name="caption" select="$node/caption"/>
 	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
@@ -129,7 +129,7 @@ element.  It is called by *{db2html.block} for formal block elements.
 -->
 <xsl:template name="db2html.block.title">
   <xsl:param name="node" select="."/>
-	<xsl:param name="title" select="$node/title|$node/db:title|$node/db:info/db:title"/>
+	<xsl:param name="title" select="$node/title | $node/db:title"/>
 	<xsl:param name="lang" select="$title/@lang|$title/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
@@ -215,7 +215,7 @@ element.
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <div class="inner">
-			<xsl:apply-templates select="$node/title|$node/db:title|$node/db:info/db:title"/>
+			<xsl:apply-templates select="$node/title | $node/db:title"/>
       <blockquote class="{local-name($node)}">
         <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
       </blockquote>

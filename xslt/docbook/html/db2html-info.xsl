@@ -578,7 +578,7 @@ REMARK: Describe this mode.
 <xsl:template mode="db2html.info.mode" match="legalnotice | db:legalnotice">
   <div class="division legalnotice">
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:if test="not(title) and not(db:title) and not(db:info/db:title)">
+    <xsl:if test="not(title) and not(db:title)">
       <h2 class="title legalnotice">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="'Legal Notice'"/>
