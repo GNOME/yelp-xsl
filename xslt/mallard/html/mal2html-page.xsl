@@ -398,7 +398,7 @@ REMARK: Describe this template
   </xsl:variable>
   <xsl:variable name="trailnodes" select="exsl:node-set($linktrails)/*"/>
   <xsl:if test="count($trailnodes) &gt; 0">
-    <div class="linktrails">
+    <div class="trails">
       <xsl:for-each select="$trailnodes">
         <xsl:sort select="(.//mal:title[@type='sort'])[1]"/>
         <xsl:sort select="(.//mal:title[@type='sort'])[2]"/>
@@ -419,7 +419,7 @@ REMARK: Describe this template
 -->
 <xsl:template name="mal2html.page.linktrails.trail">
   <xsl:param name="node" select="."/>
-  <div class="linktrail">
+  <div class="trail">
     <xsl:call-template name="mal2html.page.linktrails.link">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -434,7 +434,7 @@ REMARK: Describe this template
 -->
 <xsl:template name="mal2html.page.linktrails.link">
   <xsl:param name="node" select="."/>
-  <a class="linktrail">
+  <a class="trail">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
         <xsl:with-param name="xref" select="$node/@xref"/>
@@ -448,10 +448,10 @@ REMARK: Describe this template
   </a>
   <xsl:choose>
     <xsl:when test="$node/@child = 'section'">
-      <xsl:text> › </xsl:text>
+      <xsl:text>&#x00A0;› </xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text> » </xsl:text>
+      <xsl:text>&#x00A0;» </xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:for-each select="$node/mal:link">

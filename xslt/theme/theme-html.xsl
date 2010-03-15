@@ -152,6 +152,14 @@ div.sect div.sect {
   margin-top: 1.44em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
 }
+div.trails { margin: 0; }
+div.trail {
+  font-size: 0.83em;
+  margin: 0 1px 0.2em 1px;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
 div.header {
   margin: 0;
   color: </xsl:text>

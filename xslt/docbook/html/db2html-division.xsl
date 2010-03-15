@@ -326,11 +326,6 @@ REMARK: Talk about some of the parameters
       <xsl:with-param name="title_content" select="$title_content"/>
       <xsl:with-param name="subtitle_content" select="$subtitle_content"/>
     </xsl:call-template>
-    <xsl:if test="$db2html.linktrail and $depth_in_chunk = 0">
-      <xsl:call-template name="db2html.linktrail">
-        <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-    </xsl:if>
     <xsl:choose>
       <xsl:when test="$callback">
         <xsl:apply-templates mode="db2html.division.div.content.mode" select="$node">
@@ -504,25 +499,11 @@ REMARK: Describe this
 <xsl:template name="db2html.linktrail">
   <xsl:param name="node"/>
   <xsl:if test="$node/ancestor::*">
-    <ul class="linktrail">
-      <!-- The parens put the nodes back in document order -->
-      <xsl:for-each select="($node/ancestor::*)">
-        <li>
-          <xsl:attribute name="class">
-            <xsl:text>linktrail</xsl:text>
-            <xsl:choose>
-              <xsl:when test="last() = 1">
-                <xsl:text> linktrail-only</xsl:text>
-              </xsl:when>
-              <xsl:when test="position() = 1">
-                <xsl:text> linktrail-first</xsl:text>
-              </xsl:when>
-              <xsl:when test="position() = last()">
-                <xsl:text> linktrail-last</xsl:text>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:attribute>
-          <a class="linktrail">
+    <div class="trails">
+      <div class="trail">
+        <!-- The parens put the nodes back in document order -->
+        <xsl:for-each select="($node/ancestor::*)">
+          <a class="trail">
             <xsl:attribute name="href">
               <xsl:call-template name="db.xref.target">
                 <xsl:with-param name="linkend" select="@id"/>
@@ -540,9 +521,10 @@ REMARK: Describe this
               <xsl:with-param name="node" select="."/>
             </xsl:call-template>
           </a>
-        </li>
-      </xsl:for-each>
-    </ul>
+          <xsl:text>&#x00A0;» </xsl:text>
+        </xsl:for-each>
+      </div>
+    </div>
   </xsl:if>
 </xsl:template>
 
@@ -759,6 +741,11 @@ REMARK: Describe this template
         <xsl:with-param name="next_id" select="$next_id"/>
         <xsl:with-param name="prev_node" select="$prev_node"/>
         <xsl:with-param name="next_node" select="$next_node"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="$db2html.linktrail">
+      <xsl:call-template name="db2html.linktrail">
+        <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
     </xsl:if>
   </div>

@@ -144,17 +144,6 @@ div.autolinks div.title span {
 }
 li.autolink { margin: 0.5em 0 0 0; padding: 0 0 0 1em; list-style-type: none; }
 
-div.linktrails {
-  margin: 0;
-}
-div.linktrail {
-  font-size: 0.83em;
-  margin: 0 1px 0.2em 1px;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
-  color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-
 table.twocolumn { width: 100%; }
 td.twocolumnleft { width: 48%; vertical-align: top; padding: 0; margin: 0; }
 td.twocolumnright {

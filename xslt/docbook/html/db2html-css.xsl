@@ -116,21 +116,6 @@ tfoot { border-top: solid 2px; border-bottom: solid 2px; }
 
 div.title span.label { font-weight: normal; }
 
-<!-- == linktrail == -->
-ul.linktrail {
-  display: block;
-  margin: 0.2em 0 0 0;
-  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-}
-li.linktrail { display: inline; margin: 0; padding: 0; }
-<!-- FIXME: rtl? -->
-li.linktrail::before {
-  content: '&#x00A0; /&#x00A0;&#x00A0;';
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-<!-- FIXME: rtl? -->
-li.linktrail-first::before, li.linktrail-only::before { content: ''; }
-
 <!-- == navbar == -->
 div.navbar {
  margin: 1em 0 1em 0;
