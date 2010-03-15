@@ -174,7 +174,7 @@ This parameter specifies the yellow background color.  The yellow
 background color may be used by certain types of block elements.
 Foreground colors should be legible on this color.
 -->
-<xsl:param name="theme.color.yellow_background" select="'#fffbd9'"/>
+<xsl:param name="theme.color.yellow_background" select="'#fffacc'"/>
 
 <!--@@==========================================================================
 theme.color.yellow_border
