@@ -115,6 +115,8 @@ body {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   background-color: </xsl:text>
     <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
   max-width: 73em;
   position: relative;
