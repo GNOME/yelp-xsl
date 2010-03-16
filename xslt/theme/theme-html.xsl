@@ -191,10 +191,13 @@ table {
   border-width: 1px;
 }
 td, th {
-  padding: 0.1em 0.5em 0.1em 0.5em;
+  padding: 0.5em;
   vertical-align: top;
   border-color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
   border-width: 1px;
+}
+thead td, thead th, tfoot td, tfoot th {
+  padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
 ul, ol, dl { margin: 0; padding: 0; }
