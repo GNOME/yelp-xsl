@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -44,12 +45,13 @@ REMARK: Describe this module
 <!-- = productionrecap = -->
 
 <!-- = productionset = -->
-<xsl:template match="productionset">
+<xsl:template match="productionset | db:productionset">
   <div class="productionset">
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title"/>
     <table class="productionset">
-      <xsl:apply-templates select="production | productionrecap"/>
+      <xsl:apply-templates select="production    | productionrecap |
+                                   db:production | db:productionrecap"/>
     </table>
   </div>
 </xsl:template>
