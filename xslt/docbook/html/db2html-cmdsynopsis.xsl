@@ -20,8 +20,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:str="http://exslt.org/strings"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="set str"
+                exclude-result-prefixes="db set str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -71,11 +72,14 @@ REMARK: Describe this param
 <!-- == Matched Templates == -->
 
 <!-- = arg = -->
-<xsl:template match="arg">
+<xsl:template match="arg | db:arg">
   <xsl:param name="sepchar">
     <xsl:choose>
       <xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
         <xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+      </xsl:when>
+      <xsl:when test="ancestor::db:cmdsynopsis[1][@sepchar]">
+        <xsl:value-of select="ancestor::db:cmdsynopsis[1]/@sepchar"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text> </xsl:text>
@@ -116,10 +120,11 @@ REMARK: Describe this param
     <span class="arg">
       <xsl:for-each select="node()">
         <xsl:choose>
-          <xsl:when test="self::sbr">
+          <xsl:when test="self::sbr or self::db:sbr">
             <xsl:text>&#x000A;</xsl:text>
             <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode"
-                                 select="ancestor::cmdsynopsis[1]">
+                                 select="ancestor::cmdsynopsis[1] |
+                                         ancestor::db:cmdsynopsis[1]">
               <xsl:with-param name="sbr" select="."/>
               <xsl:with-param name="sepchar" select="$sepchar"/>
             </xsl:apply-templates>
@@ -148,7 +153,7 @@ REMARK: Describe this param
 </xsl:template>
 
 <!-- = cmdsynopsis = -->
-<xsl:template match="cmdsynopsis">
+<xsl:template match="cmdsynopsis | db:cmdsynopsis">
   <xsl:param name="sepchar">
     <xsl:choose>
       <xsl:when test="@sepchar">
@@ -179,14 +184,19 @@ REMARK: Describe this param
     </xsl:attribute>
     <xsl:call-template name="db2html.anchor"/>
     <pre class="contents cmdsynopsis">
-      <xsl:for-each select="command | arg | group | sbr">
+      <xsl:for-each select="command    | arg    | group    | sbr |
+                            db:command | db:arg | db:group | db:sbr">
         <xsl:choose>
           <xsl:when test="position() = 1"/>
           <xsl:when test="self::sbr">
             <xsl:text>&#x000A;</xsl:text>
             <xsl:value-of select="str:padding(string-length(preceding-sibling::command[1]), ' ')"/>
           </xsl:when>
-          <xsl:when test="self::command">
+          <xsl:when test="self::db:sbr">
+            <xsl:text>&#x000A;</xsl:text>
+            <xsl:value-of select="str:padding(string-length(preceding-sibling::db:command[1]), ' ')"/>
+          </xsl:when>
+          <xsl:when test="self::command or self::db:command">
             <xsl:text>&#x000A;</xsl:text>
           </xsl:when>
           <xsl:otherwise>
@@ -197,7 +207,7 @@ REMARK: Describe this param
           <xsl:with-param name="sepchar" select="$sepchar"/>
         </xsl:apply-templates>
       </xsl:for-each>
-      <xsl:apply-templates select="synopfragment">
+      <xsl:apply-templates select="synopfragment | db:synopfragment">
         <xsl:with-param name="sepchar" select="$sepchar"/>
       </xsl:apply-templates>
     </pre>
@@ -205,11 +215,14 @@ REMARK: Describe this param
 </xsl:template>
 
 <!-- = group = -->
-<xsl:template match="group">
+<xsl:template match="group | db:group">
   <xsl:param name="sepchar">
     <xsl:choose>
       <xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
         <xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+      </xsl:when>
+      <xsl:when test="ancestor::db:cmdsynopsis[1][@sepchar]">
+        <xsl:value-of select="ancestor::db:cmdsynopsis[1]/@sepchar"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text> </xsl:text>
@@ -237,10 +250,11 @@ REMARK: Describe this param
     </xsl:choose>
   </xsl:param>
   <xsl:variable name="padding">
-    <xsl:if test="sbr">
+    <xsl:if test="sbr or db:sbr">
       <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode"
-                           select="ancestor::cmdsynopsis[1]">
-        <xsl:with-param name="sbr" select="sbr[1]"/>
+                           select="ancestor::cmdsynopsis[1] |
+                                   ancestor::db:cmdsynopsis[1]">
+        <xsl:with-param name="sbr" select="sbr[1] | db:sbr[1]"/>
         <xsl:with-param name="sepchar" select="$sepchar"/>
       </xsl:apply-templates>
     </xsl:if>
@@ -261,7 +275,7 @@ REMARK: Describe this param
     <span class="group">
       <xsl:for-each select="*">
         <xsl:choose>
-          <xsl:when test="self::sbr">
+          <xsl:when test="self::sbr or self::db:sbr">
             <xsl:text>&#x000A;</xsl:text>
             <xsl:value-of select="$padding"/>
           </xsl:when>
@@ -294,11 +308,14 @@ REMARK: Describe this param
 </xsl:template>
 
 <!-- = synopfragment = -->
-<xsl:template match="synopfragment">
+<xsl:template match="synopfragment | db:synopfragment">
   <xsl:param name="sepchar">
     <xsl:choose>
       <xsl:when test="ancestor::cmdsynopsis[1][@sepchar]">
         <xsl:value-of select="ancestor::cmdsynopsis[1]/@sepchar"/>
+      </xsl:when>
+      <xsl:when test="ancestor::db:cmdsynopsis[1][@sepchar]">
+        <xsl:value-of select="ancestor::db:cmdsynopsis[1]/@sepchar"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text> </xsl:text>
@@ -318,7 +335,7 @@ REMARK: Describe this param
 </xsl:template>
 
 <!-- = synopfragmentref = -->
-<xsl:template match="synopfragmentref">
+<xsl:template match="synopfragmentref | db:synopfragmentref">
   <xsl:call-template name="db2html.xref"/>
 </xsl:template>
 
@@ -346,12 +363,15 @@ selectors, which are generally expensive to perform.
 </xsl:template>
 
 <!-- = cmdsynopsis % db2html.cmdsynopsis.sbr.padding.mode = -->
-<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="cmdsynopsis">
+<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
+              match="cmdsynopsis | db:cmdsynopsis">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
-  <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr)][1]"/>
+  <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr) or
+                                       set:has-same-node(.|.//db:sbr, $sbr)][1]"/>
   <xsl:choose>
-    <xsl:when test="$child/self::synopfragment">
+    <xsl:when test="$child/self::synopfragment |
+                    $child/self::db:synopfragment">
       <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode" select="$child">
         <xsl:with-param name="sbr" select="$sbr"/>
         <xsl:with-param name="sepchar" select="$sepchar"/>
@@ -359,7 +379,8 @@ selectors, which are generally expensive to perform.
     </xsl:when>
     <xsl:otherwise>
       <!-- Output padding for the preceding command -->
-      <xsl:variable name="cmd" select="$child/preceding-sibling::command[1]"/>
+      <xsl:variable name="cmd" select="$child/preceding-sibling::command[1] |
+                                       $child/preceding-sibling::db:command[1]"/>
       <xsl:value-of select="str:padding(string-length($cmd), ' ')"/>
       <xsl:value-of select="str:padding(string-length($sepchar), ' ')"/>
       <!-- Process all children that are between $cmd and $child, but 
@@ -367,7 +388,9 @@ selectors, which are generally expensive to perform.
       <xsl:for-each select="$cmd/following-sibling::*
                               [set:has-same-node(following-sibling::*, $child)]
                               [not(set:has-same-node(. | following-sibling::sbr,
-                                                     $child/preceding-sibling::sbr))]">
+                                                     $child/preceding-sibling::sbr)) and
+                               not(set:has-same-node(. | following-sibling::db:sbr,
+                                                         $child/preceding-sibling::db:sbr))]">
         <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode" select=".">
           <xsl:with-param name="sbr" select="false()"/>
           <xsl:with-param name="sepchar" select="$sepchar"/>
@@ -384,7 +407,7 @@ selectors, which are generally expensive to perform.
 </xsl:template>
 
 <!-- = arg % db2html.cmdsynopsis.sbr.padding.mode = -->
-<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="arg">
+<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="arg | db:arg">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
   <xsl:if test="@choice != 'plain'">
@@ -396,12 +419,13 @@ selectors, which are generally expensive to perform.
            comes before an sbr plus whatever comes after an sbr plus possible
            punctuation spacing. -->
       <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode"
-                           select="node()[not(preceding-sibling::sbr)]">
+                           select="node()[not(preceding-sibling::sbr) and
+                                          not(preceding-sibling::db:sbr)]">
         <xsl:with-param name="sbr" select="$sbr"/>
         <xsl:with-param name="sepchar" select="$sepchar"/>
       </xsl:apply-templates>
       <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode"
-                           select="sbr[last()]/following-sibling::node()">
+                           select="(sbr | db:sbr)[last()]/following-sibling::node()">
         <xsl:with-param name="sbr" select="$sbr"/>
         <xsl:with-param name="sepchar" select="$sepchar"/>
       </xsl:apply-templates>
@@ -410,15 +434,19 @@ selectors, which are generally expensive to perform.
       </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr)][1]"/>
+      <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr|.//db:sbr,
+                                           $sbr)][1]"/>
       <!-- Process all children that are before $child, but after
            any sbr elements before $child.  Process any children
            before the initial sbr before $child, if it exists. -->
       <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode"
                            select="$child/preceding-sibling::sbr[last()]/preceding-sibling::node()
+                                   | $child/preceding-sibling::db:sbr[last()]/preceding-sibling::node()
                                    | ($child/preceding-sibling::node())
                                        [not(set:has-same-node(. | following-sibling::sbr,
-                                                              $child/preceding-sibling::sbr))]">
+                                                              $child/preceding-sibling::sbr)) and
+                                        not(set:has-same-node(. | following-sibling::db:sbr,
+                                                              $child/preceding-sibling::db:sbr))]">
         <xsl:with-param name="sbr" select="false()"/>
         <xsl:with-param name="sepchar" select="$sepchar"/>
       </xsl:apply-templates>
@@ -432,7 +460,8 @@ selectors, which are generally expensive to perform.
 </xsl:template>
 
 <!-- = group % db2html.cmdsynopsis.sbr.padding.mode = -->
-<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="group">
+<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="group |
+                                                                 db:group">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
   <xsl:text> </xsl:text>
@@ -443,7 +472,8 @@ selectors, which are generally expensive to perform.
            children if there is no sbr), adding their widths, and adding
            width for joining punctuation for all but one of them.  Add
            to this punctuation spacing for the group as a whole. -->
-      <xsl:for-each select="*[not(following-sibling::sbr) and not(self::sbr)]">
+      <xsl:for-each select="*[not(following-sibling::sbr) and not(self::sbr) and
+                              not(following-sibling::db:sbr) and not(self::db:sbr)]">
         <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode" select=".">
           <xsl:with-param name="sbr" select="$sbr"/>
           <xsl:with-param name="sepchar" select="$sepchar"/>
@@ -456,13 +486,15 @@ selectors, which are generally expensive to perform.
     </xsl:when>
     <xsl:when test="set:has-same-node(., $sbr/..)"/>
     <xsl:otherwise>
-      <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr)][1]"/>
+      <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr|.//db:sbr, $sbr)][1]"/>
       <!-- Process all children that are before $child, but after
            any sbr elements before $child. Add joining punctuation
            padding for all but one of them. -->
       <xsl:for-each select="($child/preceding-sibling::*)
                               [not(set:has-same-node(. | following-sibling::sbr,
-                                                     $child/preceding-sibling::sbr))]">
+                                                     $child/preceding-sibling::sbr)) and
+                               not(set:has-same-node(. | following-sibling::db:sbr,
+                                                     $child/preceding-sibling::db:sbr))]">
         <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode" select=".">
           <xsl:with-param name="sbr" select="false()"/>
           <xsl:with-param name="sepchar" select="$sepchar"/>
@@ -481,7 +513,8 @@ selectors, which are generally expensive to perform.
 </xsl:template>
 
 <!-- = synopfragment % db2html.cmdsynopsis.sbr.padding.mode = -->
-<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="synopfragment">
+<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
+              match="synopfragment | db:synopfragment">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
   <xsl:variable name="label">
@@ -489,12 +522,14 @@ selectors, which are generally expensive to perform.
   </xsl:variable>
   <xsl:value-of select="str:padding(string-length($label), ' ')"/>
   <xsl:value-of select="str:padding(string-length($sepchar), ' ')"/>
-  <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr)][1]"/>
+  <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr|.//db:sbr, $sbr)][1]"/>
   <!-- Process all children that are before $child, but 
        after any sbr elements before $child -->
   <xsl:for-each select="$child/preceding-sibling::*
                           [not(set:has-same-node(. | following-sibling::sbr,
-                                                 $child/preceding-sibling::sbr))]">
+                                                 $child/preceding-sibling::sbr)) and
+                           not(set:has-same-node(. | following-sibling::db:sbr,
+                                                 $child/preceding-sibling::db:sbr))]">
     <xsl:apply-templates mode="db2html.cmdsynopsis.sbr.padding.mode" select=".">
       <xsl:with-param name="sbr" select="false()"/>
       <xsl:with-param name="sepchar" select="$sepchar"/>
@@ -509,7 +544,8 @@ selectors, which are generally expensive to perform.
 </xsl:template>
 
 <!-- = synopfragmentref % db2html.cmdsynopsis.sbr.padding.mode = -->
-<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="synopfragmentref">
+<xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
+              match="synopfragmentref | db:synopfragmentref">
   <xsl:variable name="label">
     <xsl:call-template name="db2html.xref"/>
   </xsl:variable>
