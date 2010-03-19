@@ -294,7 +294,7 @@ tooltip for #{mailto:} URLs in ${href}.
 <!--**==========================================================================
 mal.link.guidelinks
 Output the guide links for a page or section.
-:Revision:version="1.0" date="2010-01-02"
+:Revision:version="1.0" date="2010-03-19"
 $node: The #{page} or #{section} element to generate links for.
 
 This template outputs all the guide links for a page or section, whether
@@ -318,23 +318,27 @@ The output is a result tree fragment.  To use these results, call
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:for-each select="$node/mal:info/mal:link[@type = 'guide']">
-    <xsl:variable name="linklinkid">
-      <xsl:call-template name="mal.link.xref.linkid"/>
-    </xsl:variable>
-    <mal:link xref="{$linklinkid}">
-      <mal:title type="sort">
-        <xsl:for-each select="$mal.cache">
-          <xsl:value-of select="key('mal.cache.key', $linklinkid)/mal:info/mal:title[@type = 'sort'][1]"/>
-        </xsl:for-each>
-      </mal:title>
-    </mal:link>
-  </xsl:for-each>
+  <xsl:variable name="links">
+    <xsl:for-each select="$node/mal:info/mal:link[@type = 'guide']">
+      <xsl:variable name="linklinkid">
+        <xsl:call-template name="mal.link.xref.linkid"/>
+      </xsl:variable>
+      <mal:link xref="{$linklinkid}">
+        <mal:title type="sort">
+          <xsl:for-each select="$mal.cache">
+            <xsl:value-of select="key('mal.cache.key', $linklinkid)/mal:info/mal:title[@type = 'sort'][1]"/>
+          </xsl:for-each>
+        </mal:title>
+      </mal:link>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:copy-of select="$links"/>
+  <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
   <xsl:for-each select="$mal.cache//*[mal:info/mal:link[@type = 'topic'][@xref = $linkid]]">
     <xsl:variable name="linklinkid">
       <xsl:call-template name="mal.link.linkid"/>
     </xsl:variable>
-    <xsl:if test="not($node/mal:info/mal:link[@type = 'guide'][@xref = $linklinkid])">
+    <xsl:if test="not($linknodes[@xref = $linklinkid])">
       <mal:link xref="{$linklinkid}">
         <mal:title type="sort">
           <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
@@ -348,7 +352,7 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.topiclinks
 Output the topic links for a page or section.
-:Revision:version="1.0" date="2010-01-02"
+:Revision:version="1.0" date="2010-03-19"
 $node: The #{page} or #{section} element to generate links for.
 
 This template outputs all the topic links for a guide page or section, whether
@@ -393,49 +397,11 @@ The output is a result tree fragment.  To use these results, call
       </xsl:if>
     </xsl:for-each>
   </xsl:variable>
-  <xsl:for-each select="$node/mal:info/mal:link[@type = 'topic']">
-    <xsl:variable name="xref">
-      <xsl:call-template name="mal.link.xref.linkid"/>
-    </xsl:variable>
-    <xsl:variable name="link" select="."/>
-    <xsl:variable name="grouppos">
-      <xsl:if test="$link/@group">
-        <xsl:for-each select="$groupslist">
-          <xsl:if test="string(.) = $link/@group">
-            <xsl:value-of select="position()"/>
-          </xsl:if>
-        </xsl:for-each>
-      </xsl:if>
-    </xsl:variable>
-    <xsl:variable name="groupsort">
-      <xsl:value-of select="$grouppos"/>
-      <xsl:if test="string($grouppos) = ''">
-        <xsl:value-of select="$defaultpos"/>
-      </xsl:if>
-    </xsl:variable>
-    <mal:link xref="{$xref}">
-      <xsl:attribute name="group">
-        <xsl:value-of select="$groupslist[number($groupsort)]"/>
-      </xsl:attribute>
-      <xsl:attribute name="groupsort">
-        <xsl:value-of select="$groupsort"/>
-      </xsl:attribute>
-      <mal:title type="sort">
-        <xsl:for-each select="$mal.cache">
-          <xsl:value-of select="key('mal.cache.key', $xref)/mal:info/mal:title[@type = 'sort'][1]"/>
-        </xsl:for-each>
-      </mal:title>
-    </mal:link>
-  </xsl:for-each>
-  <xsl:for-each select="$mal.cache//mal:info/mal:link[@type = 'guide'][@xref = $linkid]">
-    <xsl:variable name="source" select="../.."/>
-    <xsl:variable name="xref">
-      <xsl:call-template name="mal.link.xref.linkid">
-        <xsl:with-param name="node" select="$source"/>
-        <xsl:with-param name="xref" select="$source/@id"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:if test="not($node/mal:info/mal:link[@type = 'topic'][@xref = $xref])">
+  <xsl:variable name="links">
+    <xsl:for-each select="$node/mal:info/mal:link[@type = 'topic']">
+      <xsl:variable name="linklinkid">
+        <xsl:call-template name="mal.link.xref.linkid"/>
+      </xsl:variable>
       <xsl:variable name="link" select="."/>
       <xsl:variable name="grouppos">
         <xsl:if test="$link/@group">
@@ -452,7 +418,49 @@ The output is a result tree fragment.  To use these results, call
           <xsl:value-of select="$defaultpos"/>
         </xsl:if>
       </xsl:variable>
-      <mal:link xref="{$xref}">
+      <mal:link xref="{$linklinkid}">
+        <xsl:attribute name="group">
+          <xsl:value-of select="$groupslist[number($groupsort)]"/>
+        </xsl:attribute>
+        <xsl:attribute name="groupsort">
+          <xsl:value-of select="$groupsort"/>
+        </xsl:attribute>
+        <mal:title type="sort">
+          <xsl:for-each select="$mal.cache">
+            <xsl:value-of select="key('mal.cache.key', $linklinkid)/mal:info/mal:title[@type = 'sort'][1]"/>
+          </xsl:for-each>
+        </mal:title>
+      </mal:link>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:copy-of select="$links"/>
+  <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
+  <xsl:for-each select="$mal.cache//mal:info/mal:link[@type = 'guide'][@xref = $linkid]">
+    <xsl:variable name="source" select="../.."/>
+    <xsl:variable name="linklinkid">
+      <xsl:call-template name="mal.link.xref.linkid">
+        <xsl:with-param name="node" select="$source"/>
+        <xsl:with-param name="xref" select="$source/@id"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="not($linknodes[@xref = $linklinkid])">
+      <xsl:variable name="link" select="."/>
+      <xsl:variable name="grouppos">
+        <xsl:if test="$link/@group">
+          <xsl:for-each select="$groupslist">
+            <xsl:if test="string(.) = $link/@group">
+              <xsl:value-of select="position()"/>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:variable>
+      <xsl:variable name="groupsort">
+        <xsl:value-of select="$grouppos"/>
+        <xsl:if test="string($grouppos) = ''">
+          <xsl:value-of select="$defaultpos"/>
+        </xsl:if>
+      </xsl:variable>
+      <mal:link xref="{$linklinkid}">
         <xsl:attribute name="group">
           <xsl:value-of select="$groupslist[number($groupsort)]"/>
         </xsl:attribute>
@@ -461,6 +469,63 @@ The output is a result tree fragment.  To use these results, call
         </xsl:attribute>
         <mal:title type="sort">
           <xsl:value-of select="$source/mal:info/mal:title[@type = 'sort'][1]"/>
+        </mal:title>
+      </mal:link>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.seealsolinks
+Output the see-also links for a page or section.
+:Revision:version="1.0" date="2010-03-19"
+$node: The #{page} or #{section} element to generate links for.
+
+This template outputs all the see-also links for a page or section, whether
+declared in the page or section or in another page or section.  It outputs
+each of the links as a #{link} element within the Mallard namespace.  Each
+#{link} element has an #{xref} attribute pointing to the target page or section.
+
+Each #{link} element contains a #{title} with #{type="sort"} providing the
+sort title of the target page or section.  The results are not sorted when
+returned from this template.  Use #{xsl:sort} on the sort titles to sort
+the results.
+
+The output is a result tree fragment.  To use these results, call
+#{exsl:node-set} on them.
+-->
+<xsl:template name="mal.link.seealsolinks">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="links">
+    <xsl:for-each select="$node/mal:info/mal:link[@type = 'seealso']">
+      <xsl:variable name="linklinkid">
+        <xsl:call-template name="mal.link.xref.linkid"/>
+      </xsl:variable>
+      <mal:link xref="{$linklinkid}">
+        <mal:title type="sort">
+          <xsl:for-each select="$mal.cache">
+            <xsl:value-of select="key('mal.cache.key', $linklinkid)/mal:info/mal:title[@type = 'sort'][1]"/>
+          </xsl:for-each>
+        </mal:title>
+      </mal:link>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:copy-of select="$links"/>
+  <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
+  <xsl:for-each select="$mal.cache//*[mal:info/mal:link[@type = 'seealso'][@xref = $linkid]]">
+    <xsl:variable name="linklinkid">
+      <xsl:call-template name="mal.link.linkid"/>
+    </xsl:variable>
+    <xsl:if test="not($linknodes[@xref = $linklinkid])">
+      <mal:link xref="{$linklinkid}">
+        <mal:title type="sort">
+          <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
         </mal:title>
       </mal:link>
     </xsl:if>
