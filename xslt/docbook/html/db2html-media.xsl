@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -140,15 +141,29 @@ as a text-only mode.
         <xsl:with-param name="textobject" select="$node/textobject[1]"/>
       </xsl:apply-templates>
     </xsl:when>
+    <xsl:when test="$node/db:imageobject[db:imagedata/@format = 'PNG']">
+      <xsl:apply-templates
+       select="$node/db:imageobject[db:imagedata/@format = 'PNG'][1]">
+        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
+      </xsl:apply-templates>
+    </xsl:when>
     <xsl:when test="$node/imageobjectco[imageobject/imagedata/@format = 'PNG']">
       <xsl:apply-templates
        select="$node/imageobjectco[imageobject/imagedata/@format = 'PNG'][1]">
         <xsl:with-param name="textobject" select="$node/textobject[1]"/>
       </xsl:apply-templates>
     </xsl:when>
+    <xsl:when test="$node/db:imageobjectco[db:imageobject/db:imagedata/@format = 'PNG']">
+      <xsl:apply-templates
+       select="$node/db:imageobjectco[db:imageobject/db:imagedata/@format = 'PNG'][1]">
+        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
+      </xsl:apply-templates>
+    </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="($node/imageobject | $node/imageobjectco)[1]">
-        <xsl:with-param name="textobject" select="$node/textobject[1]"/>
+      <xsl:apply-templates select="($node/imageobject | $node/imageobjectco |
+                                    $node/db:imageobject |
+                                    $node/db:imageobjectco)[1]">
+        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
       </xsl:apply-templates>
     </xsl:otherwise>
   </xsl:choose>
@@ -166,13 +181,13 @@ as a text-only mode.
 </xsl:template>
 
 <!-- = imagedata = -->
-<xsl:template match="imagedata">
+<xsl:template match="imagedata | db:imagedata">
   <xsl:call-template name="db2html.imagedata"/>
 </xsl:template>
 
 <!-- = imageobject = -->
-<xsl:template match="imageobject">
-  <xsl:apply-templates select="imagedata"/>
+<xsl:template match="imageobject | db:imageobject">
+  <xsl:apply-templates select="imagedata | db:imagedata"/>
 </xsl:template>
 
 <!-- = inlinegraphic = -->
@@ -184,7 +199,7 @@ as a text-only mode.
 </xsl:template>
 
 <!-- = inlinemediaobject = -->
-<xsl:template match="inlinemediaobject">
+<xsl:template match="inlinemediaobject | db:inlinemediaobject">
   <span class="inlinemediaobject">
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.mediaobject"/>
@@ -192,21 +207,24 @@ as a text-only mode.
 </xsl:template>
 
 <!-- = mediaojbect = -->
-<xsl:template match="mediaobject">
+<xsl:template match="mediaobject | db:mediaobject">
   <div class="mediaobject">
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.mediaobject"/>
     <!-- When a figure contains only a single mediaobject, it eats the caption -->
-    <xsl:if test="not(../self::figure or ../self::informalfigure) or
+    <xsl:if test="not(../self::figure or ../self::informalfigure or
+                      ../self::db:figure or ../self::db:informalfigure) or
                   ../*[not(self::blockinfo) and not(self::title) and
-                       not(self::titleabbrev) and not(. = current()) ]">
-      <xsl:apply-templates select="caption"/>
+                       not(self::db:info) and not(self::db:title) and
+                       not(self::titleabbrev) and not(self::db:titleabbrev) and
+                       not(. = current()) ]">
+      <xsl:apply-templates select="caption | db:caption"/>
     </xsl:if>
   </div>
 </xsl:template>
 
 <!-- = screenshot = -->
-<xsl:template match="screenshot">
+<xsl:template match="screenshot | db:screenshot">
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
