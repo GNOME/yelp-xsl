@@ -18,6 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:str="http://exslt.org/strings"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -66,7 +67,7 @@ top of the XML document.  The same processing instruction or inside a
 </xsl:template>
 
 <!-- = funcprototype = -->
-<xsl:template match="funcprototype">
+<xsl:template match="funcprototype | db:funcprototype">
   <xsl:variable name="style">
     <xsl:choose>
       <xsl:when test="../processing-instruction('db2html.funcsynopsis.style')">
@@ -77,23 +78,25 @@ top of the XML document.  The same processing instruction or inside a
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:for-each select="funcdef/preceding-sibling::modifier">
+  <xsl:for-each select="funcdef/preceding-sibling::modifier |
+                        db:funcdef/preceding-sibling::db:modifier">
     <xsl:apply-templates select="."/>
     <xsl:text> </xsl:text>
   </xsl:for-each>
-  <xsl:apply-templates select="funcdef"/>
+  <xsl:apply-templates select="funcdef | db:funcdef"/>
   <xsl:text> (</xsl:text>
   <xsl:choose>
     <xsl:when test="$style = 'KR'">
-      <xsl:for-each select="void | varargs | paramdef">
+      <xsl:for-each select="void    | varargs    | paramdef |
+                            db:void | db:varargs | db:paramdef">
         <xsl:if test="position() != 1">
           <xsl:text>, </xsl:text>
         </xsl:if>
         <xsl:choose>
-          <xsl:when test="self::paramdef">
+          <xsl:when test="self::paramdef or self::db:paramdef">
             <xsl:call-template name="db2html.inline">
               <xsl:with-param name="node" select="."/>
-              <xsl:with-param name="children" select="parameter"/>
+              <xsl:with-param name="children" select="parameter | db:parameter"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
@@ -102,12 +105,13 @@ top of the XML document.  The same processing instruction or inside a
         </xsl:choose>
       </xsl:for-each>
       <xsl:text>)</xsl:text>
-      <xsl:for-each select="funcdef/following-sibling::modifier">
+      <xsl:for-each select="funcdef/following-sibling::modifier |
+                            db:funcdef/following-sibling::db:modifier">
         <xsl:text> </xsl:text>
         <xsl:apply-templates select="."/>
       </xsl:for-each>
       <xsl:text>;</xsl:text>
-      <xsl:for-each select="paramdef">
+      <xsl:for-each select="paramdef | db:paramdef">
         <xsl:text>&#x000A;    </xsl:text>
         <xsl:apply-templates select="."/>
         <xsl:text>;</xsl:text>
@@ -117,11 +121,16 @@ top of the XML document.  The same processing instruction or inside a
     <xsl:otherwise>
       <xsl:variable name="indent">
         <xsl:call-template name="_db2html.funcsynopsis.pad">
-          <xsl:with-param name="nodes" select="funcdef | funcdef/preceding-sibling::modifier"/>
+          <xsl:with-param name="nodes"
+                          select="funcdef | funcdef/preceding-sibling::modifier|
+                                  db:funcdef |
+                                  db:fundef/preceding-sibling::db:modifier"/>
         </xsl:call-template>
-        <xsl:value-of select="str:padding(count(funcdef/preceding-sibling::modifier) + 2)"/>
+        <xsl:value-of select="str:padding(count(funcdef/preceding-sibling::modifier) +
+                                          count(db:funcdef/preceding-sibling::db:modifier) + 2)"/>
       </xsl:variable>
-      <xsl:for-each select="void | varargs | paramdef">
+      <xsl:for-each select="void    | varargs    | paramdef |
+                            db:void | db:varargs | db:paramdef">
         <xsl:if test="position() != 1">
           <xsl:text>,&#x000A;</xsl:text>
           <xsl:value-of select="$indent"/>
@@ -129,7 +138,8 @@ top of the XML document.  The same processing instruction or inside a
         <xsl:apply-templates select="."/>
       </xsl:for-each>
       <xsl:text>)</xsl:text>
-      <xsl:for-each select="funcdef/following-sibling::modifier">
+      <xsl:for-each select="funcdef/following-sibling::modifier |
+                            db:funcdef/following-sibling::db:modifier">
         <xsl:text> </xsl:text>
         <xsl:apply-templates select="."/>
       </xsl:for-each>
@@ -139,7 +149,7 @@ top of the XML document.  The same processing instruction or inside a
 </xsl:template>
 
 <!-- = funcsynopsis = -->
-<xsl:template match="funcsynopsis">
+<xsl:template match="funcsynopsis | db:funcsynopsis">
   <xsl:call-template name="db2html.pre">
     <xsl:with-param name="node" select="."/>
     <xsl:with-param name="children" select="*"/>
@@ -148,32 +158,32 @@ top of the XML document.  The same processing instruction or inside a
 </xsl:template>
 
 <!-- = funcsynopsisinfo = -->
-<xsl:template match="funcsynopsisinfo">
+<xsl:template match="funcsynopsisinfo | db:funcsynopsisinfo">
   <xsl:call-template name="db2html.pre"/>
 </xsl:template>
 
 <!-- = initializer = -->
-<xsl:template match="initializer">
+<xsl:template match="initializer | db:initializer">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = modifier = -->
-<xsl:template match="modifier">
+<xsl:template match="modifier | db:modifier">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = paramdef = -->
-<xsl:template match="paramdef">
+<xsl:template match="paramdef | db:paramdef">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = varargs = -->
-<xsl:template match="varargs">
+<xsl:template match="varargs | db:varargs">
   <xsl:text>...</xsl:text>
 </xsl:template>
 
 <!-- = void = -->
-<xsl:template match="void">
+<xsl:template match="void | db:void">
   <xsl:text>void</xsl:text>
 </xsl:template>
 
