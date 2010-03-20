@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -43,6 +44,9 @@ REMARK: Describe this template
       <xsl:when test="$node/@id">
         <xsl:value-of select="$node/@id"/>
       </xsl:when>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="$node/@xml:id"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="generate-id($node)"/>
       </xsl:otherwise>
@@ -53,6 +57,9 @@ REMARK: Describe this template
     <xsl:choose>
       <xsl:when test="$node/@id">
         <xsl:value-of select="$node/@id"/>
+      </xsl:when>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="$node/@xml:id"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>-note-</xsl:text>
@@ -85,6 +92,9 @@ REMARK: Describe this template
       <xsl:when test="$node/@id">
         <xsl:value-of select="$node/@id"/>
       </xsl:when>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="$node/@xml:id"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:text>-note-</xsl:text>
         <xsl:value-of select="generate-id($node)"/>
@@ -97,6 +107,9 @@ REMARK: Describe this template
     <xsl:choose>
       <xsl:when test="$node/@id">
         <xsl:value-of select="$node/@id"/>
+      </xsl:when>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="$node/@xml:id"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="generate-id($node)"/>
@@ -130,7 +143,7 @@ REMARK: Describe this template
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:variable name="notes" select="$node//footnote" />
+  <xsl:variable name="notes" select="$node//footnote | $node//db:footnote" />
   <xsl:if test="count($notes) != 0">
     <xsl:call-template name="db2html.footnote.footer.sibling">
       <xsl:with-param name="node" select="$node"/>
