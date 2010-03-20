@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="msg set"
+                exclude-result-prefixes="db msg set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -40,19 +41,21 @@ indexterm (autoidx)
 <!-- == Matched Templates == -->
 
 <!-- = suppress = -->
-<xsl:template match="primaryie"/>
-<xsl:template match="secondaryie"/>
-<xsl:template match="tertiaryie"/>
+<xsl:template match="primaryie | db:primaryie"/>
+<xsl:template match="secondaryie | db:secondaryie"/>
+<xsl:template match="tertiaryie | db:tertiaryie"/>
 
 <!-- = indexentry = -->
-<xsl:template match="indexentry">
+<xsl:template match="indexentry | db:indexentry">
   <dt class="primaryie">
-    <xsl:apply-templates select="primaryie/node()"/>
+    <xsl:apply-templates select="primaryie/node() | db:primaryie/node()"/>
   </dt>
   <xsl:variable name="pri_see"
-                select="seeie[not(preceding-sibling::secondaryie)]"/>
+                select="seeie[not(preceding-sibling::secondaryie)] |
+                        db:seeie[not(preceding-sibling::db:secondaryie)]"/>
   <xsl:variable name="pri_seealso"
-                select="seealsoie[not(preceding-sibling::secondaryie)]"/>
+                select="seealsoie[not(preceding-sibling::secondaryie)] |
+                        db:seealsoie[not(preceding-sibling::db:secondaryie)]"/>
   <xsl:if test="$pri_see">
     <dd class="see">
       <xsl:call-template name="l10n.gettext">
@@ -71,7 +74,7 @@ indexterm (autoidx)
       </xsl:call-template>
     </dd>
   </xsl:if>
-  <xsl:for-each select="secondaryie">
+  <xsl:for-each select="secondaryie | db:secondaryie">
     <dd class="seconary">
       <dl class="secondary">
         <dt class="secondaryie">
@@ -79,13 +82,19 @@ indexterm (autoidx)
         </dt>
         <xsl:variable name="sec_see"
                       select="following-sibling::seeie
-                                [set:has-same-node(preceding-sibling::secondaryie[1], current())]"/>
+                                [set:has-same-node(preceding-sibling::secondaryie[1], current())] |
+                              following-sibling::db:seeie
+                                [set:has-same-node(preceding-sibling::db:secondaryie[1], current())]"/>
         <xsl:variable name="sec_seealso"
                       select="following-sibling::seealsoie
-                                [set:has-same-node(preceding-sibling::secondaryie[1], current())]"/>
+                                [set:has-same-node(preceding-sibling::secondaryie[1], current())] |
+                              following-sibling::db:seealsoie
+                                [set:has-same-node(preceding-sibling::db:secondaryie[1], current())]"/>
         <xsl:variable name="tertiary"
                       select="following-sibling::tertiaryie
-                                [set:has-same-node(preceding-sibling::secondaryie[1], current())]"/>
+                                [set:has-same-node(preceding-sibling::secondaryie[1], current())] |
+                              following-sibling::db:tertiaryie
+                                [set:has-same-node(preceding-sibling::db:secondaryie[1], current())]"/>
         <xsl:if test="$sec_see">
           <dd class="see">
             <xsl:call-template name="l10n.gettext">
@@ -113,7 +122,7 @@ indexterm (autoidx)
 </xsl:template>
 
 <!-- = index = -->
-<xsl:template match="index">
+<xsl:template match="index | db:index">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -121,11 +130,12 @@ indexterm (autoidx)
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:choose>
-    <xsl:when test="not(title) and not(indexinfo/title)">
+    <xsl:when test="not(title) and not(indexinfo/title) and not(db:title) and
+                    not(db:info/db:title)">
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="indexinfo"/>
-        <xsl:with-param name="divisions" select="indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry"/>
+        <xsl:with-param name="info" select="indexinfo | db:info"/>
+        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
         <xsl:with-param name="title_content">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'Index'"/>
@@ -137,9 +147,9 @@ indexterm (autoidx)
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="indexinfo"/>
-        <xsl:with-param name="divisions" select="indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry"/>
+        <xsl:with-param name="info" select="indexinfo | db:info"/>
+        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
         <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
@@ -148,7 +158,7 @@ indexterm (autoidx)
 </xsl:template>
 
 <!-- = setindex = -->
-<xsl:template match="setindex">
+<xsl:template match="setindex | db:setindex">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -156,11 +166,12 @@ indexterm (autoidx)
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:choose>
-    <xsl:when test="not(title) and not(setindexinfo/title)">
+    <xsl:when test="not(title) and not(setindexinfo/title) and not(db:title) and
+                    not(db:info/db:title)">
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="setindexinfo"/>
-        <xsl:with-param name="divisions" select="indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry"/>
+        <xsl:with-param name="info" select="setindexinfo | db:info"/>
+        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
         <xsl:with-param name="title_content">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'Index'"/>
@@ -172,9 +183,9 @@ indexterm (autoidx)
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="setindexinfo"/>
-        <xsl:with-param name="divisions" select="indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry"/>
+        <xsl:with-param name="info" select="setindexinfo | db:info"/>
+        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
         <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
