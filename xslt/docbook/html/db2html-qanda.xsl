@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -52,20 +53,20 @@ dd.answer div.label { float: left; }
 <!-- == Matched Templates == -->
 
 <!-- = answer = -->
-<xsl:template match="answer">
+<xsl:template match="answer | db:answer">
   <dd class="answer">
     <xsl:choose>
-      <xsl:when test="@lang">
+      <xsl:when test="@lang or @xml:lang">
         <xsl:attribute name="dir">
           <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang"/>
+            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:when>
-      <xsl:when test="../@lang">
+      <xsl:when test="../@lang or ../@xml:lang">
         <xsl:attribute name="dir">
           <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="../@lang"/>
+            <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:when>
@@ -80,7 +81,7 @@ dd.answer div.label { float: left; }
 </xsl:template>
 
 <!-- = qandadiv = -->
-<xsl:template match="qandadiv">
+<xsl:template match="qandadiv | db:qandadiv">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -88,9 +89,9 @@ dd.answer div.label { float: left; }
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:call-template name="db2html.division.div">
-    <xsl:with-param name="info" select="blockinfo"/>
-    <xsl:with-param name="entries" select="qandaentry"/>
-    <xsl:with-param name="divisions" select="qandadiv"/>
+    <xsl:with-param name="info" select="blockinfo | db:info"/>
+    <xsl:with-param name="entries" select="qandaentry | db:qandaentry"/>
+    <xsl:with-param name="divisions" select="qandadiv | db:qandadiv"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     <xsl:with-param name="chunk_divisions" select="false()"/>
@@ -100,12 +101,12 @@ dd.answer div.label { float: left; }
 </xsl:template>
 
 <!-- = qandaentry = -->
-<xsl:template match="qandaentry">
+<xsl:template match="qandaentry | db:qandaentry">
   <xsl:apply-templates/>
 </xsl:template>
 
 <!-- = qandaset = -->
-<xsl:template match="qandaset">
+<xsl:template match="qandaset | db:qandaset">
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
@@ -113,9 +114,9 @@ dd.answer div.label { float: left; }
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:call-template name="db2html.division.div">
-    <xsl:with-param name="info" select="blockinfo"/>
-    <xsl:with-param name="entries" select="qandaentry"/>
-    <xsl:with-param name="divisions" select="qandadiv"/>
+    <xsl:with-param name="info" select="blockinfo | db:info"/>
+    <xsl:with-param name="entries" select="qandaentry | db:qandaentry"/>
+    <xsl:with-param name="divisions" select="qandadiv | db:qandadiv"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     <xsl:with-param name="chunk_divisions" select="false()"/>
@@ -125,21 +126,21 @@ dd.answer div.label { float: left; }
 </xsl:template>
 
 <!-- = question = -->
-<xsl:template match="question">
+<xsl:template match="question | db:question">
   <!-- FIXME: dt-first -->
   <dt class="question">
     <xsl:choose>
-      <xsl:when test="@lang">
+      <xsl:when test="@lang | @xml:lang">
         <xsl:attribute name="dir">
           <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang"/>
+            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:when>
-      <xsl:when test="../@lang">
+      <xsl:when test="../@lang or ../@xml:lang">
         <xsl:attribute name="dir">
           <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="../@lang"/>
+            <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:when>
