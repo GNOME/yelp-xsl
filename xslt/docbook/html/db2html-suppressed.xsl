@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0">
 
 <!--
@@ -27,83 +28,84 @@ modes because of the DocBook content model.
 -->
 
 <!-- Not rendered directly -->
-<xsl:template match="titleabbrev"/>
+<xsl:template match="titleabbrev | db:titleabbrev"/>
 
 <!-- Not yet supported -->
-<xsl:template match="remark"/>
+<xsl:template match="remark | db:remark"/>
 
 <!-- Suppressed by processing expectations -->
-<xsl:template match="screeninfo"/>
+<xsl:template match="screeninfo | db:screeninfo"/>
 
 <!-- Not supported -->
-<xsl:template match="alt"/>
+<xsl:template match="alt | db:alt"/>
 <xsl:template match="beginpage"/>
-<xsl:template match="bibliocoverage"/>
-<xsl:template match="bridgehead"/>
+<xsl:template match="bibliocoverage | db:bibliocoverage"/>
+<xsl:template match="bridgehead | db:bridgehead"/>
 
 <!-- Explicitly matched by parent -->
-<xsl:template match="listitem"/>
-<xsl:template match="sbr"/>
+<xsl:template match="listitem | db:listitem"/>
+<xsl:template match="sbr | db:sbr"/>
 
 <!-- Index elements, not yet supported -->
-<xsl:template match="indexterm"/>
-<xsl:template match="primary"/>
-<xsl:template match="primaryie"/>
-<xsl:template match="secondary"/>
-<xsl:template match="secondaryie"/>
-<xsl:template match="see"/>
-<xsl:template match="seeie"/>
-<xsl:template match="seealso"/>
-<xsl:template match="seealsoie"/>
-<xsl:template match="tertiary"/>
-<xsl:template match="tertiaryie"/>
+<xsl:template match="indexterm | db:indexterm"/>
+<xsl:template match="primary | db:primary"/>
+<xsl:template match="primaryie | db:primaryie"/>
+<xsl:template match="secondary | db:secondary"/>
+<xsl:template match="secondaryie | db:secondaryie"/>
+<xsl:template match="see | db:see"/>
+<xsl:template match="seeie | db:seeie"/>
+<xsl:template match="seealso | db:seealso"/>
+<xsl:template match="seealsoie | db:seealsoie"/>
+<xsl:template match="tertiary | db:tertiary"/>
+<xsl:template match="tertiaryie | db:tertiaryie"/>
 
 <!-- Unmatched info elements, supported indirectly -->
-<xsl:template match="appendixinfo"/>
-<xsl:template match="blockinfo"/>
-<xsl:template match="articleinfo"/>
-<xsl:template match="bibliographyinfo"/>
-<xsl:template match="bookinfo"/>
-<xsl:template match="chapterinfo"/>
-<xsl:template match="glossaryinfo"/>
-<xsl:template match="partinfo"/>
-<xsl:template match="prefaceinfo"/>
-<xsl:template match="refentryinfo"/>
-<xsl:template match="referenceinfo"/>
-<xsl:template match="refmeta"/>
-<xsl:template match="refmiscinfo"/>
+<xsl:template match="appendixinfo | db:appendix/db:info"/>
+<xsl:template match="blockinfo |
+                     db:info[not(contains(local-name(..), 'object'))]"/>
+<xsl:template match="articleinfo | db:article/db:info"/>
+<xsl:template match="bibliographyinfo | db:bibliography/db:info"/>
+<xsl:template match="bookinfo | db:book/db:info"/>
+<xsl:template match="chapterinfo | db:chapter/db:info"/>
+<xsl:template match="glossaryinfo | db:glossary/db:info"/>
+<xsl:template match="partinfo | db:part/db:info"/>
+<xsl:template match="prefaceinfo | db:preface/db:info"/>
+<xsl:template match="refentryinfo | db:refentry/db:info"/>
+<xsl:template match="referenceinfo | db:reference/db:info"/>
+<xsl:template match="refmeta | db:refmeta"/>
+<xsl:template match="refmiscinfo | db:refmiscinfo"/>
 <xsl:template match="refsect1divinfo"/>
 <xsl:template match="refsect2divinfo"/>
 <xsl:template match="refsect3divinfo"/>
 <xsl:template match="refsectiondivinfo"/>
-<xsl:template match="refsynopsisdivinfo"/>
-<xsl:template match="sect1info"/>
-<xsl:template match="sect2info"/>
-<xsl:template match="sect3info"/>
-<xsl:template match="sect4info"/>
-<xsl:template match="sect5info"/>
-<xsl:template match="sectioninfo"/>
+<xsl:template match="refsynopsisdivinfo | db:refsynopsisdiv/db:info"/>
+<xsl:template match="sect1info | db:sect1/db:info"/>
+<xsl:template match="sect2info | db:sect2/db:info"/>
+<xsl:template match="sect3info | db:sect3/db:info"/>
+<xsl:template match="sect4info | db:sect4/db:info"/>
+<xsl:template match="sect5info | db:sect5/db:info"/>
+<xsl:template match="sectioninfo | db:section/db:info"/>
 
 <!-- Only occur in db2html.info.mode -->
-<xsl:template match="affiliation"/>
-<xsl:template match="author"/>
+<xsl:template match="affiliation | db:affiliation"/>
+<xsl:template match="author | db:author"/>
 <xsl:template match="authorblurb"/>
-<xsl:template match="authorgroup"/>
-<xsl:template match="collab"/>
+<xsl:template match="authorgroup | db:authorgroup"/>
+<xsl:template match="collab | db:collab"/>
 <xsl:template match="collabname"/>
-<xsl:template match="copyright"/>
-<xsl:template match="editor"/>
-<xsl:template match="legalnotice"/>
-<xsl:template match="othercredit"/>
-<xsl:template match="personblurb"/>
-<xsl:template match="publisher"/>
-<xsl:template match="revdescription"/>
-<xsl:template match="revhistory"/>
-<xsl:template match="revision"/>
-<xsl:template match="revnumber"/>
-<xsl:template match="revremark"/>
+<xsl:template match="copyright | db:copyright"/>
+<xsl:template match="editor | db:editor"/>
+<xsl:template match="legalnotice | db:legalnotice"/>
+<xsl:template match="othercredit | db:othercredit"/>
+<xsl:template match="personblurb | db:personblurb"/>
+<xsl:template match="publisher | db:publisher"/>
+<xsl:template match="revdescription | db:revdescription"/>
+<xsl:template match="revhistory | db:revhistory"/>
+<xsl:template match="revision | db:revision"/>
+<xsl:template match="revnumber | db:revnumber"/>
+<xsl:template match="revremark | db:revremark"/>
 
 <!-- Handled specially, so we can apply-templates -->
-<xsl:template match="label"/>
+<xsl:template match="label | db:label"/>
 
 </xsl:stylesheet>
