@@ -64,6 +64,7 @@ $class: The value of the #{class} attribute on the #{span} tag
 $lang: The locale of the text in ${node}
 $dir: The text direction, either #{ltr} or #{rtl}
 $ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+$name-class: The class to use for the name of the element
 
 REMARK: Document this template
 -->
@@ -74,11 +75,12 @@ REMARK: Document this template
   <xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
+  <xsl:param name="name-class" select="local-name($node)"/>
   <xsl:variable name="xlink" select="$node/@xl:href"/>
   <xsl:variable name="linkend" select="$node/@linkend"/>
 
   <!-- FIXME: do CSS classes, rather than inline styles -->
-  <span class="{$class} {local-name($node)}">
+  <span class="{$class} {$name-class}">
     <xsl:choose>
       <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
         <xsl:attribute name="dir">
@@ -1003,6 +1005,7 @@ FIXME
 <!-- = sgmltag = -->
 <xsl:template match="sgmltag | db:tag">
   <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class">sgmltag</xsl:with-param>
     <xsl:with-param name="class">
       <xsl:text>code sgmltag</xsl:text>
       <xsl:if test="@class">

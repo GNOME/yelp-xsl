@@ -232,6 +232,7 @@ $node: The block-level element to render
 $lang: The locale of the text in ${node}
 $dir: The text direction, either #{ltr} or #{rtl}
 $ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+$class: The value of the generated class attribute
 
 This template creates an HTML #{p} element for the given DocBook element.
 -->
@@ -240,10 +241,11 @@ This template creates an HTML #{p} element for the given DocBook element.
 	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
+  <xsl:param name="class" select="local-name($node)"/>
 
   <p>
     <xsl:attribute name="class">
-      <xsl:value-of select="local-name($node)"/>
+      <xsl:value-of select="$class"/>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
@@ -369,8 +371,10 @@ template.
 </xsl:template>
 
 <!-- = ackno = -->
-<xsl:template match="ackno | db:acknowledgements">
-  <xsl:call-template name="db2html.para"/>
+<xsl:template match="ackno | db:acknowledgements/db:para">
+  <xsl:call-template name="db2html.para">
+    <xsl:with-param name="class">ackno</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = address = -->
