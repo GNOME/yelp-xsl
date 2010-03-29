@@ -17,6 +17,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
@@ -48,7 +49,8 @@ FIXME
   <xsl:param name="rowsep" select="''"/>
   <xsl:param name="spanstr"/>
   <tr>
-    <xsl:if test="$row/../self::tbody and (count($row/preceding-sibling::row) mod 2 = 1)">
+    <xsl:if test="($row/../self::tbody and (count($row/preceding-sibling::row) mod 2 = 1)) or
+                  ($row/../self::db:tbody and (count($row/preceding-sibling::db:row) mod 2 = 1))">
       <xsl:attribute name="class">
         <xsl:text>shade</xsl:text>
       </xsl:attribute>
@@ -73,7 +75,8 @@ FIXME
       </xsl:call-template>
     </xsl:if>
   </tr>
-  <xsl:variable name="following" select="$row/following-sibling::row[1]"/>
+  <xsl:variable name="following" select="$row/following-sibling::row[1] |
+                                         $row/following-sibling::db:row[1]"/>
   <xsl:if test="$following">
     <xsl:call-template name="db2html.row">
       <xsl:with-param name="row"       select="$following"/>
@@ -228,6 +231,7 @@ element to output the next #{td}.
       <xsl:variable name="element">
         <xsl:choose>
           <xsl:when test="$entry/../../self::thead or $entry/../../self::tfoot">th</xsl:when>
+          <xsl:when test="$entry/../../self::db:thead or $entry/../../self::db:tfoot">th</xsl:when>
           <xsl:otherwise>td</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -348,6 +352,7 @@ element to output the next #{td}.
         <xsl:choose>
           <!-- FIXME: we need to handle @cols better -->
           <xsl:when test="number($colpos) + number($colspan) &gt; number($entry/ancestor::tgroup[1]/@cols)"/>
+          <xsl:when test="number($colpos) + number($colspan) &gt; number($entry/ancestor::db:tgroup[1]/@cols)"/>
           <xsl:when test="$entry/@colsep">
             <xsl:if test="$entry/@colsep = '1'">
               <xsl:text> td-colsep</xsl:text>
@@ -380,7 +385,9 @@ element to output the next #{td}.
         </xsl:choose>
         <!-- td-rowsep: whether to show a row separator -->
         <xsl:choose>
-          <xsl:when test="count($entry/../following-sibling::row) &lt; number($rowspan)"/>
+          <xsl:when test="(count($entry/../following-sibling::row) +
+                           count($entry/../following-sibling::db:row)) &lt;
+                           number($rowspan)"/>
           <xsl:when test="$entry/@rowsep">
             <xsl:if test="$entry/@rowsep = '1'">
               <xsl:text> td-rowsep</xsl:text>
@@ -414,17 +421,17 @@ element to output the next #{td}.
       <!-- Finally, output the td or th element -->
       <xsl:element name="{$element}" namespace="{$db2html.namespace}">
         <xsl:choose>
-          <xsl:when test="@lang">
+          <xsl:when test="@lang or @xml:lang">
             <xsl:attribute name="dir">
               <xsl:call-template name="l10n.direction">
-                <xsl:with-param name="lang" select="@lang"/>
+                <xsl:with-param name="lang" select="@lang | @xml:lang"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
-          <xsl:when test="../@lang">
+          <xsl:when test="../@lang or ../@xml:lang">
             <xsl:attribute name="dir">
               <xsl:call-template name="l10n.direction">
-                <xsl:with-param name="lang" select="../@lang"/>
+                <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
               </xsl:call-template>
             </xsl:attribute>
           </xsl:when>
@@ -461,6 +468,9 @@ element to output the next #{td}.
         </xsl:if>
         <xsl:choose>
           <xsl:when test="$entry/self::entrytbl">
+            <xsl:apply-templates select="$entry"/>
+          </xsl:when>
+          <xsl:when test="$entry/self::db:entrytbl">
             <xsl:apply-templates select="$entry"/>
           </xsl:when>
           <xsl:otherwise>
@@ -543,6 +553,7 @@ able to output the #{td} for the #{entry} element.
   <xsl:variable name="element">
     <xsl:choose>
       <xsl:when test="$entry/../../self::thead or $entry/../../self::tfoot">th</xsl:when>
+      <xsl:when test="$entry/../../self::db:thead or $entry/../../self::db:tfoot">th</xsl:when>
       <xsl:otherwise>td</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -550,7 +561,8 @@ able to output the #{td} for the #{entry} element.
     <xsl:if test="$colsep != '0'">
       <xsl:text> td-colsep</xsl:text>
     </xsl:if>
-    <xsl:if test="$rowsep = '1' and $entry/../following-sibling::row">
+    <xsl:if test="($rowsep = '1' and $entry/../following-sibling::row) or
+                  ($rowsep = '1' and $entry/../following-sibling::db:row)">
       <xsl:text> td-rowsep</xsl:text>
     </xsl:if>
   </xsl:variable>
@@ -688,11 +700,13 @@ FIXME
     <xsl:when test="$colspec/@colnum">
       <xsl:value-of select="$colspec/@colnum"/>
     </xsl:when>
-    <xsl:when test="$colspec/preceding-sibling::colspec">
+    <xsl:when test="$colspec/preceding-sibling::colspec or
+                    $colspec/preceding-sibling::db:colspec">
       <xsl:variable name="prec.colspec.colnum">
         <xsl:call-template name="db2html.colspec.colnum">
           <xsl:with-param name="colspec"
-                          select="$colspec/preceding-sibling::colspec[1]"/>
+                          select="$colspec/preceding-sibling::colspec[1] |
+                                  $colspec/preceding-sibling::db:colspec[1]"/>
           <xsl:with-param name="colspecs"  select="$colspecs"/>
           <xsl:with-param name="spanspecs" select="$spanspecs"/>
         </xsl:call-template>
@@ -946,7 +960,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 
 
 <!-- = entrytbl = -->
-<xsl:template match="entrytbl">
+<xsl:template match="entrytbl | db:entrytbl">
   <xsl:variable name="colsep">
     <xsl:choose>
       <xsl:when test="@colsep">
@@ -970,20 +984,20 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:choose>
   </xsl:variable>
   <table>
-    <xsl:if test="@lang">
+    <xsl:if test="@lang or @xml:lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang"/>
+          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates select="thead">
+    <xsl:apply-templates select="thead | db:thead">
       <xsl:with-param name="colspecs" select="colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="tbody">
+    <xsl:apply-templates select="tbody | db:tbody">
       <xsl:with-param name="colspecs" select="colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
@@ -993,41 +1007,51 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 </xsl:template>
 
 <!-- = table = -->
-<xsl:template match="table | informaltable">
+<xsl:template match="table | informaltable | db:table | db:informaltable">
   <div class="table">
-    <xsl:if test="@lang">
+    <xsl:if test="@lang or @xml:lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang"/>
+          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="title"/>
+    <xsl:apply-templates select="title | db:title"/>
     <!-- FIXME: I have no idea what I'm supposed to do with textobject -->
     <xsl:choose>
       <xsl:when test="graphic | mediaobject">
         <xsl:apply-templates select="graphic | mediaobject"/>
       </xsl:when>
+      <xsl:when test="db:graphic | db:mediaobject">
+        <xsl:apply-templates select="db:graphic | db:mediaobject"/>
+      </xsl:when>
       <xsl:when test="tgroup">
         <xsl:apply-templates select="tgroup"/>
+      </xsl:when>
+      <xsl:when test="db:tgroup">
+        <xsl:apply-templates select="db:tgroup"/>
       </xsl:when>
       <xsl:when test="tr">
         <xsl:apply-templates select="col | colgroup | tr"/>
         <xsl:apply-templates select="caption"/>
       </xsl:when>
+      <xsl:when test="db:tr">
+        <xsl:apply-templates select="db:col | db:colgroup | db:tr"/>
+        <xsl:apply-templates select="db:caption"/>
+      </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="thead"/>
-        <xsl:apply-templates select="tbody"/>
-        <xsl:apply-templates select="tfoot"/>
-        <xsl:apply-templates select="caption"/>
+        <xsl:apply-templates select="thead | db:thead"/>
+        <xsl:apply-templates select="tbody | db:tbody"/>
+        <xsl:apply-templates select="tfoot | db:tfoot"/>
+        <xsl:apply-templates select="caption | db:caption"/>
       </xsl:otherwise>
     </xsl:choose>
   </div>
 </xsl:template>
 
 <!-- = tgroup = -->
-<xsl:template match="tgroup">
+<xsl:template match="tgroup | db:tgroup">
   <xsl:variable name="colsep">
     <xsl:choose>
       <xsl:when test="@colsep">
@@ -1073,16 +1097,16 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:if>
   </xsl:variable>
   <table>
-    <xsl:if test="@lang">
+    <xsl:if test="@lang or @xml:lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang"/>
+          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="../title">
+    <xsl:if test="../title or ../db:title">
       <xsl:attribute name="summary">
-        <xsl:value-of select="../title"/>
+        <xsl:value-of select="../title | ../db:title"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$style != ''">
@@ -1095,19 +1119,19 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
         <xsl:value-of select="normalize-space($class)"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates select="thead">
+    <xsl:apply-templates select="thead | db:thead">
       <xsl:with-param name="colspecs" select="colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="tbody">
+    <xsl:apply-templates select="tbody | db:tbody">
       <xsl:with-param name="colspecs" select="colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="tfoot">
+    <xsl:apply-templates select="tfoot | db:tfoot">
       <xsl:with-param name="colspecs" select="colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
@@ -1117,16 +1141,16 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 </xsl:template>
 
 <!-- = tbody | tfoot | thead = -->
-<xsl:template match="tbody | tfoot | thead">
+<xsl:template match="tbody | tfoot | thead | db:tbody | db:tfoot | db:thead">
   <xsl:param name="colspecs"/>
   <xsl:param name="spanspecs"/>
   <xsl:param name="colsep" select="''"/>
   <xsl:param name="rowsep" select="''"/>
   <xsl:element name="{local-name(.)}" namespace="{$db2html.namespace}">
-    <xsl:if test="@lang">
+    <xsl:if test="@lang or @xml:lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang"/>
+          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
@@ -1139,9 +1163,12 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       <xsl:when test="tr">
         <xsl:apply-templates select="tr"/>
       </xsl:when>
-      <xsl:when test="colspec">
+      <xsl:when test="db:tr">
+        <xsl:apply-templates select="db:tr"/>
+      </xsl:when>
+      <xsl:when test="colspec | db:colspec">
         <xsl:call-template name="db2html.row">
-          <xsl:with-param name="row"       select="row[1]"/>
+          <xsl:with-param name="row"       select="row[1] | db:row[1]"/>
           <xsl:with-param name="colspecs"  select="colspec"/>
           <xsl:with-param name="spanspecs" select="spanspec"/>
           <xsl:with-param name="colsep"    select="$colsep"/>
@@ -1150,7 +1177,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="db2html.row">
-          <xsl:with-param name="row"       select="row[1]"/>
+          <xsl:with-param name="row"       select="row[1] | db:row[1]"/>
           <xsl:with-param name="colspecs"  select="$colspecs"/>
           <xsl:with-param name="spanspecs" select="$spanspecs"/>
           <xsl:with-param name="colsep"    select="$colsep"/>
@@ -1162,7 +1189,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 </xsl:template>
 
 <!-- = table/title = -->
-<xsl:template match="table/title">
+<xsl:template match="table/title | db:table/db:title">
   <xsl:call-template name="db2html.block.title">
     <xsl:with-param name="node" select=".."/>
     <xsl:with-param name="title" select="."/>
@@ -1174,7 +1201,8 @@ This template strips the p tag around single-paragraph table entries to avoid
 introducing extra spacing.
 -->
 <xsl:template match="entry/para[
-              not(preceding-sibling::* or following-sibling::*)]">
+              not(preceding-sibling::* or following-sibling::*)] |
+              db:entry/db:para[not(preceding-sibling::* or following-sibling::*)]">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
