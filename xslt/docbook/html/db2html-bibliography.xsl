@@ -641,8 +641,7 @@ a bibliography entry.
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.biblioentry.mode"
-                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev)) and
-                                 not(set:has-same-node(., $node/*[1]/self::db:abbrev))]"/>
+                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev | $node/*[1]/self::db:abbrev))]"/>
   </div>
 </xsl:template>
 
@@ -656,8 +655,7 @@ a bibliography entry.
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.bibliomixed.mode"
-                         select="*[not(set:has-same-node(., $node/*[1]/self::abbrev)) and
-                                 not(set:has-same-node(., $node/*[1]/self::db:abbrev))]"/>
+                         select="node()[not(set:has-same-node(., $node/*[1]/self::abbrev | $node/*[1]/self::db:abbrev))]"/>
   </div>
 </xsl:template>
 
