@@ -1410,7 +1410,7 @@ REMARK: Describe this template
                     bibliography | glossary | index      | lot |
                     refentry     | section  | simplesect | toc |
                     db:bibliography | db:glossary   | db:index | db:refentry |
-                    db:sectio       | db:simplesect | db:toc "/>
+                    db:section      | db:simplesect | db:toc "/>
     <xsl:with-param name="info" select="sectioninfo | db:info"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
