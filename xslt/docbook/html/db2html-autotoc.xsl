@@ -240,7 +240,7 @@ For a description of the other parameters, see *{db2html.autotoc}.
       </xsl:otherwise>
     </xsl:choose>
     <xsl:if test="$labels">
-      <xsl:if test="refnamediv/refpurpose">
+      <xsl:if test="refnamediv/refpurpose or db:refnamediv/db:refpurpose">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="' — '"/>
         </xsl:call-template>

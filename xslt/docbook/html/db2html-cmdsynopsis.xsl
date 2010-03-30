@@ -166,10 +166,10 @@ REMARK: Describe this param
   </xsl:param>
   <div>
     <xsl:choose>
-      <xsl:when test="@lang">
+      <xsl:when test="@lang or @xml:lang">
         <xsl:attribute name="dir">
           <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang"/>
+            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
           </xsl:call-template>
         </xsl:attribute>
       </xsl:when>

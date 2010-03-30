@@ -57,7 +57,8 @@ is then used by the CSS for styling.
   <xsl:param name="class" select="''"/>
 	<xsl:param name="verbatim" select="$node[@xml:space = 'preserve']"/>
   <xsl:param name="formal" select="false()"/>
-	<xsl:param name="title" select="$node/title | $node/db:title"/>
+  <xsl:param name="title" select="$node/title | $node/db:title |
+                                  $node/db:info/db:title"/>
   <xsl:param name="caption" select="$node/caption"/>
 	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
@@ -219,7 +220,7 @@ element.
       <blockquote class="{local-name($node)}">
         <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
       </blockquote>
-      <xsl:apply-templates select="$node/attribution"/>
+      <xsl:apply-templates select="$node/attribution | $node/db:attribution"/>
     </div>
   </div>
 </xsl:template>

@@ -160,7 +160,7 @@ REMARK: Describe this module
         </xsl:attribute>
       </xsl:if>
       <!-- FIXME: @inheritnum -->
-      <xsl:apply-templates select="listitem"/>
+      <xsl:apply-templates select="listitem | db:listitem"/>
     </ol>
   </div>
 </xsl:template>
@@ -232,7 +232,7 @@ REMARK: Describe this module
 </xsl:template>
 
 <!-- = seglistitem = -->
-<xsl:template match="seglistitem">
+<xsl:template match="seglistitem | db:seglistitem">
   <xsl:param name="position"
               select="count(preceding-sibling::seglistitem) +
                       count(preceding-sibling::db:seglistitem) + 1"/>
