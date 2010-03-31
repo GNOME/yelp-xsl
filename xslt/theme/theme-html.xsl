@@ -157,10 +157,14 @@ div.sect div.sect {
 div.trails { margin: 0; }
 div.trail {
   font-size: 0.83em;
-  margin: 0 1px 0.2em 1px;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
+  margin: 0 2.2em 0.2em 2.2em;
+  padding: 0;
+  text-indent: -1em;
   color: </xsl:text>
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+a.trail {
+  white-space: nowrap;
 }
 div.header {
   margin: 0;
