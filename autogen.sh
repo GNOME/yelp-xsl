@@ -7,7 +7,7 @@ abs_srcdir=`(cd $srcdir && pwd)`
 
 PKG_NAME="yelp-xsl"
 
-(test -f $srcdir/configure.in \
+(test -f $srcdir/configure.ac \
   && test -f $srcdir/README \
   && test -d $srcdir/xslt) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
@@ -20,4 +20,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.9 USE_GNOME2_MACROS=1 . gnome-autogen.sh
+USE_GNOME2_MACROS=1 . gnome-autogen.sh

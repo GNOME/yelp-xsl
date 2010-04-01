@@ -1,10 +1,10 @@
 AC_INIT([yelp-xsl],[0.99.1],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl])
 
-ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
+AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2])
 
+# Check for programs
 dnl  In the interest of portability, we don't use GNU awk extensions,
 dnl  even though they rule.  To prevent accidental use and subsequent
 dnl  bug reports after busted tarballs were shipped, we use -W compat
@@ -17,22 +17,24 @@ else
 fi
 AC_SUBST(YELP_XSL_AWK)
 
+# Dependecies
 PKG_CHECK_MODULES(YELP_XSL,
 [
 	libxml-2.0 >= 2.6.12
 	libxslt    >= 1.1.8
 ])
 
+# i18n stuff
 GETTEXT_PACKAGE=yelp-xsl
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL([0.40.0])
 
 AC_ARG_ENABLE(doc,
               [AS_HELP_STRING([--enable-doc],[build and install developer documentation [default=no]])],,
               enable_doc=no)
-AM_CONDITIONAL(ENABLE_DOC, test "x$enable_doc" != "xno")  
+AM_CONDITIONAL(ENABLE_DOC, test "x$enable_doc" != "xno")
 
 AC_CONFIG_FILES([
 Makefile

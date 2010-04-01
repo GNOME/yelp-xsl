@@ -1,6 +1,6 @@
 SUBDIRS = icons xslt doc po
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 pkgconfigdir = $(datadir)/pkgconfig
 pkgconfig_DATA = yelp-xsl.pc
