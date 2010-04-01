@@ -313,9 +313,11 @@ REMARK: Talk about some of the parameters
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
-    <xsl:call-template name="db2html.anchor">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
+    <xsl:if test="$node/@id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="$node/@id"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="db2html.header">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="title_node" select="$title_node"/>

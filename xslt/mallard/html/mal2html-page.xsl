@@ -346,6 +346,16 @@ REMARK: Describe this template
 
 
 <!--**==========================================================================
+mal2html.page.head.extra
+FIXME
+:Stub: true
+
+REMARK: Describe this stub template.
+-->
+<xsl:template name="mal2html.page.head.extra"/>
+
+
+<!--**==========================================================================
 mal2html.page.headbar
 FIXME
 
@@ -497,6 +507,7 @@ REMARK: Describe this template
         </xsl:choose>
       </title>
       <xsl:call-template name="mal2html.css"/>
+      <xsl:call-template name="mal2html.page.head.extra"/>
     </head>
     <body class="{@style}">
       <xsl:call-template name="mal2html.page.headbar">
