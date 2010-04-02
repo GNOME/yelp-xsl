@@ -226,7 +226,7 @@ a.footnote-ref { text-decoration: none; }
 <!-- == Matched Templates == -->
 
 <!-- = footnote = -->
-<xsl:template match="footnote">
+<xsl:template match="footnote | db:footnote">
   <xsl:call-template name="db2html.footnote.ref"/>
 </xsl:template>
 

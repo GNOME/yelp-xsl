@@ -99,7 +99,8 @@ This template is going away
 
 
 <!-- = equation/title = -->
-<xsl:template match="equation/title | db:equation/db:title">
+<xsl:template match="equation/title | db:equation/db:title |
+                     db:equation/db:info/db:title">
   <xsl:call-template name="db2html.title.block"/>
 </xsl:template>
 
