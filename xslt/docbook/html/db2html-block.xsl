@@ -59,7 +59,7 @@ is then used by the CSS for styling.
   <xsl:param name="formal" select="false()"/>
   <xsl:param name="title" select="$node/title | $node/db:title |
                                   $node/db:info/db:title"/>
-  <xsl:param name="caption" select="$node/caption"/>
+  <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
 	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>

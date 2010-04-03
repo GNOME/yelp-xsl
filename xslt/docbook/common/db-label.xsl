@@ -355,7 +355,7 @@ REMARK: Document this mode
 <!-- = db.number.mode % chapter = -->
 <xsl:template mode="db.number.mode" match="chapter | db:chapter">
   <xsl:choose>
-    <xsl:when test="parent::part">
+    <xsl:when test="parent::part or parent::db:part">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'chapter.number'"/>
         <xsl:with-param name="node" select="."/>

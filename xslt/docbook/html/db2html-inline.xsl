@@ -160,7 +160,7 @@ FIXME
 </xsl:template>
 
 <!-- = artpagenums = -->
-<xsl:template match="artpagenums">
+<xsl:template match="artpagenums | db:artpagenums">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 

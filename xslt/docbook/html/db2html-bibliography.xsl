@@ -480,7 +480,8 @@ a bibliography entry.
   <span class="bibliotitle">
     <xsl:call-template name="l10n.gettext">
       <xsl:with-param name="msgid" select="'citetitle.format'"/>
-      <xsl:with-param name="role" select="../self::biblioset/@relation"/>
+      <xsl:with-param name="role" select="../self::biblioset/@relation |
+                                          ../self::db:biblioset/@relation"/>
       <xsl:with-param name="node" select="."/>
       <xsl:with-param name="format" select="true()"/>
     </xsl:call-template>

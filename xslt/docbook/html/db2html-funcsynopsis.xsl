@@ -55,12 +55,12 @@ top of the XML document.  The same processing instruction or inside a
 <!-- == Matched Templates == -->
 
 <!-- = funcdef = -->
-<xsl:template match="funcdef">
+<xsl:template match="funcdef | db:funcdef">
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
 <!-- = funcparams = -->
-<xsl:template match="funcparams">
+<xsl:template match="funcparams | db:funcparams">
   <xsl:text>(</xsl:text>
   <xsl:call-template name="db2html.inline"/>
   <xsl:text>)</xsl:text>
