@@ -325,14 +325,20 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = isbn % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="isbn">
-  <xsl:call-template name="db2html.inline"/>
+<xsl:template mode="db2html.biblioentry.mode"
+              match="isbn | db:biblioid[@class = 'isbn']">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class" select="'isbn'"/>
+  </xsl:call-template>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
 <!-- = issn % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="issn">
-  <xsl:call-template name="db2html.inline"/>
+<xsl:template mode="db2html.biblioentry.mode"
+              match="issn | db:biblioid[@class = 'issn']">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class" select="'issn'"/>
+  </xsl:call-template>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
@@ -426,8 +432,11 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = pubsnumber % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="pubsnumber">
-  <xsl:call-template name="db2html.inline"/>
+<xsl:template mode="db2html.biblioentry.mode"
+              match="pubsnumber | db:biblioid[@class = 'pubsnumber']">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class" select="'pubsnumber'"/>
+  </xsl:call-template>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
