@@ -622,13 +622,17 @@ FIXME
 </xsl:template>
 
 <!-- = isbn = -->
-<xsl:template match="isbn">
-  <xsl:call-template name="db2html.inline"/>
+<xsl:template match="isbn | db:biblioid[@class = 'isbn']">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class" select="'isbn'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = issn = -->
-<xsl:template match="issn">
-  <xsl:call-template name="db2html.inline"/>
+<xsl:template match="issn | db:biblioid[@class = 'issn']">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="name-class" select="'issn'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = issuenum = -->
