@@ -1012,9 +1012,14 @@ FIXME
     <xsl:with-param name="name-class">sgmltag</xsl:with-param>
     <xsl:with-param name="class">
       <xsl:text>code sgmltag</xsl:text>
-      <xsl:if test="@class">
-        <xsl:value-of select="concat(' sgmltag-', @class)"/>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="@class = 'comment'">
+          <xsl:value-of select="' sgmltag-sgmlcomment'"/>
+        </xsl:when>
+        <xsl:when test="@class">
+          <xsl:value-of select="concat(' sgmltag-', @class)"/>
+        </xsl:when>
+      </xsl:choose>
     </xsl:with-param>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
