@@ -452,7 +452,9 @@ template.
 
 <!-- = formalpara = -->
 <xsl:template match="formalpara | db:formalpara">
-  <xsl:call-template name="db2html.block"/>
+  <xsl:call-template name="db2html.block">
+    <xsl:with-param name="formal" select="true()"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = glossdef = -->
