@@ -97,13 +97,6 @@ This template is going away
 <!-- Handled in db2html.title.header -->
 <xsl:template match="subtitle | db:subtitle"/>
 
-
-<!-- = equation/title = -->
-<xsl:template match="equation/title | db:equation/db:title |
-                     db:equation/db:info/db:title">
-  <xsl:call-template name="db2html.title.block"/>
-</xsl:template>
-
 <!-- = msg/title = -->
 <xsl:template match="msg/title | db:msg/db:title">
   <xsl:call-template name="db2html.title.block"/>

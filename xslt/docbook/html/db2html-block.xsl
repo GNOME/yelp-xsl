@@ -420,7 +420,9 @@ template.
 
 <!-- = equation = -->
 <xsl:template match="equation | db:equation">
-  <xsl:call-template name="db2html.block"/>
+  <xsl:call-template name="db2html.block">
+    <xsl:with-param name="formal" select="true()"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = example = -->
