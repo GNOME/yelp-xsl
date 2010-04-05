@@ -1158,7 +1158,7 @@ FIXME
 </xsl:template>
 
 <!-- = symbol = -->
-<xsl:template match="symbol | db:surname">
+<xsl:template match="symbol | db:symbol">
   <xsl:call-template name="db2html.inline">
     <xsl:with-param name="class" select="'code'"/>
     <xsl:with-param name="ltr" select="true()"/>
