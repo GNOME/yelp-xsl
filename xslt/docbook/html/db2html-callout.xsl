@@ -141,7 +141,7 @@ span.co a:hover { text-decoration: none; }
 <!-- == Matched Templates == -->
 
 <!-- = co = -->
-<xsl:template match="co">
+<xsl:template match="co | db:co">
   <xsl:call-template name="db2html.co.dingbat"/>
 </xsl:template>
 
