@@ -636,6 +636,7 @@ a bibliography entry.
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="db:info"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
   </xsl:call-template>

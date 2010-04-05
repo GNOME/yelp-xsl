@@ -1017,7 +1017,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="title | db:title"/>
+    <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <!-- FIXME: I have no idea what I'm supposed to do with textobject -->
     <xsl:choose>
       <xsl:when test="graphic | mediaobject">

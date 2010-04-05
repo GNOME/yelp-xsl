@@ -216,7 +216,8 @@ element.
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <div class="inner">
-			<xsl:apply-templates select="$node/title | $node/db:title"/>
+      <xsl:apply-templates select="$node/title | $node/db:title |
+                                   $node/db:info/db:title"/>
       <blockquote class="{local-name($node)}">
         <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
       </blockquote>

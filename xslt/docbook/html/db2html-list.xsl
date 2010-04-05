@@ -42,7 +42,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="title"/>
+    <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <dl class="glosslist">
       <xsl:apply-templates select="glossentry | db:glossentry"/>
     </dl>
@@ -60,6 +60,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
     <ul>
       <xsl:attribute name="class">
@@ -134,6 +135,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
     <ol>
       <xsl:attribute name="class">
@@ -272,7 +274,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="title | db:title"/>
+    <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <xsl:apply-templates select="seglistitem | db:seglistitem"/>
   </div>
 </xsl:template>
@@ -467,6 +469,7 @@ REMARK: Describe this module
         <xsl:with-param name="node" select=".."/>
       </xsl:call-template>
     </xsl:if>
+    <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates/>
   </dt>
 </xsl:template>
@@ -482,6 +485,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::varlistentry) and
                                    not(self::db:varlistentry)]"/>
     <dl class="terms variablelist">
