@@ -1104,9 +1104,9 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="../title or ../db:title">
+    <xsl:if test="../title or ../db:title or ../db:info/db:title">
       <xsl:attribute name="summary">
-        <xsl:value-of select="../title | ../db:title"/>
+        <xsl:value-of select="../title | ../db:title | ../db:info/db:title"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$style != ''">
@@ -1186,6 +1186,14 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:otherwise>
     </xsl:choose>
   </xsl:element>
+</xsl:template>
+
+<!-- = table/info/title = -->
+<xsl:template match="db:table/db:info/db:title">
+  <xsl:call-template name="db2html.block.title">
+    <xsl:with-param name="node" select="../.."/>
+    <xsl:with-param name="title" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = table/title = -->
