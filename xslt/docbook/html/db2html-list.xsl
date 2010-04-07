@@ -198,6 +198,7 @@ REMARK: Describe this module
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::step) and not(self::db:step)]"/>
     <xsl:choose>
       <xsl:when test="(count(step) + count(db:step)) = 1">
