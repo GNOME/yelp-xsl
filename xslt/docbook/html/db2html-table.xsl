@@ -992,14 +992,14 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:attribute>
     </xsl:if>
     <xsl:apply-templates select="thead | db:thead">
-      <xsl:with-param name="colspecs" select="colspec"/>
-      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="tbody | db:tbody">
-      <xsl:with-param name="colspecs" select="colspec"/>
-      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
@@ -1120,20 +1120,20 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:attribute>
     </xsl:if>
     <xsl:apply-templates select="thead | db:thead">
-      <xsl:with-param name="colspecs" select="colspec"/>
-      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="tbody | db:tbody">
-      <xsl:with-param name="colspecs" select="colspec"/>
-      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="tfoot | db:tfoot">
-      <xsl:with-param name="colspecs" select="colspec"/>
-      <xsl:with-param name="spanspecs" select="spanspec"/>
+      <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
+      <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
       <xsl:with-param name="colsep" select="$colsep"/>
       <xsl:with-param name="rowsep" select="$rowsep"/>
     </xsl:apply-templates>
@@ -1169,8 +1169,8 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       <xsl:when test="colspec | db:colspec">
         <xsl:call-template name="db2html.row">
           <xsl:with-param name="row"       select="row[1] | db:row[1]"/>
-          <xsl:with-param name="colspecs"  select="colspec"/>
-          <xsl:with-param name="spanspecs" select="spanspec"/>
+          <xsl:with-param name="colspecs"  select="colspec | db:colspec"/>
+          <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
           <xsl:with-param name="colsep"    select="$colsep"/>
           <xsl:with-param name="rowsep"    select="$rowsep"/>
         </xsl:call-template>
