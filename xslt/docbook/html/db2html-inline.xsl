@@ -607,7 +607,7 @@ FIXME
 </xsl:template>
 
 <!-- = interface = -->
-<xsl:template match="interface">
+<xsl:template match="interface | db:interface">
   <xsl:call-template name="db2html.inline">
     <xsl:with-param name="class" select="'gui'"/>
   </xsl:call-template>
@@ -760,9 +760,9 @@ FIXME
     </xsl:if>
     <xsl:apply-templates select="."/>
   </xsl:for-each>
-  <xsl:if test="shortcut">
+  <xsl:if test="shortcut or db:shortcut">
     <xsl:text> </xsl:text>
-    <xsl:apply-templates select="shortcut"/>
+    <xsl:apply-templates select="shortcut | db:shortcut"/>
   </xsl:if>
 </xsl:template>
 
