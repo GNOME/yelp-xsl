@@ -199,6 +199,12 @@ assembles those into a string.
   <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
                                  ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
 
+  <xsl:if test="$node/db:personname">
+    <xsl:call-template name="db.personname">
+      <xsl:with-param name="node" select="$node/db:personname"/>
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:call-template>
+  </xsl:if>
   <!-- FIXME: Use xsl:choose for different language rules -->
   <xsl:if test="$node/honorific or $node/db:honorific">
     <xsl:apply-templates select="$node/honorific[1] | $node/db:honorific[1]"/>
