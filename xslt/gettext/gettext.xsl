@@ -131,7 +131,8 @@ REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.gettext">
   <xsl:param name="msgid"/>
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:param name="lang_language">
     <xsl:call-template name="l10n.language">
       <xsl:with-param name="lang" select="$lang"/>
@@ -885,7 +886,8 @@ $lang: The locale to extract the language from
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.language">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:choose>
     <xsl:when test="$lang = $l10n.locale">
       <xsl:value-of select="$l10n.language"/>
@@ -914,7 +916,8 @@ $lang: The locale to extract the region from
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.region">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:choose>
     <xsl:when test="$lang = $l10n.locale">
       <xsl:value-of select="$l10n.region"/>
@@ -945,7 +948,8 @@ $lang: The locale to extract the variant from
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.variant">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:choose>
     <xsl:when test="$lang = $l10n.locale">
       <xsl:value-of select="$l10n.variant"/>
@@ -973,7 +977,8 @@ $lang: The locale to extract the charset from
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.charset">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang"/>
+  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
+                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:choose>
     <xsl:when test="$lang = $l10n.locale">
       <xsl:value-of select="$l10n.charset"/>
