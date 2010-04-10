@@ -287,7 +287,8 @@ REMARK: Document this mode
 <xsl:template mode="db.xref.content.mode" match="qandaentry | db:qandaentry">
   <xsl:param name="xrefstyle"/>
   <xsl:param name="role" select="substring-after($xrefstyle, 'role:')"/>
-  <xsl:apply-templates mode="db.xref.content.mode" select="question">
+  <xsl:apply-templates mode="db.xref.content.mode"
+                       select="question | db:question">
     <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
     <xsl:with-param name="role" select="$role"/>
   </xsl:apply-templates>
