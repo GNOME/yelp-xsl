@@ -921,7 +921,7 @@ REMARK: Describe this mode
 </xsl:template>
 
 <!-- = db.titleabbrev.mode % refentry = -->
-<xsl:template mode="db.titleabbrev.mode" match="refentry">
+<xsl:template mode="db.titleabbrev.mode" match="refentry | db:refentry">
   <xsl:choose>
     <xsl:when test="refentryinfo/titleabbrev">
       <xsl:apply-templates select="refentryinfo/titleabbrev/node()"/>
