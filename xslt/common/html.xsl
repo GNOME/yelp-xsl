@@ -46,7 +46,6 @@ FIXME
   </xsl:choose>
 </xsl:param>
 
-<xsl:param name="html.html5" select="false()"/>
 <xsl:param name="html.xhtml" select="true()"/>
 
 <xsl:param name="html.namespace">
@@ -90,21 +89,9 @@ FIXME
     </xsl:choose>
   </xsl:param>
   <exsl:document href="{$href}">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:call-template name="html.page">
-          <xsl:with-param name="node" select="$node"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="contents">
-          <xsl:call-template name="html.page">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:apply-templates mode="html.compat.mode" select="exsl:node-set($contents)/*"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="html.page">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </exsl:document>
 </xsl:template>
 
@@ -119,15 +106,15 @@ FIXME
       <xsl:call-template name="html.head.custom"/>
     </head>
     <body>
-      <header>
+      <div class="header">
         <xsl:apply-templates mode="html.header.mode" select="$node"/>
-      </header>
-      <article>
+      </div>
+      <div class="body">
         <xsl:apply-templates mode="html.body.mode" select="$node"/>
-      </article>
-      <footer>
+      </div>
+      <div class="footer">
         <xsl:apply-templates mode="html.footer.mode" select="$node"/>
-      </footer>
+      </div>
     </body>
   </html>
 </xsl:template>
@@ -191,56 +178,6 @@ FIXME
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:param>
-  <xsl:variable name="header">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:text>header</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>div.header</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="footer">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:text>footer</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>div.footer</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="article">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:text>article</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>div.body</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="section">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:text>section</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>div.sect</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="hgroup">
-    <xsl:choose>
-      <xsl:when test="$html.html5">
-        <xsl:text>hgroup</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>div.hgroup</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
   <xsl:text>
 html { height: 100%; }
 body {
@@ -255,7 +192,7 @@ body {
   max-width: 73em;
   position: relative;
 }
-</xsl:text><xsl:value-of select="$article"/><xsl:text> {
+div.body {
   margin: 0;
   padding: 1em;
   max-width: 60em;
@@ -265,17 +202,17 @@ body {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
-</xsl:text><xsl:value-of select="$header"/><xsl:text> {
+div.header {
   max-width: 60em;
 }
-</xsl:text><xsl:value-of select="$footer"/><xsl:text> {
+div.footer {
   max-width: 60em;
 }
-</xsl:text><xsl:value-of select="$section"/><xsl:text> {
+div.sect {
   margin-top: 1.72em;
   clear: both;
 }
-</xsl:text><xsl:value-of select="concat($section, ' ', $section)"/><xsl:text>
+div.sect div.sect {
   margin-top: 1.44em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
 }
@@ -289,7 +226,7 @@ div.trail {
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
 }
 a.trail { white-space: nowrap; }
-</xsl:text><xsl:value-of select="$hgroup"/><xsl:text> {
+div.hgroup {
   margin: 0 0 0.5em 0;
   color: </xsl:text>
     <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
@@ -301,26 +238,11 @@ h1, h2, h3, h4, h5, h6, h7 {
   color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
   font-weight: bold;
 }
-</xsl:text>
-<xsl:choose>
-<xsl:when test="$html.html5">
-<xsl:text>
-h1.title { font-size: 1.44em; }
-h2.subtitle { font-size: 1.2em; }
-section h1.title { font-size: 1.2em; }
-section h2.subtitle { font-size: 1.0em; }
-</xsl:text>
-</xsl:when>
-<xsl:otherwise>
-<xsl:text>
 h1 { font-size: 1.44em; }
 h2 { font-size: 1.2em; }
 h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
 h3, h4, h5, h6, h7 { font-size: 1em; }
-</xsl:text>
-</xsl:otherwise>
-</xsl:choose>
-<xsl:text>
+
 p { line-height: 1.72em; }
 div, pre, p { margin: 1em 0 0 0; padding: 0; }
 div:first-child, pre:first-child, p:first-child { margin-top: 0; }
@@ -652,70 +574,6 @@ template to provide additional CSS that will be used by all HTML output.
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:param>
-</xsl:template>
-
-<!-- == html.compat.mode == -->
-
-<xsl:template mode="html.compat.mode" match="article | html:article">
-  <div class="body">
-    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </div>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="header | html:header">
-  <div class="header">
-    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </div>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="section | html:section">
-  <div class="sect">
-    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </div>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="footer | html:footer">
-  <div class="footer">
-    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </div>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="hgroup | html:hgroup">
-  <div class="hgroup">
-    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </div>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="h1 | html:h1">
-  <xsl:variable name="depth">
-    <xsl:value-of select="count(ancestor::section | ancestor::html:section)"/>
-  </xsl:variable>
-  <xsl:element name="h{$depth + 1}" namespace="{$html.namespace}">
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </xsl:element>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="h2 | html:h2">
-  <xsl:variable name="depth">
-    <xsl:value-of select="count(ancestor::section | ancestor::html:section)"/>
-  </xsl:variable>
-  <xsl:element name="h{$depth + 2}" namespace="{$html.namespace}">
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </xsl:element>
-</xsl:template>
-
-<xsl:template mode="html.compat.mode" match="*">
-  <xsl:copy>
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
-  </xsl:copy>
 </xsl:template>
 
 </xsl:stylesheet>

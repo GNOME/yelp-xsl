@@ -257,14 +257,14 @@ REMARK: Describe this template
   </xsl:variable>
   <xsl:variable name="seealsonodes" select="exsl:node-set($seealsolinks)/*"/>
   <xsl:if test="$guidenodes or $seealsonodes">
-    <section class="autolinks">
-      <hgroup>
-        <h1 class="title">
+    <div class="sect sect-links">
+      <div class="hgroup">
+        <xsl:element name="{concat('h', $depth)}" namespace="{$html.namespace}">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'Further Reading'"/>
           </xsl:call-template>
-        </h1>
-      </hgroup>
+        </xsl:element>
+      </div>
       <!-- FIXME: For prev/next series, insert links to first/prev/next/last -->
       <div class="autolinks">
         <xsl:if test="$guidenodes">
@@ -300,7 +300,7 @@ REMARK: Describe this template
           </ul>
         </xsl:if>
       </div>
-    </section>
+    </div>
   </xsl:if>
 </xsl:template>
 
@@ -558,10 +558,10 @@ REMARK: Describe this template
 <xsl:template mode="html.body.mode" match="mal:page">
   <xsl:call-template name="mal2html.page.prevnextlinks"/>
   <xsl:call-template name="mal2html.page.versionbanner"/>
-  <hgroup>
+  <div class="hgroup">
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
-  </hgroup>
+  </div>
   <div class="inner">
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
@@ -579,11 +579,11 @@ REMARK: Describe this template
 
 <!-- = section = -->
 <xsl:template match="mal:section">
-  <section id="{@id}">
-    <hgroup>
+  <div class="sect" id="{@id}">
+    <div class="hgroup">
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
-    </hgroup>
+    </div>
     <div class="inner">
       <xsl:for-each
           select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
@@ -597,7 +597,7 @@ REMARK: Describe this template
     <xsl:call-template name="mal2html.page.autolinks">
       <xsl:with-param name="node" select="."/>
     </xsl:call-template>
-  </section>
+  </div>
 </xsl:template>
 
 
@@ -609,16 +609,26 @@ FIXE
 -->
 <!-- = subtitle = -->
 <xsl:template mode="mal2html.title.mode" match="mal:subtitle">
-  <h2 class="subtitle">
+  <xsl:variable name="depth"
+                select="count(ancestor::mal:section) + 2"/>
+  <xsl:element name="{concat('h', $depth)}" namespace="{$html.namespace}">
+    <xsl:attribute name="class">
+      <xsl:text>title</xsl:text>
+    </xsl:attribute>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
-  </h2>
+  </xsl:element>
 </xsl:template>
 
 <!-- = title = -->
 <xsl:template mode="mal2html.title.mode" match="mal:title">
-  <h1 class="title">
+  <xsl:variable name="depth"
+                select="count(ancestor::mal:section) + 1"/>
+  <xsl:element name="{concat('h', $depth)}" namespace="{$html.namespace}">
+    <xsl:attribute name="class">
+      <xsl:text>title</xsl:text>
+    </xsl:attribute>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
-  </h1>
+  </xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>
