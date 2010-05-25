@@ -223,6 +223,10 @@ cur_line_mode == "meta" && /^:Requires:.+$/ {
     }
     next;
 }
+cur_line_mode == "meta" && /^:Stub:.*$/ {
+    print "    <stub xmlns='http://projects.gnome.org/yelp/xsldoc/'/>\n";
+    next;
+}
 cur_line_mode == "meta" && /^:Revision:.+$/ {
     val = $0;
     sub(/^\:/, "", val);

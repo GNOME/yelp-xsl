@@ -3,6 +3,7 @@
       type="guide"
       id="index">
   <info>
+    <title type="link">Yelp</title>
   </info>
 
   <title>Yelp XSLT Stylesheets</title>

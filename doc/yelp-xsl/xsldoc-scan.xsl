@@ -42,14 +42,56 @@ free software.
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:str="http://exslt.org/strings"
+                xmlns:xsldoc="http://projects.gnome.org/yelp/xsldoc/"
                 xmlns="http://projectmallard.org/1.0/"
                 extension-element-prefixes="exsl"
-                exclude-result-prefixes="mal set"
+                exclude-result-prefixes="mal set xsldoc"
                 version="1.0">
 
 <xsl:param name="xsldoc.id"/>
 <xsl:param name="xsldoc.xslt_file"/>
 <xsl:variable name="xslt_file" select="document($xsldoc.xslt_file)/xsl:stylesheet"/>
+
+<xsl:template name="revision">
+  <xsl:param name="info" select="mal:info"/>
+  <xsl:choose>
+    <xsl:when test="$info/mal:revision">
+      <xsl:for-each select="$info/mal:revision">
+        <xsl:copy>
+          <xsl:if test="not(@status)">
+            <xsl:attribute name="status">
+              <xsl:text>incomplete</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:copy-of select="@*"/>
+        </xsl:copy>
+      </xsl:for-each>
+    </xsl:when>
+    <xsl:otherwise>
+      <revision version="0.0" date="1970-01-01" status="stub"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="calls_templates">
+  <xsl:param name="page"/>
+  <xsl:param name="xslt_node"/>
+  <xsl:for-each select="$xslt_node">
+    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[not(@name = //xsl:template/@name)]/@name)"/>
+    <xsl:if test="count($calls_templates) > 0">
+      <list style="compact">
+        <title>Calls Templates</title>
+        <xsl:for-each select="$calls_templates">
+          <xsl:variable name="name" select="string(.)"/>
+          <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
+            <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
+            <item><p><link xref="{$id}"/></p></item>
+          </xsl:if>
+        </xsl:for-each>
+      </list>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
 
 <xsl:template match="mal:page">
   <xsl:variable name="page" select="."/>
@@ -60,7 +102,8 @@ free software.
       <xsl:if test="string(mal:desc) != ''">
         <xsl:copy-of select="mal:desc"/>
       </xsl:if>
-      <xsl:copy-of select="mal:info/*[not(self::mal:desc)]"/>
+      <xsl:call-template name="revision"/>
+      <xsl:copy-of select="mal:info/*[not(self::mal:desc) and not(self::mal:revision)]"/>
       <!-- xslt-includes -->
       <xsl:for-each select="$xslt_file//xsl:include">
         <xsl:choose>
@@ -77,14 +120,6 @@ free software.
             <link type="topic" xref="{$id}"/>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:for-each>
-      <!-- xslt-calls-template -->
-      <xsl:for-each select="set:distinct($xslt_file//xsl:call-template/@name)">
-        <xsl:variable name="name" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
-          <link type="xslt-calls-template" xref="{$id}"/>
-        </xsl:if>
       </xsl:for-each>
       <!-- xslt-defines-template -->
       <xsl:for-each select="$xslt_file/xsl:template/@name">
@@ -153,6 +188,20 @@ free software.
       </p>
     </xsl:if>
     <xsl:apply-templates/>
+    <xsl:variable name="requires" select="$page/mal:info/mal:link[@type = 'xslt-requires']"/>
+    <xsl:if test="count($requires) > 0">
+      <list style="compact">
+        <title>Requires Stylesheets</title>
+        <xsl:for-each select="$requires">
+          <xsl:sort select="@xref"/>
+          <item><p><link xref="{@xref}"/></p></item>
+        </xsl:for-each>
+      </list>
+    </xsl:if>
+    <xsl:call-template name="calls_templates">
+      <xsl:with-param name="page" select="$page"/>
+      <xsl:with-param name="xslt_node" select="$xslt_file"/>
+    </xsl:call-template>
     <xsl:if test="mal:section[@style = 'xslt-param']">
       <section id="P">
         <info>
@@ -215,7 +264,8 @@ free software.
       <info>
         <link type="guide" xref="{$xsldoc.id}#{$type}"/>
         <link type="guide" xref="index__{$type}"/>
-        <xsl:copy-of select="mal:info/*"/>
+        <xsl:call-template name="revision"/>
+        <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>
       </info>
       <xsl:copy-of select="mal:title"/>
       <xsl:if test="string(mal:info/mal:desc) != ''">
@@ -223,7 +273,22 @@ free software.
           <xsl:copy-of select="mal:info/mal:desc/node()"/>
         </p>
       </xsl:if>
+      <xsl:if test="$type = 'T'">
+        <xsl:if test="count(mal:info/xsldoc:stub) > 0">
+          <note>
+            <p>This template is a stub. Customizations may implement it for
+            additional functionality.</p>
+          </note>
+        </xsl:if>
+      </xsl:if>
       <xsl:apply-templates/>
+      <xsl:if test="$type = 'T'">
+        <xsl:variable name="title" select="mal:title"/>
+        <xsl:call-template name="calls_templates">
+          <xsl:with-param name="page" select="ancestor::mal:page"/>
+          <xsl:with-param name="xslt_node" select="$xslt_file//xsl:template[@name = $title]"/>
+        </xsl:call-template>
+      </xsl:if>
     </page>
   </exsl:document>
 </xsl:template>

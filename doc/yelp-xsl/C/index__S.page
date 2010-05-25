@@ -4,6 +4,8 @@
       id="index__S">
   <info>
     <link type="guide" xref="index"/>
+    <title type="link">Stylesheets</title>
+    <title type="link" role="topic">Index of XSLT Stylesheets</title>
   </info>
 
   <title>Index of XSLT Stylesheets</title>
