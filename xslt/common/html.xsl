@@ -1,0 +1,721 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
+<!--
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program; see the file COPYING.LGPL.  If not, write to the
+Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:exsl="http://exslt.org/common"
+                xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="html"
+                extension-element-prefixes="exsl"
+                version="1.0">
+
+<!--!!==========================================================================
+Common HTML Utilities
+Output CSS for transformations to HTML.
+:Requires: gettext colors icons
+
+FIXME
+-->
+
+<xsl:param name="html.basename">
+  <xsl:choose>
+    <xsl:when test="/*/@xml:id">
+      <xsl:value-of select="/*/@xml:id"/>
+    </xsl:when>
+    <xsl:when test="/*/@id">
+      <xsl:value-of select="/*/@id"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>index</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
+<xsl:param name="html.html5" select="false()"/>
+<xsl:param name="html.xhtml" select="true()"/>
+
+<xsl:param name="html.namespace">
+  <xsl:choose>
+    <xsl:when test="$html.xhtml">
+      <xsl:value-of select="'http://www.w3.org/1999/xhtml'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text></xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
+<xsl:param name="html.extension">
+  <xsl:choose>
+    <xsl:when test="$html.namespace = ''">
+      <xsl:text>.html</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>.xhtml</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
+<xsl:template name="html.output">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href">
+    <xsl:choose>
+      <xsl:when test="$node/@xml:id">
+        <xsl:value-of select="concat($node/@xml:id, $html.extension)"/>
+      </xsl:when>
+      <xsl:when test="$node/@id">
+        <xsl:value-of select="concat($node/@id, $html.extension)"/>
+      </xsl:when>
+      <xsl:when test="exsl:has-same-node($node, /*)">
+        <xsl:value-of select="concat($html.basename, $html.extension)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat(generate-id(), $html.extension)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <exsl:document href="{$href}">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:call-template name="html.page">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="contents">
+          <xsl:call-template name="html.page">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:apply-templates mode="html.compat.mode" select="exsl:node-set($contents)/*"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </exsl:document>
+</xsl:template>
+
+<xsl:template name="html.page">
+  <xsl:param name="node" select="."/>
+  <html>
+    <head>
+      <title>
+        <xsl:apply-templates mode="html.title.mode" select="$node"/>
+      </title>
+      <xsl:call-template name="html.css"/>
+      <xsl:call-template name="html.head.custom"/>
+    </head>
+    <body>
+      <header>
+        <xsl:apply-templates mode="html.header.mode" select="$node"/>
+      </header>
+      <article>
+        <xsl:apply-templates mode="html.body.mode" select="$node"/>
+      </article>
+      <footer>
+        <xsl:apply-templates mode="html.footer.mode" select="$node"/>
+      </footer>
+    </body>
+  </html>
+</xsl:template>
+
+<xsl:template mode="html.page.mode" match="*"/>
+
+<xsl:template name="html.head.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+<xsl:template name="html.css">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <style type="text/css">
+    <xsl:call-template name="html.css.core">
+      <xsl:with-param name="direction" select="$direction"/>
+      <xsl:with-param name="left" select="$left"/>
+      <xsl:with-param name="right" select="$right"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.css.elements">
+      <xsl:with-param name="direction" select="$direction"/>
+      <xsl:with-param name="left" select="$left"/>
+      <xsl:with-param name="right" select="$right"/>
+    </xsl:call-template>
+    <xsl:apply-templates mode="html.css.mode" select="$node">
+      <xsl:with-param name="direction" select="$direction"/>
+      <xsl:with-param name="left" select="$left"/>
+      <xsl:with-param name="right" select="$right"/>
+    </xsl:apply-templates>
+    <xsl:call-template name="html.css.custom">
+      <xsl:with-param name="direction" select="$direction"/>
+      <xsl:with-param name="left" select="$left"/>
+      <xsl:with-param name="right" select="$right"/>
+    </xsl:call-template>
+  </style>
+</xsl:template>
+
+<xsl:template name="html.css.core">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:variable name="header">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:text>header</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>div.header</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="footer">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:text>footer</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>div.footer</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="article">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:text>article</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>div.body</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="section">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:text>section</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>div.sect</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="hgroup">
+    <xsl:choose>
+      <xsl:when test="$html.html5">
+        <xsl:text>hgroup</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>div.hgroup</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:text>
+html { height: 100%; }
+body {
+  margin: 0;
+  padding-top: 1em;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text"/><xsl:text>;
+  direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
+  max-width: 73em;
+  position: relative;
+}
+</xsl:text><xsl:value-of select="$article"/><xsl:text> {
+  margin: 0;
+  padding: 1em;
+  max-width: 60em;
+  min-height: 20em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+</xsl:text><xsl:value-of select="$header"/><xsl:text> {
+  max-width: 60em;
+}
+</xsl:text><xsl:value-of select="$footer"/><xsl:text> {
+  max-width: 60em;
+}
+</xsl:text><xsl:value-of select="$section"/><xsl:text> {
+  margin-top: 1.72em;
+  clear: both;
+}
+</xsl:text><xsl:value-of select="concat($section, ' ', $section)"/><xsl:text>
+  margin-top: 1.44em;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+}
+div.trails { margin: 0; }
+div.trail {
+  font-size: 0.83em;
+  margin: 0 2.2em 0.2em 2.2em;
+  padding: 0;
+  text-indent: -1em;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+a.trail { white-space: nowrap; }
+</xsl:text><xsl:value-of select="$hgroup"/><xsl:text> {
+  margin: 0 0 0.5em 0;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+h1, h2, h3, h4, h5, h6, h7 {
+  margin: 0; padding: 0;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  font-weight: bold;
+}
+</xsl:text>
+<xsl:choose>
+<xsl:when test="$html.html5">
+<xsl:text>
+h1.title { font-size: 1.44em; }
+h2.subtitle { font-size: 1.2em; }
+section h1.title { font-size: 1.2em; }
+section h2.subtitle { font-size: 1.0em; }
+</xsl:text>
+</xsl:when>
+<xsl:otherwise>
+<xsl:text>
+h1 { font-size: 1.44em; }
+h2 { font-size: 1.2em; }
+h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
+h3, h4, h5, h6, h7 { font-size: 1em; }
+</xsl:text>
+</xsl:otherwise>
+</xsl:choose>
+<xsl:text>
+p { line-height: 1.72em; }
+div, pre, p { margin: 1em 0 0 0; padding: 0; }
+div:first-child, pre:first-child, p:first-child { margin-top: 0; }
+div.inner, div.contents, pre.contents { margin-top: 0; }
+p img { vertical-align: middle; }
+
+table {
+  border-collapse: collapse;
+  border-color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border-width: 1px;
+}
+td, th {
+  padding: 0.5em;
+  vertical-align: top;
+  border-color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border-width: 1px;
+}
+thead td, thead th, tfoot td, tfoot th {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+ul, ol, dl { margin: 0; padding: 0; }
+li {
+  margin: 1em 0 0 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em;
+  padding: 0;
+}
+li:first-child { margin-top: 0; }
+dt { margin-top: 1em; }
+dt:first-child { margin-top: 0; }
+dt + dt { margin-top: 0; }
+dd {
+  margin: 0.2em 0 0 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+}
+ol.compact li { margin-top: 0.2em; }
+ul.compact li { margin-top: 0.2em; }
+ol.compact li:first-child { margin-top: 0; }
+ul.compact li:first-child { margin-top: 0; }
+dl.compact dt { margin-top: 0.2em; }
+dl.compact dt:first-child { margin-top: 0; }
+dl.compact dt + dt { margin-top: 0; }
+
+a {
+  text-decoration: none;
+  color: </xsl:text><xsl:value-of select="$theme.color.link"/><xsl:text>;
+}
+a:visited { color: </xsl:text>
+  <xsl:value-of select="$theme.color.link_visited"/><xsl:text>; }
+a:hover { text-decoration: underline; }
+a img { border: none; }
+</xsl:text>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.css.elements
+Output CSS for common elements from source formats.
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template outputs CSS for elements from source languages like DocBook and
+Mallard.  It defines them using common class names.  The common names are often
+the simpler element names from Mallard, although there some class names which
+are not taken from Mallard.  Stylesheets which convert to HTML should use the
+appropriate common classes.
+
+All parameters can be automatically computed if not provided.
+-->
+<xsl:template name="html.css.elements">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:text>
+div.title {
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+div.desc { margin: 0 0 0.2em 0; }
+div.contents + div.desc { margin: 0.2em 0 0 0; }
+pre.contents {
+  padding: 0.5em 1em 0.5em 1em;
+}
+pre.linenumbering {
+  margin: 0;
+  padding: 0.5em;
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.5em;
+  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+}
+div.code {
+  background: url('</xsl:text>
+    <xsl:value-of select="$theme.icons.code"/><xsl:text>') no-repeat top </xsl:text>
+    <xsl:value-of select="$right"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+div.figure {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+  padding: 4px;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+div.figure > div.inner > div.contents {
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+  text-align: center;
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.background"/><xsl:text>;
+}
+div.list > div.title { margin-bottom: 0.5em; }
+div.listing > div.inner { margin: 0; padding: 0; }
+div.listing > div.inner > div.desc { font-style: italic; }
+div.note {
+  padding: 6px;
+  border-top: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+}
+div.note > div.inner > div.title {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.note + 6"/><xsl:text>px;
+}
+div.note > div.inner > div.contents {
+  margin: 0; padding: 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.note + 6"/><xsl:text>px;
+}
+div.note > div.inner {
+  margin: 0; padding: 0;
+  background-image: url("</xsl:text>
+    <xsl:value-of select="$theme.icons.note"/><xsl:text>");
+  background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
+  background-repeat: no-repeat;
+  min-height: </xsl:text><xsl:value-of select="$theme.icons.size.note"/><xsl:text>px;
+}
+div.note-advanced div.inner { <!-- background-image: url("</xsl:text>
+  <xsl:value-of select="$theme.icons.note.advanced"/><xsl:text>"); --> }
+div.note-bug div.inner { background-image: url("</xsl:text>
+  <xsl:value-of select="$theme.icons.note.bug"/><xsl:text>"); }
+div.note-important div.inner { background-image: url("</xsl:text>
+  <xsl:value-of select="$theme.icons.note.important"/><xsl:text>"); }
+div.note-tip div.inner { background-image: url("</xsl:text>
+  <xsl:value-of select="$theme.icons.note.tip"/><xsl:text>"); }
+div.note-warning div.inner { background-image: url("</xsl:text>
+  <xsl:value-of select="$theme.icons.note.warning"/><xsl:text>"); }
+div.quote {
+  padding: 0;
+  background-image: url('</xsl:text>
+    <xsl:value-of select="$theme.icons.quote"/><xsl:text>');
+  background-repeat: no-repeat;
+  background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  min-height: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
+}
+div.quote > div.inner > div.title {
+  margin: 0 0 0.5em 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
+}
+blockquote {
+  margin: 0; padding: 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
+}
+div.quote > div.inner > div.cite {
+  margin-top: 0.5em;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
+    <xsl:value-of select="$theme.icons.size.quote"/><xsl:text>px;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+div.quote > div.inner > div.cite::before {
+  <!-- FIXME: i18n -->
+  content: '&#x2015; ';
+}
+div.screen {
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+}
+ol.steps, ul.steps {
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: </xsl:text>
+    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+}
+ol.steps .steps {
+  padding: 0;
+  border: none;
+  background-color: none;
+}
+li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
+li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
+div.synopsis > div.inner > div.contents, div.synopsis > pre.contents {
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: </xsl:text>
+    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+div.synopsis > div.inner > div.desc { font-style: italic; }
+div.synopsis div.code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
+.table {}
+tr.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+td.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+}
+tr.shade td.shade {
+  background-color: </xsl:text><xsl:value-of select="$theme.color.dark_background"/><xsl:text>;
+}
+
+span.app { font-style: italic; }
+span.cmd {
+  font-family: monospace;
+  background-color: </xsl:text>
+    <xsl:value-of select="$theme.color.gray_background"/><xsl:text>;
+  padding: 0 0.2em 0 0.2em;
+}
+span.cmd span.cmd { background-color: none; padding: 0; }
+pre span.cmd { background-color: none; padding: 0; }
+span.code {
+  font-family: monospace;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$theme.color.dark_background"/><xsl:text>;
+}
+span.code span.code { border: none; }
+pre span.code { border: none; }
+span.em { font-style: italic; }
+span.em-bold {
+  font-style: normal; font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+pre span.error {
+  color: </xsl:text><xsl:value-of select="$theme.color.text_error"/><xsl:text>;
+}
+span.file { font-family: monospace; }
+span.gui, span.guiseq { color: </xsl:text>
+  <xsl:value-of select="$theme.color.text_light"/><xsl:text>; }
+span.input { font-family: monospace; }
+pre span.input {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+span.key {
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$theme.color.yellow_border"/><xsl:text>;
+  padding: 0 0.2em 0 0.2em;
+}
+span.keyseq {
+  color: </xsl:text>
+    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+span.output { font-family: monospace; }
+pre span.output {
+  color: </xsl:text><xsl:value-of select="$theme.color.text"/><xsl:text>;
+}
+pre span.prompt {
+  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+}
+span.sys { font-family: monospace; }
+span.var { font-style: italic; }
+</xsl:text>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.css.custom
+Stub to output custom CSS common to all HTML transformations.
+:Stub: true
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template is a stub, called by *{html.css}.  You can override this
+template to provide additional CSS that will be used by all HTML output.
+-->
+<xsl:template name="html.css.custom">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+</xsl:template>
+
+<!-- == html.compat.mode == -->
+
+<xsl:template mode="html.compat.mode" match="article | html:article">
+  <div class="body">
+    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </div>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="header | html:header">
+  <div class="header">
+    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </div>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="section | html:section">
+  <div class="sect">
+    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </div>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="footer | html:footer">
+  <div class="footer">
+    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </div>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="hgroup | html:hgroup">
+  <div class="hgroup">
+    <xsl:copy-of select="@*[local-name(.) != 'class']"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </div>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="h1 | html:h1">
+  <xsl:variable name="depth">
+    <xsl:value-of select="count(ancestor::section | ancestor::html:section)"/>
+  </xsl:variable>
+  <xsl:element name="h{$depth + 1}" namespace="{$html.namespace}">
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="h2 | html:h2">
+  <xsl:variable name="depth">
+    <xsl:value-of select="count(ancestor::section | ancestor::html:section)"/>
+  </xsl:variable>
+  <xsl:element name="h{$depth + 2}" namespace="{$html.namespace}">
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </xsl:element>
+</xsl:template>
+
+<xsl:template mode="html.compat.mode" match="*">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="html.compat.mode" select="node()"/>
+  </xsl:copy>
+</xsl:template>
+
+</xsl:stylesheet>

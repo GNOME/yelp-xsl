@@ -73,6 +73,15 @@ mal.cache.key
 
 
 <!--@@==========================================================================
+mal.link.extension
+The filename extension for output files.
+
+FIXME
+-->
+<xsl:param name="mal.link.extension"/>
+
+
+<!--@@==========================================================================
 mal.link.default_root
 The default root ID.
 
@@ -223,7 +232,7 @@ $href: The #{href} attribute of ${node}.
 
 This template outputs a URL for a #{link} element or another element using
 linking attributes.  If ${xref} points to a valid page or section, it uses
-a file name based on the ID of the target page plus @{mal.chunk.extension}.
+a file name based on the ID of the target page plus @{mal.link.extension}.
 Otherwise, the link will point to ${href}.
 -->
 <xsl:template name="mal.link.target">
@@ -246,12 +255,12 @@ Otherwise, the link will point to ${href}.
       <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
       <xsl:variable name="sectionid" select="substring-after($xref, '#')"/>
       <xsl:if test="$pageid != ''">
-        <xsl:value-of select="concat($pageid, $mal.chunk.extension)"/>
+        <xsl:value-of select="concat($pageid, $mal.link.extension)"/>
       </xsl:if>
       <xsl:value-of select="concat('#', $sectionid)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="concat($xref, $mal.chunk.extension)"/>
+      <xsl:value-of select="concat($xref, $mal.link.extension)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

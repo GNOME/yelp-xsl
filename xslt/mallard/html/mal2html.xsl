@@ -17,29 +17,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:html="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal"
+                exclude-result-prefixes="html"
                 version="1.0">
-
-<xsl:import href="../../gettext/gettext.xsl"/>
-
-<!--#@ mal.chunk.doctype_public -->
-<xsl:param name="mal.chunk.doctype_public" select="'-//W3C//DTD HTML 4.01 Transitional//EN'"/>
-
-<!--#@ mal.chunk.doctype_system -->
-<xsl:param name="mal.chunk.doctype_system" select="'http://www.w3.org/TR/html4/loose.dtd'"/>
-
-<xsl:output method="html"
-            doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-            doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>
-<xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
-
-<!--#@ mal2html.namespace -->
-<xsl:param name="mal2html.namespace" select="''"/>
-
-<xsl:param name="mal.chunk.extension" select="'.html'"/>
-
 
 <!--!!==========================================================================
 Mallard to HTML
@@ -47,30 +27,11 @@ Mallard to HTML
 REMARK: Describe this module
 -->
 
-<xsl:include href="../common/mal-chunk.xsl"/>
-<xsl:include href="../common/mal-link.xsl"/>
+<xsl:include href="mal2xhtml.xsl" pass="true"><?pass?></xsl:include>
 
-<xsl:include href="mal2html-block.xsl"/>
-<xsl:include href="mal2html-css.xsl"/>
-<xsl:include href="mal2html-inline.xsl"/>
-<xsl:include href="mal2html-list.xsl"/>
-<xsl:include href="mal2html-media.xsl"/>
-<xsl:include href="mal2html-page.xsl"/>
-<xsl:include href="mal2html-svg.xsl"/>
-<xsl:include href="mal2html-table.xsl"/>
+<!--#@ html.xhtml -->
+<xsl:param name="html.xhtml" select="false()"/>
 
-<xsl:include href="../../common/utils.xsl"/>
-<xsl:include href="../../theme/theme-colors.xsl"/>
-<xsl:include href="../../theme/theme-icons.xsl"/>
-<xsl:include href="../../theme/theme-html.xsl"/>
-
-<!-- FIXME -->
-<xsl:template match="*">
-  <xsl:message>
-    <xsl:text>Unmatched element: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-  </xsl:message>
-  <xsl:apply-templates/>
-</xsl:template>
+<xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 
 </xsl:stylesheet>

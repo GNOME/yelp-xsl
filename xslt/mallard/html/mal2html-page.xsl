@@ -56,7 +56,7 @@ Copyright information is output in a #{div} element with #{class="copyrights"}.
 Each copyright is output in a nested #{div} element with #{class="copyright"}.
 -->
 <xsl:template name="mal2html.page.copyrights">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <div class="copyrights">
     <xsl:for-each select="$node/mal:info/mal:credit[mal:years]">
       <div class="copyright">
@@ -257,17 +257,14 @@ REMARK: Describe this template
   </xsl:variable>
   <xsl:variable name="seealsonodes" select="exsl:node-set($seealsolinks)/*"/>
   <xsl:if test="$guidenodes or $seealsonodes">
-    <div class="sect autolinkssection">
-      <div class="header">
-        <xsl:element name="{concat('h', $depth)}" namespace="{$mal2html.namespace}">
-          <xsl:attribute name="class">
-            <xsl:text>title</xsl:text>
-          </xsl:attribute>
+    <section class="autolinks">
+      <hgroup>
+        <h1 class="title">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'Further Reading'"/>
           </xsl:call-template>
-        </xsl:element>
-      </div>
+        </h1>
+      </hgroup>
       <!-- FIXME: For prev/next series, insert links to first/prev/next/last -->
       <div class="autolinks">
         <xsl:if test="$guidenodes">
@@ -303,7 +300,7 @@ REMARK: Describe this template
           </ul>
         </xsl:if>
       </div>
-    </div>
+    </section>
   </xsl:if>
 </xsl:template>
 
@@ -345,46 +342,7 @@ REMARK: Describe this template
 </xsl:template>
 
 
-<!--**==========================================================================
-mal2html.page.head.extra
-FIXME
-:Stub: true
 
-REMARK: Describe this stub template.
--->
-<xsl:template name="mal2html.page.head.extra"/>
-
-
-<!--**==========================================================================
-mal2html.page.headbar
-FIXME
-
-REMARK: FIXME
--->
-<xsl:template name="mal2html.page.headbar">
-  <xsl:param name="node" select="."/>
-  <div class="head">
-    <xsl:call-template name="mal2html.page.linktrails">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </div>
-</xsl:template>
-
-
-<!--**==========================================================================
-mal2html.page.footbar
-FIXME
-
-REMARK: FIXME
--->
-<xsl:template name="mal2html.page.footbar">
-  <xsl:param name="node" select="."/>
-  <div class="foot">
-    <xsl:call-template name="mal2html.page.copyrights">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </div>
-</xsl:template>
 
 
 <!--**==========================================================================
@@ -463,156 +421,148 @@ REMARK: Describe this template
   </xsl:for-each>
 </xsl:template>
 
+<xsl:template name="mal2html.page.prevnextlinks">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="next" select="$node/mal:info/mal:link[@type='next']"/>
+  <xsl:for-each select="$mal.cache">
+    <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
+    <xsl:if test="$prev or $next">
+      <!-- FIXME: Get prev/next links in constant position -->
+      <div class="navbar">
+        <xsl:if test="$prev">
+          <a class="navbar-prev">
+            <xsl:attribute name="href">
+              <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$prev"/>
+                <xsl:with-param name="xref" select="$prev/../../@id"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Previous'"/>
+            </xsl:call-template>
+          </a>
+        </xsl:if>
+        <xsl:if test="$prev and $next">
+          <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
+        </xsl:if>
+        <xsl:if test="$next">
+          <a class="navbar-next">
+            <xsl:attribute name="href">
+              <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$next"/>
+                <xsl:with-param name="xref" select="$next/@xref"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Next'"/>
+            </xsl:call-template>
+          </a>
+        </xsl:if>
+      </div>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="mal2html.page.versionbanner">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$mal2html.editor_mode">
+    <xsl:variable name="date">
+      <xsl:for-each select="$node/mal:info/mal:revision">
+        <xsl:sort select="@date" data-type="text" order="descending"/>
+        <xsl:if test="position() = 1">
+          <xsl:value-of select="@date"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="revision"
+                  select="$node/mal:info/mal:revision[@date = $date][last()]"/>
+    <xsl:if test="$revision/@status != ''">
+      <div class="version">
+        <!-- FIXME: i18n -->
+        <div class="title">
+          <xsl:choose>
+            <xsl:when test="$revision/@status = 'stub'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Stub'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$revision/@status = 'incomplete'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Incomplete'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$revision/@status = 'draft'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Draft'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$revision/@status = 'review'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Ready for review'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$revision/@status = 'final'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Final'"/>
+              </xsl:call-template>
+            </xsl:when>
+          </xsl:choose>
+        </div>
+        <p class="version">
+          <!-- FIXME: i18n -->
+          <xsl:text>Version </xsl:text>
+          <xsl:value-of select="$revision/@version"/>
+          <xsl:text> on </xsl:text>
+          <xsl:value-of select="$revision/@date"/>
+        </p>
+        <xsl:apply-templates mode="mal2html.block.mode" select="$revision/*"/>
+      </div>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
 
 <!-- == Matched Templates == -->
 
 <!-- = / = -->
 <xsl:template match="/">
+  <xsl:call-template name="html.output">
+    <xsl:with-param name="node" select="*"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template mode="html.title.mode" match="mal:page">
+  <xsl:variable name="title" select="mal:info/mal:title[@type = 'text'][1]"/>
   <xsl:choose>
-    <xsl:when test="$mal.chunk.chunk_top">
-      <xsl:call-template name="mal.chunk">
-        <xsl:with-param name="node" select="mal:page"/>
-      </xsl:call-template>
+    <xsl:when test="$title">
+      <xsl:value-of select="$title"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="mal.chunk.content.mode" select="mal:page"/>
+      <xsl:value-of select="mal:title"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
-<!-- = mal:page % mal.chunk.content.mode = -->
-<xsl:template mode="mal.chunk.content.mode" match="mal:page">
-  <!-- FIXME: find a way to just select the version element -->
-  <xsl:variable name="date">
-    <xsl:for-each select="mal:info/mal:revision">
-      <xsl:sort select="@date" data-type="text" order="descending"/>
-      <xsl:if test="position() = 1">
-        <xsl:value-of select="@date"/>
-      </xsl:if>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="revision"
-                select="mal:info/mal:revision[@date = $date][last()]"/>
-  <html>
-    <head>
-      <title>
-        <xsl:variable name="title" select="mal:info/mal:title[@type = 'text'][1]"/>
-        <xsl:choose>
-          <xsl:when test="$title">
-            <xsl:value-of select="$title"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="mal:title"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </title>
-      <xsl:call-template name="mal2html.css"/>
-      <xsl:call-template name="mal2html.page.head.extra"/>
-    </head>
-    <body class="{@style}">
-      <xsl:call-template name="mal2html.page.headbar">
-        <xsl:with-param name="node" select="."/>
-      </xsl:call-template>
-      <div class="body">
-        <xsl:variable name="linkid">
-          <xsl:call-template name="mal.link.linkid"/>
-        </xsl:variable>
-        <xsl:variable name="next" select="mal:info/mal:link[@type='next']"/>
-        <xsl:for-each select="$mal.cache">
-          <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
-          <xsl:if test="$prev or $next">
-            <!-- FIXME: Get prev/next links in constant position -->
-            <div class="navbar">
-              <xsl:if test="$prev">
-                <a class="navbar-prev">
-                  <xsl:attribute name="href">
-                    <xsl:call-template name="mal.link.target">
-                      <xsl:with-param name="node" select="$prev"/>
-                      <xsl:with-param name="xref" select="$prev/../../@id"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Previous'"/>
-                  </xsl:call-template>
-                </a>
-              </xsl:if>
-              <xsl:if test="$prev and $next">
-                <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
-              </xsl:if>
-              <xsl:if test="$next">
-                <a class="navbar-next">
-                  <xsl:attribute name="href">
-                    <xsl:call-template name="mal.link.target">
-                      <xsl:with-param name="node" select="$next"/>
-                      <xsl:with-param name="xref" select="$next/@xref"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Next'"/>
-                  </xsl:call-template>
-                </a>
-              </xsl:if>
-            </div>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:if test="$mal2html.editor_mode and $revision/@status != ''">
-          <div class="version">
-            <!-- FIXME: i18n -->
-            <div class="title">
-              <xsl:choose>
-                <xsl:when test="$revision/@status = 'stub'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Stub'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'incomplete'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Incomplete'"/>
-                   </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'draft'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Draft'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'review'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Ready for review'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'final'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Final'"/>
-                  </xsl:call-template>
-                </xsl:when>
-              </xsl:choose>
-            </div>
-            <p class="version">
-              <!-- FIXME: i18n -->
-              <xsl:text>Version </xsl:text>
-              <xsl:value-of select="$revision/@version"/>
-              <xsl:text> on </xsl:text>
-              <xsl:value-of select="$revision/@date"/>
-            </p>
-            <xsl:apply-templates mode="mal2html.block.mode" select="$revision/*"/>
-          </div>
-        </xsl:if>
-        <xsl:apply-templates select="."/>
-      </div>
-      <xsl:call-template name="mal2html.page.footbar">
-        <xsl:with-param name="node" select="."/>
-      </xsl:call-template>
-    </body>
-  </html>
+<xsl:template mode="html.header.mode" match="mal:page">
+  <xsl:call-template name="mal2html.page.linktrails"/>
 </xsl:template>
 
-<!-- = page = -->
-<xsl:template match="mal:page">
-  <div class="header">
+<xsl:template mode="html.footer.mode" match="mal:page">
+  <xsl:call-template name="mal2html.page.copyrights"/>
+</xsl:template>
+
+<xsl:template mode="html.body.mode" match="mal:page">
+  <xsl:call-template name="mal2html.page.prevnextlinks"/>
+  <xsl:call-template name="mal2html.page.versionbanner"/>
+  <hgroup>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
-  </div>
-  <div class="page-inner">
+  </hgroup>
+  <div class="inner">
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
       <xsl:apply-templates mode="mal2html.block.mode" select="."/>
@@ -629,12 +579,12 @@ REMARK: Describe this template
 
 <!-- = section = -->
 <xsl:template match="mal:section">
-  <div class="sect section" id="{@id}">
-    <div class="header">
+  <section id="{@id}">
+    <hgroup>
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
-    </div>
-    <div class="section-inner">
+    </hgroup>
+    <div class="inner">
       <xsl:for-each
           select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
         <xsl:apply-templates mode="mal2html.block.mode" select="."/>
@@ -647,7 +597,7 @@ REMARK: Describe this template
     <xsl:call-template name="mal2html.page.autolinks">
       <xsl:with-param name="node" select="."/>
     </xsl:call-template>
-  </div>
+  </section>
 </xsl:template>
 
 
@@ -659,19 +609,16 @@ FIXE
 -->
 <!-- = subtitle = -->
 <xsl:template mode="mal2html.title.mode" match="mal:subtitle">
-  <!-- FIXME -->
+  <h2 class="subtitle">
+    <xsl:apply-templates mode="mal2html.inline.mode"/>
+  </h2>
 </xsl:template>
 
 <!-- = title = -->
 <xsl:template mode="mal2html.title.mode" match="mal:title">
-  <xsl:variable name="depth"
-                select="count(ancestor::mal:section) + 1"/>
-  <xsl:element name="{concat('h', $depth)}" namespace="{$mal2html.namespace}">
-    <xsl:attribute name="class">
-      <xsl:text>title</xsl:text>
-    </xsl:attribute>
+  <h1 class="title">
     <xsl:apply-templates mode="mal2html.inline.mode"/>
-  </xsl:element>
+  </h1>
 </xsl:template>
 
 </xsl:stylesheet>

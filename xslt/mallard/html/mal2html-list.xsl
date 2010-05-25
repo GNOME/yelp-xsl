@@ -71,7 +71,7 @@ FIXME
   </xsl:variable>
   <div class="list">
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <xsl:element name="{$el}" namespace="{$mal2html.namespace}">
+    <xsl:element name="{$el}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
         <xsl:text>list</xsl:text>
         <xsl:if test="contains($style, ' compact ')">

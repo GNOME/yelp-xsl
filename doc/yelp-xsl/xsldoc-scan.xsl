@@ -61,6 +61,23 @@ free software.
         <xsl:copy-of select="mal:desc"/>
       </xsl:if>
       <xsl:copy-of select="mal:info/*[not(self::mal:desc)]"/>
+      <!-- xslt-includes -->
+      <xsl:for-each select="$xslt_file//xsl:include">
+        <xsl:choose>
+          <xsl:when test="processing-instruction('pass')">
+            <xsl:for-each select="document(@href, /)//xsl:include">
+              <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
+                                              '.xsl'), '.', '_')"/>
+              <link type="topic" xref="{$id}"/>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
+                                            '.xsl'), '.', '_')"/>
+            <link type="topic" xref="{$id}"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
       <!-- xslt-calls-template -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:call-template/@name)">
         <xsl:variable name="name" select="string(.)"/>

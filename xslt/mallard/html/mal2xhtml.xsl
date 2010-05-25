@@ -23,31 +23,22 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 
-<xsl:import href="../../gettext/gettext.xsl"/>
-
-<!--#@ mal.chunk.doctype_public -->
-<xsl:param name="mal.chunk.doctype_public" select="'-//W3C//DTD XHTML 1.0 Strict//EN'"/>
-
-<!--#@ mal.chunk.doctype_system -->
-<xsl:param name="mal.chunk.doctype_system" select="'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'"/>
-
-<xsl:output method="xml"
-            doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-            doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
-
-<!--#@ mal2html.namespace -->
-<xsl:param name="mal2html.namespace" select="'http://www.w3.org/1999/xhtml'"/>
-
-<xsl:param name="mal.chunk.extension" select="'.xhtml'"/>
-
 <!--!!==========================================================================
-Mallard to HTML
+Mallard to XHTML
 
 REMARK: Describe this module
 -->
 
-<xsl:include href="../common/mal-chunk.xsl"/>
-<xsl:include href="../common/mal-link.xsl"/>
+<xsl:import href="../../gettext/gettext.xsl"/>
+<xsl:import href="../../common/html.xsl"/>
+<xsl:import href="../common/mal-link.xsl"/>
+
+<xsl:import href="../../common/utils.xsl"/>
+<xsl:import href="../../theme/theme-colors.xsl"/>
+<xsl:import href="../../theme/theme-icons.xsl"/>
+<xsl:import href="../../theme/theme-html.xsl"/>
+
+<xsl:param name="mal.link.extension" select="$html.extension"/>
 
 <xsl:include href="mal2html-block.xsl"/>
 <xsl:include href="mal2html-css.xsl"/>
@@ -58,18 +49,5 @@ REMARK: Describe this module
 <xsl:include href="mal2html-svg.xsl"/>
 <xsl:include href="mal2html-table.xsl"/>
 
-<xsl:include href="../../common/utils.xsl"/>
-<xsl:include href="../../theme/theme-colors.xsl"/>
-<xsl:include href="../../theme/theme-icons.xsl"/>
-<xsl:include href="../../theme/theme-html.xsl"/>
-
-<!-- FIXME -->
-<xsl:template match="*">
-  <xsl:message>
-    <xsl:text>Unmatched element: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-  </xsl:message>
-  <xsl:apply-templates/>
-</xsl:template>
 
 </xsl:stylesheet>
