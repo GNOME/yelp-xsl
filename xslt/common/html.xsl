@@ -28,6 +28,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 HTML Output
 Common utilities and CSS for transformations to HTML.
 :Requires: gettext color icons
+:Revision:version="1.0" date="2010-05-26" status="final"
 
 This stylesheet contains common templates for creating HTML output. The
 *{html.output} template creates an output file for a node in the source XML
@@ -132,6 +133,20 @@ should include the leading dot. By default, #{.xhtml} will be used if
 
 <!--**==========================================================================
 html.output
+Create an HTML output file.
+:Revision:version="1.0" date="2010-05-26" status="final"
+$node: The node to create an output file for.
+$href: The output filename.
+
+This template creates an HTML output file for the source element ${node}. It
+uses #{exsl:document} to output the file, and calls *{html.page} with the
+${node} parameter to output the actual HTML contents.
+
+If ${href} is not provided, this template will attempt to generate a base
+filename and append @{html.extension} to it. The base filename is generated
+as follows: If an #{xml:id} attribute is present, it is used; otherwise, if
+an #{id} attribute is present, it is uses; otherwise, if ${node} is the root
+element, @{html.basename} is used; otherwise, #{generate-id()} is called.
 -->
 <xsl:template name="html.output">
   <xsl:param name="node" select="."/>
@@ -158,8 +173,18 @@ html.output
   </exsl:document>
 </xsl:template>
 
+
 <!--**==========================================================================
 html.page
+Create an HTML document.
+:Revision:version="1.0" date="2010-05-26" status="final"
+$node: The node to create HTML for.
+
+This template creates the actual HTML output for ${node}. It outputs top-level
+elements and container divs, and calls various templates and modes to output
+the inner content. Importing stylesheets should implement at least
+%{html.title.mode} and %{html.body.mode} for any elements that could be passed
+as ${node} to this template.
 -->
 <xsl:template name="html.page">
   <xsl:param name="node" select="."/>
@@ -187,19 +212,52 @@ html.page
 
 
 <!--%%==========================================================================
+html.title.mode
+Output the title of an element.
+:Revision:version="1.0" date="2010-05-26" status="final"
+
+This mode is called by *{html.page} to output the contents of the HTML #{title}
+element inside the #{head} element. Importing stylesheets should implement this
+mode for any element that will be passed to *{html.page}. Because this is used
+in the #{head}, the output should be text-only.
+-->
+<xsl:template mode="html.title.mode" match="*"/>
+
+
+<!--%%==========================================================================
 html.header.mode
+Output the header content for an element.
+:Revision:version="1.0" date="2010-05-26" status="final"
+
+This mode is called by *{html.page} to output the contents of the header div
+above the main content. Importing stylesheets may implement this mode for any
+element that will be passed to *{html.page}. If they do not, the header div
+will be empty.
 -->
 <xsl:template mode="html.header.mode" match="*"/>
 
 
 <!--%%==========================================================================
 html.footer.mode
+Output the footer content for an element.
+:Revision:version="1.0" date="2010-05-26" status="final"
+
+This mode is called by *{html.page} to output the contents of the footer div
+below the main content. Importing stylesheets may implement this mode for any
+element that will be passed to *{html.page}. If they do not, the footer div
+will be empty.
 -->
 <xsl:template mode="html.footer.mode" match="*"/>
 
 
 <!--%%==========================================================================
 html.body.mode
+Output the main contents for an element.
+:Revision:version="1.0" date="2010-05-26" status="final"
+
+This mode is called by *{html.page} to output the main contents of an HTML
+page, below the header content and above the footer content. Titles, block
+content, and sections should be output in this mode.
 -->
 <xsl:template mode="html.body.mode" match="*"/>
 
@@ -220,6 +278,21 @@ to provide additional elements in the HTML #{head} element of output files.
 
 <!--**==========================================================================
 html.css
+Output all CSS for an HTML output page.
+:Revision:version="1.0" date="2010-05-26" status="final"
+$node: The node to create CSS for.
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template creates the CSS for an HTML output page, including the enclosing
+HTML #{style} element. It calls the templates *{html.css.core}, *{html.css.elements},
+and *{html.css.extra} and calls the mode %{html.css.mode} on ${node}.
+
+The ${direction} parameter specifies the directionality of the text for the
+language of the document. The ${left} and ${right} parameters are based on
+${direction}, and can be used to set beginning and ending margins or other
+dimensions. All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="html.css">
   <xsl:param name="node" select="."/>
@@ -264,9 +337,15 @@ html.css
 <!--%%==========================================================================
 html.css.mode
 Output CSS specific to the input format.
+:Revision:version="1.0" date="2010-05-26" status="final"
 $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
+
+This template is called by *{html.css} to output CSS specific to the input
+format. Importing stylesheets may implement this for any element that will be
+passed to *{html.page}. If they do not, the output HTML will only have the
+common CSS from *{html.css.core} and *{html.css.elements}.
 -->
 <xsl:template mode="html.css.mode" match="*">
   <xsl:param name="direction">
