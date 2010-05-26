@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Divisions
-:Requires: db-chunk db-label db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-info db2html-xref gettext
+:Requires: db-chunk db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-info db2html-xref gettext
 
 REMARK: Describe this module
 -->
@@ -691,7 +691,6 @@ REMARK: Document this template
       <xsl:with-param name="selected" select="$node"/>
       <xsl:with-param name="divisions" select="/*"/>
       <xsl:with-param name="toc_depth" select="$db.chunk.max_depth + 1"/>
-      <xsl:with-param name="labels" select="false()"/>
       <xsl:with-param name="titleabbrev" select="true()"/>
     </xsl:call-template>
   </div>

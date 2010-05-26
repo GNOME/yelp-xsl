@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Bibliographies
-:Requires: db-chunk db-common db-label db2html-block db2html-inline db2html-division db2html-xref gettext
+:Requires: db-chunk db-common db2html-block db2html-inline db2html-division db2html-xref gettext
 
 This module provides templates to process DocBook bibliograpies.
 -->

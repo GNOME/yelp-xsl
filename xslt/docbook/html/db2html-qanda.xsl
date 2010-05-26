@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Question and Answer Sets
-:Requires: db-chunk db-label db2html-division gettext
+:Requires: db-chunk db2html-division gettext
 
 REMARK: Describe this module
 -->
@@ -71,11 +71,6 @@ dd.answer div.label { float: left; }
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
-    <div class="label">
-      <xsl:call-template name="db.label">
-        <xsl:with-param name="role" select="'header'"/>
-      </xsl:call-template>
-    </div>
     <xsl:apply-templates/>
   </dd>
 </xsl:template>
@@ -145,11 +140,6 @@ dd.answer div.label { float: left; }
         </xsl:attribute>
       </xsl:when>
     </xsl:choose>
-    <div class="label">
-      <xsl:call-template name="db.label">
-        <xsl:with-param name="role" select="'header'"/>
-      </xsl:call-template>
-    </div>
     <xsl:apply-templates/>
   </dt>
 </xsl:template>

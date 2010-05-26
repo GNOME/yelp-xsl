@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Titles and Subtitles
-:Requires: db-chunk db-label db2html-xref gettext
+:Requires: db-chunk db2html-xref gettext
 
 This stylesheet is going away
 -->
@@ -68,13 +68,6 @@ REMARK: Talk about the different kinds of title blocks
       <xsl:call-template name="db2html.anchor">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <span class="label">
-        <xsl:call-template name="db.label">
-          <xsl:with-param name="node" select="$referent"/>
-          <xsl:with-param name="role" select="'header'"/>
-          <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        </xsl:call-template>
-      </span>
       <xsl:apply-templates select="$node/node()"/>
     </span>
   </div>

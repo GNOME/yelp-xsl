@@ -32,7 +32,6 @@ DocBook to XHTML
 
 <xsl:import href="../common/db-chunk.xsl"/>
 <xsl:import href="../common/db-common.xsl"/>
-<xsl:import href="../common/db-label.xsl"/>
 <xsl:import href="../common/db-title.xsl"/>
 <xsl:import href="../common/db-xref.xsl"/>
 

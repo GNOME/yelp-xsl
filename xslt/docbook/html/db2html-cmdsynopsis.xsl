@@ -27,7 +27,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Command Synopses
-:Requires: db-label db2html-xref gettext
+:Requires: db2html-xref gettext
 
 This module contains templates to process DocBook command synopsis elements.
 -->
@@ -324,6 +324,7 @@ REMARK: Describe this param
   </xsl:param>
   <div class="synopfragment">
     <xsl:call-template name="db2html.anchor"/>
+    <!-- FIXME -->
     <i><xsl:call-template name="db.label"/></i>
     <xsl:for-each select="*">
       <xsl:value-of select="$sepchar"/>
@@ -518,6 +519,7 @@ selectors, which are generally expensive to perform.
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
   <xsl:variable name="label">
+    <!-- FIXME -->
     <xsl:call-template name="db.label"/>
   </xsl:variable>
   <xsl:value-of select="str:padding(string-length($label), ' ')"/>

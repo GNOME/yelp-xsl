@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Tables of Contents
-:Requires: db-label db-xref db2html-xref gettext
+:Requires: db-xref db2html-xref gettext
 
 This module provides templates to create tables of contents from any
 division-level elements.
@@ -42,7 +42,6 @@ $show_title: Whether to give the contents list a title
 $selected: A currently-selected page
 $divisions: The division-level child elements of ${node}
 $toc_depth: How deep nested contents should be listed.
-$labels: Whether to generate labels
 $titleabbrev: Whether to use #{titleabbrev} instead of #{title}
 
 This template creates a table of contents for a given division-level element.
@@ -75,7 +74,6 @@ ${titleabbrev} element specifies whether list elements should use the
 
   <xsl:param name="toc_depth" select="1"/>
 
-  <xsl:param name="labels" select="true()"/>
   <xsl:param name="titleabbrev" select="false()"/>
   <xsl:if test="($selected = false()) or ($node = $selected/ancestor-or-self::*)">
     <div class="autotoc">
@@ -122,7 +120,6 @@ ${titleabbrev} element specifies whether list elements should use the
             <xsl:with-param name="is_info" select="$is_info"/>
             <xsl:with-param name="selected" select="$selected"/>
             <xsl:with-param name="toc_depth" select="$toc_depth - 1"/>
-            <xsl:with-param name="labels" select="$labels"/>
             <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
           </xsl:apply-templates>
         </xsl:for-each>
@@ -138,7 +135,6 @@ Renders a TOC entry for an element and its children
 $is_info: Whether this contents list is for the info page
 $selected: A currently-selected page
 $toc_depth: How deep to create entries in the table of contents
-$labels: Whether to generate labels
 $titleabbrev: Whether to use #{titleabbrev} instead of #{title}
 
 This mode outputs a single element in a table of contents.  If the
@@ -153,7 +149,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
   <xsl:param name="is_info" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="toc_depth" select="0"/>
-  <xsl:param name="labels" select="true()"/>
   <xsl:param name="titleabbrev" select="false()"/>
   <xsl:variable name="xrefstyle">
     <xsl:text>role:title</xsl:text>
@@ -162,14 +157,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
     </xsl:if>
   </xsl:variable>
   <li>
-    <xsl:if test="$labels">
-      <span class="label">
-        <xsl:call-template name="db.label">
-          <xsl:with-param name="node" select="."/>
-          <xsl:with-param name="role" select="'li'"/>
-        </xsl:call-template>
-      </span>
-    </xsl:if>
     <xsl:choose>
       <xsl:when test="set:has-same-node(., $selected) and not($is_info)">
         <xsl:call-template name="db.xref.content">
@@ -202,7 +189,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
                     db:index     | db:lot      | db:part         | db:preface    | db:refentry |
                     db:reference | db:sect1    | db:sect2        | db:sect3      | db:sect4    |
                     db:sect5     | db:section  | db:setindex     | db:simplesect | db:toc      "/>
-        <xsl:with-param name="labels" select="$labels"/>
         <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
       </xsl:call-template>
     </xsl:if>
@@ -214,7 +200,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
   <xsl:param name="is_info" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="toc_depth" select="0"/>
-  <xsl:param name="labels" select="true()"/>
   <xsl:param name="titleabbrev" select="false()"/>
   <xsl:variable name="xrefstyle">
     <xsl:text>role:title</xsl:text>
@@ -239,15 +224,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="$labels">
-      <xsl:if test="refnamediv/refpurpose or db:refnamediv/db:refpurpose">
-        <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="' — '"/>
-        </xsl:call-template>
-        <xsl:apply-templates select="refnamediv/refpurpose[1] |
-                                     db:refnamediv/db:refpurpose[1]"/>
-      </xsl:if>
-    </xsl:if>
   </li>
 </xsl:template>
 

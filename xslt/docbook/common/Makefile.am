@@ -8,7 +8,6 @@ xsldir=$(datadir)/yelp-xsl/xslt/docbook/common
 xsl_DATA =			\
 	db-chunk.xsl		\
 	db-common.xsl		\
-	db-label.xsl		\
 	db-title.xsl		\
 	db-xref.xsl
 

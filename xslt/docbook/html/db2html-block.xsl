@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Block Elements
-:Requires: db-common db-label db-xref db2html-xref gettext
+:Requires: db-common db-xref db2html-xref gettext
 
 This module handles most simple block-level elements, turning them into the
 appropriate HTML tags.  It does not handle tables, lists, and various other
@@ -159,12 +159,6 @@ element.  It is called by *{db2html.block} for formal block elements.
       <xsl:with-param name="node" select="$title"/>
     </xsl:call-template>
     <span class="title">
-      <span class="label">
-        <xsl:call-template name="db.label">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="'header'"/>
-        </xsl:call-template>
-      </span>
       <xsl:apply-templates select="$title/node()"/>
     </span>
   </div>

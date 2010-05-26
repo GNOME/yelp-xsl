@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Footnotes
-:Requires: db-chunk db-label
+:Requires: db-chunk
 
 FIXME: Describe this module
 -->
