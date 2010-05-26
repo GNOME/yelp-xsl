@@ -30,13 +30,12 @@ REMARK: Describe this module
 -->
 
 <xsl:import href="../../gettext/gettext.xsl"/>
+<xsl:import href="../../common/colors.xsl"/>
+<xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>
-<xsl:import href="../common/mal-link.xsl"/>
-
 <xsl:import href="../../common/utils.xsl"/>
-<xsl:import href="../../theme/theme-colors.xsl"/>
-<xsl:import href="../../theme/theme-icons.xsl"/>
-<xsl:import href="../../theme/theme-html.xsl"/>
+
+<xsl:import href="../common/mal-link.xsl"/>
 
 <xsl:param name="mal.link.extension" select="$html.extension"/>
 

@@ -20,18 +20,22 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-Common XSLT Utilities
+Utilities
+Common XSLT Utilities.
+:Revision:version="1.0" date="2010-05-25" status="final"
 
-REMARK: Describe this module
+This stylesheet contains various useful utilities that are used throughout
+the Yelp stylesheets.
 -->
 
 
 <!--**==========================================================================
 utils.strip_newlines
-Strips leading or trailing newlines from a string
-$string: The string to strip newlines from
-$leading: Whether to strip leading newlines
-$trailing: Whether to strip trailing newlines
+Strip leading or trailing newlines from a string.
+:Revision:version="1.0" date="2010-05-25" status="final"
+$string: The string to strip newlines from.
+$leading: Whether to strip leading newlines.
+$trailing: Whether to strip trailing newlines.
 
 This template strips at most one leading and one trailing newline from
 ${string}.  This is useful for preformatted block elements where leading and

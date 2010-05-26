@@ -528,12 +528,6 @@ REMARK: Describe this template
 
 <!-- == Matched Templates == -->
 
-<!-- = / = -->
-<xsl:template match="/">
-  <xsl:call-template name="html.output">
-    <xsl:with-param name="node" select="*"/>
-  </xsl:call-template>
-</xsl:template>
 
 <xsl:template mode="html.title.mode" match="mal:page">
   <xsl:variable name="title" select="mal:info/mal:title[@type = 'text'][1]"/>

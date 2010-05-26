@@ -63,7 +63,6 @@ xslt/mallard/cache/Makefile
 xslt/mallard/common/Makefile
 xslt/mallard/html/Makefile
 xslt/gettext/Makefile
-xslt/theme/Makefile
 ])
 
 AC_OUTPUT

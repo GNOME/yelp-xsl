@@ -24,6 +24,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 extension-element-prefixes="exsl"
                 version="1.0">
 
+<!--!!==========================================================================
+Mallard to HTML - CSS
+-->
+
 <xsl:template mode="html.css.mode" match="mal:page">
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
@@ -59,26 +63,26 @@ a.navbar-prev::before {
   <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
   <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
   </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 a.navbar-next::after {
   content: '</xsl:text><xsl:choose>
   <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
   <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
   </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.copyrights {
   text-align: center;
   color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
 div.autolinks ul { margin: 0; padding: 0; }
 div.autolinks div.title { margin: 1em 0 0 1em; }
 div.autolinks div.title span {
   border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 li.autolink { margin: 0.5em 0 0 0; padding: 0 0 0 1em; list-style-type: none; }
 
@@ -99,32 +103,32 @@ div.linkdiv {
   padding: 0.5em;
   -moz-border-radius: 6px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.background"/><xsl:text>;
+    <xsl:value-of select="$color.background"/><xsl:text>;
 }
 div.linkdiv:hover {
   border-color: </xsl:text>
-    <xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
 }
 div.linkdivsep {
   margin: 0.5em;
   list-style-type: none;
   max-width: 24em;
   border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 
 
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
 div.cite-comment {
   margin-top: 0.5em;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
 
@@ -139,7 +143,7 @@ div.tree-lines ul.tree { margin-left: 0; }
 
 span.hi {
   background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
@@ -153,9 +157,9 @@ div.version {
   max-width: 24em;
   -moz-border-radius: 6px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
 div.version:hover { opacity: 0.8; }
 div.version p.version { margin-top: 0.2em; }
@@ -165,29 +169,29 @@ div.linkdiv div.title span.status {
   padding-left: 0.2em;
   padding-right: 0.2em;
   color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red_border"/><xsl:text>;
 }
 div.linkdiv div.title span.status-stub { background-color: </xsl:text>
-  <xsl:value-of select="$theme.color.red_background"/><xsl:text>; }
+  <xsl:value-of select="$color.red_background"/><xsl:text>; }
 div.linkdiv div.title span.status-draft { background-color: </xsl:text>
-  <xsl:value-of select="$theme.color.red_background"/><xsl:text>; }
+  <xsl:value-of select="$color.red_background"/><xsl:text>; }
 div.linkdiv div.title span.status-incomplete { background-color: </xsl:text>
-  <xsl:value-of select="$theme.color.red_background"/><xsl:text>; }
+  <xsl:value-of select="$color.red_background"/><xsl:text>; }
 div.linkdiv div.title span.status-review { background-color: </xsl:text>
-  <xsl:value-of select="$theme.color.yellow_background"/><xsl:text>; }
+  <xsl:value-of select="$color.yellow_background"/><xsl:text>; }
 div.linkdiv div.desc {
   margin-top: 0.2em;
   color: </xsl:text>
-    <xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.comment {
   padding: 0.5em;
   border: solid 2px </xsl:text>
-    <xsl:value-of select="$theme.color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red_border"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$theme.color.red_background"/><xsl:text>;
+    <xsl:value-of select="$color.red_background"/><xsl:text>;
 }
 div.comment div.comment {
   margin: 1em 1em 0 1em;
