@@ -74,10 +74,11 @@ free software.
 </xsl:template>
 
 <xsl:template name="calls_templates">
+  <xsl:param name="node" select="."/>
   <xsl:param name="page"/>
   <xsl:param name="xslt_node"/>
   <xsl:for-each select="$xslt_node">
-    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[not(@name = //xsl:template/@name)]/@name)"/>
+    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[not(@name = $xslt_node//xsl:template/@name)]/@name)"/>
     <xsl:if test="count($calls_templates) > 0">
       <list style="compact">
         <title>Calls Templates</title>
@@ -91,6 +92,34 @@ free software.
       </list>
     </xsl:if>
   </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="calls_modes">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page"/>
+  <xsl:param name="xslt_node"/>
+  <xsl:variable name="calls_modes">
+    <xsl:for-each select="$xslt_node">
+      <xsl:for-each select="set:distinct(.//xsl:apply-templates/@mode)">
+        <xsl:variable name="mode" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
+          <xsl:if test="not($node//mal:section[@style = 'xslt-mode' and mal:title = $mode])">
+            <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
+            <link xref="{$id}"/>
+          </xsl:if>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="calls_modes_nodes" select="exsl:node-set($calls_modes)/*"/>
+  <xsl:if test="count($calls_modes_nodes) > 0">
+    <list style="compact">
+      <title>Calls Modes</title>
+      <xsl:for-each select="$calls_modes_nodes">
+        <item><p><xsl:copy-of select="."/></p></item>
+      </xsl:for-each>
+    </list>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="mal:page">
@@ -127,14 +156,6 @@ free software.
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
           <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
           <link type="xslt-defines-template" xref="{$id}"/>
-        </xsl:if>
-      </xsl:for-each>
-      <!-- xslt-calls-mode -->
-      <xsl:for-each select="set:distinct($xslt_file//xsl:apply-templates/@mode)">
-        <xsl:variable name="mode" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
-          <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
-          <link type="xslt-calls-mode" xref="{$id}"/>
         </xsl:if>
       </xsl:for-each>
       <!-- xslt-implements-mode -->
@@ -199,6 +220,10 @@ free software.
       </list>
     </xsl:if>
     <xsl:call-template name="calls_templates">
+      <xsl:with-param name="page" select="$page"/>
+      <xsl:with-param name="xslt_node" select="$xslt_file"/>
+    </xsl:call-template>
+    <xsl:call-template name="calls_modes">
       <xsl:with-param name="page" select="$page"/>
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
@@ -276,7 +301,7 @@ free software.
       <xsl:if test="$type = 'T'">
         <xsl:if test="count(mal:info/xsldoc:stub) > 0">
           <note>
-            <p>This template is a stub. Customizations may implement it for
+            <p>This template is a stub. Customizations may override it for
             additional functionality.</p>
           </note>
         </xsl:if>
@@ -284,9 +309,16 @@ free software.
       <xsl:apply-templates/>
       <xsl:if test="$type = 'T'">
         <xsl:variable name="title" select="mal:title"/>
+        <xsl:variable name="xslt_node" select="$xslt_file//xsl:template[@name = $title]"/>
         <xsl:call-template name="calls_templates">
+          <xsl:with-param name="node" select="."/>
           <xsl:with-param name="page" select="ancestor::mal:page"/>
-          <xsl:with-param name="xslt_node" select="$xslt_file//xsl:template[@name = $title]"/>
+          <xsl:with-param name="xslt_node" select="$xslt_node"/>
+        </xsl:call-template>
+        <xsl:call-template name="calls_modes">
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="page" select="ancestor::mal:page"/>
+          <xsl:with-param name="xslt_node" select="$xslt_node"/>
         </xsl:call-template>
       </xsl:if>
     </page>
