@@ -20,37 +20,23 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns="http://www.w3.org/1999/xhtml"
                 version="1.0">
 
-<xsl:import href="../../gettext/gettext.xsl"/>
-
-<!--#@ db.chunk.doctype_public -->
-<xsl:param name="db.chunk.doctype_public" select="'-//W3C//DTD XHTML 1.0 Strict//EN'"/>
-
-<!--#@ db.chunk.doctype_system -->
-<xsl:param name="db.chunk.doctype_system" select="'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'"/>
-
-<xsl:output method="xml"
-            doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-            doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
-
-<!--#@ db2html.namespace -->
-<xsl:param name="db2html.namespace" select="'http://www.w3.org/1999/xhtml'"/>
-
 <!--!!==========================================================================
 DocBook to XHTML
 -->
 
-<!--#@ db.chunk.extension -->
-<xsl:param name="db.chunk.extension" select="'.xhtml'"/>
+<xsl:import href="../../gettext/gettext.xsl"/>
+<xsl:import href="../../common/color.xsl"/>
+<xsl:import href="../../common/icons.xsl"/>
+<xsl:import href="../../common/html.xsl"/>
+<xsl:import href="../../common/utils.xsl"/>
 
-<xsl:include href="../../theme/theme-colors.xsl"/>
-<xsl:include href="../../theme/theme-icons.xsl"/>
-<xsl:include href="../../theme/theme-html.xsl"/>
+<xsl:import href="../common/db-chunk.xsl"/>
+<xsl:import href="../common/db-common.xsl"/>
+<xsl:import href="../common/db-label.xsl"/>
+<xsl:import href="../common/db-title.xsl"/>
+<xsl:import href="../common/db-xref.xsl"/>
 
-<xsl:include href="../common/db-chunk.xsl"/>
-<xsl:include href="../common/db-common.xsl"/>
-<xsl:include href="../common/db-label.xsl"/>
-<xsl:include href="../common/db-title.xsl"/>
-<xsl:include href="../common/db-xref.xsl"/>
+<xsl:param name="db.chunk.extension" select="$html.extension"/>
 
 <xsl:include href="db2html-autotoc.xsl"/>
 <xsl:include href="db2html-bibliography.xsl"/>
@@ -75,13 +61,5 @@ DocBook to XHTML
 <xsl:include href="db2html-title.xsl"/>
 <xsl:include href="db2html-xref.xsl"/>
 <xsl:include href="db2html-footnote.xsl"/>
-
-<xsl:template match="*">
-  <xsl:message>
-    <xsl:text>Unmatched element: </xsl:text>
-    <xsl:value-of select="name(.)"/>
-  </xsl:message>
-  <xsl:apply-templates select="node()"/>
-</xsl:template>
 
 </xsl:stylesheet>

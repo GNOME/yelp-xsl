@@ -419,7 +419,7 @@ element to output the next #{td}.
         </xsl:choose>
       </xsl:variable>
       <!-- Finally, output the td or th element -->
-      <xsl:element name="{$element}" namespace="{$db2html.namespace}">
+      <xsl:element name="{$element}" namespace="{$html.namespace}">
         <xsl:choose>
           <xsl:when test="@lang or @xml:lang">
             <xsl:attribute name="dir">
@@ -569,7 +569,7 @@ able to output the #{td} for the #{entry} element.
 
   <xsl:choose>
     <xsl:when test="$spanstr != '' and not(starts-with($spanstr, '0:'))">
-      <xsl:element name="{$element}" namespace="{$db2html.namespace}">
+      <xsl:element name="{$element}" namespace="{$html.namespace}">
         <xsl:if test="$class != ''">
           <xsl:attribute name="class">
             <xsl:value-of select="normalize-space($class)"/>
@@ -592,7 +592,7 @@ able to output the #{td} for the #{entry} element.
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="$colnum - $colpos = 1">
-      <xsl:element name="{$element}" namespace="{$db2html.namespace}">
+      <xsl:element name="{$element}" namespace="{$html.namespace}">
         <xsl:if test="$class != ''">
           <xsl:attribute name="class">
             <xsl:value-of select="normalize-space($class)"/>
@@ -1146,7 +1146,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
   <xsl:param name="spanspecs"/>
   <xsl:param name="colsep" select="''"/>
   <xsl:param name="rowsep" select="''"/>
-  <xsl:element name="{local-name(.)}" namespace="{$db2html.namespace}">
+  <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
     <xsl:if test="@lang or @xml:lang">
       <xsl:attribute name="dir">
         <xsl:call-template name="l10n.direction">

@@ -24,21 +24,78 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-DocBook to HTML - Division Elements
+DocBook to HTML - Divisions
 :Requires: db-chunk db-label db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-info db2html-xref gettext
 
 REMARK: Describe this module
 -->
 
 
-<!--@@==========================================================================
-db2html.linktrail
-Whether to place a link trail under the header
+<xsl:template mode="html.title.mode" match="*">
+  <xsl:variable name="title">
+    <xsl:call-template name="db.title">
+      <xsl:with-param name="node" select="."/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($title)"/>
+</xsl:template>
 
-This boolean parameter specifies whether a block containing links to
-ancestor elements should be included under the header.
--->
-<xsl:param name="db2html.linktrail" select="true()"/>
+<xsl:template mode="html.header.mode" match="*">
+  <xsl:call-template name="db2html.linktrail"/>
+</xsl:template>
+
+<xsl:template mode="html.body.mode" match="*">
+  <xsl:choose>
+    <xsl:when test="self::db:info or self::bookinfo or self::articleinfo">
+      <!-- FIXME
+      <xsl:call-template name="db2html.info.div">
+        <xsl:with-param name="node" select=".."/>
+        <xsl:with-param name="info" select="."/>
+      </xsl:call-template>
+      -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select=".">
+        <xsl:with-param name="depth_in_chunk" select="0"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template mode="html.output.after.mode" match="*">
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:param>
+  <xsl:if test="count(ancestor::*) &lt; $db.chunk.max_depth">
+    <xsl:for-each select="appendix     | db:appendix     |
+                          article      | db:article      |
+                          bibliography | db:bibliography | bibliodiv  | db:bibliodiv  |
+                          book         | db:book         | chapter    | db:chapter    |
+                          colophon     | db:colophon     | dedication | db:dedication |
+                          glossary     | db:glossary     | glossdiv   | db:glossdiv   |
+                          index        | db:index        | lot        | db:lot        |
+                          part         | db:part         |
+                          preface      | db:preface      |
+                          refentry     | db:refentry     | reference  | db:reference  |
+                          sect1    | sect2    | sect3    | sect4    | sect5    | section    |
+                          db:sect1 | db:sect2 | db:sect3 | db:sect4 | db:sect5 | db:section |
+                          setindex     | db:setindex     |
+                          simplesect   | db:simplesect   |
+                          toc          | db:toc          ">
+      <xsl:call-template name="html.output">
+        <xsl:with-param name="node" select="."/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:if>
+  <xsl:if test="$db.chunk.info_chunk and $depth_of_chunk = 0 and
+                (local-name(.) = 'book' or local-name(.) = 'article')">
+    <xsl:call-template name="html.output">
+      <xsl:with-param name="node" select="bookinfo | articleinfo | db:info"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+
 
 <!--@@==========================================================================
 db2html.navbar.top
@@ -207,21 +264,7 @@ REMARK: Put in a word about the chunk flow; talk about what templates get called
         <xsl:with-param name="next_node" select="$next_node"/>
       </xsl:call-template>
       <div class="body">
-        <xsl:choose>
-          <xsl:when test="$template = 'info'">
-            <xsl:call-template name="db2html.info.div">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="info" select="$info"/>
-              <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$node">
-              <xsl:with-param name="depth_in_chunk" select="0"/>
-              <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
+        <!-- DONE -->
       </div>
       <xsl:call-template name="db2html.division.bottom">
         <xsl:with-param name="node" select="$node"/>
@@ -319,13 +362,11 @@ REMARK: Talk about some of the parameters
         <xsl:value-of select="$node/@id"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:call-template name="db2html.header">
+    <xsl:call-template name="db2html.hgroup">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="title_node" select="$title_node"/>
       <xsl:with-param name="subtitle_node" select="$subtitle_node"/>
       <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      <xsl:with-param name="generate_label" select="$depth_in_chunk != 0"/>
       <xsl:with-param name="title_content" select="$title_content"/>
       <xsl:with-param name="subtitle_content" select="$subtitle_content"/>
     </xsl:call-template>
@@ -391,92 +432,73 @@ REMARK: Talk about how this works with #{callback}
 
 
 <!--**==========================================================================
-db2html.header
-Generates a header with a title and optional subtitle
-$node: The element containing the title
-$title_node: The #{title} element to render
-$subtitle_node: The #{subtitle} element to render
-$depth_in_chunk: The depth of ${node} in the containing chunk
-$depth_of_chunk: The depth of the containing chunk in the document
-$generate_label: Whether to generate a label in the title
-$title_content: An optional string containing the title
-$subtitle_content: An optional string containing the subtitle
+db2html.hgroup
+Output the title and subtitle for an element.
+$node: The element containing the title.
+$title_node: The #{title} element to render.
+$subtitle_node: The #{subtitle} element to render.
+$depth: The depth of ${node} in the containing output.
+$title_content: An optional string containing the title.
+$subtitle_content: An optional string containing the subtitle.
 
 REMARK: Talk about the different kinds of title blocks
 -->
-<xsl:template name="db2html.header">
+<xsl:template name="db2html.hgroup">
   <xsl:param name="node" select="."/>
-  <xsl:param name="title_node" select="$node/title | $node/db:title | $node/db:info/db:title"/>
-  <xsl:param name="subtitle_node" select="$node/subtitle | $node/db:subtitle | $node/db:info/db:subtitle"/>
-  <xsl:param name="depth_in_chunk">
+  <xsl:param name="title_node" select="($node/title | $node/db:title | $node/db:info/db:title)[1]"/>
+  <xsl:param name="subtitle_node" select="($node/subtitle | $node/db:subtitle | $node/db:info/db:subtitle)[1]"/>
+  <xsl:param name="depth">
     <xsl:call-template name="db.chunk.depth-in-chunk">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:param>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="generate_label" select="true()"/>
   <xsl:param name="title_content"/>
   <xsl:param name="subtitle_content"/>
 
   <xsl:variable name="title_h">
     <xsl:choose>
-      <xsl:when test="$depth_in_chunk &lt; 7">
-        <xsl:value-of select="concat('h', $depth_in_chunk + 1)"/>
+      <xsl:when test="$depth &lt; 6">
+        <xsl:value-of select="concat('h', $depth + 1)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>h7</xsl:text>
+        <xsl:text>h6</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <xsl:variable name="subtitle_h">
     <xsl:choose>
-      <xsl:when test="$depth_in_chunk &lt; 6">
-        <xsl:value-of select="concat('h', $depth_in_chunk + 2)"/>
+      <xsl:when test="$depth &lt; 5">
+        <xsl:value-of select="concat('h', $depth + 2)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>h7</xsl:text>
+        <xsl:text>h6</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
-  <div class="header">
-    <xsl:element name="{$title_h}" namespace="{$db2html.namespace}">
+  <div class="hgroup">
+    <xsl:element name="{$title_h}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
-        <xsl:value-of select="concat(local-name($node), ' ', local-name($title_node))"/>
+        <xsl:text>title</xsl:text>
       </xsl:attribute>
-      <span class="title">
-        <xsl:if test="$title_node">
-          <xsl:call-template name="db2html.anchor">
-            <xsl:with-param name="node" select="$title_node"/>
-          </xsl:call-template>
-        </xsl:if>
-        <xsl:if test="$generate_label">
-          <span class="label">
-            <xsl:call-template name="db.label">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="role" select="'header'"/>
-              <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-            </xsl:call-template>
-          </span>
-        </xsl:if>
-        <xsl:choose>
-          <xsl:when test="$title_content">
-            <xsl:value-of select="$title_content"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$title_node/node()"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </span>
+      <xsl:if test="$title_node">
+        <xsl:call-template name="db2html.anchor">
+          <xsl:with-param name="node" select="$title_node"/>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$title_content">
+          <xsl:value-of select="$title_content"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$title_node/node()"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:element>
     <xsl:if test="$subtitle_node or $subtitle_content">
-      <xsl:element name="{$subtitle_h}" namespace="{$db2html.namespace}">
+      <xsl:element name="{$subtitle_h}" namespace="{$html.namespace}">
         <xsl:attribute name="class">
-          <xsl:value-of select="concat(local-name($node), ' ', local-name($subtitle_node))"/>
+          <xsl:text>subtitle</xsl:text>
         </xsl:attribute>
         <xsl:choose>
           <xsl:when test="$subtitle_content">
@@ -500,7 +522,7 @@ $node: The element to generate links for
 REMARK: Describe this
 -->
 <xsl:template name="db2html.linktrail">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:if test="$node/ancestor::*">
     <div class="trails">
       <div class="trail">
@@ -744,11 +766,6 @@ REMARK: Describe this template
         <xsl:with-param name="next_id" select="$next_id"/>
         <xsl:with-param name="prev_node" select="$prev_node"/>
         <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:if test="$db2html.linktrail">
-      <xsl:call-template name="db2html.linktrail">
-        <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
     </xsl:if>
   </div>

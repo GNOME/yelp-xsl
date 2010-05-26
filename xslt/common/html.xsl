@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html"
+                exclude-result-prefixes="html set"
                 extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -122,10 +123,10 @@ should include the leading dot. By default, #{.xhtml} will be used if
 <xsl:param name="html.extension">
   <xsl:choose>
     <xsl:when test="$html.xhtml">
-      <xsl:text>.html</xsl:text>
+      <xsl:text>.xhtml</xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>.xhtml</xsl:text>
+      <xsl:text>.html</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -147,6 +148,10 @@ filename and append @{html.extension} to it. The base filename is generated
 as follows: If an #{xml:id} attribute is present, it is used; otherwise, if
 an #{id} attribute is present, it is uses; otherwise, if ${node} is the root
 element, @{html.basename} is used; otherwise, #{generate-id()} is called.
+
+After calling #{exsl:document}, this template calls the %{html.output.after.mode}
+mode on ${node}. Importing stylesheets that create multiple output files can
+use this to process output files without blocking earlier output.
 -->
 <xsl:template name="html.output">
   <xsl:param name="node" select="."/>
@@ -158,7 +163,7 @@ element, @{html.basename} is used; otherwise, #{generate-id()} is called.
       <xsl:when test="$node/@id">
         <xsl:value-of select="concat($node/@id, $html.extension)"/>
       </xsl:when>
-      <xsl:when test="exsl:has-same-node($node, /*)">
+      <xsl:when test="set:has-same-node($node, /*)">
         <xsl:value-of select="concat($html.basename, $html.extension)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -171,7 +176,21 @@ element, @{html.basename} is used; otherwise, #{generate-id()} is called.
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </exsl:document>
+  <xsl:apply-templates mode="html.output.after.mode" select="$node"/>
 </xsl:template>
+
+
+
+<!--%%==========================================================================
+html.output.after.mode
+Process an element after its content are output.
+:Revision:version="1.0" date="2010-05-26" status="final"
+
+This mode is called by *{html.output} after #{exsl:document} has finished. It
+can be used to create further output files without blocking the output of
+parent elements.
+-->
+<xsl:template mode="html.output.after.mode" match="*"/>
 
 
 <!--**==========================================================================

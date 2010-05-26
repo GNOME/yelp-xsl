@@ -185,12 +185,14 @@ chunking mechanism without having to duplicate the content-generation code.
       <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     </xsl:call-template>
   </exsl:document>
+  <!-- DONE
   <xsl:if test="string($template) = ''">
     <xsl:call-template name="db.chunk.children">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     </xsl:call-template>
   </xsl:if>
+  -->
 </xsl:template>
 
 
@@ -233,55 +235,6 @@ parameters with appropriate values to the templates it calls.
   </xsl:choose>
 </xsl:template>
 
-
-<!--**==========================================================================
-db.chunk.children
-Creates new output pages for the children of an element
-$node: The parent element whose children will be chunked
-$depth_of_chunk: The depth of ${node} in the document
-
-REMARK: We need a lot more explanation about chunk flow
--->
-<xsl:template name="db.chunk.children">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:if test="$depth_of_chunk &lt; $db.chunk.max_depth">
-    <xsl:for-each select="
-                  $node/appendix   | $node/article    | $node/bibliography |
-                  $node/bibliodiv  |
-                  $node/book       | $node/chapter    | $node/colophon     |
-                  $node/dedication | $node/glossary   | $node/glossdiv     |
-                  $node/index      | $node/lot        | $node/part         |
-                  $node/preface    | $node/refentry   | $node/reference    |
-                  $node/sect1      | $node/sect2      | $node/sect3        |
-                  $node/sect4      | $node/sect5      | $node/section      |
-                  $node/setindex   | $node/simplesect | $node/toc          |
-                  $node/db:appendix   | $node/db:article    | $node/db:bibliography |
-                  $node/db:bibliodiv  |
-                  $node/db:book       | $node/db:chapter    | $node/db:colophon     |
-                  $node/db:dedication | $node/db:glossary   | $node/db:glossdiv     |
-                  $node/db:index      | $node/db:lot        | $node/db:part         |
-                  $node/db:preface    | $node/db:refentry   | $node/db:reference    |
-                  $node/db:sect1      | $node/db:sect2      | $node/db:sect3        |
-                  $node/db:sect4      | $node/db:sect5      | $node/db:section      |
-                  $node/db:setindex   | $node/db:simplesect | $node/db:toc          ">
-      <xsl:call-template name="db.chunk">
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk + 1"/>
-      </xsl:call-template>
-    </xsl:for-each>
-  </xsl:if>
-  <xsl:if test="$db.chunk.info_chunk and $depth_of_chunk = 0">
-    <xsl:call-template name="db.chunk">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="template" select="'info'"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk + 1"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
 
 
 <!--**==========================================================================
@@ -599,7 +552,7 @@ markup for the output page.
 
 <!-- == Matched Templates == -->
 
-<xsl:template match="/">
+<xsl:template match="/false">
   <xsl:choose>
     <xsl:when test="$db.chunk.chunk_top">
       <xsl:call-template name="db.chunk">
@@ -612,10 +565,12 @@ markup for the output page.
         <xsl:with-param name="depth_in_chunk" select="0"/>
         <xsl:with-param name="depth_of_chunk" select="0"/>
       </xsl:apply-templates>
+      <!-- DONE
       <xsl:call-template name="db.chunk.children">
         <xsl:with-param name="node" select="*[1]"/>
         <xsl:with-param name="depth_of_chunk" select="0"/>
       </xsl:call-template>
+      -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
