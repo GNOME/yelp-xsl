@@ -1,0 +1,6 @@
+Changes in 2.31.1
+=================
+* Added support for DocBook 5 (Brian M. Carlson)
+* New common HTML output stylesheets (Shaun McCance)
+* Removed numbering and labeling for DocBook (Shaun McCance)
+* Better behavior for links to invalid targets (Shaun McCance)
