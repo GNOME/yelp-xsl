@@ -20,8 +20,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:its="http://www.w3.org/2005/11/its"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html set"
+                exclude-result-prefixes="html set its"
                 extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -811,6 +812,69 @@ template to provide additional CSS that will be used by all HTML output.
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
   </xsl:param>
+</xsl:template>
+
+<!--**==========================================================================
+html.lang.attrs
+Output #{lang} and #{dir} attributes.
+:Revision: version="1.0" date="2010-06-10" status="final"
+$node: The current element in the input document.
+$lang: The language for ${node}.
+$dir: The text directionality for ${node}.
+
+This template outputs #{lang}, #{xml:lang}, or #{dir} attributes if necessary.
+If ${lang} is not set, it will be taken from the #{xml:lang} or #{lang}
+attribute of ${node}. If ${dir} is not set, it will be taken from the #{its:dir}
+attribute of ${node} or computed based on ${lang}.
+
+This template outputs either an #{xml:lang} or a #{lang} attribute, depending
+on whether @{html.xhtml} is #{true}. It only outputs an #{xml:lang} or #{lang}
+attribute if $lang is non-empty. This template also outputs a #{dir} attribute
+if ${dir} is non-empty.
+-->
+<xsl:template name="html.lang.attrs">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="lang">
+    <xsl:choose>
+      <xsl:when test="$node/@xml:lang">
+        <xsl:value-of select="$node/@xml:lang"/>
+      </xsl:when>
+      <xsl:when test="$node/@lang">
+        <xsl:value-of select="$node/@lang"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:param name="dir">
+    <xsl:choose>
+      <xsl:when test="$node/@its:dir">
+        <xsl:value-of select="$node/@its:dir"/>
+      </xsl:when>
+      <xsl:when test="string($lang) != ''">
+        <xsl:call-template name="l10n.direction">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:if test="string($lang) != ''">
+    <xsl:choose>
+      <xsl:when test="$html.xhtml">
+        <xsl:attribute name="xml:lang">
+          <xsl:value-of select="$lang"/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="lang">
+          <xsl:value-of select="$lang"/>
+        </xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+  <xsl:if test="string($dir) != ''">
+    <xsl:attribute name="dir">
+      <xsl:value-of select="$dir"/>
+    </xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

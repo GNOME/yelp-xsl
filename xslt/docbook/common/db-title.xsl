@@ -17,8 +17,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msg="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n"
                 xmlns:db="http://docbook.org/ns/docbook"
+								xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                exclude-result-prefixes="db msg"
                 version="1.0">
 
 <!--!!==========================================================================

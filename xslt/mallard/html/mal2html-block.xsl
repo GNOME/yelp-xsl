@@ -18,27 +18,36 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal"
+                exclude-result-prefixes="mal msg"
                 version="1.0">
 
 <!--!!==========================================================================
-Mallard to HTML - Block Elements
+Mallard to HTML - Blocks
+Handle simple Mallard block elements.
+:Revision:version="1.0" date="2010-06-03" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates for handling most Mallard block elements,
+except the list and table elements.
 -->
-
 
 <!--**==========================================================================
 mal2html.pre
+Output an HTML #{pre} element.
+:Revision:version="1.0" date="2010-06-03" status="final"
+$node: The source element to output a #{pre} for.
 
-FIXME
+This template outputs an HTML #{pre} element along with a wrapper #{div} element
+for CSS styling. It should be called for verbatim block elements. It will
+automatically strip leading and trailing newlines using *{utils.strip_newlines}.
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
     </xsl:attribute>
@@ -64,18 +73,46 @@ FIXME
 </xsl:template>
 
 
-<!-- == Matched Templates == -->
-
 <!--%%==========================================================================
 mal2html.block.mode
-FIXME
+Process Mallard elements in block mode.
+:Revision:version="1.0" date="2010-06-03" status="final"
+$restricted: Whether this is restricted block mode.
 
-FIXME
+This mode is applied to elements in block context. It should be called by
+templates for pages, sections, and block container elements. Certain elements
+may appear in both block an inline mode, and the processing expectations for
+those elements is different depending on context.
+
+Implementations of this mode should generally output a wrapper div and process
+the child elements, either in %{mal2html.block.mode} or %{mal2html.inline.mode},
+or using special processing for particular content models.
+
+When this mode encounters unknown content, templates in the same mode are
+applied to the children, but the ${restricted} parameter is set to #{true}.
+When ${restricted} is #{true}, unknown block elements are ignored. This is
+in accordance with the Mallard specification on fallback block content.
 -->
+<xsl:template mode="mal2html.block.mode" match="*">
+  <xsl:param name="restricted" select="false()"/>
+  <xsl:if test="not($restricted)">
+    <xsl:message>
+      <xsl:text>Unmatched block element: </xsl:text>
+      <xsl:value-of select="local-name(.)"/>
+    </xsl:message>
+    <xsl:apply-templates mode="mal2html.block.mode">
+      <xsl:with-param name="restricted" select="true()"/>
+    </xsl:apply-templates>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template mode="mal2html.block.mode" match="text()"/>
+
 
 <!-- = desc = -->
 <xsl:template mode="mal2html.block.mode" match="mal:desc">
-  <div class="desc desc-{local-name(..)}">
+  <div class="desc">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </div>
 </xsl:template>
@@ -90,6 +127,7 @@ FIXME
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
     <div class="comment">
+      <xsl:call-template name="html.lang.attrs"/>
       <div class="inner">
         <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
         <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
@@ -106,28 +144,49 @@ FIXME
 <!-- = comment/cite = -->
 <xsl:template mode="mal2html.block.mode" match="mal:comment/mal:cite">
   <div class="cite cite-comment">
-    <!-- FIXME: i18n -->
-    <xsl:text>from </xsl:text>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
-      <xsl:when test="@href">
-        <a href="{@href}">
-          <xsl:apply-templates mode="mal2html.inline.mode"/>
-        </a>
+      <xsl:when test="@date">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'comment.cite.name-date.format'"/>
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="format" select="true()"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates mode="mal2html.inline.mode"/>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'comment.cite.name.format'"/>
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="format" select="true()"/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="@date">
-      <xsl:text> on </xsl:text>
-      <xsl:value-of select="@date"/>
-    </xsl:if>
   </div>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:comment.name">
+  <xsl:param name="node"/>
+  <xsl:choose>
+    <xsl:when test="$node/@href">
+      <a href="{$node/@href}">
+        <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:comment.date">
+  <xsl:param name="node"/>
+  <xsl:value-of select="$node/@date"/>
 </xsl:template>
 
 <!-- = example = -->
 <xsl:template mode="mal2html.block.mode" match="mal:example">
   <div class="example">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </div>
 </xsl:template>
@@ -135,6 +194,7 @@ FIXME
 <!-- = figure = -->
 <xsl:template mode="mal2html.block.mode" match="mal:figure">
   <div class="figure">
+    <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="contents">
@@ -150,6 +210,7 @@ FIXME
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
   <div class="listing">
+    <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
@@ -184,6 +245,7 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <div>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>note</xsl:text>
       <xsl:if test="normalize-space($notestyle) != ''">
@@ -205,6 +267,7 @@ FIXME
 <!-- = p = -->
 <xsl:template mode="mal2html.block.mode" match="mal:p">
   <p class="p">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </p>
 </xsl:template>
@@ -212,6 +275,7 @@ FIXME
 <!-- = quote = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote">
   <div class="quote">
+    <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <blockquote class="contents">
@@ -227,6 +291,7 @@ FIXME
 <!-- = quote/cite = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote/mal:cite">
   <div class="cite cite-quote">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="@href">
         <a href="{@href}">
@@ -254,6 +319,7 @@ FIXME
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
   <div class="synopsis">
+    <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
@@ -269,23 +335,9 @@ FIXME
 <!-- = title = -->
 <xsl:template mode="mal2html.block.mode" match="mal:title">
   <div class="title title-{local-name(..)}">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </div>
-</xsl:template>
-
-<xsl:template mode="mal2html.block.mode" match="text()"/>
-
-<xsl:template mode="mal2html.block.mode" match="*">
-  <xsl:param name="restricted" select="false()"/>
-  <xsl:if test="not($restricted)">
-    <xsl:message>
-      <xsl:text>Unmatched block element: </xsl:text>
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:message>
-    <xsl:apply-templates mode="mal2html.block.mode">
-      <xsl:with-param name="restricted" select="true()"/>
-    </xsl:apply-templates>
-  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

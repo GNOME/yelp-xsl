@@ -556,7 +556,7 @@ REMARK: Describe this template
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
-  <div class="inner">
+  <div class="contents">
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
       <xsl:apply-templates mode="mal2html.block.mode" select="."/>
@@ -578,7 +578,7 @@ REMARK: Describe this template
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
       <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
     </div>
-    <div class="inner">
+    <div class="contents">
       <xsl:for-each
           select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
         <xsl:apply-templates mode="mal2html.block.mode" select="."/>

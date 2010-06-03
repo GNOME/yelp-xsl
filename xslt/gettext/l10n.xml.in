@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!-- -*- indent-tabs-mode: nil -*- -->
 
-<l10n xmlns="http://www.gnome.org/~shaunm/gnome-doc-utils/l10n">
+<l10n xmlns="http://projects.gnome.org/yelp/gettext/">
 
 <!-- ======================================================================= -->
 <!-- == Simple Strings ===================================================== -->
@@ -372,6 +372,101 @@
   <_msg>
     <msgid>biblioentry.tooltip</msgid>
     <msgstr>View the bibliography entry <label/>.</msgstr>
+  </_msg>
+</msgset>
+
+<!-- == mal:comment == -->
+<msgset>
+  <msgid>comment.cite.name-date.format</msgid>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  comment - Editorial comments
+  cite    - The source of a comment
+  http://projectmallard.org/1.0/mal_block_comment.html
+  http://projectmallard.org/1.0/mal_block_cite.html
+
+  This is a format message used to format the citation of a comment
+  made by an editor of a document. This appears on a new line after
+  the title of the comment, if a title is present, or as the first
+  line if a title is not present.
+
+  This string is used when both the name and the date are supplied.
+  In English, a title together with this format string might produce
+  something like this:
+
+    Some Comment Title
+    from Shaun McCance on 2010-06-03
+
+    Here is the text of the comment.
+
+  If only a name is supplied, and no date, then comment.cite.name.format
+  is used instead of this string.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  comment.name - The name of the person making the comment
+  comment.date - The date the comment was made
+
+  These should be written as empty XML elements, e.g. <comment.name/>
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgid>comment.cite.name-date.format</msgid>
+    <msgstr>from <comment.name/> on <comment.date/></msgstr>
+  </_msg>
+</msgset>
+<msgset>
+  <msgid>comment.cite.name.format</msgid>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  comment - Editorial comments
+  cite    - The source of a comment
+  http://projectmallard.org/1.0/mal_block_comment.html
+  http://projectmallard.org/1.0/mal_block_cite.html
+
+  This is a format message used to format the citation of a comment
+  made by an editor of a document. This appears on a new line after
+  the title of the comment, if a title is present, or as the first
+  line if a title is not present.
+
+  This string is used when only the name of the commenter is supplied.
+  In English, a title together with this format string might produce
+  something like this:
+
+    Some Comment Title
+    from Shaun McCance
+
+    Here is the text of the comment.
+
+  If a date is also supplied, then comment.cite.name-date.format
+  is used instead of this string.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  comment.name - The name of the person making the comment
+
+  These should be written as empty XML elements, e.g. <comment.name/>
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgid>comment.cite.name.format</msgid>
+    <msgstr>from <comment.name/></msgstr>
   </_msg>
 </msgset>
 
