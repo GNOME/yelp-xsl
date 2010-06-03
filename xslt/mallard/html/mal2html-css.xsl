@@ -98,6 +98,9 @@ div.linkdiv div.title {
   font-size: 1em;
   color: inherit;
 }
+div.linkdiv div.desc {
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
 div.linkdiv {
   margin: 0;
   padding: 0.5em;
@@ -105,20 +108,13 @@ div.linkdiv {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.background"/><xsl:text>;
 }
-div.linkdiv:hover {
+a:hover div.linkdiv {
+  text-decoration: none;
   border-color: </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
 }
-div.linkdivsep {
-  margin: 0.5em;
-  list-style-type: none;
-  max-width: 24em;
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-}
-
 
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
