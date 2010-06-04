@@ -24,9 +24,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-Mallard to HTML - Inline Elements
+Mallard to HTML - Inlines
+Handle simple Mallard block elements.
+:Revision:version="1.0" date="2010-06-03" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates to handle most Mallard inline elements.
 -->
 
 <xsl:template mode="mal.link.content.mode" match="*">
@@ -36,17 +38,38 @@ REMARK: Describe this module
 
 <!--%%==========================================================================
 mal2html.inline.mode
-Processes an element in inline mode
+Process Mallard elements in inline mode.
+:Revision:version="1.0" date="2010-06-03" status="final"
 
-FIXME
+This mode is applied to elements in inline context. It is be called by certain
+block elements and inline elements to process child content. Certain elements
+may appear in both block an inline mode, and the processing expectations for
+those elements is different depending on context.
+
+Implementations of this mode should handle ubiquitous linking, text directionality,
+and other common inline features. Note that the *{mal2html.span} template handles
+these things automatically, and is suitable for most inline elements. You can use
+the %{mal2html.inline.content.mode} to output special content for the child
+elements.
 -->
+<xsl:template mode="mal2html.inline.mode" match="*">
+  <xsl:message>
+    <xsl:text>Unmatched inline element: </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+  </xsl:message>
+  <xsl:apply-templates mode="mal2html.inline.mode"/>
+</xsl:template>
 
 
 <!--%%==========================================================================
 mal2html.inline.content.mode
-Outputs the contents of an inline element
+Output the contents of an inline element.
+:Revision:version="1.0" date="2010-06-03" status="final"
 
-FIXME
+This template outputs the contents of the inline element it matches. It is
+usually called by *{mal2html.span} to allow elements like #{guiseq}, #{keyseq},
+and #{link} output special inner contents while still using the generic wrapper
+template.
 -->
 <xsl:template mode="mal2html.inline.content.mode" match="node()">
   <xsl:apply-templates mode="mal2html.inline.mode"/>
@@ -55,15 +78,24 @@ FIXME
 
 <!--**==========================================================================
 mal2html.span
-Renders an inline element as a #{span}
-$node: The element to render
+Output an HTML #{span} element.
+:Revision:version="1.0" date="2010-06-03" status="final"
+$node: The source element to output a #{span} for.
+$class: An additional string to prepend to the #{class} attribute.
 
-REMARK: Document this template
+This template outputs an HTML #{span} element for a source element. It creates
+a #{class} attribute automatically from the #{class} attribute of ${node},
+prepending any value set in the ${class} parameter. To output the contents
+of ${node}, it applies the mode %{mal2html.inline.content.mode} to ${node}.
+
+This template automatically handles ubiquitous linking if ${node} contains
+an #{xref} or #{href} attribute.
 -->
 <xsl:template name="mal2html.span">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <span class="{concat($class, ' ', local-name($node))}">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="$node/@xref | $node/@href">
         <a>
@@ -138,10 +170,24 @@ REMARK: Document this template
 
 <!-- = guiseq % mal2html.inline.content.mode = -->
 <xsl:template mode="mal2html.inline.content.mode" match="mal:guiseq">
+  <xsl:variable name="arrow">
+    <xsl:variable name="dir">
+      <xsl:call-template name="l10n.direction">
+        <xsl:with-param name="lang" select="ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$dir = 'rtl'">
+        <xsl:text> &#x25C2;&#x00A0;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>&#x00A0;&#x25B8; </xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:for-each select="mal:gui">
     <xsl:if test="position() != 1">
-      <!-- FIXME: rtl -->
-      <xsl:text>&#x00A0;&#x25B8; </xsl:text>
+      <xsl:value-of select="$arrow"/>
     </xsl:if>
     <xsl:apply-templates mode="mal2html.inline.mode" select="."/>
   </xsl:for-each>
@@ -216,16 +262,6 @@ REMARK: Document this template
   </xsl:choose>
 </xsl:template>
 
-<!-- = media = -->
-<xsl:template mode="mal2html.inline.mode" match="mal:media">
-  <!-- FIXME -->
-</xsl:template>
-
-<!-- = name = -->
-<xsl:template mode="mal2html.inline.mode" match="mal:name">
-  <xsl:call-template name="mal2html.span"/>
-</xsl:template>
-
 <!-- = output = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:output">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
@@ -261,15 +297,6 @@ REMARK: Document this template
 <!-- = text() = -->
 <xsl:template mode="mal2html.inline.mode" match="text()">
   <xsl:value-of select="."/>
-</xsl:template>
-
-<!-- = FIXME = -->
-<xsl:template mode="mal2html.inline.mode" match="*">
-  <xsl:message>
-    <xsl:text>Unmatched inline element: </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-  </xsl:message>
-  <xsl:apply-templates mode="mal2html.inline.mode"/>
 </xsl:template>
 
 </xsl:stylesheet>
