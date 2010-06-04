@@ -22,16 +22,28 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
-                extension-element-prefixes="exsl"
                 exclude-result-prefixes="mal svg xlink"
+                extension-element-prefixes="exsl"
                 version="1.0">
 
 <!--!!==========================================================================
 Mallard to HTML - SVG
+Handle embedded SVG.
+:Revision: version="1.0" date="2010-06-04" status="final"
 
-REMARK: Describe this module
+This stylesheet matches embedded SVG in %{mal2html.block.mode} and processes it
+in %{mal2html.svg.mode}.
 -->
 
+<!--%%==========================================================================
+mal2html.svg.mode
+Output SVG and handle Mallard extension.
+:Revision: version="1.0" date="2010-06-04" status="final"
+
+This mode is used for processing SVG embedded into Mallard documents. For most
+types of SVG content, it simply copies the input directly. It does check for
+certain Mallard extensions, for example to use the Mallard linking mechanism.
+-->
 <xsl:template mode="mal2html.svg.mode" match="svg:*">
   <xsl:choose>
     <xsl:when test="@mal:xref">
@@ -44,6 +56,7 @@ REMARK: Describe this module
       <xsl:variable name="title">
         <xsl:call-template name="mal.link.content">
           <xsl:with-param name="xref" select="@mal:xref"/>
+          <xsl:with-param name="role" select="'text'"/>
         </xsl:call-template>
       </xsl:variable>
       <svg:a xlink:href="{$target}" xlink:show="replace"
