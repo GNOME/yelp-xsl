@@ -23,9 +23,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-Mallard to HTML - List Elements
+Mallard to HTML - Lists
+Handle Mallard list elements.
+:Revision: version="1.0" date="2010-06-04" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates for the #{list}, #{steps}, #{terms}, and
+#{tree} elements in %{mal2html.block.mode}. It handles the parent list elements,
+as well as any special processing for child #{item} elements.
 -->
 
 <!-- = list = -->
@@ -143,7 +147,19 @@ REMARK: Describe this module
   </div>
 </xsl:template>
 
-<!-- = tree/item = -->
+<!--%%==========================================================================
+mal2html.tree.mode
+Process an #{item} element inside a #{tree}.
+:Revision: version="1.0" date="2010-06-04" status="final"
+$lines: Whether to draw lines indicating hierarchy.
+$prefix: The line markers used by the parent #{item}.
+
+This mode is used for processing #{item} elements in #{tree} elements. It is
+applied by the template for #{tree} and recursively calls itself. If the parent
+#{tree} has the style hint #{"lines"}, the ${lines} parameter will be #{true}.
+In this case, this template calculates a prefix based on its position and
+neighboring #{item} elements, and passes that prefix to child elements.
+-->
 <xsl:template mode="mal2html.tree.mode" match="mal:item">
   <xsl:param name="lines" select="false()"/>
   <xsl:param name="prefix" select="''"/>
