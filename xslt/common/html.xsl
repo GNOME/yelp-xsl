@@ -819,6 +819,7 @@ html.lang.attrs
 Output #{lang} and #{dir} attributes.
 :Revision: version="1.0" date="2010-06-10" status="final"
 $node: The current element in the input document.
+$parent: A parent node to take ${lang} and ${dir} from.
 $lang: The language for ${node}.
 $dir: The text directionality for ${node}.
 
@@ -827,6 +828,12 @@ If ${lang} is not set, it will be taken from the #{xml:lang} or #{lang}
 attribute of ${node}. If ${dir} is not set, it will be taken from the #{its:dir}
 attribute of ${node} or computed based on ${lang}.
 
+The ${parent} parameter defaults to an empty node set. If it is set to a
+non-empty node set, this template will attempt to get ${lang} and ${dir} from
+${parent} if they are not set on ${node}. This is occasionally useful when a
+wrapper element in a source language doesn't directly create any output
+elements.
+
 This template outputs either an #{xml:lang} or a #{lang} attribute, depending
 on whether @{html.xhtml} is #{true}. It only outputs an #{xml:lang} or #{lang}
 attribute if $lang is non-empty. This template also outputs a #{dir} attribute
@@ -834,6 +841,7 @@ if ${dir} is non-empty.
 -->
 <xsl:template name="html.lang.attrs">
   <xsl:param name="node" select="."/>
+  <xsl:param name="parent" select="/false"/>
   <xsl:param name="lang">
     <xsl:choose>
       <xsl:when test="$node/@xml:lang">
@@ -842,11 +850,25 @@ if ${dir} is non-empty.
       <xsl:when test="$node/@lang">
         <xsl:value-of select="$node/@lang"/>
       </xsl:when>
+      <xsl:when test="$parent/@xml:lang">
+        <xsl:value-of select="$parent/@xml:lang"/>
+      </xsl:when>
+      <xsl:when test="$parent/@lang">
+        <xsl:value-of select="$parent/@lang"/>
+      </xsl:when>
     </xsl:choose>
   </xsl:param>
   <xsl:param name="dir">
     <xsl:choose>
       <xsl:when test="$node/@its:dir">
+        <xsl:value-of select="$node/@its:dir"/>
+      </xsl:when>
+      <xsl:when test="($node/@xml:lang or $node/@lang) and (string($lang) != '')">
+        <xsl:call-template name="l10n.direction">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$parent/@its:dir">
         <xsl:value-of select="$node/@its:dir"/>
       </xsl:when>
       <xsl:when test="string($lang) != ''">

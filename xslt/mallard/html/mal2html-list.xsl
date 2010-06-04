@@ -28,32 +28,6 @@ Mallard to HTML - List Elements
 REMARK: Describe this module
 -->
 
-
-<!--%%==========================================================================
-mal2html.list.list.mode
-FIXME
-
-FIXME
--->
-<!--%%==========================================================================
-mal2html.list.steps.mode
-FIXME
-
-FIXME
--->
-<!--%%==========================================================================
-mal2html.list.terms.mode
-FIXME
-
-FIXME
--->
-<!--%%==========================================================================
-mal2html.list.tree.mode
-FIXME
-
-FIXME
--->
-
 <!-- = list = -->
 <xsl:template mode="mal2html.block.mode" match="mal:list">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
@@ -70,6 +44,7 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <div class="list">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
     <xsl:element name="{$el}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
@@ -83,14 +58,15 @@ FIXME
           <xsl:value-of select="concat('list-style-type:', @type)"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates mode="mal2html.list.list.mode" select="mal:item"/>
+      <xsl:apply-templates select="mal:item"/>
     </xsl:element>
   </div>
 </xsl:template>
 
 <!-- = list/item = -->
-<xsl:template mode="mal2html.list.list.mode" match="mal:item">
+<xsl:template match="mal:list/mal:item">
   <li class="list">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
 </xsl:template>
@@ -98,16 +74,18 @@ FIXME
 <!-- = steps = -->
 <xsl:template mode="mal2html.block.mode" match="mal:steps">
   <div class="steps">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
     <ol class="steps">
-      <xsl:apply-templates mode="mal2html.list.steps.mode" select="mal:item"/>
+      <xsl:apply-templates select="mal:item"/>
     </ol>
   </div>
 </xsl:template>
 
 <!-- = steps/item = -->
-<xsl:template mode="mal2html.list.steps.mode" match="mal:item">
+<xsl:template match="mal:steps/mal:item">
   <li class="steps">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
 </xsl:template>
@@ -116,6 +94,7 @@ FIXME
 <xsl:template mode="mal2html.block.mode" match="mal:terms">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div class="terms">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
     <dl class="terms">
       <xsl:attribute name="class">
@@ -124,19 +103,23 @@ FIXME
           <xsl:text> compact</xsl:text>
         </xsl:if>
       </xsl:attribute>
-      <xsl:apply-templates mode="mal2html.list.terms.mode" select="mal:item"/>
+      <xsl:apply-templates select="mal:item"/>
     </dl>
   </div>
 </xsl:template>
 
-<!-- = list/item = -->
-<xsl:template mode="mal2html.list.terms.mode" match="mal:item">
+<!-- = terms/item = -->
+<xsl:template match="mal:terms/mal:item">
   <xsl:for-each select="mal:title">
     <dt class="terms">
+      <xsl:call-template name="html.lang.attrs">
+        <xsl:with-param name="parent" select=".."/>
+      </xsl:call-template>
       <xsl:apply-templates mode="mal2html.inline.mode"/>
     </dt>
   </xsl:for-each>
   <dd class="terms">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
   </dd>
 </xsl:template>
@@ -145,6 +128,7 @@ FIXME
 <xsl:template mode="mal2html.block.mode" match="mal:tree">
   <xsl:variable name="lines" select="contains(concat(' ', @style, ' '), ' lines ')"/>
   <div>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>tree</xsl:text>
       <xsl:if test="$lines">
@@ -152,7 +136,7 @@ FIXME
       </xsl:if>
     </xsl:attribute>
     <ul class="tree">
-      <xsl:apply-templates mode="mal2html.list.tree.mode" select="mal:item">
+      <xsl:apply-templates mode="mal2html.tree.mode" select="mal:item">
         <xsl:with-param name="lines" select="$lines"/>
       </xsl:apply-templates>
     </ul>
@@ -160,10 +144,11 @@ FIXME
 </xsl:template>
 
 <!-- = tree/item = -->
-<xsl:template mode="mal2html.list.tree.mode" match="mal:item">
+<xsl:template mode="mal2html.tree.mode" match="mal:item">
   <xsl:param name="lines" select="false()"/>
   <xsl:param name="prefix" select="''"/>
   <li class="tree">
+    <xsl:call-template name="html.lang.attrs"/>
     <div>
       <xsl:if test="$lines">
         <xsl:value-of select="$prefix"/>
@@ -175,20 +160,42 @@ FIXME
     <xsl:if test="mal:item">
       <ul class="tree">
         <xsl:for-each select="mal:item">
-          <xsl:apply-templates mode="mal2html.list.tree.mode" select=".">
+          <xsl:apply-templates mode="mal2html.tree.mode" select=".">
             <xsl:with-param name="lines" select="$lines"/>
             <xsl:with-param name="prefix">
               <xsl:if test="$lines">
-                <xsl:value-of select="translate(
-                              translate($prefix, '&#x251C;', '&#x2502;'),
-                              '&#x2514;', '&#x202F;')"/>
+                <xsl:variable name="dir">
+                  <xsl:call-template name="l10n.direction">
+                    <xsl:with-param name="lang" select="ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:value-of select="translate(translate(translate(translate(
+                                      $prefix,
+                                      '&#x251C;', '&#x2502;'),
+                                      '&#x2524;', '&#x2502;'),
+                                      '&#x2514;', '&#x202F;'),
+                                      '&#x2518;', '&#x202F;')"/>
                 <xsl:text>&#x202F;&#x202F;&#x202F;&#x202F;</xsl:text>
                 <xsl:choose>
                   <xsl:when test="following-sibling::mal:item">
-                    <xsl:text>&#x251C;</xsl:text>
+                    <xsl:choose>
+                      <xsl:when test="$dir = 'rtl'">
+                        <xsl:text>&#x2524;</xsl:text>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:text>&#x251C;</xsl:text>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:text>&#x2514;</xsl:text>
+                    <xsl:choose>
+                      <xsl:when test="$dir = 'rtl'">
+                        <xsl:text>&#x2518;</xsl:text>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:text>&#x2514;</xsl:text>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </xsl:otherwise>
                 </xsl:choose>
               </xsl:if>
