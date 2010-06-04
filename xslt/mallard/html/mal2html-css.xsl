@@ -92,6 +92,10 @@ td.twocolumnright {
   width: 52%; vertical-align: top;
   margin: 0; padding: 0;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+  -webkit-padding-start: 1em;
+  -webkit-padding-end: 0;
+  -moz-padding-start: 1em;
+  -moz-padding-end: 0;
 }
 
 div.linkdiv div.title {
@@ -134,7 +138,13 @@ ul.tree {
 }
 li.tree { margin: 0; padding: 0; }
 li.tree div { margin: 0; padding: 0; }
-ul.tree ul.tree { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
+ul.tree ul.tree {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+  -webkit-margin-start: 1.44em;
+  -webkit-margin-end: 0;
+  -moz-margin-start: 1.44em;
+  -moz-margin-end: 0;
+}
 div.tree-lines ul.tree { margin-left: 0; }
 
 span.hi {
@@ -151,7 +161,6 @@ div.version {
   margin-top: -1em;
   padding: 0.5em 1em 0.5em 1em;
   max-width: 24em;
-  -moz-border-radius: 6px;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   background-color: </xsl:text>

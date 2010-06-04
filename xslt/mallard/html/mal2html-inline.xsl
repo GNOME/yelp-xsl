@@ -178,7 +178,7 @@ an #{xref} or #{href} attribute.
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$dir = 'rtl'">
-        <xsl:text> &#x25C2;&#x00A0;</xsl:text>
+        <xsl:text>&#x00A0;&#x25C2; </xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>&#x00A0;&#x25B8; </xsl:text>

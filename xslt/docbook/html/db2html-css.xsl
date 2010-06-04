@@ -160,8 +160,12 @@ div.sidenav div.autotoc {
 div.sidenav div.autotoc div.autotoc { margin-top: 0.5em; }
 div.sidenav div.autotoc li { margin-bottom: 0.5em; }
 div.sidenav div.autotoc div.autotoc div.autotoc {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   margin-top: 0;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+  -webkit-margin-start: 1em;
+  -webkit-margin-end: 0;
+  -moz-margin-start: 1em;
+  -moz-margin-end: 0;
 }
 div.sidenav div.autotoc div.autotoc div.autotoc li { margin-bottom: 0; }
 
@@ -171,6 +175,10 @@ div.autotoc {
   display: table;
   margin-top: 1em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+  -webkit-margin-start: 1.72em;
+  -webkit-margin-end: 0;
+  -moz-margin-start: 1.72em;
+  -moz-margin-end: 0;
   padding: 0.5em 1em 0.5em 1em;
   background-color: </xsl:text><xsl:value-of select="$theme.color.blue_background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
@@ -209,6 +217,10 @@ dl.setindex dt { margin-top: 0; }
 dl.setindex dd { margin-top: 0; margin-bottom: 0; }
 div.simplelist {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+  -webkit-margin-start: 1.72em;
+  -webkit-margin-end: 0;
+  -moz-margin-start: 1.72em;
+  -moz-margin-end: 0;
 }
 div.simplelist table { margin-left: 0; border: none; }
 div.simplelist td {
