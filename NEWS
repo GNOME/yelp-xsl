@@ -1,4 +1,10 @@
-Changes in 2.31.1
+Changes in 2.31.3
+=================
+* Use text titles for link tooltips when present.
+* Better support for mixed-directionality documents
+* Style tweaks
+
+Changes in 2.31.2
 =================
 * Added support for DocBook 5 (Brian M. Carlson)
 * New common HTML output stylesheets (Shaun McCance)
