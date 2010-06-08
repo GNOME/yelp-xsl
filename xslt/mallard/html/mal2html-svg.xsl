@@ -96,7 +96,12 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$mal2html.namespace = ''">
+    <xsl:when test="$html.xhtml">
+      <div class="svg">
+        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
       <div class="svg">
         <object data="{$id}.svg" type="image/svg+xml">
           <xsl:copy-of select="@width"/>
@@ -106,11 +111,6 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
       <exsl:document href="{$id}.svg">
         <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
       </exsl:document>
-    </xsl:when>
-    <xsl:otherwise>
-      <div class="svg">
-        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-      </div>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

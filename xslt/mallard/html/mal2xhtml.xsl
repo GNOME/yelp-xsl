@@ -40,7 +40,6 @@ REMARK: Describe this module
 <xsl:param name="mal.link.extension" select="$html.extension"/>
 
 <xsl:include href="mal2html-block.xsl"/>
-<xsl:include href="mal2html-css.xsl"/>
 <xsl:include href="mal2html-inline.xsl"/>
 <xsl:include href="mal2html-list.xsl"/>
 <xsl:include href="mal2html-media.xsl"/>
