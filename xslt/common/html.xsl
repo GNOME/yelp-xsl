@@ -217,6 +217,7 @@ as ${node} to this template.
       <xsl:call-template name="html.head.custom"/>
     </head>
     <body>
+      <xsl:apply-templates mode="html.body.attr.mode" select="$node"/>
       <div class="header">
         <xsl:apply-templates mode="html.header.mode" select="$node"/>
       </div>
@@ -242,6 +243,18 @@ mode for any element that will be passed to *{html.page}. Because this is used
 in the #{head}, the output should be text-only.
 -->
 <xsl:template mode="html.title.mode" match="*"/>
+
+
+<!--%%==========================================================================
+html.body.attr.mode
+Output attributes for the HTML #{body} element.
+:Revision:version="1.0" date="2010-06-08" status="final"
+
+This mode is called by *{html.page} to output attributes on the HTML #{body}
+element. No attributes are output by default. Importing stylesheets may
+implement this node to add attributes for styling, data, or other purposes.
+-->
+<xsl:template mode="html.body.attr.mode" match="*"/>
 
 
 <!--%%==========================================================================
