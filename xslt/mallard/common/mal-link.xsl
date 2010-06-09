@@ -396,9 +396,16 @@ The output is a result tree fragment.  To use these results, call
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="groups">
-    <xsl:value-of select="$node/@groups"/>
-    <xsl:if test="not(contains(concat(' ', $node/@groups, ' '), ' #default '))">
-      <xsl:text> #default</xsl:text>
+    <xsl:variable name="_groups" select="concat(' ', $node/@groups, ' ')"/>
+    <xsl:if test="not(contains($_groups, ' #first '))">
+      <xsl:text>#first</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$_groups"/>
+    <xsl:if test="not(contains($_groups, ' #default '))">
+      <xsl:text>#default </xsl:text>
+    </xsl:if>
+    <xsl:if test="not(contains($_groups, ' #last '))">
+      <xsl:text>#last </xsl:text>
     </xsl:if>
   </xsl:variable>
   <xsl:variable name="groupslist" select="str:split($groups)"/>
