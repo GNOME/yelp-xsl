@@ -175,6 +175,7 @@ REMARK: Describe this module
           <xsl:value-of select="$style"/>
         </xsl:attribute>
       </xsl:if>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title | mal:desc"/>
       <xsl:apply-templates select="mal:thead">
         <xsl:with-param name="cols" select="$cols"/>
         <xsl:with-param name="rowrules" select="$rowrules"/>

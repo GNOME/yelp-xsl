@@ -756,7 +756,7 @@ div.synopsis div.code {
   padding: 0;
 }
 div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
-.table {}
+div.table > div.desc { font-style: italic; }
 tr.shade {
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
