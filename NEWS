@@ -1,3 +1,9 @@
+Changes in 2.31.4
+=================
+* Implemented #first and #last implicit topic link groups
+* Added support for title and desc on table
+* Added html.body.attr.mode
+
 Changes in 2.31.3
 =================
 * Use text titles for link tooltips when present.
