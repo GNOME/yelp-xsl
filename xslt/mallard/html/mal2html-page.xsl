@@ -724,11 +724,20 @@ div.example {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
-div.cite-comment {
-  margin-top: 0.5em;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+div.comment {
+  padding: 0.5em;
+  border: solid 2px </xsl:text>
+    <xsl:value-of select="$color.red_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.red_background"/><xsl:text>;
 }
-
+div.comment div.comment {
+  margin: 1em 1em 0 1em;
+}
+div.comment div.cite {
+  margin: 0 0 0.5em 0;
+  font-style: italic;
+}
 
 ul.tree {
   margin: 0; padding: 0;
@@ -788,20 +797,6 @@ div.linkdiv div.desc {
   margin-top: 0.2em;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
-}
-div.comment {
-  padding: 0.5em;
-  border: solid 2px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.red_background"/><xsl:text>;
-}
-div.comment div.comment {
-  margin: 1em 1em 0 1em;
-}
-div.comment div.cite {
-  margin: 0 0 0.5em 0;
-  font-style: italic;
 }
 </xsl:text>
 </xsl:if>
