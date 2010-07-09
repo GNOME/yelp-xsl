@@ -185,7 +185,7 @@ an #{xref} or #{href} attribute.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:for-each select="mal:gui">
+  <xsl:for-each select="mal:gui | text()[normalize-space(.) != '']">
     <xsl:if test="position() != 1">
       <xsl:value-of select="$arrow"/>
     </xsl:if>
