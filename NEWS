@@ -1,3 +1,9 @@
+Changes in 2.31.5
+=================
+* Handle bare text content in guiseq
+* Added a (roughly) topological page sort
+* Include comment CSS when not in editor mode
+
 Changes in 2.31.4
 =================
 * Implemented #first and #last implicit topic link groups
