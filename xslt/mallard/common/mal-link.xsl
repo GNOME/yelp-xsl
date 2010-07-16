@@ -60,7 +60,7 @@ document.  By default, it selects the root element from the file provided in
 Some processing tools may create a Mallard cache document without outputting
 it to a file.  Those tools can use this parameter directly.
 -->
-<xsl:param name="mal.cache" select="document($mal.cache.file)/cache:cache"/>
+<xsl:param name="mal.cache" select="document($mal.cache.file, /)/cache:cache"/>
 
 
 <!--============================================================================
