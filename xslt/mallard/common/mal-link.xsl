@@ -337,7 +337,7 @@ The output is a result tree fragment.  To use these results, call
         <xsl:if test="count($linklinknode) > 0">
           <mal:link xref="{$linklinkid}">
             <mal:title type="sort">
-              <xsl:value-of select="$linklinknode/mal:info/mal:title[@type = 'sort'][1]"/>
+              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -353,7 +353,7 @@ The output is a result tree fragment.  To use these results, call
     <xsl:if test="$linklinkid != '' and not($linknodes[@xref = $linklinkid])">
       <mal:link xref="{$linklinkid}">
         <mal:title type="sort">
-          <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
+          <xsl:value-of select="normalize-space(mal:info/mal:title[@type = 'sort'][1])"/>
         </mal:title>
       </mal:link>
     </xsl:if>
@@ -448,7 +448,7 @@ The output is a result tree fragment.  To use these results, call
               <xsl:value-of select="$groupsort"/>
             </xsl:attribute>
             <mal:title type="sort">
-              <xsl:value-of select="$linklinknode/mal:info/mal:title[@type = 'sort'][1]"/>
+              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -490,7 +490,7 @@ The output is a result tree fragment.  To use these results, call
           <xsl:value-of select="$groupsort"/>
         </xsl:attribute>
         <mal:title type="sort">
-          <xsl:value-of select="$source/mal:info/mal:title[@type = 'sort'][1]"/>
+          <xsl:value-of select="normalize-space($source/mal:info/mal:title[@type = 'sort'][1])"/>
         </mal:title>
       </mal:link>
     </xsl:if>
@@ -534,7 +534,7 @@ The output is a result tree fragment.  To use these results, call
         <xsl:if test="count($linklinknode) > 0">
           <mal:link xref="{$linklinkid}">
             <mal:title type="sort">
-              <xsl:value-of select="$linklinknode/mal:info/mal:title[@type = 'sort'][1]"/>
+              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -550,7 +550,7 @@ The output is a result tree fragment.  To use these results, call
     <xsl:if test="$linklinkid != '' and not($linknodes[@xref = $linklinkid])">
       <mal:link xref="{$linklinkid}">
         <mal:title type="sort">
-          <xsl:value-of select="mal:info/mal:title[@type = 'sort'][1]"/>
+          <xsl:value-of select="normalize-space(mal:info/mal:title[@type = 'sort'][1])"/>
         </mal:title>
       </mal:link>
     </xsl:if>
