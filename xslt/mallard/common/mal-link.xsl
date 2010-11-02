@@ -19,9 +19,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:cache="http://projectmallard.org/cache/1.0/"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="mal str"
+                exclude-result-prefixes="mal e str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -396,7 +397,27 @@ The output is a result tree fragment.  To use these results, call
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="groups">
-    <xsl:variable name="_groups" select="concat(' ', $node/@groups, ' ')"/>
+    <xsl:variable name="_groups">
+      <xsl:choose>
+        <xsl:when test="$node/e:links[@type = 'topic']">
+          <xsl:text> </xsl:text>
+          <xsl:for-each select="$node/e:links[@type = 'topic']">
+            <xsl:choose>
+              <xsl:when test="@groups">
+                <xsl:value-of select="@groups"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>#default</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text> </xsl:text>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat(' ', $node/@groups, ' ')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:if test="not(contains($_groups, ' #first '))">
       <xsl:text>#first</xsl:text>
     </xsl:if>

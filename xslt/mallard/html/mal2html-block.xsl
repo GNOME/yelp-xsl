@@ -337,7 +337,9 @@ in accordance with the Mallard specification on fallback block content.
 <xsl:template mode="mal2html.block.mode" match="mal:title">
   <div class="title title-{local-name(..)}">
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.inline.mode"/>
+    <span class="title">
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
+    </span>
   </div>
 </xsl:template>
 
