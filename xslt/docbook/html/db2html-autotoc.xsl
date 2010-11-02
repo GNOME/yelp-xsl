@@ -76,17 +76,19 @@ ${titleabbrev} element specifies whether list elements should use the
 
   <xsl:param name="titleabbrev" select="false()"/>
   <xsl:if test="($selected = false()) or ($node = $selected/ancestor-or-self::*)">
-    <div class="autotoc">
+    <div class="links sectionlinks">
       <xsl:if test="$show_title">
         <div class="title autotoc-title">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Contents'"/>
-          </xsl:call-template>
+          <span class="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Contents'"/>
+            </xsl:call-template>
+          </span>
         </div>
       </xsl:if>
       <ul>
         <xsl:if test="$show_info">
-          <li>
+          <li class="links">
             <xsl:choose>
               <xsl:when test="$is_info">
                 <xsl:call-template name="l10n.gettext">
@@ -156,7 +158,7 @@ For a description of the other parameters, see *{db2html.autotoc}.
       <xsl:text>abbrev</xsl:text>
     </xsl:if>
   </xsl:variable>
-  <li>
+  <li class="links">
     <xsl:choose>
       <xsl:when test="set:has-same-node(., $selected) and not($is_info)">
         <xsl:call-template name="db.xref.content">
@@ -207,7 +209,7 @@ For a description of the other parameters, see *{db2html.autotoc}.
       <xsl:text>abbrev</xsl:text>
     </xsl:if>
   </xsl:variable>
-  <li>
+  <li class="links">
     <xsl:choose>
       <xsl:when test="set:has-same-node(., $selected)">
         <xsl:call-template name="db.xref.content">

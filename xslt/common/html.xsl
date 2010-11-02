@@ -595,6 +595,46 @@ div.contents + div.desc { margin: 0.2em 0 0 0; }
 pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
+div.links &gt; div.title {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
+div.links &gt; div.title &gt; span.title {
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+div.links ul { margin: 0; padding: 0; }
+li.links {
+  margin: 0.5em 0 0.5em 0;
+  padding: 0;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+  list-style-type: none;
+}
+div.sectionlinks {
+  display: inline-block;
+  padding: 0 1em 0 1em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.sectionlinks ul { margin: 0; }
+div.sectionlinks li { padding: 0; }
+div.sectionlinks div.title { margin: 0.5em 0 0.5em 0; }
+div.sectionlinks div.title span.title {
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.sectionlinks div.sectionlinks {
+  display: block;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  border: none;
+}
+div.sectionlinks div.sectionlinks li {
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+}
 pre.linenumbering {
   margin: 0;
   padding: 0.5em;

@@ -757,30 +757,6 @@ div.copyrights {
     <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
-div.links &gt; div.title { margin: 1em 0 0.5em 1em; }
-div.links &gt; div.title &gt; span.title {
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-}
-div.links ul { margin: 0; padding: 0; }
-li.links { margin: 0.5em 0 0 0; padding: 0 0 0 1em; list-style-type: none; }
-
-div.sectionlinks {
-  display: inline-block;
-  padding: 0.5em 1em 0.5em 1em;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-}
-div.sectionlinks div.title { margin: 0; }
-div.sectionlinks ul { margin: 0; }
-div.sectionlinks li { padding: 0; }
-div.sectionlinks div.title span.title {
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-}
-
 table.twocolumn { width: 100%; }
 td.twocolumnleft { width: 48%; vertical-align: top; padding: 0; margin: 0; }
 td.twocolumnright {

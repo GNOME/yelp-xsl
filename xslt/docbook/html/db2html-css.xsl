@@ -153,41 +153,17 @@ div.sidenav {
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
 }
-div.sidenav div.autotoc {
+div.sidenav div.sectionlinks {
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
   border: none; padding: 0; margin: 0;
 }
-div.sidenav div.autotoc div.autotoc { margin-top: 0.5em; }
-div.sidenav div.autotoc li { margin-bottom: 0.5em; }
-div.sidenav div.autotoc div.autotoc div.autotoc {
+div.sidenav div.sectionlinks li { margin-bottom: 0.5em; }
+div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks {
   margin-top: 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-  -webkit-margin-start: 1em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1em;
-  -moz-margin-end: 0;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
 }
-div.sidenav div.autotoc div.autotoc div.autotoc li { margin-bottom: 0; }
-
-<!-- == autotoc == -->
-div.autotoc {
-  <!-- FIXME: hack -->
-  display: table;
-  margin-top: 1em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-  -webkit-margin-start: 1.72em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.72em;
-  -moz-margin-end: 0;
-  padding: 0.5em 1em 0.5em 1em;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.blue_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.blue_border"/><xsl:text>;
-}
-div.autotoc ul { margin: 0; padding: 0; }
-div.autotoc li { list-style-type: none; margin: 0; }
-div.autotoc div.autotoc-title { margin-bottom: 0.5em; }
-div.autotoc div.autotoc { border: none; padding: 0; margin-top: 0; margin-bottom: 0.5em; }
-div.autotoc div.autotoc div.autotoc { margin-bottom: 0; }
+div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks li { margin-bottom: 0; }
 
 <!-- == bibliography == -->
 span.bibliolabel {
