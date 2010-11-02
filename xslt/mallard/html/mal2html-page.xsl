@@ -589,6 +589,18 @@ REMARK: Describe this template
           <xsl:apply-templates mode="mal2html.block.mode" select="$node/mal:title"/>
         </xsl:if>
         <xsl:choose>
+          <xsl:when test="contains(concat(' ', $node/@style, ' '), ' linklist ')">
+            <ul>
+              <xsl:for-each select="$_links">
+                <xsl:sort data-type="number" select="@groupsort"/>
+                <xsl:sort select="mal:title[@type = 'sort']"/>
+                <xsl:call-template name="mal2html.page.autolink">
+                  <xsl:with-param name="xref" select="@xref"/>
+                  <xsl:with-param name="role" select="'guide'"/>
+                </xsl:call-template>
+              </xsl:for-each>
+            </ul>
+          </xsl:when>
           <xsl:when test="contains(concat(' ', $node/@style, ' '), ' 2column ')">
             <xsl:variable name="coltot" select="ceiling(count($_links) div 2)"/>
             <table class="twocolumn"><tr>
@@ -648,7 +660,7 @@ REMARK: Describe this template
 mal2html.title.mode
 FIXME
 
-FIXE
+FIXME
 -->
 <!-- = subtitle = -->
 <xsl:template mode="mal2html.title.mode" match="mal:subtitle">
