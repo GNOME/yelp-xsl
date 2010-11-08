@@ -1,3 +1,13 @@
+Changes in 2.31.6
+=================
+* Added support for TTML captions for Mallard media
+* Common section links styling for DocBook and Mallard
+* Implemented e:links for Mallard sections
+* Implement @style='linklist' for Mallard guide links
+* Implemented e:links for Mallard topic links
+* Normalize space for title sort keys
+* Load cache file relative to page file
+
 Changes in 2.31.5
 =================
 * Handle bare text content in guiseq
