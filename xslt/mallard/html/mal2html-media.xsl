@@ -18,6 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:tt="http://www.w3.org/ns/ttml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="mal"
                 version="1.0">
@@ -74,11 +75,14 @@ FIXME
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <video src="{$node/@src}" autobuffer="autobuffer" controls="controls">
+  <video src="{$node/@src}" autobuffer="autobuffer">
     <xsl:copy-of select="$node/@height"/>
     <xsl:copy-of select="$node/@width"/>
     <xsl:choose>
       <xsl:when test="$inline">
+        <xsl:attribute name="controls">
+          <xsl:text>controls</xsl:text>
+        </xsl:attribute>
         <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
       </xsl:when>
       <xsl:otherwise>
@@ -86,7 +90,27 @@ FIXME
       </xsl:otherwise>
     </xsl:choose>
   </video>
+  <xsl:if test="not($inline)">
+    <div class="media-controls">
+      <button class="media-play">
+        <xsl:attribute name="value">
+          <xsl:text>Play</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="data-play-label">
+          <xsl:text>Play</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="data-pause-label">
+          <xsl:text>Pause</xsl:text>
+        </xsl:attribute>
+        <canvas width="20" height="20"/>
+      </button>
+      <input class="media-range" type="range" min="0" max="100" value="0" step="0"/>
+      <span class="media-current"/>
+    </div>
+    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt"/>
+  </xsl:if>
 </xsl:template>
+
 
 <!--**==========================================================================
 mal2html.media.audio
@@ -107,6 +131,152 @@ FIXME
       </xsl:otherwise>
     </xsl:choose>
   </audio>
+</xsl:template>
+
+
+<!-- == TTML == -->
+
+<xsl:template mode="mal2html.block.mode" match="tt:*"/>
+
+<xsl:template mode="mal2html.ttml.mode" match="tt:tt">
+  <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+</xsl:template>
+
+<xsl:template mode="mal2html.ttml.mode" match="tt:body">
+  <div class="media-ttml">
+    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:div">
+      <xsl:with-param name="range">
+        <xsl:call-template name="mal2html.ttml.time.range"/>
+      </xsl:with-param>
+    </xsl:apply-templates>
+  </div>
+</xsl:template>
+
+<xsl:template mode="mal2html.ttml.mode" match="tt:div">
+  <xsl:param name="range"/>
+  <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:div | tt:p">
+    <xsl:with-param name="range">
+      <xsl:call-template name="mal2html.ttml.time.range">
+        <xsl:with-param name="range" select="$range"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template mode="mal2html.ttml.mode" match="tt:p">
+  <xsl:param name="range"/>
+  <xsl:variable name="beginend">
+    <xsl:call-template name="mal2html.ttml.time.range">
+      <xsl:with-param name="range" select="$range"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <div class="media-ttml-node media-ttml-p">
+    <xsl:attribute name="data-begin">
+      <xsl:value-of select="substring-before($beginend, ',')"/>
+    </xsl:attribute>
+    <xsl:variable name="end" select="substring-after($beginend, ',')"/>
+    <xsl:if test="$end != '∞'">
+      <xsl:attribute name="data-end">
+        <xsl:value-of select="$end"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="mal2html.inline.mode">
+      <xsl:with-param name="range" select="$beginend"/>
+    </xsl:apply-templates>
+  </div>
+</xsl:template>
+
+<xsl:template mode="mal2html.inline.mode" match="tt:span">
+  <xsl:param name="range"/>
+  <xsl:variable name="beginend">
+    <xsl:call-template name="mal2html.ttml.time.range">
+      <xsl:with-param name="range" select="$range"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <span class="media-ttml-node media-ttml-span">
+    <xsl:attribute name="data-begin">
+      <xsl:value-of select="substring-before($beginend, ',')"/>
+    </xsl:attribute>
+    <xsl:attribute name="data-end">
+      <xsl:value-of select="substring-after($beginend, ',')"/>
+    </xsl:attribute>
+    <xsl:apply-templates mode="mal2html.inline.mode"/>
+  </span>
+</xsl:template>
+
+<xsl:template name="mal2html.ttml.time.range">
+  <xsl:param name="range"/>
+  <xsl:param name="begin" select="@begin"/>
+  <xsl:param name="end" select="@end"/>
+  <xsl:variable name="range_">
+    <xsl:choose>
+      <xsl:when test="$range != ''">
+        <xsl:value-of select="$range"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="par" select="ancestor::tt:*[@begin][1]"/>
+        <xsl:choose>
+          <xsl:when test="$par">
+            <xsl:for-each select="$par">
+              <xsl:call-template name="mal2html.ttml.time.range"/>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'0,∞'"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="begin_s">
+    <xsl:call-template name="mal2html.ttml.time.seconds">
+      <xsl:with-param name="time" select="$begin"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="number(substring-before($range_, ',')) + number($begin_s)"/>
+  <xsl:text>,</xsl:text>
+  <xsl:choose>
+    <xsl:when test="$end">
+      <xsl:variable name="end_s">
+        <xsl:call-template name="mal2html.ttml.time.seconds">
+          <xsl:with-param name="time" select="$end"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="end_ss" select="number(substring-before($range_, ',')) + number($end_s)"/>
+      <xsl:choose>
+        <xsl:when test="substring-after($range_, ',') = '∞'">
+          <xsl:value-of select="$end_ss"/>
+        </xsl:when>
+        <xsl:when test="number(substring-after($range_, ',')) &lt; $end_ss">
+          <xsl:value-of select="substring-after($range_, ',')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$end_ss"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="substring-after($range_, ',')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal2html.ttml.time.seconds">
+  <xsl:param name="time" select="0"/>
+  <xsl:choose>
+    <xsl:when test="substring($time, string-length($time) - 1) = 'ms'">
+      <xsl:variable name="ms">
+        <xsl:value-of select="substring($time, 1, string-length($time) - 2)"/>
+      </xsl:variable>
+      <xsl:value-of select="number($ms) div 1000"/>
+    </xsl:when>
+    <xsl:when test="substring($time, string-length($time)) = 's'">
+      <xsl:value-of select="substring($time, 1, string-length($time) - 1)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="0"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
@@ -136,7 +306,9 @@ FIXME
           <xsl:text>media media-image</xsl:text>
           <xsl:value-of select="$class"/>
         </xsl:attribute>
-        <xsl:call-template name="mal2html.media.image"/>
+        <div class="inner">
+          <xsl:call-template name="mal2html.media.image"/>
+        </div>
       </div>
     </xsl:when>
     <xsl:when test="@type = 'video'">
@@ -145,7 +317,9 @@ FIXME
           <xsl:text>media media-video</xsl:text>
           <xsl:value-of select="$class"/>
         </xsl:attribute>
-        <xsl:call-template name="mal2html.media.video"/>
+        <div class="inner">
+          <xsl:call-template name="mal2html.media.video"/>
+        </div>
       </div>
     </xsl:when>
     <xsl:when test="@type = 'audio'">
@@ -154,7 +328,9 @@ FIXME
           <xsl:text>media media-audio</xsl:text>
           <xsl:value-of select="$class"/>
         </xsl:attribute>
-        <xsl:call-template name="mal2html.media.audio"/>
+        <div class="inner">
+          <xsl:call-template name="mal2html.media.audio"/>
+        </div>
       </div>
     </xsl:when>
     <xsl:otherwise>

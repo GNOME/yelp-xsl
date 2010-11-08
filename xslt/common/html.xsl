@@ -214,6 +214,7 @@ as ${node} to this template.
         <xsl:apply-templates mode="html.title.mode" select="$node"/>
       </title>
       <xsl:call-template name="html.css"/>
+      <xsl:call-template name="html.js"/>
       <xsl:call-template name="html.head.custom"/>
     </head>
     <body>
@@ -858,6 +859,40 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
+div.media-video &gt; div.inner { display: inline-block; }
+div.media-video &gt; div.inner video { margin: 0; }
+div.media-controls {
+  margin: 0; padding: 2px;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+div.media-controls button, div.media-controls input { margin: 0; }
+div.media-controls button.media-play { padding: 0; line-height: 0; }
+div.media-controls button.media-play canvas { margin: 0; }
+div.media-controls input.media-range { height: 20px; }
+
+
+div.media-ttml {
+  margin: 0; padding: 0;
+}
+div.media-ttml-p {
+  display: none;
+  margin: 6px 0 0 0;
+  padding: 6px;
+  max-width: 24em;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -webkit-box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -moz-box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
 </xsl:text>
 </xsl:template>
 
@@ -889,6 +924,162 @@ template to provide additional CSS that will be used by all HTML output.
     </xsl:call-template>
   </xsl:param>
 </xsl:template>
+
+
+<xsl:template name="html.js">
+  <xsl:param name="node" select="."/>
+  <script type="text/javascript" language="javascript">
+<xsl:text><![CDATA[
+Node.prototype.is_a = function (tag, cls) {
+  if (this.nodeType == Node.ELEMENT_NODE) {
+    if (tag == null || this.tagName == tag) {
+      if (cls == null)
+        return true;
+      var clss = this.className.split(' ');
+      for (var i = 0; i < clss.length; i++) {
+        if (cls == clss[i])
+          return true;
+      }
+    }
+  }
+  return false;
+};
+function yelp_init_media (media) {
+  var control;
+  var controlsDiv;
+  var playControl;
+  var rangeControl;
+  var currentSpan;
+  for (controlsDiv = media.nextSibling; controlsDiv; controlsDiv = controlsDiv.nextSibling)
+    if (controlsDiv.is_a('div', 'media-controls'))
+      break;
+  if (!controlsDiv)
+    return;
+  for (control = controlsDiv.firstChild; control; control = control.nextSibling) {
+    if (control.nodeType == Node.ELEMENT_NODE) {
+      if (control.is_a('button', 'media-play'))
+        playControl = control;
+      else if (control.is_a('input', 'media-range'))
+        rangeControl = control;
+      else if (control.is_a('span', 'media-current'))
+        currentSpan = control;
+    }
+  }
+
+  var ttmlDiv;
+  for (ttmlDiv = controlsDiv.nextSibling; ttmlDiv; ttmlDiv = ttmlDiv.nextSibling)
+    if (ttmlDiv.is_a('div', 'media-ttml'))
+      break;
+
+  var playCanvas;
+  for (playCanvas = playControl.firstChild; playCanvas; playCanvas = playCanvas.nextSibling)
+    if (playCanvas.is_a('canvas', null))
+      break;
+  var playCanvasCtxt = playCanvas.getContext('2d');
+  var paintPlayButton = function () {
+    playCanvasCtxt.fillStyle = ']]></xsl:text>
+<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+    playCanvasCtxt.clearRect(0, 0, 20, 20);
+    playCanvasCtxt.beginPath();
+    playCanvasCtxt.moveTo(5, 5);
+    playCanvasCtxt.lineTo(5, 15);
+    playCanvasCtxt.lineTo(15, 10);
+    playCanvasCtxt.lineTo(5, 5);
+    playCanvasCtxt.fill();
+  }
+  var paintPauseButton = function () {
+    playCanvasCtxt.fillStyle = ']]></xsl:text>
+<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+    playCanvasCtxt.clearRect(0, 0, 20, 20);
+    playCanvasCtxt.beginPath();
+    playCanvasCtxt.moveTo(5, 5);
+    playCanvasCtxt.lineTo(9, 5);
+    playCanvasCtxt.lineTo(9, 15);
+    playCanvasCtxt.lineTo(5, 15);
+    playCanvasCtxt.lineTo(5, 5);
+    playCanvasCtxt.fill();
+    playCanvasCtxt.beginPath();
+    playCanvasCtxt.moveTo(11, 5);
+    playCanvasCtxt.lineTo(15, 5);
+    playCanvasCtxt.lineTo(15, 15);
+    playCanvasCtxt.lineTo(11, 15);
+    playCanvasCtxt.lineTo(11, 5);
+    playCanvasCtxt.fill();
+  }
+  paintPlayButton();
+
+  var mediaChange = function () {
+    if (media.ended)
+      media.pause()
+    if (media.paused) {
+      playControl.setAttribute('value', playControl.getAttribute('data-play-label'));
+      paintPlayButton();
+    }
+    else {
+      playControl.setAttribute('value', playControl.getAttribute('data-pause-label'));
+      paintPauseButton();
+    }
+  }
+  media.addEventListener('play', mediaChange, false);
+  media.addEventListener('pause', mediaChange, false);
+  media.addEventListener('ended', mediaChange, false);
+
+  var playClick = function () {
+    if (media.paused || media.ended)
+      media.play();
+    else
+      media.pause();
+  };
+  playControl.addEventListener('click', playClick, false);
+
+  var ttmlNodes = [];
+  var ttmlNodesFill = function (node) {
+    var child;
+    for (child = node.firstChild; child; child = child.nextSibling) {
+      if (child.nodeType == Node.ELEMENT_NODE) {
+        if (child.is_a(null, 'media-ttml-node'))
+          ttmlNodes[ttmlNodes.length] = child;
+        ttmlNodesFill(child);
+      }
+    }
+  }
+  ttmlNodesFill(ttmlDiv);
+
+  var timeUpdate = function () {
+    rangeControl.value = parseInt((media.currentTime / media.duration) * 100);
+    var mins = parseInt(media.currentTime / 60);
+    var secs = parseInt(media.currentTime - (60 * mins))
+    currentSpan.innerText = mins + (secs < 10 ? ':0' : ':') + secs;
+    for (var i = 0; i < ttmlNodes.length; i++) {
+      if (media.currentTime >= parseFloat(ttmlNodes[i].getAttribute('data-begin')) &&
+          (!ttmlNodes[i].hasAttribute('data-end') ||
+           media.currentTime < parseFloat(ttmlNodes[i].getAttribute('data-end')) )) {
+        if (ttmlNodes[i].tagName == 'span')
+          ttmlNodes[i].style.display = 'inline';
+        else
+          ttmlNodes[i].style.display = 'block';
+      }
+      else {
+        ttmlNodes[i].style.display = 'none';
+      }
+    }
+  };
+  media.addEventListener('timeupdate', timeUpdate, false);
+
+  var rangeChange = function () {
+    media.currentTime = (parseInt(rangeControl.value) / 100.0)  * media.duration;
+  };
+  rangeControl.addEventListener('change', rangeChange, false);
+};
+document.addEventListener("DOMContentLoaded", function () {
+  var vids = document.getElementsByTagName('video');
+  for (var i = 0; i < vids.length; i++)
+    yelp_init_media(vids[i]);
+}, false);
+]]></xsl:text>
+  </script>
+</xsl:template>
+
 
 <!--**==========================================================================
 html.lang.attrs
