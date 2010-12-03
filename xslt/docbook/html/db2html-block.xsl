@@ -285,7 +285,7 @@ This template uses the parameters to construct the #{class} attribute, which
 is then used by the CSS for styling.
 
 If ${node} has the #{linenumbering} attribute set to #{"numbered"}, then this
-template will create line numbers for each line, using the *{db.linenumbering}
+template will create line numbers for each line, using the *{utils.linenumbering}
 template.
 -->
 <xsl:template name="db2html.pre">
@@ -336,7 +336,7 @@ template.
           <xsl:otherwise>1</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <pre class="linenumbering"><xsl:call-template name="db.linenumbering">
+      <pre class="numbered"><xsl:call-template name="utils.linenumbering">
         <xsl:with-param name="node" select="$node"/>
         <xsl:with-param name="number" select="$number"/>
       </xsl:call-template></pre>

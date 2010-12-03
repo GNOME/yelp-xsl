@@ -636,7 +636,7 @@ div.sectionlinks div.sectionlinks {
 div.sectionlinks div.sectionlinks li {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
 }
-pre.linenumbering {
+pre.numbered {
   margin: 0;
   padding: 0.5em;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;

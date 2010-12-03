@@ -45,6 +45,7 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
+  <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), 'numbered')"/>
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
@@ -52,6 +53,11 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
     </xsl:attribute>
+    <xsl:if test="$numbered">
+      <pre class="numbered"><xsl:call-template name="utils.linenumbering">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template></pre>
+    </xsl:if>
     <pre class="contents">
       <xsl:if test="$first">
         <xsl:call-template name="utils.strip_newlines">

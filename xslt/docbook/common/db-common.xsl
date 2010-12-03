@@ -68,48 +68,6 @@ notice, beginning with the copyright symbol "©".
 
 
 <!--**==========================================================================
-db.linenumbering
-Numbers each line in a verbatim environment
-$node: The verbatim element to create the line numbering for
-$number: The starting line number
-
-This template outputs a string with line numbers for each line in a verbatim
-elements.  Each line number is on its own line, allowing the output string to
-be placed to the side of the verbatim output.
--->
-<xsl:template name="db.linenumbering">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="number" select="1"/>
-  <xsl:param name="string">
-    <xsl:choose>
-      <xsl:when test="$node/node()[1]/self::text() and starts-with($node/node()[1], '&#x000A;')">
-        <xsl:value-of select="substring-after(string($node), '&#x000A;')"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="string($node)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:choose>
-    <xsl:when test="contains($string, '&#x000A;')">
-      <xsl:number value="$number"/>
-      <xsl:text>&#x000A;</xsl:text>
-      <xsl:call-template name="db.linenumbering">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="number" select="$number + 1"/>
-        <xsl:with-param name="string"
-                        select="substring-after($string, '&#x000A;')"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="string-length($string) != 0">
-      <xsl:number value="$number"/>
-      <xsl:text>&#x000A;</xsl:text>
-    </xsl:when>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
 db.linenumbering.start
 Determines the starting line number for a verbatim element
 $node: The verbatim element to determine the starting line number for
