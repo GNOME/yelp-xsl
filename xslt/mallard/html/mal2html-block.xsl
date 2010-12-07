@@ -243,6 +243,9 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:when test="contains(concat(' ', @style, ' '), ' important ')">
         <xsl:text>important</xsl:text>
       </xsl:when>
+      <xsl:when test="contains(concat(' ', @style, ' '), ' sidebar ')">
+        <xsl:text>sidebar</xsl:text>
+      </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' tip ')">
         <xsl:text>tip</xsl:text>
       </xsl:when>

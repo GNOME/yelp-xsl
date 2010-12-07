@@ -717,6 +717,21 @@ div.note-tip div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.tip"/><xsl:text>"); }
 div.note-warning div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.warning"/><xsl:text>"); }
+div.note-sidebar {
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  max-width: 40%;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+  padding: 6px;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
+div.note-sidebar > div.inner { background-image: none; }
+div.note-sidebar > div.inner > div.title { margin-</xsl:text>
+  <xsl:value-of select="$left"/><xsl:text>: 0px; }
+div.note-sidebar > div.inner > div.contents { margin-</xsl:text>
+  <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.quote {
   padding: 0;
   background-image: url('</xsl:text>
