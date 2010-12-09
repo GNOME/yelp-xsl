@@ -2,6 +2,7 @@ prefix=@prefix@
 datarootdir=@datarootdir@
 datadir=@datadir@
 icondir=${datadir}/yelp-xsl/icons
+jsdir=${datadir}/yelp-xsl/js
 xsltdir=${datadir}/yelp-xsl/xslt
 gettext=${xsltdir}/gettext/gettext.xsl
 db2html=${xsltdir}/docbook/html/db2html.xsl

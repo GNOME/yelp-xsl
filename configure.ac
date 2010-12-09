@@ -48,6 +48,7 @@ icons/hicolor/48x48/status/Makefile
 icons/hicolor/scalable/Makefile
 icons/hicolor/scalable/status/Makefile
 icons/hicolor/watermarks/Makefile
+js/Makefile
 doc/Makefile
 doc/yelp-xsl/Makefile
 po/Makefile.in

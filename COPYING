@@ -1,12 +1,12 @@
 yelp-xsl is a collection of programs and data files to help you build,
-maintain, and distribute documentation.  This package is entirely free
+maintain, and distribute documentation. This package is entirely free
 software; however, not all components of the package are under the same
 free software license.
 
 The GNU General Public License and the GNU Lesser General Public License are
-used for particular components of this package, depending on need.  You should
+used for particular components of this package, depending on need. You should
 have received a copy of both licenses with this package; see COPYING.GPL and
-COPYING.LGPL.  If you did not receive these files, write to the Free Software
+COPYING.LGPL. If you did not receive these files, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 This document attempts to provide a brief overview of the programs in this
@@ -16,29 +16,53 @@ package and their licensing terms.
 XSLT
 ----
 This package contains various XSLT files for transforming DocBook, Mallard,
-and other formats.  They were written primarily by Shaun McCance.
+and other formats. They were written primarily by Shaun McCance.
 
-The XSLT files are released under the terms of the GNU LGPL.  You may build
+The XSLT files are released under the terms of the GNU LGPL. You may build
 customizations from these stylesheets using their public documented interfaces,
 using either xsl:import or xsl:include, with no restrictions on your customized
-stylesheets.  You may also invoke the stylesheets freely, either with a simple
+stylesheets. You may also invoke the stylesheets freely, either with a simple
 XSLT processor such as xsltproc, or using an XSLT processing library within
-your program.  The use of these stylesheets has no bearing on the licensing
+your program. The use of these stylesheets has no bearing on the licensing
 terms of the XSLT processing program you use.
 
 The files output by the stylesheets are not affected by the terms of the LGPL.
 In particular, some of the stylesheets output program files rather than simple
-data files.  The generated program files are also not affected by the LGPL.
+data files. The generated program files are also not affected by the LGPL.
 You can redistribute all generated files as you see fit.
 
 
 Images
 ------
 This package contains a number of images that are used in the formatted
-output.  They were created primarily by Josef Vybíral.  These images are
+output. They were created primarily by Josef Vybíral. These images are
 licensed under the terms of the GNU GPL.
 
 As a special exception to the GNU General Public License, if you distribute
 copies of your document formatted by the tools in this package, you may
 redistribute unmodified copies of any images used or referenced in that
 formatted copy without restriction.
+
+
+JavaScript
+----------
+This package contains copies of the jQuery JavaScript library and the
+jQuery.Syntax syntax highlighter. The XSLT in this package may output
+HTML that references these libraries through the src attribute of the
+script tag.
+
+The jQuery library is copyright 2010 John Resig and is dual-licensed under
+the MIT and and the Gnu GPLv2 licenses. See COPYING.MIT and COPYING.GPL
+for details.
+
+The jQuery.Syntax library is copyright 2010 Samuel Williams and is licensed
+under the GNU AGPLv3. See COPYING.AGPL for details. The jQuery.Syntax authors
+have granted the following additional permissions (as per section 7):
+
+ 1) Any HTML file which merely makes function calls to this code, and for
+    that purpose includes it by reference shall be deemed a separate work
+    for copyright law purposes.
+ 2) You may distribute non-source (e.g., minimized or compacted) forms of
+    the code without the copy of the GNU AGPL normally required by section
+    4, provided you include this license notice and a URL through which
+    recipients can access the Corresponding Source.
