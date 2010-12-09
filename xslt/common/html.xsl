@@ -11,7 +11,7 @@ FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with this program; see the file COPYING.LGPL.  If not, write to the
+along with this program; see the file COPYING.LGPL. If not, write to the
 Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 02111-1307, USA.
 -->
@@ -131,6 +131,40 @@ should include the leading dot. By default, #{.xhtml} will be used if
     </xsl:otherwise>
   </xsl:choose>
 </xsl:param>
+
+
+<!--@@==========================================================================
+html.css.root
+The URI root for external CSS files.
+:Revision:version="1.0" date="2010-12-06" status="final"
+
+This parameter provides a root URI for any external CSS files that are
+referenced from the output HTML file.
+-->
+<xsl:param name="html.css.root" select="''"/>
+
+
+<!--@@==========================================================================
+html.js.root
+The URI root for external JavaScript files.
+:Revision:version="1.0" date="2010-12-06" status="final"
+
+This parameter provides a root URI for any external JavaScript files that are
+referenced from the output HTML file.
+-->
+<xsl:param name="html.js.root" select="''"/>
+
+
+<!--@@==========================================================================
+html.syntax.highlight
+Whether to include syntax highlighting support for code blocks.
+:Revision:version="1.0" date="2010-12-06" status="final"
+
+This parameter specifies whether syntax highlighting should be enabled for
+code blocks in the output HTML. Syntax highlighting is done at document load
+time by JavaScript.
+-->
+<xsl:param name="html.syntax.highlight" select="false()"/>
 
 
 <!--**==========================================================================
@@ -321,7 +355,8 @@ $right: The ending alignment, either #{left} or #{right}.
 
 This template creates the CSS for an HTML output page, including the enclosing
 HTML #{style} element. It calls the templates *{html.css.core}, *{html.css.elements},
-and *{html.css.extra} and calls the mode %{html.css.mode} on ${node}.
+and *{html.css.syntax}. It then calls the mode %{html.css.mode} on ${node} and
+calls the template *{html.css.custom}.
 
 The ${direction} parameter specifies the directionality of the text for the
 language of the document. The ${left} and ${right} parameters are based on
@@ -345,11 +380,19 @@ dimensions. All parameters can be automatically computed if not provided.
   </xsl:param>
   <style type="text/css">
     <xsl:call-template name="html.css.core">
+      <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="direction" select="$direction"/>
       <xsl:with-param name="left" select="$left"/>
       <xsl:with-param name="right" select="$right"/>
     </xsl:call-template>
     <xsl:call-template name="html.css.elements">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="direction" select="$direction"/>
+      <xsl:with-param name="left" select="$left"/>
+      <xsl:with-param name="right" select="$right"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.css.syntax">
+      <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="direction" select="$direction"/>
       <xsl:with-param name="left" select="$left"/>
       <xsl:with-param name="right" select="$right"/>
@@ -360,6 +403,7 @@ dimensions. All parameters can be automatically computed if not provided.
       <xsl:with-param name="right" select="$right"/>
     </xsl:apply-templates>
     <xsl:call-template name="html.css.custom">
+      <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="direction" select="$direction"/>
       <xsl:with-param name="left" select="$left"/>
       <xsl:with-param name="right" select="$right"/>
@@ -379,7 +423,7 @@ $right: The ending alignment, either #{left} or #{right}.
 This template is called by *{html.css} to output CSS specific to the input
 format. Importing stylesheets may implement this for any element that will be
 passed to *{html.page}. If they do not, the output HTML will only have the
-common CSS from *{html.css.core} and *{html.css.elements}.
+common CSS.
 -->
 <xsl:template mode="html.css.mode" match="*">
   <xsl:param name="direction">
@@ -402,12 +446,13 @@ common CSS from *{html.css.core} and *{html.css.elements}.
 html.css.core
 Output CSS that does not reference source elements.
 :Revision: version="1.0" date="2010-05-25" status="final"
+$node: The node to create CSS for.
 $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
-This template outputs CSS that can be used in any HTML.  It does not reference
-elements from DocBook, Mallard, or other source languages.  It provides the
+This template outputs CSS that can be used in any HTML. It does not reference
+elements from DocBook, Mallard, or other source languages. It provides the
 common spacings for block-level elements lik paragraphs and lists, defines
 styles for links, and defines four common wrapper divs: #{header}, #{side},
 #{body}, and #{footer}.
@@ -415,6 +460,7 @@ styles for links, and defines four common wrapper divs: #{header}, #{side},
 All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="html.css.core">
+  <xsl:param name="node" select="."/>
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
   </xsl:param>
@@ -496,6 +542,7 @@ p { line-height: 1.72em; }
 div, pre, p { margin: 1em 0 0 0; padding: 0; }
 div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.contents, pre.contents { margin-top: 0; }
+pre.contents div { margin-top: 0 !important; }
 p img { vertical-align: middle; }
 
 table {
@@ -559,19 +606,21 @@ a img { border: none; }
 html.css.elements
 Output CSS for common elements from source formats.
 :Revision: version="1.0" date="2010-05-25" status="final"
+$node: The node to create CSS for.
 $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
 This template outputs CSS for elements from source languages like DocBook and
-Mallard.  It defines them using common class names.  The common names are often
+Mallard. It defines them using common class names. The common names are often
 the simpler element names from Mallard, although there some class names which
-are not taken from Mallard.  Stylesheets which convert to HTML should use the
+are not taken from Mallard. Stylesheets which convert to HTML should use the
 appropriate common classes.
 
 All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="html.css.elements">
+  <xsl:param name="node" select="."/>
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
   </xsl:param>
@@ -913,18 +962,67 @@ div.media-ttml-p {
 
 
 <!--**==========================================================================
-html.css.custom
-Stub to output custom CSS common to all HTML transformations.
-:Stub: true
-:Revision: version="1.0" date="2010-05-25" status="final"
+html.css.syntax
+Output CSS for syntax highlighting.
+:Revision: version="1.0" date="2010-12-06" status="final"
+$node: The node to create CSS for.
 $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
-This template is a stub, called by *{html.css}.  You can override this
+This template outputs CSS to support syntax highlighting of code blocks. Syntax
+highlighting is done at document load time with JavaScript. Text in code blocks
+is broken up into chunks and wrapped in HTML elements with particular classes.
+This template outputs CSS to match those elements and style them with the
+built-in themeable colors from !{colors}.
+
+All parameters can be automatically computed if not provided.
+-->
+<xsl:template name="html.css.syntax">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:if test="$html.syntax.highlight">
+  <xsl:text>
+pre.syntax {
+}
+pre.syntax span.function, pre.syntax span.keyword, pre.syntax span.tag {
+  color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+pre.syntax span.string, pre.syntax span.operator {
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.css.custom
+Stub to output custom CSS common to all HTML transformations.
+:Stub: true
+:Revision: version="1.0" date="2010-05-25" status="final"
+$node: The node to create CSS for.
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template is a stub, called by *{html.css}. You can override this
 template to provide additional CSS that will be used by all HTML output.
 -->
 <xsl:template name="html.css.custom">
+  <xsl:param name="node" select="."/>
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
   </xsl:param>
@@ -941,13 +1039,86 @@ template to provide additional CSS that will be used by all HTML output.
 </xsl:template>
 
 
+<!--**==========================================================================
+html.js
+Output all JavaScript for an HTML output page.
+:Revision:version="1.0" date="2010-12-06" status="final"
+$node: The node to create JavaScript for.
+
+This template creates the JavaScript for an HTML output page. It calls the
+built-in templates *{html.js.core}, *{html.js.media}, and *{html.js.syntax}.
+It then calls the mode %{html.js.mode} on ${node} and calls the template
+*{html.js.custom}. Unlike *{html.css}, this template does not output any
+wrapper elements. Called templates are responsible for outputting #{script}
+tags.
+-->
 <xsl:template name="html.js">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="html.js.core">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.js.media">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.js.syntax">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:apply-templates mode="html.js.mode" select="$node"/>
+  <xsl:call-template name="html.js.custom">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.js.mode
+Output JavaScript specific to the input format.
+:Revision:version="1.0" date="2010-12-06" status="final"
+
+This template is called by *{html.js} to output JavaScript specific to the input
+format. Importing stylesheets may implement this for any element that will be
+passed to *{html.page}. If they do not, the output HTML will only have the
+common JavaScript.
+-->
+<xsl:template mode="html.js.mode" match="*">
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.core
+Output JavaScript that does not reference source elements.
+:Revision: version="1.0" date="2010-12-06" status="final"
+$node: The node to create JavaScript for.
+
+This template outputs JavaScript that can be used in any HTML. It does not
+reference elements from DocBook, Mallard, or other source languages.
+-->
+<xsl:template name="html.js.core">
+  <xsl:param name="node" select="."/>
+  <script type="text/javascript" language="javascript">
+    <xsl:attribute name="src">
+      <xsl:value-of select="$html.js.root"/>
+      <xsl:text>jquery.js</xsl:text>
+    </xsl:attribute>
+  </script>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.media
+Output JavaScript to control media elements.
+:Revision: version="1.0" date="2010-12-06" status="final"
+
+This template outputs JavaScript that controls media elements. It provides
+control for audio and video elements as well as support for captions.
+-->
+<xsl:template name="html.js.media">
   <xsl:param name="node" select="."/>
   <script type="text/javascript" language="javascript">
 <xsl:text><![CDATA[
 Node.prototype.is_a = function (tag, cls) {
   if (this.nodeType == Node.ELEMENT_NODE) {
-    if (tag == null || this.tagName == tag) {
+    if (tag == null || this.tagName.toLowerCase() == tag) {
       if (cls == null)
         return true;
       var clss = this.className.split(' ');
@@ -966,8 +1137,10 @@ function yelp_init_media (media) {
   var rangeControl;
   var currentSpan;
   for (controlsDiv = media.nextSibling; controlsDiv; controlsDiv = controlsDiv.nextSibling)
+{
     if (controlsDiv.is_a('div', 'media-controls'))
       break;
+}
   if (!controlsDiv)
     return;
   for (control = controlsDiv.firstChild; control; control = control.nextSibling) {
@@ -1050,11 +1223,13 @@ function yelp_init_media (media) {
   var ttmlNodes = [];
   var ttmlNodesFill = function (node) {
     var child;
-    for (child = node.firstChild; child; child = child.nextSibling) {
-      if (child.nodeType == Node.ELEMENT_NODE) {
-        if (child.is_a(null, 'media-ttml-node'))
-          ttmlNodes[ttmlNodes.length] = child;
-        ttmlNodesFill(child);
+    if (node != null) {
+      for (child = node.firstChild; child; child = child.nextSibling) {
+        if (child.nodeType == Node.ELEMENT_NODE) {
+          if (child.is_a(null, 'media-ttml-node'))
+            ttmlNodes[ttmlNodes.length] = child;
+          ttmlNodesFill(child);
+        }
       }
     }
   }
@@ -1093,6 +1268,48 @@ document.addEventListener("DOMContentLoaded", function () {
 }, false);
 ]]></xsl:text>
   </script>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.syntax
+Output JavaScript for syntax highlighting.
+:Revision: version="1.0" date="2010-12-06" status="final"
+$node: The node to create JavaScript for.
+
+This template outputs JavaScript to enable syntax highlighting in code blocks.
+-->
+<xsl:template name="html.js.syntax">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$html.syntax.highlight">
+    <script type="text/javascript" language="javascript">
+      <xsl:attribute name="src">
+        <xsl:value-of select="$html.js.root"/>
+        <xsl:text>jquery.syntax.js</xsl:text>
+      </xsl:attribute>
+    </script>
+    <script type="text/javascript" language="javascript">
+      <xsl:text>jQuery(document).ready( function () { jQuery.syntax({root: '</xsl:text>
+      <xsl:value-of select="$html.js.root"/>
+      <xsl:text>', blockLayout: 'plain'}, function (options, html, container) </xsl:text>
+      <xsl:text>{ html.attr('class', container.attr('class')); return html; }); });</xsl:text>
+    </script>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.css.custom
+Stub to output custom JavaScript common to all HTML transformations.
+:Stub: true
+:Revision: version="1.0" date="2010-12-06" status="final"
+$node: The node to create JavaScript for.
+
+This template is a stub, called by *{html.js}. You can override this template
+to provide additional JavaScript that will be used by all HTML output.
+-->
+<xsl:template name="html.js.custom">
+  <xsl:param name="node" select="."/>
 </xsl:template>
 
 

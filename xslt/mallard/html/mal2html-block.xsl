@@ -58,7 +58,21 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template></pre>
     </xsl:if>
-    <pre class="contents">
+    <pre>
+      <xsl:attribute name="class">
+        <xsl:text>contents </xsl:text>
+        <xsl:if test="$html.syntax.highlight and $node/@mime">
+          <xsl:choose>
+            <xsl:when test="@mime = 'text/x-csrc' or @mime = 'text/x-chdr'">
+              <xsl:text>syntax brush-clang</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/html' or @mime = 'application/xml' or
+                            substring(@mime, string-length(@mime) - 3) = '+xml'">
+              <xsl:text>syntax brush-html</xsl:text>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:attribute>
       <xsl:if test="$first">
         <xsl:call-template name="utils.strip_newlines">
           <xsl:with-param name="string" select="$first"/>
