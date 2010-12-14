@@ -556,6 +556,7 @@ REMARK: Describe this template
 <xsl:template name="mal2html.links.topic" match="e:links[@type = 'topic']">
   <xsl:param name="node" select="."/>
   <xsl:param name="groups">
+    <xsl:text> </xsl:text>
     <xsl:choose>
       <xsl:when test="$node/@groups">
         <xsl:value-of select="$node/@groups"/>
@@ -564,6 +565,7 @@ REMARK: Describe this template
         <xsl:text>#default</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:text> </xsl:text>
   </xsl:param>
   <xsl:param name="allgroups" select="''"/>
   <xsl:param name="links" select="/false"/>
@@ -586,7 +588,7 @@ REMARK: Describe this template
         </xsl:if>
       </xsl:if>
     </xsl:variable>
-    <xsl:variable name="_links" select="$links[contains($_groups, @group)]"/>
+    <xsl:variable name="_links" select="$links[contains($_groups, concat(' ', @group, ' '))]"/>
     <xsl:if test="count($_links) != 0">
       <div class="links topiclinks">
         <xsl:if test="$node/self::e:links">
