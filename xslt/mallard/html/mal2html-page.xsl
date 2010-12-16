@@ -21,8 +21,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
-                extension-element-prefixes="exsl"
-                exclude-result-prefixes="mal e"
+                exclude-result-prefixes="mal e exsl"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -71,15 +70,17 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
 
 <!--**==========================================================================
 mal2html.page.linkdiv
-Outputs an automatic link block from a guide to a page
-$source: The #{page} or #{section} element containing the link
-$target: The element from the cache file of the page being linked to
+Output an automatic link block from a guide to a page.
+$source: The #{page} or #{section} element containing the link.
+$target: The element from the cache file of the page being linked to.
+$attrs: A set of extra data attributes to add to the #{a} element.
 
 REMARK: Describe this template
 -->
 <xsl:template name="mal2html.page.linkdiv">
   <xsl:param name="source" select="."/>
   <xsl:param name="target"/>
+  <xsl:param name="attrs"/>
   <a>
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
@@ -87,6 +88,7 @@ REMARK: Describe this template
         <xsl:with-param name="xref" select="$target/@id"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
     <div class="linkdiv">
       <div class="title">
         <span class="title">
@@ -499,38 +501,48 @@ REMARK: Describe this template
 
 <!-- page | section -->
 <xsl:template match="mal:page | mal:section">
+  <xsl:variable name="type" select="/mal:page/@type"/>
   <xsl:variable name="topiclinks">
-    <xsl:call-template name="mal.link.topiclinks"/>
+    <xsl:if test="$type = 'guide'">
+      <xsl:call-template name="mal.link.topiclinks"/>
+    </xsl:if>
   </xsl:variable>
   <xsl:variable name="topicnodes" select="exsl:node-set($topiclinks)/*"/>
   <xsl:variable name="allgroups">
-    <xsl:text> </xsl:text>
-    <xsl:for-each select="e:links[@type = 'topic']">
-      <xsl:choose>
-        <xsl:when test="@groups">
-          <xsl:value-of select="@groups"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>#default</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:if test="$type = 'guide'">
       <xsl:text> </xsl:text>
-    </xsl:for-each>
+      <xsl:for-each select="e:links[@type = 'topic']">
+        <xsl:choose>
+          <xsl:when test="@groups">
+            <xsl:value-of select="@groups"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>#default</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:text> </xsl:text>
+      </xsl:for-each>
+    </xsl:if>
   </xsl:variable>
   <div class="hgroup">
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
   <div class="contents">
+    <xsl:if test="$type = 'facets'">
+      <xsl:call-template name="mal2html.facets.controls"/>
+    </xsl:if>
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
       <xsl:choose>
         <xsl:when test="preceding-sibling::mal:section"/>
         <xsl:when test="self::e:links[@type = 'topic']">
-          <xsl:apply-templates select=".">
-            <xsl:with-param name="allgroups" select="$allgroups"/>
-            <xsl:with-param name="links" select="$topicnodes"/>
-          </xsl:apply-templates>
+          <xsl:if test="$type = 'guide'">
+            <xsl:apply-templates select=".">
+              <xsl:with-param name="allgroups" select="$allgroups"/>
+              <xsl:with-param name="links" select="$topicnodes"/>
+            </xsl:apply-templates>
+          </xsl:if>
         </xsl:when>
         <xsl:when test="self::e:links">
           <xsl:apply-templates select="."/>
@@ -540,10 +552,15 @@ REMARK: Describe this template
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:if test="not(e:links[@type = 'topic'])">
-      <xsl:call-template name="mal2html.links.topic">
-        <xsl:with-param name="links" select="$topicnodes"/>
-      </xsl:call-template>
+    <xsl:if test="$type = 'guide'">
+      <xsl:if test="not(e:links[@type = 'topic'])">
+        <xsl:call-template name="mal2html.links.topic">
+          <xsl:with-param name="links" select="$topicnodes"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:if>
+    <xsl:if test="$type = 'facets'">
+      <xsl:call-template name="mal2html.facets.links"/>
     </xsl:if>
   </div>
   <xsl:apply-templates mode="mal2html.section.mode" select="mal:section"/>
@@ -833,6 +850,31 @@ span.hi {
   background-color: </xsl:text>
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
+
+div.facets {
+  display: inline-block;
+  padding: 6px;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+} 
+div.facet {
+ vertical-align: top;
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 1em;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
+}
+div.facet div.title { margin: 0; }
+div.facet li {
+  margin: 0; padding: 0;
+  list-style-type: none;
+}
+div.facet input {
+  vertical-align: middle;
+  margin: 0;
+}
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
 <xsl:text>
@@ -875,6 +917,11 @@ div.linkdiv div.desc {
 }
 </xsl:text>
 </xsl:if>
+</xsl:template>
+
+<!--%# html.js.mode -->
+<xsl:template mode="html.js.mode" match="mal:page">
+  <xsl:call-template name="mal2html.facets.js"/>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -2,6 +2,7 @@ xsldir=$(datadir)/yelp-xsl/xslt/mallard/html
 
 xsl_DATA =				\
 	mal2html-block.xsl		\
+	mal2html-facets.xsl		\
 	mal2html-inline.xsl		\
 	mal2html-list.xsl		\
 	mal2html-media.xsl		\
