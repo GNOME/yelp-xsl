@@ -1,3 +1,7 @@
+Changes in 2.91.8
+=================
+* Fixed non-well-formed XML in XSLT file
+
 Changes in 2.91.7
 =================
 * Added support for Mallard Facets extension
