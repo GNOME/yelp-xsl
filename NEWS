@@ -1,3 +1,11 @@
+Changes in 2.91.7
+=================
+* Added support for Mallard Facets extension
+* Fixed incorrect handling of topic link groups
+* Added automatic syntax highlighting using jQuery.Syntax
+* Implemented sidebar style for notes
+* Added support for line numbering in Mallard code blocks
+
 Changes in 2.31.6
 =================
 * Added support for TTML captions for Mallard media
