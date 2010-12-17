@@ -32,7 +32,7 @@ REMARK: Describe this module
 
 
 <!--@@==========================================================================
-mal2html.editor.mode
+mal2html.editor_mode
 Add information that's useful to writers and editors.
 
 When this parameter is set to true, these stylesheets will output editorial
@@ -98,56 +98,9 @@ REMARK: Describe this template
             <xsl:with-param name="role" select="'topic'"/>
           </xsl:call-template>
         </span>
-
-        <xsl:if test="$mal2html.editor_mode">
-          <xsl:variable name="page" select="$target/ancestor-or-self::mal:page[1]"/>
-          <xsl:variable name="date">
-            <xsl:for-each select="$page/mal:info/mal:revision">
-              <xsl:sort select="@date" data-type="text" order="descending"/>
-              <xsl:if test="position() = 1">
-                <xsl:value-of select="@date"/>
-              </xsl:if>
-            </xsl:for-each>
-          </xsl:variable>
-          <xsl:variable name="revision"
-                        select="$page/mal:info/mal:revision[@date = $date][last()]"/>
-          <xsl:if test="$revision/@status != '' and $revision/@status != 'final'">
-            <xsl:text> </xsl:text>
-            <span>
-              <xsl:attribute name="class">
-                <xsl:value-of select="concat('status status-', $revision/@status)"/>
-              </xsl:attribute>
-              <!-- FIXME: i18n -->
-              <xsl:choose>
-                <xsl:when test="$revision/@status = 'stub'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Stub'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'incomplete'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Incomplete'"/>
-                   </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'draft'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Draft'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'review'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Ready for review'"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$revision/@status = 'final'">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Final'"/>
-                  </xsl:call-template>
-                </xsl:when>
-              </xsl:choose>
-            </span>
-          </xsl:if>
-        </xsl:if>
+        <xsl:call-template name="mal2html.editor.badge">
+          <xsl:with-param name="target" select="$target"/>
+        </xsl:call-template>
       </div>
       <xsl:if test="$target/mal:info/mal:desc">
         <div class="desc">
@@ -253,29 +206,35 @@ REMARK: Describe this template
   <xsl:param name="page"/>
   <xsl:param name="xref" select="$page/@id"/>
   <xsl:param name="role" select="''"/>
-  <li class="links">
-    <a>
-      <xsl:attribute name="href">
-        <xsl:call-template name="mal.link.target">
+  <xsl:for-each select="$mal.cache">
+    <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+    <li class="links">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="mal.link.target">
+            <xsl:with-param name="xref" select="$xref"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:call-template name="mal.link.content">
+          <xsl:with-param name="node" select="."/>
           <xsl:with-param name="xref" select="$xref"/>
+          <xsl:with-param name="role" select="$role"/>
         </xsl:call-template>
-      </xsl:attribute>
-      <xsl:call-template name="mal.link.content">
-        <xsl:with-param name="node" select="."/>
-        <xsl:with-param name="xref" select="$xref"/>
-        <xsl:with-param name="role" select="$role"/>
-      </xsl:call-template>
-    </a>
-    <xsl:for-each select="$mal.cache">
-      <xsl:variable name="desc" select="key('mal.cache.key', $xref)/mal:info/mal:desc"/>
+      </a>
+      <xsl:if test="$role = 'guide'">
+        <xsl:call-template name="mal2html.editor.badge">
+          <xsl:with-param name="target" select="$target"/>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
       <xsl:if test="$desc">
         <span class="desc">
           <xsl:text> &#x2014; </xsl:text>
           <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
         </span>
       </xsl:if>
-    </xsl:for-each>
-  </li>
+    </li>
+  </xsl:for-each>
 </xsl:template>
 
 
@@ -405,7 +364,60 @@ REMARK: Describe this template
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="mal2html.page.versionbanner">
+<xsl:template name="mal2html.editor.badge">
+  <xsl:param name="target" select="."/>
+  <xsl:if test="$mal2html.editor_mode">
+    <xsl:variable name="page" select="$target/ancestor-or-self::mal:page[1]"/>
+    <xsl:variable name="date">
+      <xsl:for-each select="$page/mal:info/mal:revision">
+        <xsl:sort select="@date" data-type="text" order="descending"/>
+        <xsl:if test="position() = 1">
+          <xsl:value-of select="@date"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="revision"
+                  select="$page/mal:info/mal:revision[@date = $date][last()]"/>
+    <xsl:if test="$revision/@status != '' and $revision/@status != 'final'">
+      <xsl:text> </xsl:text>
+      <span>
+        <xsl:attribute name="class">
+          <xsl:value-of select="concat('status status-', $revision/@status)"/>
+        </xsl:attribute>
+        <!-- FIXME: i18n -->
+        <xsl:choose>
+          <xsl:when test="$revision/@status = 'stub'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Stub'"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$revision/@status = 'incomplete'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Incomplete'"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$revision/@status = 'draft'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Draft'"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$revision/@status = 'review'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Ready for review'"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$revision/@status = 'final'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Final'"/>
+            </xsl:call-template>
+          </xsl:when>
+        </xsl:choose>
+      </span>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="mal2html.editor.banner">
   <xsl:param name="node" select="."/>
   <xsl:if test="$mal2html.editor_mode">
     <xsl:variable name="date">
@@ -488,7 +500,7 @@ REMARK: Describe this template
 
 <xsl:template mode="html.body.mode" match="mal:page">
   <xsl:call-template name="mal2html.page.prevnextlinks"/>
-  <xsl:call-template name="mal2html.page.versionbanner"/>
+  <xsl:call-template name="mal2html.editor.banner"/>
   <xsl:apply-templates select="."/>
 </xsl:template>
 
@@ -893,7 +905,7 @@ div.version {
 }
 div.version:hover { opacity: 0.8; }
 div.version p.version { margin-top: 0.2em; }
-div.linkdiv div.title span.status {
+span.status {
   font-size: 0.83em;
   font-weight: normal;
   padding-left: 0.2em;
@@ -903,19 +915,14 @@ div.linkdiv div.title span.status {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.red_border"/><xsl:text>;
 }
-div.linkdiv div.title span.status-stub { background-color: </xsl:text>
+span.status-stub { background-color: </xsl:text>
   <xsl:value-of select="$color.red_background"/><xsl:text>; }
-div.linkdiv div.title span.status-draft { background-color: </xsl:text>
+span.status-draft { background-color: </xsl:text>
   <xsl:value-of select="$color.red_background"/><xsl:text>; }
-div.linkdiv div.title span.status-incomplete { background-color: </xsl:text>
+span.status-incomplete { background-color: </xsl:text>
   <xsl:value-of select="$color.red_background"/><xsl:text>; }
-div.linkdiv div.title span.status-review { background-color: </xsl:text>
+span.status-review { background-color: </xsl:text>
   <xsl:value-of select="$color.yellow_background"/><xsl:text>; }
-div.linkdiv div.desc {
-  margin-top: 0.2em;
-  color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
-}
 </xsl:text>
 </xsl:if>
 </xsl:template>
