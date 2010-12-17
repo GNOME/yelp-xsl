@@ -162,9 +162,9 @@ $(document).ready(function () {
         }
       }
       if (!visible)
-        link.hide();
+        link.hide('fast');
       else
-        link.show();
+        link.show('fast');
     });
   });
 });

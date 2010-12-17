@@ -81,7 +81,7 @@ REMARK: Describe this template
   <xsl:param name="source" select="."/>
   <xsl:param name="target"/>
   <xsl:param name="attrs"/>
-  <a>
+  <a class="linkdiv">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
         <xsl:with-param name="node" select="$source"/>
@@ -788,6 +788,7 @@ td.twocolumnright {
   -moz-padding-end: 0;
 }
 
+a.linkdiv { display: block; }
 div.linkdiv div.title {
   font-size: 1em;
   color: inherit;
