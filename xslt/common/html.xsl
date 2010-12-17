@@ -909,10 +909,12 @@ span.key {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.yellow_border"/><xsl:text>;
   padding: 0 0.2em 0 0.2em;
+  white-space: nowrap
 }
 span.keyseq {
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
+  white-space: nowrap
 }
 span.output { font-family: monospace; }
 pre span.output {
