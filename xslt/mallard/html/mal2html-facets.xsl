@@ -169,5 +169,6 @@ $(document).ready(function () {
   });
 });
 ]]></xsl:text></script>
+</xsl:template>
 
 </xsl:stylesheet>
