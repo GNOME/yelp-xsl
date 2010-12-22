@@ -105,6 +105,7 @@ tag and VALUES is the values.
         <xsl:call-template name="mal2html.page.linkdiv">
           <xsl:with-param name="source" select="$node"/>
           <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+          <xsl:with-param name="class" select="'facet'"/>
           <xsl:with-param name="attrs">
             <a>
               <xsl:for-each select="$link/facet:tag">
@@ -132,7 +133,7 @@ $(document).ready(function () {
   $('input.facet').change(function () {
     var control = $(this);
     var content = control.closest('div.body,div.sect');
-    content.find('a').each(function () {
+    content.find('a.facet').each(function () {
       var link = $(this);
       var facets = link.parents('div.body,div.sect').children('div.contents').children('div.facets').children('div.facet');
       var visible = true;

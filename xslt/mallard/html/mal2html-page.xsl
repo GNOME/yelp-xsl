@@ -73,6 +73,7 @@ mal2html.page.linkdiv
 Output an automatic link block from a guide to a page.
 $source: The #{page} or #{section} element containing the link.
 $target: The element from the cache file of the page being linked to.
+$class: An additional string to prepend to the #{class} attribute.
 $attrs: A set of extra data attributes to add to the #{a} element.
 
 REMARK: Describe this template
@@ -80,8 +81,9 @@ REMARK: Describe this template
 <xsl:template name="mal2html.page.linkdiv">
   <xsl:param name="source" select="."/>
   <xsl:param name="target"/>
+  <xsl:param name="class" select="''"/>
   <xsl:param name="attrs"/>
-  <a class="linkdiv">
+  <a class="{concat($class, ' linkdiv')}">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
         <xsl:with-param name="node" select="$source"/>
