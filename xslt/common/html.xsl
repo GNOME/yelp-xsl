@@ -347,16 +347,15 @@ to provide additional elements in the HTML #{head} element of output files.
 <!--**==========================================================================
 html.css
 Output all CSS for an HTML output page.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="1.0" date="2010-12-23" status="final"
 $node: The node to create CSS for.
 $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
 This template creates the CSS for an HTML output page, including the enclosing
-HTML #{style} element. It calls the templates *{html.css.core}, *{html.css.elements},
-and *{html.css.syntax}. It then calls the mode %{html.css.mode} on ${node} and
-calls the template *{html.css.custom}.
+HTML #{style} element. It calls the templates *{html.css.content} to output the
+actual CSS contents.
 
 The ${direction} parameter specifies the directionality of the text for the
 language of the document. The ${left} and ${right} parameters are based on
@@ -379,36 +378,74 @@ dimensions. All parameters can be automatically computed if not provided.
     </xsl:call-template>
   </xsl:param>
   <style type="text/css">
-    <xsl:call-template name="html.css.core">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="direction" select="$direction"/>
-      <xsl:with-param name="left" select="$left"/>
-      <xsl:with-param name="right" select="$right"/>
-    </xsl:call-template>
-    <xsl:call-template name="html.css.elements">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="direction" select="$direction"/>
-      <xsl:with-param name="left" select="$left"/>
-      <xsl:with-param name="right" select="$right"/>
-    </xsl:call-template>
-    <xsl:call-template name="html.css.syntax">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="direction" select="$direction"/>
-      <xsl:with-param name="left" select="$left"/>
-      <xsl:with-param name="right" select="$right"/>
-    </xsl:call-template>
-    <xsl:apply-templates mode="html.css.mode" select="$node">
-      <xsl:with-param name="direction" select="$direction"/>
-      <xsl:with-param name="left" select="$left"/>
-      <xsl:with-param name="right" select="$right"/>
-    </xsl:apply-templates>
-    <xsl:call-template name="html.css.custom">
+    <xsl:call-template name="html.css.content">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="direction" select="$direction"/>
       <xsl:with-param name="left" select="$left"/>
       <xsl:with-param name="right" select="$right"/>
     </xsl:call-template>
   </style>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.css.content
+Output actual CSS content for an HTML output page.
+:Revision:version="1.0" date="2010-12-23" status="final"
+$node: The node to create CSS for.
+$direction: The directionality of the text, either #{ltr} or #{rtl}.
+$left: The starting alignment, either #{left} or #{right}.
+$right: The ending alignment, either #{left} or #{right}.
+
+This template creates the CSS content for an HTML output page. It is called by
+*{html.css}. It calls the templates *{html.css.core}, *{html.css.elements}, and
+*{html.css.syntax}. It then calls the mode %{html.css.mode} on ${node} and
+calls the template *{html.css.custom}.
+-->
+<xsl:template name="html.css.content">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:call-template name="html.css.core">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.css.elements">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.css.syntax">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
+  <xsl:apply-templates mode="html.css.mode" select="$node">
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:apply-templates>
+  <xsl:call-template name="html.css.custom">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -420,10 +457,10 @@ $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
-This template is called by *{html.css} to output CSS specific to the input
-format. Importing stylesheets may implement this for any element that will be
-passed to *{html.page}. If they do not, the output HTML will only have the
-common CSS.
+This template is called by *{html.css.content} to output CSS specific to the
+input format. Importing stylesheets may implement this for any element that
+will be passed to *{html.page}. If they do not, the output HTML will only have
+the common CSS.
 -->
 <xsl:template mode="html.css.mode" match="*">
   <xsl:param name="direction">
@@ -1020,7 +1057,7 @@ $direction: The directionality of the text, either #{ltr} or #{rtl}.
 $left: The starting alignment, either #{left} or #{right}.
 $right: The ending alignment, either #{left} or #{right}.
 
-This template is a stub, called by *{html.css}. You can override this
+This template is a stub, called by *{html.css.content}. You can override this
 template to provide additional CSS that will be used by all HTML output.
 -->
 <xsl:template name="html.css.custom">
