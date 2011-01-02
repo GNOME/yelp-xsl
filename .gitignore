@@ -1,5 +1,6 @@
 *~
 .xml2po.mo
+ChangeLog
 INSTALL
 Makefile
 Makefile.in
@@ -69,8 +70,10 @@ yelp-xsl.pc
 /doc/yelp-xsl/C/mal-cache.page
 /doc/yelp-xsl/C/mal-chunk.page
 /doc/yelp-xsl/C/mal-link.page
+/doc/yelp-xsl/C/mal-sort.page
 /doc/yelp-xsl/C/mal2html-block.page
 /doc/yelp-xsl/C/mal2html-css.page
+/doc/yelp-xsl/C/mal2html-facets.page
 /doc/yelp-xsl/C/mal2html-inline.page
 /doc/yelp-xsl/C/mal2html-list.page
 /doc/yelp-xsl/C/mal2html-media.page
