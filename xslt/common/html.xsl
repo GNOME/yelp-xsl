@@ -166,7 +166,7 @@ This parameter specifies whether syntax highlighting should be enabled for
 code blocks in the output HTML. Syntax highlighting is done at document load
 time by JavaScript.
 -->
-<xsl:param name="html.syntax.highlight" select="false()"/>
+<xsl:param name="html.syntax.highlight" select="true()"/>
 
 
 <!--**==========================================================================

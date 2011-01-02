@@ -63,12 +63,59 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
         <xsl:text>contents </xsl:text>
         <xsl:if test="$html.syntax.highlight and $node/@mime">
           <xsl:choose>
-            <xsl:when test="@mime = 'text/x-csrc' or @mime = 'text/x-chdr'">
+            <xsl:when test="@mime = 'application/x-shellscript'">
+              <xsl:text>syntax brush-bash-script</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-csrc' or @mime = 'text/x-chdr' or
+                            @mime = 'text/x-c++hdr' or @mime = 'text/x-c++src' or
+                            @mime = 'text/x-objcsrc'">
               <xsl:text>syntax brush-clang</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-csharp'">
+              <xsl:text>syntax brush-csharp</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/css'">
+              <xsl:text>syntax brush-css</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-patch'">
+              <xsl:text>syntax brush-diff</xsl:text>
             </xsl:when>
             <xsl:when test="@mime = 'text/html' or @mime = 'application/xml' or
                             substring(@mime, string-length(@mime) - 3) = '+xml'">
               <xsl:text>syntax brush-html</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-java'">
+              <xsl:text>syntax brush-java</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'application/javascript'">
+              <xsl:text>syntax brush-javascript</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-scheme' or @mime = 'text/x-emacs-lisp'">
+              <xsl:text>syntax brush-lisp</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-lua'">
+              <xsl:text>syntax brush-lua</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-pascal'">
+              <xsl:text>syntax brush-pascal</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'application/x-perl'">
+              <xsl:text>syntax brush-perl5</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'application/x-php'">
+              <xsl:text>syntax brush-php-script</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-python'">
+              <xsl:text>syntax brush-python</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'application/x-ruby'">
+              <xsl:text>syntax brush-ruby</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'text/x-sql'">
+              <xsl:text>syntax brush-sql</xsl:text>
+            </xsl:when>
+            <xsl:when test="@mime = 'application/x-yaml'">
+              <xsl:text>syntax brush-yaml</xsl:text>
             </xsl:when>
           </xsl:choose>
         </xsl:if>

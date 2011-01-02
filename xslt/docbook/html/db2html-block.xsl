@@ -341,7 +341,65 @@ template.
         <xsl:with-param name="number" select="$number"/>
       </xsl:call-template></pre>
     </xsl:if>
-    <pre class="contents">
+    <pre>
+      <xsl:attribute name="class">
+        <xsl:text>contents </xsl:text>
+        <xsl:if test="$html.syntax.highlight and $node/@language">
+          <xsl:choose>
+            <xsl:when test="@language = 'bash'">
+              <xsl:text>syntax brush-bash-script</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'c' or @language = 'cpp' or @language = 'objc'">
+              <xsl:text>syntax brush-clang</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'csharp'">
+              <xsl:text>syntax brush-csharp</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'css'">
+              <xsl:text>syntax brush-css</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'diff'">
+              <xsl:text>syntax brush-diff</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'html' or @language = 'xml'">
+              <xsl:text>syntax brush-html</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'java'">
+              <xsl:text>syntax brush-java</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'javascript'">
+              <xsl:text>syntax brush-javascript</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'lisp'">
+              <xsl:text>syntax brush-lisp</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'lua'">
+              <xsl:text>syntax brush-lua</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'pascal'">
+              <xsl:text>syntax brush-pascal</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'perl'">
+              <xsl:text>syntax brush-perl5</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'php'">
+              <xsl:text>syntax brush-php-script</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'python'">
+              <xsl:text>syntax brush-python</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'ruby'">
+              <xsl:text>syntax brush-ruby</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'sql'">
+              <xsl:text>syntax brush-sql</xsl:text>
+            </xsl:when>
+            <xsl:when test="@language = 'yaml'">
+              <xsl:text>syntax brush-yaml</xsl:text>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:attribute>
       <!-- Strip off a leading newline -->
       <xsl:if test="$children[1]/self::text()">
         <xsl:choose>
