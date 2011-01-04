@@ -755,9 +755,13 @@ div.figure {
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
+div.figure > div.inner > a.zoom {
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+}
 div.figure > div.inner > div.contents {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
+  clear: both;
   text-align: center;
   color: </xsl:text>
     <xsl:value-of select="$color.text"/><xsl:text>;
@@ -1178,6 +1182,98 @@ control for audio and video elements as well as support for captions.
   <xsl:param name="node" select="."/>
   <script type="text/javascript" language="javascript">
 <xsl:text><![CDATA[
+yelp_paint_zoom = function (zoom, zoomed) {
+  var ctxt = zoom.children('canvas')[0].getContext('2d');
+  ctxt.strokeStyle = ctxt.fillStyle = ']]></xsl:text>
+<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+  ctxt.clearRect(0, 0, 10, 10);
+  ctxt.strokeRect(0.5, 0.5, 9, 9);
+  if (zoomed) {
+    ctxt.fillRect(1, 1, 9, 4);
+    ctxt.fillRect(5, 5, 4, 4);
+    zoom.attr('title', zoom.attr('data-zoom-out-title'));
+  }
+  else {
+    ctxt.fillRect(1, 5, 4, 4);
+    zoom.attr('title', zoom.attr('data-zoom-in-title'));
+  }
+}
+$.fn.yelp_auto_resize = function () {
+  var fig = $(this);
+  if (fig.is('img'))
+    fig = fig.parents('div.figure').eq(0);
+  var imgs = fig.find('img');
+  for (var i = 0; i < imgs.length; i++) {
+    var img = $(imgs[i]);
+    if (img.data('yelp-load-bound') == true)
+      img.unbind('load', fig.yelp_auto_resize);
+    if (!imgs[i].complete) {
+      img.data('yelp-load-bound', true);
+      img.bind('load', fig.yelp_auto_resize);
+      return false;
+    }
+  }
+  $(window).unbind('resize', yelp_resize_imgs);
+  var zoom = fig.children('div.inner').children('a.zoom');
+  for (var i = 0; i < imgs.length; i++) {
+    var img = $(imgs[i]);
+    if (img.data('yelp-original-width') == undefined) {
+      img.data('yelp-original-width', img.width());
+    }
+    if (img.data('yelp-original-width') > img.parent().width()) {
+      if (img.data('yelp-zoomed') != true) {
+        img.width(img.parent().width());
+      }
+      zoom.show();
+    }
+    else {
+      img.width(img.data('yelp-original-width'));
+      zoom.hide();
+    }
+  }
+  /* The image scaling above can cause the window to resize if it causes
+   * scrollbars to disappear or reapper. Unbind the resize handler before
+   * scaling the image. Don't rebind immediately, because we'll still get
+   * that resize event in an idle. Rebind on the callback instead.
+   */
+  var reresize = function () {
+    $(window).unbind('resize', reresize);
+    $(window).bind('resize', yelp_resize_imgs);
+  }
+  $(window).bind('resize', reresize);
+  return false;
+};
+yelp_resize_imgs = function () {
+  $('div.figure img').parents('div.figure').each(function () {
+    $(this).yelp_auto_resize();
+  });
+  return false;
+};
+$(document).ready(function () {
+  $('div.figure img').parents('div.figure').each(function () {
+    var fig = $(this);
+    var zoom = fig.children('div.inner').children('a.zoom');
+    zoom.append($('<canvas width="10" height="10"/>'));
+    yelp_paint_zoom(zoom, false);
+    zoom.data('yelp-zoomed', false);
+    zoom.click(function () {
+      var zoomed = !zoom.data('yelp-zoomed');
+      zoom.data('yelp-zoomed', zoomed);
+      zoom.parent().find('img').each(function () {
+        var zimg = $(this);
+        zimg.data('yelp-zoomed', zoomed);
+        if (zoomed)
+          zimg.width(zimg.data('yelp-original-width'));
+        else
+          zimg.width(zimg.parent().width());
+        yelp_paint_zoom(zoom, zoomed);
+      });
+      return false;
+    });
+  });
+  yelp_resize_imgs();
+  $(window).bind('resize', yelp_resize_imgs);
+});
 Node.prototype.is_a = function (tag, cls) {
   if (this.nodeType == Node.ELEMENT_NODE) {
     if (tag == null || this.tagName.toLowerCase() == tag) {

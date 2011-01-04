@@ -264,6 +264,14 @@ in accordance with the Mallard specification on fallback block content.
   <div class="figure">
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
+      <a href="#" class="zoom">
+        <xsl:attribute name="data-zoom-in-title">
+          <xsl:text>View images at normal size</xsl:text>
+        </xsl:attribute>
+        <xsl:attribute name="data-zoom-out-title">
+          <xsl:text>Scale images down</xsl:text>
+        </xsl:attribute>
+      </a>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="contents">
         <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">

@@ -96,6 +96,16 @@ is then used by the CSS for styling.
     <xsl:choose>
       <xsl:when test="$formal">
         <div class="inner">
+          <xsl:if test="$node/self::figure or $node/self::db:figure">
+            <a href="#" class="zoom">
+              <xsl:attribute name="data-zoom-in-title">
+                <xsl:text>View images at normal size</xsl:text>
+              </xsl:attribute>
+              <xsl:attribute name="data-zoom-out-title">
+                <xsl:text>Scale images down</xsl:text>
+              </xsl:attribute>
+            </a>
+          </xsl:if>
           <xsl:if test="$title">
             <xsl:call-template name="db2html.block.title">
               <xsl:with-param name="node" select="$node"/>
