@@ -338,6 +338,37 @@
   -->
   <_msg>yelp-quote-201C.png</_msg>
 </msgset>
+<msgset>
+  <msgid>View images at normal size</msgid>
+  <!--
+  Figures can automatically scale images down to fit the page width.
+  This is used a tooltip on a link to expand images to full size.
+  -->
+  <_msg>View images at normal size</_msg>
+</msgset>
+<msgset>
+  <msgid>Scale images down</msgid>
+  <!--
+  Figures can automatically scale images down to fit the page width.
+  This is used a tooltip on a link to shrink images back down after
+  they've been expanded to full size.
+  -->
+  <_msg>Scale images down</_msg>
+</msgset>
+<msgset>
+  <msgid>Play</msgid>
+  <!--
+  Used as a tooltip on play/pause buttons for audio and video objects.
+  -->
+  <_msg>Play</_msg>
+</msgset>
+<msgset>
+  <msgid>Pause</msgid>
+  <!--
+  Used as a tooltip on play/pause buttons for audio and video objects.
+  -->
+  <_msg>Pause</_msg>
+</msgset>
 
 
 <!-- ======================================================================= -->

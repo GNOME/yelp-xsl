@@ -99,10 +99,14 @@ is then used by the CSS for styling.
           <xsl:if test="$node/self::figure or $node/self::db:figure">
             <a href="#" class="zoom">
               <xsl:attribute name="data-zoom-in-title">
-                <xsl:text>View images at normal size</xsl:text>
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'View images at normal size'"/>
+                </xsl:call-template>
               </xsl:attribute>
               <xsl:attribute name="data-zoom-out-title">
-                <xsl:text>Scale images down</xsl:text>
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Scale images down'"/>
+                </xsl:call-template>
               </xsl:attribute>
             </a>
           </xsl:if>

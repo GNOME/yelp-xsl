@@ -94,13 +94,19 @@ FIXME
     <div class="media-controls">
       <button class="media-play">
         <xsl:attribute name="value">
-          <xsl:text>Play</xsl:text>
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Play'"/>
+          </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="data-play-label">
-          <xsl:text>Play</xsl:text>
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Play'"/>
+          </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="data-pause-label">
-          <xsl:text>Pause</xsl:text>
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Pause'"/>
+          </xsl:call-template>
         </xsl:attribute>
         <canvas width="20" height="20"/>
       </button>
