@@ -45,6 +45,7 @@ REMARK: Describe this module
 </xsl:template>
 
 <xsl:template mode="html.body.mode" match="*">
+  <xsl:call-template name="db2html.links.next"/>
   <xsl:choose>
     <xsl:when test="self::db:info or self::bookinfo or self::articleinfo">
       <!-- FIXME
@@ -60,6 +61,8 @@ REMARK: Describe this module
       </xsl:apply-templates>
     </xsl:otherwise>
   </xsl:choose>
+  <xsl:call-template name="db2html.links.next"/>
+  <div class="clear"/>
 </xsl:template>
 
 <xsl:template mode="html.output.after.mode" match="*">
@@ -92,28 +95,6 @@ REMARK: Describe this module
   </xsl:if>
 </xsl:template>
 
-
-<!--@@==========================================================================
-db2html.navbar.top
-Whether to place a navigation bar at the top of the page
-
-This boolean parameter specifies whether a block containing navigation
-links should be placed at the top of the page.  The top navigation bar
-is inserted by *{db2html.division.top}, so this parameter may have no
-effect if that template has been overridden.
--->
-<xsl:param name="db2html.navbar.top" select="true()"/>
-
-<!--@@==========================================================================
-db2html.navbar.bottom
-Whether to place a navigation bar at the bottom of the page
-
-This boolean parameter specifies whether a block containing navigation
-links should be placed at the bottom of the page.  The bottom navigation
-bar is inserted by *{db2html.division.bottom}, so this parameter may have
-no effect if that template has been overridden.
--->
-<xsl:param name="db2html.navbar.bottom" select="true()"/>
 
 <!--FIXME
 @@==========================================================================
@@ -185,9 +166,14 @@ REMARK: Talk about some of the parameters
   <div>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
-      <xsl:if test="$depth_in_chunk != 0">
-        <xsl:text> sect</xsl:text>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$depth_in_chunk = 0">
+          <xsl:text> contents</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text> sect</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
@@ -401,7 +387,7 @@ REMARK: Describe this
 
 
 <!--**==========================================================================
-db2html.navbar
+db2html.links.next
 Generates navigation links for a page
 $node: The element to generate links for
 $prev_id: The id of the previous page
@@ -412,7 +398,7 @@ $position: Where the block is positioned on the pages, either 'top' or 'bottom'
 
 REMARK: Document this template
 -->
-<xsl:template name="db2html.navbar">
+<xsl:template name="db2html.links.next">
   <xsl:param name="node" select="."/>
   <xsl:param name="info" select="/false"/>
   <xsl:param name="depth_in_chunk">
@@ -452,68 +438,64 @@ REMARK: Document this template
   </xsl:param>
   <xsl:param name="prev_node" select="key('idkey', $prev_id)"/>
   <xsl:param name="next_node" select="key('idkey', $next_id)"/>
-  <div class="navbar">
-    <!-- FIXME: rtl -->
-    <table class="navbar"><tr>
-      <td class="navbar-prev">
-        <xsl:if test="$prev_id != ''">
-          <a class="navbar-prev">
-            <xsl:attribute name="href">
-              <xsl:call-template name="db.xref.target">
-                <xsl:with-param name="linkend" select="$prev_id"/>
-                <xsl:with-param name="target" select="$prev_node"/>
-                <xsl:with-param name="is_chunk" select="true()"/>
+  <div class="links nextlinks">
+    <xsl:if test="$prev_id != ''">
+      <a class="nextlinks-prev">
+        <xsl:attribute name="href">
+          <xsl:call-template name="db.xref.target">
+            <xsl:with-param name="linkend" select="$prev_id"/>
+            <xsl:with-param name="target" select="$prev_node"/>
+            <xsl:with-param name="is_chunk" select="true()"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:choose>
+          <xsl:when test="$prev_id = $db.chunk.info_basename">
+            <xsl:variable name="text">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'About This Document'"/>
               </xsl:call-template>
+            </xsl:variable>
+            <xsl:attribute name="title">
+              <xsl:value-of select="$text"/>
             </xsl:attribute>
-            <xsl:choose>
-              <xsl:when test="$prev_id = $db.chunk.info_basename">
-                <xsl:variable name="text">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'About This Document'"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="title">
-                  <xsl:value-of select="$text"/>
-                </xsl:attribute>
-                <xsl:value-of select="$text"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:attribute name="title">
-                  <xsl:call-template name="db.xref.tooltip">
-                    <xsl:with-param name="linkend" select="$prev_id"/>
-                    <xsl:with-param name="target" select="$prev_node"/>
-                  </xsl:call-template>
-                </xsl:attribute>
-                <xsl:call-template name="db.titleabbrev">
-                  <xsl:with-param name="node" select="$prev_node"/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
-          </a>
-        </xsl:if>
-      </td>
-      <td class="navbar-next">
-        <xsl:if test="$next_id != ''">
-          <a class="navbar-next">
-            <xsl:attribute name="href">
-              <xsl:call-template name="db.xref.target">
-                <xsl:with-param name="linkend" select="$next_id"/>
-                <xsl:with-param name="is_chunk" select="true()"/>
-              </xsl:call-template>
-            </xsl:attribute>
+            <xsl:value-of select="$text"/>
+          </xsl:when>
+          <xsl:otherwise>
             <xsl:attribute name="title">
               <xsl:call-template name="db.xref.tooltip">
-                <xsl:with-param name="linkend" select="$next_id"/>
-                <xsl:with-param name="target"  select="$next_node"/>
+                <xsl:with-param name="linkend" select="$prev_id"/>
+                <xsl:with-param name="target" select="$prev_node"/>
               </xsl:call-template>
             </xsl:attribute>
-            <xsl:call-template name="db.titleabbrev">
-              <xsl:with-param name="node" select="$next_node"/>
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Previous'"/>
             </xsl:call-template>
-          </a>
-        </xsl:if>
-      </td>
-    </tr></table>
+          </xsl:otherwise>
+        </xsl:choose>
+      </a>
+    </xsl:if>
+    <xsl:if test="$prev_id != '' and $next_id != ''">
+      <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
+    </xsl:if>
+    <xsl:if test="$next_id != ''">
+      <a class="nextlinks-next">
+        <xsl:attribute name="href">
+          <xsl:call-template name="db.xref.target">
+            <xsl:with-param name="linkend" select="$next_id"/>
+            <xsl:with-param name="is_chunk" select="true()"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:call-template name="db.xref.tooltip">
+            <xsl:with-param name="linkend" select="$next_id"/>
+            <xsl:with-param name="target"  select="$next_node"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </a>
+    </xsl:if>
   </div>
 </xsl:template>
 

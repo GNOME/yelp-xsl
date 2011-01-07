@@ -400,9 +400,9 @@ REMARK: Explain how this works, and what the axes are
         </xsl:when>
         <xsl:when test="$node/..">
           <xsl:call-template name="db.chunk.chunk-id">
-            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="node" select="$node/.."/>
             <xsl:with-param name="depth_in_chunk" select="0"/>
-            <xsl:with-param name="chunk" select="$node"/>
+            <xsl:with-param name="chunk" select="$node/.."/>
           </xsl:call-template>
         </xsl:when>
       </xsl:choose>

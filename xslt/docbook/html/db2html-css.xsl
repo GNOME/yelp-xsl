@@ -116,38 +116,6 @@ tfoot { border-top: solid 2px; border-bottom: solid 2px; }
 
 div.title span.label { font-weight: normal; }
 
-<!-- == navbar == -->
-div.navbar {
- margin: 1em 0 1em 0;
-  padding: 0.5em 1em 0.5em 1em;
-  clear: both;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
-}
-div.head div.navbar:first-child { margin-top: 0; }
-div.navbar img { border: 0; vertical-align: -0.4em; }
-table.navbar { width: 100%; margin: 0; border: none; }
-table.navbar td { padding: 0; border: none; }
-td.navbar-next {
-  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-}
-a.navbar-prev::before {
-  <!-- FIXME: rtl -->
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-a.navbar-next::after {
-  <!-- FIXME: rtl -->
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
-}
-
 div.sidenav {
   padding: 0.5em 1em 0 1em;
   background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;

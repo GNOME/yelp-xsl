@@ -319,8 +319,9 @@ REMARK: Describe this template
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="mal2html.page.prevnextlinks">
-  <xsl:param name="node" select="."/>
+<!-- links -->
+<xsl:template name="mal2html.links.next" match="e:links[@type = 'next']">
+  <xsl:param name="node" select="./self::e:links/.. | ./self::mal:page"/>
   <xsl:variable name="linkid">
     <xsl:call-template name="mal.link.linkid">
       <xsl:with-param name="node" select="$node"/>
@@ -331,13 +332,19 @@ REMARK: Describe this template
     <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
     <xsl:if test="$prev or $next">
       <!-- FIXME: Get prev/next links in constant position -->
-      <div class="navbar">
+      <div class="links nextlinks">
         <xsl:if test="$prev">
-          <a class="navbar-prev">
+          <a class="nextlinks-prev">
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
                 <xsl:with-param name="node" select="$prev"/>
                 <xsl:with-param name="xref" select="$prev/../../@id"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:call-template name="mal.link.content">
+                <xsl:with-param name="node" select="$prev"/>
+                <xsl:with-param name="xref" select="$prev/@xref"/>
               </xsl:call-template>
             </xsl:attribute>
             <xsl:call-template name="l10n.gettext">
@@ -349,9 +356,15 @@ REMARK: Describe this template
           <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
         </xsl:if>
         <xsl:if test="$next">
-          <a class="navbar-next">
+          <a class="nextlinks-next">
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$next"/>
+                <xsl:with-param name="xref" select="$next/@xref"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:call-template name="mal.link.content">
                 <xsl:with-param name="node" select="$next"/>
                 <xsl:with-param name="xref" select="$next/@xref"/>
               </xsl:call-template>
@@ -501,8 +514,17 @@ REMARK: Describe this template
 </xsl:template>
 
 <xsl:template mode="html.body.mode" match="mal:page">
-  <xsl:call-template name="mal2html.page.prevnextlinks"/>
   <xsl:call-template name="mal2html.editor.banner"/>
+  <xsl:choose>
+    <xsl:when test="not(e:links[@type = 'next'])">
+      <xsl:call-template name="mal2html.links.next"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates
+          select="e:links[@type = 'next'][contains(concat(' ', @style, ' '), ' top ')]">
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:apply-templates select="."/>
 </xsl:template>
 
@@ -556,6 +578,11 @@ REMARK: Describe this template
               <xsl:with-param name="allgroups" select="$allgroups"/>
               <xsl:with-param name="links" select="$topicnodes"/>
             </xsl:apply-templates>
+          </xsl:if>
+        </xsl:when>
+        <xsl:when test="self::e:links[@type = 'next']">
+          <xsl:if test="not(contains(concat(' ', @style, ' '), ' top '))">
+            <xsl:apply-templates select="."/>
           </xsl:if>
         </xsl:when>
         <xsl:when test="self::e:links">
@@ -766,24 +793,6 @@ div.floatright {
   margin-left: 1em;
 }
 
-div.navbar {
-  margin: 0;
-  float: right;
-}
-a.navbar-prev::before {
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-}
-a.navbar-next::after {
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-}
 div.copyrights {
   text-align: center;
   color: </xsl:text>

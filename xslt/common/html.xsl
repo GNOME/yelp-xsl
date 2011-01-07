@@ -583,6 +583,11 @@ div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.contents, pre.contents { margin-top: 0; }
 pre.contents div { margin-top: 0 !important; }
 p img { vertical-align: middle; }
+div.clear {
+  margin: 0; padding: 0;
+  height: 0; line-height: 0;
+  clear: both;
+}
 
 table {
   border-collapse: collapse;
@@ -723,6 +728,26 @@ div.sectionlinks div.sectionlinks {
 }
 div.sectionlinks div.sectionlinks li {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+}
+div.nextlinks {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  clear: both;
+}
+a.nextlinks-prev::before {
+  content: '</xsl:text><xsl:choose>
+  <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
+  <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
+  </xsl:choose><xsl:text>';
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  vertical-align: bottom;
+}
+a.nextlinks-next::after {
+  content: '</xsl:text><xsl:choose>
+  <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
+  <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
+  </xsl:choose><xsl:text>';
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 pre.numbered {
   margin: 0;
