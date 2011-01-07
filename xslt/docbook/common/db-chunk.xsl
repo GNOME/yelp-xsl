@@ -47,15 +47,6 @@ REMARK: This parameter sucks
 
 
 <!--@@==========================================================================
-db.chunk.chunk_top
-Whether the top-level chunk should be output with the chunking mechanism
-
-REMARK: Describe what this does
--->
-<xsl:param name="db.chunk.chunk_top" select="false()"/>
-
-
-<!--@@==========================================================================
 db.chunk.max_depth
 The maximum depth for chunking sections
 
@@ -139,105 +130,6 @@ REMARK: Describe this
 
 
 <!--**==========================================================================
-db.chunk
-Creates a new page of output
-$node: The source element for the output page
-$template: The named template to call to create the page
-$href: The name of the file for the output page
-$depth_of_chunk: The depth of this chunk in the document
-
-REMARK: We need a lot more explanation about chunk flow
-
-The *{db.chunk} template creates a new output document using the #{exsl:document}
-extension element.  This template calls *{db.chunk.content} to create the content
-of the document, passing through all parameters.  This allows you to override the
-chunking mechanism without having to duplicate the content-generation code.
--->
-<xsl:template name="db.chunk">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="template"/>
-  <xsl:param name="href">
-    <xsl:choose>
-      <xsl:when test="$template = 'info'">
-        <xsl:value-of select="$db.chunk.info_basename"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="db.chunk.chunk-id">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="depth_in_chunk" select="0"/>
-          <xsl:with-param name="chunk" select="$node"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:value-of select="$db.chunk.extension"/>
-  </xsl:param>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <exsl:document href="{$href}"
-                 doctype-public="{$db.chunk.doctype_public}"
-                 doctype-system="{$db.chunk.doctype_system}">
-    <xsl:call-template name="db.chunk.content">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="template" select="$template"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </exsl:document>
-  <!-- DONE
-  <xsl:if test="string($template) = ''">
-    <xsl:call-template name="db.chunk.children">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </xsl:if>
-  -->
-</xsl:template>
-
-
-<!--**==========================================================================
-db.chunk.content
-Creates the content of a new page of output
-$node: The source element for the output page
-$template: The named template to call to create the page
-$depth_of_chunk: The depth of this chunk in the document
-
-REMARK: We need a lot more explanation about chunk flow
-
-The *{db.chunk.content} template creates the actual content of a new output page.
-It should generally only be called by *{db.chunk}.
-
-This template will always pass the ${depth_in_chunk} and ${depth_of_chunk}
-parameters with appropriate values to the templates it calls.
--->
-<xsl:template name="db.chunk.content">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="template"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:choose>
-    <xsl:when test="$template = 'info'">
-      <xsl:apply-templates mode="db.chunk.info.content.mode" select="$node">
-        <xsl:with-param name="depth_in_chunk" select="0"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates mode="db.chunk.content.mode" select="$node">
-        <xsl:with-param name="depth_in_chunk" select="0"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:apply-templates>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-
-<!--**==========================================================================
 db.chunk.depth-in-chunk
 Determines the depth of an element in the containing chunk
 $node: The element to determine the depth of
@@ -311,7 +203,7 @@ REMARK: Explain how this works
 
 <!--**==========================================================================
 db.chunk.depth-of-chunk
-Determines the depth of teh containing chunk in the document
+Determines the depth of the containing chunk in the document
 $node: The element to determine the depth of
 
 REMARK: Explain how this works
@@ -521,56 +413,6 @@ REMARK: Explain how this works, and what the axes are
         <xsl:text>Unsupported axis: </xsl:text>
         <xsl:value-of select="$axis"/>
       </xsl:message>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--%%==========================================================================
-db.chunk.info.content.mode
-Renders the contents of the title page
-$depth_in_chunk: The depth of the element in the containing chunk
-$depth_of_chunk: The depth of the containing chunk in the document
-
-When processed in this mode, a division element should output the top-level
-markup for the output page.
--->
-<xsl:template mode="db.chunk.info.content.mode" match="*"/>
-
-
-<!--%%==========================================================================
-db.chunk.content.mode
-Renders the entire contents of the chunk
-$depth_in_chunk: The depth of the element in the containing chunk
-$depth_of_chunk: The depth of the containing chunk in the document
-
-When processed in this mode, a division element should output the top-level
-markup for the output page.
--->
-<xsl:template mode="db.chunk.content.mode" match="*"/>
-
-
-<!-- == Matched Templates == -->
-
-<xsl:template match="/false">
-  <xsl:choose>
-    <xsl:when test="$db.chunk.chunk_top">
-      <xsl:call-template name="db.chunk">
-        <xsl:with-param name="node" select="*[1]"/>
-        <xsl:with-param name="depth_of_chunk" select="0"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates mode="db.chunk.content.mode" select="*">
-        <xsl:with-param name="depth_in_chunk" select="0"/>
-        <xsl:with-param name="depth_of_chunk" select="0"/>
-      </xsl:apply-templates>
-      <!-- DONE
-      <xsl:call-template name="db.chunk.children">
-        <xsl:with-param name="node" select="*[1]"/>
-        <xsl:with-param name="depth_of_chunk" select="0"/>
-      </xsl:call-template>
-      -->
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

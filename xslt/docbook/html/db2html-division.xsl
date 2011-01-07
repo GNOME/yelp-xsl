@@ -67,20 +67,17 @@ REMARK: Describe this module
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:if test="count(ancestor::*) &lt; $db.chunk.max_depth">
-    <xsl:for-each select="appendix     | db:appendix     |
-                          article      | db:article      |
+    <xsl:for-each select="appendix     | db:appendix     | article    | db:article    |
                           bibliography | db:bibliography | bibliodiv  | db:bibliodiv  |
                           book         | db:book         | chapter    | db:chapter    |
                           colophon     | db:colophon     | dedication | db:dedication |
                           glossary     | db:glossary     | glossdiv   | db:glossdiv   |
                           index        | db:index        | lot        | db:lot        |
-                          part         | db:part         |
-                          preface      | db:preface      |
+                          part         | db:part         | preface    | db:preface    |
                           refentry     | db:refentry     | reference  | db:reference  |
                           sect1    | sect2    | sect3    | sect4    | sect5    | section    |
                           db:sect1 | db:sect2 | db:sect3 | db:sect4 | db:sect5 | db:section |
-                          setindex     | db:setindex     |
-                          simplesect   | db:simplesect   |
+                          setindex     | db:setindex     | simplesect | db:simplesect |
                           toc          | db:toc          ">
       <xsl:call-template name="html.output">
         <xsl:with-param name="node" select="."/>
@@ -94,7 +91,6 @@ REMARK: Describe this module
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
-
 
 
 <!--@@==========================================================================
@@ -119,7 +115,8 @@ no effect if that template has been overridden.
 -->
 <xsl:param name="db2html.navbar.bottom" select="true()"/>
 
-<!--@@==========================================================================
+<!--FIXME
+@@==========================================================================
 db2html.sidenav
 Whether to create a navigation sidebar
 
@@ -127,158 +124,7 @@ This boolean parameter specifies whether a full navigation tree in a sidebar.
 The navigation sidebar is inserted by *{db2html.division.sidebar}, so this
 parameter may have no effect if that template has been overridden.
 -->
-<xsl:param name="db2html.sidenav" select="true()"/>
-
-
-<!--**==========================================================================
-db2html.division.html
-Renders a complete HTML page for a division element
-$node: The element to create an HTML page for
-$info: The info child element of ${node}
-$template: The named template to call to create the page
-$depth_of_chunk: The depth of the containing chunk in the document
-$prev_id: The id of the previous page
-$next_id: The id of the next page
-
-REMARK: Put in a word about the chunk flow; talk about what templates get called
--->
-<xsl:template name="db2html.division.html">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="/false"/>
-  <xsl:param name="template"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_id">
-    <xsl:choose>
-      <xsl:when test="$depth_of_chunk = 0">
-        <xsl:if test="$info and $db.chunk.info_chunk">
-          <xsl:value-of select="$db.chunk.info_basename"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="db.chunk.chunk-id.axis">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="axis" select="'previous'"/>
-          <xsl:with-param name="depth_in_chunk" select="0"/>
-          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="next_id">
-    <xsl:call-template name="db.chunk.chunk-id.axis">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="axis" select="'next'"/>
-      <xsl:with-param name="depth_in_chunk" select="0"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:variable name="prev_node" select="key('idkey', $prev_id)"/>
-  <xsl:variable name="next_node" select="key('idkey', $next_id)"/>
-  <!-- FIXME -->
-  <html>
-    <head>
-      <title>
-        <xsl:variable name="title">
-          <xsl:call-template name="db.title">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:value-of select="normalize-space($title)"/>
-      </title>
-      <xsl:if test="string($prev_id) != ''">
-        <link rel="previous">
-          <xsl:attribute name="href">
-            <xsl:call-template name="db.xref.target">
-              <xsl:with-param name="linkend" select="$prev_id"/>
-              <xsl:with-param name="target" select="$prev_node"/>
-              <xsl:with-param name="is_chunk" select="true()"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="title">
-            <xsl:call-template name="db.title">
-              <xsl:with-param name="node" select="$prev_node"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </link>
-      </xsl:if>
-      <xsl:if test="string($next_id) != ''">
-        <link rel="next">
-          <xsl:attribute name="href">
-            <xsl:call-template name="db.xref.target">
-              <xsl:with-param name="linkend" select="$next_id"/>
-              <xsl:with-param name="target" select="$next_node"/>
-              <xsl:with-param name="is_chunk" select="true()"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="title">
-            <xsl:call-template name="db.title">
-              <xsl:with-param name="node" select="$next_node"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </link>
-      </xsl:if>
-      <xsl:if test="/*[1] != $node">
-        <link rel="top">
-          <xsl:attribute name="href">
-            <xsl:call-template name="db.xref.target">
-              <xsl:with-param name="linkend" select="/*[1]/@id | /*[1]/@xml:id"/>
-              <xsl:with-param name="target" select="/*[1]"/>
-              <xsl:with-param name="is_chunk" select="true()"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="title">
-            <xsl:call-template name="db.title">
-              <xsl:with-param name="node" select="/*[1]"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </link>
-      </xsl:if>
-      <xsl:call-template name="db2html.css">
-        <xsl:with-param name="css_file" select="$depth_of_chunk = 0"/>
-      </xsl:call-template>
-      <xsl:call-template name="db2html.division.head.extra"/>
-    </head>
-    <body>
-      <xsl:call-template name="db2html.division.top">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="template" select="$template"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        <xsl:with-param name="prev_id" select="$prev_id"/>
-        <xsl:with-param name="next_id" select="$next_id"/>
-        <xsl:with-param name="prev_node" select="$prev_node"/>
-        <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
-      <xsl:call-template name="db2html.division.sidebar">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="template" select="$template"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        <xsl:with-param name="prev_id" select="$prev_id"/>
-        <xsl:with-param name="next_id" select="$next_id"/>
-        <xsl:with-param name="prev_node" select="$prev_node"/>
-        <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
-      <div class="body">
-        <!-- DONE -->
-      </div>
-      <xsl:call-template name="db2html.division.bottom">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="info" select="$info"/>
-        <xsl:with-param name="template" select="$template"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        <xsl:with-param name="prev_id" select="$prev_id"/>
-        <xsl:with-param name="next_id" select="$next_id"/>
-        <xsl:with-param name="prev_node" select="$prev_node"/>
-        <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
-    </body>
-  </html>
-</xsl:template>
+<xsl:param name="FIXME.db2html.sidenav" select="true()"/>
 
 
 <!--**==========================================================================
@@ -567,7 +413,7 @@ $position: Where the block is positioned on the pages, either 'top' or 'bottom'
 REMARK: Document this template
 -->
 <xsl:template name="db2html.navbar">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="info" select="/false"/>
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk">
@@ -771,7 +617,8 @@ REMARK: Describe this template
 </xsl:template>
 
 
-<!--**==========================================================================
+<!--FIXME
+**==========================================================================
 db2html.division.sidebar
 FIXME
 $node: The division element being rendered
@@ -785,7 +632,7 @@ $next_node: The element of the next page
 
 REMARK: Describe this template
 -->
-<xsl:template name="db2html.division.sidebar">
+<xsl:template name="FIXME.db2html.division.sidebar">
   <xsl:param name="node"/>
   <xsl:param name="info" select="/false"/>
   <xsl:param name="template"/>
@@ -893,184 +740,6 @@ REMARK: Describe this template
       </xsl:call-template>
     </xsl:if>
   </div>
-</xsl:template>
-
-
-<!-- == Matched Templates % db.chunk.content.mode == -->
-
-<!--#% db.chunk.content.mode -->
-<xsl:template mode="db.chunk.content.mode" match="*">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = appendix % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="appendix | db:appendix">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="appendixinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = article % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="article | db:article">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="articleinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = bibliography % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="bibliography | db:bibliography">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = book % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="book | db:book">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="bookinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = chapter % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="chapter | db:chapter">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="chapterinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = glossary % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="glossary | db:glossary">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="glossaryinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = part % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="part | db:part">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="partinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = preface % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="preface | db:preface">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="prefaceinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = reference % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="reference | db:reference">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="referenceinfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = sect1 % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="sect1 | db:sect1">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sect1info | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = sect2 % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="sect2 | db:sect2">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sect2info | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = sect3 % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="sect3 | db:sect3">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sect3info | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = sect4 % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="sect4 | db:sect4">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sect4info | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = sect5 % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="sect5 | db:sect5">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sect5info | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = section % db.chunk.content.mode = -->
-<xsl:template mode="db.chunk.content.mode" match="section | db:section">
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk"/>
-  </xsl:param>
-  <xsl:call-template name="db2html.division.html">
-    <xsl:with-param name="info" select="sectioninfo | db:info"/>
-    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-  </xsl:call-template>
 </xsl:template>
 
 
