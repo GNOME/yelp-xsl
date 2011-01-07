@@ -749,6 +749,21 @@ a.nextlinks-next::after {
   </xsl:choose><xsl:text>';
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
+div.serieslinks {
+  display: inline-block;
+  padding: 0 1em 0 1em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.serieslinks ul { margin: 0; }
+div.serieslinks li { padding: 0; }
+div.serieslinks div.title { margin: 0.5em 0 0.5em 0; }
+div.serieslinks div.title span.title {
+  border-bottom: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
 pre.numbered {
   margin: 0;
   padding: 0.5em;

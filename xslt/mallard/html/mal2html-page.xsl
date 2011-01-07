@@ -344,7 +344,7 @@ REMARK: Describe this template
             <xsl:attribute name="title">
               <xsl:call-template name="mal.link.content">
                 <xsl:with-param name="node" select="$prev"/>
-                <xsl:with-param name="xref" select="$prev/@xref"/>
+                <xsl:with-param name="xref" select="$prev/../../@id"/>
               </xsl:call-template>
             </xsl:attribute>
             <xsl:call-template name="l10n.gettext">
@@ -377,6 +377,88 @@ REMARK: Describe this template
       </div>
     </xsl:if>
   </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="mal2html.links.series.prev">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:for-each select="$mal.cache">
+    <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
+    <xsl:if test="$prev">
+      <xsl:call-template name="mal2html.links.series.prev">
+        <xsl:with-param name="node" select="key('mal.cache.key', $prev/../../@id)"/>
+      </xsl:call-template>
+      <li class="links">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="node" select="$prev"/>
+              <xsl:with-param name="xref" select="$prev/../../@id"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content">
+            <xsl:with-param name="node" select="$prev"/>
+            <xsl:with-param name="xref" select="$prev/../../@id"/>
+          </xsl:call-template>
+        </a>
+      </li>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="mal2html.links.series.next">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="next" select="$node/mal:info/mal:link[@type='next']"/>
+  <xsl:if test="$next">
+    <xsl:for-each select="$mal.cache">
+      <li class="links">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="node" select="$next"/>
+              <xsl:with-param name="xref" select="$next/@xref"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content">
+            <xsl:with-param name="node" select="$next"/>
+            <xsl:with-param name="xref" select="$next/@xref"/>
+          </xsl:call-template>
+        </a>
+      </li>
+      <xsl:call-template name="mal2html.links.series.next">
+        <xsl:with-param name="node" select="key('mal.cache.key', $next/@xref)"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="e:links[@type = 'series']">
+  <div class="links serieslinks">
+    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+    <ul>
+      <xsl:call-template name="mal2html.links.series.prev">
+        <xsl:with-param name="node" select="/mal:page"/>
+      </xsl:call-template>
+      <li class="links">
+        <xsl:call-template name="mal.link.content">
+          <xsl:with-param name="node" select="/mal:page"/>
+          <xsl:with-param name="xref" select="/mal:page/@id"/>
+        </xsl:call-template>
+      </li>
+      <xsl:call-template name="mal2html.links.series.next">
+        <xsl:with-param name="node" select="/mal:page"/>
+      </xsl:call-template>
+    </ul>
+  </div>
 </xsl:template>
 
 <xsl:template name="mal2html.editor.badge">
@@ -726,7 +808,7 @@ REMARK: Describe this template
       <ul>
         <xsl:for-each select="../mal:section">
           <xsl:call-template name="mal2html.page.autolink">
-            <xsl:with-param name="xref" select="concat('#', @id)"/>
+            <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
             <xsl:with-param name="role" select="'section'"/>
           </xsl:call-template>
         </xsl:for-each>
