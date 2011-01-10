@@ -169,13 +169,13 @@ REMARK: Describe this module
         <xsl:text> first-child</xsl:text>
       </xsl:if>
     </xsl:attribute>
+    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title | mal:desc"/>
     <table class="table">
       <xsl:if test="$style != ''">
         <xsl:attribute name="style">
           <xsl:value-of select="$style"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title | mal:desc"/>
       <xsl:apply-templates select="mal:thead">
         <xsl:with-param name="cols" select="$cols"/>
         <xsl:with-param name="rowrules" select="$rowrules"/>
