@@ -1,3 +1,14 @@
+Changes in 2.91.9
+=================
+* Added magic image scaling for figures
+* Added support for experimental series links
+* Fixed previous and next links for DocBook and Mallard
+* Enabled syntax highlighting in DocBook
+* Changes to html.js and html.css to make them easier to override
+* Added editor_mode status badges to linklist links
+* Improvements to link filtering with facets
+* Prevent key and keyseq from line-wrapping
+
 Changes in 2.91.8
 =================
 * Fixed non-well-formed XML in XSLT file
