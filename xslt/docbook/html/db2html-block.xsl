@@ -148,6 +148,21 @@ element.  It is called by *{db2html.block} for formal block elements.
 	<xsl:param name="lang" select="$title/@lang|$title/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
   <xsl:param name="ltr" select="false()"/>
+  <xsl:variable name="depth">
+    <xsl:call-template name="db.chunk.depth-in-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="depth_">
+    <xsl:choose>
+      <xsl:when test="number($depth) &lt; 6">
+        <xsl:value-of select="number($depth) + 1"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="6"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <div class="block title title-formal">
     <xsl:choose>
@@ -172,9 +187,11 @@ element.  It is called by *{db2html.block} for formal block elements.
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$title"/>
     </xsl:call-template>
-    <span class="title">
-      <xsl:apply-templates select="$title/node()"/>
-    </span>
+    <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
+      <span class="title">
+        <xsl:apply-templates select="$title/node()"/>
+      </span>
+    </xsl:element>
   </div>
 </xsl:template>
 

@@ -417,11 +417,24 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = title = -->
 <xsl:template mode="mal2html.block.mode" match="mal:title">
+  <xsl:variable name="depth" select="count(ancestor::mal:section) + 2"/>
+  <xsl:variable name="depth_">
+    <xsl:choose>
+      <xsl:when test="$depth &lt; 6">
+        <xsl:value-of select="$depth"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="6"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <div class="title title-{local-name(..)}">
     <xsl:call-template name="html.lang.attrs"/>
-    <span class="title">
-      <xsl:apply-templates mode="mal2html.inline.mode"/>
-    </span>
+    <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
+      <span class="title">
+        <xsl:apply-templates mode="mal2html.inline.mode"/>
+      </span>
+    </xsl:element>
   </div>
 </xsl:template>
 

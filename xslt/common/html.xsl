@@ -684,6 +684,12 @@ div.title {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
+div.title h1, div.title h2, div.title h3, div.title h4, div.title h5, div.title h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
 div.desc { margin: 0 0 0.2em 0; }
 div.contents + div.desc { margin: 0.2em 0 0 0; }
 pre.contents {
