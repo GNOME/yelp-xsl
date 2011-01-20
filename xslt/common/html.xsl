@@ -1248,6 +1248,10 @@ $.fn.yelp_auto_resize = function () {
   var fig = $(this);
   if (fig.is('img'))
     fig = fig.parents('div.figure').eq(0);
+  if (fig.data('yelp-zoom-timeout') != undefined) {
+    clearInterval(fig.data('yelp-zoom-timeout'));
+    fig.removeData('yelp-zoom-timeout');
+  }
   var imgs = fig.find('img');
   for (var i = 0; i < imgs.length; i++) {
     var img = $(imgs[i]);
@@ -1291,7 +1295,9 @@ $.fn.yelp_auto_resize = function () {
 };
 yelp_resize_imgs = function () {
   $('div.figure img').parents('div.figure').each(function () {
-    $(this).yelp_auto_resize();
+    var div = $(this);
+    if (div.data('yelp-zoom-timeout') == undefined)
+      div.data('yelp-zoom-timeout', setTimeout(function () { div.yelp_auto_resize() }, 1));
   });
   return false;
 };
