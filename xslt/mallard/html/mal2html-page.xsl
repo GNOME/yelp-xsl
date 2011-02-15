@@ -306,12 +306,29 @@ REMARK: Describe this template
       <xsl:with-param name="role" select="'guide'"/>
     </xsl:call-template>
   </a>
+  <xsl:variable name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$node/@child = 'section'">
-      <xsl:text>&#x00A0;› </xsl:text>
+    <xsl:when test="$direction = 'rtl'">
+      <xsl:choose>
+        <xsl:when test="$node/@child = 'section'">
+          <xsl:text>&#x00A0;‹ </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x00A0;« </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>&#x00A0;» </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$node/@child = 'section'">
+          <xsl:text>&#x00A0;› </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x00A0;» </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:for-each select="$node/mal:link">
