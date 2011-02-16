@@ -417,7 +417,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = title = -->
 <xsl:template mode="mal2html.block.mode" match="mal:title">
-  <xsl:variable name="depth" select="count(ancestor::mal:section) + 2"/>
+  <xsl:param name="depth" select="count(ancestor::mal:section) + 2"/>
   <xsl:variable name="depth_">
     <xsl:choose>
       <xsl:when test="$depth &lt; 6">
