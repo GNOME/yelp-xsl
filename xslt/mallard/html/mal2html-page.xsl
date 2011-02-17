@@ -83,6 +83,7 @@ REMARK: Describe this template
   <xsl:param name="target"/>
   <xsl:param name="class" select="''"/>
   <xsl:param name="attrs"/>
+  <xsl:param name="role" select="''"/>
   <a class="{concat($class, ' linkdiv')}">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
@@ -97,7 +98,7 @@ REMARK: Describe this template
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$source"/>
             <xsl:with-param name="xref" select="$target/@id"/>
-            <xsl:with-param name="role" select="'topic'"/>
+            <xsl:with-param name="role" select="$role"/>
           </xsl:call-template>
         </span>
         <xsl:call-template name="mal2html.editor.badge">
@@ -790,7 +791,7 @@ REMARK: Describe this template
                 <xsl:sort select="mal:title[@type = 'sort']"/>
                 <xsl:call-template name="mal2html.page.autolink">
                   <xsl:with-param name="xref" select="@xref"/>
-                  <xsl:with-param name="role" select="'guide'"/>
+                  <xsl:with-param name="role" select="'topic'"/>
                 </xsl:call-template>
               </xsl:for-each>
             </ul>
@@ -808,6 +809,7 @@ REMARK: Describe this template
                       <xsl:call-template name="mal2html.page.linkdiv">
                         <xsl:with-param name="source" select="$node"/>
                         <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+                        <xsl:with-param name="role" select="'topic'"/>
                       </xsl:call-template>
                     </xsl:for-each>
                   </xsl:if>
@@ -823,6 +825,7 @@ REMARK: Describe this template
                       <xsl:call-template name="mal2html.page.linkdiv">
                         <xsl:with-param name="source" select="$node"/>
                         <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+                        <xsl:with-param name="role" select="'topic'"/>
                       </xsl:call-template>
                     </xsl:for-each>
                   </xsl:if>
@@ -839,6 +842,7 @@ REMARK: Describe this template
                 <xsl:call-template name="mal2html.page.linkdiv">
                   <xsl:with-param name="source" select="$node"/>
                   <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
+                  <xsl:with-param name="role" select="'topic'"/>
                 </xsl:call-template>
               </xsl:for-each>
             </xsl:for-each>
