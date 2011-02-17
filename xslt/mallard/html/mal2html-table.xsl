@@ -165,9 +165,9 @@ REMARK: Describe this module
   <div>
     <xsl:attribute name="class">
       <xsl:text>table</xsl:text>
-      <xsl:if test="not(preceding-sibling::*)">
-        <xsl:text> first-child</xsl:text>
-      </xsl:if>
+      <xsl:for-each select="str:tokenize(@style)">
+        <xsl:value-of select="concat(' style-', .)"/>
+      </xsl:for-each>
     </xsl:attribute>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title | mal:desc"/>
     <table class="table">
