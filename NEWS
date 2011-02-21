@@ -1,3 +1,14 @@
+Changes in 2.91.90
+==================
+* Get link roles right for topic links
+* Full support for the links element
+* Made magic image scaling perform better
+* Use HTML <h*> elements for block titles, for a11y
+* Correct link trails separators for RTL
+* Updated translations:
+  gl    (Fran Diéguez)
+  hu    (Gabor Kelemen)
+
 Changes in 2.91.9
 =================
 * Added magic image scaling for figures
