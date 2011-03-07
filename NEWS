@@ -1,3 +1,9 @@
+Changes in 2.91.91
+==================
+* Support ubiquitous linking on media
+* Updated translations:
+  nb    (Kjartan Maraas)
+
 Changes in 2.91.90
 ==================
 * Get link roles right for topic links
