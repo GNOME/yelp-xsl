@@ -97,7 +97,7 @@ an #{xref} or #{href} attribute.
   <span class="{concat($class, ' ', local-name($node))}">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
-      <xsl:when test="$node/@xref | $node/@href">
+      <xsl:when test="$node/@action | $node/@xref | $node/@href">
         <a>
           <xsl:attribute name="href">
             <xsl:call-template name="mal.link.target">
