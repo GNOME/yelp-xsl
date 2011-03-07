@@ -352,6 +352,25 @@ FIXME
 <!-- = mal2html.inline.mode % media = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:media">
   <xsl:choose>
+    <xsl:when test="@action | @xref | @href">
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="mal.link.target"/>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:call-template name="mal.link.tooltip"/>
+        </xsl:attribute>
+        <xsl:apply-templates mode="mal2html.inline.content.mode" select="."/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.inline.content.mode" select="."/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template mode="mal2html.inline.content.mode" match="mal:media">
+  <xsl:choose>
     <xsl:when test="@type = 'image'">
       <span class="media media-image">
         <xsl:call-template name="mal2html.media.image">
