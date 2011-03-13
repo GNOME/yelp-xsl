@@ -20,10 +20,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:cache="http://projectmallard.org/cache/1.0/"
                 xmlns:facet="http://projectmallard.org/facet/1.0/"
-                xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="mal cache facet e exsl str"
+                exclude-result-prefixes="mal cache facet exsl str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -408,9 +407,9 @@ The output is a result tree fragment.  To use these results, call
   <xsl:variable name="groups">
     <xsl:variable name="_groups">
       <xsl:choose>
-        <xsl:when test="$node/e:links[@type = 'topic']">
+        <xsl:when test="$node/mal:links[@type = 'topic']">
           <xsl:text> </xsl:text>
-          <xsl:for-each select="$node/e:links[@type = 'topic']">
+          <xsl:for-each select="$node/mal:links[@type = 'topic']">
             <xsl:choose>
               <xsl:when test="@groups">
                 <xsl:value-of select="@groups"/>
