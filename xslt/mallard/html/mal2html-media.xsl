@@ -294,10 +294,10 @@ FIXME
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="class">
     <xsl:choose>
-      <xsl:when test="contains($style, 'floatleft')">
+      <xsl:when test="contains($style, ' floatleft ')">
         <xsl:text> floatleft</xsl:text>
       </xsl:when>
-      <xsl:when test="contains($style, 'floatright')">
+      <xsl:when test="contains($style, ' floatright ')">
         <xsl:text> floatright</xsl:text>
       </xsl:when>
     </xsl:choose>
