@@ -800,11 +800,8 @@ REMARK: Describe this template
         <xsl:choose>
           <xsl:when test="contains($style, ' mouseovers ')">
             <div class="mouseovers">
-              <xsl:for-each select="e:mouseover">
+              <xsl:for-each select="$node/e:mouseover[not(@match)]">
                 <img>
-                  <xsl:attribute name="data-yelp-match">
-                    <xsl:value-of select="@match"/>
-                  </xsl:attribute>
                   <xsl:copy-of select="@src | @width | @height"/>
                 </img>
               </xsl:for-each>
@@ -813,20 +810,34 @@ REMARK: Describe this template
               <xsl:for-each select="$_links">
                 <xsl:sort data-type="number" select="@groupsort"/>
                 <xsl:sort select="mal:title[@type = 'sort']"/>
-                <xsl:call-template name="mal2html.page.autolink">
-                  <xsl:with-param name="xref" select="@xref"/>
-                  <xsl:with-param name="attrs">
-                    <li>
-                      <xsl:attribute name="data-yelp-xref">
-                        <xsl:value-of select="@xref"/>
+                <xsl:variable name="xref" select="@xref"/>
+                <xsl:for-each select="$mal.cache">
+                  <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+                  <li class="links">
+                    <a class="bold">
+                      <xsl:attribute name="href">
+                        <xsl:call-template name="mal.link.target">
+                          <xsl:with-param name="xref" select="$xref"/>
+                        </xsl:call-template>
                       </xsl:attribute>
-                    </li>
-                  </xsl:with-param>
-                  <xsl:with-param name="role" select="'topic'"/>
-                  <xsl:with-param name="bold" select="true()"/>
-                  <xsl:with-param name="nodesc" select="true()"/>
-                </xsl:call-template>
+                      <xsl:for-each select="$node/e:mouseover[@match = $xref]">
+                        <img>
+                          <xsl:copy-of select="@src | @width | @height"/>
+                        </img>
+                      </xsl:for-each>
+                      <xsl:call-template name="mal.link.content">
+                        <xsl:with-param name="node" select="."/>
+                        <xsl:with-param name="xref" select="$xref"/>
+                        <xsl:with-param name="role" select="'topic'"/>
+                      </xsl:call-template>
+                    </a>
+                  </li>
+                </xsl:for-each>
               </xsl:for-each>
+
+
+
+
             </ul>
           </xsl:when>
           <xsl:when test="contains($style, ' toronto ')">
@@ -1152,10 +1163,6 @@ div.mouseovers {
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
 }
-div.mouseovers img {
-  display: none;
-  position: absolute;
-}
 ul.mouseovers li { margin: 0; }
 ul.mouseovers a {
   display: block;
@@ -1164,6 +1171,11 @@ ul.mouseovers a {
 ul.mouseovers a:hover {
   background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   text-decoration: none;
+}
+ul.mouseovers a img {
+  display: none;
+  position: absolute;
+  margin: 0; padding: 0;
 }
 
 table.toronto {
@@ -1346,13 +1358,15 @@ $(document).ready(function () {
     });
     contdiv.next('ul').find('a').each(function () {
       var mlink = $(this);
-      var mimg = contdiv.find('img[data-yelp-match="' + mlink.parent().attr('data-yelp-xref') + '"]');
       mlink.hover(
         function () {
-          mimg.fadeIn('fast');
+          var offset = contdiv.offset();
+          var top = offset.top - $('div.body').offset().top;
+          mlink.find('img').css({left: offset.left, top: top, zIndex: 10});
+          mlink.find('img').fadeIn('slow');
         },
         function () {
-          mimg.fadeOut('fast');
+          mlink.find('img').fadeOut('slow');
         }
       );
     });
