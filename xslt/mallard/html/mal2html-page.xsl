@@ -858,7 +858,7 @@ REMARK: Describe this template
                           </a></div>
                           <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
                             <xsl:if test="$desc">
-                              <div class="toronto-desc">
+                              <div class="toronto-desc desc">
                                 <span class="desc">
                                   <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
                                 </span>
@@ -1163,6 +1163,7 @@ table.toronto {
 table.toronto td {
   padding-top: 1em;
   padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
+  width: 33%;
 }
 div.toronto-link {
   margin: 0;
@@ -1185,8 +1186,15 @@ td.twocolumnright {
   -moz-padding-end: 0;
 }
 
+div.desc a {
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+div.desc a:hover {
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+}
 a.bold { font-weight: bold; }
 a.linkdiv { display: block; }
+a.linkdiv:hover { text-decoration: none; }
 div.linkdiv div.title {
   font-size: 1em;
   color: inherit;
