@@ -83,6 +83,7 @@ REMARK: Describe this template
   <xsl:param name="class" select="''"/>
   <xsl:param name="attrs"/>
   <xsl:param name="role" select="''"/>
+  <xsl:param name="nodesc" select="false()"/>
   <a class="{concat($class, ' linkdiv')}">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
@@ -104,7 +105,7 @@ REMARK: Describe this template
           <xsl:with-param name="target" select="$target"/>
         </xsl:call-template>
       </div>
-      <xsl:if test="$target/mal:info/mal:desc">
+      <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
         <div class="desc">
           <xsl:apply-templates mode="mal2html.inline.mode"
                                select="$target/mal:info/mal:desc[1]/node()"/>
@@ -126,10 +127,17 @@ REMARK: Describe this template
   <xsl:param name="page"/>
   <xsl:param name="xref" select="$page/@id"/>
   <xsl:param name="role" select="''"/>
+  <xsl:param name="bold" select="false()"/>
+  <xsl:param name="nodesc" select="false()"/>
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
     <li class="links">
       <a>
+        <xsl:if test="$bold">
+          <xsl:attribute name="class">
+            <xsl:text>bold</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:attribute name="href">
           <xsl:call-template name="mal.link.target">
             <xsl:with-param name="xref" select="$xref"/>
@@ -146,12 +154,14 @@ REMARK: Describe this template
           <xsl:with-param name="target" select="$target"/>
         </xsl:call-template>
       </xsl:if>
-      <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
-      <xsl:if test="$desc">
-        <span class="desc">
-          <xsl:text> &#x2014; </xsl:text>
-          <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
-        </span>
+      <xsl:if test="not($nodesc)">
+        <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
+        <xsl:if test="$desc">
+          <span class="desc">
+            <xsl:text> &#x2014; </xsl:text>
+            <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+          </span>
+        </xsl:if>
       </xsl:if>
     </li>
   </xsl:for-each>
@@ -776,6 +786,7 @@ REMARK: Describe this template
     </xsl:variable>
     <xsl:variable name="_links" select="$links[contains($_groups, concat(' ', @group, ' '))]"/>
     <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
+    <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
     <xsl:if test="count($_links) != 0">
       <div class="links topiclinks">
         <xsl:if test="$node/self::mal:links">
@@ -828,6 +839,7 @@ REMARK: Describe this template
             </table>
           </xsl:when>
           <xsl:when test="contains($style, ' linklist ')">
+            <xsl:variable name="bold" select="contains($style, ' bold ')"/>
             <ul>
               <xsl:for-each select="$_links">
                 <xsl:sort data-type="number" select="@groupsort"/>
@@ -835,6 +847,8 @@ REMARK: Describe this template
                 <xsl:call-template name="mal2html.page.autolink">
                   <xsl:with-param name="xref" select="@xref"/>
                   <xsl:with-param name="role" select="'topic'"/>
+                  <xsl:with-param name="bold" select="$bold"/>
+                  <xsl:with-param name="nodesc" select="$nodesc"/>
                 </xsl:call-template>
               </xsl:for-each>
             </ul>
@@ -853,6 +867,7 @@ REMARK: Describe this template
                         <xsl:with-param name="source" select="$node"/>
                         <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
                         <xsl:with-param name="role" select="'topic'"/>
+                        <xsl:with-param name="nodesc" select="$nodesc"/>
                       </xsl:call-template>
                     </xsl:for-each>
                   </xsl:if>
@@ -869,6 +884,7 @@ REMARK: Describe this template
                         <xsl:with-param name="source" select="$node"/>
                         <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
                         <xsl:with-param name="role" select="'topic'"/>
+                        <xsl:with-param name="nodesc" select="$nodesc"/>
                       </xsl:call-template>
                     </xsl:for-each>
                   </xsl:if>
@@ -886,6 +902,7 @@ REMARK: Describe this template
                   <xsl:with-param name="source" select="$node"/>
                   <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
                   <xsl:with-param name="role" select="'topic'"/>
+                  <xsl:with-param name="nodesc" select="$nodesc"/>
                 </xsl:call-template>
               </xsl:for-each>
             </xsl:for-each>
@@ -1122,6 +1139,7 @@ td.twocolumnright {
   -moz-padding-end: 0;
 }
 
+a.bold { font-weight: bold; }
 a.linkdiv { display: block; }
 div.linkdiv div.title {
   font-size: 1em;
