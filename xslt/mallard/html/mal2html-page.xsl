@@ -809,7 +809,7 @@ REMARK: Describe this template
                 </img>
               </xsl:for-each>
             </div>
-            <ul>
+            <ul class="mouseovers">
               <xsl:for-each select="$_links">
                 <xsl:sort data-type="number" select="@groupsort"/>
                 <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -1147,6 +1147,7 @@ div.copyrights {
 div.mouseovers {
   width: 250px;
   height: 200px;
+  text-align: center;
   margin: 0;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
@@ -1154,6 +1155,15 @@ div.mouseovers {
 div.mouseovers img {
   display: none;
   position: absolute;
+}
+ul.mouseovers li { margin: 0; }
+ul.mouseovers a {
+  display: block;
+  padding: 4px;
+}
+ul.mouseovers a:hover {
+  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  text-decoration: none;
 }
 
 table.toronto {
