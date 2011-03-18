@@ -775,6 +775,7 @@ REMARK: Describe this template
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="_links" select="$links[contains($_groups, concat(' ', @group, ' '))]"/>
+    <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
     <xsl:if test="count($_links) != 0">
       <div class="links topiclinks">
         <xsl:if test="$node/self::mal:links">
@@ -783,7 +784,50 @@ REMARK: Describe this template
           </xsl:apply-templates>
         </xsl:if>
         <xsl:choose>
-          <xsl:when test="contains(concat(' ', $node/@style, ' '), ' linklist ')">
+          <xsl:when test="contains($style, ' toronto ')">
+            <xsl:variable name="rows" select="ceiling(count($_links) div 3)"/>
+            <table class="toronto">
+              <xsl:for-each select="$_links[position() &lt;= $rows]">
+                <xsl:variable name="rownum" select="position() - 1"/>
+                <tr>
+                  <xsl:for-each select="$_links">
+                    <xsl:sort data-type="number" select="@groupsort"/>
+                    <xsl:sort select="mal:title[@type = 'sort']"/>
+                    <xsl:if test="(position() - 1 &gt;= (3 * $rownum)) and
+                                  (position() - 1 &lt; (3 * $rownum) + 3)">
+                      <xsl:variable name="xref" select="@xref"/>
+                      <td>
+                        <xsl:for-each select="$mal.cache">
+                          <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+                          <div class="toronto-link"><a>
+                            <xsl:attribute name="href">
+                              <xsl:call-template name="mal.link.target">
+                                <xsl:with-param name="xref" select="$xref"/>
+                              </xsl:call-template>
+                            </xsl:attribute>
+                            <xsl:call-template name="mal.link.content">
+                              <xsl:with-param name="node" select="."/>
+                              <xsl:with-param name="xref" select="$xref"/>
+                              <xsl:with-param name="role" select="'topic'"/>
+                            </xsl:call-template>
+                          </a></div>
+                          <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
+                            <xsl:if test="$desc">
+                              <div class="toronto-desc">
+                                <span class="desc">
+                                  <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+                                </span>
+                              </div>
+                            </xsl:if>
+                        </xsl:for-each>
+                      </td>
+                    </xsl:if>
+                  </xsl:for-each>
+                </tr>
+              </xsl:for-each>
+            </table>
+          </xsl:when>
+          <xsl:when test="contains($style, ' linklist ')">
             <ul>
               <xsl:for-each select="$_links">
                 <xsl:sort data-type="number" select="@groupsort"/>
@@ -795,7 +839,7 @@ REMARK: Describe this template
               </xsl:for-each>
             </ul>
           </xsl:when>
-          <xsl:when test="contains(concat(' ', $node/@style, ' '), ' 2column ')">
+          <xsl:when test="contains($style, ' 2column ')">
             <xsl:variable name="coltot" select="ceiling(count($_links) div 2)"/>
             <table class="twocolumn"><tr>
               <td class="twocolumnleft">
@@ -1047,6 +1091,23 @@ div.copyrights {
   text-align: center;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+
+table.toronto {
+  clear: both;
+  width: 100%;
+}
+table.toronto td {
+  padding-top: 1em;
+  padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
+}
+div.toronto-link {
+  margin: 0;
+  font-weight: bold;
+}
+div.toronto-desc {
+  margin: 0;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
 table.twocolumn { width: 100%; }
