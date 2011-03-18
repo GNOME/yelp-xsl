@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal exsl"
+                exclude-result-prefixes="mal e exsl"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -126,12 +127,14 @@ REMARK: Describe this template
 <xsl:template name="mal2html.page.autolink">
   <xsl:param name="page"/>
   <xsl:param name="xref" select="$page/@id"/>
+  <xsl:param name="attrs"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="bold" select="false()"/>
   <xsl:param name="nodesc" select="false()"/>
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
     <li class="links">
+      <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
       <a>
         <xsl:if test="$bold">
           <xsl:attribute name="class">
@@ -795,6 +798,37 @@ REMARK: Describe this template
           </xsl:apply-templates>
         </xsl:if>
         <xsl:choose>
+          <xsl:when test="contains($style, ' mouseovers ')">
+            <div class="mouseovers">
+              <xsl:for-each select="e:mouseover">
+                <img>
+                  <xsl:attribute name="data-yelp-match">
+                    <xsl:value-of select="@match"/>
+                  </xsl:attribute>
+                  <xsl:copy-of select="@src | @width | @height"/>
+                </img>
+              </xsl:for-each>
+            </div>
+            <ul>
+              <xsl:for-each select="$_links">
+                <xsl:sort data-type="number" select="@groupsort"/>
+                <xsl:sort select="mal:title[@type = 'sort']"/>
+                <xsl:call-template name="mal2html.page.autolink">
+                  <xsl:with-param name="xref" select="@xref"/>
+                  <xsl:with-param name="attrs">
+                    <li>
+                      <xsl:attribute name="data-yelp-xref">
+                        <xsl:value-of select="@xref"/>
+                      </xsl:attribute>
+                    </li>
+                  </xsl:with-param>
+                  <xsl:with-param name="role" select="'topic'"/>
+                  <xsl:with-param name="bold" select="true()"/>
+                  <xsl:with-param name="nodesc" select="true()"/>
+                </xsl:call-template>
+              </xsl:for-each>
+            </ul>
+          </xsl:when>
           <xsl:when test="contains($style, ' toronto ')">
             <xsl:variable name="rows" select="ceiling(count($_links) div 3)"/>
             <table class="toronto">
@@ -1110,6 +1144,18 @@ div.copyrights {
     <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
+div.mouseovers {
+  width: 250px;
+  height: 200px;
+  margin: 0;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+}
+div.mouseovers img {
+  display: none;
+  position: absolute;
+}
+
 table.toronto {
   clear: both;
   width: 100%;
@@ -1270,6 +1316,31 @@ span.status-review { background-color: </xsl:text>
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
   <xsl:call-template name="mal2html.facets.js"/>
+  <xsl:text>
+$(document).ready(function () {
+  $('div.mouseovers').each(function () {
+    var contdiv = $(this);
+    var width = 0;
+    var height = 0;
+    contdiv.find('img').each(function () {
+      if ($(this).attr('data-yelp-match') == '')
+        $(this).show();
+    });
+    contdiv.next('ul').find('a').each(function () {
+      var mlink = $(this);
+      var mimg = contdiv.find('img[data-yelp-match="' + mlink.parent().attr('data-yelp-xref') + '"]');
+      mlink.hover(
+        function () {
+          mimg.fadeIn('fast');
+        },
+        function () {
+          mimg.fadeOut('fast');
+        }
+      );
+    });
+  });
+});
+  </xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
