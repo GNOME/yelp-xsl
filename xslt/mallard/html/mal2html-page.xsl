@@ -234,7 +234,7 @@ REMARK: Describe this template
     <xsl:call-template name="mal.link.content">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="xref" select="$node/@xref"/>
-      <xsl:with-param name="role" select="'guide'"/>
+      <xsl:with-param name="role" select="'trail'"/>
     </xsl:call-template>
   </a>
   <xsl:variable name="direction">
