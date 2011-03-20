@@ -840,15 +840,15 @@ div.note > div.inner {
   background-repeat: no-repeat;
   min-height: </xsl:text><xsl:value-of select="$icons.size.note"/><xsl:text>px;
 }
-div.note-advanced div.inner { <!-- background-image: url("</xsl:text>
+div.note-advanced > div.inner { <!-- background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.advanced"/><xsl:text>"); --> }
-div.note-bug div.inner { background-image: url("</xsl:text>
+div.note-bug > div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.bug"/><xsl:text>"); }
-div.note-important div.inner { background-image: url("</xsl:text>
+div.note-important > div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.important"/><xsl:text>"); }
-div.note-tip div.inner { background-image: url("</xsl:text>
+div.note-tip > div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.tip"/><xsl:text>"); }
-div.note-warning div.inner { background-image: url("</xsl:text>
+div.note-warning > div.inner { background-image: url("</xsl:text>
   <xsl:value-of select="$icons.note.warning"/><xsl:text>"); }
 div.note-sidebar {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
