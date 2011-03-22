@@ -1,3 +1,14 @@
+Changes in 2.91.92
+==================
+* Use trail link title for link trails
+* Fix note icon craziness with nested inner divs
+* Added special fanciness for the gnome-help index
+* Added the 'bold' and 'nodesc' links styles
+* Corrected handling of media style attribute
+* Put links element in Mallard 1.0 namespace
+* Updated translations:
+  pl    (Piotr Drąg)
+
 Changes in 2.91.91
 ==================
 * Support ubiquitous linking on media
