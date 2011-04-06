@@ -1140,12 +1140,10 @@ FIXME
 <xsl:text>
 div.floatleft {
   float: left;
-  margin-top: 0;
   margin-right: 1em;
 }
 div.floatright {
   float: right;
-  margin-top: 0;
   margin-left: 1em;
 }
 
