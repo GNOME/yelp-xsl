@@ -1352,7 +1352,7 @@ span.status-review { background-color: </xsl:text>
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
   <xsl:call-template name="mal2html.facets.js"/>
-  <xsl:text>
+  <script type="text/javascript" language="javascript"><xsl:text><![CDATA[
 $(document).ready(function () {
   $('div.mouseovers').each(function () {
     var contdiv = $(this);
@@ -1377,7 +1377,7 @@ $(document).ready(function () {
     });
   });
 });
-  </xsl:text>
+]]></xsl:text></script>
 </xsl:template>
 
 </xsl:stylesheet>
