@@ -1146,6 +1146,14 @@ div.floatright {
   float: right;
   margin-left: 1em;
 }
+div.floatstart {
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
+}
+div.floatend {
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
 
 div.copyrights {
   text-align: center;

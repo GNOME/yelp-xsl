@@ -294,6 +294,12 @@ FIXME
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="class">
     <xsl:choose>
+      <xsl:when test="contains($style, ' floatstart ')">
+        <xsl:text> floatstart</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains($style, ' floatend ')">
+        <xsl:text> floatend</xsl:text>
+      </xsl:when>
       <xsl:when test="contains($style, ' floatleft ')">
         <xsl:text> floatleft</xsl:text>
       </xsl:when>
