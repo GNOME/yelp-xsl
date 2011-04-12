@@ -1367,8 +1367,7 @@ $(document).ready(function () {
       mlink.hover(
         function () {
           var offset = contdiv.offset();
-          var top = offset.top - $('div.body').offset().top;
-          mlink.find('img').css({left: offset.left, top: top, zIndex: 10});
+          mlink.find('img').css({left: offset.left, top: offset.top, zIndex: 10});
           mlink.find('img').fadeIn('fast');
         },
         function () {

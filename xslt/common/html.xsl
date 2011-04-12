@@ -516,15 +516,12 @@ All parameters can be automatically computed if not provided.
   <xsl:text>
 html { height: 100%; }
 body {
-  margin: 0;
-  padding: 1em 1em 0 1em;
+  margin: 0; padding: 0;
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
   color: </xsl:text>
     <xsl:value-of select="$color.text"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
-  max-width: 73em;
-  position: relative;
 }
 div.body {
   margin: 0;
