@@ -83,7 +83,7 @@ mal.cache.info
   <xsl:param name="info" select="$node/mal:info"/>
   <xsl:param name="node_in"/>
   <info>
-    <xsl:if test="not($info/mal:title[@type = 'link'])">
+    <xsl:if test="not($info/mal:title[@type = 'link'][not(@role)])">
       <title type="link">
         <xsl:copy-of select="$node/mal:title/node()"/>
       </title>
