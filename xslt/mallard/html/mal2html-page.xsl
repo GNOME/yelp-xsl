@@ -1190,6 +1190,7 @@ table.toronto {
 }
 table.toronto td {
   padding-top: 1em;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
   width: 33%;
 }
