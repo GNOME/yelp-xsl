@@ -128,7 +128,7 @@ mal2html.facets.js
 REMARK: FIXME
 -->
 <xsl:template name="mal2html.facets.js">
-  <script type="text/javascript" language="javascript"><xsl:text><![CDATA[
+<xsl:text><![CDATA[
 $(document).ready(function () {
   $('input.facet').change(function () {
     var control = $(this);
@@ -169,7 +169,7 @@ $(document).ready(function () {
     });
   });
 });
-]]></xsl:text></script>
+]]></xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>

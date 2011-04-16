@@ -1130,12 +1130,16 @@ $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
 template *{html.js.jquery} to output references to jQuery files. It then
-outputs an HTML #{script} tag and calls *{html.js.content} to ouput the
-contents of that tag.
+calls *{html.js.custom} to output references to custom JavaScript files.
+Finally, it outputs an HTML #{script} tag and calls *{html.js.content} to
+ouput the contents of that tag.
 -->
 <xsl:template name="html.js">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="html.js.jquery">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.js.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
   <script type="text/javascript" language="javascript">
@@ -1173,12 +1177,6 @@ output relative to @{html.js.root}.
         <xsl:text>jquery.syntax.js</xsl:text>
       </xsl:attribute>
     </script>
-    <script type="text/javascript" language="javascript">
-      <xsl:text>jQuery(document).ready( function () { jQuery.syntax({root: '</xsl:text>
-      <xsl:value-of select="$html.js.root"/>
-      <xsl:text>', blockLayout: 'plain'}, function (options, html, container) </xsl:text>
-      <xsl:text>{ html.attr('class', container.attr('class')); return html; }); });</xsl:text>
-    </script>
   </xsl:if>
 </xsl:template>
 
@@ -1193,15 +1191,18 @@ This template is called by *{html.js} to output JavaScript content. It does not
 output an HTML #{script} tag. The JavaScript output by this template or templates
 it calls may depend on the jQuery code referenced by *{html.js.jquery}. This
 template calls the template *{html.js.media}. It then calls the mode
-%{html.js.mode} on ${node} and calls the template *{html.js.custom}.
+%{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="html.js.media">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
+  <xsl:call-template name="html.js.syntax">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
   <xsl:apply-templates mode="html.js.mode" select="$node"/>
-  <xsl:call-template name="html.js.custom">
+  <xsl:call-template name="html.js.content.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
 </xsl:template>
@@ -1218,7 +1219,6 @@ control for audio and video elements as well as support for captions.
 -->
 <xsl:template name="html.js.media">
   <xsl:param name="node" select="."/>
-  <script type="text/javascript" language="javascript">
 <xsl:text><![CDATA[
 yelp_paint_zoom = function (zoom, zoomed) {
   var ctxt = zoom.children('canvas')[0].getContext('2d');
@@ -1469,7 +1469,30 @@ document.addEventListener("DOMContentLoaded", function () {
     yelp_init_media(vids[i]);
 }, false);
 ]]></xsl:text>
-  </script>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.syntax
+Output JavaScript for syntax highlighting
+:Revision: version="1.0" date="2011-04-16" status="final"
+$node: The node to create JavaScript for.
+
+This template outputs JavaScript that does syntax highlighting. JavaScript
+@{html.syntax.highlight} is #{true}. Note that this content just initializes
+the syntax highlighting. The real work is done by #{jquery.syntax.js}, which
+is included by *{html.js.syntax}.
+-->
+<xsl:template name="html.js.syntax">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$html.syntax.highlight">
+<xsl:text><![CDATA[
+$(document).ready( function () { jQuery.syntax({root: ']]></xsl:text>
+<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'plain'},
+function (options, html, container)
+{ html.attr('class', container.attr('class')); return html; }); });
+]]></xsl:text>
+  </xsl:if>
 </xsl:template>
 
 
@@ -1489,15 +1512,34 @@ the common JavaScript.
 
 <!--**==========================================================================
 html.js.custom
+Stub to reference custom JavaScript common to all HTML transformations.
+:Stub: true
+:Revision: version="1.0" date="2010-04-16" status="final"
+$node: The node to create JavaScript for.
+
+This template is a stub, called by *{html.js}. You can override this template
+to reference additional external JavaScript files. If you want to include
+JavaScript into the main #{script} tag instead, use *{html.js.content.custom}.
+-->
+<xsl:template name="html.js.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.content.custom
 Stub to output custom JavaScript common to all HTML transformations.
 :Stub: true
-:Revision: version="1.0" date="2010-01-01" status="final"
+:Revision: version="1.0" date="2010-04-16" status="final"
 $node: The node to create JavaScript for.
 
 This template is a stub, called by *{html.js.content}. You can override this
 template to provide additional JavaScript that will be used by all HTML output.
+This template is called inside a #{script} tag, and is intended to include
+JavaScript code in the output page. See *{html.js.custom} to include a custom
+reference to an external JavaScript file.
 -->
-<xsl:template name="html.js.custom">
+<xsl:template name="html.js.content.custom">
   <xsl:param name="node" select="."/>
 </xsl:template>
 
