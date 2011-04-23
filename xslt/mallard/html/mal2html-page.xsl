@@ -1209,10 +1209,6 @@ td.twocolumnright {
   width: 52%; vertical-align: top;
   margin: 0; padding: 0;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-  -webkit-padding-start: 1em;
-  -webkit-padding-end: 0;
-  -moz-padding-start: 1em;
-  -moz-padding-end: 0;
 }
 
 div.desc a {
@@ -1234,7 +1230,6 @@ div.linkdiv div.desc {
 div.linkdiv {
   margin: 0;
   padding: 0.5em;
-  -moz-border-radius: 6px;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.background"/><xsl:text>;
 }
@@ -1275,10 +1270,6 @@ li.tree { margin: 0; padding: 0; }
 li.tree div { margin: 0; padding: 0; }
 ul.tree ul.tree {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-  -webkit-margin-start: 1.44em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.44em;
-  -moz-margin-end: 0;
 }
 div.tree-lines ul.tree { margin-left: 0; }
 

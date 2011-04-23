@@ -117,7 +117,9 @@ span.co {
   padding-left: 0.4em; padding-right: 0.4em;
   border: solid 1px </xsl:text>
   <xsl:value-of select="$db2html.co.border_color"/><xsl:text>;
+  border-radius: 8px;
   -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   background-color: </xsl:text>
   <xsl:value-of select="$db2html.co.background_color"/><xsl:text>;
   color: </xsl:text>

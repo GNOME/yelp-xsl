@@ -605,10 +605,6 @@ ul, ol, dl { margin: 0; padding: 0; }
 li {
   margin: 1em 0 0 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em;
-  -webkit-margin-start: 2.4em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 2.4em;
-  -moz-margin-end: 0;
   padding: 0;
 }
 li:first-child { margin-top: 0; }
@@ -618,10 +614,6 @@ dt + dt { margin-top: 0; }
 dd {
   margin: 0.2em 0 0 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-  -webkit-margin-start: 1.44em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.44em;
-  -moz-margin-end: 0;
 }
 ol.compact li { margin-top: 0.2em; }
 ul.compact li { margin-top: 0.2em; }
@@ -781,10 +773,6 @@ div.code {
 }
 div.figure {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-  -webkit-margin-start: 1.72em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.72em;
-  -moz-margin-end: 0;
   padding: 4px;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
@@ -912,20 +900,8 @@ ol.steps .steps {
   border: none;
   background-color: none;
 }
-li.steps {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-  -webkit-margin-start: 1.44em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.44em;
-  -moz-margin-end: 0;
-}
-li.steps li.steps {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em;
-  -webkit-margin-start: 2.4em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 2.4em;
-  -moz-margin-end: 0;
-}
+li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
+li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
 div.synopsis > div.inner > div.contents, div.synopsis > pre.contents {
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 1px;

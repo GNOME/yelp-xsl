@@ -159,13 +159,7 @@ dl.indexdiv dt { margin-top: 0; }
 dl.indexdiv dd { margin-top: 0; margin-bottom: 0; }
 dl.setindex dt { margin-top: 0; }
 dl.setindex dd { margin-top: 0; margin-bottom: 0; }
-div.simplelist {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
-  -webkit-margin-start: 1.72em;
-  -webkit-margin-end: 0;
-  -moz-margin-start: 1.72em;
-  -moz-margin-end: 0;
-}
+div.simplelist { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em; }
 div.simplelist table { margin-left: 0; border: none; }
 div.simplelist td {
   padding: 0.5em;
