@@ -1,3 +1,11 @@
+3.0.1
+=====
+* Fixed page sorting for groups on mal:links
+* Various small CSS tweaks
+* Fixed how JavaScript is included
+* Fixed cache behavior with roled link titles
+* Added floatstart and floatend hints, bug #645947
+
 3.0.0
 =====
 * No changes since 2.91.92
