@@ -99,14 +99,34 @@ topic or next links.
     </xsl:if>
   </xsl:if>
 
+  <xsl:variable name="page" select="document($node/@cache:href)"/>
+
   <xsl:variable name="topics">
     <xsl:for-each select="$node | $node//mal:section">
+      <xsl:variable name="positionsort" select="position()"/>
+      <xsl:variable name="groups">
+        <xsl:choose>
+          <xsl:when test="self::mal:page">
+            <xsl:call-template name="_mal.sort.getgroups">
+              <xsl:with-param name="node" select="$page/mal:page"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="sectid">
+              <xsl:value-of select="substring-after(@id, '#')"/>
+            </xsl:variable>
+            <xsl:call-template name="_mal.sort.getgroups">
+              <xsl:with-param name="node" select="$page//mal:section[@id = $sectid]"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:variable name="subtopics">
         <xsl:call-template name="mal.link.topiclinks">
           <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="groups" select="$groups"/>
         </xsl:call-template>
       </xsl:variable>
-      <xsl:variable name="positionsort" select="position()"/>
       <xsl:for-each select="exsl:node-set($subtopics)/*">
         <xsl:copy>
           <xsl:attribute name="positionsort">
@@ -151,6 +171,35 @@ topic or next links.
       </xsl:for-each>
     </xsl:if>
   </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="_mal.sort.getgroups">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="groups">
+    <xsl:text> </xsl:text>
+    <xsl:choose>
+      <xsl:when test="$node/mal:links[@type = 'topic']">
+        <xsl:for-each select="$node/mal:links[@type = 'topic']">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="@groups"/>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$node/@groups"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text> </xsl:text>
+  </xsl:variable>
+  <xsl:if test="not(contains($groups, ' #first '))">
+    <xsl:text> #first </xsl:text>
+  </xsl:if>
+  <xsl:value-of select="$groups"/>
+  <xsl:if test="not(contains($groups, ' #default '))">
+    <xsl:text> #default </xsl:text>
+  </xsl:if>
+  <xsl:if test="not(contains($groups, ' #last '))">
+    <xsl:text> #last </xsl:text>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

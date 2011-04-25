@@ -399,12 +399,7 @@ The output is a result tree fragment.  To use these results, call
 -->
 <xsl:template name="mal.link.topiclinks">
   <xsl:param name="node" select="."/>
-  <xsl:variable name="linkid">
-    <xsl:call-template name="mal.link.linkid">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="groups">
+  <xsl:param name="groups">
     <xsl:variable name="_groups">
       <xsl:choose>
         <xsl:when test="$node/mal:links[@type = 'topic']">
@@ -436,7 +431,7 @@ The output is a result tree fragment.  To use these results, call
     <xsl:if test="not(contains($_groups, ' #last '))">
       <xsl:text>#last </xsl:text>
     </xsl:if>
-  </xsl:variable>
+  </xsl:param>
   <xsl:variable name="groupslist" select="str:split($groups)"/>
   <xsl:variable name="defaultpos">
     <xsl:for-each select="$groupslist">
@@ -444,6 +439,11 @@ The output is a result tree fragment.  To use these results, call
         <xsl:value-of select="position()"/>
       </xsl:if>
     </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.linkid">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="links">
     <xsl:for-each select="$node/mal:info/mal:link[@type = 'topic']">
