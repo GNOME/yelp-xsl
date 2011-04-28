@@ -295,9 +295,11 @@ REMARK: Describe this template
                 <xsl:with-param name="xref" select="$prev/../../@id"/>
               </xsl:call-template>
             </xsl:attribute>
-            <xsl:call-template name="l10n.gettext">
-              <xsl:with-param name="msgid" select="'Previous'"/>
-            </xsl:call-template>
+            <xsl:for-each select="$node">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Previous'"/>
+              </xsl:call-template>
+            </xsl:for-each>
           </a>
         </xsl:if>
         <xsl:if test="$prev and $next">
@@ -317,9 +319,11 @@ REMARK: Describe this template
                 <xsl:with-param name="xref" select="$next/@xref"/>
               </xsl:call-template>
             </xsl:attribute>
-            <xsl:call-template name="l10n.gettext">
-              <xsl:with-param name="msgid" select="'Next'"/>
-            </xsl:call-template>
+            <xsl:for-each select="$node">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Next'"/>
+              </xsl:call-template>
+            </xsl:for-each>
           </a>
         </xsl:if>
       </div>
