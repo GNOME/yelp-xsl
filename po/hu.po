@@ -975,7 +975,7 @@ msgstr "Név"
 #. Used as link to the next page in a series.
 #: ../xslt/gettext/l10n.xml.in.h:766
 msgid "Next"
-msgstr "Tovább"
+msgstr "Következő"
 
 #.
 #. http://www.docbook.org/tdg/en/html/note.html
