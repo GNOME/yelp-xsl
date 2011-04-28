@@ -30,7 +30,7 @@ Mallard Links
 Common linking utilities for Mallard documents.
 :Revision:version="1.0" date="2010-01-02" status="final"
 
-This stylesheets contains various utilities for handling links in Mallard
+This stylesheet contains various utilities for handling links in Mallard
 documents.  The templates in this stylesheet make it easier to handle the
 different linking mechanisms in Mallard, including the dynamic automatic
 linking systems.

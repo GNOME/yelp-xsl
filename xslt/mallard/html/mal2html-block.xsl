@@ -349,10 +349,15 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = p = -->
 <xsl:template mode="mal2html.block.mode" match="mal:p">
-  <p class="p">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.inline.mode"/>
-  </p>
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test"/>
+  </xsl:variable>
+  <xsl:if test="$if = 'true'">
+    <p class="p">
+      <xsl:call-template name="html.lang.attrs"/>
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
+    </p>
+  </xsl:if>
 </xsl:template>
 
 <!-- = quote = -->

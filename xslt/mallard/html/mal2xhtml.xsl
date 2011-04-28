@@ -35,8 +35,10 @@ REMARK: Describe this module
 <xsl:import href="../../common/html.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
+<xsl:import href="../common/mal-if.xsl"/>
 <xsl:import href="../common/mal-link.xsl"/>
 
+<xsl:param name="mal.if.env" select="'html'"/>
 <xsl:param name="mal.link.extension" select="$html.extension"/>
 
 <xsl:include href="mal2html-block.xsl"/>
