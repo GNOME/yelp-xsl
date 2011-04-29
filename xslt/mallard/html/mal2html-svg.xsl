@@ -85,6 +85,7 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
 </xsl:template>
 
 <xsl:template mode="mal2html.block.mode" match="svg:svg">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="id">
     <xsl:choose>
       <xsl:when test="@xml:id">
@@ -113,6 +114,7 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
       </exsl:document>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

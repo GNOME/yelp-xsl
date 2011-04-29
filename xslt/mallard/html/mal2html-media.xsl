@@ -145,7 +145,12 @@ FIXME
 <xsl:template mode="mal2html.block.mode" match="tt:*"/>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:tt">
-  <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test"/>
+  </xsl:variable>
+  <xsl:if test="$if = 'true'">
+    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:body">
@@ -290,7 +295,9 @@ FIXME
 
 <!-- = mal2html.block.mode % media = -->
 <xsl:template mode="mal2html.block.mode" match="mal:media">
-  <xsl:param name="first_child" select="not(preceding-sibling::*)"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test"/>
+  </xsl:variable>
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="class">
     <xsl:choose>
@@ -307,11 +314,9 @@ FIXME
         <xsl:text> floatright</xsl:text>
       </xsl:when>
     </xsl:choose>
-    <xsl:if test="$first_child">
-      <xsl:text> first-child</xsl:text>
-    </xsl:if>
   </xsl:variable>
   <xsl:choose>
+    <xsl:when test="$if != 'true'"/>
     <xsl:when test="@type = 'image'">
       <div>
         <xsl:attribute name="class">
@@ -347,9 +352,7 @@ FIXME
     </xsl:when>
     <xsl:otherwise>
       <xsl:for-each select="mal:*">
-        <xsl:apply-templates mode="mal2html.block.mode" select=".">
-          <xsl:with-param name="first_child" select="position() = 1 and $first_child"/>
-        </xsl:apply-templates>
+        <xsl:apply-templates mode="mal2html.block.mode" select="."/>
       </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>

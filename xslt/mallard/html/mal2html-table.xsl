@@ -34,6 +34,7 @@ REMARK: Describe this module
 
 <!-- = table = -->
 <xsl:template mode="mal2html.block.mode" match="mal:table">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="cols" select="mal:col | mal:colgroup/mal:col"/>
   <xsl:variable name="style">
     <xsl:if test="@frame and @frame != 'none'">
@@ -199,6 +200,7 @@ REMARK: Describe this module
       </xsl:apply-templates>
     </table>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = tbody = -->

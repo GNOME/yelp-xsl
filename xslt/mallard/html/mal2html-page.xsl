@@ -1270,7 +1270,7 @@ ul.tree {
   margin: 0; padding: 0;
   list-style-type: none;
 }
-li.tree { margin: 0; padding: 0; }
+li.tree { margin: -2px 0 0 0; padding: 0; }
 li.tree div { margin: 0; padding: 0; }
 ul.tree ul.tree {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;

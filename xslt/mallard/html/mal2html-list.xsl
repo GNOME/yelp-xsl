@@ -18,8 +18,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal"
+                exclude-result-prefixes="mal str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -34,6 +35,7 @@ as well as any special processing for child #{item} elements.
 
 <!-- = list = -->
 <xsl:template mode="mal2html.block.mode" match="mal:list">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="el">
     <xsl:choose>
@@ -65,18 +67,22 @@ as well as any special processing for child #{item} elements.
       <xsl:apply-templates select="mal:item"/>
     </xsl:element>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = list/item = -->
 <xsl:template match="mal:list/mal:item">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <li class="list">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
+</xsl:if>
 </xsl:template>
 
 <!-- = steps = -->
 <xsl:template mode="mal2html.block.mode" match="mal:steps">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="steps">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -84,18 +90,22 @@ as well as any special processing for child #{item} elements.
       <xsl:apply-templates select="mal:item"/>
     </ol>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = steps/item = -->
 <xsl:template match="mal:steps/mal:item">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <li class="steps">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
+</xsl:if>
 </xsl:template>
 
 <!-- = terms = -->
 <xsl:template mode="mal2html.block.mode" match="mal:terms">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div class="terms">
     <xsl:call-template name="html.lang.attrs"/>
@@ -110,10 +120,12 @@ as well as any special processing for child #{item} elements.
       <xsl:apply-templates select="mal:item"/>
     </dl>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = terms/item = -->
 <xsl:template match="mal:terms/mal:item">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:for-each select="mal:title">
     <dt class="terms">
       <xsl:call-template name="html.lang.attrs">
@@ -126,10 +138,12 @@ as well as any special processing for child #{item} elements.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
   </dd>
+</xsl:if>
 </xsl:template>
 
 <!-- = tree = -->
 <xsl:template mode="mal2html.block.mode" match="mal:tree">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="lines" select="contains(concat(' ', @style, ' '), ' lines ')"/>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
@@ -145,6 +159,7 @@ as well as any special processing for child #{item} elements.
       </xsl:apply-templates>
     </ul>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!--%%==========================================================================
@@ -163,6 +178,21 @@ neighboring #{item} elements, and passes that prefix to child elements.
 <xsl:template mode="mal2html.tree.mode" match="mal:item">
   <xsl:param name="lines" select="false()"/>
   <xsl:param name="prefix" select="''"/>
+  <xsl:variable name="if">
+    <xsl:choose>
+      <!-- We do the tests as we process children, to get lines right, and
+           only apply-templates to what we have to. So if this is a deep
+           item, don't spend the CPU cycles testing it again.
+      -->
+      <xsl:when test="parent::mal:item">
+        <xsl:text>true</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="mal.if.test"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:if test="$if = 'true'">
   <li class="tree">
     <xsl:call-template name="html.lang.attrs"/>
     <div>
@@ -173,16 +203,29 @@ neighboring #{item} elements, and passes that prefix to child elements.
       <xsl:apply-templates mode="mal2html.inline.mode"
                            select="node()[not(self::mal:item)]"/>
     </div>
-    <xsl:if test="mal:item">
+    <xsl:variable name="items">
+      <xsl:for-each select="mal:item">
+        <xsl:variable name="itemif">
+          <xsl:call-template name="mal.if.test"/>
+        </xsl:variable>
+        <xsl:if test="$itemif = 'true'">
+          <xsl:value-of select="concat(position(), ':')"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:if test="$items != ''">
       <ul class="tree">
-        <xsl:for-each select="mal:item">
-          <xsl:apply-templates mode="mal2html.tree.mode" select=".">
+        <xsl:variable name="node" select="."/>
+        <xsl:for-each select="str:split($items, ':')">
+          <xsl:variable name="itempos" select="number(.)"/>
+          <xsl:variable name="item" select="$node/mal:item[position() = $itempos]"/>
+          <xsl:apply-templates mode="mal2html.tree.mode" select="$item">
             <xsl:with-param name="lines" select="$lines"/>
             <xsl:with-param name="prefix">
               <xsl:if test="$lines">
                 <xsl:variable name="dir">
                   <xsl:call-template name="l10n.direction">
-                    <xsl:with-param name="lang" select="ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+                    <xsl:with-param name="lang" select="$item/ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
                   </xsl:call-template>
                 </xsl:variable>
                 <xsl:value-of select="translate(translate(translate(translate(
@@ -193,7 +236,7 @@ neighboring #{item} elements, and passes that prefix to child elements.
                                       '&#x2518;', '&#x202F;')"/>
                 <xsl:text>&#x202F;&#x202F;&#x202F;&#x202F;</xsl:text>
                 <xsl:choose>
-                  <xsl:when test="following-sibling::mal:item">
+                  <xsl:when test="position() != last()">
                     <xsl:choose>
                       <xsl:when test="$dir = 'rtl'">
                         <xsl:text>&#x2524;</xsl:text>
@@ -221,6 +264,7 @@ neighboring #{item} elements, and passes that prefix to child elements.
       </ul>
     </xsl:if>
   </li>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

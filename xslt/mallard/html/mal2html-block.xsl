@@ -46,6 +46,7 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), 'numbered')"/>
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
@@ -138,6 +139,7 @@ automatically strip leading and trailing newlines using *{utils.strip_newlines}.
       </xsl:if>
     </pre>
   </div>
+</xsl:if>
 </xsl:template>
 
 
@@ -192,6 +194,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = comment = -->
 <xsl:template mode="mal2html.block.mode" match="mal:comment">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
     <div class="comment">
@@ -207,6 +210,7 @@ in accordance with the Mallard specification on fallback block content.
       </div>
     </div>
   </xsl:if>
+</xsl:if>
 </xsl:template>
 
 <!-- = comment/cite = -->
@@ -253,14 +257,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = example = -->
 <xsl:template mode="mal2html.block.mode" match="mal:example">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="example">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = figure = -->
 <xsl:template mode="mal2html.block.mode" match="mal:figure">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="figure">
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
@@ -285,10 +292,12 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
     </div>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="listing">
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
@@ -301,10 +310,12 @@ in accordance with the Mallard specification on fallback block content.
       </div>
     </div>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = note = -->
 <xsl:template mode="mal2html.block.mode" match="mal:note">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="notestyle">
     <xsl:choose>
       <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
@@ -342,6 +353,7 @@ in accordance with the Mallard specification on fallback block content.
       </div>
     </div>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = info = -->
@@ -349,19 +361,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = p = -->
 <xsl:template mode="mal2html.block.mode" match="mal:p">
-  <xsl:variable name="if">
-    <xsl:call-template name="mal.if.test"/>
-  </xsl:variable>
-  <xsl:if test="$if = 'true'">
-    <p class="p">
-      <xsl:call-template name="html.lang.attrs"/>
-      <xsl:apply-templates mode="mal2html.inline.mode"/>
-    </p>
-  </xsl:if>
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <p class="p">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="mal2html.inline.mode"/>
+  </p>
+</xsl:if>
 </xsl:template>
 
 <!-- = quote = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="quote">
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
@@ -374,6 +384,7 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
     </div>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = quote/cite = -->
@@ -406,6 +417,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <div class="synopsis">
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
@@ -418,6 +430,7 @@ in accordance with the Mallard specification on fallback block content.
       </div>
     </div>
   </div>
+</xsl:if>
 </xsl:template>
 
 <!-- = title = -->
