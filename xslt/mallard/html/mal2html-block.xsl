@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:if="http://projectmallard.org/experimental/if/"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal msg"
+                exclude-result-prefixes="mal if msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -454,6 +455,21 @@ in accordance with the Mallard specification on fallback block content.
       </span>
     </xsl:element>
   </div>
+</xsl:template>
+
+<!-- = if:choose = -->
+<xsl:template mode="mal2html.block.mode" match="if:choose">
+  <xsl:variable name="pos">
+    <xsl:call-template name="mal.if.choose"/>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$pos != ''">
+      <xsl:apply-templates mode="mal2html.block.mode" select="if:if[position() = number($pos)]/*"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.block.mode" select="if:else/*"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

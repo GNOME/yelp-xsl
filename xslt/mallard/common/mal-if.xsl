@@ -78,6 +78,51 @@ string #{'true'}. Otherwise, it outputs nothing.
   </xsl:choose>
 </xsl:template>
 
+<!--**==========================================================================
+mal.if.choose
+Gets the position of the first matching condition in #{if:choose}
+:Revision:version="1.0" date="2011-04-28" status="review"
+$node: The #{if:choose} element to check.
+
+The #{if:choose} element takes a list of #{if:if} elements, optionally followed
+by an #{if:else} element. Given an #{if:choose} element, this template outputs
+the position of the first #{if:if} whose #{test} attribute evaluates to #{true}.
+If no #{if:if} elements are true, the output is empty.
+-->
+<xsl:template name="mal.if.choose">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="if:if[1]">
+    <xsl:call-template name="_mal.if.choose.try">
+      <xsl:with-param name="node" select="if:if[1]"/>
+      <xsl:with-param name="pos" select="1"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="_mal.if.choose.try">
+  <xsl:param name="node"/>
+  <xsl:param name="pos"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$if = 'true'">
+      <xsl:value-of select="$pos"/>
+    </xsl:when>
+    <xsl:when test="$node/following-sibling::if:if[1]">
+      <xsl:call-template name="_mal.if.choose.try">
+        <xsl:with-param name="node" select="$node/following-sibling::if:if[1]"/>
+        <xsl:with-param name="pos" select="$pos + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+
+<!-- ======================================================================= -->
+
 <func:function name="if:env">
   <xsl:param name="env"/>
   <xsl:choose>
