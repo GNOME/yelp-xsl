@@ -464,7 +464,7 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$pos != ''">
-      <xsl:apply-templates mode="mal2html.block.mode" select="if:if[position() = number($pos)]/*"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="if:when[position() = number($pos)]/*"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates mode="mal2html.block.mode" select="if:else/*"/>
