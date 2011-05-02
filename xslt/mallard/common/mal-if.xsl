@@ -60,14 +60,16 @@ This template tests whether the ${test} is true, evaluating it with
 the Mallard conditional functions. The ${test} parameter is expected
 to be a valid XPath expression. If not provided, it defaults to the
 #{if:test} attribute of ${node}, or the non-namespaced #{test}
-attribute if ${node} is a #{if:when} element.
+attribute if ${node} is an #{if:if} or #{if:when} element.
 
 If ${test} evaluates to #{true}, this template outputs the literal
 string #{'true'}. Otherwise, it outputs nothing.
 -->
 <xsl:template name="mal.if.test">
   <xsl:param name="node" select="."/>
-  <xsl:param name="test" select="$node/self::if:when/@test | $node[not(self::if:when)]/@if:test"/>
+  <xsl:param name="test" select="$node/self::if:if/@test |
+                                 $node/self::if:when/@test |
+                                 $node[not(self::if:when)]/@if:test "/>
   <xsl:choose>
     <xsl:when test="string($test) = ''">
       <xsl:text>true</xsl:text>

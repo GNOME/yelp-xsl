@@ -481,14 +481,22 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:choose>
 </xsl:template>
 
-<!-- = if:when = -->
-<xsl:template mode="mal2html.block.mode" match="if:when">
+<!-- = if:if = -->
+<xsl:template mode="mal2html.block.mode" match="if:if">
   <xsl:variable name="if">
     <xsl:call-template name="mal.if.test"/>
   </xsl:variable>
   <xsl:if test="$if = 'true'">
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </xsl:if>
+</xsl:template>
+
+<xsl:template mode="mal2html.block.mode" match="if:when | if:else">
+  <xsl:message>
+    <xsl:text>Conditional element </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:text> encountered outside of choose</xsl:text>
+  </xsl:message>
 </xsl:template>
 
 </xsl:stylesheet>
