@@ -467,7 +467,16 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:apply-templates mode="mal2html.block.mode" select="if:when[position() = number($pos)]/*"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="mal2html.block.mode" select="if:else/*"/>
+      <xsl:for-each select="if:when[last()]/following-sibling::*">
+        <xsl:choose>
+          <xsl:when test="self::if:else">
+            <xsl:apply-templates mode="mal2html.block.mode" select="*"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
