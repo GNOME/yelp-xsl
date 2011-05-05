@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl docs master\n"
 "POT-Creation-Date: 2011-04-30 18:17+0200\n"
-"PO-Revision-Date: 2011-04-30 18:19+0100\n"
+"PO-Revision-Date: 2011-05-05 20:15+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Stilvorlagen"
 #: index__S.page:8(title)
 #: index__S.page:11(title)
 msgid "Index of XSLT Stylesheets"
-msgstr "Index der XSLT Stilvorlagen"
+msgstr "Index der XSLT-Stilvorlagen"
 
 #: index__P.page:7(title)
 msgid "Parameters"
@@ -37,7 +37,7 @@ msgstr "Parameter"
 #: index__P.page:8(title)
 #: index__P.page:11(title)
 msgid "Index of XSLT Parameters"
-msgstr "Index der XSLT Parameter"
+msgstr "Index der XSLT-Parameter"
 
 #: index.page:6(title)
 msgid "Yelp"
