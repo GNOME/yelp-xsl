@@ -53,7 +53,6 @@ DocBook to XHTML
 <xsl:include href="db2html-l10n.xsl"/>
 <xsl:include href="db2html-media.xsl"/>
 <xsl:include href="db2html-list.xsl"/>
-<xsl:include href="db2html-qanda.xsl"/>
 <xsl:include href="db2html-refentry.xsl"/>
 <xsl:include href="db2html-suppressed.xsl"/>
 <xsl:include href="db2html-table.xsl"/>

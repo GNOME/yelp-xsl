@@ -23,7 +23,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Lists
-:Requires: db-common db2html-inline db2html-xref gettext
+:Requires: db-common db2html-inline db2html-xref gettext html
 
 REMARK: Describe this module
 -->
@@ -31,16 +31,10 @@ REMARK: Describe this module
 
 <!-- == Matched Templates == -->
 
-<!-- = variablelist = -->
+<!-- = glosslist = -->
 <xsl:template match="glosslist | db:glosslist">
   <div class="list glosslist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <dl class="glosslist">
@@ -52,13 +46,7 @@ REMARK: Describe this module
 <!-- = itemizedlist = -->
 <xsl:template match="itemizedlist | db:itemizedlist">
   <div class="list itemizedlist">
-    <xsl:if test="@xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
@@ -87,13 +75,7 @@ REMARK: Describe this module
 <!-- = itemizedlist/listitem = -->
 <xsl:template match="itemizedlist/listitem | db:itemizedlist/db:listitem">
   <li class="list itemizedlist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="@override">
       <xsl:attribute name="style">
         <xsl:text>list-style-type: </xsl:text>
@@ -127,13 +109,7 @@ REMARK: Describe this module
   </xsl:variable>
   <!-- FIXME: auto-numeration for nested lists -->
   <div class="list orderedlist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
@@ -170,13 +146,7 @@ REMARK: Describe this module
 <!-- = orderedlist/listitem = -->
 <xsl:template match="orderedlist/listitem | db:orderedlist/db:listitem">
   <li class="list orderedlist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="@override">
       <xsl:attribute name="value">
         <xsl:value-of select="@override"/>
@@ -190,13 +160,7 @@ REMARK: Describe this module
 <!-- = procedure = -->
 <xsl:template match="procedure | db:procedure">
   <div class="steps">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::step) and not(self::db:step)]"/>
@@ -215,19 +179,64 @@ REMARK: Describe this module
   </div>
 </xsl:template>
 
+<!-- = answer = -->
+<xsl:template match="answer | db:answer">
+  <dd class="answer">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:choose>
+      <xsl:when test="label | db:label">
+        <div class="qanda-label">
+          <xsl:apply-templates select="label/node() | db:label/node()"/>
+        </div>
+      </xsl:when>
+      <xsl:when test="ancestor::qandaset/@defaultlabel = 'qanda' or
+                      ancestor::db:qandaset/@defaultlabel = 'qanda'">
+        <div class="qanda-label">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'A:'"/>
+          </xsl:call-template>
+        </div>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates/>
+  </dd>
+</xsl:template>
+
+<!-- = qandaentry = -->
+<xsl:template match="qandaentry | db:qandaentry">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<!-- = question = -->
+<xsl:template match="question | db:question">
+  <dt class="question">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:choose>
+      <xsl:when test="label | db:label">
+        <div class="qanda-label">
+          <xsl:apply-templates select="label/node() | db:label/node()"/>
+        </div>
+      </xsl:when>
+      <xsl:when test="ancestor::qandaset/@defaultlabel = 'qanda' or
+                      ancestor::db:qandaset/@defaultlabel = 'qanda'">
+        <div class="qanda-label">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Q:'"/>
+          </xsl:call-template>
+        </div>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:apply-templates/>
+  </dt>
+</xsl:template>
+
 <!-- = seg = -->
 <xsl:template match="seg | db:seg">
   <xsl:variable name="position"
                 select="count(preceding-sibling::seg) +
                         count(preceding-sibling::db:seg) + 1"/>
   <p class="seg">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="../../segtitle[position() = $position] |
                                  ../../db:segtitle[position() = $position]"/>
     <xsl:apply-templates/>
@@ -240,13 +249,7 @@ REMARK: Describe this module
               select="count(preceding-sibling::seglistitem) +
                       count(preceding-sibling::db:seglistitem) + 1"/>
   <div class="seglistitem">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <div>
       <xsl:attribute name="class">
         <xsl:choose>
@@ -267,13 +270,7 @@ REMARK: Describe this module
 <!-- = segmentedlist = -->
 <xsl:template match="segmentedlist | db:segmentedlist">
   <div class="list segmentedlist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <xsl:apply-templates select="seglistitem | db:seglistitem"/>
@@ -284,13 +281,7 @@ REMARK: Describe this module
 <xsl:template match="segtitle | db:segtitle">
   <!-- FIXME: no style tags -->
   <b>
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
     <!-- FIXME: i18n -->
     <xsl:text>: </xsl:text>
@@ -312,13 +303,7 @@ REMARK: Describe this module
   <xsl:choose>
     <xsl:when test="@type = 'inline'">
       <span class="simplelist">
-        <xsl:if test="@lang | @xml:lang">
-          <xsl:attribute name="dir">
-            <xsl:call-template name="l10n.direction">
-              <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </xsl:if>
+        <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <xsl:for-each select="member | db:member">
           <xsl:if test="position() != 1">
@@ -332,13 +317,7 @@ REMARK: Describe this module
     </xsl:when>
     <xsl:when test="@type = 'horiz'">
       <div class="list simplelist">
-        <xsl:if test="@lang | @xml:lang">
-          <xsl:attribute name="dir">
-            <xsl:call-template name="l10n.direction">
-              <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </xsl:if>
+        <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <table class="simplelist">
           <xsl:for-each select="(member | db:member)[$columns = 1 or position() mod $columns = 1]">
@@ -365,13 +344,7 @@ REMARK: Describe this module
     </xsl:when>
     <xsl:otherwise>
       <div class="list simplelist">
-        <xsl:if test="@lang | @xml:lang">
-          <xsl:attribute name="dir">
-            <xsl:call-template name="l10n.direction">
-              <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-            </xsl:call-template>
-          </xsl:attribute>
-        </xsl:if>
+        <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <xsl:variable name="rows"
                       select="ceiling(count(member | db:member) div $columns)"/>
@@ -407,13 +380,7 @@ REMARK: Describe this module
 <!-- = step = -->
 <xsl:template match="step | db:step">
   <li class="steps">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
   </li>
 </xsl:template>
@@ -424,13 +391,7 @@ REMARK: Describe this module
   <xsl:variable name="depth" select="count(ancestor::substeps |
                                            ancestor::db:substeps)"/>
   <div class="steps substeps">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <ol class="steps substeps">
       <xsl:attribute name="type">
@@ -448,22 +409,7 @@ REMARK: Describe this module
 <!-- = term = -->
 <xsl:template match="term | db:term">
   <dt class="terms">
-    <xsl:choose>
-      <xsl:when test="@lang | @xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="../@lang | ../@xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="(../varlistentry/@id and not(preceding-sibling::term)) or
                   (../db:varlistentry/@xml:id and not(preceding-sibling::db:term))">
       <xsl:call-template name="db2html.anchor">
@@ -478,13 +424,7 @@ REMARK: Describe this module
 <!-- = variablelist = -->
 <xsl:template match="variablelist | db:variablelist">
   <div class="terms variablelist">
-    <xsl:if test="@lang | @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::varlistentry) and
@@ -504,22 +444,7 @@ REMARK: Describe this module
 <!-- = varlistentry/listitem = -->
 <xsl:template match="varlistentry/listitem | db:varlistentry/db:listitem">
   <dd class="terms">
-    <xsl:choose>
-      <xsl:when test="@lang | @xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="../@lang or ../@xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </dd>

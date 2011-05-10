@@ -949,6 +949,46 @@ REMARK: Describe this template
   </xsl:call-template>
 </xsl:template>
 
+<!-- = qandadiv = -->
+<xsl:template match="qandadiv | db:qandadiv">
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk"/>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:param>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="blockinfo | db:info"/>
+    <xsl:with-param name="entries" select="qandaentry | db:qandaentry"/>
+    <xsl:with-param name="divisions" select="qandadiv | db:qandadiv"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+    <xsl:with-param name="chunk_divisions" select="false()"/>
+    <xsl:with-param name="chunk_info" select="false()"/>
+    <xsl:with-param name="autotoc_divisions" select="false()"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = qandaset = -->
+<xsl:template match="qandaset | db:qandaset">
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk"/>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:param>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="blockinfo | db:info"/>
+    <xsl:with-param name="entries" select="qandaentry | db:qandaentry"/>
+    <xsl:with-param name="divisions" select="qandadiv | db:qandadiv"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+    <xsl:with-param name="chunk_divisions" select="false()"/>
+    <xsl:with-param name="chunk_info" select="false()"/>
+    <xsl:with-param name="autotoc_divisions" select="true()"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = reference = -->
 <xsl:template match="reference | db:reference">
   <xsl:param name="depth_in_chunk">

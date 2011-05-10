@@ -29,77 +29,20 @@ REMARK: Describe this module
 -->
 
 
-<!--@@==========================================================================
-db2html.css.file
-The file to output CSS to
-
-This parameter allows you to output the CSS to separate file which is referenced
-by each HTML file.  If this parameter is blank, then the CSS is embedded inside
-a #{style} tag in the HTML instead.
--->
-<xsl:param name="db2html.css.file" select="''"/>
-
-
-<!--**==========================================================================
-db2html.css
-Outputs the CSS that controls the appearance of the entire document
-$css_file: Whether to create a CSS file when @{db2html.css.file} is set.
-
-This template outputs a #{style} or #{link} tag and calls *{db2html.css.content}
-to output the actual CSS directives.  An external CSS file will only be created
-when ${css_file} is true.  This is only set to true by the top-level chunk to
-avoid creating the same file multiple times.
--->
-<xsl:template name="db2html.css">
-  <xsl:param name="css_file" select="false()"/>
-  <xsl:choose>
-    <xsl:when test="$db2html.css.file != ''">
-      <xsl:if test="$css_file">
-        <exsl:document href="{$db2html.css.file}" method="text">
-          <xsl:call-template name="db2html.css.content"/>
-        </exsl:document>
-      </xsl:if>
-      <link rel="stylesheet" type="text/css" href="{$db2html.css.file}"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <style type="text/css">
-        <xsl:call-template name="db2html.css.content"/>
-      </style>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.css.content
-Outputs the actual CSS directives
-
-This template is called by *{db2html.css} to output CSS content.  It also calls
-templates from other modules to output CSS specific to the content addressed in
-those modules.
-
-This template calls *{db2html.css.custom} at the end.  That template may be used
-by extension stylesheets to extend or override the CSS.
--->
-<xsl:template name="db2html.css.content">
-  <xsl:variable name="direction">
+<xsl:template mode="html.css.mode" match="*">
+  <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
-  </xsl:variable>
-  <xsl:variable name="left">
+  </xsl:param>
+  <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="right">
+  </xsl:param>
+  <xsl:param name="right">
     <xsl:call-template name="l10n.align.end">
       <xsl:with-param name="direction" select="$direction"/>
     </xsl:call-template>
-  </xsl:variable>
-  <xsl:call-template name="theme.html.css">
-    <xsl:with-param name="direction" select="$direction"/>
-    <xsl:with-param name="left" select="$left"/>
-    <xsl:with-param name="right" select="$right"/>
-  </xsl:call-template>
+  </xsl:param>
   <xsl:text>
 <!-- == common == -->
 sub { font-size: 0.83em; }
@@ -118,11 +61,11 @@ div.title span.label { font-weight: normal; }
 
 div.sidenav {
   padding: 0.5em 1em 0 1em;
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.sidenav div.sectionlinks {
-  background-color: </xsl:text><xsl:value-of select="$theme.color.background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
   border: none; padding: 0; margin: 0;
 }
 div.sidenav div.sectionlinks li { margin-bottom: 0.5em; }
@@ -135,7 +78,7 @@ div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks li { margin-botto
 
 <!-- == bibliography == -->
 span.bibliolabel {
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
 <!-- == block == -->
@@ -143,11 +86,11 @@ div.epigraph {
   text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 20%;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.programlisting .userinput {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$theme.color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.verbatim { white-space: pre; }
 
@@ -164,7 +107,7 @@ div.simplelist table { margin-left: 0; border: none; }
 div.simplelist td {
   padding: 0.5em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px </xsl:text>
-    <xsl:value-of select="$theme.color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 <!--
 div.simplelist td.td-first {
@@ -195,22 +138,27 @@ span.prompt { font-family: monospace; }
 span.wordasword { font-style: italic; }
 <!-- FIXME below -->
 
+dt.question {
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+dd + dt.question { margin-top: 1em; }
+dd.answer {
+  margin-top: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+div.qanda-label {
+  line-height: 1.72em;
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
+  font-weight: bold;
+}
+dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
 </xsl:text>
-  <xsl:call-template name="db2html.footnote.css"/>
-  <xsl:call-template name="db2html.callout.css"/>
-  <xsl:call-template name="db2html.qanda.css"/>
-<xsl:call-template name="db2html.css.custom"/>
+<xsl:call-template name="db2html.footnote.css"/>
+<xsl:call-template name="db2html.callout.css"/>
 </xsl:template>
-
-
-<!--**==========================================================================
-db2html.css.custom
-Allows extension stylesheets to extend or override CSS
-:Stub: true
-
-This stub template has no content.  Extension stylesheets can override this
-template to output extra CSS.
--->
-<xsl:template name="db2html.css.custom"/>
 
 </xsl:stylesheet>

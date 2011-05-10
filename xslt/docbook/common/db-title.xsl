@@ -250,6 +250,19 @@ REMARK: Describe this mode
   </xsl:choose>
 </xsl:template>
 
+<!-- = db.title.mode % qandaentry = -->
+<xsl:template mode="db.title.mode" match="qandaentry | db:qandaentry">
+  <xsl:apply-templates mode="db.title.mode" select="question | db:question"/>
+</xsl:template>
+
+<!-- = db.title.mode % question = -->
+<xsl:template mode="db.title.mode" match="question">
+  <xsl:apply-templates select=".//para/node()"/>
+</xsl:template>
+<xsl:template mode="db.title.mode" match="db:question">
+  <xsl:apply-templates select=".//db:para/node()"/>
+</xsl:template>
+
 <!-- = db.title.mode % part = -->
 <xsl:template mode="db.title.mode" match="part | db:part">
   <xsl:choose>
