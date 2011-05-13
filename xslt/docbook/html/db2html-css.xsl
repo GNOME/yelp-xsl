@@ -80,6 +80,9 @@ div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks li { margin-botto
 span.bibliolabel {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
+span.citetitle {
+  font-style: italic;
+}
 
 <!-- == block == -->
 div.epigraph {

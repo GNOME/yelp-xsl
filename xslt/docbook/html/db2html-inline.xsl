@@ -275,16 +275,6 @@ FIXME
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
-<!-- = citetitle % db2html.inline.content.mode = -->
-<xsl:template mode="db2html.inline.content.mode" match="citetitle | db:citetitle">
-  <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'citetitle.format'"/>
-    <xsl:with-param name="role" select="@pubwork"/>
-    <xsl:with-param name="node" select="."/>
-    <xsl:with-param name="format" select="true()"/>
-  </xsl:call-template>
-</xsl:template>
-
 <!-- = city = -->
 <xsl:template match="city | db:city">
   <xsl:call-template name="db2html.inline"/>

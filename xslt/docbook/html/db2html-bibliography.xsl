@@ -26,31 +26,33 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Bibliographies
-:Requires: db-chunk db-common db2html-block db2html-inline db2html-division db2html-xref gettext
+:Requires: db-chunk db-common db2html-block db2html-inline db2html-division db2html-xref gettext html
+:Revision:version="1.0" date="2011-05-13" status="final"
 
 This module provides templates to process DocBook bibliograpies.
 -->
 
 
-<!--** =========================================================================
+<!--**==========================================================================
 db2html.biblioentry.label
-Outputs the label for a bibliography entry
+Output the label for a bibliography entry.
+:Revision:version="1.0" date="2011-05-13" status="final"
 $node: The #{biblioentry} or #{bibliomixed} element to generate a label for
 
 This outputs a label to be placed inline at the beginning of a bibliography
-entry.  Labels are created for both #{biblioentry} and #{bibliomixed} elements.
-The label is typically an abbreviation of the authors' names an the year of
-publication.  In DocBook, it is usually provides with a leading #{abbrev}
-element.  Without a leading #{abbrev} element, this template will instead
+entry. Labels are created for both #{biblioentry} and #{bibliomixed} elements.
+The label is typically an abbreviation of the authors' names and the year of
+publication. In DocBook, it is usually provided with a leading #{abbrev}
+element. Without a leading #{abbrev} element, this template will instead
 use the #{xreflabel} or #{id} attribute.
 -->
 <xsl:template name="db2html.biblioentry.label">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/*[1]/self::abbrev or $node/@xreflabel or $node/@id or
                 $node/*[1]/self::db:abbrev or $node/@xml:id">
-    <span class="bibliolabel">
+    <span class="biblioentry.label">
       <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'bibliolabel.format'"/>
+        <xsl:with-param name="msgid" select="'biblioentry.label.format'"/>
         <xsl:with-param name="node" select="."/>
         <xsl:with-param name="format" select="true()"/>
       </xsl:call-template>
@@ -60,7 +62,7 @@ use the #{xreflabel} or #{id} attribute.
 </xsl:template>
 
 <!--#% l10n.format.mode -->
-<xsl:template mode="l10n.format.mode" match="msg:bibliolabel">
+<xsl:template mode="l10n.format.mode" match="msg:biblioentry.label">
   <xsl:param name="node"/>
   <xsl:choose>
     <xsl:when test="$node/*[1]/self::abbrev">
@@ -84,7 +86,8 @@ use the #{xreflabel} or #{id} attribute.
 
 <!--%%==========================================================================
 db2html.biblioentry.mode
-Formats elements inside a #{biblioentry} element
+Format elements inside a #{biblioentry} element.
+:Revision:version="1.0" date="2011-05-13" status="final"
 
 This mode is used when processing the child elements of a #{biblioentry}
 element.  Many elements are treated differently when they appear inside
@@ -117,11 +120,7 @@ a bibliography entry.
 </xsl:template>
 
 <!-- = articleinfo % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="articleinfo |
-                                                     db:article/db:info">
-  <xsl:call-template name="db2html.inline"/>
-  <xsl:text>. </xsl:text>
-</xsl:template>
+<xsl:template mode="db2html.biblioentry.mode" match="articleinfo"/>
 
 <!-- = author % db2html.biblioentry.mode = -->
 <xsl:template mode="db2html.biblioentry.mode" match="author | db:author">
@@ -477,15 +476,9 @@ a bibliography entry.
 
 <!-- = title % db2html.biblioentry.mode = -->
 <xsl:template mode="db2html.biblioentry.mode" match="title | db:title">
-  <span class="bibliotitle">
-    <xsl:call-template name="l10n.gettext">
-      <xsl:with-param name="msgid" select="'citetitle.format'"/>
-      <xsl:with-param name="role" select="../self::biblioset/@relation |
-                                          ../self::db:biblioset/@relation"/>
-      <xsl:with-param name="node" select="."/>
-      <xsl:with-param name="format" select="true()"/>
-    </xsl:call-template>
-  </span>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'citetitle'"/>
+  </xsl:call-template>
   <xsl:text>. </xsl:text>
 </xsl:template>
 
@@ -505,7 +498,8 @@ a bibliography entry.
 
 <!--%%==========================================================================
 db2html.bibliomixed.mode
-Formats elements inside a #{bibliomixed} element
+Format elements inside a #{bibliomixed} element.
+:Revision:version="1.0" date="2011-05-13" status="final"
 
 This mode is used when processing the child elements of a #{bibliomixed}
 element.  Many elements are treated differently when they appear inside
@@ -580,14 +574,10 @@ a bibliography entry.
 
 <!-- = title % db2html.bibliomixed.mode = -->
 <xsl:template mode="db2html.bibliomixed.mode" match="title | db:title">
-  <span class="bibliotitle">
-    <xsl:call-template name="l10n.gettext">
-      <xsl:with-param name="msgid" select="'citetitle.format'"/>
-      <xsl:with-param name="role" select="../self::bibliomset/@relation"/>
-      <xsl:with-param name="node" select="."/>
-      <xsl:with-param name="format" select="true()"/>
-    </xsl:call-template>
-  </span>
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'citetitle'"/>
+  </xsl:call-template>
+  <xsl:text>. </xsl:text>
 </xsl:template>
 
 
@@ -645,10 +635,8 @@ a bibliography entry.
 <!-- = biblioentry = -->
 <xsl:template match="biblioentry | db:biblioentry">
   <xsl:variable name="node" select="."/>
-  <div>
-    <xsl:attribute name="class">
-      <xsl:text>bibliomixed block</xsl:text>
-    </xsl:attribute>
+  <div class="bibliomixed">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.biblioentry.mode"
@@ -659,10 +647,8 @@ a bibliography entry.
 <!-- = bibliomixed = -->
 <xsl:template match="bibliomixed | db:bibliomixed">
   <xsl:variable name="node" select="."/>
-  <div>
-    <xsl:attribute name="class">
-      <xsl:text>bibliomixed block</xsl:text>
-    </xsl:attribute>
+  <div class="bibliomixed">
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:apply-templates mode="db2html.bibliomixed.mode"
