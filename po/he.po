@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-09 09:28+0300\n"
-"PO-Revision-Date: 2011-05-09 09:30+0200\n"
+"PO-Revision-Date: 2011-05-13 09:01+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -81,6 +81,8 @@ msgid ""
 "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
 "<label/>.</msgstr>"
 msgstr ""
+"<msgid>biblioentry.tooltip</msgid> <msgstr>צפייה ברשימת הביבליוגרפיה <label/"
+">.</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -120,9 +122,8 @@ msgstr ""
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:87
-#, fuzzy
 msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -154,9 +155,8 @@ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:117
-#, fuzzy
 msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -191,6 +191,8 @@ msgid ""
 "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
 "<msgstr><i><node/></i></msgstr>"
 msgstr ""
+"<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+"<msgstr><node/></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -233,11 +235,12 @@ msgstr ""
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:187
-#, fuzzy
 msgid ""
 "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> on "
 "<comment.date/></msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr ""
+"<msgid>comment.cite.name-date.format</msgid> <msgstr>מאת <comment.name/> ב־"
+"<comment.date/></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -279,10 +282,10 @@ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:227
-#, fuzzy
 msgid ""
 "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr ""
+"<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -311,7 +314,7 @@ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 msgid ""
 "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
 msgstr ""
-"<msgid>email.tooltip</msgid> <msgstr>שלח דוא\"ל אל ‘<string/>’.</msgstr>"
+"<msgid>email.tooltip</msgid> <msgstr>שליחת דוא״ל אל ‘<string/>’.</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -345,9 +348,8 @@ msgstr ""
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:283
-#, fuzzy
 msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -377,6 +379,8 @@ msgid ""
 "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
 "‘<glossterm/>’.</msgstr>"
 msgstr ""
+"<msgid>glossentry.tooltip</msgid> <msgstr>קריאת ההגדרה עבור ‘<glossterm/>’.</"
+"msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -414,6 +418,8 @@ msgid ""
 "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
 "<msgstr>‘<glossterm/>’</msgstr>"
 msgstr ""
+"<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
+"<msgstr>‘<glossterm/>’</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -450,7 +456,8 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:373
 msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-msgstr "<msgid>glosssee.format</msgid> <msgstr>ראה <glosssee/>.</msgstr>"
+msgstr ""
+"<msgid>glosssee.format</msgid> <msgstr>ניתן לעיין ב<glosssee/>.</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -490,7 +497,8 @@ msgstr "<msgid>glosssee.format</msgid> <msgstr>ראה <glosssee/>.</msgstr>"
 msgid ""
 "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
 msgstr ""
-"<msgid>glossseealso.format</msgid> <msgstr>ראה גם <glosssee/>.</msgstr>"
+"<msgid>glossseealso.format</msgid> <msgstr>ניתן לעיין גם ב<glosssee/>.</"
+"msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -522,7 +530,7 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:437
 msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-msgstr ""
+msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 
 #.
 #. The number formatter used for question numbers.  This can be one of
@@ -578,6 +586,9 @@ msgid ""
 "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
 "<number/></msgstr>"
 msgstr ""
+"<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>שאלה <number/"
+"></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -650,6 +661,8 @@ msgid ""
 "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
 "<msgstr>“<node/>”</msgstr>"
 msgstr ""
+"<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+"<msgstr>“<node/>”</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -680,7 +693,8 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:575
 msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
-msgstr "<msgid>seealsoie.format</msgid> <msgstr>ראה גם <seeie/>.</msgstr>"
+msgstr ""
+"<msgid>seealsoie.format</msgid> <msgstr>ניתן לעיין גם ב<seeie/>.</msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -711,7 +725,7 @@ msgstr "<msgid>seealsoie.format</msgid> <msgstr>ראה גם <seeie/>.</msgstr>"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:603
 msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
-msgstr "<msgid>seeie.format</msgid> <msgstr>ראה <seeie/>.</msgstr>"
+msgstr "<msgid>seeie.format</msgid> <msgstr>ניתן לעיין ב<seeie/>.</msgstr>"
 
 #.
 #. The number formatter used for synopsis numbers.  This can be one of
@@ -759,9 +773,8 @@ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:646
-#, fuzzy
 msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
 
 #. Used as a header before a list of authors.
 #: ../xslt/gettext/l10n.xml.in.h:648
@@ -774,12 +787,16 @@ msgid ""
 "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
 "msgstr>"
 msgstr ""
+"<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>שותפים לכתיבה</"
+"msgstr>"
 
 #. Used as a header before a list of copyrights.
 #: ../xslt/gettext/l10n.xml.in.h:652
 msgid ""
 "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
 msgstr ""
+"<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>מחזיקי זכויות היוצרים</"
+"msgstr>"
 
 #. Used as a header before a list of editors.
 #: ../xslt/gettext/l10n.xml.in.h:654
@@ -798,7 +815,7 @@ msgstr ""
 #: ../xslt/gettext/l10n.xml.in.h:658
 msgid ""
 "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-msgstr ""
+msgstr "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>מפרסמים</msgstr>"
 
 #. Used as a header before a list of translators.
 #: ../xslt/gettext/l10n.xml.in.h:660
@@ -880,7 +897,7 @@ msgstr "הקדשה"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:709
 msgid "Draft"
-msgstr ""
+msgstr "טיוטה"
 
 #.
 #. http://www.docbook.org/tdg/en/html/affiliation.html
@@ -904,12 +921,12 @@ msgstr "דוא״ל"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:727
 msgid "Final"
-msgstr ""
+msgstr "סופי"
 
 #. Automatic further reading section and links
 #: ../xslt/gettext/l10n.xml.in.h:729
 msgid "Further Reading"
-msgstr ""
+msgstr "לקריאה נוספת"
 
 #.
 #. http://www.docbook.org/tdg/en/html/glossary.html
@@ -936,7 +953,7 @@ msgstr "חשוב"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:747
 msgid "Incomplete"
-msgstr ""
+msgstr "לא מושלם"
 
 #.
 #. http://www.docbook.org/tdg/en/html/index.html
@@ -957,7 +974,7 @@ msgstr "הערות משפטיות"
 #. Automatic more about section and links
 #: ../xslt/gettext/l10n.xml.in.h:759
 msgid "More About"
-msgstr ""
+msgstr "עוד על אודות"
 
 #.
 #. http://www.docbook.org/tdg/en/html/refnamediv.html
@@ -970,7 +987,7 @@ msgstr "שם"
 #. Used as link to the next page in a series.
 #: ../xslt/gettext/l10n.xml.in.h:766
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #.
 #. http://www.docbook.org/tdg/en/html/note.html
@@ -985,14 +1002,14 @@ msgstr "הערה"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:775
 msgid "Pause"
-msgstr ""
+msgstr "השהיה"
 
 #.
 #. Used as a tooltip on play/pause buttons for audio and video objects.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:779
 msgid "Play"
-msgstr ""
+msgstr "נגינה"
 
 #.
 #. http://www.docbook.org/tdg/en/html/preface.html
@@ -1005,7 +1022,7 @@ msgstr "הקדמה"
 #. Used as link to the previous page in a series.
 #: ../xslt/gettext/l10n.xml.in.h:786
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 #.
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -1028,7 +1045,7 @@ msgstr "Q:&#x2003;"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:803
 msgid "Ready for review"
-msgstr ""
+msgstr "מוכן לסקירה"
 
 #.
 #. http://www.docbook.org/tdg/en/html/revhistory.html
@@ -1045,7 +1062,7 @@ msgstr "היסטוריית המהדורות"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:814
 msgid "Scale images down"
-msgstr ""
+msgstr "הקטנת התמונות"
 
 #.
 #. Used for the <see> element.
@@ -1053,12 +1070,12 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:819
 msgid "See"
-msgstr "ראה"
+msgstr "עיון"
 
 #. Automatic see also section and links
 #: ../xslt/gettext/l10n.xml.in.h:821
 msgid "See Also"
-msgstr "ישנם גם"
+msgstr "עיון נוסף"
 
 #.
 #. This is used as a description for the status of the document.
@@ -1069,7 +1086,7 @@ msgstr "ישנם גם"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:829
 msgid "Stub"
-msgstr ""
+msgstr "קצרמר"
 
 #.
 #. http://www.docbook.org/tdg/en/html/refsynopsisdiv.html
@@ -1085,7 +1102,7 @@ msgstr "תקציר"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:839
 msgid "Tip"
-msgstr "טיפ"
+msgstr "עצה"
 
 #.
 #. Figures can automatically scale images down to fit the page width.
@@ -1093,7 +1110,7 @@ msgstr "טיפ"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:844
 msgid "View images at normal size"
-msgstr ""
+msgstr "צפייה בתמונות בגודלן המקורי"
 
 #.
 #. http://www.docbook.org/tdg/en/html/warning.html
@@ -1135,9 +1152,8 @@ msgstr "default:RTL"
 #. double quotation mark for the watermark image.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:878
-#, fuzzy
 msgid "yelp-quote-201C.png"
-msgstr "watermark-blockquote-201D.png"
+msgstr "yelp-quote-201F.png"
 
 #~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 #~ msgstr "<msgid>appendix.digit</msgid> <msgstr>1</msgstr>"
