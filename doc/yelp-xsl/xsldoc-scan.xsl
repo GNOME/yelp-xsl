@@ -140,13 +140,13 @@ free software.
             <xsl:for-each select="document(@href, /)//xsl:include">
               <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
                                               '.xsl'), '.', '_')"/>
-              <link type="topic" xref="{$id}"/>
+              <link type="topic" xref="{$id}" group="S"/>
             </xsl:for-each>
           </xsl:when>
           <xsl:otherwise>
             <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
                                             '.xsl'), '.', '_')"/>
-            <link type="topic" xref="{$id}"/>
+            <link type="topic" xref="{$id}" group="S"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:for-each>
@@ -209,6 +209,18 @@ free software.
       </p>
     </xsl:if>
     <xsl:apply-templates/>
+    <links type="topic" groups="S" style="linklist">
+      <title>Stylesheets</title>
+    </links>
+    <links type="topic" groups="P" style="linklist">
+      <title>Parameters</title>
+    </links>
+    <links type="topic" groups="M" style="linklist">
+      <title>Modes</title>
+    </links>
+    <links type="topic" groups="T" style="linklist">
+      <title>Templates</title>
+    </links>
     <xsl:variable name="requires" select="$page/mal:info/mal:link[@type = 'xslt-requires']"/>
     <xsl:if test="count($requires) > 0">
       <list style="compact">
@@ -227,39 +239,6 @@ free software.
       <xsl:with-param name="page" select="$page"/>
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
-    <xsl:if test="mal:section[@style = 'xslt-param']">
-      <section id="P">
-        <info>
-          <title type="link">
-            <xsl:text>Parameters for </xsl:text>
-            <xsl:copy-of select="mal:title/node()"/>
-          </title>
-        </info>
-        <title>Parameters</title>
-      </section>
-    </xsl:if>
-    <xsl:if test="mal:section[@style = 'xslt-mode']">
-      <section id="M">
-        <info>
-          <title type="link">
-            <xsl:text>Modes for </xsl:text>
-            <xsl:copy-of select="mal:title/node()"/>
-          </title>
-        </info>
-        <title>Modes</title>
-      </section>
-    </xsl:if>
-    <xsl:if test="mal:section[@style = 'xslt-template']">
-      <section id="T">
-        <info>
-          <title type="link">
-            <xsl:text>Templates for </xsl:text>
-            <xsl:copy-of select="mal:title/node()"/>
-          </title>
-        </info>
-        <title>Templates</title>
-      </section>
-    </xsl:if>
   </page>
 </xsl:template>
 
@@ -287,7 +266,7 @@ free software.
   <exsl:document href="{$id}.page">
     <page id="{$id}" type="topic" style="{@style}">
       <info>
-        <link type="guide" xref="{$xsldoc.id}#{$type}"/>
+        <link type="guide" xref="{$xsldoc.id}" group="#{$type}"/>
         <link type="guide" xref="index__{$type}"/>
         <xsl:call-template name="revision"/>
         <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>
