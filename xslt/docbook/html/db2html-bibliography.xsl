@@ -674,7 +674,6 @@ a bibliography entry.
 <xsl:template match="bibliolist | db:bibliolist">
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'list'"/>
-    <xsl:with-param name="indent" select="true()"/>
     <xsl:with-param name="formal" select="true()"/>
   </xsl:call-template>
 </xsl:template>

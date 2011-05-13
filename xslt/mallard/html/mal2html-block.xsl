@@ -43,6 +43,9 @@ $node: The source element to output a #{pre} for.
 This template outputs an HTML #{pre} element along with a wrapper #{div} element
 for CSS styling. It should be called for verbatim block elements. It will
 automatically strip leading and trailing newlines using *{utils.strip_newlines}.
+
+If @{html.syntax.highlight} is #{true}, this template automatically outputs
+syntax highlighting support based on the #{mime} attribute of ${node}.
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>

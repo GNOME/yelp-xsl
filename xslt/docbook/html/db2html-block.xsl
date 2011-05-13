@@ -26,7 +26,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Block Elements
-:Requires: db-common db-xref db2html-xref gettext
+:Requires: db-chunk db-common db-xref db2html-xref gettext html utils
+:Revision:version="1.0" date="2011-05-12" status="final"
 
 This module handles most simple block-level elements, turning them into the
 appropriate HTML tags.  It does not handle tables, lists, and various other
@@ -36,21 +37,26 @@ complex block-level elements.
 
 <!--**==========================================================================
 db2html.block
-Renders a block-level element to an HTML #{div} tag
-$node: The block-level element to render
-$class: An extra string to insert in the #{class} attribute
-$indent: Whether this block should be indented
-$verbatim: Whether to maintain whitespace as written
-$formal: Whether this is a formal block element
-$title: When ${formal} is true, an element to use for the title
-$caption: When ${formal} is true, an element to use for the caption 
-$lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+Output an HTML #{div} elements for a block-level element.
+:Revision:version="1.0" date="2011-05-12" status="final"
+$node: The block-level element to render.
+$class: An extra string to insert in the #{class} attribute.
+$verbatim: Whether to maintain whitespace as written.
+$formal: Whether this is a formal block element.
+$title: When ${formal} is true, an element to use for the title.
+$caption: When ${formal} is true, an element to use for the caption .
 
 This template creates an HTML #{div} element for the given DocBook element.
 This template uses the parameters to construct the #{class} attribute, which
 is then used by the CSS for styling.
+
+If ${formal} is #{true}, the ${title} and ${caption} parameters are processed,
+and extra container #{div} elements are output for styling.
+
+If ${verbatim} is #{true}, the #{div} is marked with the #{verbatim} class,
+which maintains whitespace. This is not the same as outputting a #{pre} tag,
+which is what *{db2html.pre} does. Verbatim text from this template is not
+formatted with a fixed-width font.
 -->
 <xsl:template name="db2html.block">
   <xsl:param name="node" select="."/>
@@ -60,9 +66,6 @@ is then used by the CSS for styling.
   <xsl:param name="title" select="$node/title | $node/db:title |
                                   $node/db:info/db:title"/>
   <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
-	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="false()"/>
 
   <div>
     <xsl:attribute name="class">
@@ -71,25 +74,9 @@ is then used by the CSS for styling.
         <xsl:text> verbatim</xsl:text>
       </xsl:if>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -132,12 +119,10 @@ is then used by the CSS for styling.
 
 <!--**==========================================================================
 db2html.block.title
-Renders a formal title for a block-level element
-$node: The block-level element being processed
-$title: The element containing the title
-$lang: The locale of the text in ${title}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+Render a formal title for a block-level element.
+:Revision:version="1.0" date="2011-05-12" status="final"
+$node: The block-level element being processed.
+$title: The element containing the title.
 
 This template formats the contents of ${title} as a title for a block-level
 element.  It is called by *{db2html.block} for formal block elements.
@@ -145,9 +130,6 @@ element.  It is called by *{db2html.block} for formal block elements.
 <xsl:template name="db2html.block.title">
   <xsl:param name="node" select="."/>
 	<xsl:param name="title" select="$node/title | $node/db:title"/>
-	<xsl:param name="lang" select="$title/@lang|$title/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="false()"/>
   <xsl:variable name="depth">
     <xsl:call-template name="db.chunk.depth-in-chunk">
       <xsl:with-param name="node" select="$node"/>
@@ -163,27 +145,10 @@ element.  It is called by *{db2html.block} for formal block elements.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-
-  <div class="block title title-formal">
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+  <div class="title">
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$title"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$title"/>
     </xsl:call-template>
@@ -198,45 +163,23 @@ element.  It is called by *{db2html.block} for formal block elements.
 
 <!--**==========================================================================
 db2html.blockquote
-Renders a #{blockquote} element to HTML
-$node: The #{blockquote} element to render
-$lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+Output an HTML #{blockquote} element.
+:Revision:version="1.0" date="2011-05-12" status="final"
+$node: The #{blockquote} element to render.
 
 This template creates an HTML #{blockquote} element for the given DocBook
 element.
 -->
 <xsl:template name="db2html.blockquote">
   <xsl:param name="node" select="."/>
-	<xsl:param name="lang" select="$node/@lang|node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="false()"/>
-
   <div>
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
     <xsl:attribute name="class">
       <xsl:text>quote </xsl:text>
       <xsl:value-of select="local-name($node)"/>
     </xsl:attribute>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -254,45 +197,23 @@ element.
 
 <!--**==========================================================================
 db2html.para
-Renders a block-level element as an HTML #{p} element
-$node: The block-level element to render
-$lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
-$class: The value of the generated class attribute
+Output an HTML #{p} element for a block-level element.
+:Revision:version="1.0" date="2011-05-12" status="final"
+$node: The block-level element to render.
+$class: The value of the HTMl #{class} attribute.
 
 This template creates an HTML #{p} element for the given DocBook element.
 -->
 <xsl:template name="db2html.para">
   <xsl:param name="node" select="."/>
-	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="false()"/>
   <xsl:param name="class" select="local-name($node)"/>
-
   <p>
     <xsl:attribute name="class">
       <xsl:value-of select="$class"/>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -303,13 +224,10 @@ This template creates an HTML #{p} element for the given DocBook element.
 
 <!--**==========================================================================
 db2html.pre
-Renders a block-level element as an HTML #{pre} element
-$node: The block-level element to render
-$class: An extra string to insert in the #{class} attribute
-$children: The child elements to process
-$lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
+Output and HTML #{pre} elements for a block-level element.
+$node: The block-level element to render.
+$class: An extra string to insert in the #{class} attribute.
+$children: The child elements to process.
 
 This template creates an HTML #{pre} element for the given DocBook element.
 This template uses the parameters to construct the #{class} attribute, which
@@ -318,38 +236,25 @@ is then used by the CSS for styling.
 If ${node} has the #{linenumbering} attribute set to #{"numbered"}, then this
 template will create line numbers for each line, using the *{utils.linenumbering}
 template.
+
+By default, this template applies templates to all child nodes. Pass child
+nodes in the ${children} parameter to override this behavior.
+
+If @{html.syntax.highlight} is #{true}, this template automatically outputs
+syntax highlighting support based on the #{language} attribute of ${node}.
 -->
 <xsl:template name="db2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <xsl:param name="children" select="$node/node()"/>
-	<xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="true()"/>
 
   <div>
     <xsl:attribute name="class">
       <xsl:value-of select="concat($class, ' ', local-name($node))"/>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -458,7 +363,7 @@ template.
 <!-- = ackno = -->
 <xsl:template match="ackno | db:acknowledgements/db:para">
   <xsl:call-template name="db2html.para">
-    <xsl:with-param name="class">ackno</xsl:with-param>
+    <xsl:with-param name="class" select="'ackno'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -556,12 +461,9 @@ template.
     </xsl:attribute>
     <xsl:apply-templates select="glossterm | db:glossterm"/>
     <xsl:if test="acronym or abbrev or db:acronym or db:abbrev">
-      <xsl:text> </xsl:text>
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'glossentry.abbrev.format'"/>
-        <xsl:with-param name="node" select="(acronym | abbrev | db:acronym | db:abbrev)[1]"/>
-        <xsl:with-param name="format" select="true()"/>
-      </xsl:call-template>
+      <xsl:text> (</xsl:text>
+      <xsl:apply-templates select="(acronym | abbrev | db:acronym | db:abbrev)[1]"/>
+      <xsl:text>)</xsl:text>
     </xsl:if>
   </dt>
   <xsl:apply-templates select="glossdef | glosssee[1] | db:glossdef | db:glosssee[1]"/>
@@ -570,7 +472,7 @@ template.
 <!-- = glosssee(also) = -->
 <xsl:template match="glosssee | glossseealso | db:glosssee | db:glossseealso">
   <dd class="{local-name(.)}">
-    <p class="block">
+    <p>
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="concat(local-name(.), '.format')"/>
         <xsl:with-param name="node" select="."/>
