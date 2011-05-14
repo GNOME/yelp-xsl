@@ -232,6 +232,61 @@ By default, it returns the string value of its input.  Stylesheets that use
 
 
 <!--**==========================================================================
+mal.link.tooltip
+Output a tooltip for a #{link} element.
+:Revision:version="1.0" date="2011-05-14" status="final"
+$node: The #{link} or other element creating the link.
+$xref: The #{xref} attribute of ${node}.
+$href: The #{href} attribute of ${node}.
+
+This template outputs a text-only tooltip for a link. If ${xref} points to a
+valid page or section, the text title from that page or section will be used.
+If the target does not specify a text title, the primary title is ued.
+
+If only ${href} is provided, that URL is used as the tooltip. If a target
+page or section cannot be found, ${xref} is used as the text content. Special
+tooltips may be provided for certain URI schemes.
+-->
+<xsl:template name="mal.link.tooltip">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="role" select="''"/>
+  <xsl:variable name="linkid">
+    <xsl:call-template name="mal.link.xref.linkid">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="xref" select="$xref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:for-each select="$mal.cache">
+    <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
+    <xsl:choose>
+      <xsl:when test="$target/mal:info/mal:title[@type = 'text']">
+        <xsl:value-of select="normalize-space($target/mal:info/mal:title[@type = 'text'][1])"/>
+      </xsl:when>
+      <xsl:when test="$target/mal:title">
+        <xsl:value-of select="normalize-space($target/mal:title[1])"/>
+      </xsl:when>
+      <xsl:when test="starts-with($href, 'mailto:')">
+        <xsl:variable name="address" select="substring-after($href, 'mailto:')"/>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'email.tooltip'"/>
+          <xsl:with-param name="string" select="$address"/>
+          <xsl:with-param name="format" select="true()"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$href">
+        <xsl:value-of select="$href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$xref"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:template>
+
+
+<!--**==========================================================================
 mal.link.target
 Output the target URL for a #{link} or other linking element.
 :Revision:version="1.0" date="2010-01-02" status="final"
@@ -270,40 +325,6 @@ Otherwise, the link will point to ${href}.
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="concat($xref, $mal.link.extension)"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-mal.link.tooltip
-Output the tooltip for a #{link} or other linking element.
-:Revision:version="1.0" date="2010-01-02" status="final"
-$node: The #{link} or other element creating the link.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-
-This template outputs a tooltip for a link.  Currently, it only outputs a
-tooltip for #{mailto:} URLs in ${href}.
--->
-<xsl:template name="mal.link.tooltip">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="xref" select="$node/@xref"/>
-  <xsl:param name="href" select="$node/@href"/>
-  <xsl:choose>
-    <xsl:when test="string($xref) != ''">
-      <!-- FIXME and make sure to update the docs -->
-    </xsl:when>
-    <xsl:when test="starts-with($href, 'mailto:')">
-      <xsl:variable name="address" select="substring-after($href, 'mailto:')"/>
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'email.tooltip'"/>
-        <xsl:with-param name="string" select="$address"/>
-        <xsl:with-param name="format" select="true()"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="normalize-space($href)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

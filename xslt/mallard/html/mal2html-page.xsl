@@ -92,6 +92,12 @@ REMARK: Describe this template
         <xsl:with-param name="xref" select="$target/@id"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:attribute name="title">
+      <xsl:call-template name="mal.link.tooltip">
+        <xsl:with-param name="node" select="$source"/>
+        <xsl:with-param name="xref" select="$target/@id"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
     <div class="linkdiv">
       <div class="title">
@@ -143,6 +149,11 @@ REMARK: Describe this template
         </xsl:if>
         <xsl:attribute name="href">
           <xsl:call-template name="mal.link.target">
+            <xsl:with-param name="xref" select="$xref"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:call-template name="mal.link.tooltip">
             <xsl:with-param name="xref" select="$xref"/>
           </xsl:call-template>
         </xsl:attribute>
@@ -231,6 +242,11 @@ REMARK: Describe this template
         <xsl:with-param name="xref" select="$node/@xref"/>
       </xsl:call-template>
     </xsl:attribute>
+    <xsl:attribute name="title">
+      <xsl:call-template name="mal.link.tooltip">
+        <xsl:with-param name="xref" select="$node/@xref"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:call-template name="mal.link.content">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="xref" select="$node/@xref"/>
@@ -290,7 +306,7 @@ REMARK: Describe this template
               </xsl:call-template>
             </xsl:attribute>
             <xsl:attribute name="title">
-              <xsl:call-template name="mal.link.content">
+              <xsl:call-template name="mal.link.tooltip">
                 <xsl:with-param name="node" select="$prev"/>
                 <xsl:with-param name="xref" select="$prev/../../@id"/>
               </xsl:call-template>
@@ -314,7 +330,7 @@ REMARK: Describe this template
               </xsl:call-template>
             </xsl:attribute>
             <xsl:attribute name="title">
-              <xsl:call-template name="mal.link.content">
+              <xsl:call-template name="mal.link.tooltip">
                 <xsl:with-param name="node" select="$next"/>
                 <xsl:with-param name="xref" select="$next/@xref"/>
               </xsl:call-template>
@@ -352,6 +368,12 @@ REMARK: Describe this template
               <xsl:with-param name="xref" select="$prev/../../@id"/>
             </xsl:call-template>
           </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip">
+              <xsl:with-param name="node" select="$prev"/>
+              <xsl:with-param name="xref" select="$prev/../../@id"/>
+            </xsl:call-template>
+          </xsl:attribute>
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$prev"/>
             <xsl:with-param name="xref" select="$prev/../../@id"/>
@@ -376,6 +398,12 @@ REMARK: Describe this template
         <a>
           <xsl:attribute name="href">
             <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="node" select="$next"/>
+              <xsl:with-param name="xref" select="$next/@xref"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$next"/>
               <xsl:with-param name="xref" select="$next/@xref"/>
             </xsl:call-template>
@@ -824,6 +852,11 @@ REMARK: Describe this template
                           <xsl:with-param name="xref" select="$xref"/>
                         </xsl:call-template>
                       </xsl:attribute>
+                      <xsl:attribute name="title">
+                        <xsl:call-template name="mal.link.tooltip">
+                          <xsl:with-param name="xref" select="$xref"/>
+                        </xsl:call-template>
+                      </xsl:attribute>
                       <xsl:for-each select="$node/e:mouseover[@match = $xref]">
                         <img>
                           <xsl:copy-of select="@src | @width | @height"/>
@@ -838,10 +871,6 @@ REMARK: Describe this template
                   </li>
                 </xsl:for-each>
               </xsl:for-each>
-
-
-
-
             </ul>
           </xsl:when>
           <xsl:when test="contains($style, ' toronto ')">
@@ -862,6 +891,11 @@ REMARK: Describe this template
                           <div class="toronto-link"><a>
                             <xsl:attribute name="href">
                               <xsl:call-template name="mal.link.target">
+                                <xsl:with-param name="xref" select="$xref"/>
+                              </xsl:call-template>
+                            </xsl:attribute>
+                            <xsl:attribute name="title">
+                              <xsl:call-template name="mal.link.tooltip">
                                 <xsl:with-param name="xref" select="$xref"/>
                               </xsl:call-template>
                             </xsl:attribute>
