@@ -99,26 +99,25 @@ REMARK: Describe this template
       </xsl:call-template>
     </xsl:attribute>
     <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
-    <div class="linkdiv">
-      <div class="title">
-        <span class="title">
-          <xsl:call-template name="mal.link.content">
-            <xsl:with-param name="node" select="$source"/>
-            <xsl:with-param name="xref" select="$target/@id"/>
-            <xsl:with-param name="role" select="$role"/>
-          </xsl:call-template>
-        </span>
-        <xsl:call-template name="mal2html.editor.badge">
-          <xsl:with-param name="target" select="$target"/>
-        </xsl:call-template>
-      </div>
-      <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
-        <div class="desc">
-          <xsl:apply-templates mode="mal2html.inline.mode"
-                               select="$target/mal:info/mal:desc[1]/node()"/>
-        </div>
-      </xsl:if>
-    </div>
+    <span class="title">
+      <xsl:call-template name="mal.link.content">
+        <xsl:with-param name="node" select="$source"/>
+        <xsl:with-param name="xref" select="$target/@id"/>
+        <xsl:with-param name="role" select="$role"/>
+      </xsl:call-template>
+      <xsl:call-template name="mal2html.editor.badge">
+        <xsl:with-param name="target" select="$target"/>
+      </xsl:call-template>
+    </span>
+    <span class="linkdiv-dash">
+      <xsl:text> &#x2014; </xsl:text>
+    </span>
+    <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
+      <span class="desc">
+        <xsl:apply-templates mode="mal2html.inline.mode"
+                             select="$target/mal:info/mal:desc[1]/node()"/>
+      </span>
+    </xsl:if>
   </a>
 </xsl:template>
 
@@ -1256,28 +1255,31 @@ div.desc a:hover {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
 a.bold { font-weight: bold; }
-a.linkdiv { display: block; }
-a.linkdiv:hover { text-decoration: none; }
-div.linkdiv div.title {
-  font-size: 1em;
-  color: inherit;
-}
-div.linkdiv div.desc {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-}
-div.linkdiv {
+a.linkdiv {
+  display: block;
   margin: 0;
   padding: 0.5em;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
 }
-a:hover div.linkdiv {
+a.linkdiv:hover {
   text-decoration: none;
-  border-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  outline: solid 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
+a.linkdiv > span.title {
+  display: block;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+  color: inherit;
+}
+a.linkdiv > span.desc {
+  display: block;
+  margin: 0;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+span.linkdiv-dash { display: none; }
 
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
