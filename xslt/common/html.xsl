@@ -1118,7 +1118,7 @@ ouput the contents of that tag.
   <xsl:call-template name="html.js.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
-  <script type="text/javascript" language="javascript">
+  <script type="text/javascript">
     <xsl:call-template name="html.js.content">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -1140,14 +1140,14 @@ output relative to @{html.js.root}.
 -->
 <xsl:template name="html.js.jquery">
   <xsl:param name="node" select="."/>
-  <script type="text/javascript" language="javascript">
+  <script type="text/javascript">
     <xsl:attribute name="src">
       <xsl:value-of select="$html.js.root"/>
       <xsl:text>jquery.js</xsl:text>
     </xsl:attribute>
   </script>
   <xsl:if test="$html.syntax.highlight">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
       <xsl:attribute name="src">
         <xsl:value-of select="$html.js.root"/>
         <xsl:text>jquery.syntax.js</xsl:text>
