@@ -1276,7 +1276,7 @@ a.linkdiv > span.title {
 }
 a.linkdiv > span.desc {
   display: block;
-  margin: 0;
+  margin: 0.2em 0 0 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
