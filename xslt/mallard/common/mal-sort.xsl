@@ -27,7 +27,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Mallard Topological Sort
 Sort a Mallard document.
-:Requires:yelp-links
+:Requires: mal-link
 :Revision:version="1.0" date="2010-07-08"
 
 This stylesheet contains utilities for sorting the pages in a Mallard
@@ -66,7 +66,7 @@ topic or next links.
   <xsl:variable name="nodes" select="exsl:node-set($sorted)/mal:link"/>
   <xsl:for-each select="$nodes">
     <xsl:variable name="xref" select="@xref"/>
-    <xsl:if test="not(preceding::*[string(@xref) = $xref])">
+    <xsl:if test="not(preceding::*[string(@xref) = $xref]) and not(contains($xref, '#'))">
       <xsl:copy-of select="."/>
     </xsl:if>
   </xsl:for-each>
