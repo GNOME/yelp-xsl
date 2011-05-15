@@ -109,10 +109,10 @@ REMARK: Describe this template
         <xsl:with-param name="target" select="$target"/>
       </xsl:call-template>
     </span>
-    <span class="linkdiv-dash">
-      <xsl:text> &#x2014; </xsl:text>
-    </span>
     <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
+      <span class="linkdiv-dash">
+        <xsl:text> &#x2014; </xsl:text>
+      </span>
       <span class="desc">
         <xsl:apply-templates mode="mal2html.inline.mode"
                              select="$target/mal:info/mal:desc[1]/node()"/>
