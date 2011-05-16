@@ -31,6 +31,7 @@ REMARK: Describe this module
 
 <!--#@ html.xhtml -->
 <xsl:param name="html.xhtml" select="false()"/>
+<xsl:param name="mal.if.env" select="'html'"/>
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 
