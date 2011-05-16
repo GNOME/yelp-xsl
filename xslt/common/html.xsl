@@ -1054,8 +1054,6 @@ All parameters can be automatically computed if not provided.
   </xsl:param>
   <xsl:if test="$html.syntax.highlight">
   <xsl:text>
-pre.syntax {
-}
 pre.syntax span.function, pre.syntax span.keyword, pre.syntax span.tag {
   color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
@@ -1464,9 +1462,7 @@ is included by *{html.js.syntax}.
   <xsl:if test="$html.syntax.highlight">
 <xsl:text><![CDATA[
 $(document).ready( function () { jQuery.syntax({root: ']]></xsl:text>
-<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'plain'},
-function (options, html, container)
-{ html.attr('class', container.attr('class')); return html; }); });
+<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'yelp'}); });
 ]]></xsl:text>
   </xsl:if>
 </xsl:template>

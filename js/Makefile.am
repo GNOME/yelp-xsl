@@ -33,11 +33,7 @@ js_DATA =					\
 	jquery.syntax.brush.xml.js		\
 	jquery.syntax.brush.yaml.js		\
 	jquery.syntax.core.js			\
-	jquery.syntax.layout.fixed.js		\
-	jquery.syntax.layout.inline.js		\
-	jquery.syntax.layout.list.js		\
-	jquery.syntax.layout.plain.js		\
-	jquery.syntax.layout.table.js		\
+	jquery.syntax.layout.yelp.js		\
 	jquery.syntax.js
 
 EXTRA_DIST = $(js_DATA)
