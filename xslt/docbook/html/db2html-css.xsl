@@ -160,9 +160,28 @@ div.qanda-label {
   font-weight: bold;
 }
 dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
+
+span.co {
+  font-size: 0.83em;
+  margin: 0 0.2em 0 0.2em;
+  padding: 0 0.5em 0 0.5em;
+  border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  background-color: </xsl:text>
+  <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+  <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+}
+span.co a { text-decoration: none; }
+span.co a:hover { text-decoration: none; }
+div.co {
+  margin: 0;
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  clear: both;
+}
 </xsl:text>
 <xsl:call-template name="db2html.footnote.css"/>
-<xsl:call-template name="db2html.callout.css"/>
 </xsl:template>
 
 </xsl:stylesheet>

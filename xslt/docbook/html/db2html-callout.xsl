@@ -18,125 +18,41 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="db str"
                 version="1.0">
 
 <!--!!==========================================================================
 DocBook to HTML - Callouts
+:Requires: db2html-block db2html-xref html
+:Revision:version="1.0" date="2011-05-16" status="final"
 
-REMARK: Describe this module
+This modules handles simple DocBook callouts using the #{co} and #{callout}
+elements. Currently, only callouts to #{co} elements are supported. The
+#{area} element is not supported.
 -->
 
-<!--@@==========================================================================
-db2html.co.color
-The text color for callout dingbats
 
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.color" select="'#FFFFFF'"/>
-
-<!--@@==========================================================================
-db2html.co.background_color
-The background color for callout dingbats
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.background_color" select="'#000000'"/>
-
-<!--@@==========================================================================
-db2html.co.border_color
-The border color for callout dingbats
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.border_color" select="'#000000'"/>
-
-<!--@@==========================================================================
-db2html.co.color.hover
-The text color for callout dingbats when hovering
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.color.hover" select="'#FFFFFF'"/>
-
-<!--@@==========================================================================
-db2html.co.background_color.hover
-The background color for callout dingbats when hovering
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.background_color.hover" select="'#333333'"/>
-
-<!--@@==========================================================================
-db2html.co.border_color.hover
-The border color for callout dingbats when hovering.
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.co.border_color.hover" select="'#333333'"/>
+<xsl:key name="db2html.callout.key" match="co | db:co" use="@id | @xml:id"/>
 
 
 <!--**==========================================================================
-db2html.co.dingbat
-Creates a callout dingbat for a #{co} element
-$co: The #{co} element to create a callout dingbat for
+db2html.callout.label
+Create a callout label for a #{co} element.
+:Revision:version="1.0" date="2011-05-16" status="final"
+$node: The #{co} element to create a callout label for.
 
-REMARK: Describe this template
+This template creates a label for a callout, taking a #{co} element as the
+${node} parameter. The label is numbered according to the position of #{co}
+in the document. To create the corresponding label for a #{callout} element,
+locate the corresponding #{co} element and call this template on it.
 -->
-<xsl:template name="db2html.co.dingbat">
-  <xsl:param name="co" select="."/>
+<xsl:template name="db2html.callout.label">
+  <xsl:param name="node" select="."/>
   <span class="co">
-    <xsl:value-of select="count(preceding::co) + count(preceding::db:co) + 1"/>
+    <xsl:value-of select="count($node/preceding::co) + count($node/preceding::db:co) + 1"/>
   </span>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.co.dingbats
-Renders a callout dingbat for each #{co} referenced in ${arearefs}
-$arearefs: A space-separated list of #{co} elements
-
-REMARK: Describe this template
--->
-<xsl:template name="db2html.co.dingbats">
-  <xsl:param name="arearefs" select="@arearefs"/>
-  <!-- FIXME -->
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.callout.css
-Outputs CSS that controls the appearance of callouts
-
-REMARK: Describe this template
--->
-<xsl:template name="db2html.callout.css">
-<xsl:text>
-span.co {
-  margin-left: 0.2em; margin-right: 0.2em;
-  padding-left: 0.4em; padding-right: 0.4em;
-  border: solid 1px </xsl:text>
-  <xsl:value-of select="$db2html.co.border_color"/><xsl:text>;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  background-color: </xsl:text>
-  <xsl:value-of select="$db2html.co.background_color"/><xsl:text>;
-  color: </xsl:text>
-  <xsl:value-of select="$db2html.co.color"/><xsl:text>;
-  font-size: 8px;
-}
-span.co:hover {
-  border-color: </xsl:text>
-  <xsl:value-of select="$db2html.co.border_color.hover"/><xsl:text>;
-  background-color: </xsl:text>
-  <xsl:value-of select="$db2html.co.background_color.hover"/><xsl:text>;
-  color: </xsl:text>
-  <xsl:value-of select="$db2html.co.color.hover"/><xsl:text>;
-}
-span.co a { text-decoration: none; }
-span.co a:hover { text-decoration: none; }
-</xsl:text>
 </xsl:template>
 
 
@@ -144,7 +60,37 @@ span.co a:hover { text-decoration: none; }
 
 <!-- = co = -->
 <xsl:template match="co | db:co">
-  <xsl:call-template name="db2html.co.dingbat"/>
+  <xsl:call-template name="db2html.callout.label"/>
+</xsl:template>
+
+<!-- = calloutlist = -->
+<xsl:template match="calloutlist | db:calloutlist">
+  <xsl:call-template name="db2html.block">
+    <xsl:with-param name="formal" select="true()"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = callout == -->
+<xsl:template match="callout | db:callout">
+  <xsl:variable name="node" select="."/>
+  <div class="callout">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="db2html.anchor"/>
+    <div class="co">
+      <xsl:for-each select="str:split(@arearefs)">
+        <xsl:variable name="arearef" select="string(.)"/>
+        <xsl:for-each select="$node">
+          <xsl:variable name="co" select="key('db2html.callout.key', $arearef)"/>
+          <xsl:if test="$co">
+            <xsl:call-template name="db2html.callout.label">
+              <xsl:with-param name="node" select="$co"/>
+            </xsl:call-template>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:for-each>
+    </div>
+    <xsl:apply-templates/>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>
