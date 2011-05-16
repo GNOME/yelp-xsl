@@ -20,7 +20,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:xl="http://www.w3.org/1999/xlink"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="xl db"
+                exclude-result-prefixes="db xl"
                 version="1.0">
 
 <!--!!==========================================================================

@@ -18,7 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
-								xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="db msg set"
