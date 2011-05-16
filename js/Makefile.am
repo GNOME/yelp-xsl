@@ -4,7 +4,7 @@ js_DATA =					\
 	jquery.js				\
 	jquery.syntax.brush.apache.js		\
 	jquery.syntax.brush.applescript.js	\
-	jquery.syntax.brush.asm.js		\
+	jquery.syntax.brush.assembly.js		\
 	jquery.syntax.brush.bash.js		\
 	jquery.syntax.brush.bash-script.js	\
 	jquery.syntax.brush.basic.js		\
@@ -14,8 +14,10 @@ js_DATA =					\
 	jquery.syntax.brush.diff.js		\
 	jquery.syntax.brush.haskell.js		\
 	jquery.syntax.brush.html.js		\
+	jquery.syntax.brush.io.js		\
 	jquery.syntax.brush.java.js		\
 	jquery.syntax.brush.javascript.js	\
+	jquery.syntax.brush.kai.js		\
 	jquery.syntax.brush.lisp.js		\
 	jquery.syntax.brush.lua.js		\
 	jquery.syntax.brush.ooc.js		\
@@ -28,8 +30,14 @@ js_DATA =					\
 	jquery.syntax.brush.ruby.js		\
 	jquery.syntax.brush.smalltalk.js	\
 	jquery.syntax.brush.sql.js		\
+	jquery.syntax.brush.xml.js		\
 	jquery.syntax.brush.yaml.js		\
 	jquery.syntax.core.js			\
+	jquery.syntax.layout.fixed.js		\
+	jquery.syntax.layout.inline.js		\
+	jquery.syntax.layout.list.js		\
+	jquery.syntax.layout.plain.js		\
+	jquery.syntax.layout.table.js		\
 	jquery.syntax.js
 
 EXTRA_DIST = $(js_DATA)

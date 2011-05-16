@@ -1,20 +1,26 @@
 /* 
-	This file is part of the "jQuery.Syntax" project, and is licensed under the GNU AGPLv3.
-
-	Copyright 2010 Samuel Williams. All rights reserved.
-
+	This file is part of the "jQuery.Syntax" project, and is distributed under the MIT License.
 	For more information, please see http://www.oriontransfer.co.nz/software/jquery-syntax
+	
+	Copyright (c) 2011 Samuel G. D. Williams. <http://www.oriontransfer.co.nz>
 
-	This program is free software: you can redistribute it and/or modify it under the terms
-	of the GNU Affero General Public License as published by the Free Software Foundation,
-	either version 3 of the License, or (at your option) any later version.
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
 
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-	without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-	See the GNU Affero General Public License for more details.
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
 
-	You should have received a copy of the GNU Affero General Public License along with this
-	program. If not, see <http://www.gnu.org/licenses/>.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
 */
 
 /*global Function: true, ResourceLoader: true, Syntax: true, alert: false, jQuery: true */
@@ -70,9 +76,12 @@ ResourceLoader.prototype._loaded = function (name) {
 	}
 };
 
+// This function must ensure that current cannot be completely loaded until next
+// is completely loaded.
 ResourceLoader.prototype.dependency = function (current, next) {
-	 // if it is already loaded, it isn't a dependency
-	if (this[next]) {
+	// If the resource has completely loaded, then we don't need to queue it
+	// as a dependency
+	if (this[next] && !this.loading[name]) {
 		return;
 	}
 	
@@ -83,11 +92,12 @@ ResourceLoader.prototype.dependency = function (current, next) {
 	}
 };
 
+// This function must be reentrant for the same name and different callbacks.
 ResourceLoader.prototype.get = function (name, callback) {
-	if (this[name]) {
+	if (this.loading[name]) {
+		this.loading[name].push(callback)
+	} else if (this[name]) {
 		callback(this[name]);
-	} else if (this.loading[name]) { 
-		this.loading[name].push(callback);
 	} else {
 		this.loading[name] = [callback];
 		this.loader(name, this._finish.bind(this, name));
@@ -95,12 +105,13 @@ ResourceLoader.prototype.get = function (name, callback) {
 };
 
 var Syntax = {
-	root: './', 
+	root: null, 
 	aliases: {},
 	styles: {},
 	lib: {},
 	defaultOptions: {
-		cacheScripts: true
+		cacheScripts: true,
+		cacheStyleSheets: true
 	},
 	
 	brushes: new ResourceLoader(function (name, callback) {
@@ -121,6 +132,10 @@ var Syntax = {
 		var link = jQuery('<link>');
 		jQuery("head").append(link);
 
+		if (!Syntax.defaultOptions.cacheStyleSheets) {
+			path = path + "?" + Math.random()
+		}
+		
 		link.attr({
 			rel: "stylesheet",
 			type: "text/css",
@@ -129,14 +144,28 @@ var Syntax = {
 	},
 	
 	getScript: function (path, callback) {
-		jQuery.ajax({
-			async: false,
-			type: "GET",
-			url: path,
-			success: callback,
-			dataType: "script",
-			cache: Syntax.defaultOptions.cacheScripts
-		});
+		var script = document.createElement('script');
+		
+		// Internet Exploder
+		script.onreadystatechange = function() {
+			if (this.onload && (this.readyState == 'loaded' || this.readyState == 'complete')) {
+				this.onload();
+				
+				// Ensure the function is only called once.
+				this.onload = null;
+			}
+		};
+		
+		// Every other modern browser
+		script.onload = callback;
+		script.type = "text/javascript";
+		
+		if (!Syntax.defaultOptions.cacheScripts)
+			path = path + '?' + Math.random()
+		
+		script.src = path;
+		
+		document.getElementsByTagName('head')[0].appendChild(script);
 	},
 	
 	getResource: function (prefix, name, callback) {
@@ -204,10 +233,40 @@ var Syntax = {
 		}
 		
 		return null;
+	},
+	
+	detectRoot: function () {
+		if (Syntax.root == null) {
+			// Initialize root based on current script path.
+			var scripts = jQuery('script').filter(function(){
+				return this.src.match(/jquery\.syntax/);
+			});
+
+			var first = scripts.get(0);
+
+			if (first) {
+				// Calculate the basename for the given script src.
+				var root = first.src.match(/.*\//);
+
+				if (root) {
+					Syntax.root = root[0];
+				}
+			}
+		}
+	},
+	
+	log: function() {
+		if (console && console.log) {
+			console.log.apply(console, arguments);
+		} else {
+			alert(arguments.join(" "));
+		}
 	}
 };
 
 jQuery.fn.syntax = function (options, callback) {
+	Syntax.detectRoot();
+	
 	var elements = this;
 	
 	Syntax.loader.get('core', function () {
@@ -221,6 +280,8 @@ jQuery.syntax = function (options, callback) {
 	
 	if (options.root) {
 		Syntax.root = options.root;
+	} else {
+		Syntax.detectRoot();
 	}
 	
 	options = jQuery.extend(Syntax.defaultOptions, options)
@@ -231,7 +292,9 @@ jQuery.syntax = function (options, callback) {
 	options.blockLayout = options.blockLayout || 'list';
 	options.inlineLayout = options.inlineLayout || 'inline';
 	
-	options.replace = true;
+	// Allow the user to specify callbacks without replacement.
+	if (typeof options.replace == "undefined")
+		options.replace = true;
 	
 	jQuery(options.blockSelector, context).each(function () {
 		jQuery(this).syntax(jQuery.extend({}, options, {
