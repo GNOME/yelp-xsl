@@ -74,7 +74,19 @@ The base filename of the output file, without an extension
 
 REMARK: Describe what this does
 -->
-<xsl:param name="db.chunk.basename" select="/*/@id | /*/@xml:id"/>
+<xsl:param name="db.chunk.basename">
+  <xsl:choose>
+    <xsl:when test="/*/@xml:id">
+      <xsl:value-of select="/*/@xml:id"/>
+    </xsl:when>
+    <xsl:when test="/*/@id">
+      <xsl:value-of select="/*/@id"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>index</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 
 
 <!--@@==========================================================================
