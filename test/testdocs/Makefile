@@ -16,23 +16,24 @@ test: $(htmls) html/index.html
 
 $(htmls) : html/% : %.xml
 	@mkdir -p $@
+	@mkdir -p $@-a
 	xsltproc \
-	 -o $@/$(patsubst html/%,%.html,$@) \
+	 -o $@/ \
 	 --param annotate 'false()' \
 	 --stringparam db.chunk.basename $(patsubst html/%,%,$@) \
 	 $(call htmlargs,$@) $<
 	xsltproc \
-	 -o $@/$(patsubst html/%,%-a.html,$@) \
+	 -o $@-a/ \
 	 --param annotate 'true()' \
 	 --stringparam db.chunk.basename $(patsubst html/%,%-a,$@) \
 	 $(call htmlargs,$@) $<
 
 html/index.html:
-	(echo '<html><body><ul>' &&					\
-	 for html in $(htmls); do					\
+	(cd html && echo '<html><body><ul>' &&				\
+	 for html in $(sort $(htmls)); do				\
 	  base=`basename $$html`;					\
-	  echo "<li><a href='$$base/$${base}.html'>$$base</a>";		\
-	  echo "(<a href='$$base/$${base}-a.html'>annotated</a>)</li>";	\
+	  echo "<li><a href='"`ls $$base/*.html`"'>$$base</a>";		\
+	  echo "(<a href='"`ls $$base-a/*.html`"'>annotated</a>)</li>";	\
 	 done && echo '</ul></body></html>') > $@
 
 clean:
