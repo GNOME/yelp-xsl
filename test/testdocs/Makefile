@@ -9,7 +9,6 @@ htmlargs =							\
 	../../../../icons/hicolor/48x48/status/			\
 	--stringparam theme.icons.watermark.code		\
 	../../../../icons/hicolor/watermarks/watermark-code.png	\
-	--param db.chunk.chunk_top 'false()'			\
 	$(db2html)
 
 test: $(htmls) html/index.html
@@ -20,12 +19,10 @@ $(htmls) : html/% : %.xml
 	xsltproc \
 	 -o $@/ \
 	 --param annotate 'false()' \
-	 --stringparam db.chunk.basename $(patsubst html/%,%,$@) \
 	 $(call htmlargs,$@) $<
 	xsltproc \
 	 -o $@-a/ \
 	 --param annotate 'true()' \
-	 --stringparam db.chunk.basename $(patsubst html/%,%-a,$@) \
 	 $(call htmlargs,$@) $<
 
 html/index.html:
