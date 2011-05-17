@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:xl="http://www.w3.org/1999/xlink"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns:set="http://exslt.org/sets"
-                exclude-result-prefixes="db xl set"
+                exclude-result-prefixes="db xl msg set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -179,6 +180,12 @@ REMARK: Document this
     <xsl:with-param name="node" select="."/>
     <xsl:with-param name="format" select="true()"/>
   </xsl:call-template>
+</xsl:template>
+
+<!--#% l10n.format.mode -->
+<xsl:template mode="l10n.format.mode" match="msg:glossterm">
+  <xsl:param name="node"/>
+  <xsl:apply-templates select="$node/glossterm | $node/db:glossterm"/>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -459,6 +459,8 @@ syntax highlighting support based on the #{language} attribute of ${node}.
     <xsl:attribute name="class">
       <xsl:text>glossterm</xsl:text>
     </xsl:attribute>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="glossterm | db:glossterm"/>
     <xsl:if test="acronym or abbrev or db:acronym or db:abbrev">
       <xsl:text> (</xsl:text>
