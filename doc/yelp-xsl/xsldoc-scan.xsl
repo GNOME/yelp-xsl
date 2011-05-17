@@ -266,7 +266,7 @@ free software.
   <exsl:document href="{$id}.page">
     <page id="{$id}" type="topic" style="{@style}">
       <info>
-        <link type="guide" xref="{$xsldoc.id}" group="#{$type}"/>
+        <link type="guide" xref="{$xsldoc.id}" group="{$type}"/>
         <link type="guide" xref="index__{$type}"/>
         <xsl:call-template name="revision"/>
         <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>

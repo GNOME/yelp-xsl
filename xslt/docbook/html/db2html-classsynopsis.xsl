@@ -24,22 +24,28 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Class Synopses
-:Requires: db2html-inline db2html-xref gettext
+:Requires: db2html-xref html
+:Revision:version="1.0" date="2011-05-16" status="final"
 
-REMARK: Describe this module.  Implmentation note: for C++, we expect the first
-modifier to be the visibility
+This module handles the DocBook #{classsynopsis} and related elements. The
+contents of the class-modeling elements are processed in a mode depending on
+the programming language to format the synopsis correctly.
 -->
 
-<xsl:variable name="cpp.tab" select="'&#160;&#160;&#160;&#160;'"/>
-<xsl:variable name="python.tab" select="'&#160;&#160;&#160;&#160;'"/>
+<xsl:variable name="db2html.classsynopsis.tab"
+              select="'&#x00A0;&#x00A0;&#x00A0;&#x00A0;'"/>
 
 
-<!-- FIXME: document PI -->
 <!--@@==========================================================================
 db2html.classsynopsis.language
-The default programming language used to format #{classsynopsis} elements
+The default programming language used to format #{classsynopsis} elements.
+:Revision:version="1.0" date="2011-05-16" status="final"
 
-REMARK: Describe this param
+This parameter sets the default value for the #{language} attribute of elements
+like #{classsynopsis}. Templates in this module will always use the #{language}
+attribute if present. Otherwise, they fall back to this value. This parameter
+can be set with the #{db2html.classsynopsis.language} processing instruction
+at the root of a DocBook document.
 -->
 <xsl:param name="db2html.classsynopsis.language">
   <xsl:choose>
@@ -73,20 +79,7 @@ REMARK: Describe this param
     </xsl:choose>
   </xsl:variable>
   <div>
-    <xsl:choose>
-      <xsl:when test="@lang | @xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>synopsis </xsl:text>
       <xsl:value-of select="local-name(.)"/>
@@ -158,8 +151,12 @@ REMARK: Describe this param
 
 <!--%%==========================================================================
 db2html.class.cpp.mode
+Process a C++ synopsis.
+:Revision:version="1.0" date="2011-05-16" status="final"
 
-REMARK: Describe this mode
+This mode is applied to child elements for synopsis elements for the C++
+programming language. In C++ synopses, the first #{modifier} element for
+methods is expected to mark the visibility, such as #{public} or #{private}.
 -->
 <xsl:template mode="db2html.class.cpp.mode" match="*">
   <xsl:apply-templates select="."/>
@@ -222,7 +219,7 @@ REMARK: Describe this mode
        }
   -->
   <xsl:call-template name="db2html.class.cpp.modifier"/>
-  <xsl:value-of select="$cpp.tab"/>
+  <xsl:value-of select="$db2html.classsynopsis.tab"/>
   <xsl:for-each select="modifier[position() != 1] | db:modifier[position() != 1]">
     <xsl:apply-templates mode="db2html.class.cpp.mode" select="."/>
     <xsl:text> </xsl:text>
@@ -264,7 +261,7 @@ REMARK: Describe this mode
        }
   -->
   <xsl:call-template name="db2html.class.cpp.modifier"/>
-  <xsl:value-of select="$cpp.tab"/>
+  <xsl:value-of select="$db2html.classsynopsis.tab"/>
   <xsl:for-each select="modifier[position() != 1] | db:modifier[position() != 1]">
     <xsl:apply-templates mode="db2html.class.cpp.mode" select="."/>
     <xsl:text> </xsl:text>
@@ -309,7 +306,7 @@ REMARK: Describe this mode
        }
   -->
   <xsl:call-template name="db2html.class.cpp.modifier"/>
-  <xsl:value-of select="$cpp.tab"/>
+  <xsl:value-of select="$db2html.classsynopsis.tab"/>
   <xsl:for-each select="modifier[position() != 1] | db:modifier[position() != 1]">
     <xsl:apply-templates mode="db2html.class.cpp.mode" select="."/>
     <xsl:text> </xsl:text>
@@ -356,7 +353,7 @@ REMARK: Describe this mode
        }
   -->
   <xsl:call-template name="db2html.class.cpp.modifier"/>
-  <xsl:value-of select="$cpp.tab"/>
+  <xsl:value-of select="$db2html.classsynopsis.tab"/>
   <!-- Parens for document order -->
   <xsl:for-each select="(methodname/preceding-sibling::modifier |
                          db:methodname/preceding-sibling::db:modifier)[position() != 1]">
@@ -388,8 +385,11 @@ REMARK: Describe this mode
 
 <!--%%==========================================================================
 db2html.class.python.mode
+Process a Python synopsis.
+:Revision:version="1.0" date="2011-05-16" status="final"
 
-REMARK: Describe this mode
+This mode is applied to child elements for synopsis elements for the Python
+programming language.
 -->
 <xsl:template mode="db2html.class.python.mode" match="*">
   <xsl:apply-templates select="."/>
@@ -448,7 +448,7 @@ REMARK: Describe this mode
   -->
   <xsl:variable name="tab">
     <xsl:if test="../self::classsynopsis or ../self::db:classsynopsis">
-      <xsl:value-of select="$python.tab"/>
+      <xsl:value-of select="$db2html.classsynopsis.tab"/>
     </xsl:if>
   </xsl:variable>
   <xsl:for-each select="modifier | db:modifier">
@@ -502,7 +502,7 @@ REMARK: Describe this mode
   -->
   <xsl:variable name="tab">
     <xsl:if test="../self::classsynopsis or ../self::db:classsynopsis">
-      <xsl:value-of select="$python.tab"/>
+      <xsl:value-of select="$db2html.classsynopsis.tab"/>
     </xsl:if>
   </xsl:variable>
   <xsl:for-each select="modifier | db:modifier">
@@ -552,7 +552,7 @@ REMARK: Describe this mode
   -->
   <xsl:variable name="tab">
     <xsl:if test="../self::classsynopsis or ../self::db:classsynopsis">
-      <xsl:value-of select="$python.tab"/>
+      <xsl:value-of select="$db2html.classsynopsis.tab"/>
     </xsl:if>
   </xsl:variable>
   <xsl:for-each select="modifier | db:modifier">
@@ -609,7 +609,7 @@ REMARK: Describe this mode
   -->
   <xsl:variable name="tab">
     <xsl:if test="../self::classsynopsis or ../self::db:classsynopsis">
-      <xsl:value-of select="$python.tab"/>
+      <xsl:value-of select="$db2html.classsynopsis.tab"/>
     </xsl:if>
   </xsl:variable>
   <xsl:for-each select="modifier | db:modifier">

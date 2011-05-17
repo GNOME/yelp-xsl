@@ -27,47 +27,36 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Command Synopses
-:Requires: db2html-xref gettext
+:Requires: db2html-xref html
+:Revision:version="1.0" date="2011-05-16" status="final"
 
 This module contains templates to process DocBook command synopsis elements.
 -->
 
 
-<!--@@==========================================================================
-db2html.arg.choice
-The default value of the #{choice} parameter for #{arg} elements
+<xsl:key name="db2html.cmdsynopsis.synopfragment.key"
+         match="synopfragment | db:synopfragment"
+         use="@id | @xml:id"/>
 
-REMARK: Describe this param
+
+<!--**==========================================================================
+db2html.cmdsynopsis.synopfragment.label
+Create a label for a #{synopfragment} element.
+:Revision:version="1.0" date="2011-05-16" status="final"
+$node: The #{synopfragment} element to create a label for.
+
+This template creates a label for a command synopsis fragment, taking a
+#{synopfragment} element as the ${node} parameter. The label is numbered
+according to the position of the #{synopfragment} element in the document.
+To create the corresponding label for a #{synopfragmentref} element, locate
+the corresponding #{synopfragment} element and call this template on it.
 -->
-<xsl:param name="db2html.arg.choice" select="'opt'"/>
-
-
-<!--@@==========================================================================
-db2html.arg.rep
-The default value of the #{rep} parameter for #{arg} elements
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.arg.rep" select="'norepeat'"/>
-
-
-<!--@@==========================================================================
-db2html.group.choice
-The default value of the #{choice} parameter for #{group} elements
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.group.choice" select="'opt'"/>
-
-
-<!--@@==========================================================================
-db2html.group.rep
-The default value of the #{rep} parameter for #{group} elements
-
-REMARK: Describe this param
--->
-<xsl:param name="db2html.group.rep" select="'norepeat'"/>
-
+<xsl:template name="db2html.cmdsynopsis.synopfragment.label">
+  <xsl:param name="node" select="."/>
+  <span class="co">
+    <xsl:value-of select="count($node/preceding::synopfragment) + count($node/preceding::db:synopfragment) + 1"/>
+  </span>
+</xsl:template>
 
 <!-- == Matched Templates == -->
 
@@ -92,7 +81,7 @@ REMARK: Describe this param
         <xsl:value-of select="@choice"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$db2html.arg.choice"/>
+        <xsl:value-of select="'opt'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -102,7 +91,7 @@ REMARK: Describe this param
         <xsl:value-of select="@rep"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$db2html.arg.rep"/>
+        <xsl:value-of select="'norepeat'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -165,23 +154,10 @@ REMARK: Describe this param
     </xsl:choose>
   </xsl:param>
   <div>
-    <xsl:choose>
-      <xsl:when test="@lang or @xml:lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
     <xsl:attribute name="class">
       <xsl:text>synopsis cmdsynopsis</xsl:text>
     </xsl:attribute>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <pre class="contents cmdsynopsis">
       <xsl:for-each select="command    | arg    | group    | sbr |
@@ -235,7 +211,7 @@ REMARK: Describe this param
         <xsl:value-of select="@choice"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$db2html.group.choice"/>
+        <xsl:value-of select="'opt'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -245,7 +221,7 @@ REMARK: Describe this param
         <xsl:value-of select="@rep"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$db2html.group.rep"/>
+        <xsl:value-of select="'norepeat'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -324,8 +300,7 @@ REMARK: Describe this param
   </xsl:param>
   <div class="synopfragment">
     <xsl:call-template name="db2html.anchor"/>
-    <!-- FIXME -->
-    <i><xsl:call-template name="db.label"/></i>
+    <xsl:call-template name="db2html.cmdsynopsis.synopfragment.label"/>
     <xsl:for-each select="*">
       <xsl:value-of select="$sepchar"/>
       <xsl:apply-templates select=".">
@@ -337,13 +312,20 @@ REMARK: Describe this param
 
 <!-- = synopfragmentref = -->
 <xsl:template match="synopfragmentref | db:synopfragmentref">
-  <xsl:call-template name="db2html.xref"/>
+  <xsl:variable name="node" select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)"/>
+  <xsl:call-template name="db2html.cmdsynopsis.synopfragment.label">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="db.label">
+  <span class="co"><xsl:value-of select="preceding::synopfragment + 1"/></span>
+</xsl:template>
 
 <!--%%==========================================================================
 db2html.cmdsynopsis.sbr.padding.mode
-Outputs padding for elements leading up to an #{sbr} element
+Output padding for elements leading up to an #{sbr} element.
+:Revision:version="1.0" date="2011-05-16" status="final"
 $sbr: The #{sbr} element to pad up to
 $sepchar: The value of the #{sepchar} attribute on the enclosing #{cmdsynopsis}
 
@@ -548,10 +530,9 @@ selectors, which are generally expensive to perform.
 <!-- = synopfragmentref % db2html.cmdsynopsis.sbr.padding.mode = -->
 <xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
               match="synopfragmentref | db:synopfragmentref">
-  <xsl:variable name="label">
-    <xsl:call-template name="db2html.xref"/>
-  </xsl:variable>
-  <xsl:value-of select="str:padding(string-length($label), ' ')"/>
+  <xsl:variable name="node" select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)"/>
+  <xsl:variable name="count" select="count($node/preceding::synopfragment) + count($node/preceding::db:synopfragment) + 1"/>
+  <xsl:value-of select="str:padding(string-length($count) + 2, ' ')"/>
 </xsl:template>
 
 </xsl:stylesheet>

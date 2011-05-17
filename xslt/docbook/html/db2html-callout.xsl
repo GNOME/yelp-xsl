@@ -44,9 +44,9 @@ Create a callout label for a #{co} element.
 $node: The #{co} element to create a callout label for.
 
 This template creates a label for a callout, taking a #{co} element as the
-${node} parameter. The label is numbered according to the position of #{co}
-in the document. To create the corresponding label for a #{callout} element,
-locate the corresponding #{co} element and call this template on it.
+${node} parameter. The label is numbered according to the position of the #{co}
+element in the document. To create the corresponding label for a #{callout}
+element, locate the corresponding #{co} element and call this template on it.
 -->
 <xsl:template name="db2html.callout.label">
   <xsl:param name="node" select="."/>
