@@ -1,4 +1,5 @@
-SUBDIRS = icons js xslt doc po
+SUBDIRS = icons js xslt doc
+DIST_SUBDIRS = $(SUBDIRS) po
 
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 

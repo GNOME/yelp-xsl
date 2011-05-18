@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- -*- indent-tabs-mode: nil -*- -->
+
+<l10n xmlns="http://projects.gnome.org/yelp/gettext/"
+      xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      xmlns:itst="http://itstool.org/extensions/">
+
+<its:rules xmlns:its="http://www.w3.org/2005/11/its"  version="1.0">
+  <its:langRule selector="//*" langPointer="@xml:lang"/>
+
+  <its:translateRule selector="/msg:l10n/msg:msgset" translate="no"/>
+  <its:translateRule selector="/msg:l10n/msg:msg/msg:msgstr" translate="yes"/>
+  <its:withinTextRule selector="/msg:l10n/msg:msg/msg:msgstr//*" withinText="yes"/>
+
+  <itst:preserveSpaceRule selector="/msg:l10n/msg:msg/its:locNote" preserveSpace="yes"/>
+  <its:locNoteRule selector="/msg:l10n/msg:msg/msg:msgstr" locNotePointer="../its:locNote"/>
+</its:rules>
+
+<!-- ======================================================================= -->
+
+<msg id="default:LTR">
+<its:locNote>
+Translate to default:RTL if your language should be displayed
+right-to-left, otherwise translate to default:LTR.  Do *not*
+translate it to "predefinito:LTR", if it isn't default:LTR
+or default:RTL it will not work.
+</its:locNote>
+<msgstr>default:LTR</msgstr>
+</msg>
+
+<!-- FIXME -->
+<msg id="FIXME">
+<its:locNote>
+This is used a simple list item seperator in places where simple
+inline lists have to be constructed dynamically.  Using the default
+string of ", ", a list would look like this: A, B, C, D.  Using the
+nonsensical string " - ", a list would look like this: A - B - C - D.
+
+Make sure to include leading or trailing spaces if you want them.
+</its:locNote>
+<msgstr xml:space="preserve">, </msgstr>
+</msg>
+
+<!-- FIXME -->
+<msg id="FIXME">
+<its:locNote>
+This is used as the final separator in an inline list of three or
+more elements.  The string ", " will be used to separate all but
+the last pair of elements.  Using these two strings, a list of
+names would be formatted as "Tom, Dick, and Harry".
+
+Make sure to include leading or trailing spaces if you want them.
+</its:locNote>
+<msgstr xml:space="preserve">, and </msgstr>
+</msg>
+
+<!-- FIXME -->
+<msg id="FIXME">
+<its:locNote>
+This is used as a list item seperator for inline lists of exactly two
+elements.  A list of two names would be formatted as "Tom and Dick".
+
+Make sure to include leading or trailing spaces if you want them.
+</its:locNote>
+<msgstr xml:space="preserve"> and </msgstr>
+</msg>
+
+<!-- ======================================================================= -->
+
+<msg id="Q:">
+<its:locNote>
+http://www.docbook.org/tdg/en/html/qandaentry.html
+
+This is used as a label before questions in a question-and-answer
+set.  Typically, questions are simply numbered and answers are not
+labelled at all.  However, DocBook allows document authors to set
+the labelling style for a qandaset.  If the labelling style is set
+to 'qanda', this string will be used to label questions.
+</its:locNote>
+<msgstr>Q:</msgstr>
+</msg>
+
+<msg id="A:">
+<its:locNote>
+http://www.docbook.org/tdg/en/html/qandaentry.html
+
+This is used as a label before answers in a question-and-answer
+set.  Typically, answers are simply numbered and answers are not
+labelled at all.  However, DocBook allows document authors to set
+the labelling style for a qandaset.  If the labelling style is set
+to 'qanda', this string will be used to label answers.
+</its:locNote>
+<msgstr>A:</msgstr>
+</msg>
+
+<!-- ======================================================================= -->
+
+<msg id="Bibliography">
+<its:locNote>Default title for a bibliography.</its:locNote>
+<msgstr>Bibliography</msgstr>
+</msg>
+
+<!-- FIXME: update code to call this -->
+<!-- FIXME -->
+<msg id="Candidate">
+<its:locNote>
+Revision status of a document or page. Content has been written and
+reviewed, and it awaiting a final approval.
+</its:locNote>
+<msgstr>Candidate</msgstr>
+</msg>
+
+<!-- FIXME: check code -->
+<msg id="Colophon">
+<its:locNote>Default title for a colophon section.</its:locNote>
+<msgstr>Colophon</msgstr>
+</msg>
+
+<!-- FIXME: check code -->
+<msg id="Contents">
+<its:locNote>Title of the listing of subsections.</its:locNote>
+<msgstr>Contents</msgstr>
+</msg>
+
+<msg id="Dedication">
+<its:locNote>Default title for a dedication section.</its:locNote>
+<msgstr>Dedication</msgstr>
+</msg>
+
+<msg id="Draft">
+<its:locNote>
+Revision status of a document or page. Most content has been
+written, but revisions are still happening.
+</its:locNote>
+<msgstr>Draft</msgstr>
+</msg>
+
+<msg id="Final">
+<its:locNote>
+Revision status of a document or page. A senior member of the
+documentation team has reviewed and approved.
+</its:locNote>
+<msgstr>Final</msgstr>
+</msg>
+
+<msg id="Further Reading">
+<its:locNote>Automatic heading above a list of related links.</its:locNote>
+<msgstr>Further Reading</msgstr>
+</msg>
+
+<msg id="Glossary">
+<its:locNote>Default title for a glossary.</its:locNote>
+<msgstr>Glossary</msgstr>
+</msg>
+
+<msg id="Incomplete">
+<its:locNote>
+Revision status of a document or page. Work has begun, but
+not all content has been written.
+</its:locNote>
+<msgstr>Incomplete</msgstr>
+</msg>
+
+<msg id="Index">
+<its:locNote>Default title for an index of terms in a book.</its:locNote>
+<msgstr>Index</msgstr>
+</msg>
+
+<msg id="More About">
+<its:locNote>Automatic heading above a list of guide links.</its:locNote>
+<msgstr>More About</msgstr>
+</msg>
+
+<!-- FIXME: check code -->
+<msg id="Name">
+<its:locNote>
+Default title for a refnamediv element. This is the common section
+title found in most UNIX man pages.
+</its:locNote>
+<msgstr>Name</msgstr>
+</msg>
+
+<msg id="Next">
+<its:locNote>Link text for a link to the next page in a series.</its:locNote>
+<msgstr>Next</msgstr>
+</msg>
+
+<!-- FIXME: update code to call this -->
+<msg id="Outdated">
+<its:locNote>
+Revision status of a document or page. Content was once current,
+but needs to be updated to reflect software updates.
+</its:locNote>
+<msgstr>Outdated</msgstr>
+</msg>
+
+<msg id="Pause">
+<its:locNote>Tooltip on play/pause buttons for audio and video objects.</its:locNote>
+<msgstr>Pause</msgstr>
+</msg>
+
+<msg id="Play">
+<its:locNote>Tooltip on play/pause buttons for audio and video objects.</its:locNote>
+<msgstr>Play</msgstr>
+</msg>
+
+<!-- FIXME: check code -->
+<msg id="Preface">
+<its:locNote>Default title for a preface to a book.</its:locNote>
+<msgstr>Preface</msgstr>
+</msg>
+
+<msg id="Previous">
+<its:locNote>Link text for a link to the previous page in a series.</its:locNote>
+<msgstr>Previous</msgstr>
+</msg>
+
+<msg id="Ready for review">
+<its:locNote>
+Revision status of a document or page. Content has been written
+and should be reviewed by other team members.
+</its:locNote>
+<msgstr>Ready for review</msgstr>
+</msg>
+
+<msg id="See Also">
+<its:locNote>Automatic heading above a list of see-also links.</its:locNote>
+<msgstr>See Also</msgstr>
+</msg>
+
+<msg id="Scale images down">
+<its:locNote>
+Figures can automatically scale images down to fit the page width.
+This is used a tooltip on a link to shrink images back down after
+they've been expanded to full size.
+</its:locNote>
+<msgstr>Scale images down</msgstr>
+</msg>
+
+<msg id="Stub">
+<its:locNote>
+Revision status of a document or page. No content has been written yet.
+</its:locNote>
+<msgstr>Stub</msgstr>
+</msg>
+
+<msg id="Synopsis">
+<its:locNote>
+Default title for a refsynopsisdiv element. This is the common section
+title found in most UNIX man pages.
+</its:locNote>
+<msgstr>Synopsis</msgstr>
+</msg>
+
+<msg id="View images at normal size">
+<its:locNote>
+Figures can automatically scale images down to fit the page width.
+This is used a tooltip on a link to expand images to full size.
+</its:locNote>
+<msgstr>View images at normal size</msgstr>
+</msg>
+
+<!-- ======================================================================= -->
+
+<msg id="yelp-quote-201C.png">
+<its:locNote>
+This is an image of the opening quotation character for your language.
+The image is used as a watermark on blockquote elements.  There are a
+number of different quote characters used by various languages, so the
+image name is translatable.  The name of the icon should be of the form
+"yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
+quote character.  For example, some languages use the double angle quotation
+mark.  Translators for these languages should use "yelp-quote-00AB.png".
+
+The image, however, is not automatically created.  Do not translate
+this to a value if there isn't a corresponding file in yelp-xsl under
+the directory icons/hicolor/48x48/status.
+
+Languages that use guillemets (angle quotation marks) should use either
+00AB or 00BB, depending on whether the opening quotation is the left
+guillemet or the right guillemet.  Languages that use inverted comma
+quotation marks should use 201C, 201D, or 201E.  Single quotation marks
+don't make very nice watermarks, so if you would normally open a quote
+with single quotation marks in your language, use the corresponding
+double quotation mark for the watermark image.
+</its:locNote>
+<msgstr>yelp-quote-201C.png</msgstr>
+</msg>
+
+<!-- ======================================================================= -->
+
+<!-- FIXME: change msg:label, move to db-common -->
+<msg id="biblioentry.tooltip">
+<its:locNote>
+ID: biblioentry.tooltip
+This is a format message used to format tooltips on cross references
+to bibliography entries.
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;label/> - The term being defined by the glossary entry
+</its:locNote>
+<msgstr>View the bibliography entry <label/>.</msgstr>
+</msg>
+
+<!-- FIXME: generalize for DocBook -->
+<msgset>
+  <msgstr>comment.cite.name-date.format</msgstr>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  comment - Editorial comments
+  cite    - The source of a comment
+  http://projectmallard.org/1.0/mal_block_comment.html
+  http://projectmallard.org/1.0/mal_block_cite.html
+
+  This is a format message used to format the citation of a comment
+  made by an editor of a document. This appears on a new line after
+  the title of the comment, if a title is present, or as the first
+  line if a title is not present.
+
+  This string is used when both the name and the date are supplied.
+  In English, a title together with this format string might produce
+  something like this:
+
+    Some Comment Title
+    from Shaun McCance on 2010-06-03
+
+    Here is the text of the comment.
+
+  If only a name is supplied, and no date, then comment.cite.name.format
+  is used instead of this string.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  comment.name - The name of the person making the comment
+  comment.date - The date the comment was made
+
+  These should be written as empty XML elements, e.g. <comment.name/>
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgstr>comment.cite.name-date.format</msgstr>
+    <msgstr>from <comment.name/> on <comment.date/></msgstr>
+  </_msg>
+</msgset>
+
+<!-- FIXME: generalize for DocBook -->
+<msgset>
+  <msgstr>comment.cite.name.format</msgstr>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  comment - Editorial comments
+  cite    - The source of a comment
+  http://projectmallard.org/1.0/mal_block_comment.html
+  http://projectmallard.org/1.0/mal_block_cite.html
+
+  This is a format message used to format the citation of a comment
+  made by an editor of a document. This appears on a new line after
+  the title of the comment, if a title is present, or as the first
+  line if a title is not present.
+
+  This string is used when only the name of the commenter is supplied.
+  In English, a title together with this format string might produce
+  something like this:
+
+    Some Comment Title
+    from Shaun McCance
+
+    Here is the text of the comment.
+
+  If a date is also supplied, then comment.cite.name-date.format
+  is used instead of this string.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  comment.name - The name of the person making the comment
+
+  These should be written as empty XML elements, e.g. <comment.name/>
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgstr>comment.cite.name.format</msgstr>
+    <msgstr>from <comment.name/></msgstr>
+  </_msg>
+</msgset>
+
+<msg id="biblioentry.label.format">
+<its:locNote>
+ID: biblioentry.label.format
+This is a format message used to format the labels for entries in
+a bibliography.  The content of the label is often an abbreviation
+of the authors' names and the year of publication.  In English,
+these are generally formatted with [square brackets] surrounding
+them.
+
+This string is similar to citation.format, but they are used in
+different places.  The citation formatter is used when referencing
+a bibliography entry in running prose.  This formatter is used for
+the actual bibliography entry.  You may use the same formatting for
+both, but you don't have to.
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;biblioentry.label/> - The text content of the bibliography label
+</its:locNote>
+<msgstr>[<biblioentry.label/>]</msgstr>
+</msg>
+
+<msg id="citation.format">
+<its:locNote>
+ID: citation.format
+This is a format message used to format inline citations to other
+published works.  The content is typically an abbreviation of the
+authors' last names.  In English, this abbreviation is usually
+written inside [square brackets].
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;citation/> - The text content of the citation element, possibly
+              as a link to an entry in the bibliography
+</its:locNote>
+<msgstr>[<citation/>]</msgstr>
+</msg>
+
+<msg id="email.tooltip">
+<its:locNote>
+ID: email.tooltip
+This is a format message used to format tooltips on mailto: links.
+Special elements in the message will be replaced with the appropriate
+content, as follows:
+
+&lt;string/> - The linked-to email address
+</its:locNote>
+<msgstr>Send email to ‘<string/>’.</msgstr>
+</msg>
+
+<msg id="glossentry.tooltip">
+<its:locNote>
+ID: glossentry.tooltip
+This is a format message used to format tooltips on cross references
+to glossary entries. Special elements in the message will be replaced
+with the appropriate content, as follows:
+
+&lt;glossterm/> - The term being defined by the glossary entry
+</its:locNote>
+<msgstr>Read the definition for ‘<glossterm/>’.</msgstr>
+</msg>
+
+<msg id="glosssee.format">
+<its:locNote>
+ID: glosssee.format
+This is a format message used to format glossary cross references.
+This format message controls the sentence used to present the cross
+reference, not the link itself.  For the formatting of the actual
+link, see the message glossentry.xref.
+
+One or more glosssee elements are presented as a links to the user
+in the glossary, formatted as a single prose sentence.  For example,
+if the user is being directed to the entry "foo", the glosssee may
+be formatted as "See foo."
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;glosssee/> - The actual link or links of the cross reference
+</its:locNote>
+<msgstr>See <glosssee/>.</msgstr>
+</msg>
+
+<msg id="glossseealso.format">
+<its:locNote>
+ID: glossseealso.format
+This is a format message used to format glossary cross references.
+This format message controls the sentence used to present the cross
+reference, not the link itself.  For the formatting of the actual
+link, see the message glossentry.xref.
+
+One or more glossseealso elements are presented as a links to the
+user in the glossary, formatted as a single prose sentence.  For
+example, if the user is being directed to the entries "foo", "bar",
+and "baz", the glossseealso may be formatted as "See also foo, bar,
+baz."
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;glosssee/> - The actual link or links of the cross reference
+</its:locNote>
+<msgstr>See also <glosssee/>.</msgstr>
+</msg>
+
+<!-- FIXME: split in two -->
+<msgset>
+  <msgstr>quote.format</msgstr>
+  <!-- 
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  quote - An inline quotation
+  http://docbook.org/tdg/en/html/quote.html
+
+  This is a format message used to format inline quotations.  This template
+  uses roles to control how the quotation is formatted.  The role indicates
+  whether this is an outer or inner quotation.  Quotations nested inside
+  another quotation are inner quotations.  Many languages have an alternate
+  notation for nested quotations.
+
+  These stylesheets only provide two levels of quotation formatting.  If
+  quote elements are nested deeper, the stylesheets will alternate between
+  the 'outer' and 'inner' roles.  If your language uses different formatting
+  for deeper quotations, please contact the maintainers, and we will try to
+  implement a more flexible formatting mechanism.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  node - The text content of the quote element
+
+  These should be written as empty XML elements.  Due to limitations
+  in intltool, I can't write XML content in translator comments.  To
+  insert the node, simply write left angle bracket, node, slash,
+  right angle bracket.
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgstr>quote.format</msgstr>
+    <msgstr role='inner'>‘<node/>’</msgstr>
+    <msgstr>“<node/>”</msgstr>
+  </_msg>
+</msgset>    
+
+<!-- FIXME: probably ok, check -->
+<msgset>
+  <msgstr>seeie.format</msgstr>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  seeie - A “See” entry in an index, rather than in the text
+  http://www.docbook.org/tdg/en/html/seeie.html
+
+  This is a format message used to format index cross references.
+  This format message controls the sentence used to present the cross
+  reference, not the link itself.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  seeie - The actual link or links of the cross reference
+
+  These should be written as empty XML elements.  Due to limitations
+  in intltool, I can't write XML content in translator comments.  To
+  insert the seeie, simply write left angle bracket, seeie, slash,
+  right angle bracket.
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgstr>seeie.format</msgstr>
+    <msgstr>See <seeie/>.</msgstr>
+  </_msg>
+</msgset>
+
+<!-- FIXME: probably ok, check -->
+<msgset>
+  <msgstr>seealsoie.format</msgstr>
+  <!--
+  This is a special format message.  Please read the full translator
+  documentation before translating this message.  The documentation
+  is maintained as part of the stylesheet documentation in DocBook.
+  For your convenience, it has also been converted to an HTML file
+  named STYLESHEETS.xml in the i18n directory.
+
+  seealsoie - A “See also” entry in an index, rather than in the text
+  http://www.docbook.org/tdg/en/html/seealsoie.html
+
+  This is a format message used to format index cross references.
+  This format message controls the sentence used to present the cross
+  reference, not the link itself.
+
+  Special elements in the message will be replaced with the
+  appropriate content, as follows:
+
+  seeie - The actual link or links of the cross reference
+
+  These should be written as empty XML elements.  Due to limitations
+  in intltool, I can't write XML content in translator comments.  To
+  insert the seeie, simply write left angle bracket, seeie, slash,
+  right angle bracket.
+
+  Additionally, format messages can use the i, b, and tt markup tags
+  to mark text as italic, bold, and monospace.
+  -->
+  <_msg>
+    <msgstr>seealsoie.format</msgstr>
+    <msgstr>See also <seeie/>.</msgstr>
+  </_msg>
+</msgset>
+
+</l10n>

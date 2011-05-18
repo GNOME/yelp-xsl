@@ -84,4 +84,5 @@ yelp-xsl.pc
 /doc/yelp-xsl/C/mal2xhtml.page
 /doc/yelp-xsl/C/utils.page
 /xslt/theme/test-theme.html
+/xslt/gettext/domains/yelp-xsl.xml
 /test/testdocs/html

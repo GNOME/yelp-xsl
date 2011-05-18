@@ -135,9 +135,11 @@ language your document is written in.
 -->
 <xsl:param name="icons.quote">
   <xsl:value-of select="$icons.base_url"/>
-  <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'yelp-quote-201C.png'"/>
-  </xsl:call-template>
+  <xsl:for-each select="/*">
+    <xsl:call-template name="l10n.gettext">
+      <xsl:with-param name="msgid" select="'yelp-quote-201C.png'"/>
+    </xsl:call-template>
+  </xsl:for-each>
 </xsl:param>
 
 

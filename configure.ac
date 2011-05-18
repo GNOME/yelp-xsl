@@ -17,6 +17,12 @@ else
 fi
 AC_SUBST(YELP_XSL_AWK)
 
+AC_ARG_VAR([ITSTOOL], [Path to the `itstool` command])
+AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
+if test x"$ITSTOOL" = x; then
+  AC_MSG_ERROR([itstool is required to build the translation XML files])
+fi
+
 # Dependecies
 PKG_CHECK_MODULES(YELP_XSL,
 [
@@ -30,6 +36,9 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
 IT_PROG_INTLTOOL([0.40.0])
+
+ALL_LINGUAS="`grep -v '^#' "$srcdir/po/LINGUAS" | tr '\n' ' '`"
+AC_SUBST(ALL_LINGUAS)
 
 AC_ARG_ENABLE(doc,
               [AS_HELP_STRING([--enable-doc],[build and install developer documentation [default=no]])],,
@@ -64,6 +73,7 @@ xslt/mallard/cache/Makefile
 xslt/mallard/common/Makefile
 xslt/mallard/html/Makefile
 xslt/gettext/Makefile
+xslt/gettext/domains/Makefile
 ])
 
 AC_OUTPUT

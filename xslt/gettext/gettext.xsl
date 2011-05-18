@@ -18,15 +18,24 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                xmlns:str="http://exslt.org/strings"
+                exclude-result-prefixes="msg str"
                 version="1.0">
+
+<!-- FIXME -->
+<xsl:template name="db.number"/>
+<xsl:template name="db.label"/>
+
 
 <!--!!==========================================================================
 Localized Strings
 -->
 
-<xsl:variable name="l10n" select="document('l10n.xml')"/>
-<xsl:key name="msg" match="msg:msgset/msg:msg"
-         use="concat(../msg:msgid, '__LC__', @xml:lang)"/>
+<xsl:key name="msg" match="msg:msgstr"
+         use="concat(../@id, '__LC__',
+              translate(@xml:lang,
+                        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                        'abcdefghijklmnopqrstuvwxyz'))"/>
 
 
 <!--@@==========================================================================
@@ -44,125 +53,32 @@ The top-level locale of the document
   </xsl:choose>
 </xsl:param>
 
-
-<!--@@==========================================================================
-l10n.language
-The language part of the top-level locale of the document
--->
-<xsl:param name="l10n.language">
-  <xsl:choose>
-    <xsl:when test="contains($l10n.locale, '_')">
-      <xsl:value-of select="substring-before($l10n.locale, '_')"/>
-    </xsl:when>
-    <xsl:when test="contains($l10n.locale, '@')">
-      <xsl:value-of select="substring-before($l10n.locale, '@')"/>
-    </xsl:when>
-    <xsl:when test="contains($l10n.locale, '_')">
-      <xsl:value-of select="substring-before($l10n.locale, '@')"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$l10n.locale"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-
-<!--@@==========================================================================
-l10n.region
-The region part of the top-level locale of the document
--->
-<xsl:param name="l10n.region">
-  <xsl:variable name="aft" select="substring-after($l10n.locale, '_')"/>
-  <xsl:choose>
-    <xsl:when test="contains($aft, '@')">
-      <xsl:value-of select="substring-before($aft, '@')"/>
-    </xsl:when>
-    <xsl:when test="contains($aft, '.')">
-      <xsl:value-of select="substring-before($aft, '.')"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$aft"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-
-<!--@@==========================================================================
-l10n.variant
-The variant part of the top-level locale of the document
--->
-<xsl:param name="l10n.variant">
-  <xsl:variable name="aft" select="substring-after($l10n.locale, '@')"/>
-  <xsl:choose>
-    <xsl:when test="contains($aft, '.')">
-      <xsl:value-of select="substring-before($aft, '.')"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$aft"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-
-<!--@@==========================================================================
-l10n.charset
-The charset part of the top-level locale of the document
--->
-<xsl:param name="l10n.charset">
-  <xsl:if test="contains($l10n.locale, '.')">
-    <xsl:value-of select="substring-after($l10n.locale, '.')"/>
-  </xsl:if>
-</xsl:param>
+<xsl:variable name="l10n.locale.list" select="str:tokenize($l10n.locale, '-_@.')"/>
 
 
 <!--**==========================================================================
 l10n.gettext
 Looks up the translation for a string
-$msgid: The id of the string to look up, often the string in the C locale
-$lang: The locale to use when looking up the translated string
-$lang_language: The language portion of the ${lang}
-$lang_region: The region portion of ${lang}
-$lang_variant: The variant portion of ${lang}
-$lang_charset: The charset portion of ${lang}
-$number: The cardinality for plural-form lookups
-$form: The form name for plural-form lookups
+$domain: The domain to look up the string in.
+$msgid: The id of the string to look up, often the string in the C locale.
+$lang: The locale to use when looking up the translated string.
+$number: The cardinality for plural-form lookups.
+$form: The form name for plural-form lookups.
 
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.gettext">
+  <xsl:param name="domain" select="'yelp-xsl'"/>
   <xsl:param name="msgid"/>
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-  <xsl:param name="lang_language">
-    <xsl:call-template name="l10n.language">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_region">
-    <xsl:call-template name="l10n.region">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_variant">
-    <xsl:call-template name="l10n.variant">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_charset">
-    <xsl:call-template name="l10n.charset">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
+  <xsl:param name="lang" select="(ancestor-or-self::*[@lang][1]/@lang |
+                                  ancestor-or-self::*[@xml:lang][1]/@xml:lang)
+                                 [last()]"/>
   <xsl:param name="number"/>
   <xsl:param name="form">
     <xsl:if test="$number">
       <xsl:call-template name="l10n.plural.form">
         <xsl:with-param name="number" select="$number"/>
         <xsl:with-param name="lang" select="$lang"/>
-        <xsl:with-param name="lang_language" select="$lang_language"/>
-        <xsl:with-param name="lang_region"   select="$lang_region"/>
-        <xsl:with-param name="lang_variant"  select="$lang_variant"/>
-        <xsl:with-param name="lang_charset"  select="$lang_charset"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:param>
@@ -171,174 +87,72 @@ REMARK: Lots of documentation is needed
   <xsl:param name="string"/>
   <xsl:param name="format" select="false()"/>
 
-  <xsl:for-each select="$l10n">
+  <xsl:variable name="source" select="."/>
+  <xsl:variable name="normlang" select="translate($lang,
+                                        '_@.ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                        '---abcdefghijklmnopqrstuvwxyz')"/>
+  <xsl:message>
+    <xsl:value-of select="local-name(/*)"/>
+    <xsl:text> --- </xsl:text>
+    <xsl:value-of select="local-name($source)"/>
+    <xsl:text> --- </xsl:text>
+    <xsl:value-of select="$msgid"/>
+    <xsl:text> --- </xsl:text>
+    <xsl:value-of select="$normlang"/>
+  </xsl:message>
+  <xsl:for-each select="document(concat('domains/', $domain, '.xml'))">
+    <xsl:variable name="msg" select="key('msg', concat($msgid, '__LC__', $normlang))"/>
     <xsl:choose>
-      <!-- fe_fi@fo.fum -->
-      <xsl:when test="($lang_region and $lang_variant and $lang_charset) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '_', $lang_region,
-                                                        '@', $lang_variant,
-                                                        '.', $lang_charset))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '_', $lang_region,
-                                                     '@', $lang_variant,
-                                                     '.', $lang_charset))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
+      <xsl:when test="$msg">
+        <xsl:for-each select="$source">
+          <xsl:call-template name="l10n.gettext.msg">
+            <xsl:with-param name="msg" select="$msg"/>
+            <xsl:with-param name="form" select="$form"/>
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="string" select="$string"/>
+            <xsl:with-param name="format" select="$format"/>
+          </xsl:call-template>
+        </xsl:for-each>
       </xsl:when>
-      <!-- fe_fi@fo -->
-      <xsl:when test="($lang_region and $lang_variant) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '_', $lang_region,
-                                                        '@', $lang_variant))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '_', $lang_region,
-                                                     '@', $lang_variant))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
+      <xsl:when test="contains($normlang, '-')">
+        <xsl:variable name="newlang">
+          <xsl:for-each select="str:split($normlang, '-')[position() != last()]">
+            <xsl:if test="position() != 1">
+              <xsl:text>-</xsl:text>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </xsl:for-each>
+        </xsl:variable>
+        <xsl:for-each select="$source">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="domain" select="$domain"/>
+            <xsl:with-param name="msgid" select="$msgid"/>
+            <xsl:with-param name="lang" select="$newlang"/>
+            <xsl:with-param name="number" select="$number"/>
+            <xsl:with-param name="form" select="$form"/>
+            <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="string" select="$string"/>
+            <xsl:with-param name="format" select="$format"/>
+          </xsl:call-template>
+        </xsl:for-each>
       </xsl:when>
-      <!-- fe@fo.fum -->
-      <xsl:when test="($lang_variant and $lang_charset) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '@', $lang_variant,
-                                                        '.', $lang_charset))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '@', $lang_variant,
-                                                     '.', $lang_charset))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- fe@fo -->
-      <xsl:when test="($lang_variant) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '@', $lang_variant))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '@', $lang_variant))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- fe_fi.fum -->
-      <xsl:when test="($lang_region and $lang_charset) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '_', $lang_region,
-                                                        '.', $lang_charset))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '_', $lang_region,
-                                                     '.', $lang_charset))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- fe_fi -->
-      <xsl:when test="($lang_region) and
-                      key('msg', concat($msgid, '__LC__',
-                                        $lang_language, '_', $lang_region))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '_', $lang_region))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- fe.fum -->
-      <xsl:when test="($lang_charset) and
-                      key('msg', concat($msgid, '__LC__',
-                                           $lang_language, '.', $lang_charset))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__',
-                                     $lang_language, '.', $lang_charset))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- fe -->
-      <xsl:when test="key('msg', concat($msgid, '__LC__', $lang_language))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg"
-           select="key('msg', concat($msgid, '__LC__', $lang_language))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- "C" -->
-      <xsl:when test="key('msg', concat($msgid, '__LC__C'))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg" select="key('msg', concat($msgid, '__LC__C'))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
-      </xsl:when>
-      <!-- not() -->
-      <xsl:when test="key('msg', concat($msgid, '__LC__'))">
-        <xsl:call-template name="l10n.gettext.msg">
-          <xsl:with-param
-           name="msg" select="key('msg', concat($msgid, '__LC__'))"/>
-          <xsl:with-param name="form" select="$form"/>
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="format" select="$format"/>
-        </xsl:call-template>
+      <xsl:when test="$normlang = 'c'">
+        <xsl:value-of select="$msgid"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>
-          <xsl:text>No translation available for string '</xsl:text>
-          <xsl:value-of select="$msgid"/>
-          <xsl:text>'.</xsl:text>
-        </xsl:message>
-        <xsl:value-of select="$msgid"/>
+        <xsl:for-each select="$source">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="domain" select="$domain"/>
+            <xsl:with-param name="msgid" select="$msgid"/>
+            <xsl:with-param name="lang" select="'C'"/>
+            <xsl:with-param name="number" select="$number"/>
+            <xsl:with-param name="form" select="$form"/>
+            <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="string" select="$string"/>
+            <xsl:with-param name="format" select="$format"/>
+          </xsl:call-template>
+        </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
@@ -564,36 +378,14 @@ REMARK: Lots of documentation is needed
 <xsl:template name="l10n.plural.form">
   <xsl:param name="number" select="1"/>
   <xsl:param name="lang" select="$l10n.locale"/>
-  <xsl:param name="lang_language">
-    <xsl:call-template name="l10n.language">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_region">
-    <xsl:call-template name="l10n.region">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_variant">
-    <xsl:call-template name="l10n.variant">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_charset">
-    <xsl:call-template name="l10n.charset">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
+  <xsl:variable name="normlang" select="concat(translate($lang,
+                                        '_@.ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                                        '---abcdefghijklmnopqrstuvwxyz'),
+                                        '-')"/>
 
   <xsl:choose>
-    <!--
-    Keep variants first!
-    When adding new languages, make sure the tests are in a format that
-    can be extracted by the plurals.sh script in the i18n directory.
-    -->
-
     <!-- == pt_BR == -->
-    <xsl:when test="concat($lang_language, '_', $lang_region) = 'pt_BR'">
+    <xsl:when test="starts-with($normlang, 'pt-br-')">
       <xsl:choose>
         <xsl:when test="$number &gt; 1">
           <xsl:text>0</xsl:text>
@@ -605,7 +397,7 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == ar == -->
-    <xsl:when test="$lang_language = 'ar'">
+    <xsl:when test="starts-with($normlang, 'ar-')">
       <xsl:choose>
         <xsl:when test="$number = 1">
           <xsl:text>0</xsl:text>
@@ -623,9 +415,9 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == be bs cs ru sr uk == -->
-    <xsl:when test="($lang_language = 'be') or ($lang_language = 'bs') or
-                    ($lang_language = 'cs') or ($lang_language = 'ru') or
-                    ($lang_language = 'sr') or ($lang_language = 'uk') ">
+    <xsl:when test="starts-with($normlang, 'be-') or starts-with($normlang, 'bs-') or
+                    starts-with($normlang, 'cs-') or starts-with($normlang, 'ru-') or
+                    starts-with($normlang, 'sr-') or starts-with($normlang, 'uk-') ">
       <xsl:choose>
         <xsl:when test="($number mod 10 = 1) and ($number mod 100 != 11)">
           <xsl:text>0</xsl:text>
@@ -740,44 +532,18 @@ REMARK: Lots of documentation is needed
 l10n.direction
 Determines the text direction for the language of the document
 $lang: The locale to use to determine the text direction
-$lang_language: The language portion of the ${lang}
-$lang_region: The region portion of ${lang}
-$lang_variant: The variant portion of ${lang}
-$lang_charset: The charset portion of ${lang}
 
 REMARK: Lots of documentation is needed
 -->
 <xsl:template name="l10n.direction">
   <xsl:param name="lang" select="$l10n.locale"/>
-  <xsl:param name="lang_language">
-    <xsl:call-template name="l10n.language">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_region">
-    <xsl:call-template name="l10n.region">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_variant">
-    <xsl:call-template name="l10n.variant">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="lang_charset">
-    <xsl:call-template name="l10n.charset">
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:param>
   <xsl:variable name="direction">
-    <xsl:call-template name="l10n.gettext">
-      <xsl:with-param name="msgid" select="'default:LTR'"/>
-      <xsl:with-param name="lang" select="$lang"/>
-      <xsl:with-param name="lang_language" select="$lang_language"/>
-      <xsl:with-param name="lang_region"   select="$lang_region"/>
-      <xsl:with-param name="lang_variant"  select="$lang_variant"/>
-      <xsl:with-param name="lang_charset"  select="$lang_charset"/>
-    </xsl:call-template>
+    <xsl:for-each select="/*">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'default:LTR'"/>
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$direction = 'default:RTL'">
@@ -874,118 +640,6 @@ REMARK: Lots of documentation is needed
     <xsl:otherwise>
       <xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text>
     </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-l10n.language
-Extracts the langauge portion of a locale
-$lang: The locale to extract the language from
-
-REMARK: Lots of documentation is needed
--->
-<xsl:template name="l10n.language">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-  <xsl:choose>
-    <xsl:when test="$lang = $l10n.locale">
-      <xsl:value-of select="$l10n.language"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '_')">
-      <xsl:value-of select="substring-before($lang, '_')"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '@')">
-      <xsl:value-of select="substring-before($lang, '@')"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '_')">
-      <xsl:value-of select="substring-before($lang, '@')"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$lang"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-l10n.region
-Extracts the region portion of a locale
-$lang: The locale to extract the region from
-
-REMARK: Lots of documentation is needed
--->
-<xsl:template name="l10n.region">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-  <xsl:choose>
-    <xsl:when test="$lang = $l10n.locale">
-      <xsl:value-of select="$l10n.region"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '_')">
-      <xsl:variable name="aft" select="substring-after($lang, '_')"/>
-      <xsl:choose>
-        <xsl:when test="contains($aft, '@')">
-          <xsl:value-of select="substring-before($aft, '@')"/>
-        </xsl:when>
-        <xsl:when test="contains($aft, '.')">
-          <xsl:value-of select="substring-before($aft, '.')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$aft"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-l10n.variant
-Extracts the variant portion of a locale
-$lang: The locale to extract the variant from
-
-REMARK: Lots of documentation is needed
--->
-<xsl:template name="l10n.variant">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-  <xsl:choose>
-    <xsl:when test="$lang = $l10n.locale">
-      <xsl:value-of select="$l10n.variant"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '@')">
-      <xsl:variable name="aft" select="substring-after($lang, '@')"/>
-      <xsl:choose>
-        <xsl:when test="contains($aft, '.')">
-          <xsl:value-of select="substring-before($aft, '.')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$aft"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-l10n.charset
-Extracts the charset portion of a locale
-$lang: The locale to extract the charset from
-
-REMARK: Lots of documentation is needed
--->
-<xsl:template name="l10n.charset">
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-  <xsl:choose>
-    <xsl:when test="$lang = $l10n.locale">
-      <xsl:value-of select="$l10n.charset"/>
-    </xsl:when>
-    <xsl:when test="contains($lang, '.')">
-      <xsl:value-of select="substring-after($lang, '.')"/>
-    </xsl:when>
   </xsl:choose>
 </xsl:template>
 

@@ -731,12 +731,10 @@ FIXME
 <xsl:template mode="db2html.inline.content.mode" match="menuchoice | db:menuchoice">
   <xsl:variable name="arrow">
     <xsl:variable name="ltr">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'default:LTR'"/>
-      </xsl:call-template>
+      <xsl:call-template name="l10n.direction"/>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="$ltr = 'default:RTL'">
+      <xsl:when test="$ltr = 'rtl'">
         <xsl:text>&#x25C2;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
