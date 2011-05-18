@@ -91,15 +91,6 @@ REMARK: Lots of documentation is needed
   <xsl:variable name="normlang" select="translate($lang,
                                         '_@.ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                                         '---abcdefghijklmnopqrstuvwxyz')"/>
-  <xsl:message>
-    <xsl:value-of select="local-name(/*)"/>
-    <xsl:text> --- </xsl:text>
-    <xsl:value-of select="local-name($source)"/>
-    <xsl:text> --- </xsl:text>
-    <xsl:value-of select="$msgid"/>
-    <xsl:text> --- </xsl:text>
-    <xsl:value-of select="$normlang"/>
-  </xsl:message>
   <xsl:for-each select="document(concat('domains/', $domain, '.xml'))">
     <xsl:variable name="msg" select="key('msg', concat($msgid, '__LC__', $normlang))"/>
     <xsl:choose>
