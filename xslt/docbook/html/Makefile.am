@@ -18,7 +18,6 @@ xsl_DATA =				\
 	db2html-l10n.xsl		\
 	db2html-media.xsl		\
 	db2html-list.xsl		\
-	db2html-qanda.xsl		\
 	db2html-refentry.xsl		\
 	db2html-suppressed.xsl		\
 	db2html-table.xsl		\
