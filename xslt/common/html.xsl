@@ -982,27 +982,60 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
-div.media-video &gt; div.inner { display: inline-block; }
+div.media-video &gt; div.inner { display: inline-block; text-align: center; }
 div.media-video &gt; div.inner video { margin: 0; }
 div.media-controls {
-  margin: 0; padding: 2px;
+  min-width: 24em;
+  height: 24px;
+  margin: 0; padding: 4px;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.text"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$color.background"/><xsl:text>;
+}
+button.media-play {
+  height: 24px;
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  padding: 0; line-height: 0;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
 }
-div.media-controls button, div.media-controls input { margin: 0; }
-div.media-controls button.media-play { padding: 0; line-height: 0; }
-div.media-controls button.media-play canvas { margin: 0; }
-div.media-controls input.media-range { height: 20px; }
-
-
-div.media-ttml {
-  margin: 0; padding: 0;
+button.media-play:hover, button.media-play:focus {
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  border-color: </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  -moz-box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  -webkit-box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
 }
+button.media-play canvas { margin: 0; }
+div.media-range {
+  display: inline-block;
+  margin: 2px 8px 0 8px;
+  padding: 0;
+  height: 20px;
+}
+span.media-current {
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  font-size: 16px;
+  line-height: 20px;
+}
+div.media-ttml { margin: 0; padding: 0; }
 div.media-ttml-p {
+  text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   display: none;
-  margin: 6px 0 0 0;
+  margin: 6px auto 0 auto;
   padding: 6px;
   max-width: 24em;
   border: solid 1px </xsl:text>
@@ -1194,10 +1227,13 @@ control for audio and video elements as well as support for captions.
 <xsl:template name="html.js.media">
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
+yelp_color_text_light = ']]></xsl:text>
+<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA[';
+yelp_color_gray_border = ']]></xsl:text>
+<xsl:value-of select="$color.gray_border"/><xsl:text><![CDATA[';
 yelp_paint_zoom = function (zoom, zoomed) {
   var ctxt = zoom.children('canvas')[0].getContext('2d');
-  ctxt.strokeStyle = ctxt.fillStyle = ']]></xsl:text>
-<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+  ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
   ctxt.clearRect(0, 0, 10, 10);
   ctxt.strokeRect(0.5, 0.5, 9, 9);
   if (zoomed) {
@@ -1292,156 +1328,115 @@ $(document).ready(function () {
   yelp_resize_imgs();
   $(window).bind('resize', yelp_resize_imgs);
 });
-Node.prototype.is_a = function (tag, cls) {
-  if (this.nodeType == Node.ELEMENT_NODE) {
-    if (tag == null || this.tagName.toLowerCase() == tag) {
-      if (cls == null)
-        return true;
-      var clss = this.className.split(' ');
-      for (var i = 0; i < clss.length; i++) {
-        if (cls == clss[i])
-          return true;
-      }
-    }
-  }
-  return false;
-};
-function yelp_init_media (media) {
-  var control;
-  var controlsDiv;
-  var playControl;
-  var rangeControl;
-  var currentSpan;
-  for (controlsDiv = media.nextSibling; controlsDiv; controlsDiv = controlsDiv.nextSibling)
-{
-    if (controlsDiv.is_a('div', 'media-controls'))
-      break;
-}
-  if (!controlsDiv)
-    return;
-  for (control = controlsDiv.firstChild; control; control = control.nextSibling) {
-    if (control.nodeType == Node.ELEMENT_NODE) {
-      if (control.is_a('button', 'media-play'))
-        playControl = control;
-      else if (control.is_a('input', 'media-range'))
-        rangeControl = control;
-      else if (control.is_a('span', 'media-current'))
-        currentSpan = control;
-    }
-  }
+function yelp_init_video (element) {
+  var video = $(element);
+  video.removeAttr('controls');
 
-  var ttmlDiv;
-  for (ttmlDiv = controlsDiv.nextSibling; ttmlDiv; ttmlDiv = ttmlDiv.nextSibling)
-    if (ttmlDiv.is_a('div', 'media-ttml'))
-      break;
+  var controls = $('<div class="media-controls"></div>');
+  var playControl = $('<button class="media-play"></button>').attr({
+    'data-play-label': video.attr('data-play-label'),
+    'data-pause-label': video.attr('data-pause-label'),
+    'value': video.attr('data-play-label')
+  });
+  var playCanvas = $('<canvas width="20" height="20"></canvas>');
+  playControl.append(playCanvas);
+  var rangeCanvas = $('<canvas width="104" height="20"></canvas>');
+  var rangeCanvasCtxt = rangeCanvas[0].getContext('2d');
+  rangeCanvasCtxt.strokeStyle = yelp_color_gray_border;
+  rangeCanvasCtxt.strokeWidth = 1;
+  rangeCanvasCtxt.strokeRect(0.5, 0.5, 103, 19);
+  var currentSpan = $('<span class="media-current">0:00</span>');
+  controls.append(playControl, $('<div class="media-range"></div>').append(rangeCanvas), currentSpan);
+  video.after(controls);
 
-  var playCanvas;
-  for (playCanvas = playControl.firstChild; playCanvas; playCanvas = playCanvas.nextSibling)
-    if (playCanvas.is_a('canvas', null))
-      break;
-  var playCanvasCtxt = playCanvas.getContext('2d');
+  var playCanvasCtxt = playCanvas[0].getContext('2d');
   var paintPlayButton = function () {
-    playCanvasCtxt.fillStyle = ']]></xsl:text>
-<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+    playCanvasCtxt.fillStyle = yelp_color_text_light;
     playCanvasCtxt.clearRect(0, 0, 20, 20);
     playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);
-    playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(15, 10);
-    playCanvasCtxt.lineTo(5, 5);
+    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(5, 15);
+    playCanvasCtxt.lineTo(15, 10); playCanvasCtxt.lineTo(5, 5);
     playCanvasCtxt.fill();
   }
   var paintPauseButton = function () {
-    playCanvasCtxt.fillStyle = ']]></xsl:text>
-<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA['
+    playCanvasCtxt.fillStyle = yelp_color_text_light;
     playCanvasCtxt.clearRect(0, 0, 20, 20);
     playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);
-    playCanvasCtxt.lineTo(9, 5);
-    playCanvasCtxt.lineTo(9, 15);
-    playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(5, 5);
-    playCanvasCtxt.fill();
+    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(9, 5);
+    playCanvasCtxt.lineTo(9, 15);  playCanvasCtxt.lineTo(5, 15);
+    playCanvasCtxt.lineTo(5, 5);   playCanvasCtxt.fill();
     playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(11, 5);
-    playCanvasCtxt.lineTo(15, 5);
-    playCanvasCtxt.lineTo(15, 15);
-    playCanvasCtxt.lineTo(11, 15);
-    playCanvasCtxt.lineTo(11, 5);
-    playCanvasCtxt.fill();
+    playCanvasCtxt.moveTo(11, 5);  playCanvasCtxt.lineTo(15, 5);
+    playCanvasCtxt.lineTo(15, 15); playCanvasCtxt.lineTo(11, 15);
+    playCanvasCtxt.lineTo(11, 5);  playCanvasCtxt.fill();
   }
   paintPlayButton();
 
+  var video_el = video[0];
   var mediaChange = function () {
-    if (media.ended)
-      media.pause()
-    if (media.paused) {
-      playControl.setAttribute('value', playControl.getAttribute('data-play-label'));
+    if (video_el.ended)
+      video_el.pause()
+    if (video_el.paused) {
+      playControl.attr('value', playControl.attr('data-play-label'));
       paintPlayButton();
     }
     else {
-      playControl.setAttribute('value', playControl.getAttribute('data-pause-label'));
+      playControl.attr('value', playControl.attr('data-pause-label'));
       paintPauseButton();
     }
   }
-  media.addEventListener('play', mediaChange, false);
-  media.addEventListener('pause', mediaChange, false);
-  media.addEventListener('ended', mediaChange, false);
+  video_el.addEventListener('play', mediaChange, false);
+  video_el.addEventListener('pause', mediaChange, false);
+  video_el.addEventListener('ended', mediaChange, false);
 
   var playClick = function () {
-    if (media.paused || media.ended)
-      media.play();
+    if (video_el.paused || video_el.ended)
+      video_el.play();
     else
-      media.pause();
+      video_el.pause();
   };
-  playControl.addEventListener('click', playClick, false);
+  playControl.click(playClick);
 
-  var ttmlNodes = [];
-  var ttmlNodesFill = function (node) {
-    var child;
-    if (node != null) {
-      for (child = node.firstChild; child; child = child.nextSibling) {
-        if (child.nodeType == Node.ELEMENT_NODE) {
-          if (child.is_a(null, 'media-ttml-node'))
-            ttmlNodes[ttmlNodes.length] = child;
-          ttmlNodesFill(child);
-        }
-      }
-    }
-  }
-  ttmlNodesFill(ttmlDiv);
+  var ttmlDiv = video.parent().children('div.media-ttml');
+  var ttmlNodes = ttmlDiv.find('.media-ttml-node');
 
   var timeUpdate = function () {
-    rangeControl.value = parseInt((media.currentTime / media.duration) * 100);
-    var mins = parseInt(media.currentTime / 60);
-    var secs = parseInt(media.currentTime - (60 * mins))
-    currentSpan.innerText = mins + (secs < 10 ? ':0' : ':') + secs;
-    for (var i = 0; i < ttmlNodes.length; i++) {
-      if (media.currentTime >= parseFloat(ttmlNodes[i].getAttribute('data-begin')) &&
-          (!ttmlNodes[i].hasAttribute('data-end') ||
-           media.currentTime < parseFloat(ttmlNodes[i].getAttribute('data-end')) )) {
-        if (ttmlNodes[i].tagName == 'span')
-          ttmlNodes[i].style.display = 'inline';
+    var pct = (element.currentTime / element.duration) * 100;
+    rangeCanvasCtxt.fillStyle = yelp_color_gray_border;
+    rangeCanvasCtxt.clearRect(2, 2, 100, 16);
+    rangeCanvasCtxt.fillRect(2, 2, pct, 16);
+    var mins = parseInt(element.currentTime / 60);
+    var secs = parseInt(element.currentTime - (60 * mins))
+    currentSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
+    ttmlNodes.each(function () {
+      var ttml = this;
+      if (element.currentTime >= parseFloat(ttml.getAttribute('data-begin')) &&
+          (!ttml.hasAttribute('data-end') ||
+           element.currentTime < parseFloat(ttml.getAttribute('data-end')) )) {
+        if (ttml.tagName == 'span')
+          ttml.style.display = 'inline';
         else
-          ttmlNodes[i].style.display = 'block';
+          ttml.style.display = 'block';
       }
       else {
-        ttmlNodes[i].style.display = 'none';
+        ttml.style.display = 'none';
       }
-    }
+    });
   };
-  media.addEventListener('timeupdate', timeUpdate, false);
+  element.addEventListener('timeupdate', timeUpdate, false);
 
-  var rangeChange = function () {
-    media.currentTime = (parseInt(rangeControl.value) / 100.0)  * media.duration;
-  };
-  rangeControl.addEventListener('change', rangeChange, false);
+  rangeCanvas.click(function (event) {
+    var pct = event.clientX - Math.floor(rangeCanvas.offset().left);
+    if (pct < 0)
+      pct = 0;
+    if (pct > 100)
+      pct = 100;
+    element.currentTime = (pct / 100.0) * element.duration;
+  });
 };
-document.addEventListener("DOMContentLoaded", function () {
-  var vids = document.getElementsByTagName('video');
-  for (var i = 0; i < vids.length; i++)
-    yelp_init_media(vids[i]);
-}, false);
+$(document).ready(function () {
+  $('video.media-block').each(function () { yelp_init_video(this) });;
+});
 ]]></xsl:text>
 </xsl:template>
 

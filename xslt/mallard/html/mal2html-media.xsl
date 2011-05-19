@@ -75,14 +75,32 @@ FIXME
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <video src="{$node/@src}" autobuffer="autobuffer">
+  <video src="{$node/@src}" autobuffer="autobuffer" controls="controls">
+    <xsl:attribute name="class">
+      <xsl:text>media </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$inline">
+          <xsl:text>media-inline</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>media-block</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:copy-of select="$node/@height"/>
     <xsl:copy-of select="$node/@width"/>
+    <xsl:attribute name="data-play-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Play'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="data-pause-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Pause'"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$inline">
-        <xsl:attribute name="controls">
-          <xsl:text>controls</xsl:text>
-        </xsl:attribute>
         <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
       </xsl:when>
       <xsl:otherwise>
@@ -91,28 +109,6 @@ FIXME
     </xsl:choose>
   </video>
   <xsl:if test="not($inline)">
-    <div class="media-controls">
-      <button class="media-play">
-        <xsl:attribute name="value">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Play'"/>
-          </xsl:call-template>
-        </xsl:attribute>
-        <xsl:attribute name="data-play-label">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Play'"/>
-          </xsl:call-template>
-        </xsl:attribute>
-        <xsl:attribute name="data-pause-label">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Pause'"/>
-          </xsl:call-template>
-        </xsl:attribute>
-        <canvas width="20" height="20"/>
-      </button>
-      <input class="media-range" type="range" min="0" max="100" value="0" step="0"/>
-      <span class="media-current"/>
-    </div>
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt"/>
   </xsl:if>
 </xsl:template>
