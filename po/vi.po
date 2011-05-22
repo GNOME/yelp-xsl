@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the gnome-doc-utils package.
 # Phan Vĩnh Thịnh <teppi@vnlinux.org>, 2005.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2011-04-29 15:27+0000\n"
-"PO-Revision-Date: 2007-09-02 23:51+0930\n"
+"PO-Revision-Date: 2011-05-22 12:41+0700\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -238,12 +239,11 @@ msgstr ""
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:187
-#, fuzzy
 #| msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 msgid ""
 "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> on "
 "<comment.date/></msgstr>"
-msgstr "<msgid>citation.format</msgid> <msgstr>[<trích dẫn/>]</msgstr>"
+msgstr "<msgid>comment.cite.name-date.format</msgid> <msgstr>bởi <comment.name/> vào <comment.date/></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -285,11 +285,10 @@ msgstr "<msgid>citation.format</msgid> <msgstr>[<trích dẫn/>]</msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:227
-#, fuzzy
 #| msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 msgid ""
 "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></msgstr>"
-msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
+msgstr "<msgid>comment.cite.name.format</msgid> <msgstr>bởi <comment.name/></msgstr>"
 
 #.
 #. This is a special format message.  Please read the full translator
@@ -804,7 +803,7 @@ msgstr "<msgstr form='0'>Soạn giả</msgstr>"
 msgid ""
 "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
 "Contributors</msgstr>"
-msgstr "<msgstr form='0'>Người đóng góp khác</msgstr>"
+msgstr "<msgstr form='0'>Cộng tác viên khác</msgstr>"
 
 #. Used as a header before a list of publishers.
 #: ../xslt/gettext/l10n.xml.in.h:658
@@ -892,7 +891,7 @@ msgstr "Lời đề tặng"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:709
 msgid "Draft"
-msgstr ""
+msgstr "Nháp"
 
 #.
 #. http://www.docbook.org/tdg/en/html/affiliation.html
@@ -916,12 +915,12 @@ msgstr "Thư điện tử"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:727
 msgid "Final"
-msgstr ""
+msgstr "Bản cuối"
 
 #. Automatic further reading section and links
 #: ../xslt/gettext/l10n.xml.in.h:729
 msgid "Further Reading"
-msgstr ""
+msgstr "Đọc thêm"
 
 #.
 #. http://www.docbook.org/tdg/en/html/glossary.html
@@ -929,7 +928,7 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:734
 msgid "Glossary"
-msgstr "Bản chú giải"
+msgstr "Chú giải"
 
 #.
 #. http://www.docbook.org/tdg/en/html/important.html
@@ -948,7 +947,7 @@ msgstr "Quan trọng"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:747
 msgid "Incomplete"
-msgstr ""
+msgstr "Chưa hoàn chỉnh"
 
 #.
 #. http://www.docbook.org/tdg/en/html/index.html
@@ -969,7 +968,7 @@ msgstr "Chú ý luật pháp"
 #. Automatic more about section and links
 #: ../xslt/gettext/l10n.xml.in.h:759
 msgid "More About"
-msgstr ""
+msgstr "Thêm về"
 
 #.
 #. http://www.docbook.org/tdg/en/html/refnamediv.html
@@ -982,7 +981,7 @@ msgstr "Tên"
 #. Used as link to the next page in a series.
 #: ../xslt/gettext/l10n.xml.in.h:766
 msgid "Next"
-msgstr ""
+msgstr "Tiếp"
 
 #.
 #. http://www.docbook.org/tdg/en/html/note.html
@@ -990,21 +989,21 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:771
 msgid "Note"
-msgstr "Lời ghi"
+msgstr "Ghi chú"
 
 #.
 #. Used as a tooltip on play/pause buttons for audio and video objects.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:775
 msgid "Pause"
-msgstr ""
+msgstr "Tạm dừng"
 
 #.
 #. Used as a tooltip on play/pause buttons for audio and video objects.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:779
 msgid "Play"
-msgstr ""
+msgstr "Phát"
 
 #.
 #. http://www.docbook.org/tdg/en/html/preface.html
@@ -1017,7 +1016,7 @@ msgstr "Lời nói đầu"
 #. Used as link to the previous page in a series.
 #: ../xslt/gettext/l10n.xml.in.h:786
 msgid "Previous"
-msgstr ""
+msgstr "Trước"
 
 #.
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -1040,7 +1039,7 @@ msgstr "H:&#x2003;"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:803
 msgid "Ready for review"
-msgstr ""
+msgstr "Sẵn sàng để kiểm duyệt"
 
 #.
 #. http://www.docbook.org/tdg/en/html/revhistory.html
@@ -1048,7 +1047,7 @@ msgstr ""
 #.
 #: ../xslt/gettext/l10n.xml.in.h:808
 msgid "Revision History"
-msgstr "Lịch sử duyệt lại"
+msgstr "Tóm tắt thay đổi"
 
 #.
 #. Figures can automatically scale images down to fit the page width.
@@ -1057,7 +1056,7 @@ msgstr "Lịch sử duyệt lại"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:814
 msgid "Scale images down"
-msgstr ""
+msgstr "Co nhỏ ảnh"
 
 #.
 #. Used for the <see> element.
@@ -1081,7 +1080,7 @@ msgstr "Xem thêm"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:829
 msgid "Stub"
-msgstr ""
+msgstr "Giữ chỗ"
 
 #.
 #. http://www.docbook.org/tdg/en/html/refsynopsisdiv.html
@@ -1105,7 +1104,7 @@ msgstr "Lời khuyên"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:844
 msgid "View images at normal size"
-msgstr ""
+msgstr "Xem ảnh cỡ thường"
 
 #.
 #. http://www.docbook.org/tdg/en/html/warning.html
@@ -1147,10 +1146,9 @@ msgstr "default:LTR"
 #. double quotation mark for the watermark image.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:878
-#, fuzzy
 #| msgid "watermark-blockquote-201C.png"
 msgid "yelp-quote-201C.png"
-msgstr "thuỷ-ấn-trích-dẫn-khối-201C.png"
+msgstr "yelp-quote-201C.png"
 
 #~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 #~ msgstr "<msgid>appendix.digit</msgid> <msgstr>1</msgstr>"
