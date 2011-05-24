@@ -1,3 +1,20 @@
+3.1.1
+=====
+* Improvements to the JS/CSS for videos and TTML
+* Changed gettext infrastructure, use itstool
+* Improvements and cleanup to DocBook code
+* Implemented experimental Mallard conditional processing
+* Updated to jQuery.syntax 3.0, custom layout file
+* Don't embed div in a tag for linkdivs
+* Added title attribute to HTML output for all links
+* Updated translations:
+  en_GB (Bruce Cowan)
+  es    (Jorge González)
+  id    (Andika Triwidada)
+  sr    (Мирослав Николић)
+  sv    (Daniel Nylander)
+  vi    (Nguyễn Thái Ngọc Duy)
+
 3.0.2
 =====
 * Fixed Previous/Next link translation, bug #640318
