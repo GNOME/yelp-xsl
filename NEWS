@@ -1,3 +1,22 @@
+3.0.2
+=====
+* Fixed Previous/Next link translation, bug #640318
+* Updated translations:
+  bg    (Alexander Shopov)
+  ca    (Gil Forcada)
+  cs    (Marek Černocký)
+  de    (Mario Blättermann)
+  en_GB (Bruce Cowan)
+  es    (Daniel Mustieles)
+  fr    (Bruno Brouard)
+  hu    (Gabor Kelemen)
+  ko    (Changwoo Ryu)
+  ru    (Yuri Myasoedov)
+  sl    (Matej Urbančič)
+  sv    (Daniel Nylander)
+  ug    (Abduxukur Abdurixit)
+  vi    (Nguyễn Thái Ngọc Duy)
+
 3.0.1
 =====
 * Fixed page sorting for groups on mal:links
