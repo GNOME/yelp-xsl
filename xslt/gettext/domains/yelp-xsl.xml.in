@@ -100,8 +100,6 @@ to 'qanda', this string will be used to label answers.
 <msgstr>Bibliography</msgstr>
 </msg>
 
-<!-- FIXME: update code to call this -->
-<!-- FIXME -->
 <msg id="Candidate">
 <its:locNote>
 Revision status of a document or page. Content has been written and
@@ -185,7 +183,6 @@ title found in most UNIX man pages.
 <msgstr>Next</msgstr>
 </msg>
 
-<!-- FIXME: update code to call this -->
 <msg id="Outdated">
 <its:locNote>
 Revision status of a document or page. Content was once current,

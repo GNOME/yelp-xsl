@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-05-23 20:53-0400\n"
+"POT-Creation-Date: 2011-05-30 17:07-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,114 +87,114 @@ msgstr ""
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #. 
-#: yelp-xsl.xml.in:110(msg/msgstr)
+#: yelp-xsl.xml.in:108(msg/msgstr)
 msgid "Candidate"
 msgstr ""
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:116(msg/msgstr)
+#: yelp-xsl.xml.in:114(msg/msgstr)
 msgid "Colophon"
 msgstr ""
 
 #. Title of the listing of subsections.
-#: yelp-xsl.xml.in:122(msg/msgstr)
+#: yelp-xsl.xml.in:120(msg/msgstr)
 msgid "Contents"
 msgstr ""
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:127(msg/msgstr)
+#: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Dedication"
 msgstr ""
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #. 
-#: yelp-xsl.xml.in:135(msg/msgstr)
+#: yelp-xsl.xml.in:133(msg/msgstr)
 msgid "Draft"
 msgstr ""
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #. 
-#: yelp-xsl.xml.in:143(msg/msgstr)
+#: yelp-xsl.xml.in:141(msg/msgstr)
 msgid "Final"
 msgstr ""
 
 #. Automatic heading above a list of related links.
-#: yelp-xsl.xml.in:148(msg/msgstr)
+#: yelp-xsl.xml.in:146(msg/msgstr)
 msgid "Further Reading"
 msgstr ""
 
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:153(msg/msgstr)
+#: yelp-xsl.xml.in:151(msg/msgstr)
 msgid "Glossary"
 msgstr ""
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #. 
-#: yelp-xsl.xml.in:161(msg/msgstr)
+#: yelp-xsl.xml.in:159(msg/msgstr)
 msgid "Incomplete"
 msgstr ""
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:166(msg/msgstr)
+#: yelp-xsl.xml.in:164(msg/msgstr)
 msgid "Index"
 msgstr ""
 
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:171(msg/msgstr)
+#: yelp-xsl.xml.in:169(msg/msgstr)
 msgid "More About"
 msgstr ""
 
 #. Default title for a refnamediv element. This is the common section
 #. title found in most UNIX man pages.
 #. 
-#: yelp-xsl.xml.in:180(msg/msgstr)
+#: yelp-xsl.xml.in:178(msg/msgstr)
 msgid "Name"
 msgstr ""
 
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:185(msg/msgstr)
+#: yelp-xsl.xml.in:183(msg/msgstr)
 msgid "Next"
 msgstr ""
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #. 
-#: yelp-xsl.xml.in:194(msg/msgstr)
+#: yelp-xsl.xml.in:191(msg/msgstr)
 msgid "Outdated"
 msgstr ""
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:199(msg/msgstr)
+#: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "Pause"
 msgstr ""
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:204(msg/msgstr)
+#: yelp-xsl.xml.in:201(msg/msgstr)
 msgid "Play"
 msgstr ""
 
 #. Default title for a preface to a book.
-#: yelp-xsl.xml.in:210(msg/msgstr)
+#: yelp-xsl.xml.in:207(msg/msgstr)
 msgid "Preface"
 msgstr ""
 
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:215(msg/msgstr)
+#: yelp-xsl.xml.in:212(msg/msgstr)
 msgid "Previous"
 msgstr ""
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #. 
-#: yelp-xsl.xml.in:223(msg/msgstr)
+#: yelp-xsl.xml.in:220(msg/msgstr)
 msgid "Ready for review"
 msgstr ""
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:228(msg/msgstr)
+#: yelp-xsl.xml.in:225(msg/msgstr)
 msgid "See Also"
 msgstr ""
 
@@ -202,27 +202,27 @@ msgstr ""
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #. 
-#: yelp-xsl.xml.in:237(msg/msgstr)
+#: yelp-xsl.xml.in:234(msg/msgstr)
 msgid "Scale images down"
 msgstr ""
 
 #. Revision status of a document or page. No content has been written yet.
 #. 
-#: yelp-xsl.xml.in:244(msg/msgstr)
+#: yelp-xsl.xml.in:241(msg/msgstr)
 msgid "Stub"
 msgstr ""
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #. 
-#: yelp-xsl.xml.in:252(msg/msgstr)
+#: yelp-xsl.xml.in:249(msg/msgstr)
 msgid "Synopsis"
 msgstr ""
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #. 
-#: yelp-xsl.xml.in:260(msg/msgstr)
+#: yelp-xsl.xml.in:257(msg/msgstr)
 msgid "View images at normal size"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #. 
-#: yelp-xsl.xml.in:287(msg/msgstr)
+#: yelp-xsl.xml.in:284(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr ""
 
@@ -259,7 +259,7 @@ msgstr ""
 #. 
 #. <label/> - The term being defined by the glossary entry
 #. 
-#: yelp-xsl.xml.in:304(msg/msgstr)
+#: yelp-xsl.xml.in:301(msg/msgstr)
 msgid "View the bibliography entry <label/>."
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr ""
 #. 
 #. <biblioentry.label/> - The text content of the bibliography label
 #. 
-#: yelp-xsl.xml.in:424(msg/msgstr)
+#: yelp-xsl.xml.in:421(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr ""
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #. 
-#: yelp-xsl.xml.in:441(msg/msgstr)
+#: yelp-xsl.xml.in:438(msg/msgstr)
 msgid "[<citation/>]"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgstr ""
 #. 
 #. <string/> - The linked-to email address
 #. 
-#: yelp-xsl.xml.in:453(msg/msgstr)
+#: yelp-xsl.xml.in:450(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr ""
 
@@ -319,7 +319,7 @@ msgstr ""
 #. 
 #. <glossterm/> - The term being defined by the glossary entry
 #. 
-#: yelp-xsl.xml.in:465(msg/msgstr)
+#: yelp-xsl.xml.in:462(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:486(msg/msgstr)
+#: yelp-xsl.xml.in:483(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr ""
 
@@ -360,7 +360,7 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:508(msg/msgstr)
+#: yelp-xsl.xml.in:505(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr ""
 

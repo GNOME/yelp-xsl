@@ -162,11 +162,9 @@ REMARK: Describe this template
           <xsl:with-param name="role" select="$role"/>
         </xsl:call-template>
       </a>
-      <xsl:if test="$role = 'guide'">
-        <xsl:call-template name="mal2html.editor.badge">
-          <xsl:with-param name="target" select="$target"/>
-        </xsl:call-template>
-      </xsl:if>
+      <xsl:call-template name="mal2html.editor.badge">
+        <xsl:with-param name="target" select="$target"/>
+      </xsl:call-template>
       <xsl:if test="not($nodesc)">
         <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
         <xsl:if test="$desc">
@@ -477,9 +475,19 @@ REMARK: Describe this template
               <xsl:with-param name="msgid" select="'Draft'"/>
             </xsl:call-template>
           </xsl:when>
+          <xsl:when test="$revision/@status = 'outdated'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Outdated'"/>
+            </xsl:call-template>
+          </xsl:when>
           <xsl:when test="$revision/@status = 'review'">
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="'Ready for review'"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$revision/@status = 'candidate'">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Candidate'"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$revision/@status = 'final'">
@@ -526,9 +534,19 @@ REMARK: Describe this template
                 <xsl:with-param name="msgid" select="'Draft'"/>
               </xsl:call-template>
             </xsl:when>
+            <xsl:when test="$revision/@status = 'outdated'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Outdated'"/>
+              </xsl:call-template>
+            </xsl:when>
             <xsl:when test="$revision/@status = 'review'">
               <xsl:call-template name="l10n.gettext">
                 <xsl:with-param name="msgid" select="'Ready for review'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$revision/@status = 'candidate'">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Candidate'"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:when test="$revision/@status = 'final'">
@@ -1368,15 +1386,11 @@ span.status {
     <xsl:value-of select="$color.text_light"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.red_border"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
-span.status-stub { background-color: </xsl:text>
+span.status-stub, span.status-draft, span.status-incomplete, span.status-outdated { background-color: </xsl:text>
   <xsl:value-of select="$color.red_background"/><xsl:text>; }
-span.status-draft { background-color: </xsl:text>
-  <xsl:value-of select="$color.red_background"/><xsl:text>; }
-span.status-incomplete { background-color: </xsl:text>
-  <xsl:value-of select="$color.red_background"/><xsl:text>; }
-span.status-review { background-color: </xsl:text>
-  <xsl:value-of select="$color.yellow_background"/><xsl:text>; }
 </xsl:text>
 </xsl:if>
 </xsl:template>
