@@ -688,6 +688,7 @@ div.links &gt; div.title &gt; span.title {
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
 div.links ul { margin: 0; padding: 0; }
 li.links {
   margin: 0.5em 0 0.5em 0;

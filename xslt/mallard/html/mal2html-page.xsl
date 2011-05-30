@@ -1248,10 +1248,10 @@ td.twocolumnright {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
-div.desc a {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+div.links .desc a {
+  color: inherit;
 }
-div.desc a:hover {
+div.links .desc a:hover {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
 a.bold { font-weight: bold; }
