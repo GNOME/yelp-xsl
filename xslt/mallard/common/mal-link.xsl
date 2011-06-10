@@ -678,6 +678,12 @@ FIXME:
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
+    <xsl:when test="$guidenodes[@xref = $root]">
+      <mal:link xref="{$root}">
+        <xsl:copy-of select="$guidenodes[@xref = $root][1]/mal:title"/>
+        <xsl:copy-of select="$trail"/>
+      </mal:link>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:for-each select="$guidenodes">
         <xsl:variable name="self" select="."/>
