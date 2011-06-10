@@ -298,109 +298,12 @@ appropriate content, as follows:
 
 &lt;label/> - The term being defined by the glossary entry
 </its:locNote>
-<msgstr>View the bibliography entry <label/>.</msgstr>
+<msgstr>View the bibliography entry <biblioentry.label/>.</msgstr>
 </msg>
 
-<!-- FIXME: generalize for DocBook -->
-<msgset>
-  <msgstr>comment.cite.name-date.format</msgstr>
-  <!--
-  This is a special format message.  Please read the full translator
-  documentation before translating this message.  The documentation
-  is maintained as part of the stylesheet documentation in DocBook.
-  For your convenience, it has also been converted to an HTML file
-  named STYLESHEETS.xml in the i18n directory.
-
-  comment - Editorial comments
-  cite    - The source of a comment
-  http://projectmallard.org/1.0/mal_block_comment.html
-  http://projectmallard.org/1.0/mal_block_cite.html
-
-  This is a format message used to format the citation of a comment
-  made by an editor of a document. This appears on a new line after
-  the title of the comment, if a title is present, or as the first
-  line if a title is not present.
-
-  This string is used when both the name and the date are supplied.
-  In English, a title together with this format string might produce
-  something like this:
-
-    Some Comment Title
-    from Shaun McCance on 2010-06-03
-
-    Here is the text of the comment.
-
-  If only a name is supplied, and no date, then comment.cite.name.format
-  is used instead of this string.
-
-  Special elements in the message will be replaced with the
-  appropriate content, as follows:
-
-  comment.name - The name of the person making the comment
-  comment.date - The date the comment was made
-
-  These should be written as empty XML elements, e.g. <comment.name/>
-
-  Additionally, format messages can use the i, b, and tt markup tags
-  to mark text as italic, bold, and monospace.
-  -->
-  <_msg>
-    <msgstr>comment.cite.name-date.format</msgstr>
-    <msgstr>from <comment.name/> on <comment.date/></msgstr>
-  </_msg>
-</msgset>
-
-<!-- FIXME: generalize for DocBook -->
-<msgset>
-  <msgstr>comment.cite.name.format</msgstr>
-  <!--
-  This is a special format message.  Please read the full translator
-  documentation before translating this message.  The documentation
-  is maintained as part of the stylesheet documentation in DocBook.
-  For your convenience, it has also been converted to an HTML file
-  named STYLESHEETS.xml in the i18n directory.
-
-  comment - Editorial comments
-  cite    - The source of a comment
-  http://projectmallard.org/1.0/mal_block_comment.html
-  http://projectmallard.org/1.0/mal_block_cite.html
-
-  This is a format message used to format the citation of a comment
-  made by an editor of a document. This appears on a new line after
-  the title of the comment, if a title is present, or as the first
-  line if a title is not present.
-
-  This string is used when only the name of the commenter is supplied.
-  In English, a title together with this format string might produce
-  something like this:
-
-    Some Comment Title
-    from Shaun McCance
-
-    Here is the text of the comment.
-
-  If a date is also supplied, then comment.cite.name-date.format
-  is used instead of this string.
-
-  Special elements in the message will be replaced with the
-  appropriate content, as follows:
-
-  comment.name - The name of the person making the comment
-
-  These should be written as empty XML elements, e.g. <comment.name/>
-
-  Additionally, format messages can use the i, b, and tt markup tags
-  to mark text as italic, bold, and monospace.
-  -->
-  <_msg>
-    <msgstr>comment.cite.name.format</msgstr>
-    <msgstr>from <comment.name/></msgstr>
-  </_msg>
-</msgset>
-
-<msg id="biblioentry.label.format">
+<msg id="biblioentry.label">
 <its:locNote>
-ID: biblioentry.label.format
+ID: biblioentry.label
 This is a format message used to format the labels for entries in
 a bibliography.  The content of the label is often an abbreviation
 of the authors' names and the year of publication.  In English,
@@ -421,9 +324,9 @@ appropriate content, as follows:
 <msgstr>[<biblioentry.label/>]</msgstr>
 </msg>
 
-<msg id="citation.format">
+<msg id="citation.label">
 <its:locNote>
-ID: citation.format
+ID: citation.label
 This is a format message used to format inline citations to other
 published works.  The content is typically an abbreviation of the
 authors' last names.  In English, this abbreviation is usually
@@ -435,7 +338,64 @@ appropriate content, as follows:
 &lt;citation/> - The text content of the citation element, possibly
               as a link to an entry in the bibliography
 </its:locNote>
-<msgstr>[<citation/>]</msgstr>
+<msgstr>[<citation.label/>]</msgstr>
+</msg>
+
+<msg id="comment.name-date">
+<its:locNote>
+ID: comment.name-date
+This is a format message used to format the citation of a comment
+made by an editor of a document. This appears on a new line after
+the title of the comment, if a title is present, or as the first
+line if a title is not present.
+
+This string is used when both the name and the date are supplied.
+In English, a title together with this format string might produce
+something like this:
+
+  Some Comment Title
+  from Shaun McCance on 2010-06-03
+
+  Here is the text of the comment.
+
+If only a name is supplied, and no date, then comment.name is used
+instead of this string.
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;comment.name/> - The name of the person making the comment
+&lt;comment.date/> - The date the comment was made
+</its:locNote>
+<msgstr>from <comment.name/> on <comment.date/></msgstr>
+</msg>
+
+<msg id="comment.name">
+<its:locNote>
+ID: comment.name
+This is a format message used to format the citation of a comment
+made by an editor of a document. This appears on a new line after
+the title of the comment, if a title is present, or as the first
+line if a title is not present.
+
+This string is used when only the name of the commenter is supplied.
+In English, a title together with this format string might produce
+something like this:
+
+  Some Comment Title
+  from Shaun McCance
+
+  Here is the text of the comment.
+
+If a date is also supplied, then comment.name-date is used instead
+of this string.
+
+Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;comment.name/> - The name of the person making the comment
+</its:locNote>
+<msgstr>from <comment.name/></msgstr>
 </msg>
 
 <msg id="email.tooltip">

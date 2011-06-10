@@ -52,7 +52,7 @@ use the #{xreflabel} or #{id} attribute.
                 $node/*[1]/self::db:abbrev or $node/@xml:id">
     <span class="biblioentry.label">
       <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'biblioentry.label.format'"/>
+        <xsl:with-param name="msgid" select="'biblioentry.label'"/>
         <xsl:with-param name="node" select="."/>
         <xsl:with-param name="format" select="true()"/>
       </xsl:call-template>

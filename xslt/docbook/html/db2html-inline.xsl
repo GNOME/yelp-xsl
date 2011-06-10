@@ -214,14 +214,14 @@ FIXME
 <!-- = citation % db2html.inline.content.mode = -->
 <xsl:template mode="db2html.inline.content.mode" match="citation | db:citation">
   <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'citation.format'"/>
+    <xsl:with-param name="msgid" select="'citation.label'"/>
     <xsl:with-param name="node" select="."/>
     <xsl:with-param name="format" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 
 <!-- = citation % l10n.format.mode = -->
-<xsl:template mode="l10n.format.mode" match="msg:citation">
+<xsl:template mode="l10n.format.mode" match="msg:citation.label">
   <xsl:param name="node"/>
   <xsl:for-each select="$node[1]">
     <xsl:variable name="entry_abbrev" select="key('bibkey-abbrev', string($node))"/>

@@ -224,14 +224,14 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:choose>
       <xsl:when test="@date">
         <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="'comment.cite.name-date.format'"/>
+          <xsl:with-param name="msgid" select="'comment.name-date'"/>
           <xsl:with-param name="node" select="."/>
           <xsl:with-param name="format" select="true()"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="'comment.cite.name.format'"/>
+          <xsl:with-param name="msgid" select="'comment.name'"/>
           <xsl:with-param name="node" select="."/>
           <xsl:with-param name="format" select="true()"/>
         </xsl:call-template>

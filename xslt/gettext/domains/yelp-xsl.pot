@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-05-30 17:07-0400\n"
+"POT-Creation-Date: 2011-06-10 15:29-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,10 +260,10 @@ msgstr ""
 #. <label/> - The term being defined by the glossary entry
 #. 
 #: yelp-xsl.xml.in:301(msg/msgstr)
-msgid "View the bibliography entry <label/>."
+msgid "View the bibliography entry <biblioentry.label/>."
 msgstr ""
 
-#. ID: biblioentry.label.format
+#. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
 #. a bibliography.  The content of the label is often an abbreviation
 #. of the authors' names and the year of publication.  In English,
@@ -281,11 +281,11 @@ msgstr ""
 #. 
 #. <biblioentry.label/> - The text content of the bibliography label
 #. 
-#: yelp-xsl.xml.in:421(msg/msgstr)
+#: yelp-xsl.xml.in:324(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr ""
 
-#. ID: citation.format
+#. ID: citation.label
 #. This is a format message used to format inline citations to other
 #. published works.  The content is typically an abbreviation of the
 #. authors' last names.  In English, this abbreviation is usually
@@ -297,8 +297,63 @@ msgstr ""
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #. 
-#: yelp-xsl.xml.in:438(msg/msgstr)
-msgid "[<citation/>]"
+#: yelp-xsl.xml.in:341(msg/msgstr)
+msgid "[<citation.label/>]"
+msgstr ""
+
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#. 
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#. 
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#. 
+#.   Here is the text of the comment.
+#. 
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#. 
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#. 
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#. 
+#: yelp-xsl.xml.in:370(msg/msgstr)
+msgid "from <comment.name/> on <comment.date/>"
+msgstr ""
+
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#. 
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#. 
+#.   Some Comment Title
+#.   from Shaun McCance
+#. 
+#.   Here is the text of the comment.
+#. 
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#. 
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#. 
+#. <comment.name/> - The name of the person making the comment
+#. 
+#: yelp-xsl.xml.in:398(msg/msgstr)
+msgid "from <comment.name/>"
 msgstr ""
 
 #. ID: email.tooltip
@@ -308,7 +363,7 @@ msgstr ""
 #. 
 #. <string/> - The linked-to email address
 #. 
-#: yelp-xsl.xml.in:450(msg/msgstr)
+#: yelp-xsl.xml.in:410(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr ""
 
@@ -319,7 +374,7 @@ msgstr ""
 #. 
 #. <glossterm/> - The term being defined by the glossary entry
 #. 
-#: yelp-xsl.xml.in:462(msg/msgstr)
+#: yelp-xsl.xml.in:422(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr ""
 
@@ -339,7 +394,7 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:483(msg/msgstr)
+#: yelp-xsl.xml.in:443(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr ""
 
@@ -360,7 +415,7 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:505(msg/msgstr)
+#: yelp-xsl.xml.in:465(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr ""
 
