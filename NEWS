@@ -1,3 +1,20 @@
+3.1.2
+=====
+* Changed formatting of notes
+* Style tweaks to linkdivs and link trails
+* Fixed localization for bibliographies, citations, comments
+* Trim link trails that are longer forms of other trails
+* Added experimental ui:expanded support for notes
+* Updated translations
+  ca@valencia  (Carles Ferrando)
+  es           (Jorge González)
+  fa           (Arash Mousavi)
+  gl           (Fran Diéguez)
+  he           (Yaron Shahrabani)
+  nb           (Kjartan Maraas)
+  sl           (Matej Urbančič)
+  ug           (Abduxukur Abdurixit)
+
 3.1.1
 =====
 * Improvements to the JS/CSS for videos and TTML
