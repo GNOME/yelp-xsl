@@ -802,12 +802,10 @@ div.listing > div.inner { margin: 0; padding: 0; }
 div.listing > div.inner > div.desc { font-style: italic; }
 div.note {
   padding: 6px;
-  border-top: solid 1px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.dark_background"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.note > div.inner > div.title {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
@@ -841,10 +839,6 @@ div.note-sidebar {
   max-width: 40%;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
   padding: 6px;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.note-sidebar > div.inner { background-image: none; }
 div.note-sidebar > div.inner > div.title { margin-</xsl:text>
