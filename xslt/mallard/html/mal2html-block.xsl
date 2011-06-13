@@ -19,9 +19,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:if="http://projectmallard.org/experimental/if/"
+                xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal if msg"
+                exclude-result-prefixes="mal if ui msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -349,10 +350,31 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:if test="normalize-space($notestyle) != ''">
         <xsl:value-of select="concat(' note-', $notestyle)"/>
       </xsl:if>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander </xsl:text>
+        <xsl:choose>
+          <xsl:when test="@ui:expanded = 'yes'">
+            <xsl:text>ui-expander-e</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>ui-expander-c</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
     </xsl:attribute>
+    <xsl:if test="mal:title and @ui:expanded">
+      <xsl:attribute name="data-yelp-dir">
+        <xsl:call-template name="l10n.direction"/>
+      </xsl:attribute>
+    </xsl:if>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="contents">
+        <xsl:if test="mal:title and @ui:expanded">
+          <xsl:attribute name="id">
+            <xsl:value-of select="concat('-yelp-', generate-id(.))"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
       </div>
     </div>

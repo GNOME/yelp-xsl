@@ -1050,6 +1050,23 @@ div.media-ttml-p {
   -moz-box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.ui-expander > div.inner > div.title:hover {
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+}
+div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr {
+  display: inline-block; <!-- webkit needs this to rotate -->
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+}
+div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl {
+  display: inline-block; <!-- webkit needs this to rotate -->
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+}
 </xsl:text>
 </xsl:template>
 
@@ -1437,6 +1454,34 @@ function yelp_init_video (element) {
 };
 $(document).ready(function () {
   $('video.media-block').each(function () { yelp_init_video(this) });;
+});
+$(document).ready(function () {
+  $('.ui-expander').each(function () {
+    var expander = $(this);
+    var arrow;
+    if (expander.attr('data-yelp-dir') == 'rtl')
+      arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
+    else
+      arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
+    var contents = expander.children('.inner').children('.contents');
+    var title = expander.children('.inner').children('.title');
+    title.attr('role', 'button').attr('aria-controls', contents.attr('id'));
+    title.children().append('&#x00A0;&#x00A0;').append(arrow);
+    if (expander.is('.ui-expander-c'))
+      contents.attr('aria-expanded', 'false').hide();
+    else
+      contents.attr('aria-expanded', 'true');
+    expander.children('.inner').children('.title').click(function () {
+      if (expander.is('.ui-expander-e')) {
+        expander.removeClass('ui-expander-e').addClass('ui-expander-c');
+        contents.attr('aria-expanded', 'false').slideUp('fast');
+      }
+      else {
+        expander.removeClass('ui-expander-c').addClass('ui-expander-e');
+        contents.attr('aria-expanded', 'true').slideDown('fast');
+      }
+    });
+  });
 });
 ]]></xsl:text>
 </xsl:template>
