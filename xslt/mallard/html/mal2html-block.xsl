@@ -273,8 +273,15 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = figure = -->
 <xsl:template mode="mal2html.block.mode" match="mal:figure">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="figure">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:attribute name="class">
+      <xsl:text>figure</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <a href="#" class="zoom">
         <xsl:attribute name="data-zoom-in-title">
@@ -289,12 +296,14 @@ in accordance with the Mallard specification on fallback block content.
         </xsl:attribute>
       </a>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <div class="contents">
-        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
-          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-        </xsl:for-each>
+      <div class="region">
+        <div class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </div>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
       </div>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
     </div>
   </div>
 </xsl:if>
@@ -303,15 +312,24 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="listing">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:attribute name="class">
+      <xsl:text>listing</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-      <div class="contents">
-        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
-          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-        </xsl:for-each>
+      <div class="region">
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <div class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </div>
       </div>
     </div>
   </div>
@@ -357,13 +375,15 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <div class="contents">
-        <xsl:if test="mal:title and @ui:expanded">
-          <xsl:attribute name="id">
-            <xsl:value-of select="concat('-yelp-', generate-id(.))"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
+      <div class="region">
+        <div class="contents">
+          <xsl:if test="mal:title and @ui:expanded">
+            <xsl:attribute name="id">
+              <xsl:value-of select="concat('-yelp-', generate-id(.))"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
+        </div>
       </div>
     </div>
   </div>
@@ -468,15 +488,24 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="synopsis">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:attribute name="class">
+      <xsl:text>synopsis</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
-      <div class="contents">
-        <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
-          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-        </xsl:for-each>
+      <div class="region">
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <div class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </div>
       </div>
     </div>
   </div>

@@ -577,7 +577,7 @@ h3, h4, h5, h6, h7 { font-size: 1em; }
 p { line-height: 1.72em; }
 div, pre, p { margin: 1em 0 0 0; padding: 0; }
 div:first-child, pre:first-child, p:first-child { margin-top: 0; }
-div.inner, div.contents, pre.contents { margin-top: 0; }
+div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
 pre.contents div { margin-top: 0 !important; }
 p img { vertical-align: middle; }
 div.clear {
@@ -785,7 +785,7 @@ div.figure {
 div.figure > div.inner > a.zoom {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
 }
-div.figure > div.inner > div.contents {
+div.figure > div.inner > div.region > div.contents {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   clear: both;
@@ -799,7 +799,7 @@ div.figure > div.inner > div.contents {
 }
 div.list > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
-div.listing > div.inner > div.desc { font-style: italic; }
+div.listing > div.inner > div.region > div.desc { font-style: italic; }
 div.note {
   padding: 6px;
   border: solid 1px </xsl:text>
@@ -811,7 +811,7 @@ div.note > div.inner > div.title {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
 }
-div.note > div.inner > div.contents {
+div.note > div.inner > div.region > div.contents {
   margin: 0; padding: 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
@@ -843,7 +843,7 @@ div.note-sidebar {
 div.note-sidebar > div.inner { background-image: none; }
 div.note-sidebar > div.inner > div.title { margin-</xsl:text>
   <xsl:value-of select="$left"/><xsl:text>: 0px; }
-div.note-sidebar > div.inner > div.contents { margin-</xsl:text>
+div.note-sidebar > div.inner > div.region > div.contents { margin-</xsl:text>
   <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.quote {
   padding: 0;
@@ -897,7 +897,7 @@ ol.steps .steps {
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
-div.synopsis > div.inner > div.contents, div.synopsis > pre.contents {
+div.synopsis > div.inner > div.region > div.contents, div.synopsis > pre.contents {
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 1px;
   border-bottom: solid 1px;
@@ -906,7 +906,7 @@ div.synopsis > div.inner > div.contents, div.synopsis > pre.contents {
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
-div.synopsis > div.inner > div.desc { font-style: italic; }
+div.synopsis > div.inner > div.region > div.desc { font-style: italic; }
 div.synopsis div.code {
   background: none;
   border: none;
@@ -1280,19 +1280,33 @@ $.fn.yelp_auto_resize = function () {
   }
   $(window).unbind('resize', yelp_resize_imgs);
   var zoom = fig.children('div.inner').children('a.zoom');
+  if (fig.find('div.contents:first').is(':hidden')) {
+    zoom.hide();
+    return;
+  }
   for (var i = 0; i < imgs.length; i++) {
     var img = $(imgs[i]);
     if (img.data('yelp-original-width') == undefined) {
-      img.data('yelp-original-width', img.width());
+      var iwidth = parseInt(img.attr('width'));
+      if (!iwidth)
+        iwidth = img[0].width;
+      img.data('yelp-original-width', iwidth);
+      var iheight = parseInt(img.attr('height'));
+      if (!iheight)
+        iheight = img[0].height * (iwidth / img[0].width);
+      img.data('yelp-original-height', iheight);
     }
     if (img.data('yelp-original-width') > img.parent().width()) {
       if (img.data('yelp-zoomed') != true) {
-        img.width(img.parent().width());
+        img[0].width = img.parent().width();
+        img[0].height = (parseInt(img.data('yelp-original-height')) *
+                         img.width() / parseInt(img.data('yelp-original-width')));
       }
       zoom.show();
     }
     else {
-      img.width(img.data('yelp-original-width'));
+      img[0].width = img.data('yelp-original-width');
+      img[0].height = img.data('yelp-original-height');
       zoom.hide();
     }
   }
@@ -1329,10 +1343,14 @@ $(document).ready(function () {
       zoom.parent().find('img').each(function () {
         var zimg = $(this);
         zimg.data('yelp-zoomed', zoomed);
-        if (zoomed)
-          zimg.width(zimg.data('yelp-original-width'));
-        else
-          zimg.width(zimg.parent().width());
+        if (zoomed) {
+          zimg[0].width = zimg.data('yelp-original-width');
+          zimg[0].height = zimg.data('yelp-original-height');
+        } else {
+          zimg[0].width = zimg.parent().width();
+          zimg[0].height = (parseInt(zimg.data('yelp-original-height')) *
+                            zimg.width() / parseInt(zimg.data('yelp-original-width')));
+        }
         yelp_paint_zoom(zoom, zoomed);
       });
       return false;
@@ -1459,29 +1477,32 @@ $(document).ready(function () {
       arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
     else
       arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
-    var contents = expander.children('.inner').children('.contents');
+    var region = expander.children('.inner').children('.region');
     var title = expander.children('.inner').children('.title');
     var titlespan = title.find('span.title:first');
     var titlebase = titlespan.html();
-    title.attr('role', 'button').attr('aria-controls', contents.attr('id'));
+    title.attr('role', 'button').attr('aria-controls', region.attr('id'));
     title.children().append('&#x00A0;&#x00A0;').append(arrow);
     var title_e = yelpdata.children('div.yelp-title-expanded');
     var title_c = yelpdata.children('div.yelp-title-collapsed');
     if (yelpdata.attr('data-yelp-expanded') == 'no') {
       expander.addClass('ui-expander-c');
-      contents.attr('aria-expanded', 'false').hide();
+      region.attr('aria-expanded', 'false').hide();
       if (title_c.length != 0)
         titlespan.html(title_c.html());
     } else {
       expander.addClass('ui-expander-e');
-      contents.attr('aria-expanded', 'true');
+      region.attr('aria-expanded', 'true');
       if (title_e.length != 0)
         titlespan.html(title_e.html());
     }
     expander.children('.inner').children('.title').click(function () {
+      var compfunc = function () { return true; };
+      if (expander.is('div.figure'))
+        compfunc = function () { expander.yelp_auto_resize(); };
       if (expander.is('.ui-expander-e')) {
         expander.removeClass('ui-expander-e').addClass('ui-expander-c');
-        contents.attr('aria-expanded', 'false').slideUp('fast');
+        region.attr('aria-expanded', 'false').slideUp('fast', compfunc);
         if (title_c.length != 0)
           titlespan.html(title_c.html());
         else
@@ -1489,7 +1510,7 @@ $(document).ready(function () {
       }
       else {
         expander.removeClass('ui-expander-c').addClass('ui-expander-e');
-        contents.attr('aria-expanded', 'true').slideDown('fast');
+        region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
         if (title_e.length != 0)
           titlespan.html(title_e.html());
         else
