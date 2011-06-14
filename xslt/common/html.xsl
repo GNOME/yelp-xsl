@@ -1044,6 +1044,7 @@ div.media-ttml-p {
   -moz-box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.yelp-data { display: none; }
 div.ui-expander > div.inner > div.title:hover {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
@@ -1452,27 +1453,47 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('.ui-expander').each(function () {
     var expander = $(this);
+    var yelpdata = expander.children('div.yelp-data-ui-expander');
     var arrow;
-    if (expander.attr('data-yelp-dir') == 'rtl')
+    if (yelpdata.attr('dir') == 'rtl')
       arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
     else
       arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
     var contents = expander.children('.inner').children('.contents');
     var title = expander.children('.inner').children('.title');
+    var titlespan = title.find('span.title:first');
+    var titlebase = titlespan.html();
     title.attr('role', 'button').attr('aria-controls', contents.attr('id'));
     title.children().append('&#x00A0;&#x00A0;').append(arrow);
-    if (expander.is('.ui-expander-c'))
+    var title_e = yelpdata.children('div.yelp-title-expanded');
+    var title_c = yelpdata.children('div.yelp-title-collapsed');
+    if (yelpdata.attr('data-yelp-expanded') == 'no') {
+      expander.addClass('ui-expander-c');
       contents.attr('aria-expanded', 'false').hide();
-    else
+      if (title_c.length != 0)
+        titlespan.html(title_c.html());
+    } else {
+      expander.addClass('ui-expander-e');
       contents.attr('aria-expanded', 'true');
+      if (title_e.length != 0)
+        titlespan.html(title_e.html());
+    }
     expander.children('.inner').children('.title').click(function () {
       if (expander.is('.ui-expander-e')) {
         expander.removeClass('ui-expander-e').addClass('ui-expander-c');
         contents.attr('aria-expanded', 'false').slideUp('fast');
+        if (title_c.length != 0)
+          titlespan.html(title_c.html());
+        else
+          titlespan.html(titlebase);
       }
       else {
         expander.removeClass('ui-expander-c').addClass('ui-expander-e');
         contents.attr('aria-expanded', 'true').slideDown('fast');
+        if (title_e.length != 0)
+          titlespan.html(title_e.html());
+        else
+          titlespan.html(titlebase);
       }
     });
   });

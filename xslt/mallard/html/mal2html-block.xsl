@@ -351,22 +351,10 @@ in accordance with the Mallard specification on fallback block content.
         <xsl:value-of select="concat(' note-', $notestyle)"/>
       </xsl:if>
       <xsl:if test="mal:title and @ui:expanded">
-        <xsl:text> ui-expander </xsl:text>
-        <xsl:choose>
-          <xsl:when test="@ui:expanded = 'yes'">
-            <xsl:text>ui-expander-e</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>ui-expander-c</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:text> ui-expander</xsl:text>
       </xsl:if>
     </xsl:attribute>
-    <xsl:if test="mal:title and @ui:expanded">
-      <xsl:attribute name="data-yelp-dir">
-        <xsl:call-template name="l10n.direction"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="contents">
@@ -380,6 +368,42 @@ in accordance with the Mallard specification on fallback block content.
     </div>
   </div>
 </xsl:if>
+</xsl:template>
+
+<xsl:template name="mal2html.ui.expander.data">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/self::ui:expander)">
+    <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
+    <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
+    <div class="yelp-data yelp-data-ui-expander">
+      <xsl:attribute name="dir">
+        <xsl:call-template name="l10n.direction"/>
+      </xsl:attribute>
+      <xsl:attribute name="data-yelp-expanded">
+        <xsl:choose>
+          <xsl:when test="$node/self::ui:expander/@expanded = 'no'">
+            <xsl:text>no</xsl:text>
+          </xsl:when>
+          <xsl:when test="$node/@ui:expanded = 'no'">
+            <xsl:text>no</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>yes</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:if test="$title_e">
+        <div class="yelp-title-expanded">
+          <xsl:apply-templates mode="mal2html.inline.mode" select="$title_e/node()"/>
+        </div>
+      </xsl:if>
+      <xsl:if test="$title_c">
+        <div class="yelp-title-collapsed">
+          <xsl:apply-templates mode="mal2html.inline.mode" select="$title_c/node()"/>
+        </div>
+      </xsl:if>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = info = -->
