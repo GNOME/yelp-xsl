@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal str"
+                exclude-result-prefixes="mal ui str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -169,36 +170,45 @@ REMARK: Describe this module
       <xsl:for-each select="str:tokenize(@style)">
         <xsl:value-of select="concat(' style-', .)"/>
       </xsl:for-each>
-    </xsl:attribute>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title | mal:desc"/>
-    <table class="table">
-      <xsl:if test="$style != ''">
-        <xsl:attribute name="style">
-          <xsl:value-of select="$style"/>
-        </xsl:attribute>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
       </xsl:if>
-      <xsl:apply-templates select="mal:thead">
-        <xsl:with-param name="cols" select="$cols"/>
-        <xsl:with-param name="rowrules" select="$rowrules"/>
-        <xsl:with-param name="colrules" select="$colrules"/>
-        <xsl:with-param name="rowshade" select="$rowshade"/>
-        <xsl:with-param name="colshade" select="$colshade"/>
-      </xsl:apply-templates>
-      <xsl:apply-templates select="mal:tfoot">
-        <xsl:with-param name="cols" select="$cols"/>
-        <xsl:with-param name="rowrules" select="$rowrules"/>
-        <xsl:with-param name="colrules" select="$colrules"/>
-        <xsl:with-param name="rowshade" select="$rowshade"/>
-        <xsl:with-param name="colshade" select="$colshade"/>
-      </xsl:apply-templates>
-      <xsl:apply-templates select="mal:tr[1] | mal:tbody">
-        <xsl:with-param name="cols" select="$cols"/>
-        <xsl:with-param name="rowrules" select="$rowrules"/>
-        <xsl:with-param name="colrules" select="$colrules"/>
-        <xsl:with-param name="rowshade" select="$rowshade"/>
-        <xsl:with-param name="colshade" select="$colshade"/>
-      </xsl:apply-templates>
-    </table>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="region">
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <table class="table">
+          <xsl:if test="$style != ''">
+            <xsl:attribute name="style">
+              <xsl:value-of select="$style"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:apply-templates select="mal:thead">
+            <xsl:with-param name="cols" select="$cols"/>
+            <xsl:with-param name="rowrules" select="$rowrules"/>
+            <xsl:with-param name="colrules" select="$colrules"/>
+            <xsl:with-param name="rowshade" select="$rowshade"/>
+            <xsl:with-param name="colshade" select="$colshade"/>
+          </xsl:apply-templates>
+          <xsl:apply-templates select="mal:tfoot">
+            <xsl:with-param name="cols" select="$cols"/>
+            <xsl:with-param name="rowrules" select="$rowrules"/>
+            <xsl:with-param name="colrules" select="$colrules"/>
+            <xsl:with-param name="rowshade" select="$rowshade"/>
+            <xsl:with-param name="colshade" select="$colshade"/>
+          </xsl:apply-templates>
+          <xsl:apply-templates select="mal:tr[1] | mal:tbody">
+            <xsl:with-param name="cols" select="$cols"/>
+            <xsl:with-param name="rowrules" select="$rowrules"/>
+            <xsl:with-param name="colrules" select="$colrules"/>
+            <xsl:with-param name="rowshade" select="$rowshade"/>
+            <xsl:with-param name="colshade" select="$colshade"/>
+          </xsl:apply-templates>
+        </table>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>

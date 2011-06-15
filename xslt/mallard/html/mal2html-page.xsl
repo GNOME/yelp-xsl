@@ -1320,6 +1320,7 @@ div.comment div.cite {
   font-style: italic;
 }
 
+div.tree > div.inner > div.title { margin-bottom: 0.5em; }
 ul.tree {
   margin: 0; padding: 0;
   list-style-type: none;

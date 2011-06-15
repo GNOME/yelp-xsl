@@ -797,7 +797,7 @@ div.figure > div.inner > div.region > div.contents {
   background-color: </xsl:text>
     <xsl:value-of select="$color.background"/><xsl:text>;
 }
-div.list > div.title { margin-bottom: 0.5em; }
+div.list > div.inner > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
 div.listing > div.inner > div.region > div.desc { font-style: italic; }
 div.note {
@@ -864,15 +864,16 @@ blockquote {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
 }
-div.quote > div.inner > div.cite {
+div.quote > div.inner > div.region > div.cite {
   margin-top: 0.5em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-div.quote > div.inner > div.cite::before {
+div.quote > div.inner > div.region > div.cite::before {
   <!-- FIXME: i18n -->
   content: '&#x2015; ';
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.screen {
   background-color: </xsl:text>

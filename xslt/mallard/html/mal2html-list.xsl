@@ -18,9 +18,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal str"
+                exclude-result-prefixes="mal ui str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -49,23 +50,34 @@ as well as any special processing for child #{item} elements.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="list">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <xsl:element name="{$el}" namespace="{$html.namespace}">
-      <xsl:attribute name="class">
-        <xsl:text>list</xsl:text>
-        <xsl:if test="contains($style, ' compact ')">
-          <xsl:text> compact</xsl:text>
-        </xsl:if>
-      </xsl:attribute>
-      <xsl:if test="@type">
-        <xsl:attribute name="style">
-          <xsl:value-of select="concat('list-style-type:', @type)"/>
-        </xsl:attribute>
+    <xsl:attribute name="class">
+      <xsl:text>list</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
       </xsl:if>
-      <xsl:apply-templates select="mal:item"/>
-    </xsl:element>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="region">
+        <xsl:element name="{$el}" namespace="{$html.namespace}">
+          <xsl:attribute name="class">
+            <xsl:text>list</xsl:text>
+            <xsl:if test="contains($style, ' compact ')">
+              <xsl:text> compact</xsl:text>
+            </xsl:if>
+          </xsl:attribute>
+          <xsl:if test="@type">
+            <xsl:attribute name="style">
+              <xsl:value-of select="concat('list-style-type:', @type)"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:apply-templates select="mal:item"/>
+        </xsl:element>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>
@@ -83,12 +95,23 @@ as well as any special processing for child #{item} elements.
 <!-- = steps = -->
 <xsl:template mode="mal2html.block.mode" match="mal:steps">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="steps">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <ol class="steps">
-      <xsl:apply-templates select="mal:item"/>
-    </ol>
+    <xsl:attribute name="class">
+      <xsl:text>steps</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="region">
+        <ol class="steps">
+          <xsl:apply-templates select="mal:item"/>
+        </ol>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>
@@ -107,18 +130,29 @@ as well as any special processing for child #{item} elements.
 <xsl:template mode="mal2html.block.mode" match="mal:terms">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
-  <div class="terms">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-    <dl class="terms">
-      <xsl:attribute name="class">
-        <xsl:text>terms</xsl:text>
-        <xsl:if test="contains($style, ' compact ')">
-          <xsl:text> compact</xsl:text>
-        </xsl:if>
-      </xsl:attribute>
-      <xsl:apply-templates select="mal:item"/>
-    </dl>
+    <xsl:attribute name="class">
+      <xsl:text>terms</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="region">
+        <dl class="terms">
+          <xsl:attribute name="class">
+            <xsl:text>terms</xsl:text>
+            <xsl:if test="contains($style, ' compact ')">
+              <xsl:text> compact</xsl:text>
+            </xsl:if>
+          </xsl:attribute>
+          <xsl:apply-templates select="mal:item"/>
+        </dl>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>
@@ -152,12 +186,21 @@ as well as any special processing for child #{item} elements.
       <xsl:if test="$lines">
         <xsl:text> tree-lines</xsl:text>
       </xsl:if>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
     </xsl:attribute>
-    <ul class="tree">
-      <xsl:apply-templates mode="mal2html.tree.mode" select="mal:item">
-        <xsl:with-param name="lines" select="$lines"/>
-      </xsl:apply-templates>
-    </ul>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <div class="region">
+        <ul class="tree">
+          <xsl:apply-templates mode="mal2html.tree.mode" select="mal:item">
+            <xsl:with-param name="lines" select="$lines"/>
+          </xsl:apply-templates>
+        </ul>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>

@@ -202,15 +202,24 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
-    <div class="comment">
+    <div>
       <xsl:call-template name="html.lang.attrs"/>
+      <xsl:attribute name="class">
+        <xsl:text>comment</xsl:text>
+        <xsl:if test="mal:title and @ui:expanded">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:call-template name="mal2html.ui.expander.data"/>
       <div class="inner">
         <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-        <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
-        <div class="contents">
-          <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
-            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-          </xsl:for-each>
+        <div class="region">
+          <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
+          <div class="contents">
+            <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
+              <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+            </xsl:for-each>
+          </div>
         </div>
       </div>
     </div>
@@ -390,42 +399,6 @@ in accordance with the Mallard specification on fallback block content.
 </xsl:if>
 </xsl:template>
 
-<xsl:template name="mal2html.ui.expander.data">
-  <xsl:param name="node" select="."/>
-  <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/self::ui:expander)">
-    <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
-    <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
-    <div class="yelp-data yelp-data-ui-expander">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction"/>
-      </xsl:attribute>
-      <xsl:attribute name="data-yelp-expanded">
-        <xsl:choose>
-          <xsl:when test="$node/self::ui:expander/@expanded = 'no'">
-            <xsl:text>no</xsl:text>
-          </xsl:when>
-          <xsl:when test="$node/@ui:expanded = 'no'">
-            <xsl:text>no</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>yes</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-      <xsl:if test="$title_e">
-        <div class="yelp-title-expanded">
-          <xsl:apply-templates mode="mal2html.inline.mode" select="$title_e/node()"/>
-        </div>
-      </xsl:if>
-      <xsl:if test="$title_c">
-        <div class="yelp-title-collapsed">
-          <xsl:apply-templates mode="mal2html.inline.mode" select="$title_c/node()"/>
-        </div>
-      </xsl:if>
-    </div>
-  </xsl:if>
-</xsl:template>
-
 <!-- = info = -->
 <xsl:template mode="mal2html.block.mode" match="mal:info"/>
 
@@ -442,16 +415,25 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = quote = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="quote">
+  <div>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:attribute name="class">
+      <xsl:text>quote</xsl:text>
+      <xsl:if test="mal:title and @ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
-      <blockquote class="contents">
-        <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
-          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-        </xsl:for-each>
-      </blockquote>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
+      <div class="region">
+        <blockquote class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:cite)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </blockquote>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:cite"/>
+      </div>
     </div>
   </div>
 </xsl:if>

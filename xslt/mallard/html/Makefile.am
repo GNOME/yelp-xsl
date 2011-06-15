@@ -9,6 +9,7 @@ xsl_DATA =				\
 	mal2html-page.xsl		\
 	mal2html-svg.xsl		\
 	mal2html-table.xsl		\
+	mal2html-ui.xsl			\
 	mal2html.xsl			\
 	mal2xhtml.xsl
 
