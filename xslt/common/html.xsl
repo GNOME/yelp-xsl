@@ -684,7 +684,7 @@ div.contents + div.desc { margin: 0.2em 0 0 0; }
 pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
-div.links &gt; div.title &gt; span.title {
+div.links > div.inner > div.title span.title {
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }

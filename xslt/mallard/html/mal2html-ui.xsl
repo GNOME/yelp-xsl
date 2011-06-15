@@ -37,16 +37,23 @@ mal2html.ui.expander.data
 Output data for an expander.
 :Revision:version="1.0" date="2011-06-14" status="final"
 $node: The source element to output data for.
+$expander: Whether ${node} is actually an expander.
 
 This template outputs an HTML #{div} element with the #{class} attribute set to
 #{"yelp-data yelp-data-ui-expander"}. All #{yelp-data} elements are hidden by
 the CSS. The div contains information about text directionality, the default
 expanded state, and optionally additional titles for the expanded and collapsed
 states.
+
+The expander information is only output if the ${expander} parameter is #{true}.
+This parameter can be calculated automatically, but it will give false negatives
+for blocks that produce automatic titles.
 -->
 <xsl:template name="mal2html.ui.expander.data">
   <xsl:param name="node" select="."/>
-  <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/self::ui:expander)">
+  <xsl:param name="expander" select="$node/mal:title and
+                                     ($node/@ui:expanded or $node/self::ui:expander)"/>
+  <xsl:if test="$expander">
     <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
     <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
     <div class="yelp-data yelp-data-ui-expander">

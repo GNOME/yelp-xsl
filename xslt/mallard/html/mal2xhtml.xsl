@@ -44,6 +44,7 @@ REMARK: Describe this module
 <xsl:include href="mal2html-block.xsl"/>
 <xsl:include href="mal2html-facets.xsl"/>
 <xsl:include href="mal2html-inline.xsl"/>
+<xsl:include href="mal2html-links.xsl"/>
 <xsl:include href="mal2html-list.xsl"/>
 <xsl:include href="mal2html-media.xsl"/>
 <xsl:include href="mal2html-page.xsl"/>
