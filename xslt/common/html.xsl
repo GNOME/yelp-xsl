@@ -884,12 +884,14 @@ div.screen {
 ol.steps, ul.steps {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
-  border-top: solid 1px;
-  border-bottom: solid 1px;
-  border-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
+    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+  -moz-box-shadow: 0 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -webkit-box-shadow: 0 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  box-shadow: 0 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 ol.steps .steps {
   padding: 0;
