@@ -18,10 +18,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
+                xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal e exsl"
+                exclude-result-prefixes="mal ui e exsl"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -338,8 +339,17 @@ REMARK: Describe this template
 
 <!-- = section = -->
 <xsl:template mode="mal2html.section.mode" match="mal:section">
-  <div class="sect" id="{@id}">
-    <xsl:apply-templates select="."/>
+  <div id="{@id}">
+    <xsl:attribute name="class">
+      <xsl:text>sect</xsl:text>
+      <xsl:if test="@ui:expanded">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates select="."/>
+    </div>
   </div>
 </xsl:template>
 
@@ -381,6 +391,7 @@ REMARK: Describe this template
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
+  <div class="region">
   <div class="contents">
     <xsl:if test="$type = 'facets'">
       <xsl:call-template name="mal2html.facets.controls"/>
@@ -468,9 +479,11 @@ REMARK: Describe this template
           </xsl:choose>
         </xsl:variable>
         <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Further Reading'"/>
-          </xsl:call-template>
+          <span class="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Further Reading'"/>
+            </xsl:call-template>
+          </span>
         </xsl:element>
       </div>
       <div class="contents">
@@ -526,6 +539,7 @@ REMARK: Describe this template
       </div>
     </div>
   </xsl:if>
+  </div>
 </xsl:template>
 
 
@@ -551,7 +565,7 @@ FIXME
   </xsl:variable>
   <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
     <xsl:attribute name="class">
-      <xsl:text>title</xsl:text>
+      <xsl:text>subtitle</xsl:text>
     </xsl:attribute>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </xsl:element>
@@ -575,7 +589,9 @@ FIXME
     <xsl:attribute name="class">
       <xsl:text>title</xsl:text>
     </xsl:attribute>
-    <xsl:apply-templates mode="mal2html.inline.mode"/>
+    <span class="title">
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
+    </span>
   </xsl:element>
 </xsl:template>
 

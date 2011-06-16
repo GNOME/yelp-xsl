@@ -1048,10 +1048,15 @@ div.media-ttml-p {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.yelp-data { display: none; }
-div.ui-expander > div.inner > div.title:hover {
+div.ui-expander > div.inner > div.title:hover,
+div.ui-expander > div.inner > div.hgroup:hover * {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
-div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr {
+div.ui-expander > div.inner > div.hgroup > .subtitle {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+}
+div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr,
+div.ui-expander-e > div.inner > div.hgroup span.ui-expander-arrow-ltr {
   display: inline-block; <!-- webkit needs this to rotate -->
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
@@ -1059,7 +1064,8 @@ div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr {
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl {
+div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl,
+div.ui-expander-e > div.inner > div.hgroup span.ui-expander-arrow-rtl {
   display: inline-block; <!-- webkit needs this to rotate -->
   -moz-transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
@@ -1484,10 +1490,22 @@ $(document).ready(function () {
       arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
     var region = expander.children('.inner').children('.region');
     var title = expander.children('.inner').children('.title');
+    var issect = false;
+    if (title.length == 0) {
+      title = expander.children('.inner').children('.hgroup');
+      issect = true;
+    }
+    if (title.length == 0) {
+      return;
+    }
     var titlespan = title.find('span.title:first');
     var titlebase = titlespan.html();
     title.attr('role', 'button').attr('aria-controls', region.attr('id'));
-    title.children().append('&#x00A0;&#x00A0;').append(arrow);
+    if (issect) {
+      title.children('.title').prepend('&#x00A0;&#x00A0;').prepend(arrow);
+    } else {
+      title.children().append('&#x00A0;&#x00A0;').append(arrow);
+    }
     var title_e = yelpdata.children('div.yelp-title-expanded');
     var title_c = yelpdata.children('div.yelp-title-collapsed');
     if (yelpdata.attr('data-yelp-expanded') == 'no') {
@@ -1501,7 +1519,7 @@ $(document).ready(function () {
       if (title_e.length != 0)
         titlespan.html(title_e.html());
     }
-    expander.children('.inner').children('.title').click(function () {
+    title.click(function () {
       var compfunc = function () { return true; };
       if (expander.is('div.figure'))
         compfunc = function () { expander.yelp_auto_resize(); };
