@@ -102,7 +102,7 @@ tag and VALUES is the values.
       <xsl:variable name="link" select="."/>
       <xsl:variable name="xref" select="@xref"/>
       <xsl:for-each select="$mal.cache">
-        <xsl:call-template name="mal2html.page.linkdiv">
+        <xsl:call-template name="_mal2html.links.divs.link">
           <xsl:with-param name="source" select="$node"/>
           <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
           <xsl:with-param name="class" select="'facet'"/>

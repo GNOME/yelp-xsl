@@ -396,6 +396,7 @@ mal.link.topiclinks
 Output the topic links for a page or section.
 :Revision:version="1.0" date="2010-03-19" status="final"
 $node: The #{page} or #{section} element to generate links for.
+$groups: The list of all valid link groups for ${node}.
 
 This template outputs all the topic links for a guide page or section, whether
 declared as topic links in the page or section or as guide links from another
@@ -408,9 +409,11 @@ sort title of the target page or section.
 
 Each #{link} element also contains a #{group} attribute.  The #{group}
 attribute is normalized.  It will either point to a link group declared
-in ${node}, or it will be set to #{#default}.  Each #{link} element also
+in ${groups}, or it will be set to #{#default}.  Each #{link} element also
 contains a #{groupsort} attribute giving the numerical position of the
 #{group} attribute in the normalized group list for ${node}.
+
+The ${groups} parameter can be calculated automatically from ${node}.
 
 The results are not sorted when returned from this template.  Use #{xsl:sort}
 on the #{groupsort} attribute and the sort titles to sort the results.
