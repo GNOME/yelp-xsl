@@ -1001,20 +1001,20 @@ button.media-play {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   padding: 0; line-height: 0;
-  border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 button.media-play:hover, button.media-play:focus {
   background-color: </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
   border-color: </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
-  box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
   -moz-box-shadow: 0 0 2px </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
   -webkit-box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  box-shadow: 0 0 2px </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
 }
 button.media-play canvas { margin: 0; }
@@ -1040,11 +1040,11 @@ div.media-ttml-p {
     <xsl:value-of select="$color.yellow_border"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
-  box-shadow: 2px 2px 4px </xsl:text>
+  -moz-box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   -webkit-box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -moz-box-shadow: 2px 2px 4px </xsl:text>
+  box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.yelp-data { display: none; }
@@ -1057,6 +1057,7 @@ div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr {
   -webkit-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl {
   display: inline-block; <!-- webkit needs this to rotate -->
@@ -1064,6 +1065,7 @@ div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl {
   -webkit-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 </xsl:text>
 </xsl:template>

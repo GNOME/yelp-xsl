@@ -165,9 +165,9 @@ span.co {
   font-size: 0.83em;
   margin: 0 0.2em 0 0.2em;
   padding: 0 0.5em 0 0.5em;
-  border-radius: 1em;
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
+  border-radius: 1em;
   background-color: </xsl:text>
   <xsl:value-of select="$color.yellow_background"/><xsl:text>;
   border: solid 1px </xsl:text>
