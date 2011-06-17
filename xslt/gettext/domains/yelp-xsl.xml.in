@@ -95,9 +95,19 @@ to 'qanda', this string will be used to label answers.
 
 <!-- ======================================================================= -->
 
+<msg id="Advanced">
+<its:locNote>Accessible title for an advanced note.</its:locNote>
+<msgstr>Advanced</msgstr>
+</msg>
+
 <msg id="Bibliography">
 <its:locNote>Default title for a bibliography.</its:locNote>
 <msgstr>Bibliography</msgstr>
+</msg>
+
+<msg id="Bug">
+<its:locNote>Accessible title for a note about a software bug.</its:locNote>
+<msgstr>Bug</msgstr>
 </msg>
 
 <msg id="Candidate">
@@ -151,6 +161,11 @@ documentation team has reviewed and approved.
 <msgstr>Glossary</msgstr>
 </msg>
 
+<msg id="Important">
+<its:locNote>Accessible title for an important note.</its:locNote>
+<msgstr>Important</msgstr>
+</msg>
+
 <msg id="Incomplete">
 <its:locNote>
 Revision status of a document or page. Work has begun, but
@@ -181,6 +196,11 @@ title found in most UNIX man pages.
 <msg id="Next">
 <its:locNote>Link text for a link to the next page in a series.</its:locNote>
 <msgstr>Next</msgstr>
+</msg>
+
+<msg id="Note">
+<its:locNote>Accessible title for a note.</its:locNote>
+<msgstr>Note</msgstr>
 </msg>
 
 <msg id="Outdated">
@@ -234,6 +254,11 @@ they've been expanded to full size.
 <msgstr>Scale images down</msgstr>
 </msg>
 
+<msg id="Sidebar">
+<its:locNote>Accessible title for a sidebar note.</its:locNote>
+<msgstr>Sidebar</msgstr>
+</msg>
+
 <msg id="Stub">
 <its:locNote>
 Revision status of a document or page. No content has been written yet.
@@ -249,12 +274,22 @@ title found in most UNIX man pages.
 <msgstr>Synopsis</msgstr>
 </msg>
 
+<msg id="Tip">
+<its:locNote>Accessible title for a tip.</its:locNote>
+<msgstr>Tip</msgstr>
+</msg>
+
 <msg id="View images at normal size">
 <its:locNote>
 Figures can automatically scale images down to fit the page width.
 This is used a tooltip on a link to expand images to full size.
 </its:locNote>
 <msgstr>View images at normal size</msgstr>
+</msg>
+
+<msg id="Warning">
+<its:locNote>Accessible title for a warning.</its:locNote>
+<msgstr>Warning</msgstr>
 </msg>
 
 <!-- ======================================================================= -->

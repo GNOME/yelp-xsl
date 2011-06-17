@@ -44,7 +44,8 @@ $class: An extra string to insert in the #{class} attribute.
 $verbatim: Whether to maintain whitespace as written.
 $formal: Whether this is a formal block element.
 $title: When ${formal} is true, an element to use for the title.
-$caption: When ${formal} is true, an element to use for the caption .
+$caption: When ${formal} is true, an element to use for the caption.
+$titleattr: An optional value for the HTML #{title} attribute.
 
 This template creates an HTML #{div} element for the given DocBook element.
 This template uses the parameters to construct the #{class} attribute, which
@@ -66,6 +67,7 @@ formatted with a fixed-width font.
   <xsl:param name="title" select="$node/title | $node/db:title |
                                   $node/db:info/db:title"/>
   <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
+  <xsl:param name="titleattr" select="''"/>
 
   <div>
     <xsl:attribute name="class">
@@ -74,6 +76,11 @@ formatted with a fixed-width font.
         <xsl:text> verbatim</xsl:text>
       </xsl:if>
     </xsl:attribute>
+    <xsl:if test="$titleattr != ''">
+      <xsl:attribute name="title">
+        <xsl:value-of select="$titleattr"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -402,6 +409,11 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-warning'"/>
     <xsl:with-param name="formal" select="true()"/>
+    <xsl:with-param name="titleattr">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Warning'"/>
+      </xsl:call-template>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -541,6 +553,11 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-important'"/>
     <xsl:with-param name="formal" select="true()"/>
+    <xsl:with-param name="titleattr">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Important'"/>
+      </xsl:call-template>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -571,6 +588,20 @@ syntax highlighting support based on the #{language} attribute of ${node}.
       </xsl:if>
     </xsl:with-param>
     <xsl:with-param name="formal" select="true()"/>
+    <xsl:with-param name="titleattr">
+      <xsl:choose>
+        <xsl:when test="@role = 'bug'">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Bug'"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'Note'"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -606,6 +637,11 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-tip'"/>
     <xsl:with-param name="formal" select="true()"/>
+    <xsl:with-param name="titleattr">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Tip'"/>
+      </xsl:call-template>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -622,6 +658,11 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.block">
     <xsl:with-param name="class" select="'note note-warning'"/>
     <xsl:with-param name="formal" select="true()"/>
+    <xsl:with-param name="titleattr">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Warning'"/>
+      </xsl:call-template>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 

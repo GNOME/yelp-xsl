@@ -351,35 +351,43 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="notestyle">
     <xsl:choose>
       <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
-        <xsl:text>advanced</xsl:text>
+        <xsl:text>Advanced</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' bug ')">
-        <xsl:text>bug</xsl:text>
+        <xsl:text>Bug</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' important ')">
-        <xsl:text>important</xsl:text>
+        <xsl:text>Important</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' sidebar ')">
-        <xsl:text>sidebar</xsl:text>
+        <xsl:text>Sidebar</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' tip ')">
-        <xsl:text>tip</xsl:text>
+        <xsl:text>Tip</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' warning ')">
-        <xsl:text>warning</xsl:text>
+        <xsl:text>Warning</xsl:text>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>Note</xsl:text>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>note</xsl:text>
-      <xsl:if test="normalize-space($notestyle) != ''">
-        <xsl:value-of select="concat(' note-', $notestyle)"/>
+      <xsl:if test="$notestyle != 'Note'">
+        <xsl:value-of select="concat(' note-', translate($notestyle, 'ABISTW', 'abistw'))"/>
       </xsl:if>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
+    </xsl:attribute>
+    <xsl:attribute name="title">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="$notestyle"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
