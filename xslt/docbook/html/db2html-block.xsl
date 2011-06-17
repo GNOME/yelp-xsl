@@ -103,10 +103,12 @@ formatted with a fixed-width font.
               <xsl:with-param name="title" select="$title"/>
             </xsl:call-template>
           </xsl:if>
-          <div class="contents">
-            <xsl:apply-templates select="$node/node()[not(set:has-same-node(., $title | $caption))]"/>
+          <div class="region">
+            <div class="contents">
+              <xsl:apply-templates select="$node/node()[not(set:has-same-node(., $title | $caption))]"/>
+            </div>
+            <xsl:apply-templates select="$caption"/>
           </div>
-          <xsl:apply-templates select="$caption"/>
         </div>
       </xsl:when>
       <xsl:otherwise>
@@ -186,10 +188,12 @@ element.
     <div class="inner">
       <xsl:apply-templates select="$node/title | $node/db:title |
                                    $node/db:info/db:title"/>
-      <blockquote class="{local-name($node)}">
-        <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
-      </blockquote>
-      <xsl:apply-templates select="$node/attribution | $node/db:attribution"/>
+      <div class="region">
+        <blockquote class="{local-name($node)}">
+          <xsl:apply-templates select="$node/node()[not(self::title) and not(self::attribution) and not(self::db:title) and not(self::db:attribution)]"/>
+        </blockquote>
+        <xsl:apply-templates select="$node/attribution | $node/db:attribution"/>
+      </div>
     </div>
   </div>
 </xsl:template>

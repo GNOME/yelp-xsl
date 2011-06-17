@@ -194,6 +194,7 @@ REMARK: Talk about some of the parameters
         <xsl:value-of select="$node/@id"/>
       </xsl:attribute>
     </xsl:if>
+    <div class="inner">
     <xsl:call-template name="db2html.hgroup">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="title_node" select="$title_node"/>
@@ -202,6 +203,7 @@ REMARK: Talk about some of the parameters
       <xsl:with-param name="title_content" select="$title_content"/>
       <xsl:with-param name="subtitle_content" select="$subtitle_content"/>
     </xsl:call-template>
+    <div class="region">
     <xsl:choose>
       <xsl:when test="$callback">
         <xsl:apply-templates mode="db2html.division.div.content.mode" select="$node">
@@ -248,6 +250,8 @@ REMARK: Talk about some of the parameters
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
     </xsl:if>
+  </div>
+  </div>
   </div>
 </xsl:template>
 
