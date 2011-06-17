@@ -1226,6 +1226,9 @@ template calls the template *{html.js.media}. It then calls the mode
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
+  <xsl:call-template name="html.js.ui">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
   <xsl:call-template name="html.js.media">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
@@ -1236,6 +1239,105 @@ template calls the template *{html.js.media}. It then calls the mode
   <xsl:call-template name="html.js.content.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.ui
+Output JavaScript for UI extensions.
+:Revision: version="1.0" date="2011-06-17" status="final"
+$node: The node to create JavaScript for.
+
+This template outputs JavaScript that implements certain common UI extensions,
+such as expandable blocks and sections.
+-->
+<xsl:template name="html.js.ui">
+  <xsl:param name="node" select="."/>
+<xsl:text><![CDATA[
+$.fn.yelp_ui_expander_toggle = function (onlyopen) {
+  var expander = $(this);
+  var region = expander.children('.inner').children('.region');
+  var yelpdata = expander.children('div.yelp-data-ui-expander');
+  var compfunc = function () { return true; };
+  if (expander.is('div.figure'))
+    compfunc = function () { expander.yelp_auto_resize(); };
+  var title = expander.children('.inner').children('.title');
+  if (title.length == 0)
+    title = expander.children('.inner').children('.hgroup');
+  var title = title.find('span.title:first');
+  if (expander.is('.ui-expander-e')) {
+    if (!onlyopen) {
+      expander.removeClass('ui-expander-e').addClass('ui-expander-c');
+      region.attr('aria-expanded', 'false').slideUp('fast', compfunc);
+      title.html(yelpdata.children('div.yelp-title-collapsed').html());
+    }
+  }
+  else {
+    expander.removeClass('ui-expander-c').addClass('ui-expander-e');
+    region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
+    title.html(yelpdata.children('div.yelp-title-expanded').html());
+  }
+};
+$(document).ready(function () {
+  $('.ui-expander').each(function () {
+    var expander = $(this);
+    var yelpdata = expander.children('div.yelp-data-ui-expander');
+    var arrow;
+    if (yelpdata.attr('dir') == 'rtl')
+      arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
+    else
+      arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
+    var region = expander.children('.inner').children('.region');
+    var title = expander.children('.inner').children('.title');
+    var issect = false;
+    if (title.length == 0) {
+      title = expander.children('.inner').children('.hgroup');
+      issect = true;
+    }
+    if (title.length == 0) {
+      return;
+    }
+    title.attr('role', 'button').attr('aria-controls', region.attr('id'));
+    if (issect) {
+      title.children('.title').prepend('&#x00A0;&#x00A0;').prepend(arrow);
+    } else {
+      title.children().append('&#x00A0;&#x00A0;').append(arrow);
+    }
+    var titlespan = title.find('span.title:first');
+    var title_e = yelpdata.children('div.yelp-title-expanded');
+    var title_c = yelpdata.children('div.yelp-title-collapsed');
+    if (title_e.length == 0)
+      yelpdata.append($('<div class="yelp-title-expanded"></div>').html(titlespan.html()));
+    if (title_c.length == 0)
+      yelpdata.append($('<div class="yelp-title-collapsed"></div>').html(titlespan.html()));
+    if (yelpdata.attr('data-yelp-expanded') == 'no') {
+      expander.addClass('ui-expander-c');
+      region.attr('aria-expanded', 'false').hide();
+      if (title_c.length != 0)
+        titlespan.html(title_c.html());
+    } else {
+      expander.addClass('ui-expander-e');
+      region.attr('aria-expanded', 'true');
+      if (title_e.length != 0)
+        titlespan.html(title_e.html());
+    }
+    title.click(function () {
+      expander.yelp_ui_expander_toggle(false);
+    });
+  });
+});
+$(document).ready(function () {
+  if (location.hash != '') {
+    var target = $(location.hash);
+    var parents = target.parents('div.ui-expander');
+    if (target.is('div.ui-expander'))
+      parents = parents.andSelf();
+    parents.each(function () {
+      $(this).yelp_ui_expander_toggle(true);
+    });
+  }
+});
+]]></xsl:text>
 </xsl:template>
 
 
@@ -1478,69 +1580,6 @@ function yelp_init_video (element) {
 };
 $(document).ready(function () {
   $('video.media-block').each(function () { yelp_init_video(this) });;
-});
-$(document).ready(function () {
-  $('.ui-expander').each(function () {
-    var expander = $(this);
-    var yelpdata = expander.children('div.yelp-data-ui-expander');
-    var arrow;
-    if (yelpdata.attr('dir') == 'rtl')
-      arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
-    else
-      arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
-    var region = expander.children('.inner').children('.region');
-    var title = expander.children('.inner').children('.title');
-    var issect = false;
-    if (title.length == 0) {
-      title = expander.children('.inner').children('.hgroup');
-      issect = true;
-    }
-    if (title.length == 0) {
-      return;
-    }
-    var titlespan = title.find('span.title:first');
-    var titlebase = titlespan.html();
-    title.attr('role', 'button').attr('aria-controls', region.attr('id'));
-    if (issect) {
-      title.children('.title').prepend('&#x00A0;&#x00A0;').prepend(arrow);
-    } else {
-      title.children().append('&#x00A0;&#x00A0;').append(arrow);
-    }
-    var title_e = yelpdata.children('div.yelp-title-expanded');
-    var title_c = yelpdata.children('div.yelp-title-collapsed');
-    if (yelpdata.attr('data-yelp-expanded') == 'no') {
-      expander.addClass('ui-expander-c');
-      region.attr('aria-expanded', 'false').hide();
-      if (title_c.length != 0)
-        titlespan.html(title_c.html());
-    } else {
-      expander.addClass('ui-expander-e');
-      region.attr('aria-expanded', 'true');
-      if (title_e.length != 0)
-        titlespan.html(title_e.html());
-    }
-    title.click(function () {
-      var compfunc = function () { return true; };
-      if (expander.is('div.figure'))
-        compfunc = function () { expander.yelp_auto_resize(); };
-      if (expander.is('.ui-expander-e')) {
-        expander.removeClass('ui-expander-e').addClass('ui-expander-c');
-        region.attr('aria-expanded', 'false').slideUp('fast', compfunc);
-        if (title_c.length != 0)
-          titlespan.html(title_c.html());
-        else
-          titlespan.html(titlebase);
-      }
-      else {
-        expander.removeClass('ui-expander-c').addClass('ui-expander-e');
-        region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
-        if (title_e.length != 0)
-          titlespan.html(title_e.html());
-        else
-          titlespan.html(titlebase);
-      }
-    });
-  });
 });
 ]]></xsl:text>
 </xsl:template>
