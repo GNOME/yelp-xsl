@@ -321,7 +321,6 @@ double quotation mark for the watermark image.
 
 <!-- ======================================================================= -->
 
-<!-- FIXME: change msg:label, move to db-common -->
 <msg id="biblioentry.tooltip">
 <its:locNote>
 ID: biblioentry.tooltip
@@ -500,50 +499,29 @@ appropriate content, as follows:
 <msgstr>See also <glosssee/>.</msgstr>
 </msg>
 
-<!-- FIXME: split in two -->
-<msgset>
-  <msgstr>quote.format</msgstr>
-  <!-- 
-  This is a special format message.  Please read the full translator
-  documentation before translating this message.  The documentation
-  is maintained as part of the stylesheet documentation in DocBook.
-  For your convenience, it has also been converted to an HTML file
-  named STYLESHEETS.xml in the i18n directory.
+<msg id="quote.format">
+<its:locNote>
+ID: quote.format
+This is a format message used to format inline quotations. Special
+elements in the message will be replaced with the appropriate content,
+as follows:
 
-  quote - An inline quotation
-  http://docbook.org/tdg/en/html/quote.html
+&lt;node/> - The text content of the quote element
+</its:locNote>
+<msgstr>“<node/>”</msgstr>
+</msg>
 
-  This is a format message used to format inline quotations.  This template
-  uses roles to control how the quotation is formatted.  The role indicates
-  whether this is an outer or inner quotation.  Quotations nested inside
-  another quotation are inner quotations.  Many languages have an alternate
-  notation for nested quotations.
+<msg id="quote.inner.format">
+<its:locNote>
+ID: quote.format
+This is a format message used to format inline quotations inside
+other inline quotations. Special elements in the message will be
+replaced with the appropriate content, as follows:
 
-  These stylesheets only provide two levels of quotation formatting.  If
-  quote elements are nested deeper, the stylesheets will alternate between
-  the 'outer' and 'inner' roles.  If your language uses different formatting
-  for deeper quotations, please contact the maintainers, and we will try to
-  implement a more flexible formatting mechanism.
-
-  Special elements in the message will be replaced with the
-  appropriate content, as follows:
-
-  node - The text content of the quote element
-
-  These should be written as empty XML elements.  Due to limitations
-  in intltool, I can't write XML content in translator comments.  To
-  insert the node, simply write left angle bracket, node, slash,
-  right angle bracket.
-
-  Additionally, format messages can use the i, b, and tt markup tags
-  to mark text as italic, bold, and monospace.
-  -->
-  <_msg>
-    <msgstr>quote.format</msgstr>
-    <msgstr role='inner'>‘<node/>’</msgstr>
-    <msgstr>“<node/>”</msgstr>
-  </_msg>
-</msgset>    
+&lt;node/> - The text content of the quote element
+</its:locNote>
+<msgstr>‘<node/>’</msgstr>
+</msg>
 
 <!-- FIXME: probably ok, check -->
 <msgset>

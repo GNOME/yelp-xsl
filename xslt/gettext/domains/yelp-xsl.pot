@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-06-17 11:28-0400\n"
+"POT-Creation-Date: 2011-06-18 12:22-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -294,7 +294,7 @@ msgstr ""
 #. 
 #. <label/> - The term being defined by the glossary entry
 #. 
-#: yelp-xsl.xml.in:336(msg/msgstr)
+#: yelp-xsl.xml.in:335(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr ""
 
@@ -316,7 +316,7 @@ msgstr ""
 #. 
 #. <biblioentry.label/> - The text content of the bibliography label
 #. 
-#: yelp-xsl.xml.in:359(msg/msgstr)
+#: yelp-xsl.xml.in:358(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #. 
-#: yelp-xsl.xml.in:376(msg/msgstr)
+#: yelp-xsl.xml.in:375(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr ""
 
@@ -360,7 +360,7 @@ msgstr ""
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #. 
-#: yelp-xsl.xml.in:405(msg/msgstr)
+#: yelp-xsl.xml.in:404(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr ""
 
@@ -387,7 +387,7 @@ msgstr ""
 #. 
 #. <comment.name/> - The name of the person making the comment
 #. 
-#: yelp-xsl.xml.in:433(msg/msgstr)
+#: yelp-xsl.xml.in:432(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr ""
 
@@ -398,7 +398,7 @@ msgstr ""
 #. 
 #. <string/> - The linked-to email address
 #. 
-#: yelp-xsl.xml.in:445(msg/msgstr)
+#: yelp-xsl.xml.in:444(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr ""
 
@@ -409,7 +409,7 @@ msgstr ""
 #. 
 #. <glossterm/> - The term being defined by the glossary entry
 #. 
-#: yelp-xsl.xml.in:457(msg/msgstr)
+#: yelp-xsl.xml.in:456(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr ""
 
@@ -429,7 +429,7 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:478(msg/msgstr)
+#: yelp-xsl.xml.in:477(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr ""
 
@@ -450,7 +450,29 @@ msgstr ""
 #. 
 #. <glosssee/> - The actual link or links of the cross reference
 #. 
-#: yelp-xsl.xml.in:500(msg/msgstr)
+#: yelp-xsl.xml.in:499(msg/msgstr)
 msgid "See also <glosssee/>."
+msgstr ""
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#. 
+#. <node/> - The text content of the quote element
+#. 
+#: yelp-xsl.xml.in:511(msg/msgstr)
+msgid "“<node/>”"
+msgstr ""
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#. 
+#. <node/> - The text content of the quote element
+#. 
+#: yelp-xsl.xml.in:523(msg/msgstr)
+msgid "‘<node/>’"
 msgstr ""
 

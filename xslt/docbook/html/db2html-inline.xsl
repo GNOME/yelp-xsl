@@ -963,14 +963,13 @@ FIXME
 <!-- = quote % db2html.inline.content.mode = -->
 <xsl:template mode="db2html.inline.content.mode" match="quote | db:quote">
   <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'quote.format'"/>
-    <xsl:with-param name="role">
+    <xsl:with-param name="msgid">
       <xsl:choose>
         <xsl:when test="(count(ancestor::quote) mod 2) = 0">
-          <xsl:text>outer</xsl:text>
+          <xsl:text>quote.format</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:text>inner</xsl:text>
+          <xsl:text>quote.inner.format</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:with-param>
