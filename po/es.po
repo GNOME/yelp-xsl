@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-06-17 15:27+0000\n"
-"PO-Revision-Date: 2011-06-19 11:35+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-06-19 10:11+0000\n"
+"PO-Revision-Date: 2011-06-19 17:16+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bits\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
@@ -91,7 +91,7 @@ msgstr "R:"
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:100(msg/msgstr)
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzada"
 
 #. Default title for a bibliography.
 #: yelp-xsl.xml.in:105(msg/msgstr)
@@ -303,7 +303,7 @@ msgstr "yelp-quote-00BB.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:336(msg/msgstr)
+#: yelp-xsl.xml.in:335(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Ver la entrada <biblioentry.label/> de la biliografía."
 
@@ -325,7 +325,7 @@ msgstr "Ver la entrada <biblioentry.label/> de la biliografía."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:359(msg/msgstr)
+#: yelp-xsl.xml.in:358(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "(<biblioentry.label/>)"
 
@@ -341,7 +341,7 @@ msgstr "(<biblioentry.label/>)"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:376(msg/msgstr)
+#: yelp-xsl.xml.in:375(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "(<citation/>)"
 
@@ -369,7 +369,7 @@ msgstr "(<citation/>)"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:405(msg/msgstr)
+#: yelp-xsl.xml.in:404(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "de <comment.name/> el <comment.date/>"
 
@@ -396,7 +396,7 @@ msgstr "de <comment.name/> el <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:433(msg/msgstr)
+#: yelp-xsl.xml.in:432(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr "de <comment.name/>"
 
@@ -407,7 +407,7 @@ msgstr "de <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:445(msg/msgstr)
+#: yelp-xsl.xml.in:444(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "Enviar correo electrónico a «<string/>»."
 
@@ -418,7 +418,7 @@ msgstr "Enviar correo electrónico a «<string/>»."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:457(msg/msgstr)
+#: yelp-xsl.xml.in:456(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Lea la definición para «<glossterm/>»."
 
@@ -438,7 +438,7 @@ msgstr "Lea la definición para «<glossterm/>»."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:478(msg/msgstr)
+#: yelp-xsl.xml.in:477(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Consulte <glosssee/>."
 
@@ -459,9 +459,31 @@ msgstr "Consulte <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:500(msg/msgstr)
+#: yelp-xsl.xml.in:499(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Consulte también <glosssee/>."
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:511(msg/msgstr)
+msgid "“<node/>”"
+msgstr "«<node/>»"
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:523(msg/msgstr)
+msgid "‘<node/>’"
+msgstr "«<node/>»"
 
 #~ msgid " — "
 #~ msgstr ": "
