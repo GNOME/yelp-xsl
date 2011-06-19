@@ -229,7 +229,8 @@ REMARK: Talk about some of the parameters
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="$autotoc_depth != 0">
+    <xsl:if test="$autotoc_depth != 0 and
+                  not($node/processing-instruction('db2html.no_sectionlinks'))">
       <xsl:call-template name="db2html.autotoc">
         <xsl:with-param name="node" select="$node"/>
         <xsl:with-param name="title" select="true()"/>
