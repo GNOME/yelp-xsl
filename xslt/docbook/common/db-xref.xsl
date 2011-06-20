@@ -185,7 +185,7 @@ REMARK: Document this
 <!--#% l10n.format.mode -->
 <xsl:template mode="l10n.format.mode" match="msg:glossterm">
   <xsl:param name="node"/>
-  <xsl:apply-templates select="$node/glossterm | $node/db:glossterm"/>
+  <xsl:apply-templates select="$node/glossterm/node() | $node/db:glossterm/node()"/>
 </xsl:template>
 
 </xsl:stylesheet>

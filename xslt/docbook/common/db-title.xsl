@@ -227,6 +227,11 @@ REMARK: Describe this mode
   </xsl:choose>
 </xsl:template>
 
+<!-- = db.title.mode % glossentry = -->
+<xsl:template mode="db.title.mode" match="glossentry | db:glossentry">
+  <xsl:apply-templates select="glossterm/node() | db:glossterm/node()"/>
+</xsl:template>
+
 <!-- = db.title.mode % index = -->
 <xsl:template mode="db.title.mode" match="index | db:index">
   <xsl:choose>
