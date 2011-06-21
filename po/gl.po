@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 22:42+0200\n"
-"PO-Revision-Date: 2011-06-05 22:43+0200\n"
+"POT-Creation-Date: 2011-06-21 13:37+0200\n"
+"PO-Revision-Date: 2011-06-21 13:39+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -90,122 +90,142 @@ msgstr "P:"
 msgid "A:"
 msgstr "R:"
 
-#. Default title for a bibliography.
+#. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:100(msg/msgstr)
+msgid "Advanced"
+msgstr "Avanzada"
+
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:105(msg/msgstr)
 msgid "Bibliography"
 msgstr "Bibliografía"
+
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:110(msg/msgstr)
+msgid "Bug"
+msgstr "Erro"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:108(msg/msgstr)
+#: yelp-xsl.xml.in:118(msg/msgstr)
 msgid "Candidate"
 msgstr "Candidato"
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:114(msg/msgstr)
+#: yelp-xsl.xml.in:124(msg/msgstr)
 msgid "Colophon"
 msgstr "Colofón"
 
 #. Title of the listing of subsections.
-#: yelp-xsl.xml.in:120(msg/msgstr)
+#: yelp-xsl.xml.in:130(msg/msgstr)
 msgid "Contents"
 msgstr "Contidos"
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:125(msg/msgstr)
+#: yelp-xsl.xml.in:135(msg/msgstr)
 msgid "Dedication"
 msgstr "Dedicatoria"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:133(msg/msgstr)
+#: yelp-xsl.xml.in:143(msg/msgstr)
 msgid "Draft"
 msgstr "Esbozo"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:141(msg/msgstr)
+#: yelp-xsl.xml.in:151(msg/msgstr)
 msgid "Final"
 msgstr "Final"
 
 #. Automatic heading above a list of related links.
-#: yelp-xsl.xml.in:146(msg/msgstr)
+#: yelp-xsl.xml.in:156(msg/msgstr)
 msgid "Further Reading"
 msgstr "Ler máis"
 
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:151(msg/msgstr)
+#: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Glossary"
 msgstr "Glosario"
+
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:166(msg/msgstr)
+msgid "Important"
+msgstr "Importante"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:159(msg/msgstr)
+#: yelp-xsl.xml.in:174(msg/msgstr)
 msgid "Incomplete"
 msgstr "Incompleto"
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:164(msg/msgstr)
+#: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Index"
 msgstr "Índice"
 
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:169(msg/msgstr)
+#: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "More About"
 msgstr "Máis acerca de"
 
 #. Default title for a refnamediv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:178(msg/msgstr)
+#: yelp-xsl.xml.in:193(msg/msgstr)
 msgid "Name"
 msgstr "Nome"
 
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:183(msg/msgstr)
+#: yelp-xsl.xml.in:198(msg/msgstr)
 msgid "Next"
 msgstr "Seguinte"
+
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:203(msg/msgstr)
+msgid "Note"
+msgstr "Nota"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:191(msg/msgstr)
+#: yelp-xsl.xml.in:211(msg/msgstr)
 msgid "Outdated"
 msgstr "Obsoleto"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:196(msg/msgstr)
+#: yelp-xsl.xml.in:216(msg/msgstr)
 msgid "Pause"
 msgstr "Pausa"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:201(msg/msgstr)
+#: yelp-xsl.xml.in:221(msg/msgstr)
 msgid "Play"
 msgstr "Reproducir"
 
 #. Default title for a preface to a book.
-#: yelp-xsl.xml.in:207(msg/msgstr)
+#: yelp-xsl.xml.in:227(msg/msgstr)
 msgid "Preface"
 msgstr "Prefacio"
 
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:212(msg/msgstr)
+#: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Previous"
 msgstr "Anterior"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:220(msg/msgstr)
+#: yelp-xsl.xml.in:240(msg/msgstr)
 msgid "Ready for review"
 msgstr "Listo para revisión"
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:225(msg/msgstr)
+#: yelp-xsl.xml.in:245(msg/msgstr)
 msgid "See Also"
 msgstr "Vexa tamén"
 
@@ -213,29 +233,44 @@ msgstr "Vexa tamén"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:234(msg/msgstr)
+#: yelp-xsl.xml.in:254(msg/msgstr)
 msgid "Scale images down"
 msgstr "Reducir imaxes"
 
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:259(msg/msgstr)
+msgid "Sidebar"
+msgstr "Barra lateral"
+
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:241(msg/msgstr)
+#: yelp-xsl.xml.in:266(msg/msgstr)
 msgid "Stub"
 msgstr "Stub"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:249(msg/msgstr)
+#: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Synopsis"
 msgstr "Sinopse"
+
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:279(msg/msgstr)
+msgid "Tip"
+msgstr "Suxestión"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:257(msg/msgstr)
+#: yelp-xsl.xml.in:287(msg/msgstr)
 msgid "View images at normal size"
 msgstr "Ver as imaxes en tamaño normal"
+
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:292(msg/msgstr)
+msgid "Warning"
+msgstr "Aviso"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -257,7 +292,7 @@ msgstr "Ver as imaxes en tamaño normal"
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #.
-#: yelp-xsl.xml.in:284(msg/msgstr)
+#: yelp-xsl.xml.in:319(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201C.png"
 
@@ -270,11 +305,11 @@ msgstr "yelp-quote-201C.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:301(msg/msgstr)
-msgid "View the bibliography entry <label/>."
-msgstr "Ver la entrada <label/> da bibliografía."
+#: yelp-xsl.xml.in:335(msg/msgstr)
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "Ver la entrada <biblioentry.label/> da bibliografía."
 
-#. ID: biblioentry.label.format
+#. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
 #. a bibliography.  The content of the label is often an abbreviation
 #. of the authors' names and the year of publication.  In English,
@@ -292,11 +327,11 @@ msgstr "Ver la entrada <label/> da bibliografía."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:421(msg/msgstr)
+#: yelp-xsl.xml.in:358(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
-#. ID: citation.format
+#. ID: citation.label
 #. This is a format message used to format inline citations to other
 #. published works.  The content is typically an abbreviation of the
 #. authors' last names.  In English, this abbreviation is usually
@@ -308,9 +343,64 @@ msgstr "[<biblioentry.label/>]"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:438(msg/msgstr)
-msgid "[<citation/>]"
-msgstr "[<citation/>]"
+#: yelp-xsl.xml.in:375(msg/msgstr)
+msgid "[<citation.label/>]"
+msgstr "[<citation.label/>]"
+
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#.
+#.   Here is the text of the comment.
+#.
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#.
+#: yelp-xsl.xml.in:404(msg/msgstr)
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "de <comment.name/> o <comment.date/>"
+
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#.
+#: yelp-xsl.xml.in:432(msg/msgstr)
+msgid "from <comment.name/>"
+msgstr "de <comment.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -319,7 +409,7 @@ msgstr "[<citation/>]"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:450(msg/msgstr)
+#: yelp-xsl.xml.in:444(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "Enviar correo electrónico a «<string/>». "
 
@@ -330,7 +420,7 @@ msgstr "Enviar correo electrónico a «<string/>». "
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:462(msg/msgstr)
+#: yelp-xsl.xml.in:456(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Ler a definición de «<glossterm/>»."
 
@@ -350,7 +440,7 @@ msgstr "Ler a definición de «<glossterm/>»."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:483(msg/msgstr)
+#: yelp-xsl.xml.in:477(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Consulte <glosssee/>."
 
@@ -371,9 +461,31 @@ msgstr "Consulte <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:505(msg/msgstr)
+#: yelp-xsl.xml.in:499(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Consulte tamén <glosssee/>."
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:511(msg/msgstr)
+msgid "“<node/>”"
+msgstr "«<node/>»"
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:523(msg/msgstr)
+msgid "‘<node/>’"
+msgstr "«<node/>»"
 
 #~ msgid " — "
 #~ msgstr " — "
@@ -526,14 +638,8 @@ msgstr "Consulte tamén <glosssee/>."
 #~ msgid "Email"
 #~ msgstr "Correo electrónico"
 
-#~ msgid "Important"
-#~ msgstr "Importante"
-
 #~ msgid "Legal Notice"
 #~ msgstr "Aviso legal"
-
-#~ msgid "Note"
-#~ msgstr "Nota"
 
 #~ msgid "Q:&#x2003;"
 #~ msgstr "P:&#x2003;"
@@ -543,12 +649,6 @@ msgstr "Consulte tamén <glosssee/>."
 
 #~ msgid "See"
 #~ msgstr "Vexa"
-
-#~ msgid "Tip"
-#~ msgstr "Suxestión"
-
-#~ msgid "Warning"
-#~ msgstr "Aviso"
 
 #~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 #~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
