@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the yelp-xsl package.
 # Funda Wang <fundawang@linux.net.cn>, 2004.
 # Tao Wei <weitao1979@gmail.com>, 2010.
+# Eleanor Chen <chenyueg@gmail.com>, 2011.
 # Aron Xu <aronxu@gnome.org>, 2011.
 #
 msgid ""
@@ -10,7 +11,7 @@ msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-26 16:49+0800\n"
-"PO-Revision-Date: 2011-06-26 16:56+0800\n"
+"PO-Revision-Date: 2011-06-26 16:58+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh\n"
@@ -134,7 +135,7 @@ msgstr "草稿"
 #.
 #: yelp-xsl.xml.in:151(msg/msgstr)
 msgid "Final"
-msgstr "最终版"
+msgstr "终稿"
 
 #. Automatic heading above a list of related links.
 #: yelp-xsl.xml.in:156(msg/msgstr)
@@ -241,7 +242,7 @@ msgstr "侧边栏"
 #.
 #: yelp-xsl.xml.in:266(msg/msgstr)
 msgid "Stub"
-msgstr ""
+msgstr "存根"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
