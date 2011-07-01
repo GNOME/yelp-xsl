@@ -82,8 +82,8 @@ REMARK: Lots of documentation is needed
       </xsl:call-template>
     </xsl:if>
   </xsl:param>
-  <xsl:param name="node" select="."/>
   <xsl:param name="role" select="''"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="string"/>
   <xsl:param name="format" select="false()"/>
 
@@ -123,6 +123,7 @@ REMARK: Lots of documentation is needed
             <xsl:with-param name="number" select="$number"/>
             <xsl:with-param name="form" select="$form"/>
             <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="string" select="$string"/>
             <xsl:with-param name="format" select="$format"/>
           </xsl:call-template>
@@ -140,6 +141,7 @@ REMARK: Lots of documentation is needed
             <xsl:with-param name="number" select="$number"/>
             <xsl:with-param name="form" select="$form"/>
             <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="string" select="$string"/>
             <xsl:with-param name="format" select="$format"/>
           </xsl:call-template>

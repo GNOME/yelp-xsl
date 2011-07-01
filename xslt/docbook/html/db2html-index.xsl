@@ -202,7 +202,7 @@ indexterm (autoidx)
         <xsl:with-param name="msgid" select="', '"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:value-of select="."/>
+    <xsl:apply-templates/>
 <!--
     <xsl:choose>
       <xsl:when test="@otherterm">
