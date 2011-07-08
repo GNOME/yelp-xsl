@@ -313,7 +313,7 @@ FIXME
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$if != 'true'"/>
-    <xsl:when test="@type = 'image'">
+    <xsl:when test="@type = 'image' or not(@type)">
       <div>
         <xsl:attribute name="class">
           <xsl:text>media media-image</xsl:text>
@@ -376,7 +376,7 @@ FIXME
 
 <xsl:template mode="mal2html.inline.content.mode" match="mal:media">
   <xsl:choose>
-    <xsl:when test="@type = 'image'">
+    <xsl:when test="@type = 'image' or not(@type)">
       <span class="media media-image">
         <xsl:call-template name="mal2html.media.image">
           <xsl:with-param name="inline" select="true()"/>
