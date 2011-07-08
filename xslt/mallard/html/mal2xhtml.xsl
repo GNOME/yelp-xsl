@@ -35,6 +35,7 @@ REMARK: Describe this module
 <xsl:import href="../../common/html.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
+<xsl:import href="../common/mal-gloss.xsl"/>
 <xsl:import href="../common/mal-if.xsl"/>
 <xsl:import href="../common/mal-link.xsl"/>
 
@@ -43,6 +44,7 @@ REMARK: Describe this module
 
 <xsl:include href="mal2html-block.xsl"/>
 <xsl:include href="mal2html-facets.xsl"/>
+<xsl:include href="mal2html-gloss.xsl"/>
 <xsl:include href="mal2html-inline.xsl"/>
 <xsl:include href="mal2html-links.xsl"/>
 <xsl:include href="mal2html-list.xsl"/>

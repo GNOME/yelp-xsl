@@ -438,6 +438,9 @@ REMARK: Describe this template
         </xsl:call-template>
       </xsl:if>
     </xsl:if>
+    <xsl:if test="$type = 'gloss:glossary'">
+      <xsl:call-template name="mal2html.gloss.terms"/>
+    </xsl:if>
     <xsl:if test="$type = 'facets'">
       <xsl:call-template name="mal2html.facets.links"/>
     </xsl:if>
@@ -778,6 +781,25 @@ div.facet li {
 div.facet input {
   vertical-align: middle;
   margin: 0;
+}
+dt.gloss-term {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+dd.gloss-link {
+  margin: 0 0.2em 0 0.2em;
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
+dd.gloss-def {
+  margin: 0 0.2em 0 0.2em;
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
+dd.gloss-def + dd.gloss-link {
+  margin-top: 1em;
 }
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
