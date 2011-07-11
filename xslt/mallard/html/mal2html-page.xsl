@@ -801,9 +801,14 @@ dd.gloss-def {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
-span.gloss-term {
+a.gloss-term {
+  tabindex: 0;
   border-bottom: dashed 1px </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+a.gloss-term:hover {
+  text-decoration: none;
+  border-bottom-style: solid;
 }
 span.gloss-desc {
   display: none;
@@ -811,6 +816,7 @@ span.gloss-desc {
   margin: 0;
   padding: 0.2em 0.5em 0.2em 0.5em;
   max-width: 24em;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
   border: solid 1px </xsl:text>

@@ -101,8 +101,28 @@ include a link to their defining page.
 
 <xsl:template mode="mal2html.inline.mode" match="gloss:term">
   <xsl:variable name="node" select="."/>
-  <span class="gloss-term">
+  <a class="gloss-term">
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:variable name="target">
+      <xsl:call-template name="mal.link.target">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$target = ''">
+        <xsl:attribute name="href">
+          <xsl:text>#</xsl:text>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="href">
+          <xsl:value-of select="$target"/>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:call-template name="mal.link.tooltip"/>
+        </xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
     <xsl:for-each select="$mal.cache">
       <xsl:variable name="terms" select="key('mal.gloss.key', $node/@ref)"/>
@@ -112,7 +132,7 @@ include a link to their defining page.
         </span>
       </xsl:for-each>
     </xsl:for-each>
-  </span>
+  </a>
 </xsl:template>
 
 
@@ -124,21 +144,31 @@ REMARK: FIXME
 <xsl:template name="mal2html.gloss.js">
 <xsl:text><![CDATA[
 $(document).ready(function () {
-  $('span.gloss-term').hover(
-    function () {
+  $('a.gloss-term').each(function () {
+    if ($(this).attr('href') == '#') {
+      $(this).click(function () { return false; });
+    }
+    var showtip = function () {
+      var desc = $(this).children('span.gloss-desc');
+      if (desc.is(':visible'))
+        return;
       var top = $(this).offset().top + $(this).height() + 1;
       var left = $(this).offset().left;
-      var desc = $(this).children('span.gloss-desc');
       var cnt = $(this).closest('div.contents');
       var diff = cnt.offset().left + cnt.width() - desc.width() - 4;
       if (left > diff)
         left = diff;
       desc.css({'top': top + 'px', 'left': left + 'px'}).fadeIn('slow');
-    },
-    function () {
+    };
+    var hidetip = function () {
+      if ($(this).is(':focus'))
+        return;
       $(this).children('span.gloss-desc').fadeOut('fast');
-    }
-  );
+    };
+    $(this).hover(showtip, hidetip);
+    $(this).focus(showtip);
+    $(this).blur(hidetip);
+  });
 });
 ]]></xsl:text>
 </xsl:template>
