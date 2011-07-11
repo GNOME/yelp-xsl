@@ -118,9 +118,6 @@ include a link to their defining page.
         <xsl:attribute name="href">
           <xsl:value-of select="$target"/>
         </xsl:attribute>
-        <xsl:attribute name="title">
-          <xsl:call-template name="mal.link.tooltip"/>
-        </xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
