@@ -801,6 +801,27 @@ dd.gloss-def {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
+span.gloss-term {
+  border-bottom: dashed 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+span.gloss-desc {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  max-width: 24em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+  -moz-box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -webkit-box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  box-shadow: 2px 2px 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
 <xsl:text>
@@ -839,6 +860,7 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
   <xsl:call-template name="mal2html.facets.js"/>
+  <xsl:call-template name="mal2html.gloss.js"/>
 <xsl:text><![CDATA[
 $(document).ready(function () {
   $('div.mouseovers').each(function () {

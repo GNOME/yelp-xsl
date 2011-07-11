@@ -99,4 +99,48 @@ include a link to their defining page.
   </xsl:if>
 </xsl:template>
 
+<xsl:template mode="mal2html.inline.mode" match="gloss:term">
+  <xsl:variable name="node" select="."/>
+  <span class="gloss-term">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="mal2html.inline.mode"/>
+    <xsl:for-each select="$mal.cache">
+      <xsl:variable name="terms" select="key('mal.gloss.key', $node/@ref)"/>
+      <xsl:for-each select="$terms/mal:info/mal:desc[1]">
+        <span class="gloss-desc">
+          <xsl:apply-templates mode="mal2html.inline.mode"/>
+        </span>
+      </xsl:for-each>
+    </xsl:for-each>
+  </span>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.gloss.js
+
+REMARK: FIXME
+-->
+<xsl:template name="mal2html.gloss.js">
+<xsl:text><![CDATA[
+$(document).ready(function () {
+  $('span.gloss-term').hover(
+    function () {
+      var top = $(this).offset().top + $(this).height() + 1;
+      var left = $(this).offset().left;
+      var desc = $(this).children('span.gloss-desc');
+      var cnt = $(this).closest('div.contents');
+      var diff = cnt.offset().left + cnt.width() - desc.width() - 4;
+      if (left > diff)
+        left = diff;
+      desc.css({'top': top + 'px', 'left': left + 'px'}).fadeIn('slow');
+    },
+    function () {
+      $(this).children('span.gloss-desc').fadeOut('fast');
+    }
+  );
+});
+]]></xsl:text>
+</xsl:template>
+
 </xsl:stylesheet>
