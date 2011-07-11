@@ -53,55 +53,45 @@ include a link to their defining page.
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="terms" select="exsl:node-set($terms_)/*"/>
+  <xsl:variable name="terms" select="exsl:node-set($terms_)/gloss:term"/>
   <xsl:if test="count($terms) > 0">
     <dl class="list gloss-list">
       <xsl:for-each select="$terms">
-        <xsl:sort select="string(mal:title)"/>
-        <xsl:variable name="term" select="."/>
-        <xsl:for-each select="$mal.cache">
-          <xsl:variable name="primaryid" select="generate-id(
-                                                 key('mal.gloss.key', $term/mal:title[1])
-                                                 [generate-id(.) = $terms/@gloss:id][1])"/>
-          <xsl:if test="not($primaryid = $terms/@gloss:id) or $term/@gloss:id = $primaryid">
-            <dt class="gloss-term">
-              <xsl:apply-templates mode="mal2html.inline.mode"
-                                   select="$term/mal:title/node()"/>
-            </dt>
-            <xsl:variable name="defs" select="key('mal.gloss.key', $term/mal:title[1])
-                                              [generate-id(.) = $terms/@gloss:id]"/>
-            <xsl:for-each select="$defs">
-              <xsl:sort data-type="number" select="number(boolean(*[not(self::mal:title)]))"/>
-              <xsl:sort data-type="number" select="number(not(ancestor::mal:page[1]/@id = $pageid))"/>
-              <xsl:variable name="termpageid" select="ancestor::mal:page[1]/@id"/>
-              <xsl:if test="not($termpageid = $pageid)">
-                <dd class="gloss-link">
-                  <a>
-                    <xsl:attribute name="href">
-                      <xsl:call-template name="mal.link.target">
-                        <xsl:with-param name="xref" select="$termpageid"/>
-                      </xsl:call-template>
-                    </xsl:attribute>
-                    <xsl:attribute name="title">
-                      <xsl:call-template name="mal.link.tooltip">
-                        <xsl:with-param name="xref" select="$termpageid"/>
-                      </xsl:call-template>
-                    </xsl:attribute>
-                    <xsl:call-template name="mal.link.content">
-                      <xsl:with-param name="node" select="."/>
-                      <xsl:with-param name="xref" select="$termpageid"/>
-                      <xsl:with-param name="role" select="'gloss:page'"/>
-                    </xsl:call-template>
-                  </a>
-                </dd>
-              </xsl:if>
-              <xsl:if test="*[not(self::mal:title)]">
-                <dd class="gloss-def">
-                  <xsl:apply-templates mode="mal2html.block.mode"
-                                       select="*[not(self::mal:title)]"/>
-                </dd>
-              </xsl:if>
-            </xsl:for-each>
+        <xsl:sort select="normalize-space(mal:title[1])"/>
+        <xsl:for-each select="mal:title">
+          <dt class="gloss-term">
+            <xsl:apply-templates mode="mal2html.inline.mode" select="node()"/>
+          </dt>
+        </xsl:for-each>
+        <xsl:for-each select="gloss:term">
+          <xsl:sort data-type="number" select="number(boolean(*[not(self::mal:title)]))"/>
+          <xsl:sort data-type="number" select="number(not(ancestor::mal:page[1]/@id = $pageid))"/>
+          <xsl:if test="not(@xref = $pageid)">
+            <dd class="gloss-link">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="mal.link.target">
+                    <xsl:with-param name="xref" select="@xref"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:attribute name="title">
+                  <xsl:call-template name="mal.link.tooltip">
+                    <xsl:with-param name="xref" select="@xref"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:call-template name="mal.link.content">
+                  <xsl:with-param name="node" select="."/>
+                  <xsl:with-param name="xref" select="@xref"/>
+                  <xsl:with-param name="role" select="'gloss:page'"/>
+                </xsl:call-template>
+              </a>
+            </dd>
+          </xsl:if>
+          <xsl:if test="*[not(self::mal:title)]">
+            <dd class="gloss-def">
+              <xsl:apply-templates mode="mal2html.block.mode"
+                                   select="*[not(self::mal:title)]"/>
+            </dd>
           </xsl:if>
         </xsl:for-each>
       </xsl:for-each>
