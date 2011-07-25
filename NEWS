@@ -1,3 +1,30 @@
+3.1.3
+=====
+* Experimental support for ui:expanded expanders
+* Changed steps and note visuals, less yellow now
+* Cleaned up some links handling, some API changes
+* Added accessible titles on notes in DocBook and Mallard, #613267
+* Mallard media type attribute defaults to 'image', per spec
+* Fixed seeie/seealsoie formatters in DocBook
+* Fixed the link text for DocBook glossentry links
+* Fixed formatting of DocBook inline quotes
+* Add PI to suppress DocBook section links, bug #346397
+* Experimental Mallard Glossaries extension  
+* Updated translations:
+  de    (Christian Kirbach)
+  es    (Jorge González, Daniel Mustieles)
+  gl    (Fran Dieguez)
+  he    (Yaron Shahrabani)
+  lt    (Aurimas Černius)
+  lv    (Rudolfs Mazurs)
+  nb    (Kjartan Maraas)
+  pa    (A S Alam)
+  ru    (Yuri Kozlov)
+  sl    (Matej Urbančič)
+  sv    (Daniel Nylander)
+  tr    (Muhammet Kara)
+  zh_CN (Aron Xu)
+
 3.1.2
 =====
 * Changed formatting of notes
