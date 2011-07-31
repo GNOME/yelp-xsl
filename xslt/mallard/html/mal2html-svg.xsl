@@ -91,6 +91,9 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
       <xsl:when test="@xml:id">
         <xsl:value-of select="@xml:id"/>
       </xsl:when>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="generate-id(.)"/>
       </xsl:otherwise>
