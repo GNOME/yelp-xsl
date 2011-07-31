@@ -614,6 +614,30 @@ FIXME
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
+span.link-button a {
+  display: inline-block;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$color.background"/><xsl:text>;
+  text-shadow: </xsl:text>
+    <xsl:value-of select="$color.link"/><xsl:text> 1px 1px 0px;
+  border: solid 1px </xsl:text>
+    <xsl:value-of select="$color.link"/><xsl:text>;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+span.link-button a:visited {
+  color: </xsl:text>
+    <xsl:value-of select="$color.background"/><xsl:text>;
+}
+span.link-button a:hover {
+  text-decoration: none;
+  color: </xsl:text>
+    <xsl:value-of select="$color.background"/><xsl:text>;
+}
 div.floatleft {
   float: left;
   margin-right: 1em;

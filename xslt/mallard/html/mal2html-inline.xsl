@@ -245,7 +245,13 @@ an #{xref} or #{href} attribute.
 
 <!-- = link = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:link">
-  <xsl:call-template name="mal2html.span"/>
+  <xsl:call-template name="mal2html.span">
+    <xsl:with-param name="class">
+      <xsl:if test="contains(concat(' ', @style, ' '), ' button ')">
+        <xsl:text>link-button</xsl:text>
+      </xsl:if>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = link % mal2html.inline.content.mode = -->
