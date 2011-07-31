@@ -49,6 +49,38 @@ if its argument is in this list.
 <xsl:variable name="_mal.if.env" select="concat(' ', $mal.if.env, ' ')"/>
 
 
+<!--@@==========================================================================
+mal.if.supports
+The list of supported technologies.
+:Revision:version="1.0" date="2011-07-31" status="review"
+
+This parameter takes a space-separated list of strings for the #{if:supports}
+conditional processing function. The #{if:supports} function will return #{true}
+if its argument is in this list or @{mal.if.supports.custom}.
+
+Do not change this parameter unless you are completely overriding the behavior
+of these stylesheets in a way that removes or changes features. To add support
+in a customization, use the @{mal.if.supports.custom} parameter.
+-->
+<xsl:param name="mal.if.supports" select="'1.0'"/>
+
+
+<!--@@==========================================================================
+mal.if.supports.custom
+The list of technologies supported by customizations.
+:Revision:version="1.0" date="2011-07-31" status="review"
+
+This parameter takes a space-separated list of strings for the #{if:supports}
+conditional processing function. The #{if:supports} function will return #{true}
+if its argument is in this list or @{mal.if.supports}.
+-->
+<xsl:param name="mal.if.supports.custom" select="'1.0'"/>
+
+
+<xsl:variable name="_mal.if.supports"
+              select="concat(' ', $mal.if.supports, ' ', $mal.if.supports.custom, ' ')"/>
+
+
 <!--**==========================================================================
 mal.if.test
 Test if a condition is true.
@@ -79,6 +111,7 @@ string #{'true'}. Otherwise, it outputs nothing.
     </xsl:when>
   </xsl:choose>
 </xsl:template>
+
 
 <!--**==========================================================================
 mal.if.choose
@@ -129,6 +162,18 @@ If no #{if:when} elements are true, the output is empty.
   <xsl:param name="env"/>
   <xsl:choose>
     <xsl:when test="contains($_mal.if.env, $env)">
+      <func:result select="true()"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <func:result select="false()"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</func:function>
+
+<func:function name="if:supports">
+  <xsl:param name="tech"/>
+  <xsl:choose>
+    <xsl:when test="contains($_mal.if.supports, $tech)">
       <func:result select="true()"/>
     </xsl:when>
     <xsl:otherwise>
