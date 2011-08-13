@@ -37,11 +37,9 @@ REMARK: Describe this module. Talk about refenty and friends
 
 <!-- = manvolnum = -->
 <xsl:template match="manvolnum | db:manvolnum">
-  <xsl:call-template name="l10n.gettext">
-    <xsl:with-param name="msgid" select="'manvolnum.format'"/>
-    <xsl:with-param name="node" select="."/>
-    <xsl:with-param name="format" select="true()"/>
-  </xsl:call-template>
+  <xsl:text>(</xsl:text>
+  <xsl:apply-templates select="node()"/>
+  <xsl:text>)</xsl:text>
 </xsl:template>
 
 <!-- = refentry = -->

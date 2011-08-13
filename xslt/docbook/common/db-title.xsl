@@ -311,12 +311,10 @@ REMARK: Describe this mode
       <xsl:apply-templates select="refmeta/refentrytitle/node() |
                                    db:refmeta/db:refentrytitle/node()"/>
       <xsl:if test="refmeta/manvolnum | db:refmeta/db:manvolnum">
-        <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="'manvolnum.format'"/>
-          <xsl:with-param name="node" select="refmeta/manvolnum[1] |
-                                              db:refmeta/db:manvolnum[1]"/>
-          <xsl:with-param name="format" select="true()"/>
-        </xsl:call-template>
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates select="refmeta/manvolnum[1]/node() |
+                                     db:refmeta/db:manvolnum[1]/node()"/>
+        <xsl:text>)</xsl:text>
       </xsl:if>
     </xsl:when>
     <xsl:when test="refentryinfo/title">
