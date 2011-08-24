@@ -30,6 +30,28 @@ the Yelp stylesheets.
 
 
 <!--**==========================================================================
+utils.repeat_string
+Repeat a string a given number of times.
+:Revision:version="1.0" date="2011-08-24" status="final"
+$string: The string to repeat.
+$number: The number of times to repeat ${string}.
+
+This template repeats the ${string} argument ${number} times.
+-->
+<xsl:template name="utils.repeat_string">
+  <xsl:param name="string" select="''"/>
+  <xsl:param name="number" select="0"/>
+  <xsl:if test="$number &gt; 0">
+    <xsl:value-of select="$string"/>
+    <xsl:call-template name="utils.repeat_string">
+      <xsl:with-param name="string" select="$string"/>
+      <xsl:with-param name="number" select="$number - 1"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
 utils.strip_newlines
 Strip leading or trailing newlines from a string.
 :Revision:version="1.0" date="2010-05-25" status="final"
@@ -82,6 +104,7 @@ trailing newlines are ignored to make source formatting easier for authors.
     </xsl:when>
   </xsl:choose>
 </xsl:template>
+
 
 <!--**==========================================================================
 utils.linenumbering

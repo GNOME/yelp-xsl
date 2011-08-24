@@ -267,19 +267,6 @@ REMARK: Describe this module
   </tfoot>
 </xsl:template>
 
-<!--#* repeat -->
-<xsl:template name="repeat">
-  <xsl:param name="str" select="''"/>
-  <xsl:param name="num" select="0"/>
-  <xsl:if test="$num &gt; 0">
-    <xsl:value-of select="$str"/>
-    <xsl:call-template name="repeat">
-      <xsl:with-param name="str" select="$str"/>
-      <xsl:with-param name="num" select="$num - 1"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
 <!-- = tr = -->
 <xsl:template match="mal:tr">
   <xsl:param name="cols"/>
@@ -291,9 +278,9 @@ REMARK: Describe this module
     <xsl:for-each select="mal:td">
       <xsl:text>0:</xsl:text>
       <xsl:if test="@colspan">
-        <xsl:call-template name="repeat">
-          <xsl:with-param name="str" select="'0:'"/>
-          <xsl:with-param name="num" select="number(@colspan) - 1"/>
+        <xsl:call-template name="utils.repeat_string">
+          <xsl:with-param name="string" select="'0:'"/>
+          <xsl:with-param name="number" select="number(@colspan) - 1"/>
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each>
@@ -393,12 +380,12 @@ REMARK: Describe this module
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <xsl:call-template name="repeat">
-        <xsl:with-param name="str">
+      <xsl:call-template name="utils.repeat_string">
+        <xsl:with-param name="string">
           <xsl:value-of select="$rowspan - 1"/>
           <xsl:text>:</xsl:text>
         </xsl:with-param>
-        <xsl:with-param name="num" select="$colspan"/>
+        <xsl:with-param name="number" select="$colspan"/>
       </xsl:call-template>
       <xsl:variable name="nextpos" select="$pos + $colspan"/>
       <xsl:if test="$nextpos &lt;= count($spans)">
@@ -430,9 +417,9 @@ REMARK: Describe this module
     <xsl:for-each select="preceding-sibling::mal:td">
       <xsl:text>.</xsl:text>
       <xsl:if test="@colspan">
-        <xsl:call-template name="repeat">
-          <xsl:with-param name="str" select="'.'"/>
-          <xsl:with-param name="num" select="number(@colspan) - 1"/>
+        <xsl:call-template name="utils.repeat_string">
+          <xsl:with-param name="string" select="'.'"/>
+          <xsl:with-param name="number" select="number(@colspan) - 1"/>
         </xsl:call-template>
       </xsl:if>
     </xsl:for-each>

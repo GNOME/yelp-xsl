@@ -861,8 +861,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="copy-string">
-        <xsl:with-param name="count" select="$colspan"/>
+      <xsl:call-template name="utils.repeat_string">
         <xsl:with-param name="string">
           <xsl:choose>
             <xsl:when test="$entry/@morerows">
@@ -872,6 +871,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
           </xsl:choose>
           <xsl:text>:</xsl:text>
         </xsl:with-param>
+        <xsl:with-param name="number" select="$colspan"/>
       </xsl:call-template>
       <xsl:choose>
         <xsl:when test="$entry/following-sibling::*[1]">
@@ -944,21 +944,6 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
-
-<!--#* copy-string -->
-<!-- FIXME: replace with str:padding? -->
-<xsl:template name="copy-string">
-  <xsl:param name="count" select="1"/>
-  <xsl:param name="string"/>
-  <xsl:if test="$count &gt; 0">
-    <xsl:value-of select="$string"/>
-    <xsl:call-template name="copy-string">
-      <xsl:with-param name="count" select="$count - 1"/>
-      <xsl:with-param name="string" select="$string"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
 
 <!-- = entrytbl = -->
 <xsl:template match="entrytbl | db:entrytbl">

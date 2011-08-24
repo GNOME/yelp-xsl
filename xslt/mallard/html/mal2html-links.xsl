@@ -20,9 +20,12 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:e="http://projectmallard.org/experimental/"
+                xmlns:api="http://projectmallard.org/experimental/api/"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:math="http://exslt.org/math"
+                xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal e exsl"
+                exclude-result-prefixes="mal e api exsl math html"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -646,6 +649,12 @@ when determining which links to output.
           </xsl:if>
           <div class="region">
             <xsl:choose>
+              <xsl:when test="$node/self::mal:links/@api:type='function'">
+                <xsl:call-template name="mal2html.api.links.function">
+                  <xsl:with-param name="node" select="$node"/>
+                  <xsl:with-param name="links" select="$_links"/>
+                </xsl:call-template>
+              </xsl:when>
               <xsl:when test="contains($style, ' mouseovers ')">
                 <xsl:call-template name="_mal2html.links.mouseovers">
                   <xsl:with-param name="node" select="$node"/>

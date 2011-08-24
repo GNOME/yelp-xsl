@@ -42,6 +42,7 @@ REMARK: Describe this module
 <xsl:param name="mal.if.env" select="'html xhtml'"/>
 <xsl:param name="mal.link.extension" select="$html.extension"/>
 
+<xsl:include href="mal2html-api.xsl"/>
 <xsl:include href="mal2html-block.xsl"/>
 <xsl:include href="mal2html-facets.xsl"/>
 <xsl:include href="mal2html-gloss.xsl"/>
