@@ -1,13 +1,14 @@
 # German translation of yelp-xsl.
 # Copyright (C) 2004, 2005 Shaun McCance <shaunm@gnome.org>.
 # This file is distributed under the same license as the gnome-doc-utils package.
+#
+# Keep in sync with German part of docbook-stylesheets
+# http://docbook.sourceforge.net/projects/xsl/
+#
 # Hendrik Brandt <heb@gnome-de.org>, 2004-2005.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Hendrik Richter <hendrikr@gnome.org>, 2006, 2007.
 # Mario Blättermann <mariobl@freenet.de>, 2009, 2011.
-#
-# Keep in sync with German part of docbook-stylesheets
-# http://docbook.sourceforge.net/projects/xsl/
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2011.
 #
 msgid ""
@@ -15,9 +16,9 @@ msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-01 14:16+0000\n"
-"PO-Revision-Date: 2011-06-28 22:51+0200\n"
-"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
+"POT-Creation-Date: 2011-08-22 16:00+0000\n"
+"PO-Revision-Date: 2011-08-28 14:25+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,7 +345,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:374(msg/msgstr)
 msgid "[<citation.label/>]"
@@ -360,10 +361,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -388,10 +389,10 @@ msgstr "von <comment.name/> am <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -501,10 +502,8 @@ msgstr "»<node/>«"
 #. <seeie/> - The actual link or links of the cross reference
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
-#, fuzzy
-#| msgid "See <glosssee/>."
 msgid "See <seeie/>."
-msgstr "Siehe <glosssee/>."
+msgstr "Siehe <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -517,10 +516,8 @@ msgstr "Siehe <glosssee/>."
 #. <seeie/> - The actual link or links of the cross reference
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
-#, fuzzy
-#| msgid "See also <glosssee/>."
 msgid "See also <seeie/>."
-msgstr "Siehe auch <glosssee/>."
+msgstr "Siehe auch <seeie/>."
 
 #~ msgid " — "
 #~ msgstr " ‒ "
@@ -580,8 +577,7 @@ msgstr "Siehe auch <glosssee/>."
 #~ msgid ""
 #~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
 #~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Siehe auch <glosssee/>.</"
-#~ "msgstr>"
+#~ "<msgid>glossseealso.format</msgid> <msgstr>Siehe auch <glosssee/>.</msgstr>"
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
@@ -649,8 +645,7 @@ msgstr "Siehe auch <glosssee/>."
 #~ msgid ""
 #~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
 #~ msgstr ""
-#~ "<msgstr form='0'>Herausgeber</msgstr> <msgstr form='1'>Herausgeber</"
-#~ "msgstr>"
+#~ "<msgstr form='0'>Herausgeber</msgstr> <msgstr form='1'>Herausgeber</msgstr>"
 
 #~ msgid ""
 #~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
