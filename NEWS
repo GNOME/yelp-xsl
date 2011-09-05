@@ -1,3 +1,13 @@
+3.1.5
+=====
+* Experimental Mallard extension for API references
+* Updated translations:
+  ca    (Gil Forcada)
+  de    (Mario Blättermann)
+  pt_BR (Og B. Maciel)
+  ta    (Dr.T.Vasudevan)
+  ug    (Abduxukur Abdurixit)
+
 3.1.4
 =====
 * Speed improvements for Mallard processing
