@@ -1,0 +1,644 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp-xsl\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-09-06 19:42+0000\n"
+"PO-Revision-Date: 2011-09-07 23:09+0100\n"
+"Last-Translator: ivarela <ivarela@softastur.org>\n"
+"Language-Team: Asturian <alministradores@softastur.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Poedit-Language: Asturian\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Translate to default:RTL if your language should be displayed
+#. right-to-left, otherwise translate to default:LTR.  Do *not*
+#. translate it to "predefinito:LTR", if it isn't default:LTR
+#. or default:RTL it will not work.
+#.
+#: yelp-xsl.xml.in:27(msg/msgstr)
+msgid "default:LTR"
+msgstr "default:LTR"
+
+#. This is used a simple list item seperator in places where simple
+#. inline lists have to be constructed dynamically.  Using the default
+#. string of ", ", a list would look like this: A, B, C, D.  Using the
+#. nonsensical string " - ", a list would look like this: A - B - C - D.
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:40(msg/msgstr)
+#, no-wrap
+msgid ", "
+msgstr ", "
+
+#. This is used as the final separator in an inline list of three or
+#. more elements.  The string ", " will be used to separate all but
+#. the last pair of elements.  Using these two strings, a list of
+#. names would be formatted as "Tom, Dick, and Harry".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:53(msg/msgstr)
+#, no-wrap
+msgid ", and "
+msgstr ", y "
+
+#. This is used as a list item seperator for inline lists of exactly two
+#. elements.  A list of two names would be formatted as "Tom and Dick".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:64(msg/msgstr)
+#, no-wrap
+msgid " and "
+msgstr " y "
+
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before questions in a question-and-answer
+#. set.  Typically, questions are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label questions.
+#.
+#: yelp-xsl.xml.in:79(msg/msgstr)
+msgid "Q:"
+msgstr "E:"
+
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before answers in a question-and-answer
+#. set.  Typically, answers are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label answers.
+#.
+#: yelp-xsl.xml.in:92(msg/msgstr)
+msgid "A:"
+msgstr "R:"
+
+#. Accessible title for an advanced note.
+#: yelp-xsl.xml.in:99(msg/msgstr)
+msgid "Advanced"
+msgstr "Avanzáu"
+
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:104(msg/msgstr)
+msgid "Bibliography"
+msgstr "Bibliografía"
+
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:109(msg/msgstr)
+msgid "Bug"
+msgstr "Bug"
+
+#. Revision status of a document or page. Content has been written and
+#. reviewed, and it awaiting a final approval.
+#.
+#: yelp-xsl.xml.in:117(msg/msgstr)
+msgid "Candidate"
+msgstr "Candidatu"
+
+#. Default title for a colophon section.
+#: yelp-xsl.xml.in:123(msg/msgstr)
+msgid "Colophon"
+msgstr "Ramu"
+
+#. Title of the listing of subsections.
+#: yelp-xsl.xml.in:129(msg/msgstr)
+msgid "Contents"
+msgstr "Conteníos"
+
+#. Default title for a dedication section.
+#: yelp-xsl.xml.in:134(msg/msgstr)
+msgid "Dedication"
+msgstr "Dedicatoria"
+
+#. Revision status of a document or page. Most content has been
+#. written, but revisions are still happening.
+#.
+#: yelp-xsl.xml.in:142(msg/msgstr)
+msgid "Draft"
+msgstr "Borrador"
+
+#. Revision status of a document or page. A senior member of the
+#. documentation team has reviewed and approved.
+#.
+#: yelp-xsl.xml.in:150(msg/msgstr)
+msgid "Final"
+msgstr "Final"
+
+#. Automatic heading above a list of related links.
+#: yelp-xsl.xml.in:155(msg/msgstr)
+msgid "Further Reading"
+msgstr "Llectures complementaries"
+
+#. Default title for a glossary.
+#: yelp-xsl.xml.in:160(msg/msgstr)
+msgid "Glossary"
+msgstr "Glosariu"
+
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:165(msg/msgstr)
+msgid "Important"
+msgstr "importantes"
+
+#. Revision status of a document or page. Work has begun, but
+#. not all content has been written.
+#.
+#: yelp-xsl.xml.in:173(msg/msgstr)
+msgid "Incomplete"
+msgstr "Incompletu"
+
+#. Default title for an index of terms in a book.
+#: yelp-xsl.xml.in:178(msg/msgstr)
+msgid "Index"
+msgstr "Índiz"
+
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:183(msg/msgstr)
+msgid "More About"
+msgstr "Más información tocante al tema"
+
+#. Default title for a refnamediv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:192(msg/msgstr)
+msgid "Name"
+msgstr "Nome"
+
+#. Link text for a link to the next page in a series.
+#: yelp-xsl.xml.in:197(msg/msgstr)
+msgid "Next"
+msgstr "Siguiente"
+
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:202(msg/msgstr)
+msgid "Note"
+msgstr "Nota"
+
+#. Revision status of a document or page. Content was once current,
+#. but needs to be updated to reflect software updates.
+#.
+#: yelp-xsl.xml.in:210(msg/msgstr)
+msgid "Outdated"
+msgstr "Pervieyu"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:215(msg/msgstr)
+msgid "Pause"
+msgstr "Posar"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:220(msg/msgstr)
+msgid "Play"
+msgstr "Reproducir"
+
+#. Default title for a preface to a book.
+#: yelp-xsl.xml.in:226(msg/msgstr)
+msgid "Preface"
+msgstr "Entamu"
+
+#. Link text for a link to the previous page in a series.
+#: yelp-xsl.xml.in:231(msg/msgstr)
+msgid "Previous"
+msgstr "Anterior"
+
+#. Revision status of a document or page. Content has been written
+#. and should be reviewed by other team members.
+#.
+#: yelp-xsl.xml.in:239(msg/msgstr)
+msgid "Ready for review"
+msgstr "Preparáu pa revisión"
+
+#. Automatic heading above a list of see-also links.
+#: yelp-xsl.xml.in:244(msg/msgstr)
+msgid "See Also"
+msgstr "Lleer tamién"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to shrink images back down after
+#. they've been expanded to full size.
+#.
+#: yelp-xsl.xml.in:253(msg/msgstr)
+msgid "Scale images down"
+msgstr "Menguar imáxenes"
+
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:258(msg/msgstr)
+msgid "Sidebar"
+msgstr "Barra llateral"
+
+#. Revision status of a document or page. No content has been written yet.
+#.
+#: yelp-xsl.xml.in:265(msg/msgstr)
+msgid "Stub"
+msgstr "Esbozu"
+
+#. Default title for a refsynopsisdiv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:273(msg/msgstr)
+msgid "Synopsis"
+msgstr "Resume"
+
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:278(msg/msgstr)
+msgid "Tip"
+msgstr "Gabitu"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to expand images to full size.
+#.
+#: yelp-xsl.xml.in:286(msg/msgstr)
+msgid "View images at normal size"
+msgstr "Ver imáxenes a tamañu normal"
+
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:291(msg/msgstr)
+msgid "Warning"
+msgstr "Curiáu"
+
+#. This is an image of the opening quotation character for your language.
+#. The image is used as a watermark on blockquote elements.  There are a
+#. number of different quote characters used by various languages, so the
+#. image name is translatable.  The name of the icon should be of the form
+#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
+#. quote character.  For example, some languages use the double angle quotation
+#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
+#.
+#. The image, however, is not automatically created.  Do not translate
+#. this to a value if there isn't a corresponding file in yelp-xsl under
+#. the directory icons/hicolor/48x48/status.
+#.
+#. Languages that use guillemets (angle quotation marks) should use either
+#. 00AB or 00BB, depending on whether the opening quotation is the left
+#. guillemet or the right guillemet.  Languages that use inverted comma
+#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
+#. don't make very nice watermarks, so if you would normally open a quote
+#. with single quotation marks in your language, use the corresponding
+#. double quotation mark for the watermark image.
+#.
+#: yelp-xsl.xml.in:318(msg/msgstr)
+msgid "yelp-quote-201C.png"
+msgstr "yelp-quote-00BB.png"
+
+#. ID: biblioentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to bibliography entries.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <label/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:334(msg/msgstr)
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "Ver la entrada <biblioentry.label/> de la biliografía."
+
+#. ID: biblioentry.label
+#. This is a format message used to format the labels for entries in
+#. a bibliography.  The content of the label is often an abbreviation
+#. of the authors' names and the year of publication.  In English,
+#. these are generally formatted with [square brackets] surrounding
+#. them.
+#.
+#. This string is similar to citation.format, but they are used in
+#. different places.  The citation formatter is used when referencing
+#. a bibliography entry in running prose.  This formatter is used for
+#. the actual bibliography entry.  You may use the same formatting for
+#. both, but you don't have to.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The text content of the bibliography label
+#.
+#: yelp-xsl.xml.in:357(msg/msgstr)
+msgid "[<biblioentry.label/>]"
+msgstr "(<biblioentry.label/>)"
+
+#. ID: citation.label
+#. This is a format message used to format inline citations to other
+#. published works.  The content is typically an abbreviation of the
+#. authors' last names.  In English, this abbreviation is usually
+#. written inside [square brackets].
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <citation/> - The text content of the citation element, possibly
+#.               as a link to an entry in the bibliography
+#.
+#: yelp-xsl.xml.in:374(msg/msgstr)
+msgid "[<citation.label/>]"
+msgstr "(<citation/>)"
+
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#.
+#.   Here is the text of the comment.
+#.
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#.
+#: yelp-xsl.xml.in:403(msg/msgstr)
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "de <comment.name/> el <comment.date/>"
+
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#.
+#: yelp-xsl.xml.in:431(msg/msgstr)
+msgid "from <comment.name/>"
+msgstr "de <comment.name/>"
+
+#. ID: email.tooltip
+#. This is a format message used to format tooltips on mailto: links.
+#. Special elements in the message will be replaced with the appropriate
+#. content, as follows:
+#.
+#. <string/> - The linked-to email address
+#.
+#: yelp-xsl.xml.in:443(msg/msgstr)
+msgid "Send email to ‘<string/>’."
+msgstr "Unviar corréu electrónicu a «<string/>»."
+
+#. ID: glossentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to glossary entries. Special elements in the message will be replaced
+#. with the appropriate content, as follows:
+#.
+#. <glossterm/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:455(msg/msgstr)
+msgid "Read the definition for ‘<glossterm/>’."
+msgstr "Llei la definición pa «<glossterm/>»."
+
+#. ID: glosssee.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glosssee elements are presented as a links to the user
+#. in the glossary, formatted as a single prose sentence.  For example,
+#. if the user is being directed to the entry "foo", the glosssee may
+#. be formatted as "See foo."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:476(msg/msgstr)
+msgid "See <glosssee/>."
+msgstr "Consulta <glosssee/>."
+
+#. ID: glossseealso.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glossseealso elements are presented as a links to the
+#. user in the glossary, formatted as a single prose sentence.  For
+#. example, if the user is being directed to the entries "foo", "bar",
+#. and "baz", the glossseealso may be formatted as "See also foo, bar,
+#. baz."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:498(msg/msgstr)
+msgid "See also <glosssee/>."
+msgstr "Consulta tamién <glosssee/>."
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:510(msg/msgstr)
+msgid "“<node/>”"
+msgstr "“<node/>”"
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:522(msg/msgstr)
+msgid "‘<node/>’"
+msgstr "‘<node/>’"
+
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:537(msg/msgstr)
+msgid "See <seeie/>."
+msgstr "Consulta <glosssee/>."
+
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:552(msg/msgstr)
+msgid "See also <seeie/>."
+msgstr "Consulta tamién <glosssee/>."
+
+#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
+#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>(<citation/>)</msgstr>"
+#~ msgid ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
+#~ "<label/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Consulta la entrada de "
+#~ "bibliografía <label/>.</msgstr>"
+#~ msgid ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgstr ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>«<node/>»</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
+#~ msgstr "<msgid>citation.format</msgid> <msgstr>(<citation/>)</msgstr>"
+#~ msgid " — "
+#~ msgstr " — "
+#~ msgid ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>«<glossterm/>»</msgstr>"
+#~ msgid ""
+#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
+#~ "‘<glossterm/>’.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Llei la definición de "
+#~ "«<glossterm/>».</msgstr>"
+#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgid ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>Unvía un corréu-e a &lt;<string/"
+#~ ">&gt;.</msgstr>"
+#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Llee <glosssee/>.</msgstr>"
+#~ msgid ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>Llei tamién <glosssee/>.</"
+#~ "msgstr>"
+#~ msgid ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Entruga "
+#~ "<number/></msgstr>"
+#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.xref</msgid> <msgstr>Entruga <number/></msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Collaborador</msgstr> <msgstr form='1'>Collaboradores</"
+#~ "msgstr>"
+#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
+#~ msgstr "<msgstr form='0'>Autor</msgstr> <msgstr form='1'>Autores</msgstr>"
+#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
+#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
+#~ "Contributors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Otru contribuyidor</msgstr> <msgstr form='1'>Otros "
+#~ "contribuyidores</msgstr>"
+#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Redautor</msgstr> <msgstr form='1'>Redautores</msgstr>"
+#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
+#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Llei <seeie/>.</msgstr>"
+#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>figure.digit</msgid> <msgstr>I</msgstr>"
+#~ msgid ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgstr ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>«<node/>»</msgstr>"
+#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>seealsoie.format</msgid> <msgstr>Llei tamién <seeie/>.</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Traductor</msgstr> <msgstr form='1'>Traductores</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgstr "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editores</msgstr>"
+#~ msgid "About This Document"
+#~ msgstr "Tocante a esti documentu"
+#~ msgid "A:&#x2003;"
+#~ msgstr "R:&#x2003;"
+#~ msgid "Affiliation"
+#~ msgstr "Afiliación"
+#~ msgid "Caution"
+#~ msgstr "Curiáu"
+#~ msgid "Legal Notice"
+#~ msgstr "Avisu llegal"
+#~ msgid "Email"
+#~ msgstr "Corréu-e"
+#~ msgid "Revision History"
+#~ msgstr "Hestorial de revisiones"
+#~ msgid "Q:&#x2003;"
+#~ msgstr "P:&#x2003;"
+#~ msgid "See"
+#~ msgstr "Llei"
+#~ msgid ""
+#~ "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgid>comment.cite.name.format</msgid> <msgstr>por <comment.name/></"
+#~ "msgstr>"
+#~ msgid ""
+#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> "
+#~ "on <comment.date/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>por <comment.name/> "
+#~ "en <comment.date/></msgstr>"
+
