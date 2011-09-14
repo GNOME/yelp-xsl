@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-08 21:56+0200\n"
-"PO-Revision-Date: 2011-09-08 22:09+0200\n"
+"POT-Creation-Date: 2011-09-14 19:33+0200\n"
+"PO-Revision-Date: 2011-09-14 19:34+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -245,7 +245,7 @@ msgstr "Pronto per la revisione"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:244(msg/msgstr)
 msgid "See Also"
-msgstr "Confrontare anche"
+msgstr "Confronta anche"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
