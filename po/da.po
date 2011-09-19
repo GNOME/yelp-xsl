@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-18 16:34+0200\n"
-"PO-Revision-Date: 2011-09-17 03:54-0200\n"
+"POT-Creation-Date: 2011-09-19 23:02+0200\n"
+"PO-Revision-Date: 2011-09-19 14:17-0200\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -87,7 +87,7 @@ msgstr " og "
 #.
 #: yelp-xsl.xml.in:79(msg/msgstr)
 msgid "Q:"
-msgstr ""
+msgstr "Sp:"
 
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
@@ -99,12 +99,12 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:92(msg/msgstr)
 msgid "A:"
-msgstr ""
+msgstr "Sv:"
 
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:99(msg/msgstr)
 msgid "Advanced"
-msgstr ""
+msgstr "Avanceret"
 
 #. Default title for a bibliography.
 #: yelp-xsl.xml.in:104(msg/msgstr)
@@ -114,14 +114,14 @@ msgstr "Litteraturliste"
 #. Accessible title for a note about a software bug.
 #: yelp-xsl.xml.in:109(msg/msgstr)
 msgid "Bug"
-msgstr ""
+msgstr "Fejl"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
 #: yelp-xsl.xml.in:117(msg/msgstr)
 msgid "Candidate"
-msgstr ""
+msgstr "Kandidat"
 
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:123(msg/msgstr)
@@ -206,7 +206,7 @@ msgstr "Note"
 #.
 #: yelp-xsl.xml.in:210(msg/msgstr)
 msgid "Outdated"
-msgstr ""
+msgstr "Forældet"
 
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:215(msg/msgstr)
@@ -251,7 +251,7 @@ msgstr "Nedskalér billeder"
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:258(msg/msgstr)
 msgid "Sidebar"
-msgstr ""
+msgstr "Sidebjælke"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
@@ -304,7 +304,6 @@ msgstr "Advarsel"
 #. double quotation mark for the watermark image.
 #.
 #: yelp-xsl.xml.in:318(msg/msgstr)
-#, fuzzy
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201C.png"
 
@@ -319,7 +318,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #: yelp-xsl.xml.in:334(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "Vis opslag i litteraturliste <biblioentry.label/>."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -341,7 +340,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:357(msg/msgstr)
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
@@ -357,7 +356,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:374(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "[<citation.label/>]"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -385,7 +384,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:403(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
-msgstr ""
+msgstr "fra <comment.name/> den <comment.date/>"
 
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
@@ -412,7 +411,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:431(msg/msgstr)
 msgid "from <comment.name/>"
-msgstr ""
+msgstr "fra <comment.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -423,7 +422,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:443(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr ""
+msgstr "Send e-post til \"<string/>\"."
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -433,9 +432,8 @@ msgstr ""
 #. <glossterm/> - The term being defined by the glossary entry
 #.
 #: yelp-xsl.xml.in:455(msg/msgstr)
-#, fuzzy
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "<msgstr>Læs ordforklaringen til “<glossterm/>”.</msgstr>"
+msgstr "Læs ordforklaringen til ‘<glossterm/>’."
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -455,7 +453,7 @@ msgstr "<msgstr>Læs ordforklaringen til “<glossterm/>”.</msgstr>"
 #.
 #: yelp-xsl.xml.in:476(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "Se <glosssee/>."
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -476,7 +474,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:498(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "Se også <glosssee/>."
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -487,7 +485,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:510(msg/msgstr)
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>“"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
@@ -498,7 +496,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:522(msg/msgstr)
 msgid "‘<node/>’"
-msgstr ""
+msgstr "‘<node/>’"
 
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
@@ -512,7 +510,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See <seeie/>."
-msgstr ""
+msgstr "Se <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -526,18 +524,66 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr ""
+msgstr "Se også <seeie/>."
 
 #~ msgid " — "
 #~ msgstr " — "
+
+#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
+#~ msgstr "<msgstr>A</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
+#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendiks <number/></msgstr>"
+
+#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
+#~ "msgstr>"
+#~ msgstr "<msgstr>Appendiks <number/> ― <title/></msgstr>"
 
 #~ msgid ""
 #~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
 #~ "<label/>.</msgstr>"
 #~ msgstr "<msgstr>Vis litteraturlistereferencen <label/>.</msgstr>"
 
+#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgstr><title/></msgstr>"
+
 #~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 #~ msgstr "<msgstr>[<bibliolabel/>]</msgstr>"
+
+# DANSK Her har jeg valgt at sige at hvis der refereres til nummeret på
+# en bog i en serie så skal nummeret skrive med romertal.
+#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>I</msgstr>"
+
+#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
+#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Kapitel <number/></msgstr>"
+
+#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
+#~ msgstr "<msgstr>Kapitel <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 #~ msgstr "<msgstr>[<citation/>]</msgstr>"
@@ -548,25 +594,49 @@ msgstr ""
 #~ "<msgstr><i><node/></i></msgstr>"
 #~ msgstr "<msgstr><i>“<node/>”</i></msgstr> "
 
-#~| msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> "
-#~ "on <comment.date/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>fra <comment.name/> "
-#~ "den <comment.date/></msgstr>"
-
-#~| msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>fra <comment.name/></"
-#~ "msgstr>"
-
 #~ msgid ""
 #~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
 #~ msgstr "<msgstr>Send e-post til: <string/>.</msgstr>"
+
+#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Example <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><i>Eksempel <number/></i>&#x2003;</msgstr> <msgstr "
+#~ "role='li'>Eksempel <number/>&#x2002;</msgstr> <msgstr>Eksempel <number/></"
+#~ "msgstr>"
+
+#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>-<digit/></msgstr>"
+
+#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
+#~ msgstr "<msgstr>Eksempel <number/></msgstr>"
+
+#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Figure <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><i>Figur <number/></i>&#x2003;</msgstr> <msgstr "
+#~ "role='li'>Figur <number/>&#x2002;</msgstr> <msgstr>Figur <number/></"
+#~ "msgstr>"
+
+# DANSK Her har jeg valgt at den først adskiller i figurnumre skal være . og ikke -
+#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
+#~ msgstr "<msgstr>Figur <number/></msgstr>"
+
+#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgstr><title/></msgstr>"
 
 #~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgstr>(<node/>)</msgstr>"
@@ -586,6 +656,24 @@ msgstr ""
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgstr>(<node/>)</msgstr>"
+
+# DANSK Her er valge almindelige tal fremfor for romertal
+#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
+#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Del <number/></msgstr>"
+
+#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
+#~ msgstr "<msgstr>Del <number/> ― <title/></msgstr>"
+
+#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgstr><title/></msgstr>"
 
 #~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgstr>1</msgstr>"
@@ -608,6 +696,46 @@ msgstr ""
 #~ "<msgstr>“<node/>”</msgstr>"
 #~ msgstr "<msgstr>“<node/>”</msgstr>"
 
+#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
+#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Afsnit <number/></msgstr>"
+
+#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
+#~ "msgstr>"
+#~ msgstr "<msgstr>Afsnit <number/> ― <title/></msgstr>"
+
+#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
+#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Afsnit <number/></msgstr>"
+
+#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr "<msgstr>Afsnit <number/> ― <title/></msgstr>"
+
 #~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
 #~ msgstr "<msgstr>Se også <seeie/>.</msgstr>"
 
@@ -619,6 +747,25 @@ msgstr ""
 
 #~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
 #~ msgstr "<msgstr>(<number/>)</msgstr>"
+
+#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Table <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgstr role='header'><i>Tabel <number/></i>&#x2003;</msgstr> <msgstr "
+#~ "role='li'>Tabel <number/>&#x2002;</msgstr> <msgstr>Tabel <number/></"
+#~ "msgstr>"
+
+# DANSK Her bruges igen . i stedet for - som adskiller i numrene
+#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
+#~ msgstr "<msgstr>Tabel <number/></msgstr>"
 
 #~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
 #~ msgstr ""
@@ -685,168 +832,3 @@ msgstr ""
 
 #~ msgid "See"
 #~ msgstr "Se"
-
-#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-#~ msgstr "<msgstr>A</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendiks <number/></msgstr>"
-
-#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr "<msgstr>Appendiks <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-# DANSK Her har jeg valgt at sige at hvis der refereres til nummeret på
-# en bog i en serie så skal nummeret skrive med romertal.
-#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>I</msgstr>"
-
-#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Kapitel <number/></msgstr>"
-
-#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Kapitel <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Eksempel <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Eksempel <number/>&#x2002;</msgstr> <msgstr>Eksempel <number/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
-#~ msgstr "<msgstr>Eksempel <number/></msgstr>"
-
-#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Figur <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Figur <number/>&#x2002;</msgstr> <msgstr>Figur <number/></"
-#~ "msgstr>"
-
-# DANSK Her har jeg valgt at den først adskiller i figurnumre skal være . og ikke -
-#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
-#~ msgstr "<msgstr>Figur <number/></msgstr>"
-
-#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-# DANSK Her er valge almindelige tal fremfor for romertal
-#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Del <number/></msgstr>"
-
-#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Del <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Afsnit <number/></msgstr>"
-
-#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr "<msgstr>Afsnit <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Afsnit <number/></msgstr>"
-
-#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Afsnit <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Tabel <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Tabel <number/>&#x2002;</msgstr> <msgstr>Tabel <number/></"
-#~ "msgstr>"
-
-# DANSK Her bruges igen . i stedet for - som adskiller i numrene
-#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
-#~ msgstr "<msgstr>Tabel <number/></msgstr>"
