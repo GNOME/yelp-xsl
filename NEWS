@@ -1,3 +1,17 @@
+3.1.6
+=====
+* Updated translations:
+  ast   (Xandru Armesto)
+  da    (Aputsiaq Janussen)
+  en_GB (Bruce Cowan)
+  fa    (Arash Mousavi)
+  fi    (Timo Jyrinki)
+  fr    (Bruno Brouard)
+  it    (Milo Casagrande)
+  pl    (Piotr Drąg)
+  pt    (Duarte Loreto)
+  zh_CN (Yinghua Wang)
+
 3.1.5
 =====
 * Experimental Mallard extension for API references
