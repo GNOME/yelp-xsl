@@ -1,4 +1,4 @@
-AC_INIT([yelp-xsl],[3.1.6],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl])
+AC_INIT([yelp-xsl],[3.2.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl])
 
 AC_CONFIG_MACRO_DIR([m4])
 
