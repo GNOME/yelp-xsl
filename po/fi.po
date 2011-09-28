@@ -1,16 +1,16 @@
 # Finnish translations for gnome-doc-utils package.
 # Copyright (C) 2004-2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-doc-utils package.
-# Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2004-2005, 2009.
+# Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2004-2005, 2009-2011.
 # Ilkka tuohela <hile@iki.fi>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-doc-utils\n"
+"Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 16:29+0300\n"
-"PO-Revision-Date: 2011-09-12 16:29+0300\n"
-"Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
+"POT-Creation-Date: 2011-09-28 15:06+0300\n"
+"PO-Revision-Date: 2011-09-28 15:06+0300\n"
+"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
-msgstr "ja "
+msgstr " ja "
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
@@ -87,7 +87,7 @@ msgstr "V:"
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:99(msg/msgstr)
 msgid "Advanced"
-msgstr ""
+msgstr "Edistyneet"
 
 #. Default title for a bibliography.
 #: yelp-xsl.xml.in:104(msg/msgstr)
@@ -97,7 +97,7 @@ msgstr "Lähdeluettelo"
 #. Accessible title for a note about a software bug.
 #: yelp-xsl.xml.in:109(msg/msgstr)
 msgid "Bug"
-msgstr ""
+msgstr "Vika"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
@@ -234,7 +234,7 @@ msgstr "Sovita kuvat pienemmiksi"
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:258(msg/msgstr)
 msgid "Sidebar"
-msgstr ""
+msgstr "Sivupalkki"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
@@ -288,7 +288,7 @@ msgstr "Varoitus"
 #.
 #: yelp-xsl.xml.in:318(msg/msgstr)
 msgid "yelp-quote-201C.png"
-msgstr ""
+msgstr "yelp-quote-201D.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -301,7 +301,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:334(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "Näytä kirjallisuusviite <biblioentry.label/>."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -323,7 +323,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:357(msg/msgstr)
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
@@ -339,7 +339,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:374(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "(<citation.label/>)"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -367,7 +367,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:403(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
-msgstr ""
+msgstr " — <comment.name/>, <comment.date/>"
 
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
@@ -394,7 +394,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:431(msg/msgstr)
 msgid "from <comment.name/>"
-msgstr ""
+msgstr " — <comment.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -405,7 +405,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:443(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr "Lähetä sähköpostia vastaanottajalle ‘<string/>’."
+msgstr "Lähetä sähköpostia vastaanottajalle ”<string/>”."
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -416,7 +416,7 @@ msgstr "Lähetä sähköpostia vastaanottajalle ‘<string/>’."
 #.
 #: yelp-xsl.xml.in:455(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
+msgstr "Lue termin ”<glossterm/>” määritelmä."
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -436,7 +436,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:476(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "Katso <glosssee/>."
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -457,7 +457,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:498(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "Katso myös <glosssee/>."
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -468,7 +468,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:510(msg/msgstr)
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>”"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
@@ -479,7 +479,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:522(msg/msgstr)
 msgid "‘<node/>’"
-msgstr ""
+msgstr "”<node/>”"
 
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
@@ -493,7 +493,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See <seeie/>."
-msgstr ""
+msgstr "Katso <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -507,138 +507,10 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr ""
+msgstr "Katso myös <seeie/>."
 
 #~ msgid " — "
 #~ msgstr " — "
-
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Näytä lähdeluettelon kohta "
-#~ "<label/></msgstr>"
-
-#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-
-#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgstr "<msgid>citation.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Lähetä sähköpostia osoitteeseen "
-#~ "\"<string/>\".</msgstr>"
-
-#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
-#~ "‘<glossterm/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Lue sanan “<glossterm/>” "
-#~ "määritelmä.</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>“<glossterm/>”</msgstr>"
-
-#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-#~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Katso <glosssee/>.</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Katso myös <glosssee/>.</"
-#~ "msgstr>"
-
-#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Kysymys "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
-#~ msgstr "<msgid>question.xref</msgid> <msgstr>Kysymys <number/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-
-#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>seealsoie.format</msgid> <msgstr>Katso myös <glosssee/>.</msgstr>"
-
-#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
-#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Katso <glosssee/>.</msgstr>"
-
-#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-
-# Pitäiskö tämän olla "Kuvassa <number/>"?
-#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-
-#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-#~ msgstr "<msgstr form='0'>Tekijä</msgstr> <msgstr form='1'>Tekijät</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Työtoveri</msgstr> <msgstr form='1'>Työtoverit</msgstr>"
-
-# suomeksi ei liene väliä kuinka monta tekijää on... enpä tiedä miten englanniksikaan tosin..
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Tekijänoikeus</msgstr> <msgstr form='1'>Tekijänoikeus</"
-#~ "msgstr>"
-
-#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Toimittaja</msgstr> <msgstr form='1'>Toimittajat</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Muu avustaja</msgstr> <msgstr form='1'>Muut avustajat</"
-#~ "msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Julkaisija</msgstr> <msgstr form='1'>Julkaisijat</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Kääntäjä</msgstr> <msgstr form='1'>Kääntäjät</msgstr>"
 
 #~ msgid "A:&#x2003;"
 #~ msgstr "V:&#x2003;"
