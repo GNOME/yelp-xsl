@@ -181,7 +181,7 @@ REMARK: Describe this template
     </xsl:variable>
     <xsl:variable name="revision"
                   select="$page/mal:info/mal:revision[@date = $date][last()]"/>
-    <xsl:if test="$revision/@status != '' and $revision/@status != 'final'">
+    <xsl:if test="$revision/@status != ''">
       <xsl:text> </xsl:text>
       <span>
         <xsl:attribute name="class">
@@ -288,7 +288,17 @@ REMARK: Describe this template
         <p class="version">
           <!-- FIXME: i18n -->
           <xsl:text>Version </xsl:text>
-          <xsl:value-of select="$revision/@version"/>
+          <xsl:choose>
+            <xsl:when test="$revision/@version">
+              <xsl:value-of select="$revision/@version"/>
+            </xsl:when>
+            <xsl:when test="$revision/@docversion">
+              <xsl:value-of select="$revision/@docversion"/>
+            </xsl:when>
+            <xsl:when test="$revision/@pkgversion">
+              <xsl:value-of select="$revision/@pkgversion"/>
+            </xsl:when>
+          </xsl:choose>
           <xsl:text> on </xsl:text>
           <xsl:value-of select="$revision/@date"/>
         </p>
