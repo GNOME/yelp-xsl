@@ -1,3 +1,14 @@
+3.2.1
+=====
+* Fixed editor-mode badges for final pages and pkgversion
+* Updated translations:
+  eo    (Tiffany Antopolski)
+  fi    (Tommi Vainikainen)
+  nl    (Wouter Bolsterlee)
+  te    (Hari Krishna)
+  uk    (Daniel Korostil)
+  vi    (Nguyễn Thái Ngọc Duy)
+
 3.2.0
 =====
 * Updated translations:
