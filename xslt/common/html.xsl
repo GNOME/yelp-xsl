@@ -251,11 +251,16 @@ as ${node} to this template.
       </title>
       <xsl:call-template name="html.css"/>
       <xsl:call-template name="html.js"/>
-      <xsl:call-template name="html.head.custom"/>
+      <xsl:call-template name="html.head.custom">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
     </head>
     <body>
       <xsl:apply-templates mode="html.body.attr.mode" select="$node"/>
-      <div class="header">
+      <div class="header"> 
+        <xsl:call-template name="html.header.custom">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
         <xsl:apply-templates mode="html.header.mode" select="$node"/>
       </div>
       <div class="body">
@@ -263,6 +268,9 @@ as ${node} to this template.
       </div>
       <div class="footer">
         <xsl:apply-templates mode="html.footer.mode" select="$node"/>
+        <xsl:call-template name="html.footer.custom">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
       </div>
     </body>
   </html>
@@ -294,6 +302,22 @@ implement this node to add attributes for styling, data, or other purposes.
 <xsl:template mode="html.body.attr.mode" match="*"/>
 
 
+<!--**==========================================================================
+html.header.custom
+Stub to output custom header content.
+:Stub: true
+:Revision: version="1.0" date="2011-10-27" status="final"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called inside the header
+div, before %{html.header.mode} is applied to ${node}. You can override this
+template to provide additional content at the top of the page.
+-->
+<xsl:template name="html.header.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
 <!--%%==========================================================================
 html.header.mode
 Output the header content for an element.
@@ -305,6 +329,22 @@ element that will be passed to *{html.page}. If they do not, the header div
 will be empty.
 -->
 <xsl:template mode="html.header.mode" match="*"/>
+
+
+<!--**==========================================================================
+html.footer.custom
+Stub to output custom footer content.
+:Stub: true
+:Revision: version="1.0" date="2011-10-27" status="final"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called inside the footer
+div, after %{html.footer.mode} is applied to ${node}. You can override this
+template to provide additional content at the bottom of the page.
+-->
+<xsl:template name="html.footer.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
 
 
 <!--%%==========================================================================
@@ -337,6 +377,7 @@ html.head.custom
 Stub to output custom content for the HTML #{head} element.
 :Stub: true
 :Revision: version="1.0" date="2010-05-25" status="final"
+$node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. You can override this template
 to provide additional elements in the HTML #{head} element of output files.
