@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-26 14:11+0200\n"
-"PO-Revision-Date: 2011-08-21 13:32+0200\n"
+"PO-Revision-Date: 2011-10-30 11:49+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
@@ -406,7 +406,7 @@ msgstr "de <comment.name/>"
 #.
 #: yelp-xsl.xml.in:443(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr "Envieu un correu a «<string>»."
+msgstr "Envieu un correu a «<string/>»."
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
