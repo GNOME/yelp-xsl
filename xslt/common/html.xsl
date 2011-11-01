@@ -257,6 +257,9 @@ as ${node} to this template.
     </head>
     <body>
       <xsl:apply-templates mode="html.body.attr.mode" select="$node"/>
+      <xsl:call-template name="html.top.custom">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
       <div class="all">
         <div class="header"> 
           <xsl:call-template name="html.header.custom">
@@ -274,6 +277,9 @@ as ${node} to this template.
           </xsl:call-template>
         </div>
       </div>
+      <xsl:call-template name="html.bottom.custom">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
     </body>
   </html>
 </xsl:template>
@@ -302,6 +308,38 @@ element. No attributes are output by default. Importing stylesheets may
 implement this node to add attributes for styling, data, or other purposes.
 -->
 <xsl:template mode="html.body.attr.mode" match="*"/>
+
+
+<!--**==========================================================================
+html.top.custom
+Stub to output HTML at the top of the page.
+:Stub: true
+:Revision: version="1.0" date="2011-11-01" status="final"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called before the
+#{div.all} wrapper div. Override this template to provide site-specific HTML
+at the top of the page.
+-->
+<xsl:template name="html.top.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.bottom.custom
+Stub to output HTML at the bottom of the page.
+:Stub: true
+:Revision: version="1.0" date="2011-11-01" status="final"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called after the
+#{div.all} wrapper div. Override this template to provide site-specific HTML
+at the bottom of the page.
+-->
+<xsl:template name="html.bottom.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
 
 
 <!--**==========================================================================
@@ -594,12 +632,12 @@ div.sect div.sect {
 }
 div.trails {
   margin: 0;
+  padding: 0.5em 2em 0.5em 2em;
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.trail {
-  font-size: 0.83em;
-  margin: 0 2.2em 0.2em 2.2em;
+  margin: 0.2em 0 0 0;
   padding: 0;
   text-indent: -1em;
   color: </xsl:text>
