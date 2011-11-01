@@ -257,20 +257,22 @@ as ${node} to this template.
     </head>
     <body>
       <xsl:apply-templates mode="html.body.attr.mode" select="$node"/>
-      <div class="header"> 
-        <xsl:call-template name="html.header.custom">
-          <xsl:with-param name="node" select="$node"/>
-        </xsl:call-template>
-        <xsl:apply-templates mode="html.header.mode" select="$node"/>
-      </div>
-      <div class="body">
-        <xsl:apply-templates mode="html.body.mode" select="$node"/>
-      </div>
-      <div class="footer">
-        <xsl:apply-templates mode="html.footer.mode" select="$node"/>
-        <xsl:call-template name="html.footer.custom">
-          <xsl:with-param name="node" select="$node"/>
-        </xsl:call-template>
+      <div class="all">
+        <div class="header"> 
+          <xsl:call-template name="html.header.custom">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
+          <xsl:apply-templates mode="html.header.mode" select="$node"/>
+        </div>
+        <div class="body">
+          <xsl:apply-templates mode="html.body.mode" select="$node"/>
+        </div>
+        <div class="footer">
+          <xsl:apply-templates mode="html.footer.mode" select="$node"/>
+          <xsl:call-template name="html.footer.custom">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
+        </div>
       </div>
     </body>
   </html>
@@ -557,38 +559,44 @@ All parameters can be automatically computed if not provided.
   <xsl:text>
 html { height: 100%; }
 body {
+  font-family: sans-serif;
   margin: 0; padding: 0;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.background"/><xsl:text>;
   color: </xsl:text>
     <xsl:value-of select="$color.text"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
-div.body {
-  margin: 0;
-  padding: 1em;
+div.all {
+  margin: 0 auto 0 auto;
   max-width: 60em;
-  min-height: 20em;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.body {
+  margin: 0;
+  padding: 1em;
+  min-height: 20em;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.background"/><xsl:text>;
+}
 div.header {
-  max-width: 60em;
 }
 div.footer {
-  max-width: 60em;
 }
 div.sect {
-  margin-top: 1.72em;
+  margin-top: 2.4em;
   clear: both;
 }
 div.sect div.sect {
   margin-top: 1.44em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
 }
-div.trails { margin: 0; }
+div.trails {
+  margin: 0;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
 div.trail {
   font-size: 0.83em;
   margin: 0 2.2em 0.2em 2.2em;
@@ -602,6 +610,8 @@ div.hgroup {
   margin: 0 0 0.5em 0;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+div.sect div.hgroup {
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
@@ -610,8 +620,8 @@ h1, h2, h3, h4, h5, h6, h7 {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   font-weight: bold;
 }
-h1 { font-size: 1.44em; }
-h2 { font-size: 1.2em; }
+h1 { font-size: 2em; }
+h2 { font-size: 1.44em; }
 h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
 h3, h4, h5, h6, h7 { font-size: 1em; }
 
@@ -725,10 +735,6 @@ div.contents + div.desc { margin: 0.2em 0 0 0; }
 pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
-div.links > div.inner > div.title span.title {
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-}
 div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
 div.links ul { margin: 0; padding: 0; }
 li.links {
@@ -748,10 +754,6 @@ div.sectionlinks {
 div.sectionlinks ul { margin: 0; }
 div.sectionlinks li { padding: 0; }
 div.sectionlinks div.title { margin: 0.5em 0 0.5em 0; }
-div.sectionlinks div.title span.title {
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-}
 div.sectionlinks div.sectionlinks {
   display: block;
   margin: 0.5em 0 0 0;
@@ -792,10 +794,6 @@ div.serieslinks {
 div.serieslinks ul { margin: 0; }
 div.serieslinks li { padding: 0; }
 div.serieslinks div.title { margin: 0.5em 0 0.5em 0; }
-div.serieslinks div.title span.title {
-  border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-}
 pre.numbered {
   margin: 0;
   padding: 0.5em;
