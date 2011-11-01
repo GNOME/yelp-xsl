@@ -173,9 +173,9 @@ not all content has been written.
 <msgstr>Index</msgstr>
 </msg>
 
-<msg id="More About">
+<msg id="More Information">
 <its:locNote>Automatic heading above a list of guide links.</its:locNote>
-<msgstr>More About</msgstr>
+<msgstr>More Information</msgstr>
 </msg>
 
 <!-- FIXME: check code -->

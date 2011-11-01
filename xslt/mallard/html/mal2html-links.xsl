@@ -179,7 +179,7 @@ the links itself. They must be passed in with the ${links} parameter.
               <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
                 <span class="title">
                   <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'More About'"/>
+                    <xsl:with-param name="msgid" select="'More Information'"/>
                   </xsl:call-template>
                 </span>
               </xsl:element>
