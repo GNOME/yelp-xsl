@@ -150,11 +150,6 @@ documentation team has reviewed and approved.
 <msgstr>Final</msgstr>
 </msg>
 
-<msg id="Further Reading">
-<its:locNote>Automatic heading above a list of related links.</its:locNote>
-<msgstr>Further Reading</msgstr>
-</msg>
-
 <msg id="Glossary">
 <its:locNote>Default title for a glossary.</its:locNote>
 <msgstr>Glossary</msgstr>

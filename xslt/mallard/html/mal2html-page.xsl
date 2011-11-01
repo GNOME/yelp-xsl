@@ -366,7 +366,7 @@ REMARK: Describe this template
 <!-- page | section -->
 <xsl:template match="mal:page | mal:section">
   <xsl:variable name="type" select="/mal:page/@type"/>
-  <xsl:variable name="depth" select="count(ancestor::mal:section) + 1"/>
+  <xsl:variable name="depth" select="count(ancestor-or-self::mal:section) + 1"/>
   <xsl:variable name="topiclinks">
     <xsl:if test="$type = 'guide'">
       <xsl:call-template name="mal.link.topiclinks"/>
@@ -457,21 +457,12 @@ REMARK: Describe this template
   </div>
   <xsl:apply-templates mode="mal2html.section.mode" select="mal:section"/>
   <xsl:variable name="postlinks" select="mal:section/following-sibling::mal:links"/>
-  <xsl:if test="not(mal:section)">
-    <xsl:if test="$guidenodes and not(mal:links[@type = 'guide'])">
-      <xsl:call-template name="mal2html.links.guide">
-        <xsl:with-param name="depth" select="$depth + 2"/>
-        <xsl:with-param name="links" select="$guidenodes"/>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:if test="$seealsonodes and not(mal:links[@type = 'seealso'])">
-      <xsl:call-template name="mal2html.links.seealso">
-        <xsl:with-param name="depth" select="$depth + 2"/>
-        <xsl:with-param name="links" select="$seealsonodes"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:if>
-  <xsl:if test="($topicnodes and $postlinks[self::mal:links[@type = 'topic']]) or
+  <xsl:if test="(not(mal:section) and (
+                  ($guidenodes and not(mal:links[@type = 'guide']))
+                  or
+                  ($seealsonodes and not(mal:links[@type = 'seealso']))
+                )) or
+                ($topicnodes and $postlinks[self::mal:links[@type = 'topic']]) or
                 ($guidenodes and
                   ($postlinks[self::mal:links[@type = 'guide']] or
                     (mal:section and not(mal:links[@type = 'guide'])))) or
@@ -480,32 +471,14 @@ REMARK: Describe this template
                     (mal:section and not(mal:links[@type = 'seealso']))))
                 ">
     <div class="sect sect-links">
-      <div class="hgroup">
-        <xsl:variable name="depth_">
-          <xsl:choose>
-            <xsl:when test="$depth + 1 &lt; 6">
-              <xsl:value-of select="$depth + 1"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="6"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-          <span class="title">
-            <xsl:call-template name="l10n.gettext">
-              <xsl:with-param name="msgid" select="'Further Reading'"/>
-            </xsl:call-template>
-          </span>
-        </xsl:element>
-      </div>
+      <div class="hgroup"/>
       <div class="contents">
         <xsl:for-each select="$postlinks">
           <xsl:choose>
             <xsl:when test="self::mal:links[@type = 'topic']">
               <xsl:if test="$type = 'guide'">
                 <xsl:apply-templates select=".">
-                  <xsl:with-param name="depth" select="$depth + 2"/>
+                  <xsl:with-param name="depth" select="$depth + 1"/>
                   <xsl:with-param name="allgroups" select="$allgroups"/>
                   <xsl:with-param name="links" select="$topicnodes"/>
                 </xsl:apply-templates>
@@ -513,39 +486,39 @@ REMARK: Describe this template
             </xsl:when>
             <xsl:when test="self::mal:links[@type = 'guide']">
               <xsl:apply-templates select=".">
-                <xsl:with-param name="depth" select="$depth + 2"/>
+                <xsl:with-param name="depth" select="$depth + 1"/>
                 <xsl:with-param name="links" select="$guidenodes"/>
               </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="self::mal:links[@type = 'seealso']">
               <xsl:apply-templates select=".">
-                <xsl:with-param name="depth" select="$depth + 2"/>
+                <xsl:with-param name="depth" select="$depth + 1"/>
                 <xsl:with-param name="links" select="$seealsonodes"/>
               </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="self::mal:links[@type = 'next']">
               <xsl:if test="not(contains(concat(' ', @style, ' '), ' top '))">
                 <xsl:apply-templates select=".">
-                  <xsl:with-param name="depth" select="$depth + 2"/>
+                  <xsl:with-param name="depth" select="$depth + 1"/>
                 </xsl:apply-templates>
               </xsl:if>
             </xsl:when>
             <xsl:otherwise>
               <xsl:apply-templates select=".">
-                <xsl:with-param name="depth" select="$depth + 2"/>
+                <xsl:with-param name="depth" select="$depth + 1"/>
               </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:for-each>
         <xsl:if test="$guidenodes and not(mal:links[@type = 'guide'])">
           <xsl:call-template name="mal2html.links.guide">
-            <xsl:with-param name="depth" select="$depth + 2"/>
+            <xsl:with-param name="depth" select="$depth + 1"/>
             <xsl:with-param name="links" select="$guidenodes"/>
           </xsl:call-template>
         </xsl:if>
         <xsl:if test="$seealsonodes and not(mal:links[@type = 'seealso'])">
           <xsl:call-template name="mal2html.links.seealso">
-            <xsl:with-param name="depth" select="$depth + 2"/>
+            <xsl:with-param name="depth" select="$depth + 1"/>
             <xsl:with-param name="links" select="$seealsonodes"/>
           </xsl:call-template>
         </xsl:if>
@@ -737,8 +710,6 @@ a.linkdiv:hover {
   text-decoration: none;
   background-color: </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
-  outline: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 a.linkdiv > span.title {
   display: block;

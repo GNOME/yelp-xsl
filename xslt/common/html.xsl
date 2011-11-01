@@ -653,6 +653,16 @@ div.sect div.hgroup {
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.sect-links div.hgroup {
+  border-bottom: solid 2px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.sect div.sect-links {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+}
+div.sect div.sect-links div.hgroup {
+  border: none;
+}
 h1, h2, h3, h4, h5, h6, h7 {
   margin: 0; padding: 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
