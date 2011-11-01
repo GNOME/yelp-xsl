@@ -1048,13 +1048,32 @@ pre span.input {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-span.key {
+kbd {
+  font-family: inherit;
+  font-size: inherit;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
-  padding: 0 0.2em 0 0.2em;
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 1px 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  -webkit-box-shadow: 1px 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  box-shadow: 1px 1px 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  margin: 0 0.2em 0 0.2em;
+  padding: 0 0.5em 0 0.5em;
   white-space: nowrap
+}
+kbd.key-Fn {
+  font-weight: bold;
+  color: </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 span.keyseq {
   color: </xsl:text>

@@ -208,6 +208,18 @@ an #{xref} or #{href} attribute.
   <xsl:call-template name="mal2html.span"/>
 </xsl:template>
 
+<!-- = keyseq % mal2html.inline.content.mode = -->
+<xsl:template mode="mal2html.inline.content.mode" match="mal:key">
+  <kbd>
+    <xsl:if test=". = 'Fn'">
+      <xsl:attribute name="class">
+        <xsl:text>key-Fn</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="mal2html.inline.mode"/>
+  </kbd>
+</xsl:template>
+
 <!-- = keyseq = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:keyseq">
   <xsl:call-template name="mal2html.span"/>
