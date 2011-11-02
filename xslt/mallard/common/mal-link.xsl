@@ -223,9 +223,13 @@ page or section cannot be found, ${xref} is used as the text content.
             <xsl:apply-templates mode="mal.link.content.mode"
                                  select="$titles[@role = $role][1]/node()"/>
           </xsl:when>
-          <xsl:otherwise>
+          <xsl:when test="$titles[not(@role)]">
             <xsl:apply-templates mode="mal.link.content.mode"
                                  select="$titles[not(@role)][1]/node()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="mal.link.content.mode"
+                                 select="$target/mal:title[1]/node()"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -360,8 +364,9 @@ Otherwise, the link will point to ${href}.
 <!--**==========================================================================
 mal.link.guidelinks
 Output the guide links for a page or section.
-:Revision:version="1.0" date="2010-03-19" status="final"
+:Revision:version="3.4" date="2011-11-01" status="final"
 $node: The #{page} or #{section} element to generate links for.
+$role: A link role, used to select the appropriate title, default #{"guide"}.
 
 This template outputs all the guide links for a page or section, whether
 declared as guide links in the page or section or as topic links from another
@@ -370,15 +375,17 @@ Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
 to the target page or section.
 
 Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section.  The results are not sorted when
-returned from this template.  Use #{xsl:sort} on the sort titles to sort
-the results.
+sort title of the target page or section. The ${role} attribute is used to
+select a link title to sort on when a sort title is not present. The results
+are not sorted when returned from this template. Use #{xsl:sort} on the sort
+titles to sort the results.
 
 The output is a result tree fragment.  To use these results, call
 #{exsl:node-set} on them.
 -->
 <xsl:template name="mal.link.guidelinks">
   <xsl:param name="node" select="."/>
+  <xsl:param name="role" select="'guide'"/>
   <xsl:variable name="linkid">
     <xsl:call-template name="mal.link.linkid">
       <xsl:with-param name="node" select="$node"/>
@@ -394,7 +401,10 @@ The output is a result tree fragment.  To use these results, call
         <xsl:if test="count($linklinknode) > 0">
           <mal:link xref="{$linklinkid}">
             <mal:title type="sort">
-              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
+              <xsl:call-template name="mal.link.sorttitle">
+                <xsl:with-param name="node" select="$linklinknode"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -411,7 +421,10 @@ The output is a result tree fragment.  To use these results, call
       <xsl:if test="$linklinkid != '' and not($linknodes[@xref = $linklinkid])">
         <mal:link xref="{$linklinkid}">
           <mal:title type="sort">
-            <xsl:value-of select="normalize-space(mal:info/mal:title[@type = 'sort'][1])"/>
+            <xsl:call-template name="mal.link.sorttitle">
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
           </mal:title>
         </mal:link>
       </xsl:if>
@@ -423,9 +436,10 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.topiclinks
 Output the topic links for a page or section.
-:Revision:version="1.0" date="2010-03-19" status="final"
+:Revision:version="3.4" date="2011-11-01" status="final"
 $node: The #{page} or #{section} element to generate links for.
 $groups: The list of all valid link groups for ${node}.
+$role: A link role, used to select the appropriate title, default #{"topic"}.
 
 This template outputs all the topic links for a guide page or section, whether
 declared as topic links in the page or section or as guide links from another
@@ -434,7 +448,10 @@ Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
 to the target page or section.
 
 Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section.
+sort title of the target page or section. The ${role} attribute is used to
+select a link title to sort on when a sort title is not present. The results
+are not sorted when returned from this template. Use #{xsl:sort} on the sort
+titles to sort the results.
 
 Each #{link} element also contains a #{group} attribute.  The #{group}
 attribute is normalized.  It will either point to a link group declared
@@ -443,9 +460,6 @@ contains a #{groupsort} attribute giving the numerical position of the
 #{group} attribute in the normalized group list for ${node}.
 
 The ${groups} parameter can be calculated automatically from ${node}.
-
-The results are not sorted when returned from this template.  Use #{xsl:sort}
-on the #{groupsort} attribute and the sort titles to sort the results.
 
 The output is a result tree fragment.  To use these results, call
 #{exsl:node-set} on them.
@@ -485,6 +499,7 @@ The output is a result tree fragment.  To use these results, call
       <xsl:text>#last </xsl:text>
     </xsl:if>
   </xsl:param>
+  <xsl:param name="role" select="'topic'"/>
   <xsl:variable name="groupslist" select="str:split($groups)"/>
   <xsl:variable name="defaultpos">
     <xsl:for-each select="$groupslist">
@@ -530,7 +545,10 @@ The output is a result tree fragment.  To use these results, call
               <xsl:value-of select="$groupsort"/>
             </xsl:attribute>
             <mal:title type="sort">
-              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
+              <xsl:call-template name="mal.link.sorttitle">
+                <xsl:with-param name="node" select="$linklinknode"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -573,7 +591,10 @@ The output is a result tree fragment.  To use these results, call
             <xsl:value-of select="$groupsort"/>
           </xsl:attribute>
           <mal:title type="sort">
-            <xsl:value-of select="normalize-space($source/mal:info/mal:title[@type = 'sort'][1])"/>
+            <xsl:call-template name="mal.link.sorttitle">
+              <xsl:with-param name="node" select="$source"/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
           </mal:title>
         </mal:link>
       </xsl:if>
@@ -585,8 +606,9 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.seealsolinks
 Output the see-also links for a page or section.
-:Revision:version="1.0" date="2010-03-19" status="final"
+:Revision:version="3.4" date="2011-11-01" status="final"
 $node: The #{page} or #{section} element to generate links for.
+$role: A link role, used to select the appropriate title, default #{"seealso"}.
 
 This template outputs all the see-also links for a page or section, whether
 declared in the page or section or in another page or section.  It outputs
@@ -594,15 +616,17 @@ each of the links as a #{link} element within the Mallard namespace.  Each
 #{link} element has an #{xref} attribute pointing to the target page or section.
 
 Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section.  The results are not sorted when
-returned from this template.  Use #{xsl:sort} on the sort titles to sort
-the results.
+sort title of the target page or section. The ${role} attribute is used to
+select a link title to sort on when a sort title is not present. The results
+are not sorted when returned from this template. Use #{xsl:sort} on the sort
+titles to sort the results.
 
 The output is a result tree fragment.  To use these results, call
 #{exsl:node-set} on them.
 -->
 <xsl:template name="mal.link.seealsolinks">
   <xsl:param name="node" select="."/>
+  <xsl:param name="role" select="'seealso'"/>
   <xsl:variable name="linkid">
     <xsl:call-template name="mal.link.linkid">
       <xsl:with-param name="node" select="$node"/>
@@ -618,7 +642,10 @@ The output is a result tree fragment.  To use these results, call
         <xsl:if test="count($linklinknode) > 0">
           <mal:link xref="{$linklinkid}">
             <mal:title type="sort">
-              <xsl:value-of select="normalize-space($linklinknode/mal:info/mal:title[@type = 'sort'][1])"/>
+              <xsl:call-template name="mal.link.sorttitle">
+                <xsl:with-param name="node" select="$linklinknode"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
             </mal:title>
           </mal:link>
         </xsl:if>
@@ -635,7 +662,10 @@ The output is a result tree fragment.  To use these results, call
       <xsl:if test="$linklinkid != '' and not($linknodes[@xref = $linklinkid])">
         <mal:link xref="{$linklinkid}">
           <mal:title type="sort">
-            <xsl:value-of select="normalize-space(mal:info/mal:title[@type = 'sort'][1])"/>
+            <xsl:call-template name="mal.link.sorttitle">
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
           </mal:title>
         </mal:link>
       </xsl:if>
@@ -690,6 +720,7 @@ FIXME:
   <xsl:variable name="guidelinks">
     <xsl:call-template name="mal.link.guidelinks">
       <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="role" select="'trail'"/>
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="guidenodes" select="exsl:node-set($guidelinks)/*"/>
@@ -825,7 +856,9 @@ The output is a result tree fragment.  To use these results, call
         <xsl:if test="not(contains($include, 'x')) and not(contains($exclude, 'x'))">
           <mal:link xref="{$linkid}">
             <mal:title type="sort">
-              <xsl:value-of select="normalize-space($fnode/mal:info/mal:title[@type = 'sort'][1])"/>
+              <xsl:call-template name="mal.link.sorttitle">
+                <xsl:with-param name="node" select="$fnode"/>
+              </xsl:call-template>
             </mal:title>
             <xsl:copy-of select="mal:info/facet:tag"/>
           </mal:link>
@@ -833,6 +866,39 @@ The output is a result tree fragment.  To use these results, call
       </xsl:for-each>
     </xsl:for-each>
   </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.sorttitle
+Output the sort title for a page or section.
+:Revision:version="3.4" date="2011-11-01" status="final"
+$node: The #{page} or #{section} element to output a sort title for.
+$role: A link role, used to select an appropriate link title.
+
+This template returns a sort title for a page or section as a normalized string.
+If ${node} defines a sort title in its #{info} element, the value of that title
+is always used first. Otherwise, if ${role} is defined and ${node} has a link
+title with a matching role, that title is used. Otherwise, if ${node} has a link
+title with no role, that title is used. Otherwise, the primary title is used.
+-->
+<xsl:template name="mal.link.sorttitle">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="role" select="''"/>
+  <xsl:choose>
+    <xsl:when test="$node/mal:info/mal:title[@type = 'sort']">
+      <xsl:value-of select="normalize-space($node/mal:info/mal:title[@type = 'sort'][1])"/>
+    </xsl:when>
+    <xsl:when test="$role != '' and $node/mal:info/mal:title[@type = 'link'][@role = $role]">
+      <xsl:value-of select="normalize-space($node/mal:info/mal:title[@type = 'link'][@role = $role][1])"/>
+    </xsl:when>
+    <xsl:when test="$node/mal:info/mal:title[@type = 'link'][not(@role)]">
+      <xsl:value-of select="normalize-space($node/mal:info/mal:title[@type = 'link'][not(@role)][1])"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="normalize-space($node/mal:title[1])"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
