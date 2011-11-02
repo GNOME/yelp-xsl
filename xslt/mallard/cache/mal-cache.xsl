@@ -83,23 +83,6 @@ mal.cache.info
   <xsl:param name="info" select="$node/mal:info"/>
   <xsl:param name="node_in"/>
   <info>
-    <xsl:if test="not($info/mal:title[@type = 'link'][not(@role)])">
-      <title type="link">
-        <xsl:copy-of select="$node/mal:title/node()"/>
-      </title>
-    </xsl:if>
-    <xsl:if test="not($info/mal:title[@type = 'sort'])">
-      <title type="sort">
-        <xsl:choose>
-          <xsl:when test="$info/mal:title[@type = 'link']">
-            <xsl:copy-of select="$info/mal:title[@type = 'link'][1]/node()"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$node/mal:title/node()"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </title>
-    </xsl:if>
     <xsl:for-each select="$info/*">
       <xsl:choose>
         <xsl:when test="self::mal:link">
@@ -107,11 +90,6 @@ mal.cache.info
             <xsl:call-template name="mal.cache.xref">
               <xsl:with-param name="node_in" select="$node_in"/>
             </xsl:call-template>
-            <xsl:if test="@type = 'guide' and not(@weight)">
-              <xsl:attribute name="weight">
-                <xsl:text>0</xsl:text>
-              </xsl:attribute>
-            </xsl:if>
             <xsl:for-each select="attribute::*[not(name(.) = 'xref')] | *">
               <xsl:copy-of select="."/>
             </xsl:for-each>
