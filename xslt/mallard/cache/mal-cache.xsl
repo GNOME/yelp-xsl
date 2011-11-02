@@ -61,21 +61,6 @@ mal.cache.xref
 
 
 <!--**==========================================================================
-mal.cache.groups
--->
-<xsl:template name="mal.cache.groups">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="node_in"/>
-  <xsl:attribute name="groups">
-    <xsl:value-of select="$node/@groups"/>
-    <xsl:if test="not(contains(concat(' ', $node/@groups, ' '), ' #default '))">
-      <xsl:text> #default</xsl:text>
-    </xsl:if>
-  </xsl:attribute>
-</xsl:template>
-
-
-<!--**==========================================================================
 mal.cache.info
 -->
 <xsl:template name="mal.cache.info">
@@ -124,9 +109,6 @@ mal.cache.info
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
-    <xsl:call-template name="mal.cache.groups">
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:call-template>
     <xsl:if test="@type">
       <xsl:attribute name="type">
         <xsl:value-of select="@type"/>
@@ -146,9 +128,6 @@ mal.cache.info
   <xsl:param name="node_in"/>
   <section>
     <xsl:call-template name="mal.cache.id">
-      <xsl:with-param name="node_in" select="$node_in"/>
-    </xsl:call-template>
-    <xsl:call-template name="mal.cache.groups">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
     <xsl:call-template name="mal.cache.info">
