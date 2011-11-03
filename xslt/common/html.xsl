@@ -1157,30 +1157,24 @@ div.media-ttml-p {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.yelp-data { display: none; }
+div.ui-expander > div.inner > div.title span.title:before,
+div.ui-expander > div.inner > div.hgroup span.title:before {
+  font-size: 1.2em;
+  font-weight: normal;
+  content: "⊞";
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+}
+div.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
+div.ui-expander-e > div.inner > div.title span.title:before,
+div.ui-expander-e > div.inner > div.hgroup span.title:before {
+  content: "⊟";
+}
 div.ui-expander > div.inner > div.title:hover,
 div.ui-expander > div.inner > div.hgroup:hover * {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
 div.ui-expander > div.inner > div.hgroup > .subtitle {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-}
-div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-ltr,
-div.ui-expander-e > div.inner > div.hgroup span.ui-expander-arrow-ltr {
-  display: inline-block; <!-- webkit needs this to rotate -->
-  -moz-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-div.ui-expander-e > div.inner > div.title span.ui-expander-arrow-rtl,
-div.ui-expander-e > div.inner > div.hgroup span.ui-expander-arrow-rtl {
-  display: inline-block; <!-- webkit needs this to rotate -->
-  -moz-transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
 </xsl:text>
 </xsl:template>
@@ -1391,11 +1385,6 @@ $(document).ready(function () {
   $('.ui-expander').each(function () {
     var expander = $(this);
     var yelpdata = expander.children('div.yelp-data-ui-expander');
-    var arrow;
-    if (yelpdata.attr('dir') == 'rtl')
-      arrow = $('<span class="ui-expander-arrow-rtl">◂</span>');
-    else
-      arrow = $('<span class="ui-expander-arrow-ltr">▸</span>');
     var region = expander.children('.inner').children('.region');
     var title = expander.children('.inner').children('.title');
     var issect = false;
@@ -1407,11 +1396,6 @@ $(document).ready(function () {
       return;
     }
     title.attr('role', 'button').attr('aria-controls', region.attr('id'));
-    if (issect) {
-      title.children('.title').prepend('&#x00A0;&#x00A0;').prepend(arrow);
-    } else {
-      title.children().append('&#x00A0;&#x00A0;').append(arrow);
-    }
     var titlespan = title.find('span.title:first');
     var title_e = yelpdata.children('div.yelp-title-expanded');
     var title_c = yelpdata.children('div.yelp-title-collapsed');
