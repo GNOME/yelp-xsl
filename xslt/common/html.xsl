@@ -1332,17 +1332,21 @@ output relative to @{html.js.root}.
 <!--**==========================================================================
 html.js.content
 Output JavaScript content for an HTML output page.
-:Revision:version="1.0" date="2010-12-06" status="final"
+:Revision:version="3.4" date="2011-11-04" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js} to output JavaScript content. It does not
 output an HTML #{script} tag. The JavaScript output by this template or templates
 it calls may depend on the jQuery code referenced by *{html.js.jquery}. This
-template calls the template *{html.js.media}. It then calls the mode
+template calls the templates *{html.js.core}, *{html.js.ui}, *{html.js.media},
+and *{html.js.syntax}. It then calls the mode
 %{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
+  <xsl:call-template name="html.js.core">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
   <xsl:call-template name="html.js.ui">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
@@ -1356,6 +1360,44 @@ template calls the template *{html.js.media}. It then calls the mode
   <xsl:call-template name="html.js.content.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.core
+Output JavaScript for core features.
+:Revision: version="3.4" date="2011-11-04" status="final"
+$node: The node to create JavaScript for.
+
+This template outputs JavaScript to support basic features used by all documents.
+Currently, it outputs code to highlight a section when #{location.hash} is set.
+-->
+<xsl:template name="html.js.core">
+  <xsl:param name="node" select="."/>
+<xsl:text>
+$(document).ready (function () {
+  if (location.hash != '') {
+    var sect = $(location.hash);
+    var hgrp = sect.find('div.hgroup:first')
+    sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
+    hgrp.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>')
+    window.setTimeout(function () {
+      sect.css({
+        '-webkit-transition': 'background-color 2s linear',
+        '-moz-transition': 'background-color 2s linear',
+        'transition': 'background-color 2s linear',
+        'background-color': '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>'
+      });
+      hgrp.css({
+        '-webkit-transition': 'background-color 2s linear',
+        '-moz-transition': 'background-color 2s linear',
+        'transition': 'background-color 2s linear',
+        'background-color': '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>'
+      });
+    }, 200);
+  }
+});
+</xsl:text>
 </xsl:template>
 
 
