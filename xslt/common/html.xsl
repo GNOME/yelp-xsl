@@ -697,7 +697,9 @@ td, th {
   border-width: 1px;
 }
 thead td, thead th, tfoot td, tfoot th {
-  padding: 0.2em 0.5em 0.2em 0.5em;
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
 }
 
 ul, ol, dl { margin: 0; padding: 0; }
