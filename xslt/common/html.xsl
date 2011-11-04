@@ -728,7 +728,14 @@ a {
 }
 a:visited { color: </xsl:text>
   <xsl:value-of select="$color.link_visited"/><xsl:text>; }
-a:hover { text-decoration: underline; }
+a:hover {
+  border-bottom: dotted 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+p a {
+  border-bottom: dotted 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
 a img { border: none; }
 </xsl:text>
 </xsl:template>
@@ -1068,12 +1075,19 @@ kbd {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   margin: 0 0.2em 0 0.2em;
   padding: 0 0.5em 0 0.5em;
-  white-space: nowrap
+  white-space: nowrap;
 }
 kbd.key-Fn {
   font-weight: bold;
   color: </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+span.key a {
+  border-bottom: none;
+}
+a > kbd {
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 span.keyseq {
   color: </xsl:text>
@@ -1089,8 +1103,8 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
-div.media-video &gt; div.inner { display: inline-block; text-align: center; }
-div.media-video &gt; div.inner video { margin: 0; }
+div.media-video > div.inner { display: inline-block; text-align: center; }
+div.media-video > div.inner video { margin: 0; }
 div.media-controls {
   min-width: 24em;
   height: 24px;

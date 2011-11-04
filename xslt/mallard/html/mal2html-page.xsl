@@ -649,17 +649,19 @@ div.mouseovers {
   height: 200px;
   text-align: center;
   margin: 0;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
 }
 ul.mouseovers li { margin: 0; }
 ul.mouseovers a {
-  display: block;
-  padding: 4px;
+  display: inline-block;
+  padding: 4px 1.2em 4px 1.2em;
+  border-bottom: none;
 }
 ul.mouseovers a:hover {
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   text-decoration: none;
+  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  -webkit-box-shadow: 1px 1px 2px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 ul.mouseovers a img {
   display: none;
@@ -705,6 +707,7 @@ a.linkdiv {
   display: block;
   margin: 0;
   padding: 0.5em;
+  border-bottom: none;
 }
 a.linkdiv:hover {
   text-decoration: none;
