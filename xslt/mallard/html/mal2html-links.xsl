@@ -869,11 +869,26 @@ when determining which links to output.
         <xsl:text> &#x2014; </xsl:text>
       </span>
       <span class="desc">
-        <xsl:apply-templates mode="mal2html.inline.mode"
-                             select="$target/mal:info/mal:desc[1]/node()"/>
+        <xsl:variable name="desc">
+          <xsl:apply-templates mode="mal2html.inline.mode"
+                               select="$target/mal:info/mal:desc[1]/node()"/>
+        </xsl:variable>
+        <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode"
+                             select="exsl:node-set($desc)"/>
       </span>
     </xsl:if>
   </a>
+</xsl:template>
+
+<xsl:template mode="_mal2html.links.divs.nolink.mode" match="*">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode" select="node()"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template mode="_mal2html.links.divs.nolink.mode" match="*[@href]">
+  <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode" select="node()"/>
 </xsl:template>
 
 </xsl:stylesheet>
