@@ -1377,6 +1377,14 @@ Currently, it outputs code to highlight a section when #{location.hash} is set.
 <xsl:template name="html.js.core">
   <xsl:param name="node" select="."/>
 <xsl:text>
+var __yelp_generate_id_counter__ = 0;
+function yelp_generate_id () {
+  var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
+  if ($('#' + ret).length != 0)
+    return yelp_generate_id();
+  else
+    return ret;
+};
 $(document).ready (function () {
   if (location.hash != '') {
     var sect = $(location.hash);
@@ -1453,6 +1461,8 @@ $(document).ready(function () {
     if (title.length == 0) {
       return;
     }
+    if (region.attr('id') == '')
+      region.attr('id', yelp_generate_id());
     title.attr('role', 'button').attr('aria-controls', region.attr('id'));
     var titlespan = title.find('span.title:first');
     var title_e = yelpdata.children('div.yelp-title-expanded');
