@@ -31,6 +31,7 @@ REMARK: Describe this module
 -->
 
 
+<!--%# html.title.mode -->
 <xsl:template mode="html.title.mode" match="*">
   <xsl:variable name="title">
     <xsl:call-template name="db.title">
@@ -40,10 +41,12 @@ REMARK: Describe this module
   <xsl:value-of select="normalize-space($title)"/>
 </xsl:template>
 
+<!--%# html.header.mode -->
 <xsl:template mode="html.header.mode" match="*">
   <xsl:call-template name="db2html.linktrail"/>
 </xsl:template>
 
+<!--%# html.body.mode -->
 <xsl:template mode="html.body.mode" match="*">
   <xsl:call-template name="db2html.links.next"/>
   <xsl:choose>
@@ -65,6 +68,7 @@ REMARK: Describe this module
   <div class="clear"/>
 </xsl:template>
 
+<!--%# html.output.after.mode -->
 <xsl:template mode="html.output.after.mode" match="*">
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
@@ -94,18 +98,6 @@ REMARK: Describe this module
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
-
-
-<!--FIXME
-@@==========================================================================
-db2html.sidenav
-Whether to create a navigation sidebar
-
-This boolean parameter specifies whether a full navigation tree in a sidebar.
-The navigation sidebar is inserted by *{db2html.division.sidebar}, so this
-parameter may have no effect if that template has been overridden.
--->
-<xsl:param name="FIXME.db2html.sidenav" select="true()"/>
 
 
 <!--**==========================================================================
@@ -500,231 +492,6 @@ REMARK: Document this template
           <xsl:with-param name="msgid" select="'Next'"/>
         </xsl:call-template>
       </a>
-    </xsl:if>
-  </div>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.sidenav
-Generates a navigation sidebar
-$node: The currently-selected division element
-$template: The named template to call to create the page
-
-REMARK: Document this template
--->
-<xsl:template name="db2html.sidenav">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="template"/>
-  <div class="sidenav">
-    <xsl:call-template name="db2html.autotoc">
-      <xsl:with-param name="node" select="/"/>
-      <xsl:with-param name="show_info" select="$db.chunk.info_chunk"/>
-      <xsl:with-param name="is_info" select="$template = 'info'"/>
-      <xsl:with-param name="selected" select="$node"/>
-      <xsl:with-param name="divisions" select="/*"/>
-      <xsl:with-param name="toc_depth" select="$db.chunk.max_depth + 1"/>
-      <xsl:with-param name="titleabbrev" select="true()"/>
-    </xsl:call-template>
-  </div>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.division.head.extra
-FIXME
-:Stub: true
-
-REMARK: Describe this stub template.
--->
-<xsl:template name="db2html.division.head.extra"/>
-
-
-<!--**==========================================================================
-db2html.division.top
-FIXME
-$node: The division element being rendered
-$info: The info child element of ${node}
-$template: The named template to call to create the page
-$depth_of_chunk: The depth of the containing chunk in the document
-$prev_id: The id of the previous page
-$next_id: The id of the next page
-$prev_node: The element of the previous page
-$next_node: The element of the next page
-
-REMARK: Describe this template
--->
-<xsl:template name="db2html.division.top">
-  <xsl:param name="node"/>
-  <xsl:param name="info" select="/false"/>
-  <xsl:param name="template"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_id">
-    <xsl:choose>
-      <xsl:when test="$depth_of_chunk = 0">
-        <xsl:if test="$info and $db.chunk.info_chunk">
-          <xsl:value-of select="$db.chunk.info_basename"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="db.chunk.chunk-id.axis">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="axis" select="'previous'"/>
-          <xsl:with-param name="depth_in_chunk" select="0"/>
-          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="next_id">
-    <xsl:call-template name="db.chunk.chunk-id.axis">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="axis" select="'next'"/>
-      <xsl:with-param name="depth_in_chunk" select="0"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_node" select="key('idkey', $prev_id)"/>
-  <xsl:param name="next_node" select="key('idkey', $next_id)"/>
-  <div class="head">
-    <xsl:if test="$db2html.navbar.top">
-      <xsl:call-template name="db2html.navbar">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="prev_id" select="$prev_id"/>
-        <xsl:with-param name="next_id" select="$next_id"/>
-        <xsl:with-param name="prev_node" select="$prev_node"/>
-        <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
-    </xsl:if>
-  </div>
-</xsl:template>
-
-
-<!--FIXME
-**==========================================================================
-db2html.division.sidebar
-FIXME
-$node: The division element being rendered
-$info: The info child element of ${node}
-$template: The named template to call to create the page
-$depth_of_chunk: The depth of the containing chunk in the document
-$prev_id: The id of the previous page
-$next_id: The id of the next page
-$prev_node: The element of the previous page
-$next_node: The element of the next page
-
-REMARK: Describe this template
--->
-<xsl:template name="FIXME.db2html.division.sidebar">
-  <xsl:param name="node"/>
-  <xsl:param name="info" select="/false"/>
-  <xsl:param name="template"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_id">
-    <xsl:choose>
-      <xsl:when test="$depth_of_chunk = 0">
-        <xsl:if test="$info and $db.chunk.info_chunk">
-          <xsl:value-of select="$db.chunk.info_basename"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="db.chunk.chunk-id.axis">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="axis" select="'previous'"/>
-          <xsl:with-param name="depth_in_chunk" select="0"/>
-          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="next_id">
-    <xsl:call-template name="db.chunk.chunk-id.axis">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="axis" select="'next'"/>
-      <xsl:with-param name="depth_in_chunk" select="0"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_node" select="key('idkey', $prev_id)"/>
-  <xsl:param name="next_node" select="key('idkey', $next_id)"/>
-  <xsl:if test="$db2html.sidenav">
-    <div class="side">
-      <xsl:call-template name="db2html.sidenav">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="template" select="$template"/>
-      </xsl:call-template>
-    </div>
-  </xsl:if>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.division.bottom
-FIXME
-$node: The division element being rendered
-$info: The info child element of ${node}
-$template: The named template to call to create the page
-$depth_of_chunk: The depth of the containing chunk in the document
-$prev_id: The id of the previous page
-$next_id: The id of the next page
-$prev_node: The element of the previous page
-$next_node: The element of the next page
-
-REMARK: Describe this template
--->
-<xsl:template name="db2html.division.bottom">
-  <xsl:param name="node"/>
-  <xsl:param name="info" select="/false"/>
-  <xsl:param name="template"/>
-  <xsl:param name="depth_of_chunk">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_id">
-    <xsl:choose>
-      <xsl:when test="$depth_of_chunk = 0">
-        <xsl:if test="$info and $db.chunk.info_chunk">
-          <xsl:value-of select="$db.chunk.info_basename"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="db.chunk.chunk-id.axis">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="axis" select="'previous'"/>
-          <xsl:with-param name="depth_in_chunk" select="0"/>
-          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="next_id">
-    <xsl:call-template name="db.chunk.chunk-id.axis">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="axis" select="'next'"/>
-      <xsl:with-param name="depth_in_chunk" select="0"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-    </xsl:call-template>
-  </xsl:param>
-  <xsl:param name="prev_node" select="key('idkey', $prev_id)"/>
-  <xsl:param name="next_node" select="key('idkey', $next_id)"/>
-  <div class="foot">
-    <xsl:if test="$db2html.navbar.bottom">
-      <xsl:call-template name="db2html.navbar">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="prev_id" select="$prev_id"/>
-        <xsl:with-param name="next_id" select="$next_id"/>
-        <xsl:with-param name="prev_node" select="$prev_node"/>
-        <xsl:with-param name="next_node" select="$next_node"/>
-      </xsl:call-template>
     </xsl:if>
   </div>
 </xsl:template>

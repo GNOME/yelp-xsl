@@ -55,27 +55,8 @@ table.table-pgwide { width: 100%; }
 
 td.td-colsep { border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px; }
 td.td-rowsep { border-bottom: solid 1px; }
-thead { border-top: solid 2px; border-bottom: solid 2px; }
-tfoot { border-top: solid 2px; border-bottom: solid 2px; }
 
 div.title span.label { font-weight: normal; }
-
-div.sidenav {
-  padding: 0.5em 1em 0 1em;
-  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
-}
-div.sidenav div.sectionlinks {
-  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
-  border: none; padding: 0; margin: 0;
-}
-div.sidenav div.sectionlinks li { margin-bottom: 0.5em; }
-div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks {
-  margin-top: 0;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
-}
-div.sidenav div.sectionlinks div.sectionlinks div.sectionlinks li { margin-bottom: 0; }
 
 <!-- == bibliography == -->
 span.bibliolabel {
