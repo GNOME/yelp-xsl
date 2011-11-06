@@ -197,7 +197,9 @@ the #{page} element. Information is extracted from the #{info} element of ${node
                 </xsl:choose>
               </span>
             </div>
-            <xsl:apply-templates mode="mal2html.block.mode"/>
+            <div class="contents">
+              <xsl:apply-templates mode="mal2html.block.mode"/>
+            </div>
           </div>
         </xsl:for-each>
       </div>
