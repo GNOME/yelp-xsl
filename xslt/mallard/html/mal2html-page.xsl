@@ -1050,6 +1050,9 @@ $(document).ready(function () {
   $('div.about').each(function () {
     var header = $(this).children('div.hgroup').children('h2');
     var region = $(this).children('div.region');
+    if (region.attr('id') == '')
+      region.attr('id', yelp_generate_id());
+    header.attr('aria-controls', region.attr('id'));
     region.attr('aria-expanded', 'false').hide();
     header.click(function () {
       if (region.attr('aria-expanded') == 'true')
