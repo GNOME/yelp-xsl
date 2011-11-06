@@ -45,23 +45,24 @@ editors.
 
 
 <!--**==========================================================================
-mal2html.page.copyrights
-Output the copyright notice at the bottom of a page.
-:Revision:version="1.0" date="2010-01-02"
+mal2html.page.about
+Output the copyrights, credits, and license information at the bottom of a page.
+:Revision:version="3.4" date="2011-11-06"
 $node: The top-level #{page} element.
 
-This template outputs copyright information.  By default, it is placed at the
-bottom of the page by *{mal2html.page.footbar}.  Copyrights are taken from the
-#{credit} elements in the #{info} element in ${node}.
-
-Copyright information is output in a #{div} element with #{class="copyrights"}.
-Each copyright is output in a nested #{div} element with #{class="copyright"}.
+This template outputs copyright information, credits, and license information for
+the page. By default it is called by the %{html.footer.mode} implementation for
+the #{page} element. Information is extracted from the #{info} element of ${node}.
 -->
-<xsl:template name="mal2html.page.copyrights">
+<xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
   <div class="sect about">
     <div class="hgroup">
-      <h2>About</h2>
+      <h2>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'About'"/>
+        </xsl:call-template>
+      </h2>
     </div>
     <div class="region">
       <div class="contents">
@@ -82,7 +83,11 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
         <xsl:if test="$authors">
           <div class="aboutblurb authors">
             <div class="title">
-              <span class="title">Written By</span>
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Written By'"/>
+                </xsl:call-template>
+              </span>
             </div>
             <ul class="credits">
               <xsl:for-each select="$authors">
@@ -98,7 +103,11 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
         <xsl:if test="$editors">
           <div class="aboutblurb editors">
             <div class="title">
-              <span class="title">Edited By</span>
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Edited By'"/>
+                </xsl:call-template>
+              </span>
             </div>
             <ul class="credits">
               <xsl:for-each select="$editors">
@@ -114,7 +123,11 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
         <xsl:if test="$maintainers">
           <div class="aboutblurb maintainers">
             <div class="title">
-              <span class="title">Maintained By</span>
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Maintained By'"/>
+                </xsl:call-template>
+              </span>
             </div>
             <ul class="credits">
               <xsl:for-each select="$maintainers">
@@ -130,7 +143,11 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
         <xsl:if test="$translators">
           <div class="aboutblurb translators">
             <div class="title">
-              <span class="title">Translated By</span>
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Translated By'"/>
+                </xsl:call-template>
+              </span>
             </div>
             <ul class="credits">
               <xsl:for-each select="$translators">
@@ -147,7 +164,11 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
         <xsl:if test="$others">
           <div class="aboutblurb othercredits">
             <div class="title">
-              <span class="title">Other Credits</span>
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Other Credits'"/>
+                </xsl:call-template>
+              </span>
             </div>
             <ul class="credits">
               <xsl:for-each select="$others">
@@ -164,10 +185,14 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
               <span class="title">
                 <xsl:choose>
                   <xsl:when test="starts-with(@href, 'http://creativecommons.org/')">
-                    <xsl:text>Creative Commons</xsl:text>
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'Creative Commons'"/>
+                    </xsl:call-template>
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:text>License</xsl:text>
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'License'"/>
+                    </xsl:call-template>
                   </xsl:otherwise>
                 </xsl:choose>
               </span>
@@ -440,7 +465,7 @@ REMARK: Describe this template
 </xsl:template>
 
 <xsl:template mode="html.footer.mode" match="mal:page">
-  <xsl:call-template name="mal2html.page.copyrights"/>
+  <xsl:call-template name="mal2html.page.about"/>
 </xsl:template>
 
 <xsl:template mode="html.body.mode" match="mal:page">
@@ -745,8 +770,6 @@ div.aboutblurb {
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
   list-style-type: none;
-}
-div.copyrights {
 }
 
 span.link-button a {

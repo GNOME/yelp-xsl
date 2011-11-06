@@ -94,6 +94,14 @@ to 'qanda', this string will be used to label answers.
 
 <!-- ======================================================================= -->
 
+<msg id="About">
+<its:locNote>
+Title of the footer containing copyrights, credits, license information,
+and other stuff about the page.
+</its:locNote>
+<msgstr>About</msgstr>
+</msg>
+
 <msg id="Advanced">
 <its:locNote>Accessible title for an advanced note.</its:locNote>
 <msgstr>Advanced</msgstr>
@@ -129,6 +137,11 @@ reviewed, and it awaiting a final approval.
 <msgstr>Contents</msgstr>
 </msg>
 
+<msg id="Creative Commons">
+<its:locNote>Title for license information when it's a CC license.</its:locNote>
+<msgstr>Creative Commons</msgstr>
+</msg>
+
 <msg id="Dedication">
 <its:locNote>Default title for a dedication section.</its:locNote>
 <msgstr>Dedication</msgstr>
@@ -140,6 +153,11 @@ Revision status of a document or page. Most content has been
 written, but revisions are still happening.
 </its:locNote>
 <msgstr>Draft</msgstr>
+</msg>
+
+<msg id="Edited By">
+<its:locNote>Title for a list of editors.</its:locNote>
+<msgstr>Edited By</msgstr>
 </msg>
 
 <msg id="Final">
@@ -173,6 +191,18 @@ not all content has been written.
 <msgstr>Index</msgstr>
 </msg>
 
+<msg id="License">
+<its:locNote>
+Generic title for license information when it's not a known license.
+</its:locNote>
+<msgstr>License</msgstr>
+</msg>
+
+<msg id="Maintained By">
+<its:locNote>Title for a list of maintainers.</its:locNote>
+<msgstr>Maintained By</msgstr>
+</msg>
+
 <msg id="More Information">
 <its:locNote>Automatic heading above a list of guide links.</its:locNote>
 <msgstr>More Information</msgstr>
@@ -195,6 +225,14 @@ title found in most UNIX man pages.
 <msg id="Note">
 <its:locNote>Accessible title for a note.</its:locNote>
 <msgstr>Note</msgstr>
+</msg>
+
+<msg id="Other Credits">
+<its:locNote>
+Title for a list contributors other than authors, editors, translators,
+or other types we have specific lists for.
+</its:locNote>
+<msgstr>Other Credits</msgstr>
 </msg>
 
 <msg id="Outdated">
@@ -273,6 +311,11 @@ title found in most UNIX man pages.
 <msgstr>Tip</msgstr>
 </msg>
 
+<msg id="Translated By">
+<its:locNote>Title for a list of translators.</its:locNote>
+<msgstr>Translated By</msgstr>
+</msg>
+
 <msg id="View images at normal size">
 <its:locNote>
 Figures can automatically scale images down to fit the page width.
@@ -284,6 +327,11 @@ This is used a tooltip on a link to expand images to full size.
 <msg id="Warning">
 <its:locNote>Accessible title for a warning.</its:locNote>
 <msgstr>Warning</msgstr>
+</msg>
+
+<msg id="Written By">
+<its:locNote>Title for a list of authors.</its:locNote>
+<msgstr>Written By</msgstr>
 </msg>
 
 <!-- ======================================================================= -->
