@@ -21,8 +21,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:ui="http://projectmallard.org/experimental/ui/"
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui e exsl"
+                exclude-result-prefixes="mal ui e exsl set"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -58,13 +59,124 @@ Each copyright is output in a nested #{div} element with #{class="copyright"}.
 -->
 <xsl:template name="mal2html.page.copyrights">
   <xsl:param name="node" select="."/>
-  <div class="copyrights">
-    <xsl:for-each select="$node/mal:info/mal:credit[mal:years]">
-      <div class="copyright">
-        <!-- FIXME: i18n, multi-year, email -->
-        <xsl:value-of select="concat('© ', mal:years, ' ', mal:name)"/>
+  <div class="sect about">
+    <div class="hgroup">
+      <h2>About</h2>
+    </div>
+    <div class="region">
+      <div class="contents">
+        <xsl:variable name="copyrights"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' copyright ')][mal:years]"/>
+        <xsl:if test="$copyrights">
+          <div class="copyrights">
+            <xsl:for-each  select="$copyrights">
+              <div class="copyright">
+                <!-- FIXME: i18n, multi-year, email -->
+                <xsl:value-of select="concat('© ', mal:years, ' ', mal:name)"/>
+              </div>
+            </xsl:for-each>
+          </div>
+        </xsl:if>
+        <xsl:variable name="authors"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' author ')]"/>
+        <xsl:if test="$authors">
+          <div class="aboutblurb authors">
+            <div class="title">
+              <span class="title">Written By</span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$authors">
+                <li>
+                  <xsl:value-of select="mal:name"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:variable name="editors"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' editor ')]"/>
+        <xsl:if test="$editors">
+          <div class="aboutblurb editors">
+            <div class="title">
+              <span class="title">Edited By</span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$editors">
+                <li>
+                  <xsl:value-of select="mal:name"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:variable name="maintainers"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' maintainer ')]"/>
+        <xsl:if test="$maintainers">
+          <div class="aboutblurb maintainers">
+            <div class="title">
+              <span class="title">Maintained By</span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$maintainers">
+                <li>
+                  <xsl:value-of select="mal:name"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:variable name="translators"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' translator ')]"/>
+        <xsl:if test="$translators">
+          <div class="aboutblurb translators">
+            <div class="title">
+              <span class="title">Translated By</span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$translators">
+                <li>
+                  <xsl:value-of select="mal:name"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:variable name="others"
+                      select="set:difference($node/mal:info/mal:credit,
+                              $copyrights | $authors | $editors | $maintainers | $translators)"/>
+        <xsl:if test="$others">
+          <div class="aboutblurb othercredits">
+            <div class="title">
+              <span class="title">Other Credits</span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$others">
+                <li>
+                  <xsl:value-of select="mal:name"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:for-each select="$node/mal:info/mal:license">
+          <div class="aboutblurb license">
+            <div class="title">
+              <span class="title">
+                <xsl:choose>
+                  <xsl:when test="starts-with(@href, 'http://creativecommons.org/')">
+                    <xsl:text>Creative Commons</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:text>License</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </span>
+            </div>
+            <xsl:apply-templates mode="mal2html.block.mode"/>
+          </div>
+        </xsl:for-each>
       </div>
-    </xsl:for-each>
+    </div>
   </div>
 </xsl:template>
 
@@ -597,6 +709,46 @@ FIXME
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
+div.about {
+  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+div.about > div.hgroup {
+  margin: 0; padding: 0;
+  text-align: center;
+  border: none;
+}
+div.about > div.hgroup > h2 {
+  margin: 0; padding: 0.2em;
+  font-size: inherit;
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  cursor: pointer;
+}
+div.about > div.hgroup > h2:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+}
+div.copyrights {
+  margin: 1em;
+  text-align: center;
+}
+div.copyright {
+  margin: 0;
+}
+div.aboutblurb {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  max-width: 20em;
+  margin: 1em;
+}
+ul.credits, ul.credits li {
+  margin: 0; padding: 0;
+  list-style-type: none;
+}
+div.copyrights {
+}
+
 span.link-button a {
   display: inline-block;
   background-color: </xsl:text>
@@ -636,12 +788,6 @@ div.floatstart {
 div.floatend {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-}
-
-div.copyrights {
-  text-align: center;
-  color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
 div.mouseovers {
@@ -897,6 +1043,19 @@ $(document).ready(function () {
           mlink.find('img').fadeOut('fast');
         }
       );
+    });
+  });
+});
+$(document).ready(function () {
+  $('div.about').each(function () {
+    var header = $(this).children('div.hgroup').children('h2');
+    var region = $(this).children('div.region');
+    region.attr('aria-expanded', 'false').hide();
+    header.click(function () {
+      if (region.attr('aria-expanded') == 'true')
+        region.attr('aria-expanded', 'false').slideUp('fast');
+      else
+        region.attr('aria-expanded', 'true').slideDown('fast');
     });
   });
 });
