@@ -685,6 +685,44 @@ div.clear {
   clear: both;
 }
 
+div.about {
+  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text>
+    <xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+div.about > div.hgroup {
+  margin: 0; padding: 0;
+  text-align: center;
+  border: none;
+}
+div.about > div.hgroup > h2 {
+  margin: 0; padding: 0.2em;
+  font-size: inherit;
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  cursor: pointer;
+}
+div.about > div.hgroup > h2:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+}
+div.copyrights {
+  margin: 1em;
+  text-align: center;
+}
+div.copyright {
+  margin: 0;
+}
+div.aboutblurb {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  max-width: 20em;
+  margin: 1em;
+}
+ul.credits, ul.credits li {
+  margin: 0; padding: 0;
+  list-style-type: none;
+}
+
 table {
   border-collapse: collapse;
   border-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
@@ -1385,6 +1423,22 @@ function yelp_generate_id () {
   else
     return ret;
 };
+$(document).ready(function () {
+  $('div.about').each(function () {
+    var header = $(this).children('div.hgroup').children('h2');
+    var region = $(this).children('div.region');
+    if (region.attr('id') == '')
+      region.attr('id', yelp_generate_id());
+    header.attr('aria-controls', region.attr('id'));
+    region.attr('aria-expanded', 'false').hide();
+    header.click(function () {
+      if (region.attr('aria-expanded') == 'true')
+        region.attr('aria-expanded', 'false').slideUp('fast');
+      else
+        region.attr('aria-expanded', 'true').slideDown('fast');
+    });
+  });
+});
 $(document).ready (function () {
   if (location.hash != '') {
     var sect = $(location.hash);
