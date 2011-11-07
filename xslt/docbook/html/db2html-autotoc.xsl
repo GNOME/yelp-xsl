@@ -36,8 +36,6 @@ division-level elements.
 db2html.autotoc
 Creates a table of contents for a given element
 $node: The element to create a table of contents for
-$show_info: Whether to include a link to the info page
-$is_info: Whether this contents list is for the info page
 $show_title: Whether to give the contents list a title
 $selected: A currently-selected page
 $divisions: The division-level child elements of ${node}
@@ -52,12 +50,6 @@ set to an existing element, then this template will only output ancestors
 and siblings of ancestors of the selected element.  This effectively creates
 a tree which is expanded sufficiently to show a particular element.
 
-This template accepts a number of parameters that control the style of the
-table of contents.  The ${show_info} parameter specifies whether a link to
-the info page ("About This Document") should be shown.  The ${is_info}
-parameter specifies whether the info page should be treated as the selected
-page.  If the info page is selected, it will not be displayed as a link.
-
 The ${show_title} specifies whether a title should be placed at the top of
 the table of contents.  The ${labels} parameter specifies whether to place
 section numbers as labels before each element in the list.  Finally, the
@@ -66,8 +58,6 @@ ${titleabbrev} element specifies whether list elements should use the
 -->
 <xsl:template name="db2html.autotoc">
   <xsl:param name="node" select="."/>
-  <xsl:param name="show_info" select="false()"/>
-  <xsl:param name="is_info" select="false()"/>
   <xsl:param name="show_title" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="divisions"/>
@@ -87,39 +77,8 @@ ${titleabbrev} element specifies whether list elements should use the
         </div>
       </xsl:if>
       <ul>
-        <xsl:if test="$show_info">
-          <li class="links">
-            <xsl:choose>
-              <xsl:when test="$is_info">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'About This Document'"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:otherwise>
-                <a>
-                  <xsl:attribute name="href">
-                    <xsl:call-template name="db.xref.target">
-                      <xsl:with-param name="linkend" select="$db.chunk.info_basename"/>
-                      <xsl:with-param name="is_chunk" select="true()"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:variable name="text">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'About This Document'"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="title">
-                    <xsl:value-of select="$text"/>
-                  </xsl:attribute>
-                  <xsl:value-of select="$text"/>
-                </a>
-              </xsl:otherwise>
-            </xsl:choose>
-          </li>
-        </xsl:if>
         <xsl:for-each select="$divisions">
           <xsl:apply-templates mode="db2html.autotoc.mode" select=".">
-            <xsl:with-param name="is_info" select="$is_info"/>
             <xsl:with-param name="selected" select="$selected"/>
             <xsl:with-param name="toc_depth" select="$toc_depth - 1"/>
             <xsl:with-param name="titleabbrev" select="$titleabbrev"/>
@@ -134,7 +93,6 @@ ${titleabbrev} element specifies whether list elements should use the
 <!--%%==========================================================================
 db2html.autotoc.mode
 Renders a TOC entry for an element and its children
-$is_info: Whether this contents list is for the info page
 $selected: A currently-selected page
 $toc_depth: How deep to create entries in the table of contents
 $titleabbrev: Whether to use #{titleabbrev} instead of #{title}
@@ -148,7 +106,6 @@ by one.
 For a description of the other parameters, see *{db2html.autotoc}.
 -->
 <xsl:template mode="db2html.autotoc.mode" match="*">
-  <xsl:param name="is_info" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="toc_depth" select="0"/>
   <xsl:param name="titleabbrev" select="false()"/>
@@ -160,7 +117,7 @@ For a description of the other parameters, see *{db2html.autotoc}.
   </xsl:variable>
   <li class="links">
     <xsl:choose>
-      <xsl:when test="set:has-same-node(., $selected) and not($is_info)">
+      <xsl:when test="set:has-same-node(., $selected)">
         <xsl:call-template name="db.xref.content">
           <xsl:with-param name="linkend" select="@id | @xml:id"/>
           <xsl:with-param name="target" select="."/>
@@ -199,7 +156,6 @@ For a description of the other parameters, see *{db2html.autotoc}.
 
 <!-- = refentry % db2html.autotoc.mode = -->
 <xsl:template mode="db2html.autotoc.mode" match="refentry | db:refentry">
-  <xsl:param name="is_info" select="false()"/>
   <xsl:param name="selected" select="/false"/>
   <xsl:param name="toc_depth" select="0"/>
   <xsl:param name="titleabbrev" select="false()"/>

@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Divisions
-:Requires: db-chunk db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-info db2html-xref gettext
+:Requires: db-chunk db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-xref gettext
 
 REMARK: Describe this module
 -->
@@ -54,21 +54,9 @@ REMARK: Describe this module
 <!--%# html.body.mode -->
 <xsl:template mode="html.body.mode" match="*">
   <xsl:call-template name="db2html.links.next"/>
-  <xsl:choose>
-    <xsl:when test="self::db:info or self::bookinfo or self::articleinfo">
-      <!-- FIXME
-      <xsl:call-template name="db2html.info.div">
-        <xsl:with-param name="node" select=".."/>
-        <xsl:with-param name="info" select="."/>
-      </xsl:call-template>
-      -->
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select=".">
-        <xsl:with-param name="depth_in_chunk" select="0"/>
-      </xsl:apply-templates>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates select=".">
+    <xsl:with-param name="depth_in_chunk" select="0"/>
+  </xsl:apply-templates>
   <xsl:call-template name="db2html.links.next"/>
   <div class="clear"/>
 </xsl:template>
@@ -96,12 +84,6 @@ REMARK: Describe this module
       </xsl:call-template>
     </xsl:for-each>
   </xsl:if>
-  <xsl:if test="$db.chunk.info_chunk and $depth_of_chunk = 0 and
-                (local-name(.) = 'book' or local-name(.) = 'article')">
-    <xsl:call-template name="html.output">
-      <xsl:with-param name="node" select="bookinfo | articleinfo | db:info"/>
-    </xsl:call-template>
-  </xsl:if>
 </xsl:template>
 
 
@@ -120,7 +102,6 @@ $callback: Whether to process ${node} in %{db2html.division.div.content.mode}
 $depth_in_chunk: The depth of ${node} in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
 $chunk_divisions: Whether to create new documents for ${divisions}
-$chunk_info: Whether to create a new document for a title page
 $autotoc_depth: How deep to create contents listings of ${divisions}
 $lang: The locale of the text in ${node}
 $dir: The text direction, either #{ltr} or #{rtl}
@@ -153,9 +134,6 @@ REMARK: Talk about some of the parameters
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
-  <xsl:param name="chunk_info"
-             select="($depth_of_chunk = 0) and
-                     ($depth_in_chunk = 0 and $info)"/>
   <xsl:param name="autotoc_depth" select="number(boolean($divisions))"/>
   <xsl:param name="lang" select="$node/@lang | $node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
@@ -415,11 +393,7 @@ REMARK: Document this template
   </xsl:param>
   <xsl:param name="prev_id">
     <xsl:choose>
-      <xsl:when test="$depth_of_chunk = 0">
-        <xsl:if test="$info and $db.chunk.info_chunk">
-          <xsl:value-of select="$db.chunk.info_basename"/>
-        </xsl:if>
-      </xsl:when>
+      <xsl:when test="$depth_of_chunk = 0"/>
       <xsl:otherwise>
         <xsl:call-template name="db.chunk.chunk-id.axis">
           <xsl:with-param name="node" select="$node"/>
@@ -450,30 +424,15 @@ REMARK: Document this template
             <xsl:with-param name="is_chunk" select="true()"/>
           </xsl:call-template>
         </xsl:attribute>
-        <xsl:choose>
-          <xsl:when test="$prev_id = $db.chunk.info_basename">
-            <xsl:variable name="text">
-              <xsl:call-template name="l10n.gettext">
-                <xsl:with-param name="msgid" select="'About This Document'"/>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:attribute name="title">
-              <xsl:value-of select="$text"/>
-            </xsl:attribute>
-            <xsl:value-of select="$text"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:attribute name="title">
-              <xsl:call-template name="db.xref.tooltip">
-                <xsl:with-param name="linkend" select="$prev_id"/>
-                <xsl:with-param name="target" select="$prev_node"/>
-              </xsl:call-template>
-            </xsl:attribute>
-            <xsl:call-template name="l10n.gettext">
-              <xsl:with-param name="msgid" select="'Previous'"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:attribute name="title">
+          <xsl:call-template name="db.xref.tooltip">
+            <xsl:with-param name="linkend" select="$prev_id"/>
+            <xsl:with-param name="target" select="$prev_node"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Previous'"/>
+        </xsl:call-template>
       </a>
     </xsl:if>
     <xsl:if test="$prev_id != '' and $next_id != ''">
@@ -920,7 +879,6 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     <xsl:with-param name="chunk_divisions" select="false()"/>
-    <xsl:with-param name="chunk_info" select="false()"/>
     <xsl:with-param name="autotoc_divisions" select="false()"/>
   </xsl:call-template>
 </xsl:template>
@@ -940,7 +898,6 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     <xsl:with-param name="chunk_divisions" select="false()"/>
-    <xsl:with-param name="chunk_info" select="false()"/>
     <xsl:with-param name="autotoc_divisions" select="true()"/>
   </xsl:call-template>
 </xsl:template>

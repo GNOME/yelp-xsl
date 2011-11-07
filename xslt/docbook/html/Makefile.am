@@ -13,7 +13,6 @@ xsl_DATA =				\
 	db2html-footnote.xsl		\
 	db2html-funcsynopsis.xsl	\
 	db2html-index.xsl		\
-	db2html-info.xsl		\
 	db2html-inline.xsl		\
 	db2html-l10n.xsl		\
 	db2html-media.xsl		\

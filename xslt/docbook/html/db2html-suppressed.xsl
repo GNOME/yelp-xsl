@@ -83,19 +83,6 @@ modes because of the DocBook content model.
 <xsl:template match="sect5info | db:sect5/db:info"/>
 <xsl:template match="sectioninfo | db:section/db:info"/>
 
-<!-- Only occur in db2html.info.mode -->
-<xsl:template match="affiliation | db:affiliation"/>
-<xsl:template match="authorblurb"/>
-<xsl:template match="authorgroup | db:authorgroup"/>
-<xsl:template match="copyright | db:copyright"/>
-<xsl:template match="legalnotice | db:legalnotice"/>
-<xsl:template match="personblurb | db:personblurb"/>
-<xsl:template match="revdescription | db:revdescription"/>
-<xsl:template match="revhistory | db:revhistory"/>
-<xsl:template match="revision | db:revision"/>
-<xsl:template match="revnumber | db:revnumber"/>
-<xsl:template match="revremark | db:revremark"/>
-
 <!-- Handled specially, so we can apply-templates -->
 <xsl:template match="label | db:label"/>
 

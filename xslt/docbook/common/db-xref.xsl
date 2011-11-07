@@ -111,10 +111,6 @@ REMARK: Talk about how this works with chunking
   <xsl:param name="target" select="key('idkey', $linkend)"/>
   <xsl:param name="is_chunk" select="false()"/>
   <xsl:choose>
-    <xsl:when test="$linkend = $db.chunk.info_basename">
-      <xsl:value-of
-       select="concat($db.chunk.info_basename, $db.chunk.extension)"/>
-    </xsl:when>
     <xsl:when test="set:has-same-node($target, /*)">
       <xsl:value-of select="concat($db.chunk.basename, $db.chunk.extension)"/>
     </xsl:when>

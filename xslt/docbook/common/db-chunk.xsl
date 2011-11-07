@@ -99,31 +99,6 @@ REMARK: Describe what this does
 
 
 <!--@@==========================================================================
-db.chunk.info_chunk
-Whether to create a chunk for the title page
-
-REMARK: Describe what this does
--->
-<xsl:param name="db.chunk.info_chunk" select="$db.chunk.max_depth != 0"/>
-
-
-<!--@@==========================================================================
-db.chunk.info_basename
-The base filename for the title page
-
-REMARK: Describe what this does
--->
-<xsl:param name="db.chunk.info_basename">
-  <xsl:choose>
-    <xsl:when test="$db.chunk.basename">
-      <xsl:value-of select="concat($db.chunk.basename, '-info')"/>
-    </xsl:when>
-    <xsl:otherwise>info</xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-
-<!--@@==========================================================================
 db.chunk.doctype_public
 The public DOCTYPE for output files
 
