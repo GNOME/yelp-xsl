@@ -75,10 +75,6 @@ modes because of the DocBook content model.
 <xsl:template match="referenceinfo | db:reference/db:info"/>
 <xsl:template match="refmeta | db:refmeta"/>
 <xsl:template match="refmiscinfo | db:refmiscinfo"/>
-<xsl:template match="refsect1divinfo"/>
-<xsl:template match="refsect2divinfo"/>
-<xsl:template match="refsect3divinfo"/>
-<xsl:template match="refsectiondivinfo"/>
 <xsl:template match="refsynopsisdivinfo | db:refsynopsisdiv/db:info"/>
 <xsl:template match="sect1info | db:sect1/db:info"/>
 <xsl:template match="sect2info | db:sect2/db:info"/>
@@ -89,17 +85,11 @@ modes because of the DocBook content model.
 
 <!-- Only occur in db2html.info.mode -->
 <xsl:template match="affiliation | db:affiliation"/>
-<xsl:template match="author | db:author"/>
 <xsl:template match="authorblurb"/>
 <xsl:template match="authorgroup | db:authorgroup"/>
-<xsl:template match="collab | db:collab"/>
-<xsl:template match="collabname"/>
 <xsl:template match="copyright | db:copyright"/>
-<xsl:template match="editor | db:editor"/>
 <xsl:template match="legalnotice | db:legalnotice"/>
-<xsl:template match="othercredit | db:othercredit"/>
 <xsl:template match="personblurb | db:personblurb"/>
-<xsl:template match="publisher | db:publisher"/>
 <xsl:template match="revdescription | db:revdescription"/>
 <xsl:template match="revhistory | db:revhistory"/>
 <xsl:template match="revision | db:revision"/>

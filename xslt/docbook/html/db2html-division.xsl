@@ -46,6 +46,11 @@ REMARK: Describe this module
   <xsl:call-template name="db2html.linktrail"/>
 </xsl:template>
 
+<!--%# html.footer.mode -->
+<xsl:template mode="html.footer.mode" match="*">
+  <xsl:call-template name="db2html.division.about"/>
+</xsl:template>
+
 <!--%# html.body.mode -->
 <xsl:template mode="html.body.mode" match="*">
   <xsl:call-template name="db2html.links.next"/>
@@ -494,6 +499,185 @@ REMARK: Document this template
       </a>
     </xsl:if>
   </div>
+</xsl:template>
+
+
+<!--**==========================================================================
+db2html.division.about
+Output the copyrights, credits, and license information at the bottom of a page.
+:Revision:version="3.4" date="2011-11-07"
+$node: A division-level element a page is being created for.
+
+This template outputs copyright information, credits, and license information for
+the division. By default it is called by the %{html.footer.mode} implementation.
+-->
+<xsl:template name="db2html.division.about">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="info" select="
+    $node/appendixinfo | $node/articleinfo  | $node/bibliographyinfo | $node/bookinfo |
+    $node/chapterinfo  | $node/glossaryinfo | $node/indexinfo        | $node/partinfo |
+    $node/prefaceinfo  | $node/refentryinfo | $node/referenceinfo    | $node/refsect1info |
+    $node/refsect2info | $node/refsect3info | $node/refsectioninfo   | $node/sect1info |
+    $node/sect2info    | $node/sect3info    | $node/sect4info        | $node/sect5info |
+    $node/sectioninfo  | $node/setindexinfo | $node/db:info "/>
+  <xsl:variable name="copyrights" select="$info/copyright | $info/db:copyright"/>
+  <xsl:variable name="authors" select="
+    $info/author     | $info/authorgroup/author       |
+    $info/corpauthor | $info/authorgroup/corpauthor   |
+    $info/db:author  | $info/db:authorgroup/db:author"/>
+  <xsl:variable name="editors" select="
+    $info/editor    | $info/authorgroup/editor |
+    $info/db:editor | $info/db:authorgroup/db:editor"/>
+  <xsl:variable name="translators" select="
+    $info/corpcredit[@role = 'translator']               |
+    $info/othercredit[@role = 'translator']              |
+    $info/authorgroup/corpcredit[@role = 'translator']   |
+    $info/authorgroup/othercredit[@role = 'translator']  |
+    $info/db:othercredit[@class = 'translator']          |
+    $info/db:authorgroup/db:othercredit[@class = 'translator']"/>
+  <xsl:variable name="othercredits" select="set:difference(
+    $info/collab | $info/authorgroup/collab | $info/db:collab |
+    $info/publisher      | $info/db:publisher |
+    $info/corpcredit     | $info/authorgroup/corpcredit  |
+    $info/othercredit    | $info/authorgroup/othercredit |
+    $info/db:othercredit | $info/db:authorgroup/db:othercredit,
+    ($authors | $editors | $translators))"/>
+  <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
+  <xsl:if test="$copyrights or $authors or $editors or $translators or $othercredits or $legal">
+    <div class="sect about">
+      <div class="hgroup">
+        <h2>
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'About'"/>
+          </xsl:call-template>
+        </h2>
+      </div>
+      <div class="region">
+        <div class="contents">
+          <xsl:if test="$copyrights">
+            <div class="copyrights">
+              <xsl:for-each  select="$copyrights">
+                <div class="copyright">
+                  <xsl:text>© </xsl:text>
+                  <xsl:for-each select="year | db:year">
+                    <xsl:if test="position() != 1">
+                      <xsl:call-template name="l10n.gettext">
+                        <xsl:with-param name="msgid" select="', '"/>
+                      </xsl:call-template>
+                    </xsl:if>
+                    <xsl:apply-templates/>
+                  </xsl:for-each>
+                  <xsl:text> </xsl:text>
+                  <xsl:for-each select="holder | db:holder">
+                    <xsl:if test="position() != 1">
+                      <xsl:call-template name="l10n.gettext">
+                        <xsl:with-param name="msgid" select="', '"/>
+                      </xsl:call-template>
+                    </xsl:if>
+                    <xsl:apply-templates/>
+                  </xsl:for-each>
+                </div>
+              </xsl:for-each>
+            </div>
+          </xsl:if>
+          <xsl:if test="$authors">
+            <div class="aboutblurb authors">
+              <div class="title">
+                <span class="title">
+                  <xsl:call-template name="l10n.gettext">
+                    <xsl:with-param name="msgid" select="'Written By'"/>
+                  </xsl:call-template>
+                </span>
+              </div>
+              <ul class="credits">
+                <xsl:for-each select="$authors">
+                  <li>
+                    <xsl:apply-templates select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </div>
+          </xsl:if>
+          <xsl:if test="$editors">
+            <div class="aboutblurb editors">
+              <div class="title">
+                <span class="title">
+                  <xsl:call-template name="l10n.gettext">
+                    <xsl:with-param name="msgid" select="'Edited By'"/>
+                  </xsl:call-template>
+                </span>
+              </div>
+              <ul class="credits">
+                <xsl:for-each select="$editors">
+                  <li>
+                    <xsl:apply-templates select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </div>
+          </xsl:if>
+          <xsl:if test="$translators">
+            <div class="aboutblurb translators">
+              <div class="title">
+                <span class="title">
+                  <xsl:call-template name="l10n.gettext">
+                    <xsl:with-param name="msgid" select="'Translated By'"/>
+                  </xsl:call-template>
+                </span>
+              </div>
+              <ul class="credits">
+                <xsl:for-each select="$translators">
+                  <li>
+                    <xsl:apply-templates select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </div>
+          </xsl:if>
+          <xsl:if test="$othercredits">
+            <div class="aboutblurb othercredits">
+              <div class="title">
+                <span class="title">
+                  <xsl:call-template name="l10n.gettext">
+                    <xsl:with-param name="msgid" select="'Other Credits'"/>
+                  </xsl:call-template>
+                </span>
+              </div>
+              <ul class="credits">
+                <xsl:for-each select="$othercredits">
+                  <li>
+                    <xsl:apply-templates select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </div>
+          </xsl:if>
+          <xsl:for-each select="$legal">
+            <div class="aboutblurb license">
+              <div class="title">
+                <span class="title">
+                  <xsl:choose>
+                    <xsl:when test="title">
+                      <xsl:apply-templates select="title/node()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:call-template name="l10n.gettext">
+                        <xsl:with-param name="msgid" select="'Legal'"/>
+                      </xsl:call-template>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </span>
+              </div>
+              <div class="contents">
+                <xsl:apply-templates select="*[not(self::title or self::db:title or
+                                             self::blockinfo or self::db:info or self::db:titleabbrev)]"/>
+              </div>
+            </div>
+          </xsl:for-each>
+        </div>
+      </div>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 

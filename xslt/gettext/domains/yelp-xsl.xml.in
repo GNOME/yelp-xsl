@@ -191,6 +191,11 @@ not all content has been written.
 <msgstr>Index</msgstr>
 </msg>
 
+<msg id="Legal">
+<its:locNote>Default title for a DocBook legal notice.</its:locNote>
+<msgstr>Legal</msgstr>
+</msg>
+
 <msg id="License">
 <its:locNote>
 Generic title for license information when it's not a known license.

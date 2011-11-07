@@ -171,6 +171,16 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
+<!-- = author = -->
+<xsl:template match="author | db:author">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = author % db2html.inline.content.mode = -->
+<xsl:template mode="db2html.inline.content.mode" match="author | db:author">
+  <xsl:call-template name="db.personname"/>
+</xsl:template>
+
 <!-- = authorinitials = -->
 <xsl:template match="authorinitials | db:authorinitials">
   <xsl:call-template name="db2html.inline"/>
@@ -295,6 +305,17 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
+<!-- = collab = -->
+<xsl:template match="collab | db:collab">
+  <xsl:apply-templates select="collabname |
+                               db:org | db:orgname | db:person | db:personname"/>
+</xsl:template>
+
+<!-- = collabname = -->
+<xsl:template match="collabname">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
 <!-- = command = -->
 <xsl:template match="command | db:command">
   <xsl:call-template name="db2html.inline">
@@ -350,6 +371,16 @@ FIXME
 <!-- = edition = -->
 <xsl:template match="edition | db:edition">
   <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = editor = -->
+<xsl:template match="editor | db:editor">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = editor % db2html.inline.content.mode = -->
+<xsl:template mode="db2html.inline.content.mode" match="editor | db:editor">
+  <xsl:call-template name="db.personname"/>
 </xsl:template>
 
 <!-- = email = -->
@@ -787,6 +818,11 @@ FIXME
   <xsl:text>]</xsl:text>
 </xsl:template>
 
+<!-- = org = -->
+<xsl:template match="db:org">
+  <xsl:apply-templates select="db:orgname"/>
+</xsl:template>
+
 <!-- = orgdiv = -->
 <xsl:template match="orgdiv | db:orgdiv">
   <xsl:call-template name="db2html.inline"/>
@@ -795,6 +831,16 @@ FIXME
 <!-- = orgname = -->
 <xsl:template match="orgname | db:orgname">
   <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = othercredit = -->
+<xsl:template match="othercredit | db:othercredit">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = othercredit % db2html.inline.content.mode = -->
+<xsl:template mode="db2html.inline.content.mode" match="othercredit | db:othercredit">
+  <xsl:call-template name="db.personname"/>
 </xsl:template>
 
 <!-- = othername = -->
@@ -822,6 +868,16 @@ FIXME
     </xsl:with-param>
     <xsl:with-param name="ltr" select="true()"/>
   </xsl:call-template>
+</xsl:template>
+
+<!-- = person = -->
+<xsl:template match="db:person">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = person % db2html.inline.content.mode = -->
+<xsl:template mode="db2html.inline.content.mode" match="db:person">
+  <xsl:call-template name="db.personname"/>
 </xsl:template>
 
 <!-- = personname = -->
@@ -894,6 +950,11 @@ FIXME
 <!-- = pubdate = -->
 <xsl:template match="pubdate | db:pubdate">
   <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
+<!-- = publisher = -->
+<xsl:template match="publisher | db:publisher">
+  <xsl:apply-templates select="publishername | db:publishername"/>
 </xsl:template>
 
 <!-- = publishername = -->

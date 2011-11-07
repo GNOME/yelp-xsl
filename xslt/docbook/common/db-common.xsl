@@ -144,7 +144,6 @@ to its list item count.
 db.personname
 Outputs the name of a person
 $node: The element containing tags such as #{firstname} and #{surname}
-$lang: The language rules to use to construct the name
 
 This template outputs the name of a person as modelled by the #{personname}
 element.  The #{personname} element allows authors to mark up components of
@@ -153,21 +152,12 @@ assembles those into a string.
 -->
 <xsl:template name="db.personname">
   <xsl:param name="node" select="."/>
-  <!-- FIXME: call i18n.locale -->
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-
-  <xsl:if test="$node/db:personname">
-    <xsl:call-template name="db.personname">
-      <xsl:with-param name="node" select="$node/db:personname"/>
-      <xsl:with-param name="lang" select="$lang"/>
-    </xsl:call-template>
-  </xsl:if>
-  <!-- FIXME: Use xsl:choose for different language rules -->
-  <xsl:if test="$node/honorific or $node/db:honorific">
-    <xsl:apply-templates select="$node/honorific[1] | $node/db:honorific[1]"/>
-  </xsl:if>
   <xsl:choose>
+    <xsl:when test="$node/db:personname">
+      <xsl:call-template name="db.personname">
+        <xsl:with-param name="node" select="$node/db:personname"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:when test="$node/@role = 'family-given'">
       <xsl:if test="$node/surname or $node/db:surname">
         <xsl:if test="$node/honorific or $node/db:honorific">
@@ -230,19 +220,13 @@ assembles those into a string.
 db.personname.list
 Outputs a list of people's names
 $nodes: The elements containing tags such as #{firstname} and #{surname}
-$lang: The language rules to use to construct the list of names
 
 This template outputs a list of names of people as modelled by the #{personname}
 element.  The #{personname} element allows authors to mark up components of a
-person's name, such as the person's first name and surname.  This template makes
-a list formatted according to the locale set in ${lang} and calls the template
-*{db.personname} for each element in ${nodes}.
+person's name, such as the person's first name and surname.
 -->
 <xsl:template name="db.personname.list">
   <xsl:param name="nodes"/>
-  <!-- FIXME: call i18n.locale -->
-  <xsl:param name="lang" select="ancestor-or-self::*[@lang][1]/@lang |
-                                 ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
   <xsl:for-each select="$nodes">
     <xsl:choose>
       <xsl:when test="position() = 1"/>
@@ -264,7 +248,6 @@ a list formatted according to the locale set in ${lang} and calls the template
     </xsl:choose>
     <xsl:call-template name="db.personname">
       <xsl:with-param name="node" select="."/>
-      <xsl:with-param name="lang" select="$lang"/>
     </xsl:call-template>
   </xsl:for-each>
 </xsl:template>
