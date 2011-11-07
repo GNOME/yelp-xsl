@@ -517,24 +517,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
             <div class="copyrights">
               <xsl:for-each  select="$copyrights">
                 <div class="copyright">
-                  <xsl:text>© </xsl:text>
-                  <xsl:for-each select="year | db:year">
-                    <xsl:if test="position() != 1">
-                      <xsl:call-template name="l10n.gettext">
-                        <xsl:with-param name="msgid" select="', '"/>
-                      </xsl:call-template>
-                    </xsl:if>
-                    <xsl:apply-templates/>
-                  </xsl:for-each>
-                  <xsl:text> </xsl:text>
-                  <xsl:for-each select="holder | db:holder">
-                    <xsl:if test="position() != 1">
-                      <xsl:call-template name="l10n.gettext">
-                        <xsl:with-param name="msgid" select="', '"/>
-                      </xsl:call-template>
-                    </xsl:if>
-                    <xsl:apply-templates/>
-                  </xsl:for-each>
+                  <xsl:call-template name="db.copyright"/>
                 </div>
               </xsl:for-each>
             </div>
