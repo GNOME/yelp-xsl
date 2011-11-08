@@ -1,7 +1,6 @@
 xsldir=$(datadir)/yelp-xsl/xslt/docbook/html
 
 xsl_DATA =				\
-	db2html-autotoc.xsl		\
 	db2html-bibliography.xsl	\
 	db2html-block.xsl		\
 	db2html-callout.xsl		\

@@ -37,7 +37,6 @@ DocBook to XHTML
 
 <xsl:param name="db.chunk.extension" select="$html.extension"/>
 
-<xsl:include href="db2html-autotoc.xsl"/>
 <xsl:include href="db2html-bibliography.xsl"/>
 <xsl:include href="db2html-block.xsl"/>
 <xsl:include href="db2html-callout.xsl"/>

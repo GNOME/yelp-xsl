@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Divisions
-:Requires: db-chunk db-title db-xref db2html-autotoc db2html-css db2html-footnote db2html-xref gettext
+:Requires: db-chunk db-title db-xref db2html-css db2html-footnote db2html-xref gettext
 
 REMARK: Describe this module
 -->
@@ -102,7 +102,6 @@ $callback: Whether to process ${node} in %{db2html.division.div.content.mode}
 $depth_in_chunk: The depth of ${node} in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
 $chunk_divisions: Whether to create new documents for ${divisions}
-$autotoc_depth: How deep to create contents listings of ${divisions}
 $lang: The locale of the text in ${node}
 $dir: The text direction, either #{ltr} or #{rtl}
 
@@ -134,7 +133,6 @@ REMARK: Talk about some of the parameters
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
-  <xsl:param name="autotoc_depth" select="number(boolean($divisions))"/>
   <xsl:param name="lang" select="$node/@lang | $node/@xml:lang"/>
   <xsl:param name="dir" select="false()"/>
 
@@ -204,14 +202,11 @@ REMARK: Talk about some of the parameters
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="$autotoc_depth != 0 and
+    <xsl:if test="$depth_in_chunk = 0 and
                   not($node/processing-instruction('db2html.no_sectionlinks'))">
-      <xsl:call-template name="db2html.autotoc">
+      <xsl:call-template name="db2html.links.section">
         <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="title" select="true()"/>
         <xsl:with-param name="divisions" select="$divisions"/>
-        <xsl:with-param name="toc_depth" select="$autotoc_depth"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
     </xsl:if>
     <xsl:if test="not($chunk_divisions)">
@@ -365,6 +360,35 @@ REMARK: Describe this
   </xsl:if>
 </xsl:template>
 
+<!--**==========================================================================
+db2html.links.section
+Output links to subsections.
+:Revision:version="3.4" date="2011-11-07" revision="final"
+$node: A division-level element a page is being created for.
+$divisions: The division-level child elements of ${node} to link to.
+
+This template outputs links to the child division-level elements of ${node},
+whether or not they are chunked.
+-->
+<xsl:template name="db2html.links.section">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="divisions" select="/false"/>
+  <xsl:if test="$divisions">
+    <div class="links sectionlinks">
+      <ul>
+        <xsl:for-each select="$divisions">
+          <li class="links">
+            <xsl:call-template name="db2html.xref">
+              <xsl:with-param name="linkend" select="@id | @xml:id"/>
+              <xsl:with-param name="target" select="."/>
+              <xsl:with-param name="xrefstyle" select="'role:titleabbrev'"/>
+            </xsl:call-template>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
+  </xsl:if>
+</xsl:template>
 
 <!--**==========================================================================
 db2html.links.next
