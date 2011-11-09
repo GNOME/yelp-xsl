@@ -153,37 +153,32 @@ assembles those into a string.
 <xsl:template name="db.personname">
   <xsl:param name="node" select="."/>
   <xsl:choose>
-    <xsl:when test="$node/db:personname">
+    <xsl:when test="$node/personname or $node/db:personname">
       <xsl:call-template name="db.personname">
-        <xsl:with-param name="node" select="$node/db:personname"/>
+        <xsl:with-param name="node" select="$node/personname | $node/db:personname"/>
       </xsl:call-template>
     </xsl:when>
+    <!-- family-given -->
     <xsl:when test="$node/@role = 'family-given'">
-      <xsl:if test="$node/surname or $node/db:surname">
-        <xsl:if test="$node/honorific or $node/db:honorific">
-          <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:apply-templates select="$node/surname[1] | $node/db:surname[1]"/>
+      <xsl:apply-templates select="($node/surname | $node/db:surname)[1]"/>
+      <xsl:if test="$node/surname | $node/db:surname">
+        <xsl:text> </xsl:text>
       </xsl:if>
-      <xsl:if test="$node/othername or $node/db:othername">
-        <xsl:if test="$node/honorific or $node/surname or
-                      $node/db:honorific or $node/db:surname">
-          <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:apply-templates select="$node/othername[1] |
-                                     $node/db:othername[1]"/>
-      </xsl:if>
-      <xsl:if test="$node/firstname or $node/db:firstname">
-        <xsl:if test="$node/honorific or $node/surname or $node/othername or
-                      $node/db:honorific or $node/db:surname or
-                      $node/db:othername">
-          <xsl:text> </xsl:text>
-        </xsl:if>
-        <xsl:apply-templates select="$node/firstname[1] |
-                                     $node/db:firstname[1]"/>
-      </xsl:if>
+      <xsl:apply-templates select="($node/firstname | $node/db:firstname)[1]"/>
     </xsl:when>
+    <!-- last-first -->
+    <xsl:when test="$node/@role = 'last-first'">
+      <xsl:apply-templates select="($node/surname | $node/db:surname)[1]"/>
+      <xsl:if test="$node/surname | $node/db:surname">
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+      <xsl:apply-templates select="($node/firstname | $node/db:firstname)[1]"/>
+    </xsl:when>
+    <!-- first-last -->
     <xsl:otherwise>
+      <xsl:if test="$node/honorific or $node/db:honorific">
+        <xsl:apply-templates select="($node/honorific | $node/db:honorific)[1]"/>
+      </xsl:if>
       <xsl:if test="$node/firstname or $node/db:firstname">
         <xsl:if test="$node/honorific or $node/db:honorific">
           <xsl:text> </xsl:text>
@@ -207,12 +202,12 @@ assembles those into a string.
         </xsl:if>
         <xsl:apply-templates select="$node/surname[1] | $node/db:surname[1]"/>
       </xsl:if>
+      <xsl:if test="$node/lineage or $node/db:lineage">
+        <xsl:text>, </xsl:text>
+        <xsl:apply-templates select="$node/lineage[1] | $node/db:lineage[1]"/>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:if test="$node/lineage or $node/db:lineage">
-    <xsl:text>, </xsl:text>
-    <xsl:apply-templates select="$node/lineage[1] | $node/db:lineage[1]"/>
-  </xsl:if>
 </xsl:template>
 
 
