@@ -14,6 +14,7 @@ xsl_DATA =				\
 	db2html-index.xsl		\
 	db2html-inline.xsl		\
 	db2html-l10n.xsl		\
+	db2html-links.xsl		\
 	db2html-media.xsl		\
 	db2html-list.xsl		\
 	db2html-refentry.xsl		\

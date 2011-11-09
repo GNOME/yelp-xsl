@@ -49,6 +49,7 @@ DocBook to XHTML
 <xsl:include href="db2html-index.xsl"/>
 <xsl:include href="db2html-inline.xsl"/>
 <xsl:include href="db2html-l10n.xsl"/>
+<xsl:include href="db2html-links.xsl"/>
 <xsl:include href="db2html-media.xsl"/>
 <xsl:include href="db2html-list.xsl"/>
 <xsl:include href="db2html-refentry.xsl"/>
