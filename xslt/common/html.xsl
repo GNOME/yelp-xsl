@@ -722,6 +722,10 @@ ul.credits, ul.credits li {
   margin: 0; padding: 0;
   list-style-type: none;
 }
+ul.credits li {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+  text-indent: -1em;
+}
 
 table {
   border-collapse: collapse;
