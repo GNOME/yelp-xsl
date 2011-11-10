@@ -94,8 +94,6 @@ $node: The element to render the content of
 $info: The info child element of ${node}
 $title_node: The element containing the title of ${node}
 $subtitle_node: The element containing the subtitle of ${node}
-$title_content: The title for divisions lacking a #{title} tag
-$subtitle_content: The subtitle for divisions lacking a #{subtitle} tag
 $entries: The entry-style child elements
 $divisions: The division-level child elements
 $callback: Whether to process ${node} in %{db2html.division.div.content.mode}
@@ -114,8 +112,6 @@ REMARK: Talk about some of the parameters
              select="($node/title | $info/title | $node/db:title | $info/db:title)[last()]"/>
   <xsl:param name="subtitle_node"
              select="($node/subtitle | $info/subtitle | $node/db:subtitle | $info/db:subtitle)[last()]"/>
-  <xsl:param name="title_content"/>
-  <xsl:param name="subtitle_content"/>
   <xsl:param name="entries" select="/false"/>
   <xsl:param name="divisions" select="/false"/>
   <xsl:param name="callback" select="false()"/>
@@ -173,8 +169,6 @@ REMARK: Talk about some of the parameters
       <xsl:with-param name="title_node" select="$title_node"/>
       <xsl:with-param name="subtitle_node" select="$subtitle_node"/>
       <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-      <xsl:with-param name="title_content" select="$title_content"/>
-      <xsl:with-param name="subtitle_content" select="$subtitle_content"/>
     </xsl:call-template>
     <div class="region">
     <xsl:choose>
@@ -245,8 +239,6 @@ $node: The element containing the title.
 $title_node: The #{title} element to render.
 $subtitle_node: The #{subtitle} element to render.
 $depth: The depth of ${node} in the containing output.
-$title_content: An optional string containing the title.
-$subtitle_content: An optional string containing the subtitle.
 
 REMARK: Talk about the different kinds of title blocks
 -->
@@ -259,8 +251,6 @@ REMARK: Talk about the different kinds of title blocks
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:param>
-  <xsl:param name="title_content"/>
-  <xsl:param name="subtitle_content"/>
 
   <xsl:variable name="title_h">
     <xsl:choose>
@@ -294,27 +284,22 @@ REMARK: Talk about the different kinds of title blocks
         </xsl:call-template>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="$title_content">
-          <xsl:value-of select="$title_content"/>
+        <xsl:when test="$title_node">
+          <xsl:apply-templates select="$title_node/node()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="$title_node/node()"/>
+          <xsl:call-template name="db.title">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:element>
-    <xsl:if test="$subtitle_node or $subtitle_content">
+    <xsl:if test="$subtitle_node">
       <xsl:element name="{$subtitle_h}" namespace="{$html.namespace}">
         <xsl:attribute name="class">
           <xsl:text>subtitle</xsl:text>
         </xsl:attribute>
-        <xsl:choose>
-          <xsl:when test="$subtitle_content">
-            <xsl:value-of select="$subtitle_content"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$subtitle_node/node()"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="$subtitle_node/node()"/>
       </xsl:element>
     </xsl:if>
   </div>
@@ -518,6 +503,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     <xsl:with-param name="divisions" select="
                     appendix | bibliography | glossary | index      | lot |
                     refentry | sect1        | section  | simplesect | toc |
+                    colophon | db:colophon |
                     db:appendix   | db:bibliography | db:glossary | db:index |
                     db:refentry   | db:sect1        | db:section  |
                     db:simplesect | db:toc "/>
@@ -547,13 +533,6 @@ the division. By default it is called by the %{html.footer.mode} implementation.
                     db:part             | db:preface  | db:reference |
                     db:toc"/>
     <xsl:with-param name="info" select="bookinfo | db:info"/>
-    <!-- Unlike other elements in DocBook, title comes before bookinfo -->
-    <xsl:with-param name="title_node"
-                    select="(title    | bookinfo/title |
-                             db:title | db:info/db:title)[1]"/>
-    <xsl:with-param name="subtitle_node"
-                    select="(subtitle    | bookinfo/subtitle |
-                             db:subtitle | db:info/db:subtitle)[1]"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     <xsl:with-param name="autotoc_depth" select="2"/>
@@ -581,6 +560,21 @@ the division. By default it is called by the %{html.footer.mode} implementation.
   </xsl:call-template>
 </xsl:template>
 
+<!-- = colophon = -->
+<xsl:template match="colophon | db:colophon">
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk"/>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:param>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="db:info"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = dedication = -->
 <xsl:template match="dedication | db:dedication">
   <xsl:param name="depth_in_chunk">
@@ -589,26 +583,11 @@ the division. By default it is called by the %{html.footer.mode} implementation.
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(db:title) and not(db:info/db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Dedication'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="db:info"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="db:info"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = glossary = -->
@@ -619,31 +598,13 @@ the division. By default it is called by the %{html.footer.mode} implementation.
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(glossaryinfo/title) and not(db:title) and not(db:info/db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="entries" select="glossentry | db:glossentry"/>
-        <xsl:with-param name="divisions" select="glossdiv | bibliography | db:glossdiv | db:bibliography"/>
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Glossary'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="info" select="glossaryinfo | db:info"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="entries" select="glossentry | db:glossentry"/>
-        <xsl:with-param name="divisions" select="glossdiv | bibliography | db:glossdiv | db:bibliography"/>
-        <xsl:with-param name="info" select="glossaryinfo | db:info"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="entries" select="glossentry | db:glossentry"/>
+    <xsl:with-param name="divisions" select="glossdiv | bibliography | db:glossdiv | db:bibliography"/>
+    <xsl:with-param name="info" select="glossaryinfo | db:info"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = glossdiv = -->
@@ -675,7 +636,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     <xsl:with-param name="divisions" select="
                     appendix | article   | bibliography | chapter |
                     glossary | index     | lot          | preface |
-                    refentry | reference | toc          |
+                    refentry | reference | toc          | db:colophon |
                     db:appendix  | db:article   | db:bibliography |
                     db:chapter   | db:glossary  | db:index        |
                     db:preface   | db:refentry  | db:reference    |

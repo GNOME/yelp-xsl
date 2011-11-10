@@ -591,30 +591,12 @@ a bibliography entry.
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(bibliographyinfo/title) and
-                    not(db:title) and not(db:info/db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
-        <xsl:with-param name="divisions" select="bibliodiv | db:bibliodiv"/>
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Bibliography'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
-        <xsl:with-param name="divisions" select="bibliodiv | db:bibliodiv"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="bibliographyinfo | db:info"/>
+    <xsl:with-param name="divisions" select="bibliodiv | db:bibliodiv"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = bibliodiv = -->

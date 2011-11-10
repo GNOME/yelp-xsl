@@ -129,32 +129,13 @@ indexterm (autoidx)
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(indexinfo/title) and not(db:title) and
-                    not(db:info/db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="indexinfo | db:info"/>
-        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Index'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="indexinfo | db:info"/>
-        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="indexinfo | db:info"/>
+    <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+    <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = setindex = -->
@@ -165,32 +146,13 @@ indexterm (autoidx)
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(setindexinfo/title) and not(db:title) and
-                    not(db:info/db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="setindexinfo | db:info"/>
-        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Index'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="info" select="setindexinfo | db:info"/>
-        <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
-        <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="info" select="setindexinfo | db:info"/>
+    <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+    <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!--#% l10n.format.mode -->

@@ -51,11 +51,6 @@ REMARK: Describe this module. Talk about refenty and friends
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:call-template name="db2html.division.div">
-    <xsl:with-param name="title_content">
-      <xsl:call-template name="db.title">
-        <xsl:with-param name="node" select="."/>
-      </xsl:call-template>
-    </xsl:with-param>
     <xsl:with-param name="divisions"
                     select="refsynopsisdiv | refsection | refsect1 |
                             db:refsynopsisdiv | db:refsection | db:refsect1"/>
@@ -209,25 +204,10 @@ REMARK: Describe this module. Talk about refenty and friends
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <xsl:choose>
-    <xsl:when test="not(title) and not(db:title)">
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="title_content">
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'Synopsis'"/>
-          </xsl:call-template>
-        </xsl:with-param>
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="db2html.division.div">
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="db2html.division.div">
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>
