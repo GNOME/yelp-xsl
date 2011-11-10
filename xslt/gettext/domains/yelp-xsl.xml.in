@@ -125,16 +125,9 @@ reviewed, and it awaiting a final approval.
 <msgstr>Candidate</msgstr>
 </msg>
 
-<!-- FIXME: check code -->
 <msg id="Colophon">
 <its:locNote>Default title for a colophon section.</its:locNote>
 <msgstr>Colophon</msgstr>
-</msg>
-
-<!-- FIXME: check code -->
-<msg id="Contents">
-<its:locNote>Title of the listing of subsections.</its:locNote>
-<msgstr>Contents</msgstr>
 </msg>
 
 <msg id="Creative Commons">
@@ -256,12 +249,6 @@ but needs to be updated to reflect software updates.
 <msg id="Play">
 <its:locNote>Tooltip on play/pause buttons for audio and video objects.</its:locNote>
 <msgstr>Play</msgstr>
-</msg>
-
-<!-- FIXME: check code -->
-<msg id="Preface">
-<its:locNote>Default title for a preface to a book.</its:locNote>
-<msgstr>Preface</msgstr>
 </msg>
 
 <msg id="Previous">
