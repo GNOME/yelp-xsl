@@ -24,20 +24,21 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Footnotes
-:Requires: db-chunk
 
 FIXME: Describe this module
 -->
 
 
 <!--**==========================================================================
-db2html.footnote.ref
-Generates a superscript link to a footnote
-$node: The #{footnote} element to process
+db2html.footnote.link
+Output a link to a footnote.
+:Revision:version="3.4" date="2011-11-10" status="final"
+$node: The #{footnote} element to process.
 
-REMARK: Describe this template
+This templates outputs an inline link to the footnote displayed at the bottom
+of the page.
 -->
-<xsl:template name="db2html.footnote.ref">
+<xsl:template  match="footnote | db:footnote" name="db2html.footnote.link">
   <xsl:param name="node" select="."/>
   <xsl:variable name="anchor">
     <xsl:text>-noteref-</xsl:text>
@@ -68,12 +69,9 @@ REMARK: Describe this template
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <a name="{$anchor}"/>
-  <sup>
-    <a class="footnote" href="{$href}">
-      <xsl:call-template name="db.number">
-        <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
+  <sup class="footnote">
+    <a class="footnote" href="{$href}" id="{$anchor}">
+      <xsl:value-of select="count($node/preceding::footnote | $node/preceding::db:footnote) + 1"/>
     </a>
   </sup>
 </xsl:template>
@@ -81,10 +79,11 @@ REMARK: Describe this template
 
 <!--**==========================================================================
 db2html.footnote.note
-Generates a footnote
-$node: The #{footnote} element to process
+Output a footnote.
+:Revision:version="3.4" date="2011-11-10" status="final"
+$node: The #{footnote} element to process.
 
-REMARK: Describe this template
+This templates outputs the actual text of a footnote as a block-level element.
 -->
 <xsl:template name="db2html.footnote.note">
   <xsl:param name="node" select="."/>
@@ -117,15 +116,10 @@ REMARK: Describe this template
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="footnote">
-    <a name="{$anchor}"/>
-    <span class="footnote-number">
-      <a class="footnote-ref" href="{$href}">
-        <xsl:call-template name="db.number">
-          <xsl:with-param name="node" select="$node"/>
-        </xsl:call-template>
-      </a>
-    </span>
+  <div class="footnote" id="{$anchor}">
+    <a class="footnote" href="{$href}">
+      <xsl:value-of select="count($node/preceding::footnote | $node/preceding::db:footnote) + 1"/>
+    </a>
     <xsl:apply-templates select="$node/node()"/>
   </div>
 </xsl:template>
@@ -133,11 +127,15 @@ REMARK: Describe this template
 
 <!--**==========================================================================
 db2html.footnote.footer
-Generates a foot containing all the footnotes in the chunk
-$node: The division element containing footnotes
-$depth_of_chunk: The depth of the containing chunk in the document
+Output all footnotes for a page.
+:Revision:version="3.4" date="2011-11-10" status="final"
+$node: The division-level element containing footnotes
+$depth_of_chunk: The depth of the containing chunk in the document.
 
-REMARK: Describe this template
+This template collects all #{footnote} elements under ${node} and outputs them
+with *{db2html.footnote.note}. It checks if each footnote would be displayed on
+a separate page by a child division-level element, and if so, it doesn't output
+that footnote.
 -->
 <xsl:template name="db2html.footnote.footer">
   <xsl:param name="node" select="."/>
@@ -145,90 +143,32 @@ REMARK: Describe this template
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:variable name="notes" select="$node//footnote | $node//db:footnote" />
-  <xsl:if test="count($notes) != 0">
-    <xsl:call-template name="db2html.footnote.footer.sibling">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      <xsl:with-param name="notes" select="$notes"/>
-      <xsl:with-param name="pos" select="1"/>
-      <xsl:with-param name="div" select="false()"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
-<!--#* db2html.footnote.footer.sibling -->
-<xsl:template name="db2html.footnote.footer.sibling">
-  <xsl:param name="node"/>
-  <xsl:param name="depth_of_chunk"/>
-  <xsl:param name="notes"/>
-  <xsl:param name="pos"/>
-  <xsl:param name="div"/>
-  <xsl:variable name="this" select="$notes[$pos]"/>
-  <xsl:variable name="depth">
-    <xsl:call-template name="db.chunk.depth-of-chunk">
-      <xsl:with-param name="node" select="$this"/>
-    </xsl:call-template>
+  <xsl:variable name="include">
+    <xsl:for-each select="$notes">
+      <xsl:variable name="depth">
+        <xsl:call-template name="db.chunk.depth-of-chunk"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$depth = $depth_of_chunk">
+          <xsl:text>y</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>x</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="($depth = $depth_of_chunk) and not($div)">
-      <div class="footnotes">
-        <xsl:call-template name="db2html.footnote.note">
-          <xsl:with-param name="node" select="$this"/>
-        </xsl:call-template>
-        <xsl:if test="$pos &lt; count($notes)">
-          <xsl:call-template name="db2html.footnote.footer.sibling">
-            <xsl:with-param name="node" select="$node"/>
-            <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-            <xsl:with-param name="notes" select="$notes"/>
-            <xsl:with-param name="pos" select="$pos + 1"/>
-            <xsl:with-param name="div" select="true()"/>
+  <xsl:if test="contains($include, 'y')">
+    <div class="footnotes">
+      <xsl:for-each select="$notes">
+        <xsl:if test="substring($include, position(), 1) = 'y'">
+          <xsl:call-template name="db2html.footnote.note">
+            <xsl:with-param name="node" select="."/>
           </xsl:call-template>
         </xsl:if>
-      </div>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:if test="$depth = $depth_of_chunk">
-        <xsl:call-template name="db2html.footnote.note">
-          <xsl:with-param name="node" select="$this"/>
-        </xsl:call-template>
-      </xsl:if>
-      <xsl:if test="$pos &lt; count($notes)">
-        <xsl:call-template name="db2html.footnote.footer.sibling">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-          <xsl:with-param name="notes" select="$notes"/>
-          <xsl:with-param name="pos" select="$pos + 1"/>
-          <xsl:with-param name="div" select="$div"/>
-        </xsl:call-template>
-      </xsl:if>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-db2html.footnote.css
-Outputs CSS that controls the appearance of footnotes
-
-REMARK: Describe this template
--->
-<xsl:template name="db2html.footnote.css">
-<xsl:text>
-div.footnotes { font-style: italic; font-size: 0.8em; }
-div.footnote { margin-top: 1.44em; }
-span.footnote-number { display: inline; padding-right: 0.83em; }
-span.footnote-number + p { display: inline; }
-a.footnote { text-decoration: none; font-size: 0.8em; }
-a.footnote-ref { text-decoration: none; }
-</xsl:text>
-</xsl:template>
-
-
-<!-- == Matched Templates == -->
-
-<!-- = footnote = -->
-<xsl:template match="footnote | db:footnote">
-  <xsl:call-template name="db2html.footnote.ref"/>
+      </xsl:for-each>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

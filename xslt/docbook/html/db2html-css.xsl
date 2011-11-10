@@ -79,6 +79,36 @@ div.programlisting .userinput {
 }
 div.verbatim { white-space: pre; }
 
+<!-- == footnotes == -->
+div.footnotes {
+  border-top: solid 2px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+div.footnote { margin-top: 1.44em; }
+sup.footnote { font-size: 0.83em; }
+a.footnote {
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: none;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+div.footnote > a.footnote {
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
+  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
+div.footnote > a.footnote + p { display: inline-block; margin: 0; }
+a.footnote:hover, div.footnote > a.footnote:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  -moz-box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  -webkit-box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  box-shadow: 0 0 2px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
 
 <!-- == unsorted == -->
 dl.index dt { margin-top: 0; }
@@ -162,7 +192,6 @@ div.co {
   clear: both;
 }
 </xsl:text>
-<xsl:call-template name="db2html.footnote.css"/>
 </xsl:template>
 
 </xsl:stylesheet>

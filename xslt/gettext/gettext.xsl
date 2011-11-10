@@ -22,11 +22,6 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 exclude-result-prefixes="msg str"
                 version="1.0">
 
-<!-- FIXME -->
-<xsl:template name="db.number"/>
-<xsl:template name="db.label"/>
-
-
 <!--!!==========================================================================
 Localized Strings
 -->
