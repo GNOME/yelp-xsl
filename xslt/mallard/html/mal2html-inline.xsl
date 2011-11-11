@@ -95,7 +95,9 @@ an #{xref} or #{href} attribute.
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <span class="{concat($class, ' ', local-name($node))}">
-    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:choose>
       <xsl:when test="$node/@action | $node/@xref | $node/@href">
         <a>

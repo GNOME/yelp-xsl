@@ -55,7 +55,9 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
-    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
     </xsl:attribute>
