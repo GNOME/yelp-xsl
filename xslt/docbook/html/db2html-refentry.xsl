@@ -54,7 +54,6 @@ REMARK: Describe this module. Talk about refenty and friends
     <xsl:with-param name="divisions"
                     select="refsynopsisdiv | refsection | refsect1 |
                             db:refsynopsisdiv | db:refsection | db:refsect1"/>
-    <xsl:with-param name="callback" select="true()"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
   </xsl:call-template>
