@@ -206,15 +206,6 @@ Generic title for license information when it's not a known license.
 <msgstr>More Information</msgstr>
 </msg>
 
-<!-- FIXME: check code -->
-<msg id="Name">
-<its:locNote>
-Default title for a refnamediv element. This is the common section
-title found in most UNIX man pages.
-</its:locNote>
-<msgstr>Name</msgstr>
-</msg>
-
 <msg id="Next">
 <its:locNote>Link text for a link to the next page in a series.</its:locNote>
 <msgstr>Next</msgstr>
