@@ -20,7 +20,6 @@ xsl_DATA =				\
 	db2html-refentry.xsl		\
 	db2html-suppressed.xsl		\
 	db2html-table.xsl		\
-	db2html-title.xsl		\
 	db2html-xref.xsl		\
 	db2html.xsl			\
 	db2xhtml.xsl

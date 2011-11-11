@@ -29,6 +29,7 @@ modes because of the DocBook content model.
 -->
 
 <!-- Not rendered directly -->
+<xsl:template match="subtitle | db:subtitle"/>
 <xsl:template match="titleabbrev | db:titleabbrev"/>
 
 <!-- Not yet supported -->

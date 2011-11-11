@@ -55,7 +55,6 @@ DocBook to XHTML
 <xsl:include href="db2html-refentry.xsl"/>
 <xsl:include href="db2html-suppressed.xsl"/>
 <xsl:include href="db2html-table.xsl"/>
-<xsl:include href="db2html-title.xsl"/>
 <xsl:include href="db2html-xref.xsl"/>
 <xsl:include href="db2html-footnote.xsl"/>
 
