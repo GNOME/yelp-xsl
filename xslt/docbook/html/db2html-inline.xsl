@@ -62,8 +62,6 @@ $node: The element to render
 $children: The child elements to process
 $class: The value of the #{class} attribute on the #{span} tag
 $lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
-$ltr: Whether to default to #{ltr} if neither ${lang} nor ${dir} is specified
 $name-class: The class to use for the name of the element
 
 REMARK: Document this template
@@ -73,33 +71,15 @@ REMARK: Document this template
   <xsl:param name="children" select="false()"/>
   <xsl:param name="class" select="''"/>
   <xsl:param name="lang" select="$node/@lang|$node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-  <xsl:param name="ltr" select="false()"/>
   <xsl:param name="name-class" select="local-name($node)"/>
   <xsl:variable name="xlink" select="$node/@xl:href"/>
   <xsl:variable name="linkend" select="$node/@linkend"/>
 
   <!-- FIXME: do CSS classes, rather than inline styles -->
   <span class="{$class} {$name-class}">
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$ltr">
-        <xsl:attribute name="dir">
-          <xsl:text>ltr</xsl:text>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>

@@ -97,8 +97,6 @@ $divisions: The division-level child elements
 $depth_in_chunk: The depth of ${node} in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
 $chunk_divisions: Whether to create new documents for ${divisions}
-$lang: The locale of the text in ${node}
-$dir: The text direction, either #{ltr} or #{rtl}
 
 REMARK: Talk about some of the parameters
 -->
@@ -121,10 +119,10 @@ REMARK: Talk about some of the parameters
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
-  <xsl:param name="lang" select="$node/@lang | $node/@xml:lang"/>
-  <xsl:param name="dir" select="false()"/>
-
   <div>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
       <xsl:choose>
@@ -136,20 +134,6 @@ REMARK: Talk about some of the parameters
         </xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$dir = 'ltr' or $dir = 'rtl'">
-        <xsl:attribute name="dir">
-          <xsl:value-of select="$dir"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$lang">
-        <xsl:attribute name="dir">
-          <xsl:call-template name="l10n.direction">
-            <xsl:with-param name="lang" select="$lang"/>
-          </xsl:call-template>
-        </xsl:attribute>
-      </xsl:when>
-    </xsl:choose>
     <xsl:if test="$node/@id">
       <xsl:attribute name="id">
         <xsl:value-of select="$node/@id"/>
@@ -224,7 +208,7 @@ REMARK: Talk about how this works with #{callback}
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
   </xsl:apply-templates>
   <xsl:if test="$entries">
-    <div class="block">
+    <div>
       <dl class="{local-name($node)}">
         <xsl:apply-templates select="$entries">
           <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>

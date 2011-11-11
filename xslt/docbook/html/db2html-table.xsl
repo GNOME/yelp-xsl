@@ -421,22 +421,9 @@ element to output the next #{td}.
       </xsl:variable>
       <!-- Finally, output the td or th element -->
       <xsl:element name="{$element}" namespace="{$html.namespace}">
-        <xsl:choose>
-          <xsl:when test="@lang or @xml:lang">
-            <xsl:attribute name="dir">
-              <xsl:call-template name="l10n.direction">
-                <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-              </xsl:call-template>
-            </xsl:attribute>
-          </xsl:when>
-          <xsl:when test="../@lang or ../@xml:lang">
-            <xsl:attribute name="dir">
-              <xsl:call-template name="l10n.direction">
-                <xsl:with-param name="lang" select="../@lang | ../@xml:lang"/>
-              </xsl:call-template>
-            </xsl:attribute>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:call-template name="html.lang.attrs">
+          <xsl:with-param name="parent" select=".."/>
+        </xsl:call-template>
         <xsl:if test="$style != ''">
           <xsl:attribute name="style">
             <xsl:value-of select="normalize-space($style)"/>
@@ -970,13 +957,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:choose>
   </xsl:variable>
   <table>
-    <xsl:if test="@lang or @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="thead | db:thead">
       <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
       <xsl:with-param name="spanspecs" select="spanspec | db:spanspec"/>
@@ -995,13 +976,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 <!-- = table = -->
 <xsl:template match="table | informaltable | db:table | db:informaltable">
   <div class="table">
-    <xsl:if test="@lang or @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <!-- FIXME: I have no idea what I'm supposed to do with textobject -->
@@ -1083,13 +1058,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:if>
   </xsl:variable>
   <table>
-    <xsl:if test="@lang or @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="../title or ../db:title or ../db:info/db:title">
       <xsl:attribute name="summary">
         <xsl:value-of select="../title | ../db:title | ../db:info/db:title"/>
@@ -1133,13 +1102,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
   <xsl:param name="colsep" select="''"/>
   <xsl:param name="rowsep" select="''"/>
   <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
-    <xsl:if test="@lang or @xml:lang">
-      <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction">
-          <xsl:with-param name="lang" select="@lang | @xml:lang"/>
-        </xsl:call-template>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="@valign">
       <xsl:attribute name="valign">
         <xsl:value-of select="@valign"/>
