@@ -1137,30 +1137,4 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
   </xsl:element>
 </xsl:template>
 
-<!-- = table/info/title = -->
-<xsl:template match="db:table/db:info/db:title">
-  <xsl:call-template name="db2html.block.title">
-    <xsl:with-param name="node" select="../.."/>
-    <xsl:with-param name="title" select="."/>
-  </xsl:call-template>
-</xsl:template>
-
-<!-- = table/title = -->
-<xsl:template match="table/title | db:table/db:title">
-  <xsl:call-template name="db2html.block.title">
-    <xsl:with-param name="node" select=".."/>
-    <xsl:with-param name="title" select="."/>
-  </xsl:call-template>
-</xsl:template>
-
-<!--
-This template strips the p tag around single-paragraph table entries to avoid
-introducing extra spacing.
--->
-<xsl:template match="entry/para[
-              not(preceding-sibling::* or following-sibling::*)] |
-              db:entry/db:para[not(preceding-sibling::* or following-sibling::*)]">
-  <xsl:call-template name="db2html.inline"/>
-</xsl:template>
-
 </xsl:stylesheet>

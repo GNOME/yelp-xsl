@@ -77,7 +77,8 @@ div.programlisting .userinput {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-div.verbatim { white-space: pre; }
+div.address, div.literallayout { white-space: pre; }
+
 
 <!-- == footnotes == -->
 div.footnotes {

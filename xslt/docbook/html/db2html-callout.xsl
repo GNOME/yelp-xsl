@@ -65,9 +65,7 @@ element, locate the corresponding #{co} element and call this template on it.
 
 <!-- = calloutlist = -->
 <xsl:template match="calloutlist | db:calloutlist">
-  <xsl:call-template name="db2html.block">
-    <xsl:with-param name="formal" select="true()"/>
-  </xsl:call-template>
+  <xsl:call-template name="db2html.block.formal"/>
 </xsl:template>
 
 <!-- = callout == -->

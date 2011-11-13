@@ -640,9 +640,8 @@ a bibliography entry.
 
 <!-- = bibliolist = -->
 <xsl:template match="bibliolist | db:bibliolist">
-  <xsl:call-template name="db2html.block">
+  <xsl:call-template name="db2html.block.formal">
     <xsl:with-param name="class" select="'list'"/>
-    <xsl:with-param name="formal" select="true()"/>
   </xsl:call-template>
 </xsl:template>
 

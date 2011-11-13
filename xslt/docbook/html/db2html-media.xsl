@@ -224,9 +224,4 @@ as a text-only mode.
   </div>
 </xsl:template>
 
-<!-- = screenshot = -->
-<xsl:template match="screenshot | db:screenshot">
-  <xsl:call-template name="db2html.block"/>
-</xsl:template>
-
 </xsl:stylesheet>

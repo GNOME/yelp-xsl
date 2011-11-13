@@ -18,8 +18,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db"
+                exclude-result-prefixes="db msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -42,6 +43,88 @@ REMARK: Describe this module
       <xsl:apply-templates select="glossentry | db:glossentry"/>
     </dl>
   </div>
+</xsl:template>
+
+<!-- = glossdef = -->
+<xsl:template match="glossdef | db:glossdef">
+  <dd class="glossdef">
+    <xsl:apply-templates select="*[not(self::glossseealso) and not(self::db:glossseealso)]"/>
+  </dd>
+  <xsl:apply-templates select="glossseealso[1] | db:glossseealso[1]"/>
+</xsl:template>
+
+<!-- = glossentry = -->
+<xsl:template match="glossentry | db:glossentry">
+  <dt>
+    <xsl:attribute name="class">
+      <xsl:text>glossterm</xsl:text>
+    </xsl:attribute>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="glossterm | db:glossterm"/>
+    <xsl:if test="acronym or abbrev or db:acronym or db:abbrev">
+      <xsl:text> (</xsl:text>
+      <xsl:apply-templates select="(acronym | abbrev | db:acronym | db:abbrev)[1]"/>
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+  </dt>
+  <xsl:apply-templates select="glossdef | glosssee[1] | db:glossdef | db:glosssee[1]"/>
+</xsl:template>
+
+<!-- = glosssee(also) = -->
+<xsl:template match="glosssee | glossseealso | db:glosssee | db:glossseealso">
+  <dd class="{local-name(.)}">
+    <p>
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="concat(local-name(.), '.format')"/>
+        <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="format" select="true()"/>
+      </xsl:call-template>
+    </p>
+  </dd>
+</xsl:template>
+
+<!--#% l10n.format.mode -->
+<xsl:template mode="l10n.format.mode" match="msg:glosssee">
+  <xsl:param name="node"/>
+  <xsl:for-each select="$node |
+                        $node/following-sibling::*[name(.) = name($node)]">
+    <xsl:if test="position() != 1">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="', '"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@otherterm">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="db.xref.target">
+              <xsl:with-param name="linkend" select="@otherterm"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="db.xref.tooltip">
+              <xsl:with-param name="linkend" select="@otherterm"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="normalize-space(.) != ''">
+              <xsl:apply-templates/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="db.xref.content">
+                <xsl:with-param name="linkend" select="@otherterm"/>
+                <xsl:with-param name="role" select="'glosssee'"/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
 </xsl:template>
 
 <!-- = itemizedlist = -->
