@@ -35,6 +35,14 @@ REMARK: Describe this module. Talk about refenty and friends
 
 <!-- == Matched Templates == -->
 
+<!-- = citerefentry = -->
+<xsl:template match="citerefentry | db:citerefentry">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+<xsl:template match="citerefentry/refentrytitle | db:citerefentry/db:refentrytitle">
+  <xsl:call-template name="db2html.inline"/>
+</xsl:template>
+
 <!-- = manvolnum = -->
 <xsl:template match="manvolnum | db:manvolnum">
   <xsl:text>(</xsl:text>

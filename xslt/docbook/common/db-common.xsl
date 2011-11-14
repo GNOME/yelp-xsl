@@ -158,6 +158,19 @@ assembles those into a string.
         <xsl:with-param name="node" select="$node/personname | $node/db:personname"/>
       </xsl:call-template>
     </xsl:when>
+    <xsl:when test="$node/db:orgname">
+      <xsl:apply-templates select="$node/db:orgname"/>
+    </xsl:when>
+    <xsl:when test="$node/self::collab or $node/self::db:collab">
+      <xsl:apply-templates select="$node/collabname |
+                                   $node/db:org | $node/db:orgname | $node/db:person | $node/db:personname"/>
+    </xsl:when>
+    <xsl:when test="$node/self::corpauthor or $node/self::corpcredit">
+      <xsl:apply-templates select="$node"/>
+    </xsl:when>
+    <xsl:when test="$node/self::db:personname and not($node/db:surname)">
+      <xsl:apply-templates select="$node/node()"/>
+    </xsl:when>
     <!-- family-given -->
     <xsl:when test="$node/@role = 'family-given'">
       <xsl:apply-templates select="($node/surname | $node/db:surname)[1]"/>

@@ -56,11 +56,14 @@ table.table-pgwide { width: 100%; }
 td.td-colsep { border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px; }
 td.td-rowsep { border-bottom: solid 1px; }
 
-div.title span.label { font-weight: normal; }
-
 <!-- == bibliography == -->
 span.bibliolabel {
+  font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+div.biblioentry span.title {
+  font-weight: normal;
+  font-style: italic;
 }
 span.citetitle {
   font-style: italic;
