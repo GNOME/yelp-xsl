@@ -199,7 +199,7 @@ the links itself. They must be passed in with the ${links} parameter.
 
 
 <!--**==========================================================================
-mal2html.links.next
+mal2html.links.prevnext
 Output links to the previous and next pages.
 :Revision:version="1.0" date="2011-06-15" status="final"
 $node: A #{links} or #{page} element to link from.
@@ -213,7 +213,7 @@ If the #{links} element has the style hint #{top}, it will be inserted before
 the page title, instead of in its position on the page. This is handled by the
 calling functions in !{mal2html-page}.
 -->
-<xsl:template name="mal2html.links.next" match="mal:links[@type = 'next']">
+<xsl:template name="mal2html.links.prevnext" match="mal:links[@type = 'prevnext']">
   <xsl:param name="node" select="."/>
   <xsl:variable name="page" select="$node/ancestor-or-self::mal:page[last()]"/>
   <xsl:variable name="linkid">

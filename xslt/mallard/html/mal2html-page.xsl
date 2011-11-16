@@ -473,12 +473,12 @@ REMARK: Describe this template
 <xsl:template mode="html.body.mode" match="mal:page">
   <xsl:call-template name="mal2html.editor.banner"/>
   <xsl:choose>
-    <xsl:when test="not(mal:links[@type = 'next'])">
-      <xsl:call-template name="mal2html.links.next"/>
+    <xsl:when test="not(mal:links[@type = 'prevnext'])">
+      <xsl:call-template name="mal2html.links.prevnext"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates
-          select="mal:links[@type = 'next'][contains(concat(' ', @style, ' '), ' top ')]">
+          select="mal:links[@type = 'prevnext'][contains(concat(' ', @style, ' '), ' top ')]">
       </xsl:apply-templates>
     </xsl:otherwise>
   </xsl:choose>
@@ -567,7 +567,7 @@ REMARK: Describe this template
             <xsl:with-param name="links" select="$seealsonodes"/>
           </xsl:apply-templates>
         </xsl:when>
-        <xsl:when test="self::mal:links[@type = 'next']">
+        <xsl:when test="self::mal:links[@type = 'prevnext']">
           <xsl:if test="not(contains(concat(' ', @style, ' '), ' top '))">
             <xsl:apply-templates select="."/>
           </xsl:if>
@@ -635,7 +635,7 @@ REMARK: Describe this template
                 <xsl:with-param name="links" select="$seealsonodes"/>
               </xsl:apply-templates>
             </xsl:when>
-            <xsl:when test="self::mal:links[@type = 'next']">
+            <xsl:when test="self::mal:links[@type = 'prevnext']">
               <xsl:if test="not(contains(concat(' ', @style, ' '), ' top '))">
                 <xsl:apply-templates select=".">
                   <xsl:with-param name="depth" select="$depth + 1"/>
