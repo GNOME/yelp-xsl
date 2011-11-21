@@ -105,15 +105,14 @@ mal.cache.info
 <!-- = mal:page = -->
 <xsl:template match="mal:page">
   <xsl:param name="node_in"/>
-  <page cache:href="{$node_in/@cache:href}">
+  <page>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="cache:href">
+      <xsl:value-of select="$node_in/@cache:href"/>
+    </xsl:attribute>
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
-    <xsl:for-each select="@*">
-      <xsl:if test="not(self::cache:href) and not(self::id)">
-        <xsl:copy-of select="."/>
-      </xsl:if>
-    </xsl:for-each>
     <xsl:call-template name="mal.cache.info">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
@@ -127,14 +126,10 @@ mal.cache.info
 <xsl:template match="mal:section">
   <xsl:param name="node_in"/>
   <section>
+    <xsl:copy-of select="@*"/>
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
-    <xsl:for-each select="@*">
-      <xsl:if test="not(self::id)">
-        <xsl:copy-of select="."/>
-      </xsl:if>
-    </xsl:for-each>
     <xsl:call-template name="mal.cache.info">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>

@@ -840,6 +840,7 @@ when determining which links to output.
   <xsl:param name="attrs"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="nodesc" select="false()"/>
+  <div class="linkdiv">
   <a class="{concat($class, ' linkdiv')}">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
@@ -878,6 +879,7 @@ when determining which links to output.
       </span>
     </xsl:if>
   </a>
+  </div>
 </xsl:template>
 
 <xsl:template mode="_mal2html.links.divs.nolink.mode" match="*">

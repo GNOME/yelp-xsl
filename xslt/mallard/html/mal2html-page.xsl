@@ -905,6 +905,7 @@ div.links .desc a:hover {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
 a.bold { font-weight: bold; }
+div.linkdiv { margin: 0; padding: 0; }
 a.linkdiv {
   display: block;
   margin: 0;
