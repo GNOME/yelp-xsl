@@ -109,11 +109,11 @@ mal.cache.info
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
-    <xsl:if test="@type">
-      <xsl:attribute name="type">
-        <xsl:value-of select="@type"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:for-each select="@*">
+      <xsl:if test="not(self::cache:href) and not(self::id)">
+        <xsl:copy-of select="."/>
+      </xsl:if>
+    </xsl:for-each>
     <xsl:call-template name="mal.cache.info">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
@@ -130,6 +130,11 @@ mal.cache.info
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
+    <xsl:for-each select="@*">
+      <xsl:if test="not(self::id)">
+        <xsl:copy-of select="."/>
+      </xsl:if>
+    </xsl:for-each>
     <xsl:call-template name="mal.cache.info">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
