@@ -1,3 +1,32 @@
+3.3.1
+=====
+* Made linktrails more extensible for customizations
+* Added new 'About' footer to HTML output
+* Moved Yelp's location.hash formatting to yelp-xsl
+* Updated style for key/keycap elements
+* Style work on post-content links, no header
+* Fall back to correct link title for sort titles
+* Strip links from descs in link blocks
+* Added html.top.custom and html.bottom.custom
+* Added html.header.custom and html.footer.custom
+* Correctly set ARIA controls for expanders
+* Use the correct type for "prevnext" links elements
+* Simplifications to DocBook bibliography handling
+* Cleaned up DocBook block and title output templates
+* Moved DocBook links templates to db2html-links
+* Replaced db2html-autotoc with simpler section links
+* Fixed DocBook footnote handling
+* Use html.lang.attrs consistently in DocBook
+* Removed special-case code in Mallard cache stylesheet
+* Updated translations:
+  ca          (Gil Forcada)
+  ca@valencia (Gil Forcada)
+  de          (Mario Blättermann)
+  es          (Daniel Mustieles)
+  gl          (Fran Diéguez)
+  nb          (Kjartan Maraas)
+  tr          (Muhammet Kara)
+
 3.2.1
 =====
 * Fixed editor-mode badges for final pages and pkgversion
