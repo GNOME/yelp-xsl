@@ -615,8 +615,7 @@ div.body {
   margin: 0;
   padding: 1em;
   min-height: 20em;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
 div.header {
 }
@@ -632,22 +631,19 @@ div.sect div.sect {
 }
 div.trails {
   margin: 0;
-  padding: 0.5em 2em 0.5em 2em;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+  padding: 0.5em 1em 0.5em 1em;
+  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.trail {
   margin: 0.2em 0 0 0;
-  padding: 0;
+  padding: 0 1em 0 1em;
   text-indent: -1em;
-  color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
   margin: 0 0 0.5em 0;
-  color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.sect div.hgroup {
   border-bottom: solid 1px </xsl:text>

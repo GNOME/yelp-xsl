@@ -210,9 +210,14 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 
 <!--**==========================================================================
 mal2html.page.linktrails
-FIXME
+Ouput trails of guide links for a page.
+:Revision:version="3.4" date="2011-11-19" status="final"
+$node: The top-level #{page} element.
 
-REMARK: Describe this template
+This template outputs all of the link trails for the page ${node}. It gets the
+trails from ${mal.link.linktrails}. If the result is non-empty, it outputs a
+wrapper #{div}, sorts the trails, and calls *{mal2html.page.linktrails.trail}
+on each one. Otherwise, it calls the stub template *{mal2html.page.linktrails.empty}.
 -->
 <xsl:template name="mal2html.page.linktrails">
   <xsl:param name="node" select="."/>
@@ -222,43 +227,107 @@ REMARK: Describe this template
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="trailnodes" select="exsl:node-set($linktrails)/*"/>
-  <xsl:if test="count($trailnodes) &gt; 0">
-    <div class="trails">
-      <xsl:for-each select="$trailnodes">
-        <xsl:sort select="(.//mal:title[@type='sort'])[1]"/>
-        <xsl:sort select="(.//mal:title[@type='sort'])[2]"/>
-        <xsl:sort select="(.//mal:title[@type='sort'])[3]"/>
-        <xsl:sort select="(.//mal:title[@type='sort'])[4]"/>
-        <xsl:sort select="(.//mal:title[@type='sort'])[5]"/>
-        <xsl:call-template name="mal2html.page.linktrails.trail"/>
-      </xsl:for-each>
-    </div>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="count($trailnodes) &gt; 0">
+      <div class="trails">
+        <xsl:for-each select="$trailnodes">
+          <xsl:sort select="(.//mal:title[@type='sort'])[1]"/>
+          <xsl:sort select="(.//mal:title[@type='sort'])[2]"/>
+          <xsl:sort select="(.//mal:title[@type='sort'])[3]"/>
+          <xsl:sort select="(.//mal:title[@type='sort'])[4]"/>
+          <xsl:sort select="(.//mal:title[@type='sort'])[5]"/>
+          <xsl:call-template name="mal2html.page.linktrails.trail"/>
+        </xsl:for-each>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="mal2html.page.linktrails.empty">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
+
+
+<!--**==========================================================================
+mal2html.page.linktrails.empty
+Stub to output something when no link trails are present.
+:Stub: true
+:Revision:version="3.4" date="2011-11-19" status="final"
+$node: The top-level #{page} element.
+
+This template is a stub. It is called by ${mal2html.page.linktrails} when there
+are no link trails to output. Some customizations prepend extra site links to
+link trails. This template allows them to output those links even when no link
+trails would otherwise be present.
+-->
+<xsl:template name="mal2html.page.linktrails.empty">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
 
 <!--**==========================================================================
 mal2html.page.linktrails.trail
-FIXME
+Output one trail of guide links.
+:Revision:version="3.4" date="2011-11-19" status="final"
+$node: A #{link} element from *{mal.link.linktrails}.
 
-REMARK: Describe this template
+This template outputs an HTML #{div} element containing all the links in a
+single link trail. It calls *{mal2html.page.linktrails.trail.prefix} to output
+a custom boilerplate prefix, then calls *{mal2html.page.linktrails.link} to
+output the actual links.
 -->
 <xsl:template name="mal2html.page.linktrails.trail">
   <xsl:param name="node" select="."/>
   <div class="trail">
+    <xsl:call-template name="mal2html.page.linktrails.trail.prefix">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.page.linktrails.link">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </div>
 </xsl:template>
 
+
+<!--**==========================================================================
+mal2html.page.linktrails.trail.prefix
+Stub to output extra content before a link trail.
+:Stub: true
+:Revision:version="3.4" date="2011-11-19" status="final"
+$node: A #{link} element from *{mal.link.linktrails}.
+
+This template is a stub. It is called by *{mal2html.page.linktrails.trail} for each
+link trail before the normal links are output with *{mal2html.page.linktrails.link}.
+This template is useful for adding extra site links at the beginning of each link
+trail.
+-->
+<xsl:template name="mal2html.page.linktrails.trail.prefix">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
 <!--**==========================================================================
 mal2html.page.linktrails.link
-FIXME
+Output a link and the following links in a link trail.
+:Revision:version="3.4" date="2011-11-19" status="final"
+$node: A #{link} element from *{mal.link.linktrails}.
+$direction: The text directionality.
 
-REMARK: Describe this template
+This template is called by *{mal2html.page.linktrails.trail} to output the links
+in a trail. Link trails returned by *{mal.link.linktrails} are returned as nested
+#{link} elements. This template takes one of those elements, outputs an HTML #{a}
+element, then calls itself recursively on the child #{link} element, if it exists.
+
+The ${direction} parameter specifies the current text directionality. If not
+provided, it is computed automatically with *{l10n.direction}. It determines the
+separators used between links.
 -->
 <xsl:template name="mal2html.page.linktrails.link">
   <xsl:param name="node" select="."/>
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
   <a class="trail">
     <xsl:attribute name="href">
       <xsl:call-template name="mal.link.target">
@@ -276,9 +345,6 @@ REMARK: Describe this template
       <xsl:with-param name="role" select="'trail'"/>
     </xsl:call-template>
   </a>
-  <xsl:variable name="direction">
-    <xsl:call-template name="l10n.direction"/>
-  </xsl:variable>
   <xsl:choose>
     <xsl:when test="$direction = 'rtl'">
       <xsl:choose>
@@ -302,9 +368,12 @@ REMARK: Describe this template
     </xsl:otherwise>
   </xsl:choose>
   <xsl:for-each select="$node/mal:link">
-    <xsl:call-template name="mal2html.page.linktrails.link"/>
+    <xsl:call-template name="mal2html.page.linktrails.link">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
   </xsl:for-each>
 </xsl:template>
+
 
 <xsl:template name="mal2html.editor.badge">
   <xsl:param name="target" select="."/>
