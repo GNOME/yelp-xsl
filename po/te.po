@@ -5,22 +5,22 @@
 #
 # Krishna Babu K <kkrothap@redhat.com>, 2008, 2009.
 # Hari Krishna <hari@swecha.net>, 2011.
+# Praveen Illa <mail2ipn@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-01 14:16+0000\n"
-"PO-Revision-Date: 2009-09-17 14:17+0530\n"
-"Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
-"Language-Team: Telugu <en@li.org>\n"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2011-10-28 06:35+0000\n"
+"PO-Revision-Date: 2011-11-26 21:07+0530\n"
+"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
 
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
@@ -29,7 +29,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:27(msg/msgstr)
 msgid "default:LTR"
-msgstr "default:LTR"
+msgstr "అప్రమేయం:LTR"
 
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
@@ -92,17 +92,17 @@ msgstr "A:"
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:99(msg/msgstr)
 msgid "Advanced"
-msgstr "ఉన్నత స్థితి"
+msgstr "ఉన్నతం"
 
 #. Default title for a bibliography.
 #: yelp-xsl.xml.in:104(msg/msgstr)
 msgid "Bibliography"
-msgstr "బ్లిబ్లోగ్రఫి"
+msgstr "గ్రంథ పట్టిక"
 
 #. Accessible title for a note about a software bug.
 #: yelp-xsl.xml.in:109(msg/msgstr)
 msgid "Bug"
-msgstr "లోపం "
+msgstr "లోపం"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
@@ -131,7 +131,7 @@ msgstr "అంకితము"
 #.
 #: yelp-xsl.xml.in:142(msg/msgstr)
 msgid "Draft"
-msgstr "డ్రాఫ్టు"
+msgstr "చిత్తు"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
@@ -160,7 +160,7 @@ msgstr "ముఖ్యమైన"
 #.
 #: yelp-xsl.xml.in:173(msg/msgstr)
 msgid "Incomplete"
-msgstr "అసంపూర్తి"
+msgstr "అసంపూర్ణం"
 
 #. Default title for an index of terms in a book.
 #: yelp-xsl.xml.in:178(msg/msgstr)
@@ -170,14 +170,14 @@ msgstr "సూచిక"
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:183(msg/msgstr)
 msgid "More About"
-msgstr "ఇంకా దీనిగురించి"
+msgstr "దీని గురించి మరింత"
 
 #. Default title for a refnamediv element. This is the common section
 #. title found in most UNIX man pages.
 #.
 #: yelp-xsl.xml.in:192(msg/msgstr)
 msgid "Name"
-msgstr "నామము"
+msgstr "పేరు"
 
 #. Link text for a link to the next page in a series.
 #: yelp-xsl.xml.in:197(msg/msgstr)
@@ -199,12 +199,12 @@ msgstr "పురాతన "
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:215(msg/msgstr)
 msgid "Pause"
-msgstr "విరామం "
+msgstr "నిలిపివేయి"
 
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:220(msg/msgstr)
 msgid "Play"
-msgstr "ఆడు "
+msgstr "ఆడించు"
 
 #. Default title for a preface to a book.
 #: yelp-xsl.xml.in:226(msg/msgstr)
@@ -213,20 +213,20 @@ msgstr "ముందుమాట"
 
 #. Link text for a link to the previous page in a series.
 #: yelp-xsl.xml.in:231(msg/msgstr)
-msgid "P<biblioentry.label/>.revious"
-msgstr "ముందు "
+msgid "Previous"
+msgstr "మునుపటి"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
 #: yelp-xsl.xml.in:239(msg/msgstr)
 msgid "Ready for review"
-msgstr "పునఃపరిశీలనకు సిద్దం"
+msgstr "సమీక్షకు సిద్ధం"
 
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:244(msg/msgstr)
 msgid "See Also"
-msgstr "కూడా చూడుము"
+msgstr "ఇవి కూడా చూడండి"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
@@ -234,7 +234,7 @@ msgstr "కూడా చూడుము"
 #.
 #: yelp-xsl.xml.in:253(msg/msgstr)
 msgid "Scale images down"
-msgstr "చిత్రములను క్రమీకరించుము "
+msgstr "చిత్రములను క్రమీకరించు"
 
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:258(msg/msgstr)
@@ -264,7 +264,7 @@ msgstr "చిట్కా"
 #.
 #: yelp-xsl.xml.in:286(msg/msgstr)
 msgid "View images at normal size"
-msgstr "సాధారణ పరిమానము లో ప్రతిరూపమును వీక్షించుము "
+msgstr "బొమ్మలను సాధారణ పరిమాణంలో వీక్షించండి"
 
 #. Accessible title for a warning.
 #: yelp-xsl.xml.in:291(msg/msgstr)
@@ -306,7 +306,7 @@ msgstr "వాటర్ మార్క్ -బ్లాక్ కోట్-201C
 #.
 #: yelp-xsl.xml.in:334(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "బిబిలోగ్రఫీ దాఖలు వీక్షించుము <biblioentry.label/>. "
+msgstr "గ్రంథపట్టికలో <biblioentry.label/> ప్రవేశాన్ని చూడండి."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -410,7 +410,7 @@ msgstr "<comment.name/> నుండి "
 #.
 #: yelp-xsl.xml.in:443(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr "ఈమేయిల్  ‘<string/>’కి పంపు ."
+msgstr "‘<string/>’కి ఈమెయిల్ పంపండి."
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -421,9 +421,7 @@ msgstr "ఈమేయిల్  ‘<string/>’కి పంపు ."
 #.
 #: yelp-xsl.xml.in:455(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "దీనికి వివరము చదువుము "
-"<msgid>glossentry.tooltip</msgid> <msgstr>నిర్వచనంను చదువుము ‘<glossterm/>’.</"
-"msgstr>"
+msgstr "‘<glossterm/>’నకు నిర్వచనాన్ని చదువండి."
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -443,7 +441,7 @@ msgstr "దీనికి వివరము చదువుము "
 #.
 #: yelp-xsl.xml.in:476(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr "<glosssee/> చూడుము  ."
+msgstr "<glosssee/> చూడండి."
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -464,7 +462,7 @@ msgstr "<glosssee/> చూడుము  ."
 #.
 #: yelp-xsl.xml.in:498(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr "<glosssee/> కూడా చూడుము ."
+msgstr "<glosssee/> కూడా చూడండి."
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -500,7 +498,7 @@ msgstr "‘<node/>’"
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See <seeie/>."
-msgstr "<seeie/> చూడుము ."
+msgstr "<seeie/> చూడండి."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -514,7 +512,10 @@ msgstr "<seeie/> చూడుము ."
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr "<seeie/> కూడా చూడుము ."
+msgstr "<seeie/> కూడా చూడండి."
+
+#~ msgid "P<biblioentry.label/>.revious"
+#~ msgstr "ముందు "
 
 #~ msgid " — "
 #~ msgstr " — "
