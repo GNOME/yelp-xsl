@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp-xsl 3.1.3\n"
+"Project-Id-Version: yelp-xsl 3.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-13 20:31+0800\n"
-"PO-Revision-Date: 2011-08-13 20:31+0800\n"
-"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"POT-Creation-Date: 2011-12-21 12:19+0800\n"
+"PO-Revision-Date: 2011-12-21 12:19+0800\n"
+"Last-Translator: Pin-hsien Li <pspeter9931@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
-msgstr ",和"
+msgstr ", 和"
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
@@ -83,187 +83,215 @@ msgstr "Q:"
 msgid "A:"
 msgstr "A:"
 
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:102(msg/msgstr)
+msgid "About"
+msgstr "關於"
+
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:99(msg/msgstr)
+#: yelp-xsl.xml.in:107(msg/msgstr)
 msgid "Advanced"
 msgstr "進階"
 
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:104(msg/msgstr)
+#: yelp-xsl.xml.in:112(msg/msgstr)
 msgid "Bibliography"
 msgstr "參考書目"
 
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:109(msg/msgstr)
+#: yelp-xsl.xml.in:117(msg/msgstr)
 msgid "Bug"
 msgstr "程式錯誤"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:117(msg/msgstr)
+#: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Candidate"
 msgstr "候選"
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:123(msg/msgstr)
+#: yelp-xsl.xml.in:130(msg/msgstr)
 msgid "Colophon"
-msgstr "末頁"
+msgstr "版權頁"
 
-#. Title of the listing of subsections.
-#: yelp-xsl.xml.in:129(msg/msgstr)
-msgid "Contents"
-msgstr "內容"
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:135(msg/msgstr)
+msgid "Creative Commons"
+msgstr "創用 CC"
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:134(msg/msgstr)
+#: yelp-xsl.xml.in:140(msg/msgstr)
 msgid "Dedication"
 msgstr "呈獻"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:142(msg/msgstr)
+#: yelp-xsl.xml.in:148(msg/msgstr)
 msgid "Draft"
 msgstr "草稿"
+
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:153(msg/msgstr)
+msgid "Edited By"
+msgstr "編輯者"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:150(msg/msgstr)
+#: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
 msgstr "完稿"
 
-#. Automatic heading above a list of related links.
-#: yelp-xsl.xml.in:155(msg/msgstr)
-msgid "Further Reading"
-msgstr "進一步閱讀"
-
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:160(msg/msgstr)
+#: yelp-xsl.xml.in:166(msg/msgstr)
 msgid "Glossary"
 msgstr "詞彙表"
 
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:165(msg/msgstr)
+#: yelp-xsl.xml.in:171(msg/msgstr)
 msgid "Important"
 msgstr "重要"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:173(msg/msgstr)
+#: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Incomplete"
 msgstr "不完整"
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:178(msg/msgstr)
+#: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "Index"
 msgstr "索引"
 
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:189(msg/msgstr)
+msgid "Legal"
+msgstr "法律聲明"
+
+#. Generic title for license information when it's not a known license.
+#.
+#: yelp-xsl.xml.in:196(msg/msgstr)
+msgid "License"
+msgstr "授權"
+
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:201(msg/msgstr)
+msgid "Maintained By"
+msgstr "維護者"
+
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:183(msg/msgstr)
-msgid "More About"
+#: yelp-xsl.xml.in:206(msg/msgstr)
+msgid "More Information"
 msgstr "更多資訊"
 
-#. Default title for a refnamediv element. This is the common section
-#. title found in most UNIX man pages.
-#.
-#: yelp-xsl.xml.in:192(msg/msgstr)
-msgid "Name"
-msgstr "名稱"
-
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:197(msg/msgstr)
+#: yelp-xsl.xml.in:211(msg/msgstr)
 msgid "Next"
-msgstr "下一幅"
+msgstr "下一頁"
 
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:202(msg/msgstr)
+#: yelp-xsl.xml.in:216(msg/msgstr)
 msgid "Note"
 msgstr "備註"
+
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:224(msg/msgstr)
+msgid "Other Credits"
+msgstr "其他致謝人"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:210(msg/msgstr)
+#: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
 msgstr "已過時"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:215(msg/msgstr)
+#: yelp-xsl.xml.in:237(msg/msgstr)
 msgid "Pause"
 msgstr "暫停"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:220(msg/msgstr)
+#: yelp-xsl.xml.in:242(msg/msgstr)
 msgid "Play"
 msgstr "播放"
 
-#. Default title for a preface to a book.
-#: yelp-xsl.xml.in:226(msg/msgstr)
-msgid "Preface"
-msgstr "序"
-
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:231(msg/msgstr)
+#: yelp-xsl.xml.in:247(msg/msgstr)
 msgid "Previous"
-msgstr "上一幅"
+msgstr "上一頁"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:239(msg/msgstr)
+#: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
 msgstr "準備好可供檢閱"
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:244(msg/msgstr)
+#: yelp-xsl.xml.in:260(msg/msgstr)
 msgid "See Also"
-msgstr "參看"
+msgstr "另請參閱"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:253(msg/msgstr)
+#: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
 msgstr "縮小圖片"
 
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:258(msg/msgstr)
+#: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Sidebar"
 msgstr "側邊欄"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:265(msg/msgstr)
+#: yelp-xsl.xml.in:281(msg/msgstr)
 msgid "Stub"
 msgstr "存根"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:273(msg/msgstr)
+#: yelp-xsl.xml.in:289(msg/msgstr)
 msgid "Synopsis"
 msgstr "提要"
 
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:278(msg/msgstr)
+#: yelp-xsl.xml.in:294(msg/msgstr)
 msgid "Tip"
 msgstr "提示"
+
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:299(msg/msgstr)
+msgid "Translated By"
+msgstr "翻譯者"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:286(msg/msgstr)
+#: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
 msgstr "以圖片的原始尺寸顯示"
 
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:291(msg/msgstr)
+#: yelp-xsl.xml.in:312(msg/msgstr)
 msgid "Warning"
 msgstr "警告"
+
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:317(msg/msgstr)
+msgid "Written By"
+msgstr "撰寫者"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -285,7 +313,7 @@ msgstr "警告"
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #.
-#: yelp-xsl.xml.in:318(msg/msgstr)
+#: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201C.png"
 
@@ -298,7 +326,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:334(msg/msgstr)
+#: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "檢視參考書目項目 <biblioentry.label/>。"
 
@@ -320,7 +348,7 @@ msgstr "檢視參考書目項目 <biblioentry.label/>。"
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:357(msg/msgstr)
+#: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -336,7 +364,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:374(msg/msgstr)
+#: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -364,7 +392,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:403(msg/msgstr)
+#: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "從 <comment.name/> 於 <comment.date/>"
 
@@ -391,7 +419,7 @@ msgstr "從 <comment.name/> 於 <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:431(msg/msgstr)
+#: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr "從 <comment.name/>"
 
@@ -402,7 +430,7 @@ msgstr "從 <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:443(msg/msgstr)
+#: yelp-xsl.xml.in:469(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "傳送電子郵件至位址「<string/>」。"
 
@@ -413,9 +441,9 @@ msgstr "傳送電子郵件至位址「<string/>」。"
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:455(msg/msgstr)
+#: yelp-xsl.xml.in:481(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "讀取「<glossterm/>」讀取定義。"
+msgstr "讀取「<glossterm/>」定義。"
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -433,9 +461,9 @@ msgstr "讀取「<glossterm/>」讀取定義。"
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:476(msg/msgstr)
+#: yelp-xsl.xml.in:502(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr "參看 <glosssee/>。"
+msgstr "參閱 <glosssee/>。"
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -454,9 +482,9 @@ msgstr "參看 <glosssee/>。"
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:498(msg/msgstr)
+#: yelp-xsl.xml.in:524(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr "同時請看 <glosssee/>。"
+msgstr "另請參閱 <glosssee/>。"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -465,7 +493,7 @@ msgstr "同時請看 <glosssee/>。"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:510(msg/msgstr)
+#: yelp-xsl.xml.in:536(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -476,7 +504,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:522(msg/msgstr)
+#: yelp-xsl.xml.in:548(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -490,9 +518,9 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:537(msg/msgstr)
+#: yelp-xsl.xml.in:563(msg/msgstr)
 msgid "See <seeie/>."
-msgstr "參看 <seeie/>。"
+msgstr "參閱 <seeie/>。"
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -504,6 +532,18 @@ msgstr "參看 <seeie/>。"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:552(msg/msgstr)
+#: yelp-xsl.xml.in:578(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr "同時請看 <seeie/>。"
+msgstr "另請參閱 <seeie/>。"
+
+#~ msgid "Contents"
+#~ msgstr "內容"
+
+#~ msgid "Further Reading"
+#~ msgstr "進一步閱讀"
+
+#~ msgid "Name"
+#~ msgstr "名稱"
+
+#~ msgid "Preface"
+#~ msgstr "序"
