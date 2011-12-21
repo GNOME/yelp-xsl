@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl 3.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-13 20:31+0800\n"
-"PO-Revision-Date: 2011-08-13 14:42+0800\n"
-"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"POT-Creation-Date: 2011-12-21 12:18+0800\n"
+"PO-Revision-Date: 2011-12-17 20:23+0800\n"
+"Last-Translator: Pin-hsien Li <pspeter9931@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
-msgstr ",和"
+msgstr ", 和"
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
@@ -108,7 +108,7 @@ msgstr "候選"
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:123(msg/msgstr)
 msgid "Colophon"
-msgstr "末頁"
+msgstr "版權頁"
 
 #. Title of the listing of subsections.
 #: yelp-xsl.xml.in:129(msg/msgstr)
@@ -137,7 +137,7 @@ msgstr "完稿"
 #. Automatic heading above a list of related links.
 #: yelp-xsl.xml.in:155(msg/msgstr)
 msgid "Further Reading"
-msgstr "進一步閱讀"
+msgstr "延伸閱讀"
 
 #. Default title for a glossary.
 #: yelp-xsl.xml.in:160(msg/msgstr)
@@ -176,7 +176,7 @@ msgstr "名稱"
 #. Link text for a link to the next page in a series.
 #: yelp-xsl.xml.in:197(msg/msgstr)
 msgid "Next"
-msgstr "下一幅"
+msgstr "下一頁"
 
 #. Accessible title for a note.
 #: yelp-xsl.xml.in:202(msg/msgstr)
@@ -208,7 +208,7 @@ msgstr "序"
 #. Link text for a link to the previous page in a series.
 #: yelp-xsl.xml.in:231(msg/msgstr)
 msgid "Previous"
-msgstr "上一幅"
+msgstr "上一頁"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
@@ -220,7 +220,7 @@ msgstr "準備好可供檢閱"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:244(msg/msgstr)
 msgid "See Also"
-msgstr "參看"
+msgstr "另請參閱"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
@@ -415,7 +415,7 @@ msgstr "傳送電子郵件至位址「<string/>」。"
 #.
 #: yelp-xsl.xml.in:455(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "讀取「<glossterm/>」讀取定義。"
+msgstr "讀取「<glossterm/>」定義。"
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -435,7 +435,7 @@ msgstr "讀取「<glossterm/>」讀取定義。"
 #.
 #: yelp-xsl.xml.in:476(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr "參看 <glosssee/>。"
+msgstr "參閱 <glosssee/>。"
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -456,7 +456,7 @@ msgstr "參看 <glosssee/>。"
 #.
 #: yelp-xsl.xml.in:498(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr "同時請看 <glosssee/>。"
+msgstr "另請參閱 <glosssee/>。"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -492,7 +492,7 @@ msgstr "‘<node/>’"
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See <seeie/>."
-msgstr "參看 <seeie/>。"
+msgstr "參閱 <seeie/>。"
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -506,4 +506,4 @@ msgstr "參看 <seeie/>。"
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr "同時請看 <seeie/>。"
+msgstr "另請參閱 <seeie/>。"
