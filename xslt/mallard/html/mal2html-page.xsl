@@ -862,8 +862,6 @@ ul.mouseovers a {
 ul.mouseovers a:hover {
   text-decoration: none;
   background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-  -webkit-box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 ul.mouseovers a img {
   display: none;

@@ -606,7 +606,7 @@ body {
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
 div.all {
-  margin: 0 auto 0 auto;
+  margin: 1em auto 1em auto;
   max-width: 60em;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
@@ -673,7 +673,6 @@ div.contents > *:first-child,
 th > *:first-child, td > *:first-child,
 dt > *:first-child, dd > *:first-child,
 li > *:first-child { margin-top: 0; }
-div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
 pre.contents div { margin-top: 0 !important; }
 p img { vertical-align: middle; }
@@ -684,7 +683,6 @@ div.clear {
 }
 
 div.about {
-  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
   color: </xsl:text>
     <xsl:value-of select="$color.text_light"/><xsl:text>;
 }
@@ -696,11 +694,7 @@ div.about > div.hgroup {
 div.about > div.hgroup > h2 {
   margin: 0; padding: 0.2em;
   font-size: inherit;
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
   cursor: pointer;
-}
-div.about > div.hgroup > h2:hover {
-  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
 }
 div.copyrights {
   margin: 1em;
@@ -714,7 +708,7 @@ div.aboutblurb {
   vertical-align: top;
   text-align: left;
   max-width: 20em;
-  margin: 1em;
+  margin: 0 1em 1em 1em;
 }
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
