@@ -617,10 +617,8 @@ div.body {
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
-div.header {
-}
-div.footer {
-}
+div.header { margin: 0; }
+div.footer { margin: 0; }
 div.sect {
   margin-top: 2.4em;
   clear: both;
@@ -671,6 +669,10 @@ h3, h4, h5, h6, h7 { font-size: 1em; }
 
 p { line-height: 1.72em; }
 div, pre, p { margin: 1em 0 0 0; padding: 0; }
+div.contents > *:first-child,
+th > *:first-child, td > *:first-child,
+dt > *:first-child, dd > *:first-child,
+li > *:first-child { margin-top: 0; }
 div:first-child, pre:first-child, p:first-child { margin-top: 0; }
 div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
 pre.contents div { margin-top: 0 !important; }
