@@ -869,31 +869,46 @@ ul.mouseovers a img {
   margin: 0; padding: 0;
 }
 
-table.toronto {
-  clear: both;
-  width: 100%;
+div.links-grid {
+  display: inline-block;
+  clear: both
+  margin-top: 1em;
+  width: 30%;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 3%;
+  vertical-align: top;
 }
-table.toronto td {
-  padding-top: 1em;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
-  padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
-  width: 33%;
-}
-div.toronto-link {
+div.links-grid-link {
   margin: 0;
   font-weight: bold;
 }
-div.toronto-desc {
+div.links-grid > div.desc {
   margin: 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
+@media (max-width: 480px) {
+  div.links-grid {
+    width: 47%;
+  }
+}
+@media (max-width: 320px) {
+  div.links-grid {
+    width: 100%;
+    margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
+  }
+}
 
-table.twocolumn { width: 100%; }
-td.twocolumnleft { width: 48%; vertical-align: top; padding: 0; margin: 0; }
-td.twocolumnright {
-  width: 52%; vertical-align: top;
-  margin: 0; padding: 0;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+div.links-twocolumn {
+  display: inline-block;
+  width: 49%;
+  margin-top: 0;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
+  vertical-align: top;
+}
+@media (max-width: 480px) {
+  div.links-twocolumn {
+    width: 100%;
+    margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
+  }
 }
 
 div.links .desc a {

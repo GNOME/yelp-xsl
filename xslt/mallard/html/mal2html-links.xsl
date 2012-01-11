@@ -661,7 +661,7 @@ when determining which links to output.
                   <xsl:with-param name="links" select="$_links"/>
                 </xsl:call-template>
               </xsl:when>
-              <xsl:when test="contains($style, ' toronto ')">
+              <xsl:when test="contains($style, ' toronto ') or contains($style, ' grid ')">
                 <xsl:call-template name="_mal2html.links.grid">
                   <xsl:with-param name="node" select="$node"/>
                   <xsl:with-param name="links" select="$_links"/>
@@ -678,24 +678,22 @@ when determining which links to output.
               </xsl:when>
               <xsl:when test="contains($style, ' 2column ')">
                 <xsl:variable name="coltot" select="ceiling(count($_links) div 2)"/>
-                <table class="twocolumn"><tr>
-                  <td class="twocolumnleft">
-                    <xsl:call-template name="_mal2html.links.divs">
-                      <xsl:with-param name="node" select="$node"/>
-                      <xsl:with-param name="links" select="$_links"/>
-                      <xsl:with-param name="nodesc" select="$nodesc"/>
-                      <xsl:with-param name="max" select="$coltot"/>
-                    </xsl:call-template>
-                  </td>
-                  <td class="twocolumnright">
-                    <xsl:call-template name="_mal2html.links.divs">
-                      <xsl:with-param name="node" select="$node"/>
-                      <xsl:with-param name="links" select="$_links"/>
-                      <xsl:with-param name="nodesc" select="$nodesc"/>
-                      <xsl:with-param name="min" select="$coltot"/>
-                    </xsl:call-template>
-                  </td>
-                </tr></table>
+                <div class="links-twocolumn">
+                  <xsl:call-template name="_mal2html.links.divs">
+                    <xsl:with-param name="node" select="$node"/>
+                    <xsl:with-param name="links" select="$_links"/>
+                    <xsl:with-param name="nodesc" select="$nodesc"/>
+                    <xsl:with-param name="max" select="$coltot"/>
+                  </xsl:call-template>
+                </div>
+                <div class="links-twocolumn">
+                  <xsl:call-template name="_mal2html.links.divs">
+                    <xsl:with-param name="node" select="$node"/>
+                    <xsl:with-param name="links" select="$_links"/>
+                    <xsl:with-param name="nodesc" select="$nodesc"/>
+                    <xsl:with-param name="min" select="$coltot"/>
+                  </xsl:call-template>
+                </div>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="_mal2html.links.divs">
@@ -756,57 +754,47 @@ when determining which links to output.
       </xsl:for-each>
     </xsl:for-each>
   </ul>
+  <div class="clear"/>
 </xsl:template>
 
 <xsl:template name="_mal2html.links.grid">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
-  <xsl:variable name="rows" select="ceiling(count($links) div 3)"/>
-  <table class="toronto">
-    <xsl:for-each select="$links[position() &lt;= $rows]">
-      <xsl:variable name="rownum" select="position() - 1"/>
-      <tr>
-        <xsl:for-each select="$links">
-          <xsl:sort data-type="number" select="@groupsort"/>
-          <xsl:sort select="mal:title[@type = 'sort']"/>
-          <xsl:if test="(position() - 1 &gt;= (3 * $rownum)) and
-                        (position() - 1 &lt; (3 * $rownum) + 3)">
-            <xsl:variable name="xref" select="@xref"/>
-            <td>
-              <xsl:for-each select="$mal.cache">
-                <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
-                <div class="toronto-link"><a>
-                  <xsl:attribute name="href">
-                    <xsl:call-template name="mal.link.target">
-                      <xsl:with-param name="xref" select="$xref"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:attribute name="title">
-                    <xsl:call-template name="mal.link.tooltip">
-                      <xsl:with-param name="xref" select="$xref"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <xsl:call-template name="mal.link.content">
-                    <xsl:with-param name="node" select="."/>
-                    <xsl:with-param name="xref" select="$xref"/>
-                    <xsl:with-param name="role" select="'topic'"/>
-                  </xsl:call-template>
-                </a></div>
-                <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
-                <xsl:if test="$desc">
-                  <div class="toronto-desc desc">
-                    <span class="desc">
-                      <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
-                    </span>
-                  </div>
-                </xsl:if>
-              </xsl:for-each>
-            </td>
-          </xsl:if>
-        </xsl:for-each>
-      </tr>
-    </xsl:for-each>
-  </table>
+  <xsl:for-each select="$links">
+    <xsl:sort data-type="number" select="@groupsort"/>
+    <xsl:sort select="mal:title[@type = 'sort']"/>
+    <xsl:variable name="xref" select="@xref"/>
+    <div class="links-grid">
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+        <div class="links-grid-link"><a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="xref" select="$xref"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip">
+              <xsl:with-param name="xref" select="$xref"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content">
+            <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="xref" select="$xref"/>
+            <xsl:with-param name="role" select="'topic'"/>
+          </xsl:call-template>
+        </a></div>
+        <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
+        <xsl:if test="$desc">
+          <div class="desc">
+            <span class="desc">
+              <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+            </span>
+          </div>
+        </xsl:if>
+      </xsl:for-each>
+    </div>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template name="_mal2html.links.divs">
