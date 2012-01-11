@@ -707,7 +707,7 @@ div.aboutblurb {
   display: inline-block;
   vertical-align: top;
   text-align: left;
-  max-width: 20em;
+  max-width: 18em;
   margin: 0 1em 1em 1em;
 }
 ul.credits, ul.credits li {
