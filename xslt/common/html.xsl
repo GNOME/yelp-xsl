@@ -260,7 +260,7 @@ as ${node} to this template.
       <xsl:call-template name="html.top.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <div class="all">
+      <div class="page">
         <div class="header"> 
           <xsl:call-template name="html.header.custom">
             <xsl:with-param name="node" select="$node"/>
@@ -318,7 +318,7 @@ Stub to output HTML at the top of the page.
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called before the
-#{div.all} wrapper div. Override this template to provide site-specific HTML
+#{div.page} wrapper div. Override this template to provide site-specific HTML
 at the top of the page.
 -->
 <xsl:template name="html.top.custom">
@@ -334,7 +334,7 @@ Stub to output HTML at the bottom of the page.
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called after the
-#{div.all} wrapper div. Override this template to provide site-specific HTML
+#{div.page} wrapper div. Override this template to provide site-specific HTML
 at the bottom of the page.
 -->
 <xsl:template name="html.bottom.custom">
@@ -605,7 +605,7 @@ body {
     <xsl:value-of select="$color.text"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
-div.all {
+div.page {
   margin: 1em auto 1em auto;
   max-width: 60em;
   border: solid 1px </xsl:text>
