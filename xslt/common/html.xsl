@@ -246,6 +246,8 @@ as ${node} to this template.
   <xsl:param name="node" select="."/>
   <html>
     <head>
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
       <title>
         <xsl:apply-templates mode="html.title.mode" select="$node"/>
       </title>
@@ -613,7 +615,8 @@ div.page {
 }
 div.body {
   margin: 0;
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
@@ -773,6 +776,30 @@ p a {
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 a img { border: none; }
+@media only screen and (max-width: 480px) {
+  div.page {
+    margin: 0;
+    border: none;
+  }
+  div.body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  div.body > div.hgroup,
+  div.body > div.region > div.contents > *,
+  div.body > div.region > div.sect > div.inner > div.hgroup > *,
+  div.body > div.region > div.sect > div.inner > div.region > div.contents > * {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  div.body > div.region > div.sect-links {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  div.trails {
+    padding: 6px;
+  }
+}
 </xsl:text>
 </xsl:template>
 
@@ -1225,6 +1252,41 @@ div.ui-expander > div.inner > div.hgroup:hover * {
 }
 div.ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
+}
+@media only screen and (max-width: 480px) {
+  div.links {
+    margin-left: 6px;
+    margin-right: 6px;
+  } 
+  li.links { padding: 0; }
+  div.body > div.region > div.contents > div.steps,
+  div.body > div.region > div.contents > div.note,
+  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.steps,
+  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  div.steps > div.inner > div.title {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  ol.steps, ul.steps {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  div.note-sidebar {
+    float: none;
+    max-width: none;
+    margin-left: inherit;
+    margin-right: inherit;
+    padding: inherit;
+  }
+  div.note-sidebar > div.inner > div.title,
+  div.note-sidebar > div.inner > div.region > div.contents {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
 }
 </xsl:text>
 </xsl:template>

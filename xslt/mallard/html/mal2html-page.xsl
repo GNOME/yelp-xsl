@@ -868,13 +868,22 @@ ul.mouseovers a img {
   position: absolute;
   margin: 0; padding: 0;
 }
+@media only screen and (max-width: 480px) {
+  ul.mouseovers a {
+    display: block;
+    padding: 6px;
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+  div.mouseovers { display: none; }
+}
 
 div.links-grid {
   display: inline-block;
   clear: both
   margin-top: 1em;
   width: 30%;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 3%;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 2%;
   vertical-align: top;
 }
 div.links-grid-link {
@@ -885,26 +894,20 @@ div.links-grid > div.desc {
   margin: 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
   div.links-grid {
     width: 47%;
-  }
-}
-@media (max-width: 320px) {
-  div.links-grid {
-    width: 100%;
-    margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
   }
 }
 
 div.links-twocolumn {
   display: inline-block;
-  width: 49%;
+  width: 48%;
   margin-top: 0;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
   vertical-align: top;
 }
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
   div.links-twocolumn {
     width: 100%;
     margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
@@ -943,6 +946,16 @@ a.linkdiv > span.desc {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
+@media only screen and (max-width: 480px) {
+  div.linkdiv {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+  div.linkdiv a {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
 
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
@@ -1105,9 +1118,11 @@ $(document).ready(function () {
       var mlink = $(this);
       mlink.hover(
         function () {
-          var offset = contdiv.offset();
-          mlink.find('img').css({left: offset.left, top: offset.top, zIndex: 10});
-          mlink.find('img').fadeIn('fast');
+          if (contdiv.is(':visible')) {
+            var offset = contdiv.offset();
+            mlink.find('img').css({left: offset.left, top: offset.top, zIndex: 10});
+            mlink.find('img').fadeIn('fast');
+          }
         },
         function () {
           mlink.find('img').fadeOut('fast');
