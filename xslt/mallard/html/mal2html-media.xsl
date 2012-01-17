@@ -144,9 +144,16 @@ FIXME
   <xsl:variable name="if">
     <xsl:call-template name="mal.if.test"/>
   </xsl:variable>
-  <xsl:if test="$if = 'true'">
-    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$if = 'true'">
+      <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+    </xsl:when>
+    <xsl:when test="$if != ''">
+      <div class="if-if {$if}">
+        <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+      </div>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:body">
@@ -312,12 +319,16 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$if != 'true'"/>
+    <xsl:when test="$if = ''"/>
     <xsl:when test="@type = 'image' or not(@type)">
       <div>
         <xsl:attribute name="class">
           <xsl:text>media media-image</xsl:text>
           <xsl:value-of select="$class"/>
+          <xsl:if test="$if != 'true'">
+            <xsl:text> if-if </xsl:text>
+            <xsl:value-of select="$if"/>
+          </xsl:if>
         </xsl:attribute>
         <div class="inner">
           <xsl:call-template name="mal2html.media.image"/>
@@ -329,6 +340,10 @@ FIXME
         <xsl:attribute name="class">
           <xsl:text>media media-video</xsl:text>
           <xsl:value-of select="$class"/>
+          <xsl:if test="$if != 'true'">
+            <xsl:text> if-if </xsl:text>
+            <xsl:value-of select="$if"/>
+          </xsl:if>
         </xsl:attribute>
         <div class="inner">
           <xsl:call-template name="mal2html.media.video"/>
@@ -340,6 +355,10 @@ FIXME
         <xsl:attribute name="class">
           <xsl:text>media media-audio</xsl:text>
           <xsl:value-of select="$class"/>
+          <xsl:if test="$if != 'true'">
+            <xsl:text> if-if </xsl:text>
+            <xsl:value-of select="$if"/>
+          </xsl:if>
         </xsl:attribute>
         <div class="inner">
           <xsl:call-template name="mal2html.media.audio"/>

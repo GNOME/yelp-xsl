@@ -1065,6 +1065,22 @@ span.gloss-desc {
   box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+
+.if-if { display: none; }
+.if-choose, .if-when, .if-else { margin: 0; padding: 0; }
+.if-choose > .if-when { display: none; }
+.if-choose > .if-else { display: block; }
+.if-if.if__not-target-mobile { display: block; }
+.if-choose.if__not-target-mobile > .if-when { display: block; }
+.if-choose.if__not-target-mobile > .if-else { display: none; }
+@media only screen and (max-width: 480px) {
+  .if-if.if__target-mobile { display: block; }
+  .if-if.if__not-target-mobile { display: none; }
+  .if-choose.if__target-mobile > .if-when { display: block; }
+  .if-choose.if__target-mobile > .if-else { display: none; }
+  .if-choose.if__not-target-mobile > .if-when { display: none; }
+  .if-choose.if__not-target-mobile > .if-else { display: block; }
+}
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
 <xsl:text>

@@ -35,7 +35,7 @@ REMARK: Describe this module
 
 <!-- = table = -->
 <xsl:template mode="mal2html.block.mode" match="mal:table">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="cols" select="mal:col | mal:colgroup/mal:col"/>
   <xsl:variable name="style">
     <xsl:if test="@frame and @frame != 'none'">
@@ -172,6 +172,10 @@ REMARK: Describe this module
       </xsl:for-each>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>

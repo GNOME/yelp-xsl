@@ -36,7 +36,7 @@ as well as any special processing for child #{item} elements.
 
 <!-- = list = -->
 <xsl:template mode="mal2html.block.mode" match="mal:list">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="el">
     <xsl:choose>
@@ -56,6 +56,10 @@ as well as any special processing for child #{item} elements.
       <xsl:text>list</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -84,8 +88,15 @@ as well as any special processing for child #{item} elements.
 
 <!-- = list/item = -->
 <xsl:template match="mal:list/mal:item">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <li class="list">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <li>
+    <xsl:attribute name="class">
+      <xsl:text>list</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
@@ -94,13 +105,17 @@ as well as any special processing for child #{item} elements.
 
 <!-- = steps = -->
 <xsl:template mode="mal2html.block.mode" match="mal:steps">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>steps</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -118,8 +133,15 @@ as well as any special processing for child #{item} elements.
 
 <!-- = steps/item = -->
 <xsl:template match="mal:steps/mal:item">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <li class="steps">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <li>
+    <xsl:attribute name="class">
+      <xsl:text>steps</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </li>
@@ -128,7 +150,7 @@ as well as any special processing for child #{item} elements.
 
 <!-- = terms = -->
 <xsl:template mode="mal2html.block.mode" match="mal:terms">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
@@ -136,6 +158,10 @@ as well as any special processing for child #{item} elements.
       <xsl:text>terms</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -159,16 +185,30 @@ as well as any special processing for child #{item} elements.
 
 <!-- = terms/item = -->
 <xsl:template match="mal:terms/mal:item">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:for-each select="mal:title">
-    <dt class="terms">
+    <dt>
+      <xsl:attribute name="class">
+        <xsl:text>terms</xsl:text>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:attribute>
       <xsl:call-template name="html.lang.attrs">
         <xsl:with-param name="parent" select=".."/>
       </xsl:call-template>
       <xsl:apply-templates mode="mal2html.inline.mode"/>
     </dt>
   </xsl:for-each>
-  <dd class="terms">
+  <dd>
+    <xsl:attribute name="class">
+      <xsl:text>terms</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode" select="*[not(self::mal:title)]"/>
   </dd>
@@ -177,7 +217,7 @@ as well as any special processing for child #{item} elements.
 
 <!-- = tree = -->
 <xsl:template mode="mal2html.block.mode" match="mal:tree">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="lines" select="contains(concat(' ', @style, ' '), ' lines ')"/>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
@@ -188,6 +228,10 @@ as well as any special processing for child #{item} elements.
       </xsl:if>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -235,8 +279,15 @@ neighboring #{item} elements, and passes that prefix to child elements.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:if test="$if = 'true'">
-  <li class="tree">
+  <xsl:if test="$if != ''">
+  <li>
+    <xsl:attribute name="class">
+      <xsl:text>tree</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <div>
       <xsl:if test="$lines">

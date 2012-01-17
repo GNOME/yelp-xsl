@@ -37,149 +37,228 @@ in Mallard documents.
 
 
 <!--@@==========================================================================
-mal.if.env
-The list of env strings.
-:Revision:version="1.0" date="2011-04-28" status="review"
+mal.if.target
+The list of supported target tokens.
+:Revision:version="1.0" date="2012-01-17" status="review"
 
-This parameter takes a space-separated list of strings for the #{if:env}
-conditional processing function. The #{if:env} function will return #{true}
-if its argument is in this list.
+This parameter takes a space-separated list of tokens to enable for conditional
+processing. It is used by the template *{mal.if.test}. This parameter is meant
+to hold tokens starting with #{target:}. It should usually be set by the primary
+importing stylesheet.
 -->
-<xsl:param name="mal.if.env" select="''"/>
-<xsl:variable name="_mal.if.env" select="concat(' ', $mal.if.env, ' ')"/>
+<xsl:param name="mal.if.target" select="''"/>
 
 
 <!--@@==========================================================================
-mal.if.supports
-The list of supported technologies.
-:Revision:version="1.0" date="2011-07-31" status="review"
+mal.if.platform
+The list of supported platform tokens.
+:Revision:version="1.0" date="2012-01-17" status="review"
 
-This parameter takes a space-separated list of strings for the #{if:supports}
-conditional processing function. The #{if:supports} function will return #{true}
-if its argument is in this list or @{mal.if.supports.custom}.
-
-Do not change this parameter unless you are completely overriding the behavior
-of these stylesheets in a way that removes or changes features. To add support
-in a customization, use the @{mal.if.supports.custom} parameter.
+This parameter takes a space-separated list of tokens to enable for conditional
+processing. It is used by the template *{mal.if.test}. This parameter is meant
+to hold tokens starting with #{platform:}. It should usually be set by hand or
+by a customization stylesheet.
 -->
-<xsl:param name="mal.if.supports" select="'1.0'"/>
+<xsl:param name="mal.if.platform" select="''"/>
 
 
 <!--@@==========================================================================
-mal.if.supports.custom
-The list of technologies supported by customizations.
-:Revision:version="1.0" date="2011-07-31" status="review"
+mal.if.features
+The list of supported feature tokens.
+:Revision:version="1.0" date="2012-01-17" status="review"
 
-This parameter takes a space-separated list of strings for the #{if:supports}
-conditional processing function. The #{if:supports} function will return #{true}
-if its argument is in this list or @{mal.if.supports}.
+This parameter takes a space-separated list of tokens to enable for conditional
+processing. It is used by the template *{mal.if.test}. This parameter is meant
+to hold tokens that specify the capabilities of these stylesheets. It should
+usually be set by the primary importing stylesheet.
 -->
-<xsl:param name="mal.if.supports.custom" select="'1.0'"/>
+<xsl:param name="mal.if.features" select="'
+mallard:1.0
+'"/>
 
 
-<xsl:variable name="_mal.if.supports"
-              select="concat(' ', $mal.if.supports, ' ', $mal.if.supports.custom, ' ')"/>
+<!--@@==========================================================================
+mal.if.custom
+A custom list of supported tokens.
+:Revision:version="1.0" date="2012-01-17" status="review"
+
+This parameter takes a space-separated list of tokens to enable for conditional
+processing. It is used by the template *{mal.if.test}. This parameter is meant
+to hold extra values enabled by hand or by a customization stylesheet.
+-->
+<xsl:param name="mal.if.custom" select="''"/>
+
+
+<!--@@==========================================================================
+mal.if.maybe
+A list of tokens that may be true.
+:Revision:version="1.0" date="2012-01-17" status="review"
+
+This parameter takes a space-separated list of tokens that may be true. The
+template *{mal.if.test} returns special flags when a condition may be true,
+allowing conditional processing to be deferred (for example, to CSS media
+selectors). This parameter should usually be set by the primary importing
+stylesheet.
+-->
+<xsl:param name="mal.if.maybe" select="''"/>
+
+
+<xsl:variable name="_mal.if.tokens" select="concat(' ', $mal.if.target,
+                                                   ' ', $mal.if.platform,
+                                                   ' ', $mal.if.features,
+                                                   ' ', $mal.if.custom,
+                                                   ' ')"/>
+<xsl:variable name="_mal.if.maybe" select="concat(' ', $mal.if.maybe, ' ')"/>
 
 
 <!--**==========================================================================
 mal.if.test
 Test if a condition is true.
-:Revision:version="1.0" date="2011-04-28" status="review"
+:Revision:version="1.0" date="2012-01-17" status="review"
 $node: The element to check the condition for.
-$test: The XPath expression to check.
+$test: The test expression.
 
-This template tests whether the ${test} is true, evaluating it with
-the Mallard conditional functions. The ${test} parameter is expected
-to be a valid XPath expression. If not provided, it defaults to the
-#{if:test} attribute of ${node}, or the non-namespaced #{test}
-attribute if ${node} is an #{if:if} or #{if:when} element.
+This template evaluates the test expression ${test}, which is taken automatically
+from the #{test} or #{if:test} attribute of $node. It splits the expression on
+commas into subexpression, then splits each subexpression on spaces into tokens.
+A token is taken to be true if it's in one of the space-separated lists from
+@{mal.if.target}, @{mal.if.platform}, @{mal.if.features}, or @{mal.if.custom}.
+If the token starts with an examation point, the exclamation point is stripped
+and the resulting truth value is negated.
 
-If ${test} evaluates to #{true}, this template outputs the literal
-string #{'true'}. Otherwise, it outputs nothing.
+A subexpression is true if all its tokens is true. The full test expression is
+true if any subexpression is true. If the test expression is true, the literal
+string #{'true'} is returned. If the test expression is false, the empty
+string is returned.
+
+This template can handle "maybe" values: tokens that may or may not be true,
+and whose truth values are deferred to post-transform time. A token is maybe
+if it appears in the space-separated list @{mal.if.maybe}. If a subexpression
+contains a maybe value and does not contain any false tokens, its truth value
+is a special string constructed from the maybe tokens and starting with the
+string #{if__}. If any subexpressions are maybe and none of the subexpressions
+are false, the return value is a space-separated list of the maybe strings.
+
+Maybe tokens usually must be handled specifically by the importing stylesheet.
+It's usually not sufficient to just add a token to @{mal.if.maybe}. This
+template will handle any maybe token, but it does not handle the actual logic
+of dynamically showing or hiding content based on those tokens.
 -->
 <xsl:template name="mal.if.test">
   <xsl:param name="node" select="."/>
-  <xsl:param name="test" select="$node/self::if:if/@test |
-                                 $node/self::if:when/@test |
-                                 $node[not(self::if:when)]/@if:test "/>
+  <xsl:param name="test" select="($node/self::if:if/@test |
+                                  $node/self::if:when/@test |
+                                  $node/@if:test)[1]"/>
   <xsl:choose>
-    <xsl:when test="string($test) = ''">
-      <xsl:text>true</xsl:text>
+    <xsl:when test="$test != ''">
+      <xsl:variable name="ret">
+        <xsl:for-each select="str:split($test, ',')">
+          <xsl:text> </xsl:text>
+          <xsl:variable name="subexpr">
+            <xsl:for-each select="str:tokenize(., ' ')">
+              <xsl:text> </xsl:text>
+              <xsl:choose>
+                <xsl:when test="starts-with(., '!')">
+                  <xsl:variable name="tmp">
+                    <xsl:call-template name="_mal.if.test.check_token">
+                      <xsl:with-param name="token" select="substring(., 2)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:choose>
+                    <xsl:when test="$tmp = '1'">
+                      <xsl:text>0</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="$tmp = '0'">
+                      <xsl:text>1</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="concat('not-', $tmp)"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:call-template name="_mal.if.test.check_token">
+                    <xsl:with-param name="token" select="."/>
+                  </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:text> </xsl:text>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="contains($subexpr, ' 0 ')">
+              <xsl:text></xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:variable name="subcond">
+                <xsl:for-each select="str:tokenize($subexpr, ' ')[.!='1']">
+                  <xsl:if test="position != 1">
+                    <xsl:text>__</xsl:text>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </xsl:for-each>
+              </xsl:variable>
+              <xsl:choose>
+                <xsl:when test="$subcond != ''">
+                  <xsl:text>if__</xsl:text>
+                  <xsl:value-of select="$subcond"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>true</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        <xsl:text> </xsl:text>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="contains($ret, ' true ')">
+          <xsl:text>true</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:for-each select="str:split($ret, ' ')[. != 'true']">
+            <xsl:value-of select="."/>
+            <xsl:text> </xsl:text>
+          </xsl:for-each>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
-    <xsl:when test="dyn:evaluate($test)">
+    <xsl:otherwise>
       <xsl:text>true</xsl:text>
-    </xsl:when>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
-
-<!--**==========================================================================
-mal.if.choose
-Gets the position of the first matching condition in #{if:choose}
-:Revision:version="1.0" date="2011-04-28" status="review"
-$node: The #{if:choose} element to check.
-
-The #{if:choose} element takes a list of #{if:when} elements, optionally followed
-by an #{if:else} element. Given an #{if:choose} element, this template outputs
-the position of the first #{if:when} whose #{test} attribute evaluates to #{true}.
-If no #{if:when} elements are true, the output is empty.
--->
-<xsl:template name="mal.if.choose">
-  <xsl:param name="node" select="."/>
-  <xsl:if test="if:when[1]">
-    <xsl:call-template name="_mal.if.choose.try">
-      <xsl:with-param name="node" select="if:when[1]"/>
-      <xsl:with-param name="pos" select="1"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="_mal.if.choose.try">
-  <xsl:param name="node"/>
-  <xsl:param name="pos"/>
-  <xsl:variable name="if">
-    <xsl:call-template name="mal.if.test">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </xsl:variable>
+<xsl:template name="_mal.if.test.check_token">
+  <xsl:param name="token"/>
   <xsl:choose>
-    <xsl:when test="$if = 'true'">
-      <xsl:value-of select="$pos"/>
+    <xsl:when test="contains($_mal.if.tokens, concat(' ', $token, ' '))">
+      <xsl:text>1</xsl:text>
     </xsl:when>
-    <xsl:when test="$node/following-sibling::if:when[1]">
-      <xsl:call-template name="_mal.if.choose.try">
-        <xsl:with-param name="node" select="$node/following-sibling::if:when[1]"/>
-        <xsl:with-param name="pos" select="$pos + 1"/>
+    <xsl:when test="contains($_mal.if.maybe, concat(' ', $token, ' '))">
+      <xsl:call-template name="_mal.if.test.flatten_token">
+        <xsl:with-param name="token" select="$token"/>
       </xsl:call-template>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>0</xsl:text>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
-
-<!-- ======================================================================= -->
-
-<func:function name="if:env">
-  <xsl:param name="env"/>
-  <xsl:choose>
-    <xsl:when test="contains($_mal.if.env, $env)">
-      <func:result select="true()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <func:result select="false()"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</func:function>
-
-<func:function name="if:supports">
-  <xsl:param name="tech"/>
-  <xsl:choose>
-    <xsl:when test="contains($_mal.if.supports, $tech)">
-      <func:result select="true()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <func:result select="false()"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</func:function>
+<xsl:template name="_mal.if.test.flatten_token">
+  <xsl:param name="token"/>
+  <xsl:for-each select="str:split($token, '')">
+    <xsl:choose>
+      <xsl:when test="contains('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_', .)">
+        <xsl:value-of select="."/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>-</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:template>
 
 </xsl:stylesheet>
