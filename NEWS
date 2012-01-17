@@ -1,3 +1,24 @@
+3.3.2
+=====
+* Customized rendering for mobile devices
+* Changed how :first-child margin-top is set
+* Changed div.all to div.page
+* Copy page/section attributes to cache
+* Updated translations:
+  be    (Kasia Bondarava)
+  bg    (Alexander Shopov)
+  eo    (Kristjan SCHMIDT)
+  fa    (Arash Mousavi)
+  fi    (Timo Jyrinki)
+  he    (Yaron Shahrabani)
+  lt    (Aurimas Černius)
+  sl    (Matej Urbančič)
+  sv    (Daniel Nylander)
+  te    (Praveen Illa)
+  zh_CN (Yinghua Wang)
+  zh_HK (Pin-hsien Li)
+  zh_TW (Pin-hsien Li)
+
 3.3.1
 =====
 * Made linktrails more extensible for customizations
