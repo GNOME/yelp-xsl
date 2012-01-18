@@ -868,7 +868,7 @@ ul.mouseovers a img {
   position: absolute;
   margin: 0; padding: 0;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   ul.mouseovers a {
     display: block;
     padding: 6px;
@@ -894,7 +894,7 @@ div.links-grid > div.desc {
   margin: 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   div.links-grid {
     width: 47%;
   }
@@ -907,7 +907,7 @@ div.links-twocolumn {
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
   vertical-align: top;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   div.links-twocolumn {
     width: 100%;
     margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
@@ -946,7 +946,7 @@ a.linkdiv > span.desc {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   div.linkdiv {
     margin-left: -6px;
     margin-right: -6px;

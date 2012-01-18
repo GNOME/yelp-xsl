@@ -776,7 +776,7 @@ p a {
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 a img { border: none; }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   div.page {
     margin: 0;
     border: none;
@@ -1253,7 +1253,7 @@ div.ui-expander > div.inner > div.hgroup:hover * {
 div.ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
   div.links {
     margin-left: 6px;
     margin-right: 6px;
