@@ -28,7 +28,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Mallard Links
 Common linking utilities for Mallard documents.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.4" date="2012-01-17" status="final"
 
 This stylesheet contains various utilities for handling links in Mallard
 documents.  The templates in this stylesheet make it easier to handle the
@@ -40,7 +40,7 @@ linking systems.
 <!--@@==========================================================================
 mal.cache.file
 The location of the cache file.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.0" date="2010-01-02" status="final"
 
 In order to locate and process links between pages, this stylesheet requires
 a Mallard cache file.  Use this parameter to pass the path to a valid cache
@@ -52,7 +52,7 @@ file.
 <!--@@==========================================================================
 mal.cache
 The cache document as a node set.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.0" date="2010-01-02" status="final"
 
 This parameter points to the root #{cache:cache} element of a Mallard cache
 document.  By default, it selects the root element from the file provided in
@@ -109,10 +109,25 @@ mal.link.seealso.key
 
 
 <!--@@==========================================================================
+mal.link.prefix
+A prefix for link targets.
+:Revision:version="3.4" date="2012-01-17" status="final"
+
+When link targets are constructed by *{mal.link.target} from #{xref} attributes,
+this string is prepended. This can be used, for example, to specify absolute
+directories or URLs.
+-->
+<xsl:param name="mal.link.prefix"/>
+
+
+<!--@@==========================================================================
 mal.link.extension
 The filename extension for output files.
+:Revision:version="3.4" date="2012-01-17" status="final"
 
-FIXME
+When link targets are constructed by *{mal.link.target} from #{xref} attributes,
+this string is appended. This is used to specify the file extension when creating
+output files from Mallard pages.
 -->
 <xsl:param name="mal.link.extension"/>
 
@@ -120,6 +135,7 @@ FIXME
 <!--@@==========================================================================
 mal.link.default_root
 The default root ID.
+:Revision:version="3.4" date="2012-01-17" status="final"
 
 This parameter provides the default ID for the page that is taken to be the
 root of the document.  By default, #{'index'} is used.  This should not be
@@ -132,7 +148,7 @@ some Mallard extension formats.
 <!--**==========================================================================
 mal.link.linkid
 Output the fully qualified link ID for a page or section.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.0" date="2010-01-02" status="final"
 $node: The #{page} or #{section} element to generate a link ID for.
 
 This template outputs the fully qualified link ID for a page or section.  For
@@ -163,7 +179,7 @@ template or *{mal.link.xref.linkid}.
 <!--**==========================================================================
 mal.link.xref.linkid
 Output the fully qualified link ID for an #{xref} attribute.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.0" date="2010-01-02" status="final"
 $node: The element containing an #{xref} attribute.
 $xref: The #{xref} value to generate a link ID from.
 
@@ -186,8 +202,9 @@ See *{mal.link.linkid} for more on link IDs.
 <!--**==========================================================================
 mal.link.content
 Output the content for a #{link} element.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.4" date="2012-01-17" status="final"
 $node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
 $role: A link role, used to select the appropriate title.
@@ -199,59 +216,104 @@ will be selected, based on ${role}.  The %{mal.link.content.mode} mode will
 be applied to the contents of that title.  Stylesheets using this template
 should map that mode to inline processing.
 
+This template first calls *{mal.link.content.custom} with the same arguments.
+If that templates returns a non-empty result, it is used as the return value,
+overriding any other behavior of this template.
+
 If only ${href} is provided, that URL is used as the text content.  If a target
 page or section cannot be found, ${xref} is used as the text content.
 -->
 <xsl:template name="mal.link.content">
   <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
   <xsl:param name="role" select="''"/>
-  <xsl:variable name="linkid">
-    <xsl:call-template name="mal.link.xref.linkid">
+  <xsl:variable name="custom">
+    <xsl:call-template name="mal.link.content.custom">
       <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="action" select="$action"/>
       <xsl:with-param name="xref" select="$xref"/>
+      <xsl:with-param name="href" select="$href"/>
+      <xsl:with-param name="role" select="$role"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:for-each select="$mal.cache">
-    <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
-    <xsl:choose>
-      <xsl:when test="$target">
-        <xsl:variable name="titles" select="$target/mal:info/mal:title[@type = 'link']"/>
+  <xsl:choose>
+    <xsl:when test="exsl:node-set($custom)/node()">
+      <xsl:copy-of select="$custom"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="linkid">
+        <xsl:call-template name="mal.link.xref.linkid">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$xref"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
         <xsl:choose>
-          <xsl:when test="$role != '' and $titles[@role = $role]">
-            <xsl:apply-templates mode="mal.link.content.mode"
-                                 select="$titles[@role = $role][1]/node()"/>
-          </xsl:when>
-          <xsl:when test="$titles[not(@role)]">
-            <xsl:apply-templates mode="mal.link.content.mode"
-                                 select="$titles[not(@role)][1]/node()"/>
+          <xsl:when test="$target">
+            <xsl:variable name="titles" select="$target/mal:info/mal:title[@type = 'link']"/>
+            <xsl:choose>
+              <xsl:when test="$role != '' and $titles[@role = $role]">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$titles[@role = $role][1]/node()"/>
+              </xsl:when>
+              <xsl:when test="$titles[not(@role)]">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$titles[not(@role)][1]/node()"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$target/mal:title[1]/node()"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates mode="mal.link.content.mode"
-                                 select="$target/mal:title[1]/node()"/>
+            <xsl:choose>
+              <xsl:when test="$href">
+                <xsl:value-of select="$href"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$xref"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:choose>
-          <xsl:when test="$href">
-            <xsl:value-of select="$href"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$xref"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:for-each>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.content.custom
+Output the content for a custom #{link} element.
+:Stub: true
+:Revision:version="3.4" date="2012-01-17" status="final"
+$node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
+$xref: The #{xref} attribute of ${node}.
+$href: The #{href} attribute of ${node}.
+$role: A link role, used to select the appropriate title.
+
+This template is called by *{mal.link.content} to create content for custom
+links. Use this template to support the #{action} attribute or extended #{xref}
+attributes containing slash or colon characters.
+-->
+<xsl:template name="mal.link.content.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="role" select="''"/>
 </xsl:template>
 
 
 <!--%%==========================================================================
 mal.link.content.mode
 Output the content for a link from the contents of a #{title} element.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.0" date="2010-01-02" status="final"
 
 This mode is applied to the contents of a #{title} element by *{mal.link.content}.
 By default, it returns the string value of its input.  Stylesheets that use
@@ -265,14 +327,20 @@ By default, it returns the string value of its input.  Stylesheets that use
 <!--**==========================================================================
 mal.link.tooltip
 Output a tooltip for a #{link} element.
-:Revision:version="1.0" date="2011-05-14" status="final"
+:Revision:version="3.4" date="2012-01-18" status="final"
 $node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
+$role: A link role, used to select the appropriate title.
 
 This template outputs a text-only tooltip for a link. If ${xref} points to a
 valid page or section, the text title from that page or section will be used.
 If the target does not specify a text title, the primary title is ued.
+
+This template first calls *{mal.link.tooltip.custom} with the same arguments.
+If that templates returns a non-empty string, it is used as the return value,
+overriding any other behavior of this template.
 
 If only ${href} is provided, that URL is used as the tooltip. If a target
 page or section cannot be found, ${xref} is used as the text content. Special
@@ -280,48 +348,90 @@ tooltips may be provided for certain URI schemes.
 -->
 <xsl:template name="mal.link.tooltip">
   <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
   <xsl:param name="role" select="''"/>
-  <xsl:variable name="linkid">
-    <xsl:call-template name="mal.link.xref.linkid">
+  <xsl:variable name="custom">
+    <xsl:call-template name="mal.link.tooltip.custom">
       <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="action" select="$action"/>
       <xsl:with-param name="xref" select="$xref"/>
+      <xsl:with-param name="href" select="$href"/>
+      <xsl:with-param name="role" select="$role"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:for-each select="$mal.cache">
-    <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
-    <xsl:choose>
-      <xsl:when test="$target/mal:info/mal:title[@type = 'text']">
-        <xsl:value-of select="normalize-space($target/mal:info/mal:title[@type = 'text'][1])"/>
-      </xsl:when>
-      <xsl:when test="$target/mal:title">
-        <xsl:value-of select="normalize-space($target/mal:title[1])"/>
-      </xsl:when>
-      <xsl:when test="starts-with($href, 'mailto:')">
-        <xsl:variable name="address" select="substring-after($href, 'mailto:')"/>
-        <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="'email.tooltip'"/>
-          <xsl:with-param name="string" select="$address"/>
-          <xsl:with-param name="format" select="true()"/>
+  <xsl:choose>
+    <xsl:when test="$custom != ''">
+      <xsl:value-of select="$custom"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="linkid">
+        <xsl:call-template name="mal.link.xref.linkid">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$xref"/>
         </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$href">
-        <xsl:value-of select="$href"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$xref"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:for-each>
+      </xsl:variable>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $linkid)"/>
+        <xsl:choose>
+          <xsl:when test="$target/mal:info/mal:title[@type = 'text']">
+            <xsl:value-of select="normalize-space($target/mal:info/mal:title[@type = 'text'][1])"/>
+          </xsl:when>
+          <xsl:when test="$target/mal:title">
+            <xsl:value-of select="normalize-space($target/mal:title[1])"/>
+          </xsl:when>
+          <xsl:when test="starts-with($href, 'mailto:')">
+            <xsl:variable name="address" select="substring-after($href, 'mailto:')"/>
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'email.tooltip'"/>
+              <xsl:with-param name="string" select="$address"/>
+              <xsl:with-param name="format" select="true()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$href">
+            <xsl:value-of select="$href"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$xref"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.tooltip.custom
+Output a tooltip for a custom #{link} element.
+:Stub: true
+:Revision:version="3.4" date="2012-01-17" status="final"
+$node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
+$xref: The #{xref} attribute of ${node}.
+$href: The #{href} attribute of ${node}.
+$role: A link role, used to select the appropriate title.
+
+This template is called by *{mal.link.tooltip} to create tooltips for custom
+links. Use this template to support the #{action} attribute or extended #{xref}
+attributes containing slash or colon characters.
+-->
+<xsl:template name="mal.link.tooltip.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="role" select="''"/>
 </xsl:template>
 
 
 <!--**==========================================================================
 mal.link.target
 Output the target URL for a #{link} or other linking element.
-:Revision:version="1.0" date="2010-01-02" status="final"
+:Revision:version="3.4" date="2012-01-17" status="final"
 $node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
 
@@ -329,35 +439,68 @@ This template outputs a URL for a #{link} element or another element using
 linking attributes.  If ${xref} points to a valid page or section, it uses
 a file name based on the ID of the target page plus @{mal.link.extension}.
 Otherwise, the link will point to ${href}.
+
+This template first calls *{mal.link.target.custom} with the same arguments.
+If that templates returns a non-empty string, it is used as the return value,
+overriding any other behavior of this template.
 -->
 <xsl:template name="mal.link.target">
   <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
+  <xsl:variable name="custom">
+    <xsl:call-template name="mal.link.target.custom">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="action" select="$action"/>
+      <xsl:with-param name="xref" select="$xref"/>
+      <xsl:with-param name="href" select="$href"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:choose>
+    <xsl:when test="$custom != ''">
+      <xsl:value-of select="$custom"/>
+    </xsl:when>
     <xsl:when test="string($xref) = ''">
       <xsl:value-of select="$href"/>
     </xsl:when>
     <xsl:when test="contains($xref, '/') or contains($xref, ':')">
-      <!--
-      This is a link to another document, which we don't handle in these
-      stylesheets.  Extensions such as library or yelp should override
-      this template to provide this functionality.
-      -->
       <xsl:value-of select="$href"/>
     </xsl:when>
     <xsl:when test="contains($xref, '#')">
       <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
       <xsl:variable name="sectionid" select="substring-after($xref, '#')"/>
       <xsl:if test="$pageid != ''">
-        <xsl:value-of select="concat($pageid, $mal.link.extension)"/>
+        <xsl:value-of select="concat($mal.link.prefix, $pageid, $mal.link.extension)"/>
       </xsl:if>
       <xsl:value-of select="concat('#', $sectionid)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="concat($xref, $mal.link.extension)"/>
+      <xsl:value-of select="concat($mal.link.prefix, $xref, $mal.link.extension)"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.target.custom
+Output the target URL for an element with #{action} or extended #{xref} attributes.
+:Stub: true
+:Revision:version="3.4" date="2012-01-17" status="final"
+$node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
+$xref: The #{xref} attribute of ${node}.
+$href: The #{href} attribute of ${node}.
+
+This template is called by *{mal.link.target} to create URLs for custom links.
+Use this template to support the #{action} attribute or extended #{xref}
+attributes containing slash or colon characters.
+-->
+<xsl:template name="mal.link.target.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
 </xsl:template>
 
 
@@ -677,6 +820,7 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.linktrails
 Output link trails for a page or section.
+:Revision:version="3.4" date="2012-01-18" status="final"
 $node: The #{page} or #{section} element to generate links for.
 $trail: The link trail leading to ${node}.
 $root: The ID of the root page.
@@ -705,7 +849,7 @@ link to that page.  This #{link} element has the attribute #{child="section"}
 to indicate the link from it to its child is not a topic link.
 
 Recursion stops when the ID of ${node} is ${root}.  Link trails are only
-output if they reach ${root}.
+output if they reach ${root}, which is @{mal.link.default_root} by default.
 -->
 <!--
 FIXME:
@@ -785,7 +929,7 @@ FIXME:
 <!--**==========================================================================
 mal.link.facetlinks
 Output the facet links for a facets page or section.
-:Revision:version="1.0" date="2010-12-16" status="final"
+:Revision:version="3.0" date="2010-12-16" status="final"
 $node: The #{page} or #{section} element to generate links for.
 
 This template outputs all the facet links for facets page or section. Links are
