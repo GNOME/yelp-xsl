@@ -63,6 +63,7 @@ doc/yelp-xsl/Makefile
 po/Makefile.in
 xslt/Makefile
 xslt/common/Makefile
+xslt/common/domains/Makefile
 xslt/docbook/Makefile
 xslt/docbook/common/Makefile
 xslt/docbook/html/Makefile
@@ -72,8 +73,6 @@ xslt/mallard/Makefile
 xslt/mallard/cache/Makefile
 xslt/mallard/common/Makefile
 xslt/mallard/html/Makefile
-xslt/gettext/Makefile
-xslt/gettext/domains/Makefile
 ])
 
 AC_OUTPUT

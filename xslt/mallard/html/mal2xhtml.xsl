@@ -29,7 +29,7 @@ Mallard to XHTML
 REMARK: Describe this module
 -->
 
-<xsl:import href="../../gettext/gettext.xsl"/>
+<xsl:import href="../../common/l10n.xsl"/>
 <xsl:import href="../../common/color.xsl"/>
 <xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>
