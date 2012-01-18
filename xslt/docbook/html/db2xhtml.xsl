@@ -24,7 +24,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 DocBook to XHTML
 -->
 
-<xsl:import href="../../gettext/gettext.xsl"/>
+<xsl:import href="../../common/l10n.xsl"/>
 <xsl:import href="../../common/color.xsl"/>
 <xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>

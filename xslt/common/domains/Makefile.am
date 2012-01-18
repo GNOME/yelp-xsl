@@ -22,7 +22,7 @@ yelp-xsl.xml: yelp-xsl.xml.in
 	rmdir .yelp-xsl; \
 	rm .yelp-xsl.files
 
-xsldir=$(datadir)/yelp-xsl/xslt/gettext/domains
+xsldir=$(datadir)/yelp-xsl/xslt/common/domains
 
 xsl_DATA = yelp-xsl.xml
 

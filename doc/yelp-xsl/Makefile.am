@@ -2,7 +2,6 @@ ABS_SRCDIR = @abs_srcdir@
 
 xsldoc_dirs = 						\
 	$(ABS_SRCDIR)/../../xslt/common			\
-	$(ABS_SRCDIR)/../../xslt/gettext		\
 	$(ABS_SRCDIR)/../../xslt/docbook/common		\
 	$(ABS_SRCDIR)/../../xslt/docbook/html		\
 	$(ABS_SRCDIR)/../../xslt/docbook/omf		\

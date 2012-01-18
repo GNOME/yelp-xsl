@@ -63,7 +63,6 @@ yelp-xsl.pc
 /doc/yelp-xsl/C/dita2html-topic.page
 /doc/yelp-xsl/C/dita2html.page
 /doc/yelp-xsl/C/dita2xhtml.page
-/doc/yelp-xsl/C/gettext.page
 /doc/yelp-xsl/C/html.page
 /doc/yelp-xsl/C/icons.page
 /doc/yelp-xsl/C/l10n-numbers.page
@@ -84,5 +83,5 @@ yelp-xsl.pc
 /doc/yelp-xsl/C/mal2xhtml.page
 /doc/yelp-xsl/C/utils.page
 /xslt/theme/test-theme.html
-/xslt/gettext/domains/yelp-xsl.xml
+/xslt/common/domains/yelp-xsl.xml
 /test/testdocs/html
