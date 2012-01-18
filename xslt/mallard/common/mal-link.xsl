@@ -382,10 +382,13 @@ tooltips may be provided for certain URI schemes.
             <xsl:value-of select="normalize-space($target/mal:title[1])"/>
           </xsl:when>
           <xsl:when test="starts-with($href, 'mailto:')">
-            <xsl:variable name="address" select="substring-after($href, 'mailto:')"/>
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="'email.tooltip'"/>
-              <xsl:with-param name="string" select="$address"/>
+              <xsl:with-param name="string">
+                <xsl:call-template name="utils.email_address">
+                  <xsl:with-param name="url" select="$href"/>
+                </xsl:call-template>
+              </xsl:with-param>
               <xsl:with-param name="format" select="true()"/>
             </xsl:call-template>
           </xsl:when>

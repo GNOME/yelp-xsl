@@ -41,10 +41,13 @@ $url: The URL of the link, usually from the #{url} attribute
   <xsl:param name="url" select="$node/@url | $node/@xl:href"/>
   <xsl:choose>
     <xsl:when test="starts-with($url, 'mailto:')">
-      <xsl:variable name="addy" select="substring-after($url, 'mailto:')"/>
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'email.tooltip'"/>
-        <xsl:with-param name="string" select="$addy"/>
+        <xsl:with-param name="string">
+          <xsl:call-template name="utils.email_address">
+            <xsl:with-param name="url" select="$url"/>
+          </xsl:call-template>
+        </xsl:with-param>
         <xsl:with-param name="format" select="true()"/>
       </xsl:call-template>
     </xsl:when>

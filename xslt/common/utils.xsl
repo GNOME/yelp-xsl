@@ -148,4 +148,29 @@ be placed to the side of the verbatim output.
   </xsl:choose>
 </xsl:template>
 
+
+<!--**==========================================================================
+utils.email_address
+Get an email address from a mailto URL.
+:Revision:version="3.4" date="2012-01-18" status="final"
+$href: The mailto URL.
+
+This template takes a mailto URL and returns an email address, stripping the
+URL scheme as well as any query string.
+-->
+<xsl:template name="utils.email_address">
+  <xsl:param name="url"/>
+  <xsl:variable name="addy">
+    <xsl:value-of select="substring-after($url, 'mailto:')"/>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="contains($addy, '?')">
+      <xsl:value-of select="substring-before($addy, '?')"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$addy"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
