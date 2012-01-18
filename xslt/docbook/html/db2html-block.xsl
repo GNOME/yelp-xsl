@@ -527,6 +527,18 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.block"/>
 </xsl:template>
 
+<!-- = sidebar = -->
+<xsl:template match="sidebar | db:sidebar">
+  <xsl:call-template name="db2html.block.formal">
+    <xsl:with-param name="class" select="'note note-sidebar'"/>
+    <xsl:with-param name="titleattr">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Sidebar'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = simpara = -->
 <xsl:template match="simpara | db:simpara">
   <xsl:call-template name="db2html.para"/>
