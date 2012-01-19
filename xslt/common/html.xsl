@@ -258,6 +258,9 @@ as ${node} to this template.
       </xsl:call-template>
     </head>
     <body>
+      <xsl:call-template name="html.lang.attrs">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
       <xsl:apply-templates mode="html.body.attr.mode" select="$node"/>
       <xsl:call-template name="html.top.custom">
         <xsl:with-param name="node" select="$node"/>
