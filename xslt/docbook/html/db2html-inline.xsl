@@ -828,6 +828,14 @@ FIXME
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
+<!-- = package = -->
+<xsl:template match="package | db:package">
+  <xsl:call-template name="db2html.inline">
+    <xsl:with-param name="class" select="'sys'"/>
+    <xsl:with-param name="ltr" select="true()"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = pagenums = -->
 <xsl:template match="pagenums | db:pagenums">
   <xsl:call-template name="db2html.inline"/>
