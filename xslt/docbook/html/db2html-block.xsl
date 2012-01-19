@@ -471,7 +471,9 @@ syntax highlighting support based on the #{language} attribute of ${node}.
 
 <!-- = informalexample = -->
 <xsl:template match="informalexample | db:informalexample">
-  <xsl:call-template name="db2html.block"/>
+  <xsl:call-template name="db2html.block">
+    <xsl:with-param name="class" select="'example informalexample'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = literallayout = -->

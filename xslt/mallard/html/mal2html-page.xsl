@@ -957,12 +957,6 @@ span.linkdiv-dash { display: none; }
   }
 }
 
-div.example {
-  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-}
-
 div.comment {
   padding: 0.5em;
   border: solid 2px </xsl:text>

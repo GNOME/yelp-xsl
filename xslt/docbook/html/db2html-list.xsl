@@ -246,6 +246,7 @@ REMARK: Describe this module
   <div class="steps">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
+    <div class="inner">
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates select="*[not(self::step) and not(self::db:step)]"/>
     <xsl:choose>
@@ -260,6 +261,7 @@ REMARK: Describe this module
         </ol>
       </xsl:otherwise>
     </xsl:choose>
+    </div>
   </div>
 </xsl:template>
 

@@ -929,6 +929,11 @@ div.code {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
+div.example {
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
+    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
 div.figure {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
   padding: 4px;
