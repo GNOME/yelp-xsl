@@ -551,6 +551,26 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.pre"/>
 </xsl:template>
 
+<!-- = task = -->
+<xsl:template match="task | db:task">
+  <xsl:call-template name="db2html.block.formal"/>
+</xsl:template>
+
+<!-- = taskprerequisites = -->
+<xsl:template match="taskprerequisites | db:taskprerequisites">
+  <xsl:call-template name="db2html.block.formal"/>
+</xsl:template>
+
+<!-- = taskrelated = -->
+<xsl:template match="taskrelated | db:taskrelated">
+  <xsl:call-template name="db2html.block.formal"/>
+</xsl:template>
+
+<!-- = tasksummary = -->
+<xsl:template match="tasksummary | db:tasksummary">
+  <xsl:call-template name="db2html.block.formal"/>
+</xsl:template>
+
 <!-- = tip = -->
 <xsl:template match="tip | db:tip">
   <xsl:call-template name="db2html.block.formal">
