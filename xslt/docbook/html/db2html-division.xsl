@@ -119,33 +119,63 @@ REMARK: Talk about some of the parameters
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
-  <div>
-    <xsl:call-template name="html.lang.attrs">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name($node)"/>
-      <xsl:choose>
-        <xsl:when test="$depth_in_chunk = 0">
-          <xsl:text> contents</xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
+  <xsl:choose>
+    <xsl:when test="$depth_in_chunk != 0">
+      <div>
+        <xsl:call-template name="html.lang.attrs">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+        <xsl:attribute name="class">
+          <xsl:value-of select="local-name($node)"/>
           <xsl:text> sect</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:attribute>
-    <xsl:if test="$node/@id">
-      <xsl:attribute name="id">
-        <xsl:value-of select="$node/@id"/>
-      </xsl:attribute>
-    </xsl:if>
-    <div class="inner">
-    <xsl:call-template name="db2html.hgroup">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="info" select="$info"/>
-      <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
-    </xsl:call-template>
-    <div class="region">
+        </xsl:attribute>
+        <xsl:if test="$node/@id">
+          <xsl:attribute name="id">
+            <xsl:value-of select="$node/@id"/>
+          </xsl:attribute>
+        </xsl:if>
+        <div class="inner">
+          <xsl:call-template name="_db2html.division.div.inner">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="info" select="$info"/>
+            <xsl:with-param name="entries" select="$entries"/>
+            <xsl:with-param name="divisions" select="$divisions"/>
+            <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+            <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+            <xsl:with-param name="chunk_divisions" select="$chunk_divisions"/>
+          </xsl:call-template>
+        </div>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="_db2html.division.div.inner">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="info" select="$info"/>
+        <xsl:with-param name="entries" select="$entries"/>
+        <xsl:with-param name="divisions" select="$divisions"/>
+        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+        <xsl:with-param name="chunk_divisions" select="$chunk_divisions"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="_db2html.division.div.inner">
+  <xsl:param name="node"/>
+  <xsl:param name="info"/>
+  <xsl:param name="entries"/>
+  <xsl:param name="divisions"/>
+  <xsl:param name="depth_in_chunk"/>
+  <xsl:param name="depth_of_chunk"/>
+  <xsl:param name="chunk_divisions"/>
+  <xsl:call-template name="db2html.hgroup">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="info" select="$info"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+  </xsl:call-template>
+  <div class="region">
+    <div class="contents">
       <xsl:apply-templates mode="db2html.division.div.content.mode" select="$node">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="entries" select="$entries"/>
@@ -173,7 +203,6 @@ REMARK: Talk about some of the parameters
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:call-template>
     </xsl:if>
-  </div>
   </div>
 </xsl:template>
 

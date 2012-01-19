@@ -1275,8 +1275,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
     margin-right: 0;
   }
   div.steps > div.inner > div.title {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 6px;
+    margin-right: 6px;
   }
   ol.steps, ul.steps {
     -moz-box-shadow: none;
