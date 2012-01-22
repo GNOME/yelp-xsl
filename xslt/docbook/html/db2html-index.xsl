@@ -75,7 +75,7 @@ indexterm (autoidx)
     </dd>
   </xsl:if>
   <xsl:for-each select="secondaryie | db:secondaryie">
-    <dd class="seconary">
+    <dd class="secondary">
       <dl class="secondary">
         <dt class="secondaryie">
           <xsl:apply-templates/>
@@ -132,6 +132,21 @@ indexterm (autoidx)
   <xsl:call-template name="db2html.division.div">
     <xsl:with-param name="info" select="indexinfo | db:info"/>
     <xsl:with-param name="divisions" select="indexdiv | db:indexdiv"/>
+    <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = indexdiv = -->
+<xsl:template match="indexdiv | db:indexdiv">
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk"/>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:param>
+  <xsl:call-template name="db2html.division.div">
     <xsl:with-param name="entries" select="indexentry | db:indexentry"/>
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
     <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>

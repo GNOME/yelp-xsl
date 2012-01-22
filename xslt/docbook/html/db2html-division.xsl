@@ -191,12 +191,14 @@ REMARK: Talk about some of the parameters
         <xsl:with-param name="divisions" select="$divisions"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:if test="not($chunk_divisions)">
-      <xsl:apply-templates select="$divisions">
-        <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
-        <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:for-each select="$divisions">
+      <xsl:if test="not($chunk_divisions) or not(contains($db.chunk.chunks_, local-name(.)))">
+        <xsl:apply-templates select=".">
+          <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
+          <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:for-each>
     <xsl:if test="$depth_in_chunk = 0">
       <xsl:call-template name="db2html.footnote.footer">
         <xsl:with-param name="node" select="$node"/>
