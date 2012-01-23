@@ -802,6 +802,9 @@ a img { border: none; }
   div.trails {
     padding: 6px;
   }
+  li {
+    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+  }
 }
 </xsl:text>
 </xsl:template>
@@ -1267,8 +1270,10 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
     margin-right: 6px;
   } 
   li.links { padding: 0; }
+  div.body > div.region > div.contents > div.example,
   div.body > div.region > div.contents > div.steps,
   div.body > div.region > div.contents > div.note,
+  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.example,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > div.steps,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
     margin-left: 0;
@@ -1288,7 +1293,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
     max-width: none;
     margin-left: inherit;
     margin-right: inherit;
-    padding: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
   }
   div.note-sidebar > div.inner > div.title,
   div.note-sidebar > div.inner > div.region > div.contents {
