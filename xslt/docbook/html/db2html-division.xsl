@@ -161,6 +161,7 @@ REMARK: Talk about some of the parameters
   </xsl:choose>
 </xsl:template>
 
+<!--#* _db2html.division.div.inner -->
 <xsl:template name="_db2html.division.div.inner">
   <xsl:param name="node"/>
   <xsl:param name="info"/>

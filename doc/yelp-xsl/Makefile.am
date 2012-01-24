@@ -58,7 +58,7 @@ gnome-doc-xslt-check-xsldoc: $(xsldoc_docs)
 .PHONY: xsldoc-clean
 clean-local: xsldoc-clean
 xsldoc-clean:
-	rm -f $(xsldoc_pages) C/T__*.page C/P__*.page C/M__*.page C/index.cache
+	rm -f $(xsldoc_pages) C/*.*.page C/index.cache
 
 EXTRA_DIST = 			\
 	mal2cache		\

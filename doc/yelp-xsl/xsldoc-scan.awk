@@ -63,15 +63,14 @@ function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
 	char = substr(line, ix, 1);
 	name = substr(line, ix + 2, jx - ix - 3);
 	id = name;
-	while (sub(/[\.]/, "_", id));
 	if (char == "!")
 	    fmt = "<file xref='%s'>%s</file>";
 	else if (char == "*")
-	    fmt = "<code style='xslt-template' xref='T__%s'>%s</code>";
+	    fmt = "<code style='xslt-template' xref='%s'>%s</code>";
 	else if (char == "%")
-	    fmt = "<code style='xslt-mode' xref='M__%s'>%s</code>";
+	    fmt = "<code style='xslt-mode' xref='%s'>%s</code>";
 	else if (char == "@") 
-	    fmt = "<code style='xslt-param' xref='P__%s'>%s</code>";
+	    fmt = "<code style='xslt-param' xref='P.%s'>%s</code>";
 	else if (char == "$") 
 	    fmt = "<code style='xslt-param'>"name"</code>";
 	else if (char == "#")

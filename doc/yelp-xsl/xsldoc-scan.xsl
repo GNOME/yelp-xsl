@@ -88,8 +88,7 @@ free software.
         <xsl:for-each select="$calls_templates">
           <xsl:variable name="name" select="string(.)"/>
           <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-            <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
-            <item><p><link xref="{$id}"/></p></item>
+            <item><p><link xref="{$name}"/></p></item>
           </xsl:if>
         </xsl:for-each>
       </list>
@@ -107,8 +106,7 @@ free software.
         <xsl:variable name="mode" select="string(.)"/>
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
           <xsl:if test="not($node//mal:section[@style = 'xslt-mode' and mal:title = $mode])">
-            <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
-            <link xref="{$id}"/>
+            <link xref="{$mode}"/>
           </xsl:if>
         </xsl:if>
       </xsl:for-each>
@@ -129,8 +127,9 @@ free software.
   <xsl:variable name="page" select="."/>
   <page id="{$xsldoc.id}" type="guide" style="xslt-stylesheet">
     <xsl:copy-of select="processing-instruction()"/>
+    <xsl:variable name="prefix" select="str:tokenize($xsldoc.id, '.-_')[1]"/>
     <info>
-      <link type="guide" xref="index__S"/>
+      <link type="guide" xref="stylesheets" group="{$prefix}"/>
       <xsl:if test="string(mal:desc) != ''">
         <xsl:copy-of select="mal:desc"/>
       </xsl:if>
@@ -143,17 +142,14 @@ free software.
           <xsl:when test="$page/processing-instruction('xslt-private')[string(.) = $base]"/>
           <xsl:when test="processing-instruction('pass')">
             <xsl:for-each select="document(@href, /)//xsl:include">
-              <xsl:variable name="subpage" select="/mal:page"/>
               <xsl:variable name="subbase" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
-              <xsl:if test="not($subpage/processing-instruction('xslt-private')[string(.) = $subbase])">
-                <xsl:variable name="id" select="translate($subbase, '.', '_')"/>
-                <link type="topic" xref="{$id}" group="S"/>
+              <xsl:if test="not(/xsl:stylesheet/comment()[normalize-space(.) = concat('#! ', $subbase)])">
+                <link type="topic" xref="{$subbase}" group="stylesheets"/>
               </xsl:if>
             </xsl:for-each>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:variable name="id" select="translate($base, '.', '_')"/>
-            <link type="topic" xref="{$id}" group="S"/>
+            <link type="topic" xref="{$base}" group="stylesheets"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:for-each>
@@ -161,24 +157,21 @@ free software.
       <xsl:for-each select="$xslt_file/xsl:template/@name">
         <xsl:variable name="name" select="string(.)"/>
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <xsl:variable name="id" select="concat('T__', translate($name, '.', '_'))"/>
-          <link type="xslt-defines-template" xref="{$id}"/>
+          <link type="xslt-defines-template" xref="{$name}"/>
         </xsl:if>
       </xsl:for-each>
       <!-- xslt-implements-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:template/@mode)">
         <xsl:variable name="mode" select="string(.)"/>
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
-          <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
-          <link type="xslt-implements-mode" xref="{$id}"/>
+          <link type="xslt-implements-mode" xref="{$mode}"/>
         </xsl:if>
       </xsl:for-each>
       <!-- xslt-defines-param -->
       <xsl:for-each select="$xslt_file/xsl:param/@name">
         <xsl:variable name="name" select="string(.)"/>
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <xsl:variable name="id" select="concat('P__', translate($name, '.', '_'))"/>
-          <link type="xslt-defines-param" xref="{$id}"/>
+          <link type="xslt-defines-param" xref="{concat('P.', $name)}"/>
         </xsl:if>
       </xsl:for-each>
       <!-- xslt-uses-param -->
@@ -207,8 +200,7 @@ free software.
         </xsl:for-each>
       </xsl:variable>
       <xsl:for-each select="set:distinct(exsl:node-set($uses-params)/mal:param)">
-        <xsl:variable name="id" select="concat('P__', translate(string(.), '.', '_'))"/>
-        <link type="xslt-uses-param" xref="{$id}"/>
+        <link type="xslt-uses-param" xref="{concat('P.', .)}"/>
       </xsl:for-each>
     </info>
     <xsl:copy-of select="mal:title"/>
@@ -218,16 +210,16 @@ free software.
       </p>
     </xsl:if>
     <xsl:apply-templates/>
-    <links type="topic" groups="S" style="linklist">
+    <links type="topic" groups="stylesheets" style="linklist">
       <title>Stylesheets</title>
     </links>
-    <links type="topic" groups="P" style="linklist">
+    <links type="topic" groups="parameters" style="linklist">
       <title>Parameters</title>
     </links>
-    <links type="topic" groups="M" style="linklist">
+    <links type="topic" groups="modes" style="linklist">
       <title>Modes</title>
     </links>
-    <links type="topic" groups="T" style="linklist">
+    <links type="topic" groups="templates" style="linklist">
       <title>Templates</title>
     </links>
     <xsl:variable name="requires" select="$page/mal:info/mal:link[@type = 'xslt-requires']"/>
@@ -259,26 +251,30 @@ free software.
   <xsl:variable name="type">
     <xsl:choose>
       <xsl:when test="@style = 'xslt-template'">
-        <xsl:text>T</xsl:text>
+        <xsl:text>templates</xsl:text>
       </xsl:when>
       <xsl:when test="@style = 'xslt-mode'">
-        <xsl:text>M</xsl:text>
+        <xsl:text>modes</xsl:text>
       </xsl:when>
       <xsl:when test="@style = 'xslt-param'">
-        <xsl:text>P</xsl:text>
+        <xsl:text>parameters</xsl:text>
       </xsl:when>
     </xsl:choose>
   </xsl:variable>
   <xsl:variable name="id">
-    <xsl:value-of select="concat($type, '__', translate(mal:title, '.', '_'))"/>
+    <xsl:if test="$type = 'parameters'">
+      <xsl:text>P.</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="mal:title"/>
   </xsl:variable>
   <exsl:document href="{$id}.page">
     <page id="{$id}" type="topic" style="{@style}">
+      <xsl:variable name="prefix" select="str:tokenize(mal:title, '.-_')[1]"/>
       <info>
         <link type="guide" xref="{$xsldoc.id}" group="{$type}"/>
-        <link type="guide" xref="index__{$type}"/>
+        <link type="guide" xref="{$type}" group="{$prefix}"/>
         <xsl:if test="count(mal:info/xsldoc:stub) > 0">
-          <link type="guide" xref="stubs"/>
+          <link type="guide" xref="stubs" group="{$prefix}"/>
         </xsl:if>
         <xsl:call-template name="revision"/>
         <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>
@@ -289,7 +285,7 @@ free software.
           <xsl:copy-of select="mal:info/mal:desc/node()"/>
         </p>
       </xsl:if>
-      <xsl:if test="$type = 'T'">
+      <xsl:if test="$type = 'templates'">
         <xsl:if test="count(mal:info/xsldoc:stub) > 0">
           <note>
             <p>This template is a stub. Customizations may override it for
@@ -298,7 +294,7 @@ free software.
         </xsl:if>
       </xsl:if>
       <xsl:apply-templates/>
-      <xsl:if test="$type = 'T'">
+      <xsl:if test="$type = 'templates'">
         <xsl:variable name="title" select="mal:title"/>
         <xsl:variable name="xslt_node" select="$xslt_file//xsl:template[@name = $title]"/>
         <xsl:call-template name="calls_templates">

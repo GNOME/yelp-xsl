@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-Mallard - Glossaries
+Mallard Glossaries
 Common templates for the Mallard Glossary extension.
 
 This stylesheet contains utility templates for locating and linking to terms
