@@ -204,7 +204,7 @@ inside a bibliography entry.
 
 <!-- = biblioset % db2html.biblioentry.mode = -->
 <xsl:template mode="db2html.biblioentry.mode" match="biblioset | db:biblioset">
-  <xsl:call-template name="db2thml.biblioentry.data"/>
+  <xsl:call-template name="db2html.biblioentry.data"/>
 </xsl:template>
 
 <!-- = citerefentry % db2html.biblioentry.mode = -->
