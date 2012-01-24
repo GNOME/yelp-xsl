@@ -277,6 +277,9 @@ free software.
       <info>
         <link type="guide" xref="{$xsldoc.id}" group="{$type}"/>
         <link type="guide" xref="index__{$type}"/>
+        <xsl:if test="count(mal:info/xsldoc:stub) > 0">
+          <link type="guide" xref="stubs"/>
+        </xsl:if>
         <xsl:call-template name="revision"/>
         <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>
       </info>
