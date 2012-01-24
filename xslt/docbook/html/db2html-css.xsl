@@ -174,16 +174,14 @@ div.qanda-label {
 }
 dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
 
+div.synopfragment { padding-top: 0.5em; }
 span.co {
-  font-size: 0.83em;
-  margin: 0 0.2em 0 0.2em;
-  padding: 0 0.5em 0 0.5em;
-  -moz-border-radius: 1em;
-  -webkit-border-radius: 1em;
-  border-radius: 1em;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
   background-color: </xsl:text>
   <xsl:value-of select="$color.yellow_background"/><xsl:text>;
-  border: solid 1px </xsl:text>
+  outline: solid 1px </xsl:text>
   <xsl:value-of select="$color.yellow_border"/><xsl:text>;
 }
 span.co a { text-decoration: none; }

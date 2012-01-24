@@ -39,25 +39,6 @@ This module contains templates to process DocBook command synopsis elements.
          use="@id | @xml:id"/>
 
 
-<!--**==========================================================================
-db2html.cmdsynopsis.synopfragment.label
-Create a label for a #{synopfragment} element.
-:Revision:version="1.0" date="2011-05-16" status="final"
-$node: The #{synopfragment} element to create a label for.
-
-This template creates a label for a command synopsis fragment, taking a
-#{synopfragment} element as the ${node} parameter. The label is numbered
-according to the position of the #{synopfragment} element in the document.
-To create the corresponding label for a #{synopfragmentref} element, locate
-the corresponding #{synopfragment} element and call this template on it.
--->
-<xsl:template name="db2html.cmdsynopsis.synopfragment.label">
-  <xsl:param name="node" select="."/>
-  <span class="co">
-    <xsl:value-of select="count($node/preceding::synopfragment) + count($node/preceding::db:synopfragment) + 1"/>
-  </span>
-</xsl:template>
-
 <!-- == Matched Templates == -->
 
 <!-- = arg = -->
@@ -300,7 +281,19 @@ the corresponding #{synopfragment} element and call this template on it.
   </xsl:param>
   <div class="synopfragment">
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:call-template name="db2html.cmdsynopsis.synopfragment.label"/>
+    <xsl:variable name="count" select="count(preceding-sibling::synopfragment) +
+                                       count(preceding-sibling::db:synopfragment)"/>
+    <xsl:variable name="countlast" select="count(preceding-sibling::synopfragment) +
+                                           count(following-sibling::synopfragment) +
+                                           count(preceding-sibling::db:synopfragment) +
+                                           count(following-sibling::db:synopfragment)"/>
+    <span class="co">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$count + 1"/>
+      <xsl:text> </xsl:text>
+    </span>
+    <xsl:value-of select="str:padding(string-length($countlast + 1) -
+                                      string-length($count + 1) + 1, ' ')"/>
     <xsl:for-each select="*">
       <xsl:value-of select="$sepchar"/>
       <xsl:apply-templates select=".">
@@ -312,15 +305,17 @@ the corresponding #{synopfragment} element and call this template on it.
 
 <!-- = synopfragmentref = -->
 <xsl:template match="synopfragmentref | db:synopfragmentref">
-  <xsl:variable name="node" select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)"/>
-  <xsl:call-template name="db2html.cmdsynopsis.synopfragment.label">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
+  <xsl:for-each select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)[1]">
+    <xsl:variable name="count" select="count(preceding-sibling::synopfragment) +
+                                       count(preceding-sibling::db:synopfragment)"/>
+    <span class="co">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$count + 1"/>
+      <xsl:text> </xsl:text>
+    </span>
+  </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="db.label">
-  <span class="co"><xsl:value-of select="preceding::synopfragment + 1"/></span>
-</xsl:template>
 
 <!--%%==========================================================================
 db2html.cmdsynopsis.sbr.padding.mode
@@ -338,7 +333,7 @@ enclosing #{cmdsynopsis} element, passing the #{sbr} element.  When processed
 in this mode, elements should only output padding for content the leads up to
 the #{sbr} element passed in the ${sbr} parameter.  When processing children
 that don't contain the given #{sbr} element, the ${sbr} parameter should be
-set to #{false()} for those children.  This avoids additional ancestor
+set to #{false()} for those children.  This avoids additional descendant
 selectors, which are generally expensive to perform.
 -->
 <xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="node()">
@@ -350,8 +345,8 @@ selectors, which are generally expensive to perform.
               match="cmdsynopsis | db:cmdsynopsis">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
-  <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr, $sbr) or
-                                       set:has-same-node(.|.//db:sbr, $sbr)][1]"/>
+  <xsl:variable name="child"
+                select="*[$sbr and set:has-same-node(.|.//sbr|.//db:sbr, $sbr)][1]"/>
   <xsl:choose>
     <xsl:when test="$child/self::synopfragment |
                     $child/self::db:synopfragment">
@@ -500,11 +495,11 @@ selectors, which are generally expensive to perform.
               match="synopfragment | db:synopfragment">
   <xsl:param name="sbr"/>
   <xsl:param name="sepchar"/>
-  <xsl:variable name="label">
-    <!-- FIXME -->
-    <xsl:call-template name="db.label"/>
-  </xsl:variable>
-  <xsl:value-of select="str:padding(string-length($label), ' ')"/>
+  <xsl:variable name="countlast" select="count(preceding-sibling::synopfragment) +
+                                         count(following-sibling::synopfragment) +
+                                         count(preceding-sibling::db:synopfragment) +
+                                         count(following-sibling::db:synopfragment)"/>
+  <xsl:value-of select="str:padding(string-length($countlast + 1) + 3, ' ')"/>
   <xsl:value-of select="str:padding(string-length($sepchar), ' ')"/>
   <xsl:variable name="child" select="*[set:has-same-node(.|.//sbr|.//db:sbr, $sbr)][1]"/>
   <!-- Process all children that are before $child, but 
@@ -531,7 +526,8 @@ selectors, which are generally expensive to perform.
 <xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
               match="synopfragmentref | db:synopfragmentref">
   <xsl:variable name="node" select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)"/>
-  <xsl:variable name="count" select="count($node/preceding::synopfragment) + count($node/preceding::db:synopfragment) + 1"/>
+  <xsl:variable name="count" select="count($node/preceding-sibling::synopfragment) +
+                                     count($node/preceding-sibling::db:synopfragment) + 1"/>
   <xsl:value-of select="str:padding(string-length($count) + 2, ' ')"/>
 </xsl:template>
 
