@@ -29,7 +29,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 HTML Output
 Common utilities and CSS for transformations to HTML.
-:Requires: gettext color icons
+:Requires: l10n color icons
 :Revision:version="1.0" date="2010-05-26" status="final"
 
 This stylesheet contains common templates for creating HTML output. The
@@ -1319,7 +1319,7 @@ This template outputs CSS to support syntax highlighting of code blocks. Syntax
 highlighting is done at document load time with JavaScript. Text in code blocks
 is broken up into chunks and wrapped in HTML elements with particular classes.
 This template outputs CSS to match those elements and style them with the
-built-in themeable colors from !{colors}.
+built-in themeable colors from !{color}.
 
 All parameters can be automatically computed if not provided.
 -->

@@ -59,7 +59,7 @@ topic or next links.
 <xsl:template name="mal.sort.tsort">
   <xsl:param name="node" select="key('mal.cache.key', $mal.link.default_root)"/>
   <xsl:variable name="sorted">
-    <xsl:call-template name="mal.sort.tsort.node">
+    <xsl:call-template name="_mal.sort.tsort.node">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:variable>
@@ -72,7 +72,8 @@ topic or next links.
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="mal.sort.tsort.node">
+<!--#* _mal.sort.tsort.node -->
+<xsl:template name="_mal.sort.tsort.node">
   <xsl:param name="node" select="key('mal.cache.key', $mal.link.default_root)"/>
   <xsl:param name="done" select="''"/>
   <xsl:variable name="linkid">
@@ -92,7 +93,7 @@ topic or next links.
     </xsl:variable>
     <xsl:if test="$linklinkid != '' and not(contains($done, concat(' ', $linklinkid, ' ')))">
       <xsl:variable name="nextnode" select="key('mal.cache.key', $linklinkid)"/>
-      <xsl:call-template name="mal.sort.tsort.node">
+      <xsl:call-template name="_mal.sort.tsort.node">
         <xsl:with-param name="node" select="$nextnode"/>
         <xsl:with-param name="done" select="concat($done, ' ', $linkid, ' ')"/>
       </xsl:call-template>
@@ -163,7 +164,7 @@ topic or next links.
       <xsl:for-each select="$mal.cache">
       <xsl:variable name="topic" select="key('mal.cache.key', $linklinkid)"/>
       <xsl:if test="$topic">
-        <xsl:call-template name="mal.sort.tsort.node">
+        <xsl:call-template name="_mal.sort.tsort.node">
           <xsl:with-param name="node" select="$topic"/>
           <xsl:with-param name="done" select="$newdone"/>
         </xsl:call-template>
@@ -173,6 +174,7 @@ topic or next links.
   </xsl:for-each>
 </xsl:template>
 
+<!--#* _mal.sort.getgroups -->
 <xsl:template name="_mal.sort.getgroups">
   <xsl:param name="node" select="."/>
   <xsl:variable name="groups">

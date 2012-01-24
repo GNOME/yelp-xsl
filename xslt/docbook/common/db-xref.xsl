@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook Links
-:Requires: db-chunk db-title gettext
+:Requires: db-chunk db-title l10n
 -->
 
 

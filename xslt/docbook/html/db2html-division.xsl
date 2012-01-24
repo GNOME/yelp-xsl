@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Divisions
-:Requires: db-chunk db-title db-xref db2html-css db2html-footnote db2html-xref gettext
+:Requires: db-chunk db-title db-xref db2html-css db2html-footnote db2html-xref l10n
 
 REMARK: Describe this module
 -->

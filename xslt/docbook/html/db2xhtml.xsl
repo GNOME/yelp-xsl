@@ -58,4 +58,6 @@ DocBook to XHTML
 <xsl:include href="db2html-xref.xsl"/>
 <xsl:include href="db2html-footnote.xsl"/>
 
+<!--#! db2html-suppressed -->
+
 </xsl:stylesheet>

@@ -78,7 +78,10 @@ free software.
   <xsl:param name="page"/>
   <xsl:param name="xslt_node"/>
   <xsl:for-each select="$xslt_node">
-    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[not(@name = $xslt_node//xsl:template/@name)]/@name)"/>
+    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[
+                                                 not(@name = $xslt_node//xsl:template/@name) and
+                                                 not($page/processing-instruction('xslt-private')[string(.) = @name])
+                                                 ]/@name)"/>
     <xsl:if test="count($calls_templates) > 0">
       <list style="compact">
         <title>Calls Templates</title>
@@ -135,17 +138,21 @@ free software.
       <xsl:copy-of select="mal:info/*[not(self::mal:desc) and not(self::mal:revision)]"/>
       <!-- xslt-includes -->
       <xsl:for-each select="$xslt_file//xsl:include">
+        <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
         <xsl:choose>
+          <xsl:when test="$page/processing-instruction('xslt-private')[string(.) = $base]"/>
           <xsl:when test="processing-instruction('pass')">
             <xsl:for-each select="document(@href, /)//xsl:include">
-              <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
-                                              '.xsl'), '.', '_')"/>
-              <link type="topic" xref="{$id}" group="S"/>
+              <xsl:variable name="subpage" select="/mal:page"/>
+              <xsl:variable name="subbase" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+              <xsl:if test="not($subpage/processing-instruction('xslt-private')[string(.) = $subbase])">
+                <xsl:variable name="id" select="translate($subbase, '.', '_')"/>
+                <link type="topic" xref="{$id}" group="S"/>
+              </xsl:if>
             </xsl:for-each>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:variable name="id" select="translate(substring-before(str:split(@href, '/')[last()],
-                                            '.xsl'), '.', '_')"/>
+            <xsl:variable name="id" select="translate($base, '.', '_')"/>
             <link type="topic" xref="{$id}" group="S"/>
           </xsl:otherwise>
         </xsl:choose>
@@ -160,9 +167,11 @@ free software.
       </xsl:for-each>
       <!-- xslt-implements-mode -->
       <xsl:for-each select="set:distinct($xslt_file//xsl:template/@mode)">
-        <!-- FIXME: xslt-private -->
-        <xsl:variable name="id" select="concat('M__', translate(., '.', '_'))"/>
-        <link type="xslt-implements-mode" xref="{$id}"/>
+        <xsl:variable name="mode" select="string(.)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
+          <xsl:variable name="id" select="concat('M__', translate($mode, '.', '_'))"/>
+          <link type="xslt-implements-mode" xref="{$id}"/>
+        </xsl:if>
       </xsl:for-each>
       <!-- xslt-defines-param -->
       <xsl:for-each select="$xslt_file/xsl:param/@name">

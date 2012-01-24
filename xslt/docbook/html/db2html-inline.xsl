@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Inline Elements
-:Requires: db-common db2html-xref gettext
+:Requires: db-common db2html-xref l10n
 
 REMARK: Describe this module
 -->

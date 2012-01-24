@@ -24,7 +24,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook Common
-:Requires: gettext
+:Requires: l10n
 
 This stylesheet module provides utility templates for DocBook that are
 independant of the target format.

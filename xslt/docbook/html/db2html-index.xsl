@@ -26,7 +26,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Indexes
-:Requires: db-chunk db2html-division gettext
+:Requires: db-chunk db2html-division l10n
 
 This module provides templates to process DocBook indexes.
 -->

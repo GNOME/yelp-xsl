@@ -134,6 +134,7 @@ If no #{if:when} elements are true, the output is empty.
   </xsl:if>
 </xsl:template>
 
+<!--#* _mal.if.choose.try -->
 <xsl:template name="_mal.if.choose.try">
   <xsl:param name="node"/>
   <xsl:param name="pos"/>

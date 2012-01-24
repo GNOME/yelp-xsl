@@ -22,7 +22,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Icons
 Specify common named icons to style output.
-:Requires: gettext
+:Requires: l10n
 :Revision:version="1.0" date="2010-05-25" status="final"
 
 This stylesheet provides a common interface to specify icons for transformations

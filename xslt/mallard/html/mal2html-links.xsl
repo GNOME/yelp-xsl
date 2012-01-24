@@ -870,6 +870,7 @@ when determining which links to output.
   </div>
 </xsl:template>
 
+<!--#% _mal2html.links.divs.nolink.mode -->
 <xsl:template mode="_mal2html.links.divs.nolink.mode" match="*">
   <xsl:copy>
     <xsl:copy-of select="@*"/>

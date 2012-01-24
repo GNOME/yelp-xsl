@@ -143,6 +143,11 @@ cur_block = "";
 }
 
 # One-line comments to mark things private
+/<\!--\#\!.*-->/ {
+    split($0, a);
+    printf "<?xslt-private %s?>\n", a[2];
+    next;
+}
 /<\!--\#\*.*-->/ {
     split($0, a);
     printf "<?xslt-private %s?>\n", a[2];
