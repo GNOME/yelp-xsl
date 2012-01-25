@@ -86,6 +86,7 @@ free software.
       <list style="compact">
         <title>Calls Templates</title>
         <xsl:for-each select="$calls_templates">
+          <xsl:sort select="."/>
           <xsl:variable name="name" select="string(.)"/>
           <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
             <item><p><link xref="{$name}"/></p></item>
@@ -117,6 +118,7 @@ free software.
     <list style="compact">
       <title>Calls Modes</title>
       <xsl:for-each select="$calls_modes_nodes">
+        <xsl:sort select="@xref"/>
         <item><p><xsl:copy-of select="."/></p></item>
       </xsl:for-each>
     </list>
@@ -156,6 +158,64 @@ free software.
         <item><p><link xref="{.}"/></p></item>
       </xsl:for-each>
     </list>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="calls_params">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page"/>
+  <xsl:param name="xslt_node"/>
+  <xsl:variable name="calls_params">
+    <xsl:for-each select="$xslt_node//xsl:variable/@select   |
+                          $xslt_node//xsl:param/@select      |
+                          $xslt_node//xsl:with-param/@select |
+                          $xslt_node//xsl:for-each/@select   |
+                          $xslt_node//xsl:sort/@select       |
+                          $xslt_node//xsl:value-of/@select   |
+                          $xslt_node//xsl:if/@test           | 
+                          $xslt_node//xsl:when/@test         ">
+      <xsl:variable name="xpath_node" select="."/>
+      <xsl:if test="contains($xpath_node, '$')">
+        <!-- libxslt doesn't str:split when the string starts with the split arg -->
+        <xsl:for-each select="str:split(concat(' ', $xpath_node), '$')[position() > 1]">
+          <xsl:variable name="paramname">
+            <xsl:call-template name="read_chars">
+              <xsl:with-param name="string" select="."/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:if test="not($xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:param
+                              [not(parent::xsl:stylesheet)][@name = $paramname]
+                         or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable
+                              [@name = $paramname]
+                        )">
+            <param><xsl:value-of select="$paramname"/></param>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="calls_params_nodes" select="exsl:node-set($calls_params)/*"/>
+  <xsl:if test="count($calls_params_nodes) > 0">
+    <list style="compact">
+      <title>Calls Parameters</title>
+      <xsl:for-each select="set:distinct($calls_params_nodes)">
+        <xsl:sort select="."/>
+        <item><p><link xref="{concat('P.', .)}"/></p></item>
+      </xsl:for-each>
+    </list>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="read_chars">
+  <xsl:param name="string" select="''"/>
+  <xsl:if test="$string != ''">
+    <xsl:variable name="char" select="substring($string, 1, 1)"/>
+    <xsl:if test="contains('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_', $char)">
+      <xsl:value-of select="$char"/>
+      <xsl:call-template name="read_chars">
+        <xsl:with-param name="string" select="substring($string, 2)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
@@ -210,34 +270,6 @@ free software.
           <link type="xslt-defines-param" xref="{concat('P.', $name)}"/>
         </xsl:if>
       </xsl:for-each>
-      <!-- xslt-uses-param -->
-      <xsl:variable name="uses-params">
-        <!-- FIXME
-        -->
-        <xsl:for-each select="$xslt_file//xsl:value-of/@select |
-                              $xslt_file//xsl:if/@test         | 
-                              $xslt_file//xsl:when/@test       ">
-          <xsl:variable name="xpath_node" select="."/>
-          <xsl:variable name="params">
-            <xsl:call-template name="extract-params">
-              <xsl:with-param name="string" select="string(.)"/>
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:for-each select="str:split($params)">
-            <xsl:variable name="paramname" select="string(.)"/>
-            <xsl:if test="
-              not($xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:param[@name = $paramname]
-               or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable[@name = $paramname])">
-              <param>
-                <xsl:value-of select="$paramname"/>
-              </param>
-            </xsl:if>
-          </xsl:for-each>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:for-each select="set:distinct(exsl:node-set($uses-params)/mal:param)">
-        <link type="xslt-uses-param" xref="{concat('P.', .)}"/>
-      </xsl:for-each>
     </info>
     <xsl:copy-of select="mal:title"/>
     <xsl:if test="string(mal:info/mal:desc) != ''">
@@ -280,6 +312,10 @@ free software.
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
     <xsl:call-template name="calls_keys">
+      <xsl:with-param name="page" select="$page"/>
+      <xsl:with-param name="xslt_node" select="$xslt_file"/>
+    </xsl:call-template>
+    <xsl:call-template name="calls_params">
       <xsl:with-param name="page" select="$page"/>
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
@@ -358,6 +394,11 @@ free software.
           <xsl:with-param name="page" select="ancestor::mal:page"/>
           <xsl:with-param name="xslt_node" select="$xslt_node"/>
         </xsl:call-template>
+        <xsl:call-template name="calls_params">
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="page" select="ancestor::mal:page"/>
+          <xsl:with-param name="xslt_node" select="$xslt_node"/>
+        </xsl:call-template>
       </xsl:if>
     </page>
   </exsl:document>
@@ -367,53 +408,6 @@ free software.
 
 <xsl:template match="*">
   <xsl:copy-of select="."/>
-</xsl:template>
-
-<xsl:template name="extract-params">
-  <xsl:param name="string" select="''"/>
-  <xsl:param name="position" select="1"/>
-  <xsl:param name="in_param" select="false()"/>
-  <xsl:if test="$position &lt;= string-length($string)">
-    <xsl:variable name="char" select="substring($string, $position, 1)"/>
-    <xsl:choose>
-      <xsl:when test="$in_param">
-        <xsl:choose>
-          <xsl:when test="contains(
-                          'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_',
-                          $char)">
-            <xsl:value-of select="$char"/>
-            <xsl:call-template name="extract-params">
-              <xsl:with-param name="string" select="$string"/>
-              <xsl:with-param name="position" select="$position + 1"/>
-              <xsl:with-param name="in_param" select="true()"/>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text> </xsl:text>
-            <xsl:call-template name="extract-params">
-              <xsl:with-param name="string" select="$string"/>
-              <xsl:with-param name="position" select="$position + 1"/>
-              <xsl:with-param name="in_param" select="false()"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:when test="$char = '$'">
-        <xsl:call-template name="extract-params">
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="position" select="$position + 1"/>
-          <xsl:with-param name="in_param" select="true()"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="extract-params">
-          <xsl:with-param name="string" select="$string"/>
-          <xsl:with-param name="position" select="$position + 1"/>
-          <xsl:with-param name="in_param" select="false()"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
