@@ -64,12 +64,35 @@ it to a file.  Those tools can use this parameter directly.
 <xsl:param name="mal.cache" select="document($mal.cache.file, /)/cache:cache"/>
 
 
-<!--============================================================================
+<!--++==========================================================================
 mal.cache.key
+Get a page or section from the #{id} attribute.
+:Revision:version="3.4" date="2012-01-25" status="final"
+
+This key returns a #{page} or #{section} element from a Mallard cache file from
+the #{id} attribute. In cache files, the #{id} attribute of #{section} elements
+is set to a qualified ID by prefixing it with the containing page ID and the
+hash character.
+
+The context node must be in the document @{mal.cache} when this key is called.
 -->
 <xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
+
+
+<!--++==========================================================================
+mal.cache.link.key
+Get #{link} elements from a link type and #{xref} attribute.
+:Revision:version="3.4" date="2012-01-25" status="final"
+
+This key returns all #{link} elements from a Mallard cache file from the #{type}
+and #{xref} attributes. They key is the concatenation of the #{type} attribute,
+the colon character, and the #{xref} attribute. Only #{link} elements with both
+a #{type} and #{xref} attribute are supported.
+
+The context node must be in the document @{mal.cache} when this key is called.
+-->
 <xsl:key name="mal.cache.link.key"
-         match="mal:info/mal:link[@type]"
+         match="mal:info/mal:link[@type][@xref]"
          use="concat(@type, ':', @xref)"/>
 
 

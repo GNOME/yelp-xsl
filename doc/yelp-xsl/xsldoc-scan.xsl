@@ -123,6 +123,42 @@ free software.
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="calls_keys">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page"/>
+  <xsl:param name="xslt_node"/>
+  <xsl:variable name="calls_keys">
+    <xsl:for-each select="$xslt_node//xsl:variable/@select   |
+                          $xslt_node//xsl:param/@select      |
+                          $xslt_node//xsl:with-param/@select |
+                          $xslt_node//xsl:for-each/@select   |
+                          $xslt_node//xsl:sort/@select       |
+                          $xslt_node//xsl:value-of/@select   |
+                          $xslt_node//xsl:if/@test           | 
+                          $xslt_node//xsl:when/@test         ">
+      <xsl:variable name="xpath_node" select="."/>
+      <xsl:if test="contains($xpath_node, 'key(')">
+        <!-- libxslt doesn't str:split when the string starts with the split arg -->
+        <xsl:for-each select="str:split(concat(' ', $xpath_node), 'key(')[position() > 1]">
+          <xsl:for-each select="str:tokenize(., concat('&quot;', &quot;&apos;&quot;))[1]">
+            <key><xsl:value-of select="."/></key>
+          </xsl:for-each>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="calls_keys_nodes" select="exsl:node-set($calls_keys)/*"/>
+  <xsl:if test="count($calls_keys_nodes) > 0">
+    <list style="compact">
+      <title>Calls Keys</title>
+      <xsl:for-each select="set:distinct($calls_keys_nodes)">
+        <xsl:sort select="."/>
+        <item><p><link xref="{.}"/></p></item>
+      </xsl:for-each>
+    </list>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="mal:page">
   <xsl:variable name="page" select="."/>
   <page id="{$xsldoc.id}" type="guide" style="xslt-stylesheet">
@@ -222,6 +258,9 @@ free software.
     <links type="topic" groups="templates" style="linklist">
       <title>Templates</title>
     </links>
+    <links type="topic" groups="keys" style="linklist">
+      <title>Keys</title>
+    </links>
     <xsl:variable name="requires" select="$page/mal:info/mal:link[@type = 'xslt-requires']"/>
     <xsl:if test="count($requires) > 0">
       <list style="compact">
@@ -240,6 +279,10 @@ free software.
       <xsl:with-param name="page" select="$page"/>
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
+    <xsl:call-template name="calls_keys">
+      <xsl:with-param name="page" select="$page"/>
+      <xsl:with-param name="xslt_node" select="$xslt_file"/>
+    </xsl:call-template>
   </page>
 </xsl:template>
 
@@ -252,6 +295,9 @@ free software.
     <xsl:choose>
       <xsl:when test="@style = 'xslt-template'">
         <xsl:text>templates</xsl:text>
+      </xsl:when>
+      <xsl:when test="@style = 'xslt-key'">
+        <xsl:text>keys</xsl:text>
       </xsl:when>
       <xsl:when test="@style = 'xslt-mode'">
         <xsl:text>modes</xsl:text>
@@ -303,6 +349,11 @@ free software.
           <xsl:with-param name="xslt_node" select="$xslt_node"/>
         </xsl:call-template>
         <xsl:call-template name="calls_modes">
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="page" select="ancestor::mal:page"/>
+          <xsl:with-param name="xslt_node" select="$xslt_node"/>
+        </xsl:call-template>
+        <xsl:call-template name="calls_keys">
           <xsl:with-param name="node" select="."/>
           <xsl:with-param name="page" select="ancestor::mal:page"/>
           <xsl:with-param name="xslt_node" select="$xslt_node"/>

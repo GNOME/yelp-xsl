@@ -55,7 +55,7 @@
 #
 # Note that we need to add a special character for processing instructions.
 function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
-    ix = match(line, /[\*\$\@\%\!\#]\{[^\}]*\}/)
+    ix = match(line, /[\*\$\@\+\%\!\#]\{[^\}]*\}/)
     if (ix > 0) {
         jx = ix + index(substr(line, ix), "}");
 	pre = substr(line, 1, ix - 1);
@@ -69,6 +69,8 @@ function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
 	    fmt = "<code style='xslt-template' xref='%s'>%s</code>";
 	else if (char == "%")
 	    fmt = "<code style='xslt-mode' xref='%s'>%s</code>";
+  else if (char == "+")
+      fmt = "<code style='xslt-key' xref='%s'>%s</code>";
 	else if (char == "@") 
 	    fmt = "<code style='xslt-param' xref='P.%s'>%s</code>";
 	else if (char == "$") 
@@ -130,6 +132,13 @@ cur_block = "";
     print "\n<section style='xslt-mode'>";
     cur_line_mode = "title";
     comment_type = "mode";
+    cur_block = "";
+    next;
+}
+/<\!--\+\+/ {
+    print "\n<section style='xslt-key'>";
+    cur_line_mode = "title";
+    comment_type = "key";
     cur_block = "";
     next;
 }
@@ -320,6 +329,7 @@ cur_line_mode == "body" && end_mode {
 
 end_comment && comment_type == "template" { print "</section>"; }
 end_comment && comment_type == "mode" { print "</section>"; }
+end_comment && comment_type == "key" { print "</section>"; }
 end_comment && comment_type == "param" { print "</section>"; }
 end_comment {
     cur_line_mode = "";
