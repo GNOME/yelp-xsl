@@ -369,7 +369,7 @@ of the authors' names and the year of publication.  In English,
 these are generally formatted with [square brackets] surrounding
 them.
 
-This string is similar to citation.format, but they are used in
+This string is similar to citation.label, but they are used in
 different places.  The citation formatter is used when referencing
 a bibliography entry in running prose.  This formatter is used for
 the actual bibliography entry.  You may use the same formatting for
@@ -455,6 +455,19 @@ appropriate content, as follows:
 &lt;comment.name/> - The name of the person making the comment
 </its:locNote>
 <msgstr>from <comment.name/></msgstr>
+</msg>
+
+<msg id="copyright.format">
+<its:locNote>
+ID: copyright.format
+This is a format message used to format copyright notices. Special
+elements in the message will be replaced with the appropriate content,
+as follows:
+
+&lt;copyright.years/> - The years the copyrightable material was made
+&lt;copyright.name/>  - The person or entity that holds the copyright
+</its:locNote>
+<msgstr>© <copyright.years/> <copyright.name/></msgstr>
 </msg>
 
 <msg id="email.tooltip">

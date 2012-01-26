@@ -19,7 +19,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="db str"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                exclude-result-prefixes="db str msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -44,7 +45,15 @@ notice, beginning with the copyright symbol "©".
 -->
 <xsl:template name="db.copyright">
   <xsl:param name="node" select="."/>
-  <xsl:text>©&#x00A0;</xsl:text>
+  <xsl:call-template name="l10n.gettext">
+    <xsl:with-param name="msgid" select="'copyright.format'"/>
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="format" select="true()"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.years">
+  <xsl:param name="node"/>
   <xsl:for-each select="$node/year | $node/db:year">
     <xsl:if test="position() != 1">
       <xsl:call-template name="l10n.gettext">
@@ -53,17 +62,18 @@ notice, beginning with the copyright symbol "©".
     </xsl:if>
     <xsl:apply-templates select="."/>
   </xsl:for-each>
-  <xsl:if test="$node/holder | $node/db:holder">
-    <xsl:text>&#x00A0;&#x00A0;</xsl:text>
-    <xsl:for-each select="$node/holder | $node/db:holder">
-      <xsl:if test="position() != 1">
-        <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="', '"/>
-        </xsl:call-template>
-      </xsl:if>
-      <xsl:apply-templates select="."/>
-    </xsl:for-each>
-  </xsl:if>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.name">
+  <xsl:param name="node"/>
+  <xsl:for-each select="$node/holder | $node/db:holder">
+    <xsl:if test="position() != 1">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="', '"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:apply-templates select="."/>
+  </xsl:for-each>
 </xsl:template>
 
 

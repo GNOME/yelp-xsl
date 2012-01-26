@@ -22,8 +22,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui e exsl set"
+                exclude-result-prefixes="mal ui e exsl set msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -73,8 +74,11 @@ the #{page} element. Information is extracted from the #{info} element of ${node
           <div class="copyrights">
             <xsl:for-each  select="$copyrights">
               <div class="copyright">
-                <!-- FIXME: i18n, multi-year, email -->
-                <xsl:value-of select="concat('© ', mal:years, ' ', mal:name)"/>
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'copyright.format'"/>
+                  <xsl:with-param name="node" select="."/>
+                  <xsl:with-param name="format" select="true()"/>
+                </xsl:call-template>
               </div>
             </xsl:for-each>
           </div>
@@ -207,6 +211,18 @@ the #{page} element. Information is extracted from the #{info} element of ${node
     </div>
   </div>
   </xsl:if>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.years">
+  <xsl:param name="node"/>
+  <xsl:apply-templates mode="mal2html.inline.mode"
+                       select="$node/mal:years/node()"/>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.name">
+  <xsl:param name="node"/>
+  <xsl:apply-templates mode="mal2html.inline.mode"
+                       select="$node/mal:name/node()"/>
 </xsl:template>
 
 
