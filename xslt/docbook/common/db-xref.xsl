@@ -69,7 +69,7 @@ REMARK: The xrefstyle/role stuff needs to be documented
 -->
 <xsl:template name="db.xref.content">
   <xsl:param name="linkend" select="@linkend"/>
-  <xsl:param name="target" select="key('idkey', $linkend)"/>
+  <xsl:param name="target" select="key('db.id.key', $linkend)"/>
   <xsl:param name="xrefstyle" select="@xrefstyle"/>
   <xsl:choose>
     <xsl:when test="$xrefstyle = 'role:title'">
@@ -111,7 +111,7 @@ REMARK: Talk about how this works with chunking
 -->
 <xsl:template name="db.xref.target">
   <xsl:param name="linkend" select="@linkend"/>
-  <xsl:param name="target" select="key('idkey', $linkend)"/>
+  <xsl:param name="target" select="key('db.id.key', $linkend)"/>
   <xsl:param name="is_chunk" select="false()"/>
   <xsl:choose>
     <xsl:when test="set:has-same-node($target, /*)">
@@ -145,7 +145,7 @@ REMARK: Document this
 -->
 <xsl:template name="db.xref.tooltip">
   <xsl:param name="linkend" select="@linkend"/>
-  <xsl:param name="target" select="key('idkey', $linkend)"/>
+  <xsl:param name="target" select="key('db.id.key', $linkend)"/>
   <xsl:apply-templates mode="db.xref.tooltip.mode" select="$target"/>
 </xsl:template>
 

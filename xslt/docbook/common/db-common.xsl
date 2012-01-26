@@ -31,7 +31,16 @@ This stylesheet module provides utility templates for DocBook that are
 independant of the target format.
 -->
 
-<xsl:key name="idkey" match="*" use="@id | @xml:id"/>
+
+<!--++==========================================================================
+db.id.key
+Get an element from the #{id} attribute.
+:Revision:version="3.4" date="2012-01-26" status="final"
+
+This key returns any element based on the #{id} attribute, or the #{xml:id}
+attribute in DocBook 5.
+-->
+<xsl:key name="db.id.key" match="*" use="@id | @xml:id"/>
 
 
 <!--**==========================================================================

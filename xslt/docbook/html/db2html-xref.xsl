@@ -56,7 +56,7 @@ REMARK: Describe this template
 -->
 <xsl:template name="db2html.link" match="link">
   <xsl:param name="linkend" select="@linkend"/>
-  <xsl:param name="target" select="key('idkey', $linkend)"/>
+  <xsl:param name="target" select="key('db.id.key', $linkend)"/>
   <a class="link">
     <xsl:attribute name="href">
       <xsl:call-template name="db.xref.target">
@@ -74,7 +74,7 @@ REMARK: Describe this template
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:when test="@endterm">
-        <xsl:apply-templates select="key('idkey', @endterm)/node()"/>
+        <xsl:apply-templates select="key('db.id.key', @endterm)/node()"/>
       </xsl:when>
     </xsl:choose>
   </a>
@@ -161,7 +161,7 @@ REMARK: Describe this template
 -->
 <xsl:template name="db2html.xref" match="xref | db:xref">
   <xsl:param name="linkend"   select="@linkend"/>
-  <xsl:param name="target"    select="key('idkey', $linkend)"/>
+  <xsl:param name="target"    select="key('db.id.key', $linkend)"/>
   <xsl:param name="endterm"   select="@endterm"/>
   <xsl:param name="xrefstyle" select="@xrefstyle"/>
   <xsl:param name="content"   select="false()"/>
@@ -183,7 +183,7 @@ REMARK: Describe this template
         <xsl:copy-of select="$content"/>
       </xsl:when>
       <xsl:when test="$endterm">
-        <xsl:apply-templates select="key('idkey', $endterm)/node()"/>
+        <xsl:apply-templates select="key('db.id.key', $endterm)/node()"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="db.xref.content">

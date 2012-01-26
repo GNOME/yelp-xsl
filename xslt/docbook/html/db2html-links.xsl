@@ -112,8 +112,8 @@ and "Next", although the actual page titles are used for tooltips.
       <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="prev_node" select="key('idkey', $prev_id)"/>
-  <xsl:variable name="next_node" select="key('idkey', $next_id)"/>
+  <xsl:variable name="prev_node" select="key('db.id.key', $prev_id)"/>
+  <xsl:variable name="next_node" select="key('db.id.key', $next_id)"/>
   <div class="links nextlinks">
     <xsl:if test="$prev_id != ''">
       <a class="nextlinks-prev">

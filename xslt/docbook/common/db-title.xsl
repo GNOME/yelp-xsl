@@ -61,7 +61,7 @@ use a localized automatic title if no explicit title is provided.
           <xsl:with-param name="node" select="."/>
         </xsl:call-template>
       </xsl:variable>
-      <xsl:variable name="target_chunk" select="key('idkey', $target_chunk_id)"/>
+      <xsl:variable name="target_chunk" select="key('db.id.key', $target_chunk_id)"/>
       <xsl:call-template name="db.title">
         <xsl:with-param name="node" select="$target_chunk"/>
       </xsl:call-template>

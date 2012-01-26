@@ -223,7 +223,7 @@ REMARK: Explain how this works
 -->
 <xsl:template name="db.chunk.chunk-id">
   <xsl:param name="id" select="@id | @xml:id"/>
-  <xsl:param name="node" select="key('idkey', $id)"/>
+  <xsl:param name="node" select="key('db.id.key', $id)"/>
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk">
       <xsl:with-param name="node" select="$node"/>
