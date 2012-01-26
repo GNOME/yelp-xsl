@@ -26,7 +26,17 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 Localized Strings
 -->
 
-<xsl:key name="msg" match="msg:msgstr"
+
+<!--++==========================================================================
+l10n.msgstr.key
+Get a translated message from an ID and a language.
+:Revision:version="3.4" date="2012-01-26" status="final"
+
+This key indexes all message translations in a message catalog file. The elements
+are indexed by the concatenation of the message id, the string #{__LC__}, and the
+#{xml:lang} attribute converted to lowercase.
+-->
+<xsl:key name="l10n.msgstr.key" match="msg:msgstr"
          use="concat(../@id, '__LC__',
               translate(@xml:lang,
                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -87,7 +97,7 @@ REMARK: Lots of documentation is needed
                                         '_@.ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                                         '---abcdefghijklmnopqrstuvwxyz')"/>
   <xsl:for-each select="document(concat('domains/', $domain, '.xml'))">
-    <xsl:variable name="msg" select="key('msg', concat($msgid, '__LC__', $normlang))"/>
+    <xsl:variable name="msg" select="key('l10n.msgstr.key', concat($msgid, '__LC__', $normlang))"/>
     <xsl:choose>
       <xsl:when test="$msg">
         <xsl:for-each select="$source">
