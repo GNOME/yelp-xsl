@@ -104,33 +104,6 @@ mal.facet.all.key
          use="''"/>
 
 
-<!--============================================================================
-mal.link.guide.key
--->
-<xsl:key name="mal.link.guide.key"
-         match="mal:page/mal:info/mal:link[@type = 'guide'] |
-                mal:section/mal:info/mal:link[@type = 'guide']"
-         use="@xref"/>
-
-
-<!--============================================================================
-mal.link.topic.key
--->
-<xsl:key name="mal.link.topic.key"
-         match="mal:page/mal:info/mal:link[@type = 'topic'] |
-                mal:section/mal:info/mal:link[@type = 'topic']"
-         use="@xref"/>
-
-
-<!--============================================================================
-mal.link.seealso.key
--->
-<xsl:key name="mal.link.seealso.key"
-         match="mal:page/mal:info/mal:link[@type = 'seealso'] |
-                mal:section/mal:info/mal:link[@type = 'seealso']"
-         use="@xref"/>
-
-
 <!--@@==========================================================================
 mal.link.prefix
 A prefix for link targets.
@@ -583,7 +556,7 @@ The output is a result tree fragment.  To use these results, call
   <xsl:copy-of select="$links"/>
   <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
   <xsl:for-each select="$mal.cache">
-    <xsl:for-each select="key('mal.link.topic.key', $linkid)/../..">
+    <xsl:for-each select="key('mal.cache.link.key', concat('topic:', $linkid))/../..">
       <xsl:variable name="linklinkid">
         <xsl:call-template name="mal.link.linkid"/>
       </xsl:variable>
@@ -727,7 +700,7 @@ The output is a result tree fragment.  To use these results, call
   <xsl:copy-of select="$links"/>
   <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
   <xsl:for-each select="$mal.cache">
-    <xsl:for-each select="key('mal.link.guide.key', $linkid)">
+    <xsl:for-each select="key('mal.cache.link.key', concat('guide:', $linkid))">
       <xsl:variable name="source" select="../.."/>
       <xsl:variable name="linklinkid">
         <xsl:call-template name="mal.link.xref.linkid">
@@ -824,7 +797,7 @@ The output is a result tree fragment.  To use these results, call
   <xsl:copy-of select="$links"/>
   <xsl:variable name="linknodes" select="exsl:node-set($links)/*"/>
   <xsl:for-each select="$mal.cache">
-    <xsl:for-each select="key('mal.link.seealso.key', $linkid)/../..">
+    <xsl:for-each select="key('mal.cache.link.key', concat('seealso:', $linkid))/../..">
       <xsl:variable name="linklinkid">
         <xsl:call-template name="mal.link.linkid"/>
       </xsl:variable>
