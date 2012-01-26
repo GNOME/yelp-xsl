@@ -56,6 +56,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 -->
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
+  <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
   <div class="sect about">
     <div class="hgroup">
       <h2>
@@ -205,6 +206,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
       </div>
     </div>
   </div>
+  </xsl:if>
 </xsl:template>
 
 
