@@ -555,21 +555,34 @@ separators used between links.
   <div class="clear"/>
 </xsl:template>
 
-<!-- = section = -->
-<xsl:template mode="mal2html.section.mode" match="mal:section">
-  <div id="{@id}">
+
+<!--**==========================================================================
+mal2html.section
+Output HTML for a Mallard #{section} element.
+:Revision:version="3.4" date="2012-01-26" status="final"
+$node: The #{section} element.
+
+This template outputs HTML for a #{section} element. It it called by the
+templates that handle #{page} and #{section} elements.
+-->
+<xsl:template name="mal2html.section">
+  <xsl:param name="node" select="."/>
+  <div id="{$node/@id}">
     <xsl:attribute name="class">
       <xsl:text>sect</xsl:text>
       <xsl:if test="@ui:expanded">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
     </xsl:attribute>
-    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <xsl:call-template name="mal2html.ui.expander.data">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <div class="inner">
-      <xsl:apply-templates select="."/>
+      <xsl:apply-templates select="$node"/>
     </div>
   </div>
 </xsl:template>
+
 
 <!-- page | section -->
 <xsl:template match="mal:page | mal:section">
@@ -663,7 +676,9 @@ separators used between links.
       <xsl:call-template name="mal2html.facets.links"/>
     </xsl:if>
   </div>
-  <xsl:apply-templates mode="mal2html.section.mode" select="mal:section"/>
+  <xsl:for-each select="mal:section">
+    <xsl:call-template name="mal2html.section"/>
+  </xsl:for-each>
   <xsl:variable name="postlinks" select="mal:section/following-sibling::mal:links"/>
   <xsl:if test="(not(mal:section) and (
                   ($guidenodes and not(mal:links[@type = 'guide']))
