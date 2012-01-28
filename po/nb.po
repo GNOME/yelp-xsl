@@ -1,17 +1,17 @@
 # Norwegian bokmål translation of yelp-xsl.
 # Copyright (C) 2004, 2005 Shaun McChance
 # This file is distributed under the same license as the gnome-doc-utils package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2004-2011.
+# Kjartan Maraas <kmaraas@gnome.org>, 2004-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-13 11:23+0100\n"
-"PO-Revision-Date: 2011-11-13 11:24+0100\n"
+"POT-Creation-Date: 2012-01-28 16:02+0100\n"
+"PO-Revision-Date: 2012-01-28 16:03+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norwegian bokmal <i18n-nb@lister.ping.uio.no>\n"
-"Language: \n"
+"Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -337,7 +337,7 @@ msgstr "Vis bibliografioppføring <biblioentry.label/>."
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -423,6 +423,18 @@ msgstr "fra <comment.name/> <comment.date/>"
 msgid "from <comment.name/>"
 msgstr "fra <comment.name/>"
 
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
+
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -430,7 +442,7 @@ msgstr "fra <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:469(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "Send e-post til «<string/>»."
 
@@ -441,7 +453,7 @@ msgstr "Send e-post til «<string/>»."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:481(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Les definisjonen for «<glossterm/>»."
 
@@ -461,7 +473,7 @@ msgstr "Les definisjonen for «<glossterm/>»."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:502(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Se <glosssee/>."
 
@@ -482,7 +494,7 @@ msgstr "Se <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:524(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Se også <glosssee/>."
 
@@ -493,7 +505,7 @@ msgstr "Se også <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:536(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "«<node/>»"
 
@@ -504,7 +516,7 @@ msgstr "«<node/>»"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:548(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "'<node/>'"
 
@@ -518,7 +530,7 @@ msgstr "'<node/>'"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:563(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "Se <seeie/>."
 
@@ -532,6 +544,6 @@ msgstr "Se <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:578(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "Se også <seeie/>."
