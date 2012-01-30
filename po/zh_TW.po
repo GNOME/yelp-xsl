@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl 3.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-21 12:19+0800\n"
-"PO-Revision-Date: 2011-12-17 20:22+0800\n"
-"Last-Translator: Pin-hsien Li <pspeter9931@gmail.com>\n"
+"POT-Creation-Date: 2012-01-30 19:48+0800\n"
+"PO-Revision-Date: 2012-01-30 18:56+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -337,7 +337,7 @@ msgstr "檢視參考書目項目 <biblioentry.label/>。"
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -423,6 +423,18 @@ msgstr "從 <comment.name/> 於 <comment.date/>"
 msgid "from <comment.name/>"
 msgstr "從 <comment.name/>"
 
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
+
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -430,7 +442,7 @@ msgstr "從 <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:469(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "傳送電子郵件至位址「<string/>」。"
 
@@ -441,7 +453,7 @@ msgstr "傳送電子郵件至位址「<string/>」。"
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:481(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "讀取「<glossterm/>」定義。"
 
@@ -461,7 +473,7 @@ msgstr "讀取「<glossterm/>」定義。"
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:502(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "參閱 <glosssee/>。"
 
@@ -482,7 +494,7 @@ msgstr "參閱 <glosssee/>。"
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:524(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "另請參閱 <glosssee/>。"
 
@@ -493,7 +505,7 @@ msgstr "另請參閱 <glosssee/>。"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:536(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -504,7 +516,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:548(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -518,7 +530,7 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:563(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "參閱 <seeie/>。"
 
@@ -532,18 +544,6 @@ msgstr "參閱 <seeie/>。"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:578(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "另請參閱 <seeie/>。"
-
-#~ msgid "Contents"
-#~ msgstr "內容"
-
-#~ msgid "Further Reading"
-#~ msgstr "進一步閱讀"
-
-#~ msgid "Name"
-#~ msgstr "名稱"
-
-#~ msgid "Preface"
-#~ msgstr "序"
