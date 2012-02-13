@@ -395,6 +395,39 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:call-template name="db2html.blockquote"/>
 </xsl:template>
 
+<!-- == bridgehead = -->
+<xsl:template match="bridgehead | db:bridgehead">
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk"/>
+  </xsl:param>
+  <xsl:variable name="render">
+    <xsl:choose>
+      <xsl:when test="starts-with(@renderas, 'sect')">
+        <xsl:value-of select="substring-after(@renderas, 'sect')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>6</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="level" select="number($depth_in_chunk) + number($render) - 1"/>
+  <xsl:variable name="title_h">
+    <xsl:choose>
+      <xsl:when test="$depth_in_chunk &lt; 6">
+        <xsl:value-of select="concat('h', $level)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>h6</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <div class="hgroup bridgehead">
+    <xsl:element name="{$title_h}" namespace="{$html.namespace}">
+      <xsl:apply-templates/>
+    </xsl:element>
+  </div>
+</xsl:template>
+
 <!-- = caption = -->
 <xsl:template match="caption | db:caption">
   <xsl:call-template name="db2html.block">

@@ -43,6 +43,8 @@ REMARK: Describe this module
     </xsl:call-template>
   </xsl:param>
   <xsl:text>
+div.hgroup.bridgehead { margin-top: 1em; }
+
 <!-- == common == -->
 sub { font-size: 0.83em; }
 sub sub { font-size: 1em; }

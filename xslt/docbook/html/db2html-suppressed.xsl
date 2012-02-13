@@ -42,7 +42,6 @@ modes because of the DocBook content model.
 <xsl:template match="alt | db:alt"/>
 <xsl:template match="beginpage"/>
 <xsl:template match="bibliocoverage | db:bibliocoverage"/>
-<xsl:template match="bridgehead | db:bridgehead"/>
 
 <!-- Explicitly matched by parent -->
 <xsl:template match="listitem | db:listitem"/>
