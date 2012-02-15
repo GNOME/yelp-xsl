@@ -4,14 +4,14 @@
 #
 # Emre Kadıoğlu <emrek@gawab.com>, 2005.
 # Baris Cicek <baris@teamforce.name.tr>, 2008, 2009.
-# Muhammet Kara <muhammet.k@gmail.com>, 2011.
+# Muhammet Kara <muhammet.k@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-11-07 15:30+0000\n"
-"PO-Revision-Date: 2011-11-11 08:57+0200\n"
+"POT-Creation-Date: 2012-01-26 23:34+0000\n"
+"PO-Revision-Date: 2012-02-15 14:52+0000\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,6 @@ msgstr "C:"
 #. and other stuff about the page.
 #.
 #: yelp-xsl.xml.in:102(msg/msgstr)
-#| msgid "More About"
 msgid "About"
 msgstr "Hakkında"
 
@@ -119,147 +118,130 @@ msgid "Candidate"
 msgstr "Aday"
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:131(msg/msgstr)
+#: yelp-xsl.xml.in:130(msg/msgstr)
 msgid "Colophon"
 msgstr "Kolofon"
 
-#. Title of the listing of subsections.
-#: yelp-xsl.xml.in:137(msg/msgstr)
-msgid "Contents"
-msgstr "İçerik"
-
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:142(msg/msgstr)
+#: yelp-xsl.xml.in:135(msg/msgstr)
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:147(msg/msgstr)
+#: yelp-xsl.xml.in:140(msg/msgstr)
 msgid "Dedication"
 msgstr "İthaf Edilen"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:155(msg/msgstr)
+#: yelp-xsl.xml.in:148(msg/msgstr)
 msgid "Draft"
 msgstr "Taslak"
 
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:160(msg/msgstr)
+#: yelp-xsl.xml.in:153(msg/msgstr)
 msgid "Edited By"
 msgstr "Düzenleyen(ler):"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:168(msg/msgstr)
+#: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
 msgstr "Final"
 
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:173(msg/msgstr)
+#: yelp-xsl.xml.in:166(msg/msgstr)
 msgid "Glossary"
 msgstr "Sözlük"
 
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:178(msg/msgstr)
+#: yelp-xsl.xml.in:171(msg/msgstr)
 msgid "Important"
 msgstr "Önemli"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:186(msg/msgstr)
+#: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Incomplete"
 msgstr "Eksik"
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:191(msg/msgstr)
+#: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "Index"
 msgstr "Dizin"
 
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:196(msg/msgstr)
+#: yelp-xsl.xml.in:189(msg/msgstr)
 msgid "Legal"
 msgstr "Yasal"
 
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:203(msg/msgstr)
+#: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "License"
 msgstr "Lisans"
 
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:208(msg/msgstr)
+#: yelp-xsl.xml.in:201(msg/msgstr)
 msgid "Maintained By"
 msgstr "Projeyi Yürütenler:"
 
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:213(msg/msgstr)
+#: yelp-xsl.xml.in:206(msg/msgstr)
 msgid "More Information"
 msgstr "Daha Fazla Bilgi"
 
-#. Default title for a refnamediv element. This is the common section
-#. title found in most UNIX man pages.
-#.
-#: yelp-xsl.xml.in:222(msg/msgstr)
-msgid "Name"
-msgstr "İsim"
-
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:227(msg/msgstr)
+#: yelp-xsl.xml.in:211(msg/msgstr)
 msgid "Next"
 msgstr "Sonraki"
 
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:232(msg/msgstr)
+#: yelp-xsl.xml.in:216(msg/msgstr)
 msgid "Note"
 msgstr "Not"
 
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:240(msg/msgstr)
+#: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
 msgstr "Diğer Emeği Geçenler"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:248(msg/msgstr)
+#: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
 msgstr "Tarihi Geçmiş"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:253(msg/msgstr)
+#: yelp-xsl.xml.in:237(msg/msgstr)
 msgid "Pause"
 msgstr "Duraklat"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:258(msg/msgstr)
+#: yelp-xsl.xml.in:242(msg/msgstr)
 msgid "Play"
 msgstr "Oynat"
 
-#. Default title for a preface to a book.
-#: yelp-xsl.xml.in:264(msg/msgstr)
-msgid "Preface"
-msgstr "Önsöz"
-
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:269(msg/msgstr)
+#: yelp-xsl.xml.in:247(msg/msgstr)
 msgid "Previous"
 msgstr "Önceki"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:277(msg/msgstr)
+#: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
 msgstr "Gözden geçirme için hazır"
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:282(msg/msgstr)
+#: yelp-xsl.xml.in:260(msg/msgstr)
 msgid "See Also"
 msgstr "Ayrıyetten Bakınız"
 
@@ -267,52 +249,52 @@ msgstr "Ayrıyetten Bakınız"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:291(msg/msgstr)
+#: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
 msgstr "Görüntüleri küçült"
 
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:296(msg/msgstr)
+#: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Sidebar"
 msgstr "Kenar Çubuğu"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:303(msg/msgstr)
+#: yelp-xsl.xml.in:281(msg/msgstr)
 msgid "Stub"
 msgstr "Yarım"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:311(msg/msgstr)
+#: yelp-xsl.xml.in:289(msg/msgstr)
 msgid "Synopsis"
 msgstr "Özet"
 
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:316(msg/msgstr)
+#: yelp-xsl.xml.in:294(msg/msgstr)
 msgid "Tip"
 msgstr "İpucu"
 
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:321(msg/msgstr)
+#: yelp-xsl.xml.in:299(msg/msgstr)
 msgid "Translated By"
 msgstr "Çeviren(ler):"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:329(msg/msgstr)
+#: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
 msgstr "Görüntüleri normal boyutta göster"
 
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:334(msg/msgstr)
+#: yelp-xsl.xml.in:312(msg/msgstr)
 msgid "Warning"
 msgstr "Uyarı"
 
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:339(msg/msgstr)
+#: yelp-xsl.xml.in:317(msg/msgstr)
 msgid "Written By"
 msgstr "Yazan(lar):"
 
@@ -336,7 +318,7 @@ msgstr "Yazan(lar):"
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #.
-#: yelp-xsl.xml.in:366(msg/msgstr)
+#: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201C.png"
 
@@ -349,7 +331,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:382(msg/msgstr)
+#: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Kaynakça girdisini görüntüle <biblioentry.label/>."
 
@@ -360,7 +342,7 @@ msgstr "Kaynakça girdisini görüntüle <biblioentry.label/>."
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -371,7 +353,7 @@ msgstr "Kaynakça girdisini görüntüle <biblioentry.label/>."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:405(msg/msgstr)
+#: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -387,7 +369,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:422(msg/msgstr)
+#: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -415,7 +397,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:451(msg/msgstr)
+#: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "<comment.name/> tarafından <comment.date/> tarihinde"
 
@@ -442,9 +424,21 @@ msgstr "<comment.name/> tarafından <comment.date/> tarihinde"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:479(msg/msgstr)
+#: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr "<comment.name/> tarafından"
+
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -453,7 +447,7 @@ msgstr "<comment.name/> tarafından"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:491(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "‘<string/>’ adresine e-posta gönder."
 
@@ -464,7 +458,7 @@ msgstr "‘<string/>’ adresine e-posta gönder."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:503(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "‘<glossterm/>’ tanımını oku."
 
@@ -484,7 +478,7 @@ msgstr "‘<glossterm/>’ tanımını oku."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:524(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Bknz. <glosssee/>."
 
@@ -505,7 +499,7 @@ msgstr "Bknz. <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:546(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Ayrıca bknz. <glosssee/>."
 
@@ -516,7 +510,7 @@ msgstr "Ayrıca bknz. <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:558(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -527,7 +521,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:570(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -541,7 +535,7 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:585(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "Bknz <seeie/>."
 
@@ -555,9 +549,18 @@ msgstr "Bknz <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:600(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "Ayrıca bknz <seeie/>."
+
+#~ msgid "Contents"
+#~ msgstr "İçerik"
+
+#~ msgid "Name"
+#~ msgstr "İsim"
+
+#~ msgid "Preface"
+#~ msgstr "Önsöz"
 
 #~ msgid "Further Reading"
 #~ msgstr "İleri Okuma"
