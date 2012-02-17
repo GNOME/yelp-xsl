@@ -39,7 +39,11 @@ REMARK: Describe this module
 <xsl:import href="../common/mal-if.xsl"/>
 <xsl:import href="../common/mal-link.xsl"/>
 
-<xsl:param name="mal.if.env" select="'html xhtml'"/>
+<xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
+<xsl:param name="mal.if.features" select="'
+mallard:1.0
+'"/>
+<xsl:param name="mal.if.maybe" select="'target:mobile'"/>
 <xsl:param name="mal.link.extension" select="$html.extension"/>
 
 <xsl:include href="mal2html-api.xsl"/>

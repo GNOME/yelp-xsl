@@ -904,9 +904,9 @@ ul.mouseovers a img {
 @media only screen and (max-width: 400px) {
   ul.mouseovers a {
     display: block;
-    padding: 6px;
-    margin-left: -6px;
-    margin-right: -6px;
+    padding: 12px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
   div.mouseovers { display: none; }
 }
@@ -981,12 +981,12 @@ a.linkdiv > span.desc {
 span.linkdiv-dash { display: none; }
 @media only screen and (max-width: 400px) {
   div.linkdiv {
-    margin-left: -6px;
-    margin-right: -6px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
   div.linkdiv a {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
@@ -1091,6 +1091,22 @@ span.gloss-desc {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
+}
+
+.if-if { display: none; }
+.if-choose, .if-when, .if-else { margin: 0; padding: 0; }
+.if-choose > .if-when { display: none; }
+.if-choose > .if-else { display: block; }
+.if-if.if__not-target-mobile { display: block; }
+.if-choose.if__not-target-mobile > .if-when { display: block; }
+.if-choose.if__not-target-mobile > .if-else { display: none; }
+@media only screen and (max-width: 400px) {
+  .if-if.if__target-mobile { display: block; }
+  .if-if.if__not-target-mobile { display: none; }
+  .if-choose.if__target-mobile > .if-when { display: block; }
+  .if-choose.if__target-mobile > .if-else { display: none; }
+  .if-choose.if__not-target-mobile > .if-when { display: none; }
+  .if-choose.if__not-target-mobile > .if-else { display: block; }
 }
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">

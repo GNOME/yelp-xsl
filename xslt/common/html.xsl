@@ -792,15 +792,15 @@ a img { border: none; }
   div.body > div.region > div.contents > *,
   div.body > div.region > div.sect > div.inner > div.hgroup > *,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > * {
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
   }
   div.body > div.region > div.sect-links {
     margin-left: 0;
     margin-right: 0;
   }
   div.trails {
-    padding: 6px;
+    padding: 12px;
   }
   li {
     margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
@@ -1266,8 +1266,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
 }
 @media only screen and (max-width: 400px) {
   div.links {
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
   } 
   li.links { padding: 0; }
   div.body > div.region > div.contents > div.example,
@@ -1280,8 +1280,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
     margin-right: 0;
   }
   div.steps > div.inner > div.title {
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-left: 18px;
+    margin-right: 18px;
   }
   ol.steps, ul.steps {
     -moz-box-shadow: none;
@@ -1298,8 +1298,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
   }
   div.note-sidebar > div.inner > div.title,
   div.note-sidebar > div.inner > div.region > div.contents {
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
   }
 }
 </xsl:text>

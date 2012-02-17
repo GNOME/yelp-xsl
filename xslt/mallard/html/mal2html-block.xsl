@@ -51,7 +51,7 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), 'numbered')"/>
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
@@ -60,6 +60,10 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
     </xsl:call-template>
     <xsl:attribute name="class">
       <xsl:value-of select="local-name($node)"/>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
     </xsl:attribute>
     <xsl:if test="$numbered">
       <pre class="numbered"><xsl:call-template name="utils.linenumbering">
@@ -201,7 +205,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = comment = -->
 <xsl:template mode="mal2html.block.mode" match="mal:comment">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:if test="$mal2html.editor_mode
                 or processing-instruction('mal2html.show_comment')">
     <div>
@@ -210,6 +214,10 @@ in accordance with the Mallard specification on fallback block content.
         <xsl:text>comment</xsl:text>
         <xsl:if test="mal:title and @ui:expanded">
           <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
         </xsl:if>
       </xsl:attribute>
       <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -273,8 +281,15 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = example = -->
 <xsl:template mode="mal2html.block.mode" match="mal:example">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <div class="example">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>example</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </div>
@@ -283,13 +298,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = figure = -->
 <xsl:template mode="mal2html.block.mode" match="mal:figure">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>figure</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -322,13 +341,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = listing = -->
 <xsl:template mode="mal2html.block.mode" match="mal:listing">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>listing</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -349,7 +372,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = note = -->
 <xsl:template mode="mal2html.block.mode" match="mal:note">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <xsl:variable name="notestyle">
     <xsl:choose>
       <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
@@ -385,6 +408,10 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
     </xsl:attribute>
     <xsl:attribute name="title">
       <xsl:call-template name="l10n.gettext">
@@ -414,8 +441,15 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = p = -->
 <xsl:template mode="mal2html.block.mode" match="mal:p">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
-  <p class="p">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <p>
+    <xsl:attribute name="class">
+      <xsl:text>p</xsl:text>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </p>
@@ -424,13 +458,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = quote = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>quote</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -479,13 +517,17 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = synopsis = -->
 <xsl:template mode="mal2html.block.mode" match="mal:synopsis">
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if = 'true'">
+  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>synopsis</xsl:text>
       <xsl:if test="mal:title and @ui:expanded">
         <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+      <xsl:if test="$if != 'true'">
+        <xsl:text> if-if </xsl:text>
+        <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data"/>
@@ -529,26 +571,7 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = if:choose = -->
 <xsl:template mode="mal2html.block.mode" match="if:choose">
-  <xsl:variable name="pos">
-    <xsl:call-template name="mal.if.choose"/>
-  </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$pos != ''">
-      <xsl:apply-templates mode="mal2html.block.mode" select="if:when[position() = number($pos)]/*"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:for-each select="if:when[last()]/following-sibling::*">
-        <xsl:choose>
-          <xsl:when test="self::if:else">
-            <xsl:apply-templates mode="mal2html.block.mode" select="*"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates mode="_mal2html.choose.mode" select="if:when[1]"/>
 </xsl:template>
 
 <!-- = if:if = -->
@@ -561,12 +584,36 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:if>
 </xsl:template>
 
-<xsl:template mode="mal2html.block.mode" match="if:when | if:else">
-  <xsl:message>
-    <xsl:text>Conditional element </xsl:text>
-    <xsl:value-of select="local-name(.)"/>
-    <xsl:text> encountered outside of choose</xsl:text>
-  </xsl:message>
+<xsl:template mode="_mal2html.choose.mode" match="if:when">
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test"/>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$if = 'true'">
+      <xsl:apply-templates mode="mal2html.block.mode"/>
+    </xsl:when>
+    <xsl:when test="$if != ''">
+      <div class="if-choose {$if}">
+        <div class="if-when">
+          <xsl:apply-templates mode="mal2html.block.mode"/>
+        </div>
+        <div class="if-else">
+          <xsl:apply-templates mode="_mal2html.choose.mode" select="following-sibling::*[1]"/>
+        </div>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="_mal2html.choose.mode" select="following-sibling::*[1]"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template mode="_mal2html.choose.mode" match="if:else">
+  <xsl:apply-templates mode="mal2html.block.mode"/>
+</xsl:template>
+
+<xsl:template mode="_mal2html.choose.mode" match="*">
+  <xsl:apply-templates mode="mal2html.block.mode" select=". | following-sibling::*"/>
 </xsl:template>
 
 </xsl:stylesheet>

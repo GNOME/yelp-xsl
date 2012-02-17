@@ -27,11 +27,10 @@ Mallard to HTML
 REMARK: Describe this module
 -->
 
-<xsl:include href="mal2xhtml.xsl" pass="true"><?pass?></xsl:include>
-
-<!--#@ html.xhtml -->
 <xsl:param name="html.xhtml" select="false()"/>
-<xsl:param name="mal.if.env" select="'html'"/>
+<xsl:param name="mal.if.target" select="'target:html'"/>
+
+<xsl:include href="mal2xhtml.xsl" pass="true"><?pass?></xsl:include>
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 
