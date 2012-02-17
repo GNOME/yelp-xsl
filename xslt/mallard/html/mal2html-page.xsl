@@ -871,9 +871,9 @@ ul.mouseovers a img {
 @media only screen and (max-width: 400px) {
   ul.mouseovers a {
     display: block;
-    padding: 6px;
-    margin-left: -6px;
-    margin-right: -6px;
+    padding: 12px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
   div.mouseovers { display: none; }
 }
@@ -948,12 +948,12 @@ a.linkdiv > span.desc {
 span.linkdiv-dash { display: none; }
 @media only screen and (max-width: 400px) {
   div.linkdiv {
-    margin-left: -6px;
-    margin-right: -6px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
   div.linkdiv a {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
