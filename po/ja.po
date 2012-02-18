@@ -6,15 +6,16 @@
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009.
 # Hideki Yamane <henrich@debian.org>, 2011.
 # Yasumichi Akahoshi <yasumichi@vinelinux.org>, 2012.
+# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-01-19 15:58+0000\n"
-"PO-Revision-Date: 2012-01-21 05:35+0900\n"
-"Last-Translator: Yasumichi Akahoshi <yasumichi@vinelinux.org>\n"
+"POT-Creation-Date: 2012-02-15 12:54+0000\n"
+"PO-Revision-Date: 2012-02-16 16:32+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +94,7 @@ msgstr "A:"
 #.
 #: yelp-xsl.xml.in:102(msg/msgstr)
 msgid "About"
-msgstr ""
+msgstr "このドキュメントについて"
 
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:107(msg/msgstr)
@@ -176,13 +177,13 @@ msgstr "索引"
 #. Default title for a DocBook legal notice.
 #: yelp-xsl.xml.in:189(msg/msgstr)
 msgid "Legal"
-msgstr ""
+msgstr "法的通知"
 
 #. Generic title for license information when it's not a known license.
 #.
 #: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "License"
-msgstr ""
+msgstr "ライセンス"
 
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:201(msg/msgstr)
@@ -209,7 +210,7 @@ msgstr "注記"
 #.
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
-msgstr ""
+msgstr "その他のクレジット"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
@@ -279,7 +280,7 @@ msgstr "ヒント"
 #. Title for a list of translators.
 #: yelp-xsl.xml.in:299(msg/msgstr)
 msgid "Translated By"
-msgstr ""
+msgstr "翻訳者"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
@@ -296,7 +297,7 @@ msgstr "警告"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:317(msg/msgstr)
 msgid "Written By"
-msgstr ""
+msgstr "著者"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -319,9 +320,8 @@ msgstr ""
 #. double quotation mark for the watermark image.
 #.
 #: yelp-xsl.xml.in:344(msg/msgstr)
-#, fuzzy
 msgid "yelp-quote-201C.png"
-msgstr "watermark-blockquote-201C.png"
+msgstr "yelp-quote-201C.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -343,7 +343,7 @@ msgstr "参考文献のエントリ <biblioentry.label/> を表示する。"
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -429,6 +429,18 @@ msgstr "<comment.date/> <comment.name/> より"
 msgid "from <comment.name/>"
 msgstr "<comment.name/> より"
 
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
+
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -436,7 +448,7 @@ msgstr "<comment.name/> より"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:469(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "‘<string/>’ にメールを送る"
 
@@ -447,9 +459,9 @@ msgstr "‘<string/>’ にメールを送る"
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:481(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
+msgstr "‘<glossterm/>’の定義を参照する。"
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -467,7 +479,7 @@ msgstr ""
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:502(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "<glosssee/> を参照。"
 
@@ -488,7 +500,7 @@ msgstr "<glosssee/> を参照。"
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:524(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "<glosssee/> も参照。"
 
@@ -499,7 +511,7 @@ msgstr "<glosssee/> も参照。"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:536(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -510,7 +522,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:548(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -524,7 +536,7 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:563(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "<seeie/> を参照。"
 
@@ -538,7 +550,7 @@ msgstr "<seeie/> を参照。"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:578(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "<seeie/> も参照。"
 
