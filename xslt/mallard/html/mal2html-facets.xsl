@@ -135,7 +135,7 @@ $(document).ready(function () {
     var content = control.closest('div.body,div.sect');
     content.find('a.facet').each(function () {
       var link = $(this);
-      var facets = link.parents('div.body,div.sect').children('div.contents').children('div.facets').children('div.facet');
+      var facets = link.parents('div.body,div.sect').children('div.region').children('div.contents').children('div.facets').children('div.facet');
       var visible = true;
       for (var i = 0; i < facets.length; i++) {
         var facet = facets.slice(i, i + 1);
