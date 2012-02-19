@@ -18,7 +18,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:if="http://projectmallard.org/experimental/if/"
+                xmlns:if="http://projectmallard.org/if/1.0/"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:str="http://exslt.org/strings"
