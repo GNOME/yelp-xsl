@@ -911,6 +911,33 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
+div.links-ui-grid {
+  display: inline-block;
+  vertical-align: top;
+  clear: both
+  margin: 0;
+}
+div.links-ui-grid > a {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
+  padding: 1em;
+  border-radius: 6px;
+}
+div.links-ui-grid > a:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  border: none;
+}
+div.links-ui-grid > a > * {
+  display: block;
+  overflow: hidden;
+}
+div.links-ui-grid > a > span.title {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
 div.links-grid {
   display: inline-block;
   clear: both
