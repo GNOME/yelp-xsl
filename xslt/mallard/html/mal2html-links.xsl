@@ -912,8 +912,8 @@ when determining which links to output.
   </xsl:variable>
   <xsl:variable name="height">
     <xsl:choose>
-      <xsl:when test="$node/@ui:width">
-        <xsl:value-of select="$node/@ui:width"/>
+      <xsl:when test="$node/@ui:height">
+        <xsl:value-of select="$node/@ui:height"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>200</xsl:text>
@@ -943,12 +943,64 @@ when determining which links to output.
           </xsl:attribute>
           <span class="links-ui-grid-img" style="width: {$width}px; height: {$height}px;">
             <xsl:if test="$thumb">
-              <img src="{$thumb/@src}">
-                <xsl:if test="$node/@ui:overflow = 'scale'">
-                  <xsl:attribute name="style">
-                    <xsl:value-of select="concat('width: ', $width, 'px; height: ', $height, 'px;')"/>
-                  </xsl:attribute>
-                </xsl:if>
+              <img>
+                <xsl:for-each select="$thumb">
+                  <xsl:sort data-type="number" select="number(not(@width))"/>
+                  <xsl:sort data-type="number" select="number(not(@height))"/>
+                  <xsl:sort data-type="number" select="($width div $height) div (@width div @height)"/>
+                  <xsl:sort data-type="number" select="math:abs($width - @width)"/>
+                  <xsl:sort data-type="number" select="math:abs($height - @height)"/>
+                  <xsl:if test="position() = 1">
+                    <xsl:attribute name="src">
+                      <xsl:value-of select="@src"/>
+                    </xsl:attribute>
+                  </xsl:if>
+                  <xsl:choose>
+                    <xsl:when test="$node/@ui:overflow = 'crop'"/>
+                    <xsl:when test="$node/@ui:overflow = 'width'">
+                      <xsl:attribute name="width">
+                        <xsl:value-of select="$width"/>
+                      </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="$node/@ui:overflow = 'height'">
+                      <xsl:attribute name="height">
+                        <xsl:value-of select="$height"/>
+                      </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="$node/@ui:overflow = 'scale'">
+                      <xsl:attribute name="width">
+                        <xsl:value-of select="$width"/>
+                      </xsl:attribute>
+                      <xsl:attribute name="height">
+                        <xsl:value-of select="$height"/>
+                      </xsl:attribute>
+                    </xsl:when>
+                    <xsl:when test="@width and @height">
+                      <xsl:variable name="ratio" select="$width div $height"/>
+                      <xsl:variable name="tratio" select="@width div @height"/>
+                      <xsl:choose>
+                        <xsl:when test="$ratio &lt; $tratio">
+                          <xsl:attribute name="width">
+                            <xsl:value-of select="$width"/>
+                          </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:attribute name="height">
+                            <xsl:value-of select="$height"/>
+                          </xsl:attribute>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:attribute name="width">
+                        <xsl:value-of select="$width"/>
+                      </xsl:attribute>
+                      <xsl:attribute name="height">
+                        <xsl:value-of select="$height"/>
+                      </xsl:attribute>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:for-each>
               </img>
             </xsl:if>
           </span>
