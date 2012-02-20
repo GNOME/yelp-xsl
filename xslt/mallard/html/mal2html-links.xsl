@@ -461,6 +461,7 @@ This template calls *{mal2html.links.series.prev} and
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="$page"/>
               <xsl:with-param name="xref" select="$page/@id"/>
+              <xsl:with-param name="role" select="'series'"/>
             </xsl:call-template>
           </li>
           <xsl:call-template name="mal2html.links.series.next">
@@ -509,11 +510,13 @@ to it.
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$prev"/>
               <xsl:with-param name="xref" select="$prev/../../@id"/>
+              <xsl:with-param name="role" select="'series'"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$prev"/>
             <xsl:with-param name="xref" select="$prev/../../@id"/>
+            <xsl:with-param name="role" select="'series'"/>
           </xsl:call-template>
         </a>
       </li>
@@ -555,11 +558,13 @@ page.
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$next"/>
               <xsl:with-param name="xref" select="$next/@xref"/>
+              <xsl:with-param name="role" select="'series'"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$next"/>
             <xsl:with-param name="xref" select="$next/@xref"/>
+            <xsl:with-param name="role" select="'series'"/>
           </xsl:call-template>
         </a>
       </li>
