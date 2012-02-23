@@ -1,3 +1,45 @@
+3.3.3
+=====
+* Use series link titles for series links
+* Fixed facet link-handling, broken by HTML changes
+* Style tweaks for mobile rendering
+* Implemented new Conditionals extension
+* Initial support for new ui:thumb extension
+* Added customization stubs for Mallard linking
+* Added support for DocBook bridgehead element
+* Don't output empty About footer
+* Changed mal2html.section.mode to named template
+* Made copyright notices localizable (DocBook and Mallard)
+* Strip query string from email address in tooltip
+* Alignment fixed for DocBook synopfragment
+* Fixed handling of DocBook biblioset
+* Fixed handling of DocBook indexdiv
+* Basic support for DocBook task element
+* Support for DocBook package element
+* Support for DocBook sidebar element
+* Use common formatting for DocBook example and procedure
+* Changed some XSLT key names and made public
+* Set language attributes on HTML body
+* Moved gettext stylesheet into common
+* Updated translations:
+  bg       (Alexander Shopov)
+  da       (Ask H. Larsen)
+  sr       (Мирослав Николић)
+  sr@latin (Мирослав Николић)
+  ug       (Gheyret Kenji)
+  sv       (Daniel Nylander)
+  ja       (Jiro Matsuzawa, Hideki Yamane)
+  tr       (Muhammet Kara)
+  ru       (Yuri Myasoedov)
+  gl       (Fran Diéguez)
+  be       (Ihar Hrachyshka)
+  zh_HK    (Chao-Hsiung Liao)
+  zh_TW    (Chao-Hsiung Liao)
+  sl       (Matej Urbančič)
+  nb       (Kjartan Maraas)
+  he       (Yaron Shahrabani)
+  es       (Daniel Mustieles)
+
 3.3.2
 =====
 * Customized rendering for mobile devices
