@@ -99,6 +99,12 @@ the synopsis.
         <xsl:choose>
           <xsl:when test="$function/api:name">
             <api:pre>
+              <div class="{$link/@class}">
+              <xsl:for-each select="$link/@*">
+                <xsl:if test="starts-with(name(.), 'data-')">
+                  <xsl:copy-of select="."/>
+                </xsl:if>
+              </xsl:for-each>
               <xsl:apply-templates mode="mal2html.inline.mode" select="$function/api:returns/api:type/node()"/>
               <xsl:variable name="tab" select="20 - string-length($function/api:returns/api:type)"/>
               <xsl:choose>
@@ -172,6 +178,7 @@ the synopsis.
               <xsl:if test="not($function/api:arg or $function/api:varargs)">
                 <xsl:text>void);&#x000A;</xsl:text>
               </xsl:if>
+              </div>
             </api:pre>
           </xsl:when>
           <xsl:otherwise>
@@ -182,11 +189,13 @@ the synopsis.
     </xsl:for-each>
   </xsl:variable>
   <xsl:variable name="out" select="exsl:node-set($out_)"/>
-  <div class="synopsis">
-    <pre class="contents">
-      <xsl:copy-of select="$out/api:pre/node()"/>
-    </pre>
-  </div>
+  <xsl:if test="$out/api:pre">
+    <div class="synopsis">
+      <pre class="contents">
+        <xsl:copy-of select="$out/api:pre/*"/>
+      </pre>
+    </div>
+  </xsl:if>
   <xsl:if test="$out/mal:link">
     <xsl:call-template name="mal2html.links.ul">
       <xsl:with-param name="node" select="$node"/>

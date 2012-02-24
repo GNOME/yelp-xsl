@@ -63,6 +63,7 @@ REMARK: Describe this template
                       <xsl:value-of select="@values"/>
                     </xsl:attribute>
                   </input>
+                  <xsl:text> </xsl:text>
                   <span>
                     <xsl:apply-templates mode="mal2html.inline.mode"/>
                   </span>
@@ -91,34 +92,32 @@ tag and VALUES is the values.
 -->
 <xsl:template name="mal2html.facets.links">
   <xsl:param name="node" select="."/>
-  <div>
-    <xsl:variable name="facetlinks">
-      <xsl:call-template name="mal.link.facetlinks">
-        <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
-    </xsl:variable>
+  <xsl:variable name="facetlinks">
+    <xsl:call-template name="mal.link.facetlinks">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="links">
     <xsl:for-each select="exsl:node-set($facetlinks)/mal:link">
-      <xsl:sort select="mal:title[@type = 'sort']"/>
-      <xsl:variable name="link" select="."/>
-      <xsl:variable name="xref" select="@xref"/>
-      <xsl:for-each select="$mal.cache">
-        <xsl:call-template name="_mal2html.links.divs.link">
-          <xsl:with-param name="source" select="$node"/>
-          <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-          <xsl:with-param name="class" select="'facet'"/>
-          <xsl:with-param name="attrs">
-            <a>
-              <xsl:for-each select="$link/facet:tag">
-                <xsl:attribute name="data-facet-{@key}">
-                  <xsl:value-of select="@values"/>
-                </xsl:attribute>
-              </xsl:for-each>
-            </a>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:for-each>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:attribute name="class">
+          <xsl:value-of select="'facet-link'"/>
+        </xsl:attribute>
+        <xsl:for-each select="facet:tag">
+          <xsl:attribute name="data-facet-{@key}">
+            <xsl:value-of select="@values"/>
+          </xsl:attribute>
+        </xsl:for-each>
+      </xsl:copy>
     </xsl:for-each>
-  </div>
+  </xsl:variable>
+  <xsl:call-template name="mal2html.links.links">
+    <xsl:with-param name="node" select="($node | $node/mal:links[@type='facet'])[last()]"/>
+    <xsl:with-param name="links" select="exsl:node-set($links)/mal:link"/>
+    <xsl:with-param name="role" select="'facet'"/>
+    <xsl:with-param name="divs" select="true()"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -133,7 +132,7 @@ $(document).ready(function () {
   $('input.facet').change(function () {
     var control = $(this);
     var content = control.closest('div.body,div.sect');
-    content.find('a.facet').each(function () {
+    content.find('.facet-link').each(function () {
       var link = $(this);
       var facets = link.parents('div.body,div.sect').children('div.region').children('div.contents').children('div.facets').children('div.facet');
       var visible = true;
@@ -147,7 +146,7 @@ $(document).ready(function () {
           var key = input.attr('data-facet-key');
           var values = input.attr('data-facet-values').split(' ');
           for (var k = 0; k < values.length; k++) {
-            if (link.is('a[data-facet-' + key + ' ~= "' + values[k] + '"]')) {
+            if (link.is('*[data-facet-' + key + ' ~= "' + values[k] + '"]')) {
               inputvis = true;
               break;
             }

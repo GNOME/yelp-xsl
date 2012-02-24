@@ -43,7 +43,7 @@ Mallard links element and implicitly.
 <!--**==========================================================================
 mal2html.links.links
 Output links in one of a number of formats.
-:Revision:version="3.4" date="2012-02-23" status="final"
+:Revision:version="3.4" date="2012-02-24" status="final"
 $node: A #{links}, #{page}, or #{section} element to link from.
 $depth: The depth level for the HTML header element.
 $links: A list of links, as from a template in !{mal-link}.
@@ -53,7 +53,9 @@ $title: A default title to use if no #{title} element is found.
 
 This is a common formatting template used by some #{links} element handlers.
 It selects an appropriate way to render the links based on style hints and
-extension attributes on ${node}.
+extension attributes on ${node}. This template (or the templates it calls)
+will pass through #{class} and #{data-*} attributes found on the #{link}
+elements to the top-level container element of each output link.
 
 This template will handle sorting of the links.
 
@@ -190,7 +192,7 @@ parameter will be used if provided.
             <xsl:variable name="bold" select="contains($style, ' bold ')"/>
             <xsl:call-template name="mal2html.links.ul">
               <xsl:with-param name="links" select="$links"/>
-              <xsl:with-param name="role" select="'topic'"/>
+              <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="bold" select="$bold"/>
               <xsl:with-param name="nodesc" select="$nodesc"/>
             </xsl:call-template>
@@ -227,6 +229,7 @@ This template will handle sorting of the links.
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
       <xsl:call-template name="mal2html.links.ul.li">
+        <xsl:with-param name="link" select="."/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="bold" select="$bold"/>
         <xsl:with-param name="nodesc" select="$nodesc"/>
@@ -240,6 +243,7 @@ This template will handle sorting of the links.
 mal2html.links.ul.li
 Output a list item with a link.
 :Revision:version="1.0" date="2011-06-15" status="final"
+$link: The #{link} element from a list of links.
 $xref: An #{xref} string pointing to the target node.
 $role: A link role, used to select the appropriate title.
 $bold: Whether to bold the link titles.
@@ -249,13 +253,19 @@ This template is called by *{mal2html.links.ul} to output a list item with
 a link for each target.
 -->
 <xsl:template name="mal2html.links.ul.li">
+  <xsl:param name="link" select="/false"/>
   <xsl:param name="xref" select="@xref"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="bold" select="false()"/>
   <xsl:param name="nodesc" select="false()"/>
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
-    <li class="links">
+    <li class="links {$link/@class}">
+      <xsl:for-each select="$link/@*">
+        <xsl:if test="starts-with(name(.), 'data-')">
+          <xsl:copy-of select="."/>
+        </xsl:if>
+      </xsl:for-each>
       <a>
         <xsl:if test="$bold">
           <xsl:attribute name="class">
@@ -799,7 +809,12 @@ when determining which links to output.
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
     <xsl:variable name="xref" select="@xref"/>
-    <div class="links-grid">
+    <div class="links-grid {@class}">
+      <xsl:for-each select="@*">
+        <xsl:if test="starts-with(name(.), 'data-')">
+          <xsl:copy-of select="."/>
+        </xsl:if>
+      </xsl:for-each>
       <xsl:for-each select="$mal.cache">
         <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
         <div class="links-grid-link"><a>
@@ -842,69 +857,60 @@ when determining which links to output.
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
-    <xsl:variable name="xref" select="@xref"/>
     <xsl:if test="($max = -1 or position() &lt;= $max) and
                   ($min = -1 or position() &gt; $min)">
+      <xsl:variable name="link" select="."/>
+      <xsl:variable name="xref" select="@xref"/>
       <xsl:for-each select="$mal.cache">
-        <xsl:call-template name="_mal2html.links.divs.link">
-          <xsl:with-param name="source" select="$node"/>
-          <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="nodesc" select="$nodesc"/>
-        </xsl:call-template>
+        <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+        <div class="linkdiv {$link/@class}">
+          <xsl:for-each select="$link/@*">
+            <xsl:if test="starts-with(name(.), 'data-')">
+              <xsl:copy-of select="."/>
+            </xsl:if>
+          </xsl:for-each>
+          <a class="linkdiv">
+            <xsl:attribute name="href">
+              <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$target/@id"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:call-template name="mal.link.tooltip">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$target/@id"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <span class="title">
+              <xsl:call-template name="mal.link.content">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$target/@id"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
+              <xsl:call-template name="mal2html.editor.badge">
+                <xsl:with-param name="target" select="$target"/>
+              </xsl:call-template>
+            </span>
+            <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
+              <span class="linkdiv-dash">
+                <xsl:text> &#x2014; </xsl:text>
+              </span>
+              <span class="desc">
+                <xsl:variable name="desc">
+                  <xsl:apply-templates mode="mal2html.inline.mode"
+                                       select="$target/mal:info/mal:desc[1]/node()"/>
+                </xsl:variable>
+                <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode"
+                                     select="exsl:node-set($desc)"/>
+              </span>
+            </xsl:if>
+          </a>
+        </div>
       </xsl:for-each>
     </xsl:if>
   </xsl:for-each>
-</xsl:template>
-
-<xsl:template name="_mal2html.links.divs.link">
-  <xsl:param name="source" select="."/>
-  <xsl:param name="target"/>
-  <xsl:param name="class" select="''"/>
-  <xsl:param name="attrs"/>
-  <xsl:param name="role" select="''"/>
-  <xsl:param name="nodesc" select="false()"/>
-  <div class="linkdiv">
-  <a class="{concat($class, ' linkdiv')}">
-    <xsl:attribute name="href">
-      <xsl:call-template name="mal.link.target">
-        <xsl:with-param name="node" select="$source"/>
-        <xsl:with-param name="xref" select="$target/@id"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="title">
-      <xsl:call-template name="mal.link.tooltip">
-        <xsl:with-param name="node" select="$source"/>
-        <xsl:with-param name="xref" select="$target/@id"/>
-        <xsl:with-param name="role" select="$role"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
-    <span class="title">
-      <xsl:call-template name="mal.link.content">
-        <xsl:with-param name="node" select="$source"/>
-        <xsl:with-param name="xref" select="$target/@id"/>
-        <xsl:with-param name="role" select="$role"/>
-      </xsl:call-template>
-      <xsl:call-template name="mal2html.editor.badge">
-        <xsl:with-param name="target" select="$target"/>
-      </xsl:call-template>
-    </span>
-    <xsl:if test="not($nodesc) and $target/mal:info/mal:desc">
-      <span class="linkdiv-dash">
-        <xsl:text> &#x2014; </xsl:text>
-      </span>
-      <span class="desc">
-        <xsl:variable name="desc">
-          <xsl:apply-templates mode="mal2html.inline.mode"
-                               select="$target/mal:info/mal:desc[1]/node()"/>
-        </xsl:variable>
-        <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode"
-                             select="exsl:node-set($desc)"/>
-      </span>
-    </xsl:if>
-  </a>
-  </div>
 </xsl:template>
 
 <!--#% _mal2html.links.divs.nolink.mode -->
@@ -951,7 +957,12 @@ when determining which links to output.
     <xsl:variable name="link" select="."/>
     <xsl:for-each select="$mal.cache">
       <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
-      <div class="links-ui-grid">
+      <div class="links-ui-grid {$link/@class}">
+        <xsl:for-each select="$link/@*">
+          <xsl:if test="starts-with(name(.), 'data-')">
+            <xsl:copy-of select="."/>
+          </xsl:if>
+        </xsl:for-each>
         <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
         <a>
           <xsl:attribute name="href">
@@ -1035,11 +1046,17 @@ when determining which links to output.
     <xsl:for-each select="$links">
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
+      <xsl:variable name="link" select="."/>
       <xsl:variable name="xref" select="@xref"/>
       <xsl:for-each select="$mal.cache">
         <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
         <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
-        <li class="links">
+        <li class="links {$link/@class}">
+          <xsl:for-each select="$link/@*">
+            <xsl:if test="starts-with(name(.), 'data-')">
+              <xsl:copy-of select="."/>
+            </xsl:if>
+          </xsl:for-each>
           <a class="bold">
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
