@@ -49,12 +49,17 @@ $depth: The depth level for the HTML header element.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A link role, used to select the appropriate title.
 $divs: Whether to default to divs instead of a list.
+$title: A default title to use if no #{title} element is found.
 
 This is a common formatting template used by some #{links} element handlers.
 It selects an appropriate way to render the links based on style hints and
 extension attributes on ${node}.
 
 This template will handle sorting of the links.
+
+If ${node} is a #{links} element with a #{title} element, that #{title}
+element will be processed as the title. Otherwise, the optional ${title}
+parameter will be used if provided.
 -->
 <xsl:template name="mal2html.links.links">
   <xsl:param name="node" select="."/>
@@ -62,10 +67,21 @@ This template will handle sorting of the links.
   <xsl:param name="links" select="/false"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="divs" select="false()"/>
+  <xsl:param name="title" select="''"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
   <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
-  <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
-  <xsl:variable name="expander" select="$title and $node/self::mal:links/@ui:expanded"/>
+  <xsl:variable name="maltitle" select="$node/self::mal:links/mal:title"/>
+  <xsl:variable name="expander" select="($maltitle or ($title != '')) and $node/self::mal:links/@ui:expanded"/>
+  <xsl:variable name="depth_">
+    <xsl:choose>
+      <xsl:when test="$depth &lt; 6">
+        <xsl:value-of select="$depth"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="6"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <div>
     <xsl:attribute name="class">
       <xsl:text>links </xsl:text>
@@ -81,9 +97,22 @@ This template will handle sorting of the links.
       <xsl:with-param name="expander" select="$expander"/>
     </xsl:call-template>
     <div class="inner">
-      <xsl:apply-templates mode="mal2html.block.mode" select="$title">
-        <xsl:with-param name="depth" select="$depth"/>
-      </xsl:apply-templates>
+      <xsl:choose>
+        <xsl:when test="$maltitle">
+          <xsl:apply-templates mode="mal2html.block.mode" select="$maltitle">
+            <xsl:with-param name="depth" select="$depth"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:when test="$title != ''">
+          <div class="title">
+            <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
+              <span class="title">
+                <xsl:value-of select="$title"/>
+              </span>
+            </xsl:element>
+          </div>
+        </xsl:when>
+      </xsl:choose>
       <div class="region">
         <xsl:choose>
           <xsl:when test="$node/self::mal:links/@api:type='function'">
@@ -269,7 +298,7 @@ a link for each target.
 <!--**==========================================================================
 mal2html.links.guide
 Output guide links from a page or section.
-:Revision:version="1.0" date="2011-06-15" status="final"
+:Revision:version="3.4" date="2012-02-23" status="final"
 $node: A #{links}, #{page}, or #{section} element to link from.
 $depth: The depth level for the HTML header element.
 $links: A list of links from *{mal.link.guidelinks}.
@@ -293,44 +322,17 @@ the links itself. They must be passed in with the ${links} parameter.
   </xsl:variable>
   <xsl:variable name="expander" select="$node/self::mal:links/@ui:expanded"/>
   <xsl:if test="$links">
-    <div>
-      <xsl:attribute name="class">
-        <xsl:text>links guidelinks</xsl:text>
-        <xsl:if test="$expander">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
-      </xsl:attribute>
-      <xsl:call-template name="mal2html.ui.expander.data">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="expander" select="$expander"/>
-      </xsl:call-template>
-      <div class="inner">
-        <xsl:choose>
-          <xsl:when test="$node[self::mal:links]/mal:title">
-            <xsl:apply-templates mode="mal2html.block.mode" select="$node/mal:title">
-              <xsl:with-param name="depth" select="$depth"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <div class="title">
-              <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'More Information'"/>
-                  </xsl:call-template>
-                </span>
-              </xsl:element>
-            </div>
-          </xsl:otherwise>
-        </xsl:choose>
-        <div class="region">
-          <xsl:call-template name="mal2html.links.ul">
-            <xsl:with-param name="links" select="$links"/>
-            <xsl:with-param name="role" select="'guide'"/>
-          </xsl:call-template>
-        </div>
-      </div>
-    </div>
+    <xsl:call-template name="mal2html.links.links">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="depth" select="$depth"/>
+      <xsl:with-param name="links" select="$links"/>
+      <xsl:with-param name="role" select="'seealso'"/>
+      <xsl:with-param name="title">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'More Information'"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
@@ -477,7 +479,7 @@ element containing ${node}.
 <!--**==========================================================================
 mal2html.links.seealso
 Output seealso links from a page or section.
-:Revision:version="1.0" date="2011-06-15" status="final"
+:Revision:version="3.4" date="2012-02-23" status="final"
 $node: A #{links}, #{page}, or #{section} element to link from.
 $depth: The depth level for the HTML header element.
 $links: A list of links from *{mal.link.seealsolinks}.
@@ -489,56 +491,18 @@ the links itself. They must be passed in with the ${links} parameter.
   <xsl:param name="node" select="."/>
   <xsl:param name="depth" select="count($node/ancestor-or-self::mal:section) + 2"/>
   <xsl:param name="links" select="/false"/>
-  <xsl:variable name="depth_">
-    <xsl:choose>
-      <xsl:when test="$depth &lt; 6">
-        <xsl:value-of select="$depth"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="6"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="expander" select="$node/self::mal:links/@ui:expanded"/>
   <xsl:if test="$links">
-    <div>
-      <xsl:attribute name="class">
-        <xsl:text>links seealsolinks</xsl:text>
-        <xsl:if test="$expander">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
-      </xsl:attribute>
-      <xsl:call-template name="mal2html.ui.expander.data">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="expander" select="$expander"/>
-      </xsl:call-template>
-      <div class="inner">
-        <xsl:choose>
-          <xsl:when test="$node[self::mal:links]/mal:title">
-            <xsl:apply-templates mode="mal2html.block.mode" select="$node/mal:title">
-              <xsl:with-param name="depth" select="$depth"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <div class="title">
-              <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'See Also'"/>
-                  </xsl:call-template>
-                </span>
-              </xsl:element>
-            </div>
-          </xsl:otherwise>
-        </xsl:choose>
-        <div class="region">
-          <xsl:call-template name="mal2html.links.ul">
-            <xsl:with-param name="links" select="$links"/>
-            <xsl:with-param name="role" select="'seealso'"/>
-          </xsl:call-template>
-        </div>
-      </div>
-    </div>
+    <xsl:call-template name="mal2html.links.links">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="depth" select="$depth"/>
+      <xsl:with-param name="links" select="$links"/>
+      <xsl:with-param name="role" select="'seealso'"/>
+      <xsl:with-param name="title">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'See Also'"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
