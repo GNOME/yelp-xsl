@@ -28,6 +28,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 exclude-result-prefixes="mal e api exsl math html"
                 version="1.0">
 
+
 <!--!!==========================================================================
 Mallard to HTML - Links
 
@@ -36,11 +37,147 @@ Mallard links element and implicitly.
 -->
 
 
+<xsl:template match="mal:links"/>
+
+
+<!--**==========================================================================
+mal2html.links.links
+Output links in one of a number of formats.
+:Revision:version="3.4" date="2012-02-23" status="final"
+$node: A #{links}, #{page}, or #{section} element to link from.
+$depth: The depth level for the HTML header element.
+$links: A list of links, as from a template in !{mal-link}.
+$role: A link role, used to select the appropriate title.
+$divs: Whether to default to divs instead of a list.
+
+This is a common formatting template used by some #{links} element handlers.
+It selects an appropriate way to render the links based on style hints and
+extension attributes on ${node}.
+
+This template will handle sorting of the links.
+-->
+<xsl:template name="mal2html.links.links">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="depth" select="count($node/ancestor-or-self::mal:section) + 2"/>
+  <xsl:param name="links" select="/false"/>
+  <xsl:param name="role" select="''"/>
+  <xsl:param name="divs" select="false()"/>
+  <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
+  <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
+  <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
+  <xsl:variable name="expander" select="$title and $node/self::mal:links/@ui:expanded"/>
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>links </xsl:text>
+      <xsl:if test="$role != ''">
+        <xsl:value-of select="concat($role, 'links')"/>
+      </xsl:if>
+      <xsl:if test="$expander">
+        <xsl:text> ui-expander</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
+    <xsl:call-template name="mal2html.ui.expander.data">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="expander" select="$expander"/>
+    </xsl:call-template>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="$title">
+        <xsl:with-param name="depth" select="$depth"/>
+      </xsl:apply-templates>
+      <div class="region">
+        <xsl:choose>
+          <xsl:when test="$node/self::mal:links/@api:type='function'">
+            <xsl:call-template name="mal2html.api.links.function">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'grid'">
+            <xsl:call-template name="mal2html.ui.links.grid">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'mouseovers'">
+            <xsl:call-template name="mal2html.ui.links.mouseovers">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="contains($style, ' mouseovers ')">
+            <xsl:call-template name="_mal2html.links.mouseovers">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="contains($style, ' toronto ') or contains($style, ' grid ')">
+            <xsl:call-template name="_mal2html.links.grid">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="contains($style, ' linklist ')">
+            <xsl:variable name="bold" select="contains($style, ' bold ')"/>
+            <xsl:call-template name="mal2html.links.ul">
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+              <xsl:with-param name="bold" select="$bold"/>
+              <xsl:with-param name="nodesc" select="$nodesc"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="contains($style, ' 2column ')">
+            <xsl:variable name="coltot" select="ceiling(count($links) div 2)"/>
+            <div class="links-twocolumn">
+              <xsl:call-template name="_mal2html.links.divs">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="links" select="$links"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="nodesc" select="$nodesc"/>
+                <xsl:with-param name="max" select="$coltot"/>
+              </xsl:call-template>
+            </div>
+            <div class="links-twocolumn">
+              <xsl:call-template name="_mal2html.links.divs">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="links" select="$links"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="nodesc" select="$nodesc"/>
+                <xsl:with-param name="min" select="$coltot"/>
+              </xsl:call-template>
+            </div>
+          </xsl:when>
+          <xsl:when test="$divs">
+            <xsl:call-template name="_mal2html.links.divs">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+              <xsl:with-param name="nodesc" select="$nodesc"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="bold" select="contains($style, ' bold ')"/>
+            <xsl:call-template name="mal2html.links.ul">
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="'topic'"/>
+              <xsl:with-param name="bold" select="$bold"/>
+              <xsl:with-param name="nodesc" select="$nodesc"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </div>
+  </div>
+</xsl:template>
+
+
 <!--**==========================================================================
 mal2html.links.ul
 Output links in an HTML #{ul} element.
 :Revision:version="1.0" date="2011-06-15" status="final"
-$links: A list of #{links}, as from a template in !{mal-link}.
+$links: A list of links, as from a template in !{mal-link}.
 $role: A link role, used to select the appropriate title.
 $bold: Whether to bold the link titles.
 $nodesc: Whether to omit descriptions.
@@ -579,7 +716,7 @@ page.
 <!--**==========================================================================
 mal2html.links.topic
 Output topic links from a page or section.
-:Revision:version="1.0" date="2011-06-16" status="final"
+:Revision:version="3.4" date="2012-02-23" status="final"
 $node: A #{links}, #{page}, or #{section} element to link from.
 $depth: The depth level for the HTML header element.
 $links: A list of links from *{mal.link.topiclinks}.
@@ -610,8 +747,6 @@ when determining which links to output.
     <xsl:text> </xsl:text>
   </xsl:param>
   <xsl:param name="allgroups" select="''"/>
-  <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
-  <xsl:variable name="expander" select="$title and $node/self::mal:links/@ui:expanded"/>
   <xsl:if test="$node/ancestor-or-self::mal:page[last()]/@type = 'guide'">
     <xsl:variable name="_groups">
       <xsl:if test="not(contains($allgroups, ' #first '))">
@@ -632,102 +767,18 @@ when determining which links to output.
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="_links" select="$links[contains($_groups, concat(' ', @group, ' '))]"/>
-    <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
-    <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
     <xsl:if test="count($_links) != 0">
-      <div>
-        <xsl:attribute name="class">
-          <xsl:text>links topiclinks</xsl:text>
-          <xsl:if test="$expander">
-            <xsl:text> ui-expander</xsl:text>
-          </xsl:if>
-        </xsl:attribute>
-        <xsl:call-template name="mal2html.ui.expander.data">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="expander" select="$expander"/>
-        </xsl:call-template>
-        <div class="inner">
-          <xsl:if test="$node/self::mal:links">
-            <xsl:apply-templates mode="mal2html.block.mode" select="$node/mal:title">
-              <xsl:with-param name="depth" select="$depth"/>
-            </xsl:apply-templates>
-          </xsl:if>
-          <div class="region">
-            <xsl:choose>
-              <xsl:when test="$node/self::mal:links/@api:type='function'">
-                <xsl:call-template name="mal2html.api.links.function">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="$node/self::mal:links/@ui:thumbs = 'grid'">
-                <xsl:call-template name="mal2html.ui.links.grid">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                  <xsl:with-param name="role" select="'topic'"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="$node/self::mal:links/@ui:thumbs = 'mouseovers'">
-                <xsl:call-template name="mal2html.ui.links.mouseovers">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                  <xsl:with-param name="role" select="'topic'"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="contains($style, ' mouseovers ')">
-                <xsl:call-template name="_mal2html.links.mouseovers">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="contains($style, ' toronto ') or contains($style, ' grid ')">
-                <xsl:call-template name="_mal2html.links.grid">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="contains($style, ' linklist ')">
-                <xsl:variable name="bold" select="contains($style, ' bold ')"/>
-                <xsl:call-template name="mal2html.links.ul">
-                  <xsl:with-param name="links" select="$_links"/>
-                  <xsl:with-param name="role" select="'topic'"/>
-                  <xsl:with-param name="bold" select="$bold"/>
-                  <xsl:with-param name="nodesc" select="$nodesc"/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="contains($style, ' 2column ')">
-                <xsl:variable name="coltot" select="ceiling(count($_links) div 2)"/>
-                <div class="links-twocolumn">
-                  <xsl:call-template name="_mal2html.links.divs">
-                    <xsl:with-param name="node" select="$node"/>
-                    <xsl:with-param name="links" select="$_links"/>
-                    <xsl:with-param name="nodesc" select="$nodesc"/>
-                    <xsl:with-param name="max" select="$coltot"/>
-                  </xsl:call-template>
-                </div>
-                <div class="links-twocolumn">
-                  <xsl:call-template name="_mal2html.links.divs">
-                    <xsl:with-param name="node" select="$node"/>
-                    <xsl:with-param name="links" select="$_links"/>
-                    <xsl:with-param name="nodesc" select="$nodesc"/>
-                    <xsl:with-param name="min" select="$coltot"/>
-                  </xsl:call-template>
-                </div>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:call-template name="_mal2html.links.divs">
-                  <xsl:with-param name="node" select="$node"/>
-                  <xsl:with-param name="links" select="$_links"/>
-                  <xsl:with-param name="nodesc" select="$nodesc"/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
-          </div>
-        </div>
-      </div>
+      <xsl:call-template name="mal2html.links.links">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="depth" select="$depth"/>
+        <xsl:with-param name="links" select="$_links"/>
+        <xsl:with-param name="role" select="'topic'"/>
+        <xsl:with-param name="divs" select="true()"/>
+      </xsl:call-template>
     </xsl:if>
   </xsl:if>
 </xsl:template>
+
 
 <xsl:template name="_mal2html.links.mouseovers">
   <xsl:param name="node"/>
@@ -779,6 +830,7 @@ when determining which links to output.
 <xsl:template name="_mal2html.links.grid">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
+  <xsl:param name="role"/>
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -800,7 +852,7 @@ when determining which links to output.
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="."/>
             <xsl:with-param name="xref" select="$xref"/>
-            <xsl:with-param name="role" select="'topic'"/>
+            <xsl:with-param name="role" select="$role"/>
           </xsl:call-template>
         </a></div>
         <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
@@ -819,6 +871,7 @@ when determining which links to output.
 <xsl:template name="_mal2html.links.divs">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
+  <xsl:param name="role" select="''"/>
   <xsl:param name="nodesc" select="false()"/>
   <xsl:param name="min" select="-1"/>
   <xsl:param name="max" select="-1"/>
@@ -832,7 +885,7 @@ when determining which links to output.
         <xsl:call-template name="_mal2html.links.divs.link">
           <xsl:with-param name="source" select="$node"/>
           <xsl:with-param name="target" select="key('mal.cache.key', $xref)"/>
-          <xsl:with-param name="role" select="'topic'"/>
+          <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="nodesc" select="$nodesc"/>
         </xsl:call-template>
       </xsl:for-each>
@@ -859,6 +912,7 @@ when determining which links to output.
       <xsl:call-template name="mal.link.tooltip">
         <xsl:with-param name="node" select="$source"/>
         <xsl:with-param name="xref" select="$target/@id"/>
+        <xsl:with-param name="role" select="$role"/>
       </xsl:call-template>
     </xsl:attribute>
     <xsl:copy-of select="exsl:node-set($attrs)/*/@*"/>
