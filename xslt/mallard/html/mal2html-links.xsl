@@ -23,9 +23,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:api="http://projectmallard.org/experimental/api/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:math="http://exslt.org/math"
+                xmlns:str="http://exslt.org/strings"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal e api exsl math html"
+                exclude-result-prefixes="mal ui e api exsl math str html"
                 version="1.0">
 
 
@@ -116,6 +117,17 @@ parameter will be used if provided.
         </xsl:when>
       </xsl:choose>
       <div class="region">
+        <xsl:variable name="uithumbs">
+          <xsl:variable name="uithumbs_">
+            <xsl:for-each select="str:split(@ui:thumbs)">
+              <xsl:if test="string(.)='grid' or string(.)='hover'">
+                <xsl:value-of select="."/>
+              </xsl:if>
+              <xsl:text> </xsl:text>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:value-of select="str:split($uithumbs_)[1]"/>
+        </xsl:variable>
         <xsl:choose>
           <xsl:when test="$node/self::mal:links/@api:type='function'">
             <xsl:call-template name="mal2html.api.links.function">
@@ -123,14 +135,14 @@ parameter will be used if provided.
               <xsl:with-param name="links" select="$links"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'grid'">
+          <xsl:when test="$uithumbs = 'grid'">
             <xsl:call-template name="mal2html.ui.links.grid">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'hover'">
+          <xsl:when test="$uithumbs = 'hover'">
             <xsl:call-template name="mal2html.ui.links.hover">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
