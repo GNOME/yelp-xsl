@@ -620,6 +620,7 @@ div.body {
   margin: 0;
   padding-left: 1em;
   padding-right: 1em;
+  padding-bottom: 1em;
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
