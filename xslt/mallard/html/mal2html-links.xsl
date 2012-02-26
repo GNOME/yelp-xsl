@@ -57,7 +57,7 @@ extension attributes on ${node}. This template (or the templates it calls)
 will pass through #{class} and #{data-*} attributes found on the #{link}
 elements to the top-level container element of each output link.
 
-This template will handle sorting of the links.
+This template handles link sorting.
 
 If ${node} is a #{links} element with a #{title} element, that #{title}
 element will be processed as the title. Otherwise, the optional ${title}
@@ -130,8 +130,8 @@ parameter will be used if provided.
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'mouseovers'">
-            <xsl:call-template name="mal2html.ui.links.mouseovers">
+          <xsl:when test="$node/self::mal:links/@ui:thumbs = 'hover'">
+            <xsl:call-template name="mal2html.ui.links.hover">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
@@ -217,7 +217,7 @@ This is a common formatting template used by some #{links} element handlers.
 It outputs an HTML #{ul} element and calls *{mal2html.links.ul.li} on each
 link to output a list item with a link.
 
-This template will handle sorting of the links.
+This template handles link sorting.
 -->
 <xsl:template name="mal2html.links.ul">
   <xsl:param name="links" select="/false"/>
@@ -330,7 +330,6 @@ the links itself. They must be passed in with the ${links} parameter.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:variable name="expander" select="$node/self::mal:links/@ui:expanded"/>
   <xsl:if test="$links">
     <xsl:call-template name="mal2html.links.links">
       <xsl:with-param name="node" select="$node"/>
@@ -923,258 +922,6 @@ when determining which links to output.
 
 <xsl:template mode="_mal2html.links.divs.nolink.mode" match="*[@href]">
   <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode" select="node()"/>
-</xsl:template>
-
-
-<!-- UI -->
-<xsl:template name="mal2html.ui.links.grid">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="links"/>
-  <xsl:param name="role"/>
-  <xsl:variable name="width">
-    <xsl:choose>
-      <xsl:when test="$node/@ui:width">
-        <xsl:value-of select="$node/@ui:width"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>200</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="height">
-    <xsl:choose>
-      <xsl:when test="$node/@ui:height">
-        <xsl:value-of select="$node/@ui:height"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>200</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:for-each select="$links">
-    <xsl:sort data-type="number" select="@groupsort"/>
-    <xsl:sort select="mal:title[@type = 'sort']"/>
-    <xsl:variable name="link" select="."/>
-    <xsl:for-each select="$mal.cache">
-      <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
-      <div class="links-ui-grid {$link/@class}">
-        <xsl:for-each select="$link/@*">
-          <xsl:if test="starts-with(name(.), 'data-')">
-            <xsl:copy-of select="."/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
-        <a>
-          <xsl:attribute name="href">
-            <xsl:call-template name="mal.link.target">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="xref" select="$link/@xref"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:attribute name="title">
-            <xsl:call-template name="mal.link.tooltip">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="xref" select="$link/@xref"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <span class="links-ui-grid-img" style="width: {$width}px; height: {$height}px;">
-            <xsl:call-template name="mal2html.ui.links.img">
-              <xsl:with-param name="links" select="$node"/>
-              <xsl:with-param name="thumbs" select="$thumbs"/>
-              <xsl:with-param name="width" select="$width"/>
-              <xsl:with-param name="height" select="$height"/>
-            </xsl:call-template>
-          </span>
-          <span class="title" style="width: {$width}px; max-height: {number($height) div 2}px;">
-            <xsl:call-template name="mal.link.content">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="xref" select="$link/@xref"/>
-              <xsl:with-param name="role" select="$role"/>
-            </xsl:call-template>
-          </span>
-          <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
-            <xsl:if test="$target/mal:info/mal:desc">
-              <span class="desc" style="width: {$width}px; max-height: {number($height) div 2}px;">
-                <xsl:apply-templates select="$target/mal:info/mal:desc/node()"/>
-              </span>
-            </xsl:if>
-          </xsl:if>
-        </a>
-      </div>
-    </xsl:for-each>
-  </xsl:for-each>
-</xsl:template>
-
-<xsl:template name="mal2html.ui.links.mouseovers">
-  <xsl:param name="node"/>
-  <xsl:param name="links"/>
-  <xsl:param name="role"/>
-  <xsl:variable name="width">
-    <xsl:choose>
-      <xsl:when test="$node/@ui:width">
-        <xsl:value-of select="$node/@ui:width"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>250</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="height">
-    <xsl:choose>
-      <xsl:when test="$node/@ui:height">
-        <xsl:value-of select="$node/@ui:height"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>200</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <div class="links-ui-mouseovers" style="width: {$width}px; height: {$height}px;">
-    <xsl:for-each select="$node/ui:thumb[1]">
-      <img>
-        <xsl:copy-of select="@src | @width | @height"/>
-        <xsl:call-template name="mal2html.ui.links.img.attrs">
-          <xsl:with-param name="links" select="$node"/>
-          <xsl:with-param name="thumb" select="."/>
-          <xsl:with-param name="width" select="$width"/>
-          <xsl:with-param name="height" select="$height"/>
-        </xsl:call-template>
-      </img>
-    </xsl:for-each>
-  </div>
-  <ul class="links-ui-mouseovers">
-    <xsl:for-each select="$links">
-      <xsl:sort data-type="number" select="@groupsort"/>
-      <xsl:sort select="mal:title[@type = 'sort']"/>
-      <xsl:variable name="link" select="."/>
-      <xsl:variable name="xref" select="@xref"/>
-      <xsl:for-each select="$mal.cache">
-        <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
-        <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
-        <li class="links {$link/@class}">
-          <xsl:for-each select="$link/@*">
-            <xsl:if test="starts-with(name(.), 'data-')">
-              <xsl:copy-of select="."/>
-            </xsl:if>
-          </xsl:for-each>
-          <a class="bold">
-            <xsl:attribute name="href">
-              <xsl:call-template name="mal.link.target">
-                <xsl:with-param name="xref" select="$xref"/>
-              </xsl:call-template>
-            </xsl:attribute>
-            <xsl:attribute name="title">
-              <xsl:call-template name="mal.link.tooltip">
-                <xsl:with-param name="xref" select="$xref"/>
-                <xsl:with-param name="role" select="$role"/>
-              </xsl:call-template>
-            </xsl:attribute>
-            <span style="width: {$width}px; height: {$height}px;">
-              <xsl:call-template name="mal2html.ui.links.img">
-                <xsl:with-param name="links" select="$node"/>
-                <xsl:with-param name="thumbs" select="$thumbs"/>
-                <xsl:with-param name="width" select="$width"/>
-                <xsl:with-param name="height" select="$height"/>
-              </xsl:call-template>
-            </span>
-            <xsl:call-template name="mal.link.content">
-              <xsl:with-param name="node" select="."/>
-              <xsl:with-param name="xref" select="$xref"/>
-              <xsl:with-param name="role" select="$role"/>
-            </xsl:call-template>
-          </a>
-        </li>
-      </xsl:for-each>
-    </xsl:for-each>
-  </ul>
-  <div class="clear"/>
-</xsl:template>
-
-<xsl:template name="mal2html.ui.links.img">
-  <xsl:param name="links"/>
-  <xsl:param name="thumbs"/>
-  <xsl:param name="width" select="$links/@ui:width"/>
-  <xsl:param name="height" select="$links/@ui:height"/>
-  <xsl:if test="$thumbs">
-    <img>
-      <xsl:for-each select="$thumbs">
-        <xsl:sort data-type="number" select="number(not(@width))"/>
-        <xsl:sort data-type="number" select="number(not(@height))"/>
-        <xsl:sort data-type="number" select="($width div $height) div (@width div @height)"/>
-        <xsl:sort data-type="number" select="math:abs($width - @width)"/>
-        <xsl:sort data-type="number" select="math:abs($height - @height)"/>
-        <xsl:if test="position() = 1">
-          <xsl:attribute name="src">
-            <xsl:value-of select="@src"/>
-          </xsl:attribute>
-          <xsl:call-template name="mal2html.ui.links.img.attrs">
-            <xsl:with-param name="links" select="$links"/>
-            <xsl:with-param name="thumb" select="."/>
-            <xsl:with-param name="width" select="$width"/>
-            <xsl:with-param name="height" select="$height"/>
-          </xsl:call-template>
-        </xsl:if>
-      </xsl:for-each>
-    </img>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="mal2html.ui.links.img.attrs">
-  <xsl:param name="links"/>
-  <xsl:param name="thumb"/>
-  <xsl:param name="width" select="$links/@ui:width"/>
-  <xsl:param name="height" select="$links/@ui:height"/>
-  <xsl:choose>
-    <xsl:when test="$links/@ui:overflow = 'crop'"/>
-    <xsl:when test="$links/@ui:overflow = 'width'">
-      <xsl:attribute name="width">
-        <xsl:value-of select="$width"/>
-      </xsl:attribute>
-    </xsl:when>
-    <xsl:when test="$links/@ui:overflow = 'height'">
-      <xsl:attribute name="height">
-        <xsl:value-of select="$height"/>
-      </xsl:attribute>
-    </xsl:when>
-    <xsl:when test="$links/@ui:overflow = 'scale'">
-      <xsl:attribute name="width">
-        <xsl:value-of select="$width"/>
-      </xsl:attribute>
-      <xsl:attribute name="height">
-        <xsl:value-of select="$height"/>
-      </xsl:attribute>
-    </xsl:when>
-    <xsl:when test="$thumb/@width and $thumb/@height">
-      <xsl:variable name="ratio" select="$width div $height"/>
-      <xsl:variable name="tratio" select="$thumb/@width div $thumb/@height"/>
-      <xsl:choose>
-        <xsl:when test="$ratio &lt; $tratio">
-          <xsl:attribute name="width">
-            <xsl:value-of select="$width"/>
-          </xsl:attribute>
-          <xsl:attribute name="height">
-            <xsl:value-of select="round($width * ($thumb/@height div $thumb/@width))"/>
-          </xsl:attribute>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:attribute name="width">
-            <xsl:value-of select="round($height * ($thumb/@width div $thumb/@height))"/>
-          </xsl:attribute>
-          <xsl:attribute name="height">
-            <xsl:value-of select="$height"/>
-          </xsl:attribute>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:attribute name="width">
-        <xsl:value-of select="$width"/>
-      </xsl:attribute>
-      <xsl:attribute name="height">
-        <xsl:value-of select="$height"/>
-      </xsl:attribute>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -29,7 +29,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 version="1.0">
 
 <!--!!==========================================================================
-Mallard to HTML - UI Extension
+Mallard to HTML - API Extension
 Support for Mallard API extension elements.
 
 This stylesheet contains templates to support features from the Mallard API
