@@ -928,6 +928,7 @@ div.links-ui-grid > a {
 div.links-ui-grid > a:hover {
   background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   border: none;
+  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 div.links-ui-grid > a > * {
   display: block;
