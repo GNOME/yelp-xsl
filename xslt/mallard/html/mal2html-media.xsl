@@ -185,12 +185,12 @@ FIXME
     </xsl:call-template>
   </xsl:variable>
   <div class="media-ttml-node media-ttml-p">
-    <xsl:attribute name="data-begin">
+    <xsl:attribute name="data-ttml-begin">
       <xsl:value-of select="substring-before($beginend, ',')"/>
     </xsl:attribute>
     <xsl:variable name="end" select="substring-after($beginend, ',')"/>
     <xsl:if test="$end != '∞'">
-      <xsl:attribute name="data-end">
+      <xsl:attribute name="data-ttml-end">
         <xsl:value-of select="$end"/>
       </xsl:attribute>
     </xsl:if>
@@ -208,10 +208,10 @@ FIXME
     </xsl:call-template>
   </xsl:variable>
   <span class="media-ttml-node media-ttml-span">
-    <xsl:attribute name="data-begin">
+    <xsl:attribute name="data-ttml-begin">
       <xsl:value-of select="substring-before($beginend, ',')"/>
     </xsl:attribute>
-    <xsl:attribute name="data-end">
+    <xsl:attribute name="data-ttml-end">
       <xsl:value-of select="substring-after($beginend, ',')"/>
     </xsl:attribute>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
@@ -222,6 +222,7 @@ FIXME
   <xsl:param name="range"/>
   <xsl:param name="begin" select="@begin"/>
   <xsl:param name="end" select="@end"/>
+  <xsl:param name="dur" select="@dur"/>
   <xsl:variable name="range_">
     <xsl:choose>
       <xsl:when test="$range != ''">
@@ -249,28 +250,59 @@ FIXME
   </xsl:variable>
   <xsl:value-of select="number(substring-before($range_, ',')) + number($begin_s)"/>
   <xsl:text>,</xsl:text>
+  <xsl:variable name="end_dur">
+    <xsl:choose>
+      <xsl:when test="$dur">
+        <xsl:variable name="dur_s">
+          <xsl:call-template name="mal2html.ttml.time.seconds">
+            <xsl:with-param name="time" select="$dur"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:value-of select="number($dur_s) + number(substring-before($range_, ',')) + number($begin_s)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="'∞'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="end_end">
+    <xsl:choose>
+      <xsl:when test="$end">
+        <xsl:variable name="end_s">
+          <xsl:call-template name="mal2html.ttml.time.seconds">
+            <xsl:with-param name="time" select="$end"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="end_ss" select="number(substring-before($range_, ',')) + number($end_s)"/>
+        <xsl:choose>
+          <xsl:when test="substring-after($range_, ',') = '∞'">
+            <xsl:value-of select="$end_ss"/>
+          </xsl:when>
+          <xsl:when test="number(substring-after($range_, ',')) &lt; $end_ss">
+            <xsl:value-of select="substring-after($range_, ',')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$end_ss"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="substring-after($range_, ',')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$end">
-      <xsl:variable name="end_s">
-        <xsl:call-template name="mal2html.ttml.time.seconds">
-          <xsl:with-param name="time" select="$end"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:variable name="end_ss" select="number(substring-before($range_, ',')) + number($end_s)"/>
-      <xsl:choose>
-        <xsl:when test="substring-after($range_, ',') = '∞'">
-          <xsl:value-of select="$end_ss"/>
-        </xsl:when>
-        <xsl:when test="number(substring-after($range_, ',')) &lt; $end_ss">
-          <xsl:value-of select="substring-after($range_, ',')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$end_ss"/>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:when test="$end_end = '∞'">
+      <xsl:value-of select="$end_dur"/>
+    </xsl:when>
+    <xsl:when test="$end_dur = '∞'">
+      <xsl:value-of select="$end_end"/>
+    </xsl:when>
+    <xsl:when test="number($end_end) &lt; number($end_dur)">
+      <xsl:value-of select="$end_end"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="substring-after($range_, ',')"/>
+      <xsl:value-of select="$end_dur"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

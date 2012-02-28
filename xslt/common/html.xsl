@@ -1842,9 +1842,9 @@ function yelp_init_video (element) {
     currentSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
     ttmlNodes.each(function () {
       var ttml = this;
-      if (element.currentTime >= parseFloat(ttml.getAttribute('data-begin')) &&
-          (!ttml.hasAttribute('data-end') ||
-           element.currentTime < parseFloat(ttml.getAttribute('data-end')) )) {
+      if (element.currentTime >= parseFloat(ttml.getAttribute('data-ttml-begin')) &&
+          (!ttml.hasAttribute('data-ttml-end') ||
+           element.currentTime < parseFloat(ttml.getAttribute('data-ttml-end')) )) {
         if (ttml.tagName == 'span')
           ttml.style.display = 'inline';
         else
