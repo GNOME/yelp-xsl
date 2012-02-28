@@ -219,20 +219,7 @@ FIXME
 </xsl:template>
 
 <xsl:template mode="mal2html.inline.mode" match="tt:br">
-  <xsl:param name="range"/>
-  <xsl:variable name="beginend">
-    <xsl:call-template name="mal2html.ttml.time.range">
-      <xsl:with-param name="range" select="$range"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <br class="media-ttml-node media-ttml-br">
-    <xsl:attribute name="data-ttml-begin">
-      <xsl:value-of select="substring-before($beginend, ',')"/>
-    </xsl:attribute>
-    <xsl:attribute name="data-ttml-end">
-      <xsl:value-of select="substring-after($beginend, ',')"/>
-    </xsl:attribute>
-  </br>
+  <br class="media-ttml-br"/>
 </xsl:template>
 
 <xsl:template name="mal2html.ttml.time.range">
