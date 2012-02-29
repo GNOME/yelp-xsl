@@ -157,7 +157,28 @@ FIXME
 </xsl:template>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:body">
-  <div class="media-ttml">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>media-ttml</xsl:text>
+      <xsl:choose>
+        <xsl:when test="@xml:space">
+          <xsl:if test="@xml:space='preserve'">
+            <xsl:text> media-ttml-pre</xsl:text>
+          </xsl:if>
+          <xsl:if test="@xml:space='default'">
+            <xsl:text> media-ttml-nopre</xsl:text>
+          </xsl:if>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:if test="../@xml:space='preserve'">
+            <xsl:text> media-ttml-pre</xsl:text>
+          </xsl:if>
+          <xsl:if test="../@xml:space='default'">
+            <xsl:text> media-ttml-nopre</xsl:text>
+          </xsl:if>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="parent" select="../self::tt:tt"/>
     </xsl:call-template>
@@ -176,8 +197,18 @@ FIXME
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="media-ttml-node media-ttml-div">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>media-ttml-node media-ttml-div</xsl:text>
+      <xsl:if test="@xml:space='preserve'">
+        <xsl:text> media-ttml-pre</xsl:text>
+      </xsl:if>
+      <xsl:if test="@xml:space='default'">
+        <xsl:text> media-ttml-nopre</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:copy-of select="@xml:space"/>
     <xsl:attribute name="data-ttml-begin">
       <xsl:value-of select="substring-before($beginend, ',')"/>
     </xsl:attribute>
@@ -213,7 +244,16 @@ FIXME
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="media-ttml-node media-ttml-p">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>media-ttml-node media-ttml-p</xsl:text>
+      <xsl:if test="@xml:space='preserve'">
+        <xsl:text> media-ttml-pre</xsl:text>
+      </xsl:if>
+      <xsl:if test="@xml:space='default'">
+        <xsl:text> media-ttml-nopre</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="data-ttml-begin">
       <xsl:value-of select="substring-before($beginend, ',')"/>
@@ -237,7 +277,16 @@ FIXME
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
-  <span class="media-ttml-node media-ttml-span">
+  <span>
+    <xsl:attribute name="class">
+      <xsl:text>media-ttml-node media-ttml-span</xsl:text>
+      <xsl:if test="@xml:space='preserve'">
+        <xsl:text> media-ttml-pre</xsl:text>
+      </xsl:if>
+      <xsl:if test="@xml:space='default'">
+        <xsl:text> media-ttml-nopre</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="data-ttml-begin">
       <xsl:value-of select="substring-before($beginend, ',')"/>

@@ -1228,6 +1228,8 @@ span.media-current {
   line-height: 20px;
 }
 div.media-ttml { margin: 0; padding: 0; }
+.media-ttml-pre { white-space: pre; }
+.media-ttml-nopre { white-space: normal; }
 div.media-ttml-div {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   display: none;
