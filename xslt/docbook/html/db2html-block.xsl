@@ -511,7 +511,14 @@ syntax highlighting support based on the #{language} attribute of ${node}.
 
 <!-- = literallayout = -->
 <xsl:template match="literallayout | db:literallayout">
-  <xsl:call-template name="db2html.block"/>
+  <xsl:choose>
+    <xsl:when test="@class = 'monospaced'">
+      <xsl:call-template name="db2html.pre"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="db2html.block"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- = note = -->
