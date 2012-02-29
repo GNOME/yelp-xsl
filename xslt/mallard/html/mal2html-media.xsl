@@ -168,13 +168,38 @@ FIXME
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:div">
   <xsl:param name="range"/>
-  <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:div | tt:p">
-    <xsl:with-param name="range">
-      <xsl:call-template name="mal2html.ttml.time.range">
-        <xsl:with-param name="range" select="$range"/>
-      </xsl:call-template>
-    </xsl:with-param>
-  </xsl:apply-templates>
+  <xsl:variable name="beginend">
+    <xsl:call-template name="mal2html.ttml.time.range">
+      <xsl:with-param name="range" select="$range"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <div class="media-ttml-node media-ttml-div">
+    <xsl:attribute name="data-ttml-begin">
+      <xsl:value-of select="substring-before($beginend, ',')"/>
+    </xsl:attribute>
+    <xsl:variable name="end" select="substring-after($beginend, ',')"/>
+    <xsl:if test="$end != '∞'">
+      <xsl:attribute name="data-ttml-end">
+        <xsl:value-of select="$end"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:for-each select="*">
+      <xsl:choose>
+        <xsl:when test="self::tt:*">
+          <xsl:apply-templates mode="mal2html.ttml.mode" select=".">
+            <xsl:with-param name="range">
+              <xsl:call-template name="mal2html.ttml.time.range">
+                <xsl:with-param name="range" select="$range"/>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </div>
 </xsl:template>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:p">
