@@ -313,15 +313,22 @@ FIXME
 
 <xsl:template name="mal2html.ttml.time.seconds">
   <xsl:param name="time" select="0"/>
+  <xsl:variable name="time_" select="normalize-space($time)"/>
   <xsl:choose>
-    <xsl:when test="substring($time, string-length($time) - 1) = 'ms'">
+    <xsl:when test="substring($time_, string-length($time_) - 1) = 'ms'">
       <xsl:variable name="ms">
-        <xsl:value-of select="substring($time, 1, string-length($time) - 2)"/>
+        <xsl:value-of select="substring($time_, 1, string-length($time_) - 2)"/>
       </xsl:variable>
       <xsl:value-of select="number($ms) div 1000"/>
     </xsl:when>
-    <xsl:when test="substring($time, string-length($time)) = 's'">
-      <xsl:value-of select="substring($time, 1, string-length($time) - 1)"/>
+    <xsl:when test="substring($time_, string-length($time_)) = 's'">
+      <xsl:value-of select="substring($time_, 1, string-length($time_) - 1)"/>
+    </xsl:when>
+    <xsl:when test="substring($time_, string-length($time_)) = 'm'">
+      <xsl:value-of select="60 * number(substring($time_, 1, string-length($time_) - 1))"/>
+    </xsl:when>
+    <xsl:when test="substring($time_, string-length($time_)) = 'h'">
+      <xsl:value-of select="3600 * number(substring($time_, 1, string-length($time_) - 1))"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="0"/>
