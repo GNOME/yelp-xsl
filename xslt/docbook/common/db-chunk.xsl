@@ -33,7 +33,7 @@ REMARK: Describe this module
 
 <!--@@==========================================================================
 db.chunk.chunks
-A space-seperated list of the names of elements that should be chunked
+A space-seperated list of the names of elements that should be chunked.
 
 REMARK: This parameter sucks
 -->
@@ -48,7 +48,7 @@ REMARK: This parameter sucks
 
 <!--@@==========================================================================
 db.chunk.max_depth
-The maximum depth for chunking sections
+The maximum depth for chunking sections.
 
 REMARK: Describe what this does
 -->
@@ -70,7 +70,7 @@ REMARK: Describe what this does
 
 <!--@@==========================================================================
 db.chunk.basename
-The base filename of the output file, without an extension
+The base filename of the output file, without an extension.
 
 REMARK: Describe what this does
 -->
@@ -91,34 +91,16 @@ REMARK: Describe what this does
 
 <!--@@==========================================================================
 db.chunk.extension
-The default file extension for new output documents
+The default file extension for new output documents.
 
 REMARK: Describe what this does
 -->
 <xsl:param name="db.chunk.extension"/>
 
 
-<!--@@==========================================================================
-db.chunk.doctype_public
-The public DOCTYPE for output files
-
-REMARK: Describe this
--->
-<xsl:param name="db.chunk.doctype_public"/>
-
-
-<!--@@==========================================================================
-db.chunk.doctype_system
-The system DOCTYPE for output files
-
-REMARK: Describe this
--->
-<xsl:param name="db.chunk.doctype_system"/>
-
-
 <!--**==========================================================================
 db.chunk.depth-in-chunk
-Determines the depth of an element in the containing chunk
+Determines the depth of an element in the containing chunk.
 $node: The element to determine the depth of
 
 REMARK: Explain how this works
@@ -190,7 +172,7 @@ REMARK: Explain how this works
 
 <!--**==========================================================================
 db.chunk.depth-of-chunk
-Determines the depth of the containing chunk in the document
+Determines the depth of the containing chunk in the document.
 $node: The element to determine the depth of
 
 REMARK: Explain how this works
@@ -214,7 +196,7 @@ REMARK: Explain how this works
 
 <!--**==========================================================================
 db.chunk.chunk-id
-Determines the id of the chunk that contains an element
+Determines the id of the chunk that contains an element.
 $id: The id of the element to determine the chunk id of
 $node: The element to determine the chunk id of
 $depth_in_chunk: The depth of ${node} in the containing chunk
@@ -249,7 +231,7 @@ REMARK: Explain how this works
 
 <!--**==========================================================================
 db.chunk.chunk-id.axis
-Determines the id of the first chunk along a specified axis
+Determines the id of the first chunk along a specified axis.
 $node: The base element
 $node: The axis along which to find the first chunk
 $depth_in_chunk: The depth of ${node} in the containing chunk
