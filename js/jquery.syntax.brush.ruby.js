@@ -30,8 +30,21 @@ Syntax.register('ruby', function(brush) {
 		matches: Syntax.extractMatches({klass: 'function'}, {klass: 'constant'})
 	});
 	
+	brush.push({
+		pattern: /`[^`]+`/g,
+		klass: 'string'
+	});
+	
+	brush.push({
+		pattern: /\#\{([^\}]*)\}/g,
+		matches: Syntax.extractMatches({
+			brush: 'ruby',
+			only: ['string']
+		}),
+	});
+	
 	// Regular expressions
-	brush.push(Syntax.lib.perlStyleRegularExpressions);
+	brush.push(Syntax.lib.perlStyleRegularExpression);
 	
 	brush.push({pattern: /(@+|\$)[\w]+/g, klass: 'variable'});
 	

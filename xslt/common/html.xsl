@@ -1896,7 +1896,8 @@ is included by *{html.js.syntax}.
   <xsl:if test="$html.syntax.highlight">
 <xsl:text><![CDATA[
 $(document).ready( function () { jQuery.syntax({root: ']]></xsl:text>
-<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'yelp'}); });
+<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'yelp',
+theme: false, linkify: false}); });
 ]]></xsl:text>
   </xsl:if>
 </xsl:template>
