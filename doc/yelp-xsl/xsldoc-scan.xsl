@@ -187,6 +187,8 @@ free software.
                               [not(parent::xsl:stylesheet)][@name = $paramname]
                          or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable
                               [@name = $paramname]
+                         or $xpath_node/ancestor::xsl:stylesheet/xsl:variable
+                              [@name = $paramname]
                         )">
             <param><xsl:value-of select="$paramname"/></param>
           </xsl:if>
