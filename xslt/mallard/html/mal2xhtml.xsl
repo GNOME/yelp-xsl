@@ -33,6 +33,7 @@ REMARK: Describe this module
 <xsl:import href="../../common/color.xsl"/>
 <xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>
+<xsl:import href="../../common/ttml.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
 <xsl:import href="../common/mal-gloss.xsl"/>
@@ -45,6 +46,17 @@ mallard:1.0
 '"/>
 <xsl:param name="mal.if.maybe" select="'target:mobile'"/>
 <xsl:param name="mal.link.extension" select="$html.extension"/>
+<xsl:param name="ttml.features" select="'
+http://www.w3.org/ns/ttml/feature/#content
+http://www.w3.org/ns/ttml/feature/#core
+http://www.w3.org/ns/ttml/feature/#nested-div
+http://www.w3.org/ns/ttml/feature/#nested-span
+http://www.w3.org/ns/ttml/feature/#presentation
+http://www.w3.org/ns/ttml/feature/#profile
+http://www.w3.org/ns/ttml/feature/#structure
+http://www.w3.org/ns/ttml/feature/#time-offset
+http://www.w3.org/ns/ttml/feature/#timing
+'"/>
 
 <xsl:include href="mal2html-api.xsl"/>
 <xsl:include href="mal2html-block.xsl"/>

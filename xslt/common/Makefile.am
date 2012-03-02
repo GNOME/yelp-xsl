@@ -8,6 +8,7 @@ xsl_DATA =			\
 	l10n.xsl		\
 	l10n-numbers.xsl	\
 	html.xsl		\
+	ttml.xsl		\
 	utils.xsl
 
 EXTRA_DIST=$(xsl_DATA)

@@ -22,7 +22,7 @@
   <links type="topic" style="linklist" groups="db">
     <title>DocBook Common</title>
   </links>
-  <links type="topic" style="linklist" groups="html l10n color icons">
+  <links type="topic" style="linklist" groups="html ttml l10n color icons utils">
     <title>Common</title>
   </links>
   <links type="topic" style="linklist" groups="#first #default #last">

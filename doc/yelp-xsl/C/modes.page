@@ -25,6 +25,9 @@
   <links type="topic" style="linklist" groups="html">
     <title>HTML Output</title>
   </links>
+  <links type="topic" style="linklist" groups="ttml">
+    <title>TTML Utilities</title>
+  </links>
   <links type="topic" style="linklist" groups="l10n">
     <title>Localization</title>
   </links>
@@ -33,6 +36,9 @@
   </links>
   <links type="topic" style="linklist" groups="icons">
     <title>Icons</title>
+  </links>
+  <links type="topic" style="linklist" groups="utils">
+    <title>Utilities</title>
   </links>
   <links type="topic" style="linklist" groups="#first #default #last">
     <title>Other</title>

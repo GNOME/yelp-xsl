@@ -1233,6 +1233,7 @@ div.media-ttml { margin: 0; padding: 0; }
 div.media-ttml-div {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   display: none;
+  margin: 0; padding: 0;
 }
 div.media-ttml-p {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;

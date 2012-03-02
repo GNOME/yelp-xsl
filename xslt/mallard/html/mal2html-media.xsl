@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:tt="http://www.w3.org/ns/ttml"
+                xmlns:ttp="http://www.w3.org/ns/ttml#parameter"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal tt"
+                exclude-result-prefixes="mal tt ttp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -109,7 +110,7 @@ FIXME
     </xsl:choose>
   </video>
   <xsl:if test="not($inline)">
-    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt"/>
+    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>
   </xsl:if>
 </xsl:template>
 
@@ -141,18 +142,38 @@ FIXME
 <xsl:template mode="mal2html.block.mode" match="tt:*"/>
 
 <xsl:template mode="mal2html.ttml.mode" match="tt:tt">
-  <xsl:variable name="if">
-    <xsl:call-template name="mal.if.test"/>
+  <xsl:variable name="profile">
+    <xsl:choose>
+      <xsl:when test="tt:head/ttp:profile">
+        <xsl:for-each select="tt:head/ttp:profile">
+          <xsl:call-template name="ttml.profile"/>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:when test="@profile">
+        <xsl:call-template name="ttml.profile.attr"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$if = 'true'">
-      <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+    <xsl:when test="not(contains($profile, 'false'))">
+      <xsl:variable name="if">
+        <xsl:call-template name="mal.if.test"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$if = 'true'">
+          <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+        </xsl:when>
+        <xsl:when test="$if != ''">
+          <div class="if-if {$if}">
+            <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
+          </div>
+        </xsl:when>
+      </xsl:choose>
     </xsl:when>
-    <xsl:when test="$if != ''">
-      <div class="if-if {$if}">
-        <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:body"/>
-      </div>
-    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.ttml.mode"
+                           select="following-sibling::tt:tt[1]"/>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
@@ -184,7 +205,7 @@ FIXME
     </xsl:call-template>
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:div">
       <xsl:with-param name="range">
-        <xsl:call-template name="mal2html.ttml.time.range"/>
+        <xsl:call-template name="ttml.time.range"/>
       </xsl:with-param>
     </xsl:apply-templates>
   </div>
@@ -193,7 +214,7 @@ FIXME
 <xsl:template mode="mal2html.ttml.mode" match="tt:div">
   <xsl:param name="range"/>
   <xsl:variable name="beginend">
-    <xsl:call-template name="mal2html.ttml.time.range">
+    <xsl:call-template name="ttml.time.range">
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
@@ -222,11 +243,7 @@ FIXME
       <xsl:choose>
         <xsl:when test="self::tt:*">
           <xsl:apply-templates mode="mal2html.ttml.mode" select=".">
-            <xsl:with-param name="range">
-              <xsl:call-template name="mal2html.ttml.time.range">
-                <xsl:with-param name="range" select="$range"/>
-              </xsl:call-template>
-            </xsl:with-param>
+            <xsl:with-param name="range" select="$beginend"/>
           </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
@@ -240,7 +257,7 @@ FIXME
 <xsl:template mode="mal2html.ttml.mode" match="tt:p">
   <xsl:param name="range"/>
   <xsl:variable name="beginend">
-    <xsl:call-template name="mal2html.ttml.time.range">
+    <xsl:call-template name="ttml.time.range">
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
@@ -273,7 +290,7 @@ FIXME
 <xsl:template mode="mal2html.inline.mode" match="tt:span">
   <xsl:param name="range"/>
   <xsl:variable name="beginend">
-    <xsl:call-template name="mal2html.ttml.time.range">
+    <xsl:call-template name="ttml.time.range">
       <xsl:with-param name="range" select="$range"/>
     </xsl:call-template>
   </xsl:variable>
@@ -305,119 +322,6 @@ FIXME
   <br class="media-ttml-br"/>
 </xsl:template>
 
-<xsl:template name="mal2html.ttml.time.range">
-  <xsl:param name="range"/>
-  <xsl:param name="begin" select="@begin"/>
-  <xsl:param name="end" select="@end"/>
-  <xsl:param name="dur" select="@dur"/>
-  <xsl:variable name="range_">
-    <xsl:choose>
-      <xsl:when test="$range != ''">
-        <xsl:value-of select="$range"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="par" select="ancestor::tt:*[@begin][1]"/>
-        <xsl:choose>
-          <xsl:when test="$par">
-            <xsl:for-each select="$par">
-              <xsl:call-template name="mal2html.ttml.time.range"/>
-            </xsl:for-each>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="'0,∞'"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="begin_s">
-    <xsl:call-template name="mal2html.ttml.time.seconds">
-      <xsl:with-param name="time" select="$begin"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:value-of select="number(substring-before($range_, ',')) + number($begin_s)"/>
-  <xsl:text>,</xsl:text>
-  <xsl:variable name="end_dur">
-    <xsl:choose>
-      <xsl:when test="$dur">
-        <xsl:variable name="dur_s">
-          <xsl:call-template name="mal2html.ttml.time.seconds">
-            <xsl:with-param name="time" select="$dur"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:value-of select="number($dur_s) + number(substring-before($range_, ',')) + number($begin_s)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="'∞'"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="end_end">
-    <xsl:choose>
-      <xsl:when test="$end">
-        <xsl:variable name="end_s">
-          <xsl:call-template name="mal2html.ttml.time.seconds">
-            <xsl:with-param name="time" select="$end"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:variable name="end_ss" select="number(substring-before($range_, ',')) + number($end_s)"/>
-        <xsl:choose>
-          <xsl:when test="substring-after($range_, ',') = '∞'">
-            <xsl:value-of select="$end_ss"/>
-          </xsl:when>
-          <xsl:when test="number(substring-after($range_, ',')) &lt; $end_ss">
-            <xsl:value-of select="substring-after($range_, ',')"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$end_ss"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="substring-after($range_, ',')"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$end_end = '∞'">
-      <xsl:value-of select="$end_dur"/>
-    </xsl:when>
-    <xsl:when test="$end_dur = '∞'">
-      <xsl:value-of select="$end_end"/>
-    </xsl:when>
-    <xsl:when test="number($end_end) &lt; number($end_dur)">
-      <xsl:value-of select="$end_end"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$end_dur"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template name="mal2html.ttml.time.seconds">
-  <xsl:param name="time" select="0"/>
-  <xsl:variable name="time_" select="normalize-space($time)"/>
-  <xsl:choose>
-    <xsl:when test="substring($time_, string-length($time_) - 1) = 'ms'">
-      <xsl:variable name="ms">
-        <xsl:value-of select="substring($time_, 1, string-length($time_) - 2)"/>
-      </xsl:variable>
-      <xsl:value-of select="number($ms) div 1000"/>
-    </xsl:when>
-    <xsl:when test="substring($time_, string-length($time_)) = 's'">
-      <xsl:value-of select="substring($time_, 1, string-length($time_) - 1)"/>
-    </xsl:when>
-    <xsl:when test="substring($time_, string-length($time_)) = 'm'">
-      <xsl:value-of select="60 * number(substring($time_, 1, string-length($time_) - 1))"/>
-    </xsl:when>
-    <xsl:when test="substring($time_, string-length($time_)) = 'h'">
-      <xsl:value-of select="3600 * number(substring($time_, 1, string-length($time_) - 1))"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="0"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
 
 
 <!-- == Matched Templates == -->
