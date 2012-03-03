@@ -78,19 +78,24 @@ free software.
   <xsl:param name="page"/>
   <xsl:param name="xslt_node"/>
   <xsl:for-each select="$xslt_node">
-    <xsl:variable name="calls_templates" select="set:distinct(.//xsl:call-template[
-                                                 not(@name = $xslt_node//xsl:template/@name) and
-                                                 not($page/processing-instruction('xslt-private')[string(.) = @name])
-                                                 ]/@name)"/>
-    <xsl:if test="count($calls_templates) > 0">
+    <xsl:variable name="calls_templates">
+      <xsl:for-each select="set:distinct(.//xsl:call-template[
+                            not(@name = $xslt_node//xsl:template/@name) and
+                            not($page/processing-instruction('xslt-private')[string(.) = @name])
+                            ])">
+        <xsl:variable name="name" select="string(@name)"/>
+        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
+          <link xref="{$name}"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="calls_templates_nodes" select="exsl:node-set($calls_templates)/*"/>
+    <xsl:if test="count($calls_templates_nodes) > 0">
       <list style="compact">
         <title>Calls Templates</title>
-        <xsl:for-each select="$calls_templates">
+        <xsl:for-each select="$calls_templates_nodes">
           <xsl:sort select="."/>
-          <xsl:variable name="name" select="string(.)"/>
-          <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-            <item><p><link xref="{$name}"/></p></item>
-          </xsl:if>
+          <item><p><xsl:copy-of select="."/></p></item>
         </xsl:for-each>
       </list>
     </xsl:if>
