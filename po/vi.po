@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the gnome-doc-utils package.
 # Phan Vĩnh Thịnh <teppi@vnlinux.org>, 2005.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2011.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2011-2012.
 #
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2012-01-26 23:34+0000\n"
-"PO-Revision-Date: 2012-03-04 11:50+0700\n"
+"PO-Revision-Date: 2012-03-04 11:52+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -91,10 +91,9 @@ msgstr "Đ:"
 #. and other stuff about the page.
 #.
 #: yelp-xsl.xml.in:102(msg/msgstr)
-#, fuzzy
 #| msgid "More About"
 msgid "About"
-msgstr "Thêm về"
+msgstr "Giới thiệu"
 
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:107(msg/msgstr)
@@ -126,7 +125,7 @@ msgstr "Lời ghi cuối sách"
 #. Title for license information when it's a CC license.
 #: yelp-xsl.xml.in:135(msg/msgstr)
 msgid "Creative Commons"
-msgstr ""
+msgstr "Creative Commons"
 
 #. Default title for a dedication section.
 #: yelp-xsl.xml.in:140(msg/msgstr)
@@ -143,7 +142,7 @@ msgstr "Nháp"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:153(msg/msgstr)
 msgid "Edited By"
-msgstr ""
+msgstr "Hiệu đính bởi"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
@@ -177,23 +176,23 @@ msgstr "Chỉ mục"
 #. Default title for a DocBook legal notice.
 #: yelp-xsl.xml.in:189(msg/msgstr)
 msgid "Legal"
-msgstr ""
+msgstr "Pháp lý"
 
 #. Generic title for license information when it's not a known license.
 #.
 #: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:201(msg/msgstr)
 msgid "Maintained By"
-msgstr ""
+msgstr "Bảo trì bởi"
 
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:206(msg/msgstr)
 msgid "More Information"
-msgstr ""
+msgstr "Thêm chi tiết"
 
 #. Link text for a link to the next page in a series.
 #: yelp-xsl.xml.in:211(msg/msgstr)
@@ -210,7 +209,7 @@ msgstr "Ghi chú"
 #.
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
-msgstr ""
+msgstr "Đóng góp khác"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
@@ -280,7 +279,7 @@ msgstr "Mẹo"
 #. Title for a list of translators.
 #: yelp-xsl.xml.in:299(msg/msgstr)
 msgid "Translated By"
-msgstr ""
+msgstr "Dịch bởi"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
@@ -297,7 +296,7 @@ msgstr "Cảnh báo"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:317(msg/msgstr)
 msgid "Written By"
-msgstr ""
+msgstr "Viết bởi"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -439,7 +438,7 @@ msgstr "từ <comment.name/>"
 #.
 #: yelp-xsl.xml.in:470(msg/msgstr)
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
