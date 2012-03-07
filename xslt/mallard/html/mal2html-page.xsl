@@ -468,7 +468,8 @@ separators used between links.
       </xsl:for-each>
     </xsl:variable>
     <xsl:variable name="revision"
-                  select="$node/mal:info/mal:revision[@date = $date][last()]"/>
+                  select="$node/mal:info/mal:revision
+                          [@date = $date or (not(@date) and $date = '')][last()]"/>
     <xsl:if test="$revision/@status != ''">
       <div class="version">
         <!-- FIXME: i18n -->
@@ -511,9 +512,7 @@ separators used between links.
             </xsl:when>
           </xsl:choose>
         </div>
-        <p class="version">
-          <!-- FIXME: i18n -->
-          <xsl:text>Version </xsl:text>
+        <xsl:variable name="version">
           <xsl:choose>
             <xsl:when test="$revision/@version">
               <xsl:value-of select="$revision/@version"/>
@@ -525,9 +524,17 @@ separators used between links.
               <xsl:value-of select="$revision/@pkgversion"/>
             </xsl:when>
           </xsl:choose>
-          <xsl:text> on </xsl:text>
-          <xsl:value-of select="$revision/@date"/>
-        </p>
+        </xsl:variable>
+        <xsl:if test="$version != '' or $revision/@date">
+          <p class="version">
+            <xsl:value-of select="$version"/>
+            <xsl:if test="$revision/@date">
+              <xsl:text> (</xsl:text>
+              <xsl:value-of select="$revision/@date"/>
+              <xsl:text>)</xsl:text>
+            </xsl:if>
+          </p>
+        </xsl:if>
         <xsl:apply-templates mode="mal2html.block.mode" select="$revision/*"/>
       </div>
     </xsl:if>
