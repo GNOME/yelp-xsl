@@ -2,16 +2,17 @@
 #
 # Young-Ho Cha <ganadist@gmail.com>, 2005.
 # Changwoo Ryu <cwryu@debian.org>, 2005, 2006, 2008, 2009, 2011.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-01 14:16+0000\n"
-"PO-Revision-Date: 2011-09-23 02:43+0900\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-03-05 22:36+0000\n"
+"PO-Revision-Date: 2012-03-07 03:56+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,142 +85,160 @@ msgstr "물음:"
 msgid "A:"
 msgstr "답:"
 
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:102(msg/msgstr)
+msgid "About"
+msgstr "정보"
+
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:99(msg/msgstr)
+#: yelp-xsl.xml.in:107(msg/msgstr)
 msgid "Advanced"
 msgstr "고급"
 
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:104(msg/msgstr)
+#: yelp-xsl.xml.in:112(msg/msgstr)
 msgid "Bibliography"
 msgstr "참고"
 
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:109(msg/msgstr)
+#: yelp-xsl.xml.in:117(msg/msgstr)
 msgid "Bug"
 msgstr "문제점"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:117(msg/msgstr)
+#: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Candidate"
 msgstr "후보"
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:123(msg/msgstr)
+#: yelp-xsl.xml.in:130(msg/msgstr)
 msgid "Colophon"
 msgstr "출판 정보"
 
-#. Title of the listing of subsections.
-#: yelp-xsl.xml.in:129(msg/msgstr)
-msgid "Contents"
-msgstr "차례"
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:135(msg/msgstr)
+msgid "Creative Commons"
+msgstr "Creative Commons"
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:134(msg/msgstr)
+#: yelp-xsl.xml.in:140(msg/msgstr)
 msgid "Dedication"
 msgstr "바치는 글"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:142(msg/msgstr)
+#: yelp-xsl.xml.in:148(msg/msgstr)
 msgid "Draft"
 msgstr "초안"
+
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:153(msg/msgstr)
+msgid "Edited By"
+msgstr "편집자"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:150(msg/msgstr)
+#: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
 msgstr "최종판"
 
-#. Automatic heading above a list of related links.
-#: yelp-xsl.xml.in:155(msg/msgstr)
-msgid "Further Reading"
-msgstr "기타 읽을거리"
-
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:160(msg/msgstr)
+#: yelp-xsl.xml.in:166(msg/msgstr)
 msgid "Glossary"
 msgstr "어휘"
 
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:165(msg/msgstr)
+#: yelp-xsl.xml.in:171(msg/msgstr)
 msgid "Important"
 msgstr "중요"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:173(msg/msgstr)
+#: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Incomplete"
 msgstr "불완전"
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:178(msg/msgstr)
+#: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "Index"
 msgstr "찾아보기"
 
-#. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:183(msg/msgstr)
-msgid "More About"
-msgstr "기타 정보"
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:189(msg/msgstr)
+msgid "Legal"
+msgstr "법률"
 
-#. Default title for a refnamediv element. This is the common section
-#. title found in most UNIX man pages.
+#. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:192(msg/msgstr)
-msgid "Name"
-msgstr "이름"
+#: yelp-xsl.xml.in:196(msg/msgstr)
+msgid "License"
+msgstr "라이선스"
+
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:201(msg/msgstr)
+msgid "Maintained By"
+msgstr "관리자"
+
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:206(msg/msgstr)
+msgid "More Information"
+msgstr "자세한 정보"
 
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:197(msg/msgstr)
+#: yelp-xsl.xml.in:211(msg/msgstr)
 msgid "Next"
 msgstr "다음"
 
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:202(msg/msgstr)
+#: yelp-xsl.xml.in:216(msg/msgstr)
 msgid "Note"
 msgstr "알림"
+
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:224(msg/msgstr)
+msgid "Other Credits"
+msgstr "기타 수고하신 분들"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:210(msg/msgstr)
+#: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
 msgstr "오래된 문서"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:215(msg/msgstr)
+#: yelp-xsl.xml.in:237(msg/msgstr)
 msgid "Pause"
 msgstr "일시 중지"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:220(msg/msgstr)
+#: yelp-xsl.xml.in:242(msg/msgstr)
 msgid "Play"
 msgstr "재생"
 
-#. Default title for a preface to a book.
-#: yelp-xsl.xml.in:226(msg/msgstr)
-msgid "Preface"
-msgstr "서문"
-
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:231(msg/msgstr)
+#: yelp-xsl.xml.in:247(msg/msgstr)
 msgid "Previous"
 msgstr "이전"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:239(msg/msgstr)
+#: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
 msgstr "검토 준비 완료"
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:244(msg/msgstr)
+#: yelp-xsl.xml.in:260(msg/msgstr)
 msgid "See Also"
 msgstr "참고"
 
@@ -227,44 +246,54 @@ msgstr "참고"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:253(msg/msgstr)
+#: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
 msgstr "그림 크기 줄이기"
 
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:258(msg/msgstr)
+#: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Sidebar"
 msgstr "가장자리"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:265(msg/msgstr)
+#: yelp-xsl.xml.in:281(msg/msgstr)
 msgid "Stub"
 msgstr "껍데기"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:273(msg/msgstr)
+#: yelp-xsl.xml.in:289(msg/msgstr)
 msgid "Synopsis"
 msgstr "개요"
 
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:278(msg/msgstr)
+#: yelp-xsl.xml.in:294(msg/msgstr)
 msgid "Tip"
 msgstr "힌트"
+
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:299(msg/msgstr)
+msgid "Translated By"
+msgstr "번역자"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:286(msg/msgstr)
+#: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
 msgstr "그림을 원래 크기로 보기"
 
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:291(msg/msgstr)
+#: yelp-xsl.xml.in:312(msg/msgstr)
 msgid "Warning"
 msgstr "경고"
+
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:317(msg/msgstr)
+msgid "Written By"
+msgstr "작성자"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -286,7 +315,7 @@ msgstr "경고"
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #.
-#: yelp-xsl.xml.in:318(msg/msgstr)
+#: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201C.png"
 
@@ -299,7 +328,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:334(msg/msgstr)
+#: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "<biblioentry.label/>에서 인용 정보를 보십시오."
 
@@ -310,7 +339,7 @@ msgstr "<biblioentry.label/>에서 인용 정보를 보십시오."
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -321,7 +350,7 @@ msgstr "<biblioentry.label/>에서 인용 정보를 보십시오."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:357(msg/msgstr)
+#: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -337,7 +366,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:374(msg/msgstr)
+#: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -365,7 +394,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:403(msg/msgstr)
+#: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "쓴 사람: <comment.name/>, 시각: <comment.date/>"
 
@@ -392,9 +421,21 @@ msgstr "쓴 사람: <comment.name/>, 시각: <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:431(msg/msgstr)
+#: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr "쓴 사람: <comment.name/>"
+
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -403,7 +444,7 @@ msgstr "쓴 사람: <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:443(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "‘<string/>’ 주소로 메일을 보내십시오."
 
@@ -414,7 +455,7 @@ msgstr "‘<string/>’ 주소로 메일을 보내십시오."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:455(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "‘<glossterm/>’의 정의를 봅니다."
 
@@ -434,7 +475,7 @@ msgstr "‘<glossterm/>’의 정의를 봅니다."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:476(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "<glosssee/> 참고."
 
@@ -455,7 +496,7 @@ msgstr "<glosssee/> 참고."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:498(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "<glosssee/> 항목도 참고."
 
@@ -466,7 +507,7 @@ msgstr "<glosssee/> 항목도 참고."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:510(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -477,7 +518,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:522(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -491,7 +532,7 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:537(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "<seeie/> 참고."
 
@@ -505,9 +546,21 @@ msgstr "<seeie/> 참고."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:552(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "<seeie/> 항목도 참고."
+
+#~ msgid "Contents"
+#~ msgstr "차례"
+
+#~ msgid "Further Reading"
+#~ msgstr "기타 읽을거리"
+
+#~ msgid "Name"
+#~ msgstr "이름"
+
+#~ msgid "Preface"
+#~ msgstr "서문"
 
 #~ msgid " — "
 #~ msgstr " — "
