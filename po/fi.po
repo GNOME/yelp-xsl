@@ -5,26 +5,29 @@
 # Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2004-2005, 2009-2011.
 # Ilkka tuohela <hile@iki.fi>, 2005.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2012.
+# Gnome 2012-03 Finnish translation sprint participants:
+# Jiri Grönroos
 msgid ""
 msgstr ""
+""
 "Project-Id-Version: yelp-xsl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-12 08:38+0100\n"
-"PO-Revision-Date: 2012-01-11 19:36+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-01-26 23:34+0000\n"
+"PO-Revision-Date: 2012-03-12 09:05:17+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <>\n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"Language: fi\n"
+"X-Generator: MediaWiki 1.20alpha (r113129); Translate 2012-03-02\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-POT-Import-Date: 2012-02-19 16:01:31+0000\n"
 
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
 #. translate it to "predefinito:LTR", if it isn't default:LTR
 #. or default:RTL it will not work.
-#.
 #: yelp-xsl.xml.in:27(msg/msgstr)
 msgid "default:LTR"
 msgstr "default:LTR"
@@ -33,9 +36,7 @@ msgstr "default:LTR"
 #. inline lists have to be constructed dynamically.  Using the default
 #. string of ", ", a list would look like this: A, B, C, D.  Using the
 #. nonsensical string " - ", a list would look like this: A - B - C - D.
-#.
 #. Make sure to include leading or trailing spaces if you want them.
-#.
 #: yelp-xsl.xml.in:40(msg/msgstr)
 #, no-wrap
 msgid ", "
@@ -45,9 +46,7 @@ msgstr ", "
 #. more elements.  The string ", " will be used to separate all but
 #. the last pair of elements.  Using these two strings, a list of
 #. names would be formatted as "Tom, Dick, and Harry".
-#.
 #. Make sure to include leading or trailing spaces if you want them.
-#.
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
@@ -55,41 +54,34 @@ msgstr " ja "
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
-#.
 #. Make sure to include leading or trailing spaces if you want them.
-#.
 #: yelp-xsl.xml.in:64(msg/msgstr)
 #, no-wrap
 msgid " and "
 msgstr " ja "
 
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
 #. This is used as a label before questions in a question-and-answer
 #. set.  Typically, questions are simply numbered and answers are not
 #. labelled at all.  However, DocBook allows document authors to set
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label questions.
-#.
 #: yelp-xsl.xml.in:79(msg/msgstr)
 msgid "Q:"
 msgstr "K:"
 
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
 #. This is used as a label before answers in a question-and-answer
 #. set.  Typically, answers are simply numbered and answers are not
 #. labelled at all.  However, DocBook allows document authors to set
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label answers.
-#.
 #: yelp-xsl.xml.in:92(msg/msgstr)
 msgid "A:"
 msgstr "V:"
 
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
-#.
 #: yelp-xsl.xml.in:102(msg/msgstr)
 msgid "About"
 msgstr "Tietoja"
@@ -111,7 +103,6 @@ msgstr "Vika"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
-#.
 #: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Candidate"
 msgstr "Luonnos"
@@ -133,7 +124,6 @@ msgstr "Omistuskirjoitus"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
-#.
 #: yelp-xsl.xml.in:148(msg/msgstr)
 msgid "Draft"
 msgstr "Vedos"
@@ -145,7 +135,6 @@ msgstr "Muokannut"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
-#.
 #: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
 msgstr "Lopullinen"
@@ -162,7 +151,6 @@ msgstr "Tärkeä"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
-#.
 #: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Incomplete"
 msgstr "Keskeneräinen"
@@ -178,7 +166,6 @@ msgid "Legal"
 msgstr "Lainopilliset huomautukset"
 
 #. Generic title for license information when it's not a known license.
-#.
 #: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "License"
 msgstr "Lisenssi"
@@ -205,14 +192,12 @@ msgstr "Huomautus"
 
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
-#.
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
 msgstr "Muut tunnustukset"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
-#.
 #: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
 msgstr "Vanhentunut"
@@ -234,7 +219,6 @@ msgstr "Edellinen"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
-#.
 #: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
 msgstr "Valmis katselmointiin"
@@ -247,7 +231,6 @@ msgstr "Lue myös"
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
-#.
 #: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
 msgstr "Sovita kuvat pienemmiksi"
@@ -258,14 +241,12 @@ msgid "Sidebar"
 msgstr "Sivupalkki"
 
 #. Revision status of a document or page. No content has been written yet.
-#.
 #: yelp-xsl.xml.in:281(msg/msgstr)
 msgid "Stub"
 msgstr "Tynkä"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
-#.
 #: yelp-xsl.xml.in:289(msg/msgstr)
 msgid "Synopsis"
 msgstr "Tiivistelmä"
@@ -282,7 +263,6 @@ msgstr "Käännös"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
-#.
 #: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
 msgstr "Näytä kuvat alkuperäisessä koossa"
@@ -304,11 +284,9 @@ msgstr "Kirjoittanut"
 #. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
 #. quote character.  For example, some languages use the double angle quotation
 #. mark.  Translators for these languages should use "yelp-quote-00AB.png".
-#.
 #. The image, however, is not automatically created.  Do not translate
 #. this to a value if there isn't a corresponding file in yelp-xsl under
 #. the directory icons/hicolor/48x48/status.
-#.
 #. Languages that use guillemets (angle quotation marks) should use either
 #. 00AB or 00BB, depending on whether the opening quotation is the left
 #. guillemet or the right guillemet.  Languages that use inverted comma
@@ -316,7 +294,6 @@ msgstr "Kirjoittanut"
 #. don't make very nice watermarks, so if you would normally open a quote
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
-#.
 #: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201D.png"
@@ -324,12 +301,9 @@ msgstr "yelp-quote-201D.png"
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to bibliography entries.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <label/> - The term being defined by the glossary entry
-#.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Näytä kirjallisuusviite <biblioentry.label/>."
@@ -340,18 +314,14 @@ msgstr "Näytä kirjallisuusviite <biblioentry.label/>."
 #. of the authors' names and the year of publication.  In English,
 #. these are generally formatted with [square brackets] surrounding
 #. them.
-#.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
 #. both, but you don't have to.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <biblioentry.label/> - The text content of the bibliography label
-#.
 #: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
@@ -361,13 +331,10 @@ msgstr "[<biblioentry.label/>]"
 #. published works.  The content is typically an abbreviation of the
 #. authors' last names.  In English, this abbreviation is usually
 #. written inside [square brackets].
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
-#.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "(<citation.label/>)"
@@ -377,25 +344,18 @@ msgstr "(<citation.label/>)"
 #. made by an editor of a document. This appears on a new line after
 #. the title of the comment, if a title is present, or as the first
 #. line if a title is not present.
-#.
 #. This string is used when both the name and the date are supplied.
 #. In English, a title together with this format string might produce
 #. something like this:
-#.
 #.   Some Comment Title
 #.   from Shaun McCance on 2010-06-03
-#.
 #.   Here is the text of the comment.
-#.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
-#.
 #: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr " — <comment.name/>, <comment.date/>"
@@ -405,36 +365,37 @@ msgstr " — <comment.name/>, <comment.date/>"
 #. made by an editor of a document. This appears on a new line after
 #. the title of the comment, if a title is present, or as the first
 #. line if a title is not present.
-#.
 #. This string is used when only the name of the commenter is supplied.
 #. In English, a title together with this format string might produce
 #. something like this:
-#.
 #.   Some Comment Title
 #.   from Shaun McCance
-#.
 #.   Here is the text of the comment.
-#.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <comment.name/> - The name of the person making the comment
-#.
 #: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr " — <comment.name/>"
+
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
 #. content, as follows:
-#.
 #. <string/> - The linked-to email address
-#.
-#: yelp-xsl.xml.in:469(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "Lähetä sähköpostia vastaanottajalle ”<string/>”."
 
@@ -442,10 +403,8 @@ msgstr "Lähetä sähköpostia vastaanottajalle ”<string/>”."
 #. This is a format message used to format tooltips on cross references
 #. to glossary entries. Special elements in the message will be replaced
 #. with the appropriate content, as follows:
-#.
 #. <glossterm/> - The term being defined by the glossary entry
-#.
-#: yelp-xsl.xml.in:481(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Lue termin ”<glossterm/>” määritelmä."
 
@@ -454,18 +413,14 @@ msgstr "Lue termin ”<glossterm/>” määritelmä."
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.  For the formatting of the actual
 #. link, see the message glossentry.xref.
-#.
 #. One or more glosssee elements are presented as a links to the user
 #. in the glossary, formatted as a single prose sentence.  For example,
 #. if the user is being directed to the entry "foo", the glosssee may
 #. be formatted as "See foo."
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <glosssee/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:502(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Katso <glosssee/>."
 
@@ -474,19 +429,15 @@ msgstr "Katso <glosssee/>."
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.  For the formatting of the actual
 #. link, see the message glossentry.xref.
-#.
 #. One or more glossseealso elements are presented as a links to the
 #. user in the glossary, formatted as a single prose sentence.  For
 #. example, if the user is being directed to the entries "foo", "bar",
 #. and "baz", the glossseealso may be formatted as "See also foo, bar,
 #. baz."
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <glosssee/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:524(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Katso myös <glosssee/>."
 
@@ -494,10 +445,8 @@ msgstr "Katso myös <glosssee/>."
 #. This is a format message used to format inline quotations. Special
 #. elements in the message will be replaced with the appropriate content,
 #. as follows:
-#.
 #. <node/> - The text content of the quote element
-#.
-#: yelp-xsl.xml.in:536(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -505,10 +454,8 @@ msgstr "“<node/>”"
 #. This is a format message used to format inline quotations inside
 #. other inline quotations. Special elements in the message will be
 #. replaced with the appropriate content, as follows:
-#.
 #. <node/> - The text content of the quote element
-#.
-#: yelp-xsl.xml.in:548(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "”<node/>”"
 
@@ -516,13 +463,10 @@ msgstr "”<node/>”"
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:563(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "Katso <seeie/>."
 
@@ -530,54 +474,10 @@ msgstr "Katso <seeie/>."
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.
-#.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#.
 #. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:578(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "Katso myös <seeie/>."
 
-#~ msgid "Contents"
-#~ msgstr "Sisältö"
-
-#~ msgid "Further Reading"
-#~ msgstr "Lisää luettavaa"
-
-#~ msgid "Name"
-#~ msgstr "Nimi"
-
-#~ msgid "Preface"
-#~ msgstr "Johdanto"
-
-#~ msgid " — "
-#~ msgstr " — "
-
-#~ msgid "A:&#x2003;"
-#~ msgstr "V:&#x2003;"
-
-#~ msgid "About This Document"
-#~ msgstr "Tietoja tästä asiakirjasta"
-
-#~ msgid "Affiliation"
-#~ msgstr "Yhteys"
-
-#~ msgid "Caution"
-#~ msgstr "Varoitus"
-
-#~ msgid "Email"
-#~ msgstr "Sähköposti"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Oikeudellinen ilmoitus"
-
-#~ msgid "Q:&#x2003;"
-#~ msgstr "K:&#x2003;"
-
-#~ msgid "Revision History"
-#~ msgstr "Muutoshistoria"
-
-#~ msgid "See"
-#~ msgstr "Katso"
