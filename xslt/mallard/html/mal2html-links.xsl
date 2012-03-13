@@ -71,7 +71,9 @@ parameter will be used if provided.
   <xsl:param name="role" select="''"/>
   <xsl:param name="divs" select="false()"/>
   <xsl:param name="title" select="''"/>
-  <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
+  <!-- We use the style attribute on page for links styles for backwards
+       compatibility, but only for topic links. -->
+  <xsl:variable name="style" select="concat(' ', $node[self::mal:links or $role = 'topic']/@style, ' ')"/>
   <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
   <xsl:variable name="maltitle" select="$node/self::mal:links/mal:title"/>
   <xsl:variable name="expander" select="($maltitle or ($title != '')) and $node/self::mal:links/@ui:expanded"/>
