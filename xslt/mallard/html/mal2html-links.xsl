@@ -131,8 +131,8 @@ parameter will be used if provided.
           <xsl:value-of select="str:split($uithumbs_)[1]"/>
         </xsl:variable>
         <xsl:choose>
-          <xsl:when test="$node/self::mal:links/@api:type='function'">
-            <xsl:call-template name="mal2html.api.links.function">
+          <xsl:when test="$node/self::mal:links/@api:mime != ''">
+            <xsl:call-template name="mal2html.api.links">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
             </xsl:call-template>

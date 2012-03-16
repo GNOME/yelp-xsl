@@ -1,0 +1,34 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="func2">
+
+<info>
+  <api:function>
+    <api:returns>
+      <api:type>some_type</api:type>
+      <api:name>some_name</api:name>
+    </api:returns>
+    <api:name>this_is_a_really_long_function_name_that_should_cause_wrapping</api:name>
+    <api:arg>
+      <api:type>a_type *</api:type>
+      <api:name>arg1</api:name>
+    </api:arg>
+    <api:arg>
+      <api:type>a_type*</api:type>
+      <api:name>arg2</api:name>
+    </api:arg>
+    <api:arg>
+      <api:type>a_type</api:type>
+      <api:name>arg3</api:name>
+    </api:arg>
+    <api:arg>
+      <api:name>...</api:name>
+    </api:arg>
+  </api:function>
+  <link type="guide" xref="index"/>
+</info>
+
+<title>A Long Function Name</title>
+
+</page>

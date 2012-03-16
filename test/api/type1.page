@@ -1,0 +1,12 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="type1">
+
+<info>
+  <link type="guide" xref="index"/>
+</info>
+
+<title>type1</title>
+
+</page>

@@ -1,0 +1,16 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="guide"
+      id="index">
+
+<title>API Extension Test</title>
+
+<links type="topic" api:mime="text/x-csrc">
+  <title>C</title>
+</links>
+
+<links type="topic" api:mime="text/x-python">
+  <title>Python</title>
+</links>
+
+</page>
