@@ -6,7 +6,7 @@
 <info>
   <api:function>
     <api:returns>
-      <api:type><link xref="type1"/></api:type>
+      <api:type><link xref="type1" role="api:name"/></api:type>
     </api:returns>
     <api:name>function_3</api:name>
   </api:function>

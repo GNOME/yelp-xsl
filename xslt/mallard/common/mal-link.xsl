@@ -20,9 +20,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:cache="http://projectmallard.org/cache/1.0/"
                 xmlns:facet="http://projectmallard.org/facet/1.0/"
+                xmlns:api="http://projectmallard.org/experimental/api/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="mal cache facet exsl str"
+                exclude-result-prefixes="mal cache facet api exsl str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -254,6 +255,10 @@ page or section cannot be found, ${xref} is used as the text content.
               <xsl:when test="$role != '' and $titles[@role = $role]">
                 <xsl:apply-templates mode="mal.link.content.mode"
                                      select="$titles[@role = $role][1]/node()"/>
+              </xsl:when>
+              <xsl:when test="$role = 'api:name' and $target/mal:info/api:*/api:name">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$target/mal:info/api:*/api:name[1]/node()"/>
               </xsl:when>
               <xsl:when test="$titles[not(@role)]">
                 <xsl:apply-templates mode="mal.link.content.mode"
