@@ -35,6 +35,11 @@ extension.
 -->
 
 
+<!-- not params for now -->
+<xsl:variable name="mal2html.api.tab.c.func" select="20"/>
+<xsl:variable name="mal2html.api.tab.c.args" select="60"/>
+
+
 <!--**==========================================================================
 mal2html.api.links
 Output links as a synopsis for a programming language.
@@ -181,7 +186,7 @@ contains an #{api:function} element in its #{info}.
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="tab" select="20 - string-length($type)"/>
+    <xsl:variable name="tab" select="$mal2html.api.tab.c.func - string-length($type)"/>
     <xsl:copy-of select="$type"/>
     <xsl:choose>
       <xsl:when test="$tab > 1">
@@ -189,7 +194,7 @@ contains an #{api:function} element in its #{info}.
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>&#x000A;</xsl:text>
-        <xsl:text>                    </xsl:text>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:variable name="name">
@@ -210,20 +215,22 @@ contains an #{api:function} element in its #{info}.
       </xsl:attribute>
       <xsl:copy-of select="$name"/>
     </a>
-    <xsl:variable name="paren" select="40 - string-length($name)"/>
+    <xsl:variable name="paren" select="$mal2html.api.tab.c.args -
+                                       $mal2html.api.tab.c.func -
+                                       string-length($name)"/>
     <xsl:choose>
       <xsl:when test="$paren > 1">
         <xsl:value-of select="str:padding($paren)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>&#x000A;</xsl:text>
-        <xsl:value-of select="str:padding(60)"/>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>(</xsl:text>
     <xsl:for-each select="$function/api:arg">
       <xsl:if test="position() != 1">
-        <xsl:value-of select="str:padding(61)"/>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.args + 1)"/>
       </xsl:if>
       <xsl:apply-templates mode="mal2html.inline.mode" select="api:type/node()"/>
       <xsl:if test="api:type and (

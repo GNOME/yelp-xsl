@@ -6,7 +6,7 @@
 <info>
   <api:function>
     <api:returns>
-      <api:type>some_type</api:type>
+      <api:type>some_really_long_type_name</api:type>
       <api:name>some_name</api:name>
     </api:returns>
     <api:name>this_is_a_really_long_function_name_that_should_cause_wrapping</api:name>
