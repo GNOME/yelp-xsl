@@ -58,6 +58,45 @@ elements. It should be called by an appropriate template that handles the
 <xsl:template name="mal2html.api.links">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
+  <xsl:choose>
+    <xsl:when test="$node/@api:mime = 'text/x-csrc' or $node/@api:mime = 'text/x-chdr'">
+      <xsl:call-template name="mal2html.api.links.c">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="links" select="$links"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="mal2html.links.ul">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="links" select="$links"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.api.links.c
+Output links as a synopsis for the C programming language.
+$node: A #{links} element to link from.
+$links: A list of links, as from a template in !{mal-link}.
+
+This template outputs links as a synopsis in the C programming language. It
+is called by *{mal2html.api.links} when the #{api:mime} attribute of ${node}
+is #{text/x-csrc} or #{text/x-chdr}. The target nodes of ${links} are expected
+to have appropriate API metadata elements in their #{info} elements. Links to
+targets without correct API metadata are output with *{mal2html.links.ul} after
+the synopsis.
+
+This template calls other templates to format each link, based on what type of
+API the target node is declared as.
+
+This template handles link sorting, and may have specialized sorting using the
+API metadata of the target nodes.
+-->
+<xsl:template name="mal2html.api.links.c">
+  <xsl:param name="node"/>
+  <xsl:param name="links"/>
   <xsl:variable name="apilinks_">
     <xsl:for-each select="$links">
       <xsl:variable name="link" select="."/>
@@ -81,18 +120,22 @@ elements. It should be called by an appropriate template that handles the
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
       <xsl:variable name="link" select="."/>
-      <xsl:choose>
-        <xsl:when test="$node/@api:mime = 'text/x-csrc' or $node/@api:mime = 'text/x-chdr'">
-          <xsl:call-template name="mal2html.api.link.c">
-            <xsl:with-param name="node" select="$node"/>
-            <xsl:with-param name="links" select="$links"/>
-            <xsl:with-param name="link" select="$link"/>
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:copy-of select="$link"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
+        <xsl:choose>
+          <xsl:when test="$target/mal:info/api:function/api:name">
+            <xsl:call-template name="mal2html.api.links.c.function">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="link" select="$link"/>
+              <xsl:with-param name="target" select="$target"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy-of select="$link"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
     </xsl:for-each>
   </xsl:variable>
   <xsl:variable name="out" select="exsl:node-set($out_)"/>
@@ -113,47 +156,7 @@ elements. It should be called by an appropriate template that handles the
 
 
 <!--**==========================================================================
-mal2html.api.link.c
-Output a link for a synopsis in C.
-$node: A #{links} element to link from.
-$links: A list of links, as from a template in !{mal-link}.
-$link: The #{mal:link} element from ${links} to process.
-
-This template formats a link for a synopsis in the C programming language. It
-is called by *{mal2html.api.links} when the #{api:mime} attribute of ${node}
-is #{text/x-csrc} or #{text/x-chdr}. The target node of ${link} is expected to
-have appropriate #{api:*} elements in its #{info} element. If it does not, this
-template returns ${link} unaltered. *{mal2html.api.links} collects unhandled
-links and displays them after the synopsis.
-
-This template calls other templates to format the link, based on what type of
-API the target node is declared as.
--->
-<xsl:template name="mal2html.api.link.c">
-  <xsl:param name="node"/>
-  <xsl:param name="links"/>
-  <xsl:param name="link"/>
-  <xsl:for-each select="$mal.cache">
-    <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
-    <xsl:choose>
-      <xsl:when test="$target/mal:info/api:function/api:name">
-        <xsl:call-template name="mal2html.api.link.c.function">
-          <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="links" select="$links"/>
-          <xsl:with-param name="link" select="$link"/>
-          <xsl:with-param name="target" select="$target"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:copy-of select="$link"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:for-each>
-</xsl:template>
-
-
-<!--**==========================================================================
-mal2html.api.link.c.function
+mal2html.api.links.c.function
 Output a link as a function for a synopsis in C.
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
@@ -161,10 +164,10 @@ $link: The #{mal:link} element from ${links} to process.
 $target: The node pointed to by ${link}.
 
 This template formats a link formatted as a function for a synopsis in the C
-programming language. It is called by *{mal2html.api.link.c} when the ${target}
+programming language. It is called by *{mal2html.api.links.c} when the ${target}
 contains an #{api:function} element in its #{info}.
 -->
-<xsl:template name="mal2html.api.link.c.function">
+<xsl:template name="mal2html.api.links.c.function">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:param name="link"/>
