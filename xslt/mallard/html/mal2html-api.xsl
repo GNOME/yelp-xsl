@@ -53,8 +53,26 @@ elements. It should be called by an appropriate template that handles the
 <xsl:template name="mal2html.api.links">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
-  <xsl:variable name="out_">
+  <xsl:variable name="apilinks_">
     <xsl:for-each select="$links">
+      <xsl:variable name="link" select="."/>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
+        <xsl:variable name="apiname" select="$target/mal:info/api:*/api:name[1]"/>
+        <xsl:for-each select="$link">
+          <xsl:copy>
+            <xsl:copy-of select="@*"/>
+            <xsl:copy-of select="*"/>
+            <xsl:copy-of select="$apiname"/>
+          </xsl:copy>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="apilinks" select="exsl:node-set($apilinks_)/*"/>
+  <xsl:variable name="out_">
+    <xsl:for-each select="$apilinks">
+      <xsl:sort select="api:name"/>
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
       <xsl:variable name="link" select="."/>
