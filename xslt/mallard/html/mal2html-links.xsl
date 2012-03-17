@@ -118,7 +118,7 @@ parameter will be used if provided.
           </div>
         </xsl:when>
       </xsl:choose>
-      <div class="region">
+      <div class="region"><div class="contents">
         <xsl:variable name="uithumbs">
           <xsl:variable name="uithumbs_">
             <xsl:for-each select="str:split(@ui:thumbs)">
@@ -212,7 +212,7 @@ parameter will be used if provided.
             </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
-      </div>
+      </div></div>
     </div>
   </div>
 </xsl:template>
@@ -483,7 +483,7 @@ element containing ${node}.
         <xsl:apply-templates mode="mal2html.block.mode" select="$node/mal:title">
           <xsl:with-param name="depth" select="$depth"/>
         </xsl:apply-templates>
-        <div class="region">
+        <div class="region"><div class="contents">
           <ul>
             <xsl:for-each select="$node/../mal:section">
               <xsl:call-template name="mal2html.links.ul.li">
@@ -492,7 +492,7 @@ element containing ${node}.
               </xsl:call-template>
             </xsl:for-each>
           </ul>
-        </div>
+        </div></div>
       </div>
     </div>
   </xsl:if>
@@ -576,7 +576,7 @@ This template calls *{mal2html.links.series.prev} and
     </xsl:call-template>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="$title"/>
-      <div class="region">
+      <div class="region"><div class="contents">
         <ul>
           <xsl:call-template name="mal2html.links.series.prev">
             <xsl:with-param name="node" select="$page"/>
@@ -592,7 +592,7 @@ This template calls *{mal2html.links.series.prev} and
             <xsl:with-param name="node" select="$page"/>
           </xsl:call-template>
         </ul>
-      </div>
+      </div></div>
     </div>
   </div>
 </xsl:template>
