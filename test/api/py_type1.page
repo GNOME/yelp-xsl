@@ -1,0 +1,15 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="py_type1">
+
+<info>
+  <api:type>
+    <api:name>type1</api:name>
+  </api:type>
+  <link type="guide" xref="index" group="py"/>
+</info>
+
+<title>Python Type #1</title>
+
+</page>

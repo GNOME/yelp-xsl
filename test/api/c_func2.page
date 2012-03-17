@@ -1,7 +1,7 @@
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:api="http://projectmallard.org/experimental/api/"
       type="topic"
-      id="func2">
+      id="c_func2">
 
 <info>
   <api:function>
@@ -26,7 +26,7 @@
       <api:name>...</api:name>
     </api:arg>
   </api:function>
-  <link type="guide" xref="index"/>
+  <link type="guide" xref="index" group="c"/>
 </info>
 
 <title>A Long Function Name</title>

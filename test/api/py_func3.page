@@ -1,0 +1,23 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="py_func3">
+
+<info>
+  <api:function>
+    <api:name>py_func_3</api:name>
+    <api:arg>
+      <api:type>type1</api:type>
+      <api:name>arg1</api:name>
+    </api:arg>
+    <api:arg>
+      <api:type><link xref="py_type1" role="api:name"/></api:type>
+      <api:name>arg2</api:name>
+    </api:arg>
+  </api:function>
+  <link type="guide" xref="index" group="py"/>
+</info>
+
+<title>Function #2</title>
+
+</page>

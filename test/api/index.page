@@ -5,11 +5,11 @@
 
 <title>API Extension Test</title>
 
-<links type="topic" api:mime="text/x-csrc">
+<links type="topic" groups="c" api:mime="text/x-csrc">
   <title>C</title>
 </links>
 
-<links type="topic" api:mime="text/x-python">
+<links type="topic" groups="py" api:mime="text/x-python">
   <title>Python</title>
 </links>
 

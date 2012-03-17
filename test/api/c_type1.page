@@ -1,13 +1,13 @@
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:api="http://projectmallard.org/experimental/api/"
       type="topic"
-      id="type1">
+      id="c_type1">
 
 <info>
-  <link type="guide" xref="index"/>
   <api:type>
     <api:name>type1</api:name>
   </api:type>
+  <link type="guide" xref="index" group="c"/>
 </info>
 
 <title>Type #1</title>
