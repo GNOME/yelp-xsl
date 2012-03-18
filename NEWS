@@ -1,3 +1,43 @@
+3.3.92
+======
+* Be more flexible with revisions for editor banner
+* Don't auto-link Python symbols when syntax highlighting
+* Fixed private templates and stylesheet variables in xsldoc
+* Use common links template for topic, guide, seealso, facets
+* Support for profile-checking in TTML
+* Support for xml:lang and xml:space in TTML
+* Support for TTML br element
+* Support for TTML dur attribute
+* Support for h and m time units in TTML
+* Support for Mallard block content in TTML
+* Dropped unused DocBook chunking params
+* Handle DocBook literallayout with class="monospaced"
+* Updated translations:
+  as          (Nilamdyuti Goswami)
+  ca          (Gil Forcada)
+  ca@valencia (Carles Ferrando)
+  de          (Mario Blättermann)
+  en_GB       (Bruce Cowan)
+  eo          (Tiffany Antopolski)
+  et          (Mattias Põldaru)
+  eu          (Inaki Larranaga Murgoitio)
+  fa          (Arash Mousavi)
+  fi          (Timo Jyrinki)
+  fr          (Bruno Brouard)
+  hu          (Gabor Kelemen)
+  it          (Milo Casagrande)
+  ko          (Seong-ho Cho)
+  lv          (Anita Reitere)
+  nl          (Hannie Dumoleyn)
+  pa          (A S Alam)
+  pl          (Piotr Drąg)
+  pt          (Duarte Loreto)
+  pt_BR       (Gabriel Speckhahn)
+  ta          (Dr.T.Vasudevan)
+  te          (Krishnababu Krothapalli)
+  uk          (Daniel Korostil)
+  vi          (Nguyễn Thái Ngọc Duy)
+
 3.3.3
 =====
 * Use series link titles for series links
