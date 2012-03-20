@@ -1092,6 +1092,12 @@ span.hi {
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
 
+div.api-link { padding: 0.5em 0 0.5em 0; }
+div.api-link + div.api-link {
+  border-top: solid 1px </xsl:text>
+    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+}
+
 div.facets {
   display: inline-block;
   padding: 6px;

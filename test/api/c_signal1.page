@@ -1,0 +1,28 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="c_signal1">
+
+<info>
+  <api:signal>
+    <api:flag>Run Last</api:flag>
+    <api:flag>Run 4ever</api:flag>
+    <api:returns>
+      <api:type>void</api:type>
+    </api:returns>
+    <api:name>signal1</api:name>
+    <api:arg>
+      <api:type>a_type *</api:type>
+      <api:name>arg1</api:name>
+    </api:arg>
+    <api:arg>
+      <api:type>gpointer</api:type>
+      <api:name>user_data</api:name>
+    </api:arg>
+  </api:signal>
+  <link type="guide" xref="index" group="c"/>
+</info>
+
+<title>Signal #1</title>
+
+</page>
