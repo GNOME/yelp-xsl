@@ -233,7 +233,7 @@ msgstr "ఆడించు"
 #. Link text for a link to the previous page in a series.
 #: yelp-xsl.xml.in:247(msg/msgstr)
 msgid "Previous"
-msgstr "మునుపటి"
+msgstr "క్రితం"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
@@ -288,7 +288,7 @@ msgstr "అనువదించినవారు"
 #.
 #: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
-msgstr "బొమ్మలను సాధారణ పరిమాణంలో వీక్షించండి"
+msgstr "చిత్రములను సాధారణ పరిమాణంలో వీక్షించండి"
 
 #. Accessible title for a warning.
 #: yelp-xsl.xml.in:312(msg/msgstr)
