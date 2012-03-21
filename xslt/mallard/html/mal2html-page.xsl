@@ -1174,11 +1174,14 @@ span.gloss-desc {
 .if-choose > .if-when { display: none; }
 .if-choose > .if-else { display: block; }
 .if-if.if__not-target-mobile { display: block; }
+span.if-if.if__not-target-mobile { display: inline; }
 .if-choose.if__not-target-mobile > .if-when { display: block; }
 .if-choose.if__not-target-mobile > .if-else { display: none; }
 @media only screen and (max-width: 400px) {
   .if-if.if__target-mobile { display: block; }
+  span.if-if.if__target-mobile { display: inline; }
   .if-if.if__not-target-mobile { display: none; }
+  span.if-if.if__not-target-mobile { display: none; }
   .if-choose.if__target-mobile > .if-when { display: block; }
   .if-choose.if__target-mobile > .if-else { display: none; }
   .if-choose.if__not-target-mobile > .if-when { display: none; }

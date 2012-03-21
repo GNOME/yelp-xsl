@@ -207,15 +207,20 @@ an #{api:function} element in its #{info}.
     </xsl:variable>
     <xsl:variable name="tab" select="$mal2html.api.tab.c.func - string-length($type)"/>
     <xsl:copy-of select="$type"/>
-    <xsl:choose>
-      <xsl:when test="$tab > 1">
-        <xsl:value-of select="str:padding($tab)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>&#x000A;</xsl:text>
-        <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <span class="if-if if__not-target-mobile">
+      <xsl:choose>
+        <xsl:when test="$tab > 1">
+          <xsl:value-of select="str:padding($tab)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x000A;</xsl:text>
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </span>
+    <span class="if-if if__target-mobile">
+      <xsl:text>&#x000A;</xsl:text>
+    </span>
     <xsl:variable name="name">
       <xsl:apply-templates mode="mal2html.inline.mode" select="$function/api:name/node()"/>
     </xsl:variable>
@@ -234,22 +239,40 @@ an #{api:function} element in its #{info}.
       </xsl:attribute>
       <xsl:copy-of select="$name"/>
     </a>
-    <xsl:variable name="paren" select="$mal2html.api.tab.c.args -
-                                       $mal2html.api.tab.c.func -
-                                       string-length($name)"/>
-    <xsl:choose>
-      <xsl:when test="$paren > 1">
-        <xsl:value-of select="str:padding($paren)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>&#x000A;</xsl:text>
-        <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <span class="if-if if__not-target-mobile">
+      <xsl:variable name="paren" select="$mal2html.api.tab.c.args -
+                                         $mal2html.api.tab.c.func -
+                                         string-length($name)"/>
+      <xsl:choose>
+        <xsl:when test="$paren > 1">
+          <xsl:value-of select="str:padding($paren)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x000A;</xsl:text>
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </span>
+    <span class="if-if if__target-mobile">
+      <xsl:variable name="paren" select="$mal2html.api.tab.c.func -
+                                         string-length($name)"/>
+      <xsl:choose>
+        <xsl:when test="$paren > 1">
+          <xsl:value-of select="str:padding($paren)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x000A;</xsl:text>
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </span>
     <xsl:text>(</xsl:text>
     <xsl:for-each select="$function/api:arg">
       <xsl:if test="position() != 1">
-        <xsl:value-of select="str:padding($mal2html.api.tab.c.args + 1)"/>
+        <span class="if-if if__not-target-mobile">
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.args - $mal2html.api.tab.c.func)"/>
+        </span>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.func + 1)"/>
       </xsl:if>
       <xsl:apply-templates mode="mal2html.inline.mode" select="api:type/node()"/>
       <xsl:if test="api:type and (
@@ -337,27 +360,47 @@ system, this template formats signals for GObject APIs.
       <xsl:apply-templates mode="mal2html.inline.mode" select="node()"/>
     </xsl:for-each>
     <xsl:text>&#x000A;</xsl:text>
-    <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
+    <span class="if-if if__not-target-mobile">
+      <xsl:value-of select="str:padding($mal2html.api.tab.c.func - 1)"/>
+    </span>
+    <xsl:text> </xsl:text>
     <xsl:variable name="type">
       <xsl:apply-templates mode="mal2html.inline.mode" select="$signal/api:returns/api:type/node()"/>
     </xsl:variable>
-    <xsl:variable name="paren" select="$mal2html.api.tab.c.args -
+    <xsl:copy-of select="$type"/>
+    <span class="if-if if__not-target-mobile">
+      <xsl:variable name="paren" select="$mal2html.api.tab.c.args -
                                          $mal2html.api.tab.c.func -
                                          string-length($type)"/>
-    <xsl:copy-of select="$type"/>
-    <xsl:choose>
-      <xsl:when test="$paren > 1">
-        <xsl:value-of select="str:padding($paren)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>&#x000A;</xsl:text>
-        <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
-      </xsl:otherwise>
-    </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="$paren > 1">
+          <xsl:value-of select="str:padding($paren)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x000A;</xsl:text>
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </span>
+    <span class="if-if if__target-mobile">
+      <xsl:variable name="paren" select="$mal2html.api.tab.c.func - string-length($type) - 1"/>
+      <xsl:choose>
+        <xsl:when test="$paren > 1">
+          <xsl:value-of select="str:padding($paren)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x000A;</xsl:text>
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.args)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </span>
     <xsl:text>(</xsl:text>
     <xsl:for-each select="$signal/api:arg">
       <xsl:if test="position() != 1">
-        <xsl:value-of select="str:padding($mal2html.api.tab.c.args + 1)"/>
+        <span class="if-if if__not-target-mobile">
+          <xsl:value-of select="str:padding($mal2html.api.tab.c.args - $mal2html.api.tab.c.func)"/>
+        </span>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.func + 1)"/>
       </xsl:if>
       <xsl:apply-templates mode="mal2html.inline.mode" select="api:type/node()"/>
       <xsl:if test="api:type and (
