@@ -137,6 +137,14 @@ API metadata of the target nodes.
               <xsl:with-param name="target" select="$target"/>
             </xsl:call-template>
           </xsl:when>
+          <xsl:when test="$target/mal:info/api:property/api:name">
+            <xsl:call-template name="mal2html.api.links.c.property">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="link" select="$link"/>
+              <xsl:with-param name="target" select="$target"/>
+            </xsl:call-template>
+          </xsl:when>
           <xsl:when test="$target/mal:info/api:signal/api:name">
             <xsl:call-template name="mal2html.api.links.c.signal">
               <xsl:with-param name="node" select="$node"/>
@@ -294,6 +302,83 @@ an #{api:function} element in its #{info}.
     <xsl:if test="not($function/api:arg)">
       <xsl:text>void);&#x000A;</xsl:text>
     </xsl:if>
+  </span></div>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.api.links.c.property
+Output a link as a property for a synopsis in C.
+$node: A #{links} element to link from.
+$links: A list of links, as from a template in !{mal-link}.
+$link: The #{mal:link} element from ${links} to process.
+$target: The node pointed to by ${link}.
+
+This template formats a link as a property for a synopsis in the C programming
+language. It is called by *{mal2html.api.links.c} when the ${target} contains
+an #{api:property} element in its #{info}. Since C does not have properties,
+this template formats properties for GObject APIs.
+-->
+<xsl:template name="mal2html.api.links.c.property">
+  <xsl:param name="node"/>
+  <xsl:param name="links"/>
+  <xsl:param name="link"/>
+  <xsl:param name="target"/>
+  <xsl:variable name="property" select="$target/mal:info/api:property[api:name][1]"/>
+  <div class="api-link {$link/@class}"><span>
+    <xsl:for-each select="$link/@*">
+      <xsl:if test="starts-with(name(.), 'data-')">
+        <xsl:copy-of select="."/>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:variable name="name">
+      <xsl:apply-templates mode="mal2html.inline.mode" select="$property/api:name/node()"/>
+    </xsl:variable>
+    <xsl:text>"</xsl:text>
+    <a>
+      <xsl:attribute name="href">
+        <xsl:call-template name="mal.link.target">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$link/@xref"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:call-template name="mal.link.tooltip">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$link/@xref"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:copy-of select="$name"/>
+    </a>
+    <xsl:text>"</xsl:text>
+    <xsl:variable name="tab" select="$mal2html.api.tab.c.func - string-length($name) - 2"/>
+    <xsl:choose>
+      <xsl:when test="$tab > 1">
+        <xsl:value-of select="str:padding($tab)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>&#x000A;</xsl:text>
+        <xsl:value-of select="str:padding($mal2html.api.tab.c.func)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:variable name="flags">
+      <xsl:for-each select="$property/api:flag">
+        <xsl:if test="position() != 1">
+          <xsl:text> · </xsl:text>
+        </xsl:if>
+        <xsl:apply-templates mode="mal2html.inline.mode" select="node()"/>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:copy-of select="$flags"/>
+    <span class="if-if if__not-target-mobile">
+      <xsl:value-of select="str:padding($mal2html.api.tab.c.args -
+                                        $mal2html.api.tab.c.func -
+                                        string-length($flags))"/>
+    </span>
+    <span class="if-if if__target-mobile">
+      <xsl:text>&#x000A; </xsl:text>
+    </span>
+    <xsl:apply-templates mode="mal2html.inline.mode" select="$property/api:type/node()"/>
   </span></div>
 </xsl:template>
 
