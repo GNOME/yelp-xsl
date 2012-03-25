@@ -9,19 +9,21 @@
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Lucas Lommer <llommer@svn.gnome.org>, 2008.
 # Petr Kovar <pknbe@volny.cz>, 2008, 2009, 2011.
-# Marek Černocký <marek@manet.cz>, 2011.
+# Marek Černocký <marek@manet.cz>, 2011, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-26 00:57+0200\n"
-"PO-Revision-Date: 2011-09-26 00:57+0200\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-01-26 23:34+0000\n"
+"PO-Revision-Date: 2012-03-25 12:40+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.2\n"
 
@@ -92,142 +94,161 @@ msgstr "Ot:"
 msgid "A:"
 msgstr "Odp:"
 
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:102(msg/msgstr)
+#| msgid "More About"
+msgid "About"
+msgstr "O aplikaci"
+
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:99(msg/msgstr)
+#: yelp-xsl.xml.in:107(msg/msgstr)
 msgid "Advanced"
 msgstr "Pokročilé"
 
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:104(msg/msgstr)
+#: yelp-xsl.xml.in:112(msg/msgstr)
 msgid "Bibliography"
 msgstr "Bibliografie"
 
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:109(msg/msgstr)
+#: yelp-xsl.xml.in:117(msg/msgstr)
 msgid "Bug"
 msgstr "Chyba"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:117(msg/msgstr)
+#: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Candidate"
 msgstr "Kandidát"
 
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:123(msg/msgstr)
+#: yelp-xsl.xml.in:130(msg/msgstr)
 msgid "Colophon"
 msgstr "Tiráž"
 
-#. Title of the listing of subsections.
-#: yelp-xsl.xml.in:129(msg/msgstr)
-msgid "Contents"
-msgstr "Obsah"
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:135(msg/msgstr)
+msgid "Creative Commons"
+msgstr "Creative Commons"
 
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:134(msg/msgstr)
+#: yelp-xsl.xml.in:140(msg/msgstr)
 msgid "Dedication"
 msgstr "Věnování"
 
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:142(msg/msgstr)
+#: yelp-xsl.xml.in:148(msg/msgstr)
 msgid "Draft"
 msgstr "Koncept"
+
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:153(msg/msgstr)
+msgid "Edited By"
+msgstr "Upravili"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:150(msg/msgstr)
+#: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
 msgstr "Konečné"
 
-#. Automatic heading above a list of related links.
-#: yelp-xsl.xml.in:155(msg/msgstr)
-msgid "Further Reading"
-msgstr "K dalšímu studiu"
-
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:160(msg/msgstr)
+#: yelp-xsl.xml.in:166(msg/msgstr)
 msgid "Glossary"
 msgstr "Slovník pojmů"
 
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:165(msg/msgstr)
+#: yelp-xsl.xml.in:171(msg/msgstr)
 msgid "Important"
 msgstr "Důležité"
 
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:173(msg/msgstr)
+#: yelp-xsl.xml.in:179(msg/msgstr)
 msgid "Incomplete"
 msgstr "Neúplné"
 
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:178(msg/msgstr)
+#: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "Index"
 msgstr "Rejstřík"
 
-#. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:183(msg/msgstr)
-msgid "More About"
-msgstr "Více o tématu"
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:189(msg/msgstr)
+msgid "Legal"
+msgstr "Právní poznámky"
 
-#. Default title for a refnamediv element. This is the common section
-#. title found in most UNIX man pages.
+#. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:192(msg/msgstr)
-msgid "Name"
-msgstr "Jméno"
+#: yelp-xsl.xml.in:196(msg/msgstr)
+msgid "License"
+msgstr "Licence"
+
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:201(msg/msgstr)
+msgid "Maintained By"
+msgstr "Správci"
+
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:206(msg/msgstr)
+msgid "More Information"
+msgstr "Další informace"
 
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:197(msg/msgstr)
+#: yelp-xsl.xml.in:211(msg/msgstr)
 msgid "Next"
 msgstr "Následující"
 
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:202(msg/msgstr)
+#: yelp-xsl.xml.in:216(msg/msgstr)
 msgid "Note"
 msgstr "Upozornění"
+
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:224(msg/msgstr)
+msgid "Other Credits"
+msgstr "Ostatní zásluhy"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:210(msg/msgstr)
+#: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
 msgstr "Neaktuální"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:215(msg/msgstr)
+#: yelp-xsl.xml.in:237(msg/msgstr)
 msgid "Pause"
 msgstr "Pozastavit"
 
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:220(msg/msgstr)
+#: yelp-xsl.xml.in:242(msg/msgstr)
 msgid "Play"
 msgstr "Přehrát"
 
-#. Default title for a preface to a book.
-#: yelp-xsl.xml.in:226(msg/msgstr)
-msgid "Preface"
-msgstr "Předmluva"
-
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:231(msg/msgstr)
+#: yelp-xsl.xml.in:247(msg/msgstr)
 msgid "Previous"
 msgstr "Předchozí"
 
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:239(msg/msgstr)
+#: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
 msgstr "Připraveno na kontrolu"
 
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:244(msg/msgstr)
+#: yelp-xsl.xml.in:260(msg/msgstr)
 msgid "See Also"
 msgstr "Viz také"
 
@@ -235,45 +256,55 @@ msgstr "Viz také"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:253(msg/msgstr)
+#: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
 msgstr "Zmenšit obrázky"
 
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:258(msg/msgstr)
+#: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Sidebar"
 msgstr "Postranní"
 
 # As used on Czech Wikipedia.
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:265(msg/msgstr)
+#: yelp-xsl.xml.in:281(msg/msgstr)
 msgid "Stub"
 msgstr "Pahýl"
 
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:273(msg/msgstr)
+#: yelp-xsl.xml.in:289(msg/msgstr)
 msgid "Synopsis"
 msgstr "Souhrn"
 
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:278(msg/msgstr)
+#: yelp-xsl.xml.in:294(msg/msgstr)
 msgid "Tip"
 msgstr "Tip"
+
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:299(msg/msgstr)
+msgid "Translated By"
+msgstr "Přeložili"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:286(msg/msgstr)
+#: yelp-xsl.xml.in:307(msg/msgstr)
 msgid "View images at normal size"
 msgstr "Zobrazit obrázky v normální velikosti"
 
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:291(msg/msgstr)
+#: yelp-xsl.xml.in:312(msg/msgstr)
 msgid "Warning"
 msgstr "Varování"
+
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:317(msg/msgstr)
+msgid "Written By"
+msgstr "Napsali"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -295,7 +326,7 @@ msgstr "Varování"
 #. with single quotation marks in your language, use the corresponding
 #. double quotation mark for the watermark image.
 #.
-#: yelp-xsl.xml.in:318(msg/msgstr)
+#: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
 msgstr "yelp-quote-201E.png"
 
@@ -308,7 +339,7 @@ msgstr "yelp-quote-201E.png"
 #.
 #. <label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:334(msg/msgstr)
+#: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Zobrazit bibliografický záznam <biblioentry.label/>."
 
@@ -319,7 +350,7 @@ msgstr "Zobrazit bibliografický záznam <biblioentry.label/>."
 #. these are generally formatted with [square brackets] surrounding
 #. them.
 #.
-#. This string is similar to citation.format, but they are used in
+#. This string is similar to citation.label, but they are used in
 #. different places.  The citation formatter is used when referencing
 #. a bibliography entry in running prose.  This formatter is used for
 #. the actual bibliography entry.  You may use the same formatting for
@@ -330,7 +361,7 @@ msgstr "Zobrazit bibliografický záznam <biblioentry.label/>."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:357(msg/msgstr)
+#: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -346,7 +377,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation/> - The text content of the citation element, possibly
 #.               as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:374(msg/msgstr)
+#: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -374,7 +405,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:403(msg/msgstr)
+#: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "autor <comment.name/>, datum <comment.date/>"
 
@@ -401,9 +432,21 @@ msgstr "autor <comment.name/>, datum <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:431(msg/msgstr)
+#: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
 msgstr "autor <comment.name/>"
+
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -412,7 +455,7 @@ msgstr "autor <comment.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:443(msg/msgstr)
+#: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
 msgstr "Poslat e-mail na „<string/>“."
 
@@ -423,7 +466,7 @@ msgstr "Poslat e-mail na „<string/>“."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:455(msg/msgstr)
+#: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Přečíst definici „<glossterm/>“."
 
@@ -443,7 +486,7 @@ msgstr "Přečíst definici „<glossterm/>“."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:476(msg/msgstr)
+#: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
 msgstr "Viz <glosssee/>."
 
@@ -464,7 +507,7 @@ msgstr "Viz <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:498(msg/msgstr)
+#: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
 msgstr "Viz také <glosssee/>."
 
@@ -475,7 +518,7 @@ msgstr "Viz také <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:510(msg/msgstr)
+#: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
 msgstr "„<node/>“"
 
@@ -486,7 +529,7 @@ msgstr "„<node/>“"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:522(msg/msgstr)
+#: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
 msgstr "‚<node/>‘"
 
@@ -500,7 +543,7 @@ msgstr "‚<node/>‘"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:537(msg/msgstr)
+#: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
 msgstr "Viz <seeie/>."
 
@@ -514,336 +557,6 @@ msgstr "Viz <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:552(msg/msgstr)
+#: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
 msgstr "Viz také <seeie/>."
-
-#~ msgid " — "
-#~ msgstr " — "
-
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Zobrazit záznam bibliografie "
-#~ "<label/>.</msgstr>"
-
-#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-
-#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>„<node/>“</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-
-#~| msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> "
-#~ "on <comment.date/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>(<comment.date/> "
-#~ "napsal <comment.name/>)</msgstr>"
-
-#~| msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>(napsal <comment.name/>)</"
-#~ "msgstr>"
-
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Odeslat e-mail na „<string/>“.</"
-#~ "msgstr>"
-
-#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>„<glossterm/>“</msgstr>"
-
-#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-#~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Viz <glosssee/>.</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Viz též <glosssee/>.</msgstr>"
-
-#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Otázka "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
-#~ msgstr "<msgid>question.xref</msgid> <msgstr>Otázka <number/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>„<node/>“</msgstr> "
-#~ "<msgstr>‚<node/>‘</msgstr>"
-
-#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
-#~ msgstr "<msgid>seealsoie.format</msgid> <msgstr>Viz také <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
-#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Viz <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-
-#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Autor</msgstr> <msgstr form='1'>Autoři</msgstr> <msgstr "
-#~ "form='2'>Autoři</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Spolupracovník</msgstr> <msgstr "
-#~ "form='1'>Spolupracovníci</msgstr> <msgstr form='2'>Spolupracovníci</"
-#~ "msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='1'>Copyright</msgstr> <msgstr form='1'>Copyright</msgstr> "
-#~ "<msgstr form='2'>Copyright</msgstr>"
-
-#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editoři</msgstr> "
-#~ "<msgstr form='2'>Editoři</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Další přispěvatel</msgstr> <msgstr form='1'>Další "
-#~ "přispěvatelé</msgstr> <msgstr form='2'>Další přispěvatelé</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Vydavatel</msgstr> <msgstr form='1'>Vydavatelé</msgstr> "
-#~ "<msgstr form='2'>Vydavatelé</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Překladatel</msgstr> <msgstr form='1'>Překladatelé</"
-#~ "msgstr> <msgstr form='1'>Překladatelé</msgstr>"
-
-#~ msgid "A:&#x2003;"
-#~ msgstr "Odp.:&#x2003;"
-
-#~ msgid "About This Document"
-#~ msgstr "O tomto dokumentu"
-
-#~ msgid "Affiliation"
-#~ msgstr "Přidružení"
-
-#~ msgid "Caution"
-#~ msgstr "Upozornění"
-
-#~ msgid "Email"
-#~ msgstr "E-mail"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Právní upozornění"
-
-#~ msgid "Q:&#x2003;"
-#~ msgstr "Ot.:&#x2003;"
-
-#~ msgid "Revision History"
-#~ msgstr "Historie revizí"
-
-#~ msgid "See"
-#~ msgstr "Viz"
-
-#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-#~ msgstr "<msgstr>A</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ " <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Příloha <number/></msgstr>"
-
-#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr "<msgstr>Příloha <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Kapitola <number/></msgstr>"
-
-#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Kapitola <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Příklad <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Příklad <number/>&#x2002;</msgstr> <msgstr>Příklad <number/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
-#~ msgstr "<msgstr>Příklad <number/></msgstr>"
-
-#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Obrázek <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Obrázek <number/>&#x2002;</msgstr> <msgstr>Obrázek <number/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
-#~ msgstr "<msgstr>Obrázek <number/></msgstr>"
-
-#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-#~ msgstr "<msgstr>I</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Část <number/></msgstr>"
-
-#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Část <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Oddíl <number/></msgstr>"
-
-#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr "<msgstr>Oddíl <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr "
-#~ "role='li'><number/>.&#x2002;</msgstr> <msgstr>Oddíl <number/></msgstr>"
-
-#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr "<msgstr>Oddíl <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgstr role='header'><i>Tabulka <number/></i>&#x2003;</msgstr> <msgstr "
-#~ "role='li'>Tabulka <number/>&#x2002;</msgstr> <msgstr>Tabulka <number/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
-#~ msgstr "<msgstr>Tabulka <number/></msgstr>"
