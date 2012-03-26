@@ -1,3 +1,10 @@
+3.4.0
+=====
+* Updated translations:
+  cs    (Marek Černocký)
+  te    (Krishnababu Krothapalli)
+  zh_CN (YunQiang Su)
+
 3.3.92
 ======
 * Be more flexible with revisions for editor banner
