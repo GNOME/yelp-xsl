@@ -4,12 +4,13 @@
 #   gnome-doc-utils package.
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2004.
 # Gil Forcada <gilforcada@guifi.net>, 2005-2011, 2012.
+# Jordi Serratosa <jordis@softcatala.cat>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-15 23:12+0100\n"
+"POT-Creation-Date: 2012-04-10 20:59+0200\n"
 "PO-Revision-Date: 2012-03-12 00:16+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -236,7 +237,7 @@ msgstr "Anterior"
 #.
 #: yelp-xsl.xml.in:255(msg/msgstr)
 msgid "Ready for review"
-msgstr "Preparat per a revisar"
+msgstr "Preparat per revisar"
 
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:260(msg/msgstr)
