@@ -25,7 +25,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Links
-:Revision:version="3.4" date="2011-11-08" revision="final"
+:Revision:version="3.4" date="2011-11-08" status="final"
 
 This stylesheet contains templates to handle implicit automatic links.
 -->
@@ -34,7 +34,7 @@ This stylesheet contains templates to handle implicit automatic links.
 <!--**==========================================================================
 db2html.linktrail
 Generate links to pages from ancestor elements.
-:Revision:version="3.4" date="2011-11-08" revision="final"
+:Revision:version="3.4" date="2011-11-08" status="final"
 $node: The element to generate links for.
 
 This template outputs a trail of links for the ancestor pages of ${node}.
@@ -75,7 +75,7 @@ This template outputs a trail of links for the ancestor pages of ${node}.
 <!--**==========================================================================
 db2html.links.next
 Output links to the previous and next pages.
-:Revision:version="3.4" date="2011-11-08" revision="final"
+:Revision:version="3.4" date="2011-11-08" status="final"
 $node: The element to generate links for.
 $depth_of_chunk: The depth of the containing chunk in the document.
 
@@ -164,7 +164,7 @@ and "Next", although the actual page titles are used for tooltips.
 <!--**==========================================================================
 db2html.links.section
 Output links to subsections.
-:Revision:version="3.4" date="2011-11-08" revision="final"
+:Revision:version="3.4" date="2011-11-08" status="final"
 $node: The element to generate links for.
 $divisions: The division-level child elements of ${node} to link to.
 
