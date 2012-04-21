@@ -366,10 +366,6 @@ l10n.plural.form
 Extracts he plural form string for a given cardinality
 $number: The cardinality of the plural form
 $lang: The locale to use when looking up the translated string
-$lang_language: The language portion of the ${lang}
-$lang_region: The region portion of ${lang}
-$lang_variant: The variant portion of ${lang}
-$lang_charset: The charset portion of ${lang}
 
 REMARK: Lots of documentation is needed
 -->
@@ -431,7 +427,7 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == cy == -->
-    <xsl:when test="$lang_language = 'cy'">
+    <xsl:when test="starts-with($normlang, 'cy-')">
       <xsl:choose>
         <xsl:when test="$number != 2">
           <xsl:text>0</xsl:text>
@@ -443,16 +439,15 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == fa hu ja ko th tr vi zh == -->
-    <xsl:when test="($lang_language = 'fa') or ($lang_language = 'hu') or
-                    ($lang_language = 'ja') or ($lang_language = 'ko') or
-                    ($lang_language = 'th') or ($lang_language = 'tr') or
-                    ($lang_language = 'vi') or ($lang_language = 'zh') ">
+    <xsl:when test="starts-with($normlang, 'ja-') or starts-with($normlang, 'ko-') or
+                    starts-with($normlang, 'th-') or starts-with($normlang, 'tr-') or
+                    starts-with($normlang, 'vi-') or starts-with($normlang, 'zh-') ">
       <xsl:text>0</xsl:text>
     </xsl:when>
 
     <!-- == fr nso wa == -->
-    <xsl:when test="($lang_language = 'fr') or ($lang_language = 'nso') or
-                    ($lang_language = 'wa') ">
+    <xsl:when test="starts-with($normlang, 'fr-') or starts-with($normlang, 'nso-') or
+                    starts-with($normlang, 'wa-') ">
       <xsl:choose>
         <xsl:when test="$number &gt; 1">
           <xsl:text>1</xsl:text>
@@ -464,7 +459,7 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == ga == -->
-    <xsl:when test="$lang_language = 'ga'">
+    <xsl:when test="starts-with($normlang, 'ga-')">
       <xsl:choose>
         <xsl:when test="$number = 1">
           <xsl:text>0</xsl:text>
@@ -479,7 +474,7 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == sk == -->
-    <xsl:when test="$lang_language = 'sk'">
+    <xsl:when test="starts-with($normlang, 'sk-')">
       <xsl:choose>
         <xsl:when test="$number = 1">
           <xsl:text>0</xsl:text>
@@ -494,7 +489,7 @@ REMARK: Lots of documentation is needed
     </xsl:when>
 
     <!-- == sl == -->
-    <xsl:when test="$lang_language = 'sl'">
+    <xsl:when test="starts-with($normlang, 'sl-')">
       <xsl:choose>
         <xsl:when test="$number mod 100 = 1">
           <xsl:text>0</xsl:text>
