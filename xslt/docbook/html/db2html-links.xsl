@@ -32,7 +32,7 @@ This stylesheet contains templates to handle implicit automatic links.
 
 
 <!--**==========================================================================
-db2html.linktrail
+db2html.links.linktrail
 Generate links to pages from ancestor elements.
 :Revision:version="3.4" date="2011-11-08" status="final"
 $node: The element to generate links for.
