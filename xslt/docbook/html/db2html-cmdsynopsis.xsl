@@ -34,11 +34,6 @@ This module contains templates to process DocBook command synopsis elements.
 -->
 
 
-<xsl:key name="db2html.cmdsynopsis.synopfragment.key"
-         match="synopfragment | db:synopfragment"
-         use="@id | @xml:id"/>
-
-
 <!-- == Matched Templates == -->
 
 <!-- = arg = -->
@@ -305,14 +300,16 @@ This module contains templates to process DocBook command synopsis elements.
 
 <!-- = synopfragmentref = -->
 <xsl:template match="synopfragmentref | db:synopfragmentref">
-  <xsl:for-each select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)[1]">
-    <xsl:variable name="count" select="count(preceding-sibling::synopfragment) +
-                                       count(preceding-sibling::db:synopfragment)"/>
-    <span class="co">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="$count + 1"/>
-      <xsl:text> </xsl:text>
-    </span>
+  <xsl:for-each select="key('db.id.key', @linkend)[1]">
+    <xsl:if test="self::synopfragment or self::db:synopfragment">
+      <xsl:variable name="count" select="count(preceding-sibling::synopfragment) +
+                                         count(preceding-sibling::db:synopfragment)"/>
+      <span class="co">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="$count + 1"/>
+        <xsl:text> </xsl:text>
+      </span>
+    </xsl:if>
   </xsl:for-each>
 </xsl:template>
 
@@ -525,7 +522,7 @@ selectors, which are generally expensive to perform.
 <!-- = synopfragmentref % db2html.cmdsynopsis.sbr.padding.mode = -->
 <xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode"
               match="synopfragmentref | db:synopfragmentref">
-  <xsl:variable name="node" select="key('db2html.cmdsynopsis.synopfragment.key', @linkend)"/>
+  <xsl:variable name="node" select="key('db.id.key', @linkend)"/>
   <xsl:variable name="count" select="count($node/preceding-sibling::synopfragment) +
                                      count($node/preceding-sibling::db:synopfragment) + 1"/>
   <xsl:value-of select="str:padding(string-length($count) + 2, ' ')"/>
