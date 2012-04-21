@@ -34,9 +34,6 @@ elements. Currently, only callouts to #{co} elements are supported. The
 -->
 
 
-<xsl:key name="db2html.callout.key" match="co | db:co" use="@id | @xml:id"/>
-
-
 <!--**==========================================================================
 db2html.callout.label
 Create a callout label for a #{co} element.
@@ -78,8 +75,8 @@ element, locate the corresponding #{co} element and call this template on it.
       <xsl:for-each select="str:split(@arearefs)">
         <xsl:variable name="arearef" select="string(.)"/>
         <xsl:for-each select="$node">
-          <xsl:variable name="co" select="key('db2html.callout.key', $arearef)"/>
-          <xsl:if test="$co">
+          <xsl:variable name="co" select="key('db.id.key', $arearef)"/>
+          <xsl:if test="$co/self::co or $co/self::db:co">
             <xsl:call-template name="db2html.callout.label">
               <xsl:with-param name="node" select="$co"/>
             </xsl:call-template>
