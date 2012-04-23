@@ -579,8 +579,17 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if">
     <xsl:call-template name="mal.if.test"/>
   </xsl:variable>
-  <xsl:if test="$if = 'true'">
-    <xsl:apply-templates mode="mal2html.block.mode"/>
+  <xsl:if test="$if != ''">
+    <xsl:choose>
+      <xsl:when test="$if != 'true'">
+        <div class="if-if {$if}">
+          <xsl:apply-templates mode="mal2html.block.mode"/>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="mal2html.block.mode"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:if>
 </xsl:template>
 
