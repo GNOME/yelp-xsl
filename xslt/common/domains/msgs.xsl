@@ -21,7 +21,7 @@
   <msg:msg id="{$id}">
     <msg:msgstr xml:lang="C">
       <xsl:for-each select="msg:msgstr/node()">
-        <xsl:copy/>
+        <xsl:copy-of select="."/>
       </xsl:for-each>
     </msg:msgstr>
     <xsl:for-each select="$files">
@@ -30,7 +30,7 @@
         <xsl:for-each select="key('id.key', $id)[1]">
           <msg:msgstr xml:lang="{$lang}">
             <xsl:for-each select="msg:msgstr/node()">
-              <xsl:copy/>
+              <xsl:copy-of select="."/>
             </xsl:for-each>
           </msg:msgstr>
         </xsl:for-each>
