@@ -2143,7 +2143,7 @@ msgstr "चेतावनी"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1768
 msgid "default:LTR"
-msgstr "पूर्वनिर्धारित:LTR"
+msgstr "default:LTR"
 
 #.
 #. This is an image of the opening quotation character for your language.
