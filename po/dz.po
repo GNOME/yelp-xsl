@@ -2057,7 +2057,7 @@ msgstr "ཉེན་བརྡ།"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1768
 msgid "default:LTR"
-msgstr "སྔོན་སྒྲིག་:ཨེལ་ཊི་ཨར།"
+msgstr "default:LTR"
 
 #.
 #. This is an image of the opening quotation character for your language.
