@@ -319,7 +319,7 @@ msgstr "Escrit per"
 #.
 #: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-OOAB.png"
+msgstr "yelp-quote-00AB.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -332,7 +332,7 @@ msgstr "yelp-quote-OOAB.png"
 #.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Vegeu l'entrada de bibliografia <bilibioentry.label/>."
+msgstr "Vegeu l'entrada de bibliografia <biblioentry.label/>."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
