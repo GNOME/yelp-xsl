@@ -2136,7 +2136,7 @@ msgstr "Предупредување"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1768
 msgid "default:LTR"
-msgstr "стандардно:LTR"
+msgstr "default:LTR"
 
 #.
 #. This is an image of the opening quotation character for your language.
