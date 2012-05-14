@@ -335,12 +335,12 @@ msgstr "(<biblioentry.label/>)"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:374(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr "(<citation/>)"
+msgstr "(<citation.label/>)"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -494,7 +494,7 @@ msgstr "‘<node/>’"
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See <seeie/>."
-msgstr "Consulta <glosssee/>."
+msgstr "Consulta <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -508,7 +508,7 @@ msgstr "Consulta <glosssee/>."
 #.
 #: yelp-xsl.xml.in:552(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr "Consulta tamién <glosssee/>."
+msgstr "Consulta tamién <seeie/>."
 
 #~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 #~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>(<citation/>)</msgstr>"
