@@ -1888,5 +1888,5 @@ msgstr "Сануулга"
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1549
 msgid "default:LTR"
-msgstr "Стандарт:LTR"
+msgstr "default:LTR"
 
