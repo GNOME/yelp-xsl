@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-01-26 10:28-0500\n"
+"POT-Creation-Date: 2012-05-14 08:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -320,7 +320,7 @@ msgstr ""
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #. 
-#. <label/> - The term being defined by the glossary entry
+#. <biblioentry.label/> - The term being defined by the glossary entry
 #. 
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
@@ -357,8 +357,8 @@ msgstr ""
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #. 
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
 #. 
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
