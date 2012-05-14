@@ -334,7 +334,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Rodyti bibliografijos įrašą <biblioįrašas.žyma/>."
+msgstr "Rodyti bibliografijos įrašą <biblioentry.label/>."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -356,7 +356,7 @@ msgstr "Rodyti bibliografijos įrašą <biblioįrašas.žyma/>."
 #.
 #: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
-msgstr "[<biblioįrašas.žyma/>]"
+msgstr "[<biblioentry.label/>]"
 
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
@@ -372,7 +372,7 @@ msgstr "[<biblioįrašas.žyma/>]"
 #.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr "[<citata.žyma/>]"
+msgstr "[<citation.label/>]"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -400,7 +400,7 @@ msgstr "[<citata.žyma/>]"
 #.
 #: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
-msgstr "nuo <komentaras.vardas/> <komentaras.data/>"
+msgstr "nuo <comment.name/> <comment.date/>"
 
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
@@ -427,7 +427,7 @@ msgstr "nuo <komentaras.vardas/> <komentaras.data/>"
 #.
 #: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
-msgstr "nuo <komentaras.vardas/>"
+msgstr "nuo <comment.name/>"
 
 #. ID: copyright.format
 #. This is a format message used to format copyright notices. Special
@@ -450,7 +450,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr "Išsiūstas el. laiškas „<eilutė/>“"
+msgstr "Išsiūstas el. laiškas „<string/>“"
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -481,7 +481,7 @@ msgstr "Skaitykite „<glossterm/>“ apibrėžimą."
 #.
 #: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr "Žiūrėkite <žodymonuoroda/>."
+msgstr "Žiūrėkite <glosssee/>."
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -502,7 +502,7 @@ msgstr "Žiūrėkite <žodymonuoroda/>."
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr "Taip pat žiūrėkite <žodymonuoroda/>."
+msgstr "Taip pat žiūrėkite <glosssee/>."
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -513,7 +513,7 @@ msgstr "Taip pat žiūrėkite <žodymonuoroda/>."
 #.
 #: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
-msgstr "„<viršūnė/>“"
+msgstr "„<node/>“"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
@@ -524,7 +524,7 @@ msgstr "„<viršūnė/>“"
 #.
 #: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
-msgstr "'<viršūnė/>'"
+msgstr "'<node/>'"
 
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
@@ -538,7 +538,7 @@ msgstr "'<viršūnė/>'"
 #.
 #: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
-msgstr "Žiūrėkite <žiūrėkiteįrašą/>."
+msgstr "Žiūrėkite <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -552,7 +552,7 @@ msgstr "Žiūrėkite <žiūrėkiteįrašą/>."
 #.
 #: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr "Taip pat žiūrėkite <žiūrėkiteįrašą/>."
+msgstr "Taip pat žiūrėkite <seeie/>."
 
 #~ msgid "Contents"
 #~ msgstr "Turinys"
