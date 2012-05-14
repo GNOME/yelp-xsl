@@ -335,7 +335,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "查看引用条目 <biblioentry.lable/>。"
+msgstr "查看引用条目 <biblioentry.label/>。"
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
