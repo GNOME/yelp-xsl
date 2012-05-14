@@ -347,7 +347,7 @@ double quotation mark for the watermark image.
 <!-- ======================================================================= -->
 
 <msg id="biblioentry.tooltip">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: biblioentry.tooltip
 This is a format message used to format tooltips on cross references
 to bibliography entries.
@@ -355,13 +355,13 @@ to bibliography entries.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;label/> - The term being defined by the glossary entry
-</its:locNote>
+<biblioentry.label/> - The term being defined by the glossary entry
+]]></its:locNote>
 <msgstr>View the bibliography entry <biblioentry.label/>.</msgstr>
 </msg>
 
 <msg id="biblioentry.label">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: biblioentry.label
 This is a format message used to format the labels for entries in
 a bibliography.  The content of the label is often an abbreviation
@@ -378,13 +378,13 @@ both, but you don't have to.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;biblioentry.label/> - The text content of the bibliography label
-</its:locNote>
+<biblioentry.label/> - The text content of the bibliography label
+]]></its:locNote>
 <msgstr>[<biblioentry.label/>]</msgstr>
 </msg>
 
 <msg id="citation.label">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: citation.label
 This is a format message used to format inline citations to other
 published works.  The content is typically an abbreviation of the
@@ -394,14 +394,14 @@ written inside [square brackets].
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;citation/> - The text content of the citation element, possibly
-              as a link to an entry in the bibliography
-</its:locNote>
+<citation.label/> - The text content of the citation element, possibly
+                    as a link to an entry in the bibliography
+]]></its:locNote>
 <msgstr>[<citation.label/>]</msgstr>
 </msg>
 
 <msg id="comment.name-date">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: comment.name-date
 This is a format message used to format the citation of a comment
 made by an editor of a document. This appears on a new line after
@@ -423,14 +423,14 @@ instead of this string.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;comment.name/> - The name of the person making the comment
-&lt;comment.date/> - The date the comment was made
-</its:locNote>
+<comment.name/> - The name of the person making the comment
+<comment.date/> - The date the comment was made
+]]></its:locNote>
 <msgstr>from <comment.name/> on <comment.date/></msgstr>
 </msg>
 
 <msg id="comment.name">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: comment.name
 This is a format message used to format the citation of a comment
 made by an editor of a document. This appears on a new line after
@@ -452,50 +452,50 @@ of this string.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;comment.name/> - The name of the person making the comment
-</its:locNote>
+<comment.name/> - The name of the person making the comment
+]]></its:locNote>
 <msgstr>from <comment.name/></msgstr>
 </msg>
 
 <msg id="copyright.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: copyright.format
 This is a format message used to format copyright notices. Special
 elements in the message will be replaced with the appropriate content,
 as follows:
 
-&lt;copyright.years/> - The years the copyrightable material was made
-&lt;copyright.name/>  - The person or entity that holds the copyright
-</its:locNote>
+<copyright.years/> - The years the copyrightable material was made
+<copyright.name/>  - The person or entity that holds the copyright
+]]></its:locNote>
 <msgstr>© <copyright.years/> <copyright.name/></msgstr>
 </msg>
 
 <msg id="email.tooltip">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: email.tooltip
 This is a format message used to format tooltips on mailto: links.
 Special elements in the message will be replaced with the appropriate
 content, as follows:
 
-&lt;string/> - The linked-to email address
-</its:locNote>
+<string/> - The linked-to email address
+]]></its:locNote>
 <msgstr>Send email to ‘<string/>’.</msgstr>
 </msg>
 
 <msg id="glossentry.tooltip">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: glossentry.tooltip
 This is a format message used to format tooltips on cross references
 to glossary entries. Special elements in the message will be replaced
 with the appropriate content, as follows:
 
-&lt;glossterm/> - The term being defined by the glossary entry
-</its:locNote>
+<glossterm/> - The term being defined by the glossary entry
+]]></its:locNote>
 <msgstr>Read the definition for ‘<glossterm/>’.</msgstr>
 </msg>
 
 <msg id="glosssee.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: glosssee.format
 This is a format message used to format glossary cross references.
 This format message controls the sentence used to present the cross
@@ -510,13 +510,13 @@ be formatted as "See foo."
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;glosssee/> - The actual link or links of the cross reference
-</its:locNote>
+<glosssee/> - The actual link or links of the cross reference
+]]></its:locNote>
 <msgstr>See <glosssee/>.</msgstr>
 </msg>
 
 <msg id="glossseealso.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: glossseealso.format
 This is a format message used to format glossary cross references.
 This format message controls the sentence used to present the cross
@@ -532,37 +532,37 @@ baz."
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;glosssee/> - The actual link or links of the cross reference
-</its:locNote>
+<glosssee/> - The actual link or links of the cross reference
+]]></its:locNote>
 <msgstr>See also <glosssee/>.</msgstr>
 </msg>
 
 <msg id="quote.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: quote.format
 This is a format message used to format inline quotations. Special
 elements in the message will be replaced with the appropriate content,
 as follows:
 
-&lt;node/> - The text content of the quote element
-</its:locNote>
+<node/> - The text content of the quote element
+]]></its:locNote>
 <msgstr>“<node/>”</msgstr>
 </msg>
 
 <msg id="quote.inner.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: quote.format
 This is a format message used to format inline quotations inside
 other inline quotations. Special elements in the message will be
 replaced with the appropriate content, as follows:
 
-&lt;node/> - The text content of the quote element
-</its:locNote>
+<node/> - The text content of the quote element
+]]></its:locNote>
 <msgstr>‘<node/>’</msgstr>
 </msg>
 
 <msg id="seeie.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: seeie.format
 This is a format message used to format index cross references.
 This format message controls the sentence used to present the cross
@@ -571,13 +571,13 @@ reference, not the link itself.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;seeie/> - The actual link or links of the cross reference
-</its:locNote>
+<seeie/> - The actual link or links of the cross reference
+]]></its:locNote>
 <msgstr>See <seeie/>.</msgstr>
 </msg>
 
 <msg id="seealsoie.format">
-<its:locNote>
+<its:locNote><![CDATA[
 ID: seealsoie.format
 This is a format message used to format index cross references.
 This format message controls the sentence used to present the cross
@@ -586,8 +586,8 @@ reference, not the link itself.
 Special elements in the message will be replaced with the
 appropriate content, as follows:
 
-&lt;seeie/> - The actual link or links of the cross reference
-</its:locNote>
+<seeie/> - The actual link or links of the cross reference
+]]></its:locNote>
 <msgstr>See also <seeie/>.</msgstr>
 </msg>
 
