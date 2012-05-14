@@ -322,7 +322,7 @@ msgstr "Geschreven door"
 #.
 #: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
-msgstr "watermark-blockquote-201C.png"
+msgstr "yelp-quote-201C.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
