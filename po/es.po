@@ -366,12 +366,12 @@ msgstr "(<biblioentry.label/>)"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr "(<citation/>)"
+msgstr "(<citation.label/>)"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
