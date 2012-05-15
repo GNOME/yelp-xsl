@@ -315,7 +315,7 @@ msgstr "נכתב על ידי"
 #.
 #: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-201C.png"
+msgstr "yelp-quote-201E.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -507,7 +507,7 @@ msgstr "לקריאה נוספת: <glosssee/>."
 #.
 #: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
-msgstr "“<node/>”"
+msgstr "„<node/>”"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
