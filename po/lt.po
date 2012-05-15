@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2012-01-26 23:34+0000\n"
-"PO-Revision-Date: 2012-03-28 00:19+0300\n"
+"PO-Revision-Date: 2012-05-15 22:38+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -450,7 +450,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr "Išsiūstas el. laiškas „<string/>“"
+msgstr "Išsiųsti el. laišką „<string/>“"
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
