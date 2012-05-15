@@ -1,3 +1,13 @@
+3.4.2
+=====
+* Fixed invalid translations, bug #675905
+* Fixed handling of inline markup in translation messages
+* Removed old and incorrect code referencing old parameters
+* Fixed Mallard if:if for "maybe" values
+* Removed custom DocBook keys in favor of db.id.key
+* Updated translations:
+  el    (Tom Tryfonidis)
+
 3.4.1
 =====
 * Updated translations:
