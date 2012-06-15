@@ -10,15 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 11:50+0300\n"
-"PO-Revision-Date: 2012-05-03 11:51+0300\n"
-"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-05-14 12:21+0000\n"
+"PO-Revision-Date: 2012-06-15 13:00+0200\n"
+"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
@@ -211,6 +211,10 @@ msgstr "Σημείωση"
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
 msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+"Θάνος Τρυφωνίδης <tomtryf@gmail.com>\n"
+"\n"
+"Για περισσότερα δείτε http://www.gnome.gr/"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
@@ -368,7 +372,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
@@ -384,10 +388,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -412,10 +416,10 @@ msgstr "από <comment.name/> <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
