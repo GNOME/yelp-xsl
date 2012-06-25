@@ -55,14 +55,6 @@ The jQuery library is copyright 2010 John Resig and is dual-licensed under
 the MIT and and the Gnu GPLv2 licenses. See COPYING.MIT and COPYING.GPL
 for details.
 
-The jQuery.Syntax library is copyright 2010 Samuel Williams and is licensed
-under the GNU AGPLv3. See COPYING.AGPL for details. The jQuery.Syntax authors
-have granted the following additional permissions (as per section 7):
+The jQuery.Syntax library is copyright 2011 Samuel Williams and is licensed
+under the MIT license. See COPYING.MIT for details.
 
- 1) Any HTML file which merely makes function calls to this code, and for
-    that purpose includes it by reference shall be deemed a separate work
-    for copyright law purposes.
- 2) You may distribute non-source (e.g., minimized or compacted) forms of
-    the code without the copy of the GNU AGPL normally required by section
-    4, provided you include this license notice and a URL through which
-    recipients can access the Corresponding Source.
