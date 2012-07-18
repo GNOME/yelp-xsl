@@ -211,10 +211,6 @@ msgstr "Σημείωση"
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
 msgstr ""
-"Ελληνική μεταφραστική ομάδα GNOME\n"
-"Θάνος Τρυφωνίδης <tomtryf@gmail.com>\n"
-"\n"
-"Για περισσότερα δείτε http://www.gnome.gr/"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
