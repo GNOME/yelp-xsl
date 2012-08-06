@@ -6,7 +6,7 @@ $(srcdir)/yelp-xsl.pot: yelp-xsl.xml.in
 all: $(srcdir)/yelp-xsl.pot
 
 yelp-xsl.xml: yelp-xsl.xml.in
-	@echo "  GEN    $@"; \
+	$(AM_V_GEN) ( \
 	if [ ! -d .yelp-xsl ]; then mkdir .yelp-xsl; fi; \
 	echo '<files>' > ".yelp-xsl.files"; \
 	echo '<source href="yelp-xsl.xml.in"/>' >> ".yelp-xsl.files"; \
@@ -20,7 +20,7 @@ yelp-xsl.xml: yelp-xsl.xml.in
 	xsltproc -o "$@" "msgs.xsl" ".yelp-xsl.files" || exit 1; \
 	for lang in $(ALL_LINGUAS); do rm ".yelp-xsl/$$lang.xml"; done; \
 	rmdir .yelp-xsl; \
-	rm .yelp-xsl.files
+	rm .yelp-xsl.files)
 
 xsldir=$(datadir)/yelp-xsl/xslt/common/domains
 
