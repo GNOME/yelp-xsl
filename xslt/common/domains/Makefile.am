@@ -9,15 +9,15 @@ yelp-xsl.xml: yelp-xsl.xml.in
 	$(AM_V_GEN) ( \
 	if [ ! -d .yelp-xsl ]; then mkdir .yelp-xsl; fi; \
 	echo '<files>' > ".yelp-xsl.files"; \
-	echo '<source href="yelp-xsl.xml.in"/>' >> ".yelp-xsl.files"; \
+	echo '<source href="' $(srcdir)/yelp-xsl.xml.in '"/>' >> ".yelp-xsl.files"; \
 	for lang in $(ALL_LINGUAS); do \
 	  msgfmt -o ".yelp-xsl/$$lang.mo" "$(top_srcdir)/po/$$lang.po" || exit 1; \
-	  (cd .yelp-xsl && itstool -o "$$lang.xml" -m "$$lang.mo" "../yelp-xsl.xml.in") || exit 1; \
+	  itstool -o ".yelp-xsl/$$lang.xml" -m ".yelp-xsl/$$lang.mo" $(srcdir)/yelp-xsl.xml.in || exit 1; \
 	  rm ".yelp-xsl/$$lang.mo" || exit 1; \
 	  echo '<file href="'".yelp-xsl/$$lang.xml"'"/>' >> ".yelp-xsl.files"; \
 	done; \
 	echo '</files>' >> ".yelp-xsl.files"; \
-	xsltproc -o "$@" "msgs.xsl" ".yelp-xsl.files" || exit 1; \
+	xsltproc --nonet -o "$@" $(srcdir)/"msgs.xsl" ".yelp-xsl.files" || exit 1; \
 	for lang in $(ALL_LINGUAS); do rm ".yelp-xsl/$$lang.xml"; done; \
 	rmdir .yelp-xsl; \
 	rm .yelp-xsl.files)
