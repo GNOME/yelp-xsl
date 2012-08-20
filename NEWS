@@ -1,3 +1,13 @@
+3.5.90
+======
+* Added support for depth attribute on section links
+* Improved various bits of the build process (Colin Walters)
+* Corrected jQuery.Syntax license info (Steve Magoun)
+* Updated translations:
+  el    (Tom Tryfonidis)
+  gl    (Fran Diéguez)
+  lt    (Aurimas Černius)
+
 3.4.2
 =====
 * Fixed invalid translations, bug #675905
