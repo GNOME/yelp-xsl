@@ -862,6 +862,9 @@ pre.contents {
 }
 div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
 div.links ul { margin: 0; padding: 0; }
+div.links ul ul {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
 li.links {
   margin: 0.5em 0 0.5em 0;
   padding: 0;

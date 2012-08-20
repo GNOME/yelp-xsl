@@ -454,6 +454,16 @@ element containing ${node}.
   <xsl:param name="node" select="."/>
   <xsl:param name="depth" select="count($node/ancestor-or-self::mal:section) + 2"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
+  <xsl:variable name="sectdepth">
+    <xsl:choose>
+      <xsl:when test="number(@depth) > 1">
+        <xsl:value-of select="round(number(@depth))"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="1"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:if test="$node/../mal:section">
     <div>
       <xsl:attribute name="class">
@@ -484,18 +494,38 @@ element containing ${node}.
           <xsl:with-param name="depth" select="$depth"/>
         </xsl:apply-templates>
         <div class="region">
-          <ul>
-            <xsl:for-each select="$node/../mal:section">
-              <xsl:call-template name="mal2html.links.ul.li">
-                <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
-                <xsl:with-param name="role" select="'section'"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </ul>
+          <xsl:call-template name="_mal2html.links.section.ul">
+            <xsl:with-param name="node" select="$node/.."/>
+            <xsl:with-param name="depth" select="number($sectdepth)"/>
+          </xsl:call-template>
         </div>
       </div>
     </div>
   </xsl:if>
+</xsl:template>
+
+<!--#* _mal2html.links.section.ul -->
+<xsl:template name="_mal2html.links.section.ul">
+  <xsl:param name="node"/>
+  <xsl:param name="depth"/>
+  <ul>
+    <xsl:for-each select="$node/mal:section">
+      <xsl:call-template name="mal2html.links.ul.li">
+        <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
+        <xsl:with-param name="role" select="'section'"/>
+      </xsl:call-template>
+      <xsl:if test="$depth > 1 and mal:section">
+        <li class="links">
+          <ul>
+            <xsl:call-template name="_mal2html.links.section.ul">
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="depth" select="$depth - 1"/>
+            </xsl:call-template>
+          </ul>
+        </li>
+      </xsl:if>
+    </xsl:for-each>
+  </ul>
 </xsl:template>
 
 
