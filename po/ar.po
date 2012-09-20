@@ -2,26 +2,26 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER, 2005.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008, 2009.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008, 2009, 2012.
 # Anas Husseini <linux.anas@gmail.com>, 2007.
 # Abu Osaid <ambamb1402@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-08-20 16:58+0000\n"
-"PO-Revision-Date: 2012-08-30 17:38+0000\n"
-"Last-Translator: Abu Osaid <ambamb1402@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-20 07:07+0200\n"
+"PO-Revision-Date: 2012-09-20 07:15+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.0\n"
 "X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
-"X-Generator: Launchpad (build 15890)\n"
+"X-Project-Style: gnome\n"
 
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
@@ -42,7 +42,7 @@ msgstr "default:RTL"
 #: yelp-xsl.xml.in:40(msg/msgstr)
 #, no-wrap
 msgid ", "
-msgstr "، "
+msgstr "و "
 
 #. This is used as the final separator in an inline list of three or
 #. more elements.  The string ", " will be used to separate all but
@@ -54,7 +54,7 @@ msgstr "، "
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
-msgstr "، و "
+msgstr "و "
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
@@ -64,7 +64,7 @@ msgstr "، و "
 #: yelp-xsl.xml.in:64(msg/msgstr)
 #, no-wrap
 msgid " and "
-msgstr " و "
+msgstr " و "
 
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
@@ -127,7 +127,7 @@ msgstr "معلومات الإصدار"
 #. Title for license information when it's a CC license.
 #: yelp-xsl.xml.in:135(msg/msgstr)
 msgid "Creative Commons"
-msgstr "المشاع الإبداعي (CC)"
+msgstr "المشاع الإبداعي"
 
 #. Default title for a dedication section.
 #: yelp-xsl.xml.in:140(msg/msgstr)
@@ -253,7 +253,7 @@ msgstr "انظر أيضا"
 #.
 #: yelp-xsl.xml.in:269(msg/msgstr)
 msgid "Scale images down"
-msgstr ""
+msgstr "صغّر الصور"
 
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:274(msg/msgstr)
@@ -322,7 +322,7 @@ msgstr "كتبه"
 #.
 #: yelp-xsl.xml.in:344(msg/msgstr)
 msgid "yelp-quote-201C.png"
-msgstr ""
+msgstr "yelp-quote-201D.png"
 
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -335,7 +335,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "اطّلع على المرجع <biblioentry.label/>."
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -357,7 +357,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
@@ -373,7 +373,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "[<citation.label/>]"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -440,7 +440,7 @@ msgstr "من <comment.name/>"
 #.
 #: yelp-xsl.xml.in:470(msg/msgstr)
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "حقوق النشر محفوظة © <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -461,11 +461,8 @@ msgstr "أرسل بريد إلكتروني إلى ‘<string/>’."
 #. <glossterm/> - The term being defined by the glossary entry
 #.
 #: yelp-xsl.xml.in:494(msg/msgstr)
-#, fuzzy
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
-"<msgid>glossentry.tooltip</msgid> <msgstr> اقرأ تعريف ‘<glossterm/>’.</"
-"msgstr>"
+msgstr "اقرأ تعريف ’<glossterm/>‘."
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -485,7 +482,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "طالع <glosssee/>."
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -506,7 +503,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "طالع أيضا <glosssee/>."
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -517,7 +514,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
-msgstr ""
+msgstr "”<node/>“"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
@@ -528,7 +525,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
-msgstr ""
+msgstr "’<node/>‘"
 
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
@@ -542,7 +539,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
-msgstr ""
+msgstr "طالع <seeie/>."
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -556,7 +553,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr ""
+msgstr "طالع أيضا <seeie/>."
 
 #~ msgid " — "
 #~ msgstr " — "
