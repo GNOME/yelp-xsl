@@ -10,9 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-07-18 18:51+0000\n"
-"PO-Revision-Date: 2012-07-18 22:37+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-08-06 19:29+0000\n"
+"PO-Revision-Date: 2012-09-19 14:07+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
@@ -172,7 +173,7 @@ msgstr "Ελλιπής"
 #. Default title for an index of terms in a book.
 #: yelp-xsl.xml.in:184(msg/msgstr)
 msgid "Index"
-msgstr "Κατάλογος"
+msgstr "Ευρετήριο"
 
 #. Default title for a DocBook legal notice.
 #: yelp-xsl.xml.in:189(msg/msgstr)
