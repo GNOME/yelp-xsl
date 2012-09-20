@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-20 07:07+0200\n"
-"PO-Revision-Date: 2012-09-20 07:15+0200\n"
+"PO-Revision-Date: 2012-09-20 07:16+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -42,7 +42,7 @@ msgstr "default:RTL"
 #: yelp-xsl.xml.in:40(msg/msgstr)
 #, no-wrap
 msgid ", "
-msgstr "و "
+msgstr " و "
 
 #. This is used as the final separator in an inline list of three or
 #. more elements.  The string ", " will be used to separate all but
@@ -54,7 +54,7 @@ msgstr "و "
 #: yelp-xsl.xml.in:53(msg/msgstr)
 #, no-wrap
 msgid ", and "
-msgstr "و "
+msgstr " و "
 
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
