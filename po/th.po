@@ -1,16 +1,16 @@
 # Thai translation of gnome-doc-utils.
-# Copyright (C) 2005-2009 Free Software Foundation, Inc.
+# Copyright (C) 2005-2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-doc-utils package.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2009.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils 0.5.1\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-08-20 16:58+0000\n"
-"PO-Revision-Date: 2012-09-03 09:52+0000\n"
-"Last-Translator: cjl <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-09-03 02:58+0000\n"
+"PO-Revision-Date: 2012-09-21 19:37+0000\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr " และ "
 #.
 #: yelp-xsl.xml.in:79(msg/msgstr)
 msgid "Q:"
-msgstr ""
+msgstr "ถาม:"
 
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
@@ -84,19 +84,19 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:92(msg/msgstr)
 msgid "A:"
-msgstr ""
+msgstr "ตอบ:"
 
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
 #.
 #: yelp-xsl.xml.in:102(msg/msgstr)
 msgid "About"
-msgstr ""
+msgstr "เกี่ยวกับเอกสารนี้"
 
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:107(msg/msgstr)
 msgid "Advanced"
-msgstr ""
+msgstr "ขั้นสูง"
 
 #. Default title for a bibliography.
 #: yelp-xsl.xml.in:112(msg/msgstr)
@@ -106,14 +106,14 @@ msgstr "บรรณานุกรม"
 #. Accessible title for a note about a software bug.
 #: yelp-xsl.xml.in:117(msg/msgstr)
 msgid "Bug"
-msgstr ""
+msgstr "บั๊ก"
 
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
 #: yelp-xsl.xml.in:125(msg/msgstr)
 msgid "Candidate"
-msgstr ""
+msgstr "ร่างฉบับสมบูรณ์"
 
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:130(msg/msgstr)
@@ -123,7 +123,7 @@ msgstr "ตรา"
 #. Title for license information when it's a CC license.
 #: yelp-xsl.xml.in:135(msg/msgstr)
 msgid "Creative Commons"
-msgstr ""
+msgstr "ครีเอทีฟคอมมอนส์"
 
 #. Default title for a dedication section.
 #: yelp-xsl.xml.in:140(msg/msgstr)
@@ -140,14 +140,14 @@ msgstr "ฉบับร่าง"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:153(msg/msgstr)
 msgid "Edited By"
-msgstr ""
+msgstr "บรรณาธิการ"
 
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
 #: yelp-xsl.xml.in:161(msg/msgstr)
 msgid "Final"
-msgstr "ฉบับเสร็จสมบูรณ์"
+msgstr "ฉบับสมบูรณ์"
 
 #. Default title for a glossary.
 #: yelp-xsl.xml.in:166(msg/msgstr)
@@ -174,23 +174,23 @@ msgstr "ดรรชนี"
 #. Default title for a DocBook legal notice.
 #: yelp-xsl.xml.in:189(msg/msgstr)
 msgid "Legal"
-msgstr ""
+msgstr "ข้อกฎหมาย"
 
 #. Generic title for license information when it's not a known license.
 #.
 #: yelp-xsl.xml.in:196(msg/msgstr)
 msgid "License"
-msgstr ""
+msgstr "สัญญาอนุญาต"
 
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:201(msg/msgstr)
 msgid "Maintained By"
-msgstr ""
+msgstr "ดูแลโดย"
 
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:206(msg/msgstr)
 msgid "More Information"
-msgstr ""
+msgstr "ข้อมูลเพิ่มเติม"
 
 #. Link text for a link to the next page in a series.
 #: yelp-xsl.xml.in:211(msg/msgstr)
@@ -207,14 +207,14 @@ msgstr "หมายเหตุ"
 #.
 #: yelp-xsl.xml.in:224(msg/msgstr)
 msgid "Other Credits"
-msgstr ""
+msgstr "เครดิตอื่นๆ"
 
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
 #: yelp-xsl.xml.in:232(msg/msgstr)
 msgid "Outdated"
-msgstr ""
+msgstr "ไม่ทันเหตุการณ์"
 
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:237(msg/msgstr)
@@ -254,7 +254,7 @@ msgstr "ย่อรูปลง"
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:274(msg/msgstr)
 msgid "Sidebar"
-msgstr ""
+msgstr "แถบด้านข้าง"
 
 #. Revision status of a document or page. No content has been written yet.
 #.
@@ -277,7 +277,7 @@ msgstr "เกร็ด"
 #. Title for a list of translators.
 #: yelp-xsl.xml.in:299(msg/msgstr)
 msgid "Translated By"
-msgstr ""
+msgstr "แปลโดย"
 
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
@@ -294,7 +294,7 @@ msgstr "คำเตือน"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:317(msg/msgstr)
 msgid "Written By"
-msgstr ""
+msgstr "เขียนโดย"
 
 #. This is an image of the opening quotation character for your language.
 #. The image is used as a watermark on blockquote elements.  There are a
@@ -331,7 +331,7 @@ msgstr "yelp-quote-201C.png"
 #.
 #: yelp-xsl.xml.in:360(msg/msgstr)
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "ดูรายการบรรณานุกรม <biblioentry.label/>"
 
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
@@ -353,7 +353,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:383(msg/msgstr)
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
@@ -369,7 +369,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:400(msg/msgstr)
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "[<citation.label/>]"
 
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
@@ -397,7 +397,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:429(msg/msgstr)
 msgid "from <comment.name/> on <comment.date/>"
-msgstr ""
+msgstr "จาก <comment.name/> เมื่อ <comment.date/>"
 
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
@@ -424,7 +424,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:457(msg/msgstr)
 msgid "from <comment.name/>"
-msgstr ""
+msgstr "จาก <comment.name/>"
 
 #. ID: copyright.format
 #. This is a format message used to format copyright notices. Special
@@ -436,7 +436,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:470(msg/msgstr)
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
@@ -447,7 +447,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:482(msg/msgstr)
 msgid "Send email to ‘<string/>’."
-msgstr ""
+msgstr "ส่งอีเมลถึง ‘<string/>’"
 
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
@@ -458,7 +458,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:494(msg/msgstr)
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
+msgstr "อ่านคำจำกัดความของ ‘<glossterm/>’"
 
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
@@ -478,7 +478,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:515(msg/msgstr)
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "ดู <glosssee/>"
 
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
@@ -499,7 +499,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:537(msg/msgstr)
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "ดู <glosssee/> ประกอบ"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
@@ -510,7 +510,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:549(msg/msgstr)
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>”"
 
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
@@ -521,7 +521,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:561(msg/msgstr)
 msgid "‘<node/>’"
-msgstr ""
+msgstr "‘<node/>’"
 
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
@@ -535,7 +535,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:576(msg/msgstr)
 msgid "See <seeie/>."
-msgstr ""
+msgstr "ดู <seeie/>"
 
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
@@ -549,4 +549,4 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:591(msg/msgstr)
 msgid "See also <seeie/>."
-msgstr ""
+msgstr "ดู <seeie/> ประกอบ"
