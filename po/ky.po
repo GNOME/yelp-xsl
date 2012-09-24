@@ -1,0 +1,555 @@
+# Translation of yelp-xsl to Kirghiz
+# This file is distributed under the same license as the yelp-xsl.
+#
+# Timur Zhamakeev <ztimur@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-09-21 12:40+0000\n"
+"PO-Revision-Date: 2012-09-24 19:22+0600\n"
+"Last-Translator: Timur Zhamakeev <ztimur@gmail.com>\n"
+"Language-Team: Kirghiz <gnome-i18n@gnome.org>\n"
+"Language: ky\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 1.4\n"
+
+#. Translate to default:RTL if your language should be displayed
+#. right-to-left, otherwise translate to default:LTR.  Do *not*
+#. translate it to "predefinito:LTR", if it isn't default:LTR
+#. or default:RTL it will not work.
+#.
+#: yelp-xsl.xml.in:27(msg/msgstr)
+msgid "default:LTR"
+msgstr "default:LTR"
+
+#. This is used a simple list item seperator in places where simple
+#. inline lists have to be constructed dynamically.  Using the default
+#. string of ", ", a list would look like this: A, B, C, D.  Using the
+#. nonsensical string " - ", a list would look like this: A - B - C - D.
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:40(msg/msgstr)
+#, no-wrap
+msgid ", "
+msgstr ", "
+
+#. This is used as the final separator in an inline list of three or
+#. more elements.  The string ", " will be used to separate all but
+#. the last pair of elements.  Using these two strings, a list of
+#. names would be formatted as "Tom, Dick, and Harry".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:53(msg/msgstr)
+#, no-wrap
+msgid ", and "
+msgstr ", жана "
+
+#. This is used as a list item seperator for inline lists of exactly two
+#. elements.  A list of two names would be formatted as "Tom and Dick".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:64(msg/msgstr)
+#, no-wrap
+msgid " and "
+msgstr " жана "
+
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before questions in a question-and-answer
+#. set.  Typically, questions are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label questions.
+#.
+#: yelp-xsl.xml.in:79(msg/msgstr)
+msgid "Q:"
+msgstr "С:"
+
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before answers in a question-and-answer
+#. set.  Typically, answers are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label answers.
+#.
+#: yelp-xsl.xml.in:92(msg/msgstr)
+msgid "A:"
+msgstr "Ж:"
+
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:102(msg/msgstr)
+msgid "About"
+msgstr "Жалпы маалымат"
+
+#. Accessible title for an advanced note.
+#: yelp-xsl.xml.in:107(msg/msgstr)
+msgid "Advanced"
+msgstr "Кеңири"
+
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:112(msg/msgstr)
+msgid "Bibliography"
+msgstr "Кошумча документтер"
+
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:117(msg/msgstr)
+msgid "Bug"
+msgstr "Ката"
+
+#. Revision status of a document or page. Content has been written and
+#. reviewed, and it awaiting a final approval.
+#.
+#: yelp-xsl.xml.in:125(msg/msgstr)
+msgid "Candidate"
+msgstr "Кандидат"
+
+#. Default title for a colophon section.
+#: yelp-xsl.xml.in:130(msg/msgstr)
+msgid "Colophon"
+msgstr "Жыйынтык"
+
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:135(msg/msgstr)
+msgid "Creative Commons"
+msgstr "Creative Commons"
+
+#. Default title for a dedication section.
+#: yelp-xsl.xml.in:140(msg/msgstr)
+msgid "Dedication"
+msgstr "Арноолор"
+
+#. Revision status of a document or page. Most content has been
+#. written, but revisions are still happening.
+#.
+#: yelp-xsl.xml.in:148(msg/msgstr)
+msgid "Draft"
+msgstr "Жумушчу нуска(draft)"
+
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:153(msg/msgstr)
+msgid "Edited By"
+msgstr "Редактору"
+
+#. Revision status of a document or page. A senior member of the
+#. documentation team has reviewed and approved.
+#.
+#: yelp-xsl.xml.in:161(msg/msgstr)
+msgid "Final"
+msgstr "Аякталган"
+
+#. Default title for a glossary.
+#: yelp-xsl.xml.in:166(msg/msgstr)
+msgid "Glossary"
+msgstr "Терминдердин сөздүгү"
+
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:171(msg/msgstr)
+msgid "Important"
+msgstr "Орчундуу"
+
+#. Revision status of a document or page. Work has begun, but
+#. not all content has been written.
+#.
+#: yelp-xsl.xml.in:179(msg/msgstr)
+msgid "Incomplete"
+msgstr "Аяктаган эмес"
+
+#. Default title for an index of terms in a book.
+#: yelp-xsl.xml.in:184(msg/msgstr)
+msgid "Index"
+msgstr "Мазмуну"
+
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:189(msg/msgstr)
+msgid "Legal"
+msgstr "Талапка жооп берген билдирүү"
+
+#. Generic title for license information when it's not a known license.
+#.
+#: yelp-xsl.xml.in:196(msg/msgstr)
+msgid "License"
+msgstr "Лицензия"
+
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:201(msg/msgstr)
+msgid "Maintained By"
+msgstr "Колдоочу"
+
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:206(msg/msgstr)
+msgid "More Information"
+msgstr "Кошумча маалымат"
+
+#. Link text for a link to the next page in a series.
+#: yelp-xsl.xml.in:211(msg/msgstr)
+msgid "Next"
+msgstr "Алга"
+
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:216(msg/msgstr)
+msgid "Note"
+msgstr "Эскертме"
+
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:224(msg/msgstr)
+msgid "Other Credits"
+msgstr "Башка катышуучулар"
+
+#. Revision status of a document or page. Content was once current,
+#. but needs to be updated to reflect software updates.
+#.
+#: yelp-xsl.xml.in:232(msg/msgstr)
+msgid "Outdated"
+msgstr "Эскирген"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:237(msg/msgstr)
+msgid "Pause"
+msgstr "Пауза"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:242(msg/msgstr)
+msgid "Play"
+msgstr "Ойнотуу"
+
+#. Link text for a link to the previous page in a series.
+#: yelp-xsl.xml.in:247(msg/msgstr)
+msgid "Previous"
+msgstr "Артка"
+
+#. Revision status of a document or page. Content has been written
+#. and should be reviewed by other team members.
+#.
+#: yelp-xsl.xml.in:255(msg/msgstr)
+msgid "Ready for review"
+msgstr "Рецензияга даяр"
+
+#. Automatic heading above a list of see-also links.
+#: yelp-xsl.xml.in:260(msg/msgstr)
+msgid "See Also"
+msgstr "Муну да кара"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to shrink images back down after
+#. they've been expanded to full size.
+#.
+#: yelp-xsl.xml.in:269(msg/msgstr)
+msgid "Scale images down"
+msgstr "Сүрөттүн өлчөмүн азайтуу"
+
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:274(msg/msgstr)
+msgid "Sidebar"
+msgstr "Каптал тарабы"
+
+#. Revision status of a document or page. No content has been written yet.
+#.
+#: yelp-xsl.xml.in:281(msg/msgstr)
+msgid "Stub"
+msgstr "Калып"
+
+#. Default title for a refsynopsisdiv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:289(msg/msgstr)
+msgid "Synopsis"
+msgstr "Аннотация"
+
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:294(msg/msgstr)
+#, fuzzy
+msgid "Tip"
+msgstr "Көрсөтмө жардам"
+
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:299(msg/msgstr)
+msgid "Translated By"
+msgstr "Котормочу"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to expand images to full size.
+#.
+#: yelp-xsl.xml.in:307(msg/msgstr)
+msgid "View images at normal size"
+msgstr "Сүрөттү абалкы өлчөмүндө көрүү"
+
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:312(msg/msgstr)
+msgid "Warning"
+msgstr "Эскертүү"
+
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:317(msg/msgstr)
+msgid "Written By"
+msgstr "Жазуучу"
+
+#. This is an image of the opening quotation character for your language.
+#. The image is used as a watermark on blockquote elements.  There are a
+#. number of different quote characters used by various languages, so the
+#. image name is translatable.  The name of the icon should be of the form
+#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
+#. quote character.  For example, some languages use the double angle quotation
+#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
+#.
+#. The image, however, is not automatically created.  Do not translate
+#. this to a value if there isn't a corresponding file in yelp-xsl under
+#. the directory icons/hicolor/48x48/status.
+#.
+#. Languages that use guillemets (angle quotation marks) should use either
+#. 00AB or 00BB, depending on whether the opening quotation is the left
+#. guillemet or the right guillemet.  Languages that use inverted comma
+#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
+#. don't make very nice watermarks, so if you would normally open a quote
+#. with single quotation marks in your language, use the corresponding
+#. double quotation mark for the watermark image.
+#.
+#: yelp-xsl.xml.in:344(msg/msgstr)
+msgid "yelp-quote-201C.png"
+msgstr "yelp-quote-201C.png"
+
+#. ID: biblioentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to bibliography entries.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:360(msg/msgstr)
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "Библиография элементин кароо <biblioentry.label/>."
+
+#. ID: biblioentry.label
+#. This is a format message used to format the labels for entries in
+#. a bibliography.  The content of the label is often an abbreviation
+#. of the authors' names and the year of publication.  In English,
+#. these are generally formatted with [square brackets] surrounding
+#. them.
+#.
+#. This string is similar to citation.label, but they are used in
+#. different places.  The citation formatter is used when referencing
+#. a bibliography entry in running prose.  This formatter is used for
+#. the actual bibliography entry.  You may use the same formatting for
+#. both, but you don't have to.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The text content of the bibliography label
+#.
+#: yelp-xsl.xml.in:383(msg/msgstr)
+msgid "[<biblioentry.label/>]"
+msgstr "[<biblioentry.label/>]"
+
+#. ID: citation.label
+#. This is a format message used to format inline citations to other
+#. published works.  The content is typically an abbreviation of the
+#. authors' last names.  In English, this abbreviation is usually
+#. written inside [square brackets].
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
+#.
+#: yelp-xsl.xml.in:400(msg/msgstr)
+msgid "[<citation.label/>]"
+msgstr "[<citation.label/>]"
+
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#.
+#.   Here is the text of the comment.
+#.
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#.
+#: yelp-xsl.xml.in:429(msg/msgstr)
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "комментатор: <comment.name/>, <comment.date/>"
+
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#.
+#: yelp-xsl.xml.in:457(msg/msgstr)
+#, fuzzy
+msgid "from <comment.name/>"
+msgstr "<comment.name/>"
+
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:470(msg/msgstr)
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
+
+#. ID: email.tooltip
+#. This is a format message used to format tooltips on mailto: links.
+#. Special elements in the message will be replaced with the appropriate
+#. content, as follows:
+#.
+#. <string/> - The linked-to email address
+#.
+#: yelp-xsl.xml.in:482(msg/msgstr)
+msgid "Send email to ‘<string/>’."
+msgstr "Кат жөнөтүү ‘<string/>’."
+
+#. ID: glossentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to glossary entries. Special elements in the message will be replaced
+#. with the appropriate content, as follows:
+#.
+#. <glossterm/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:494(msg/msgstr)
+msgid "Read the definition for ‘<glossterm/>’."
+msgstr "‘<glossterm/>’ үчүн аныктама кароо."
+
+#. ID: glosssee.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glosssee elements are presented as a links to the user
+#. in the glossary, formatted as a single prose sentence.  For example,
+#. if the user is being directed to the entry "foo", the glosssee may
+#. be formatted as "See foo."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:515(msg/msgstr)
+msgid "See <glosssee/>."
+msgstr "Кара <glosssee/>."
+
+#. ID: glossseealso.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glossseealso elements are presented as a links to the
+#. user in the glossary, formatted as a single prose sentence.  For
+#. example, if the user is being directed to the entries "foo", "bar",
+#. and "baz", the glossseealso may be formatted as "See also foo, bar,
+#. baz."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:537(msg/msgstr)
+msgid "See also <glosssee/>."
+msgstr "Муну да кара <glosssee/>."
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:549(msg/msgstr)
+msgid "“<node/>”"
+msgstr "“<node/>”"
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:561(msg/msgstr)
+msgid "‘<node/>’"
+msgstr "‘<node/>’"
+
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:576(msg/msgstr)
+msgid "See <seeie/>."
+msgstr "Кара <seeie/>."
+
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591(msg/msgstr)
+msgid "See also <seeie/>."
+msgstr "Муну да кара <seeie/>."
+
