@@ -114,33 +114,17 @@ This parameter specifies the URL for the icon used for warning notes.
 <!--@@==========================================================================
 icons.size.quote
 The size of the quote icons.
-:Revision:version="1.0" date="2010-05-03" status="final"
+:Revision:version="3.8" date="2012-09-29" status="final"
 
-This parameter specifies the size of the quote icons. Use an integer giving
-the width of the image files in pixels. Icons are assumed to be square, and
-all quote icons are assumed to have the same size.
+This parameter specifies the size of the block quote icon. Use an integer giving
+the width of the image files in pixels. Icons are assumed to be square, and all
+quote icons are assumed to have the same size.
+
+As of version 3.8, there is no longer an actual image file for the quote icon.
+Instead, a language-appropriate quotation character is placed in the margin.
+This parameters still affects the size of that character.
 -->
 <xsl:param name="icons.size.quote" select="48"/>
-
-
-<!--@@==========================================================================
-icons.quote
-The URL for the block quote watermark.
-:Revision:version="1.0" date="2010-05-03" status="final"
-
-This parameter specifies the URL for the watermark for block quotes. The
-default name of the image file is translatable. If you set this parameter,
-you should ensure that your graphic uses a suitable quote character for the
-language your document is written in.
--->
-<xsl:param name="icons.quote">
-  <xsl:value-of select="$icons.base_url"/>
-  <xsl:for-each select="/*">
-    <xsl:call-template name="l10n.gettext">
-      <xsl:with-param name="msgid" select="'yelp-quote-201C.png'"/>
-    </xsl:call-template>
-  </xsl:for-each>
-</xsl:param>
 
 
 <!--@@==========================================================================

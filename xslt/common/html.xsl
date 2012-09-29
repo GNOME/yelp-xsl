@@ -251,8 +251,12 @@ as ${node} to this template.
       <title>
         <xsl:apply-templates mode="html.title.mode" select="$node"/>
       </title>
-      <xsl:call-template name="html.css"/>
-      <xsl:call-template name="html.js"/>
+      <xsl:call-template name="html.css">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+      <xsl:call-template name="html.js">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
       <xsl:call-template name="html.head.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
@@ -1019,15 +1023,59 @@ div.note-sidebar > div.inner > div.region > div.contents { margin-</xsl:text>
   <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.quote {
   padding: 0;
-  background-image: url('</xsl:text>
-    <xsl:value-of select="$icons.quote"/><xsl:text>');
-  background-repeat: no-repeat;
-  background-position: top </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   min-height: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
 }
+div.quote > div.inner:before {
+  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  content: '</xsl:text>
+  <xsl:variable name="quote">
+    <xsl:for-each select="$node[1]">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'quote.format'"/>
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="quotc" select="substring(concat($quote, '“'), 1, 1)"/>
+  <xsl:choose>
+    <xsl:when test="contains('«‹', $quotc)">
+      <xsl:text>«</xsl:text>
+    </xsl:when>
+    <xsl:when test="contains('»›', $quotc)">
+      <xsl:text>»</xsl:text>
+    </xsl:when>
+    <xsl:when test="contains('”„’‚', $quotc)">
+      <xsl:text>”</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>“</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose><xsl:text>';
+  font-family: "Century Schoolbook L";
+  font-size: </xsl:text>
+    <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
+  font-weight: bold;
+  line-height: </xsl:text>
+  <xsl:choose>
+    <xsl:when test="contains('«»‹›', $quotc)">
+      <xsl:text>0.5</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>1</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose><xsl:text>em;
+  margin: 0; padding: 0;
+  height: </xsl:text>
+    <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
+  width: </xsl:text>
+    <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
+  text-align: center;
+  color: </xsl:text>
+    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+}
 div.quote > div.inner > div.title {
-  margin: 0 0 0.5em 0;
+  margin: 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
 }
@@ -1036,6 +1084,7 @@ blockquote {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
 }
+blockquote > *:first-child { margin-top: 0; }
 div.quote > div.inner > div.region > div.cite {
   margin-top: 0.5em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>

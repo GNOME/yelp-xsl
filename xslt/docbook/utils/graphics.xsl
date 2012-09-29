@@ -42,12 +42,6 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
   <xsl:if test="//warning[1]">
     <xsl:text>admon-warning.png&#x000A;</xsl:text>
   </xsl:if>
-  <xsl:if test="//blockquote[1]">
-    <xsl:call-template name="l10n.gettext">
-      <xsl:with-param name="msgid" select="'blockquote-watermark-201C.png'"/>
-    </xsl:call-template>
-    <xsl:text>&#x000A;</xsl:text>
-  </xsl:if>
   <xsl:if test="//classsynopsis[@language = 'cpp'][1] or //programlisting[@language = 'cpp']">
     <xsl:text>watermark-code-cpp.png&#x000A;</xsl:text>
   </xsl:if>

@@ -62,22 +62,6 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
         </xsl:if>
       </xsl:for-each>
     </xsl:if>
-    <xsl:if test="$msg/@id = 'yelp-quote-201C.png'">
-      <xsl:for-each select="$xml_out/msg:l10n/msg:msg[@id = $msg/@id]/msg:msgstr">
-        <xsl:variable name="char" select="substring-before(substring-after(., 'yelp-quote-'), '.png')"/>
-        <xsl:if test="not($char = '201C') and not($char = '201D') and not($char = '201E') and
-                      not($char = '00AB') and not($char = '00BB')">
-          <xsl:message>
-            <xsl:text>Incorrect </xsl:text>
-            <xsl:value-of select="@xml:lang"/>
-            <xsl:text> translation of </xsl:text>
-            <xsl:value-of select="$msg/@id"/>
-            <xsl:text>: </xsl:text>
-            <xsl:value-of select="."/>
-          </xsl:message>
-        </xsl:if>
-      </xsl:for-each>
-    </xsl:if>
     <xsl:if test="$msg/@id = 'Other Credits'">
       <xsl:for-each select="$xml_out/msg:l10n/msg:msg[@id = $msg/@id]/msg:msgstr">
         <xsl:if test="contains(., '@')">
