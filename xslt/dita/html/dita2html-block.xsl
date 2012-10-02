@@ -143,6 +143,14 @@ REMARK: Describe this module
   </div>
 </xsl:template>
 
+<!-- = section = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_section;">
+  <div class="section">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode"/>
+  </div>
+</xsl:template>
+
 <!-- = shortdesc = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_shortdesc;">
   <p class="shortdesc">
