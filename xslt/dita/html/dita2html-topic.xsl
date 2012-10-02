@@ -81,6 +81,12 @@ REMARK: Describe this module
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
+span.b {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
+span.i { font-style: italic; }
+span.u { text-decoration: underline; }
 li.stepsection {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   list-style-type: none;

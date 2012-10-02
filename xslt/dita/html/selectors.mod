@@ -144,14 +144,22 @@ topic/p
 <!-- ===========================================================================
 topic/ph
 -->
+<!ENTITY topic_b "*[
+  name(.) = 'b' or starts-with(@class, '- topic/ph hi-d/b ')]">
 <!ENTITY topic_cmd "*[
   name(.) = 'cmd' or starts-with(@class, '- topic/ph task/cmd ')]">
 <!ENTITY topic_codeph "*[
   name(.) = 'codeph' or starts-with(@class, '- topic/ph pr-d/codeph ')]">
 <!ENTITY topic_filepath "*[
   name(.) = 'filepath' or starts-with(@class, '- topic/ph sw-d/filepath ')]">
+<!ENTITY topic_i "*[
+  name(.) = 'i' or starts-with(@class, '- topic/ph hi-d/i ')]">
 <!ENTITY topic_systemoutput "*[
   name(.) = 'systemoutput' or starts-with(@class, '- topic/ph sw-d/systemoutput ')]">
+<!ENTITY topic_tt "*[
+  name(.) = 'tt' or starts-with(@class, '- topic/ph hi-d/tt ')]">
+<!ENTITY topic_u "*[
+  name(.) = 'u' or starts-with(@class, '- topic/ph hi-d/u ')]">
 <!ENTITY topic_uicontrol "*[
   name(.) = 'uicontrol' or starts-with(@class, '- topic/ph ui-d/uicontrol ')]">
 <!ENTITY topic_userinput "*[

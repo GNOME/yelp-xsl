@@ -30,63 +30,102 @@ DITA to HTML - Inlines
 REMARK: Describe this module
 -->
 
+<!--**==========================================================================
+dita2html.span
+Output an HTML #{span} element.
+:Revision:version="1.0" date="2010-06-03" status="final"
+$node: The source element to output a #{span} for.
+$class: The value of the HTML #{class} attribute.
+
+FIXME
+-->
+<xsl:template name="dita2html.span">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="class" select="local-name($node)"/>
+  <span class="{$class}">
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:apply-templates mode="dita2html.inline.content.mode" select="$node"/>
+  </span>
+</xsl:template>
+
+<xsl:template mode="dita2html.inline.content.mode" match="*">
+  <xsl:apply-templates mode="dita2html.topic.mode"/>
+</xsl:template>
+
 
 <!-- == Matched Templates == -->
 
+<!-- = b = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_b;">
+  <xsl:call-template name="dita2html.span"/>
+</xsl:template>
+
 <!-- = codeph = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_codeph;">
-  <span class="code">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = cmdname = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_cmdname;">
-  <span class="cmd">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'cmd'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = filepath = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_filepath;">
-  <span class="file">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'file'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = i = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_i;">
+  <xsl:call-template name="dita2html.span"/>
 </xsl:template>
 
 <!-- = systemoutput = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_systemoutput;">
-  <span class="output">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'output'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = tt = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_tt;">
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'sys'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = u = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_u;">
+  <xsl:call-template name="dita2html.span"/>
 </xsl:template>
 
 <!-- = uicontrol = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_uicontrol;">
-  <span class="gui">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'gui'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = userinput = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_userinput;">
-  <span class="input">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'input'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = varname = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_varname;">
-  <span class="var">
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </span>
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'var'"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>
