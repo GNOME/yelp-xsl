@@ -36,6 +36,7 @@ REMARK: Describe this module
 <!-- = cmd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_cmd;">
   <p>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>
@@ -44,6 +45,7 @@ REMARK: Describe this module
 <!-- = codeblock = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_codeblock;">
   <div class="code">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <pre class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode"/>
@@ -54,6 +56,7 @@ REMARK: Describe this module
 <!-- = context = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_context;">
   <div class="context">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -62,6 +65,7 @@ REMARK: Describe this module
 <!-- = desc = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_desc;">
   <div class="desc">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -70,6 +74,7 @@ REMARK: Describe this module
 <!-- = info = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_info;">
   <p>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>
@@ -93,6 +98,7 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <div>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>note</xsl:text>
@@ -114,6 +120,7 @@ REMARK: Describe this module
 <!-- = p = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_p;">
   <p>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>
@@ -122,6 +129,7 @@ REMARK: Describe this module
 <!-- = postreq = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_postreq;">
   <div class="postreq">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -130,6 +138,7 @@ REMARK: Describe this module
 <!-- = prereq = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_prereq;">
   <div class="prereq">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -138,6 +147,7 @@ REMARK: Describe this module
 <!-- = result = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_result;">
   <div class="result">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -146,6 +156,7 @@ REMARK: Describe this module
 <!-- = section = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_section;">
   <div class="section">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -154,6 +165,7 @@ REMARK: Describe this module
 <!-- = shortdesc = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_shortdesc;">
   <p class="shortdesc">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>
@@ -162,6 +174,7 @@ REMARK: Describe this module
 <!-- = stepresult = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepresult;">
   <p>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>
@@ -170,6 +183,7 @@ REMARK: Describe this module
 <!-- = stepxmp = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepxmp;">
   <div class="example">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </div>
@@ -189,6 +203,7 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <div class="title">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <xsl:apply-templates mode="dita2html.topic.mode"/>
@@ -199,6 +214,7 @@ REMARK: Describe this module
 <!-- = tutorialinfo = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_tutorialinfo;">
   <p>
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </p>

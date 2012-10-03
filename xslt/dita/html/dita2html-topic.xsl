@@ -129,6 +129,7 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
   <div class="region">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode"/>
@@ -141,6 +142,8 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
     <div class="hgroup"/>
     <div class="contents">
       <div class="links">
+        <xsl:copy-of select="@id"/>
+        <xsl:call-template name="html.lang.attrs"/>
         <div class="inner">
           <div class="region">
             <ul>
@@ -156,6 +159,7 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
 <xsl:template mode="dita2html.topic.mode" match="&topic_link;">
   <!-- FIXME -->
   <li class="links">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <a>
       <xsl:attribute name="href">
@@ -191,6 +195,7 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_linkinfo;">
   <li class="links links-linkinfo">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates modes="dita2html.topic.mode"/>
   </li>
@@ -201,6 +206,7 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
     <xsl:when test="&topic_title; or &topic_desc; or &topic_linkinfo;">
       <li class="links">
         <div class="links">
+          <xsl:copy-of select="@id"/>
           <xsl:call-template name="html.lang.attrs"/>
           <div class="inner">
             <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title;"/>

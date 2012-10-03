@@ -36,6 +36,7 @@ REMARK: Describe this module
 <!-- = li = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_li;">
   <li class="list">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </li>
@@ -44,6 +45,7 @@ REMARK: Describe this module
 <!-- = ul = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_ol;">
   <div class="list">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <ol class="list">
@@ -57,6 +59,7 @@ REMARK: Describe this module
 <xsl:template mode="dita2html.topic.mode" match="&topic_step;">
   <xsl:variable name="pre" select="preceding-sibling::&topic_step;"/>
   <li class="steps" value="{count($pre) + 1}">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </li>
@@ -65,6 +68,7 @@ REMARK: Describe this module
 <!-- = steps = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_steps;">
   <div class="steps">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <div class="region">
@@ -79,6 +83,7 @@ REMARK: Describe this module
 <!-- = steps-unordered = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_steps-unordered;">
   <div class="steps">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <div class="region">
@@ -93,6 +98,7 @@ REMARK: Describe this module
 <!-- = stepsection = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepsection;">
   <li class="stepsection">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </li>
@@ -101,6 +107,7 @@ REMARK: Describe this module
 <!-- = substep = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_substep;">
   <li class="steps substeps">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="dita2html.topic.mode"/>
   </li>
@@ -109,6 +116,7 @@ REMARK: Describe this module
 <!-- = substeps = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_substeps;">
   <div class="substeps">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <ol class="substeps">
       <xsl:apply-templates mode="dita2html.topic.mode"/>
@@ -119,6 +127,7 @@ REMARK: Describe this module
 <!-- = ul = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_ul;">
   <div class="list">
+    <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <ul class="list">

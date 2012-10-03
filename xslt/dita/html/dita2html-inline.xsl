@@ -43,6 +43,7 @@ FIXME
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
   <span class="{$class}">
+    <xsl:copy-of select="$node/@id"/>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
