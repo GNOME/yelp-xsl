@@ -21,7 +21,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://projects.gnome.org/yelp/"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="yelp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -52,7 +54,8 @@ FIXME
 </xsl:template>
 
 <xsl:template mode="dita2html.inline.content.mode" match="*">
-  <xsl:apply-templates mode="dita2html.topic.mode"/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
 </xsl:template>
 
 
@@ -89,11 +92,49 @@ FIXME
   <xsl:call-template name="dita2html.span"/>
 </xsl:template>
 
+<!-- = menucascade = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_menucascade;">
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'guiseq'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = menucascade % dita2html.inline.content.mode = -->
+<xsl:template mode="dita2html.inline.content.mode" match="&topic_menucascade;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:for-each select="$conref">
+    <xsl:variable name="arrow">
+      <xsl:variable name="dir">
+        <xsl:call-template name="l10n.direction"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$dir = 'rtl'">
+          <xsl:text>&#x00A0;&#x25C2; </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x00A0;&#x25B8; </xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:for-each select="&topic_uicontrol;">
+      <xsl:if test="position() != 1">
+        <xsl:value-of select="$arrow"/>
+      </xsl:if>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="."/>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
+
 <!-- = systemoutput = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_systemoutput;">
   <xsl:call-template name="dita2html.span">
     <xsl:with-param name="class" select="'output'"/>
   </xsl:call-template>
+</xsl:template>
+
+<!-- = text = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_text;">
+  <xsl:call-template name="dita2html.span"/>
 </xsl:template>
 
 <!-- = tt = -->
@@ -126,6 +167,13 @@ FIXME
 <xsl:template mode="dita2html.topic.mode" match="&topic_varname;">
   <xsl:call-template name="dita2html.span">
     <xsl:with-param name="class" select="'var'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = wintitle = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_wintitle;">
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'gui'"/>
   </xsl:call-template>
 </xsl:template>
 

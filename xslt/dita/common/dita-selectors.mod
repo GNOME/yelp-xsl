@@ -63,6 +63,8 @@ topic/keyword
   name(.) = 'cmdname' or starts-with(@class, '- topic/keyword sw-d/cmdname ')]">
 <!ENTITY topic_varname "*[
   name(.) = 'varname' or starts-with(@class, '- topic/keyword sw-d/varname ')]">
+<!ENTITY topic_wintitle "*[
+  name(.) = 'wintitle' or starts-with(@class, '- topic/keyword sw-d/wintitle ')]">
 
 <!-- ===========================================================================
 topic/li
@@ -154,6 +156,8 @@ topic/ph
   name(.) = 'filepath' or starts-with(@class, '- topic/ph sw-d/filepath ')]">
 <!ENTITY topic_i "*[
   name(.) = 'i' or starts-with(@class, '- topic/ph hi-d/i ')]">
+<!ENTITY topic_menucascade "*[
+  name(.) = 'menucascade' or starts-with(@class, '- topic/ph hi-d/menucascade ')]">
 <!ENTITY topic_systemoutput "*[
   name(.) = 'systemoutput' or starts-with(@class, '- topic/ph sw-d/systemoutput ')]">
 <!ENTITY topic_tt "*[
@@ -210,6 +214,11 @@ topic/section
 topic/shortdesc
 -->
 <!ENTITY topic_shortdesc "*[name(.) = 'shortdesc' or starts-with(@class, '- topic/shortdesc ')]">
+
+<!-- ===========================================================================
+topic/text
+-->
+<!ENTITY topic_text "*[name(.) = 'text' or starts-with(@class, '- topic/text ')]">
 
 <!-- ===========================================================================
 topic/title
