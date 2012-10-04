@@ -16,12 +16,14 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 02111-1307, USA.
 -->
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY % selectors SYSTEM "selectors.mod">
+<!ENTITY % selectors SYSTEM "../common/dita-selectors.mod">
 %selectors;
 ]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://projects.gnome.org/yelp/"
                 xmlns="http://www.w3.org/1999/xhtml"
+                exclude-result-prefixes="yelp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -82,17 +84,25 @@ REMARK: Describe this module
 
 <!-- = note = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_note;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="type">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'type'"/>
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:variable name="notetype">
     <xsl:choose>
-      <xsl:when test="@type = 'attention' or @type = 'important' or
-                      @type = 'remember' or @type = 'restriction'">
+      <xsl:when test="$type = 'attention' or $type = 'important' or
+                      $type = 'remember' or $type = 'restriction'">
         <xsl:text>important</xsl:text>
       </xsl:when>
-      <xsl:when test="@type = 'caution' or @type = 'danger' or
-                      @type = 'notice' or @type = 'warning'">
+      <xsl:when test="$type = 'caution' or $type = 'danger' or
+                      $type = 'notice' or $type = 'warning'">
         <xsl:text>warning</xsl:text>
       </xsl:when>
-      <xsl:when test="@type = 'fastpath' or @type = 'tip'">
+      <xsl:when test="$type = 'fastpath' or $type = 'tip'">
         <xsl:text>tip</xsl:text>
       </xsl:when>
     </xsl:choose>
@@ -110,7 +120,7 @@ REMARK: Describe this module
     <div class="inner">
       <div class="region">
         <div class="contents">
-          <xsl:apply-templates mode="dita2html.topic.mode"/>
+          <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
         </div>
       </div>
     </div>
@@ -155,10 +165,11 @@ REMARK: Describe this module
 
 <!-- = section = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_section;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="section">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </div>
 </xsl:template>
 

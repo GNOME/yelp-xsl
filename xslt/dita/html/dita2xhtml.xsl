@@ -34,11 +34,7 @@ REMARK: Describe this module
 <xsl:import href="../../common/ttml.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
-<!--
-<xsl:import href="../common/mal-gloss.xsl"/>
-<xsl:import href="../common/mal-if.xsl"/>
-<xsl:import href="../common/mal-link.xsl"/>
--->
+<xsl:include href="../common/dita-ref.xsl"/>
 
 <!--
 <xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
@@ -64,20 +60,5 @@ http://www.w3.org/ns/ttml/feature/#timing
 <xsl:include href="dita2html-inline.xsl"/>
 <xsl:include href="dita2html-list.xsl"/>
 <xsl:include href="dita2html-topic.xsl"/>
-<!--
-<xsl:include href="mal2html-api.xsl"/>
-<xsl:include href="mal2html-block.xsl"/>
-<xsl:include href="mal2html-facets.xsl"/>
-<xsl:include href="mal2html-gloss.xsl"/>
-<xsl:include href="mal2html-inline.xsl"/>
-<xsl:include href="mal2html-links.xsl"/>
-<xsl:include href="mal2html-list.xsl"/>
-<xsl:include href="mal2html-media.xsl"/>
-<xsl:include href="mal2html-page.xsl"/>
-<xsl:include href="mal2html-svg.xsl"/>
-<xsl:include href="mal2html-table.xsl"/>
-<xsl:include href="mal2html-ui.xsl"/>
--->
-
 
 </xsl:stylesheet>
