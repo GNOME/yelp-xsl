@@ -21,9 +21,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                xmlns:yelp="http://projects.gnome.org/yelp/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="msg"
+                exclude-result-prefixes="yelp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -97,8 +97,27 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
 </xsl:template>
 
 
-
+<!-- = topic = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_topic;">
+  <xsl:choose>
+    <xsl:when test="parent::&topic_topic;">
+      <div class="sect">
+        <xsl:copy-of select="@id"/>
+        <xsl:call-template name="html.lang.attrs"/>
+        <div class="inner">
+          <xsl:call-template name="_dita2html.topic.inner"/>
+        </div>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="_dita2html.topic.inner"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!--#* _dita2html.topic.inner -->
+<xsl:template name="_dita2html.topic.inner">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="depth" select="count(ancestor::*) + 1"/>
   <xsl:variable name="depth_">
     <xsl:choose>
@@ -116,23 +135,22 @@ div.links > div.inner > div.region > div.desc { font-style: italic; }
         <xsl:text>title</xsl:text>
       </xsl:attribute>
       <span class="title">
-        <xsl:for-each select="&topic_title;">
-          <xsl:apply-templates mode="dita2html.topic.mode"/>
-        </xsl:for-each>
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;"/>
       </span>
     </xsl:element>
   </div>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_body;"/>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_topic;"/>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_related-links;"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic;"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="region">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode"/>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </div>
   </div>
 </xsl:template>
