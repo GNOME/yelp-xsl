@@ -45,6 +45,16 @@ topic/desc
 <!ENTITY topic_desc "*[name(.) = 'desc' or starts-with(@class, '- topic/desc ')]">
 
 <!-- ===========================================================================
+topic/fig
+-->
+<!ENTITY topic_fig "*[name(.) = 'fig' or starts-with(@class, '- topic/fig ')]">
+
+<!-- ===========================================================================
+topic/image
+-->
+<!ENTITY topic_image "*[name(.) = 'image' or starts-with(@class, '- topic/image ')]">
+
+<!-- ===========================================================================
 topic/itemgroup
 -->
 <!ENTITY topic_info "*[
@@ -118,6 +128,11 @@ topic/note
 <!ENTITY topic_note "*[name(.) = 'note' or starts-with(@class, '- topic/note ')]">
 
 <!-- ===========================================================================
+topic/object
+-->
+<!ENTITY topic_object "*[name(.) = 'object' or starts-with(@class, '- topic/object ')]">
+
+<!-- ===========================================================================
 topic/ol
 -->
 <!ENTITY topic_steps "*[
@@ -174,6 +189,15 @@ topic/pre
 -->
 <!ENTITY topic_codeblock "*[
   name(.) = 'codeblock' or starts-with(@class, '- topic/pre pr-d/codeblock ')]">
+<!ENTITY topic_pre "*[
+  name(.) = 'pre' or (
+  starts-with(@class, '- topic/pre ')
+  and not(starts-with(@class, '- topic/pre pr-d/codeblock '))
+  )]">
+<!ENTITY topic_pre_all "*[
+  name(.) = 'pre' or name(.) = 'codeblock' or
+  starts-with(@class, '- topic/pre ')
+  ]">
 
 <!-- ===========================================================================
 topic/prolog
@@ -196,6 +220,8 @@ topic/section
   name(.) = 'prereq'  or starts-with(@class, '- topic/section task/prereq ')]">
 <!ENTITY topic_result  "*[
   name(.) = 'result'  or starts-with(@class, '- topic/section task/result ')]">
+<!ENTITY topic_steps-informal "*[
+  name(.) = 'steps-informal'  or starts-with(@class, '- topic/section task/steps-informal ')]">
 <!ENTITY topic_section "*[
   name(.) = 'section'  or (
   starts-with(@class, '- topic/section ')
@@ -203,10 +229,11 @@ topic/section
   and not(starts-with(@class, '- topic/section task/postreq '))
   and not(starts-with(@class, '- topic/section task/prereq '))
   and not(starts-with(@class, '- topic/section task/result '))
+  and not(starts-with(@class, '- topic/section task/steps-informal '))
   )]">
 <!ENTITY topic_section_all "*[
   name(.) = 'section' or name(.) = 'context' or name(.) = 'prereq' or
-  name(.) = 'postreq' or name(.) = 'result'  or
+  name(.) = 'postreq' or name(.) = 'result'  or name(.) = 'steps-informal' or
   starts-with(@class, '- topic/section ')
   ]">
 

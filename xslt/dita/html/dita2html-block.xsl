@@ -88,6 +88,30 @@ FIXME
   </p>
 </xsl:template>
 
+<!--**==========================================================================
+dita2html.pre
+Output an HTML #{pre} element.
+:Revision:version="3.8" date="2012-10-05" status="incomplete"
+$node: The source element to output a #{pre} for.
+$class: The value of the HTML #{class} attribute.
+
+FIXME
+-->
+<xsl:template name="dita2html.pre">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="class" select="''"/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <div class="code">
+    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <pre class="contents">
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+    </pre>
+  </div>
+</xsl:template>
+
 
 <!-- == Matched Templates == -->
 
@@ -98,14 +122,9 @@ FIXME
 
 <!-- = codeblock = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_codeblock;">
-  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="code">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <pre class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
-    </pre>
-  </div>
+  <xsl:call-template name="dita2html.pre">
+    <xsl:with-param name="class" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = context = -->
@@ -120,6 +139,42 @@ FIXME
   <xsl:call-template name="dita2html.div">
     <xsl:with-param name="class" select="'desc'"/>
   </xsl:call-template>
+</xsl:template>
+
+<!-- = fig = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_fig;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <!-- If there's images or video, treat it like a Mallard figure.
+       Otherwise, treat it like a Mallard listing. -->
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="$conref/&topic_image; or $conref/&topic_object;">
+        <xsl:text>figure</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>listing</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <div class="{$style}">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <div class="inner">
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;"/>
+      <div class="region">
+        <xsl:if test="$style = 'listing'">
+          <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_desc;"/>
+        </xsl:if>
+        <div class="contents">
+          <xsl:apply-templates mode="dita2html.topic.mode"
+                               select="$conref/node()[not(self::&topic_title; or self::&topic_desc;)]"/>
+        </div>
+        <xsl:if test="$style = 'figure'">
+          <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_desc;"/>
+        </xsl:if>
+      </div>
+    </div>
+  </div>
 </xsl:template>
 
 <!-- = info = -->
@@ -184,6 +239,11 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
+<!-- = pre = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_pre;">
+  <xsl:call-template name="dita2html.pre"/>
+</xsl:template>
+
 <!-- = prereq = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_prereq;">
   <xsl:call-template name="dita2html.div">
@@ -225,6 +285,13 @@ FIXME
 <!-- = stepresult = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepresult;">
   <xsl:call-template name="dita2html.p"/>
+</xsl:template>
+
+<!-- = steps-informal = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_steps-informal;">
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'steps-informal'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = stepxmp = -->
