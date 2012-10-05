@@ -33,53 +33,98 @@ REMARK: Describe this module
 -->
 
 
+<!--**==========================================================================
+dita2html.div
+Output an HTML #{div} element.
+:Revision:version="3.8" date="2012-10-04" status="incomplete"
+$node: The source element to output a #{div} for.
+$class: The value of the HTML #{class} attribute.
+
+FIXME
+-->
+<xsl:template name="dita2html.div">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="class" select="''"/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <div>
+    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:if test="$class != ''">
+      <xsl:attribute name="class">
+        <xsl:value-of select="$class"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </div>
+</xsl:template>
+
+
+<!--**==========================================================================
+dita2html.p
+Output an HTML #{p} element.
+:Revision:version="3.8" date="2012-10-04" status="incomplete"
+$node: The source element to output a #{p} for.
+$class: The value of the HTML #{class} attribute.
+
+FIXME
+-->
+<xsl:template name="dita2html.p">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="class" select="''"/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <p>
+    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:if test="$class != ''">
+      <xsl:attribute name="class">
+        <xsl:value-of select="$class"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </p>
+</xsl:template>
+
+
 <!-- == Matched Templates == -->
 
 <!-- = cmd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_cmd;">
-  <p>
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p"/>
 </xsl:template>
 
 <!-- = codeblock = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_codeblock;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="code">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <pre class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode"/>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </pre>
   </div>
 </xsl:template>
 
 <!-- = context = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_context;">
-  <div class="context">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'context'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = desc = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_desc;">
-  <div class="desc">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'desc'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = info = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_info;">
-  <p>
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p"/>
 </xsl:template>
 
 <!-- = note = -->
@@ -129,38 +174,28 @@ REMARK: Describe this module
 
 <!-- = p = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_p;">
-  <p>
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p"/>
 </xsl:template>
 
 <!-- = postreq = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_postreq;">
-  <div class="postreq">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'postreq'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = prereq = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_prereq;">
-  <div class="prereq">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'prereq'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = result = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_result;">
-  <div class="result">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'result'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = section = -->
@@ -169,39 +204,39 @@ REMARK: Describe this module
   <div class="section">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+    <!-- A DITA section may have an optional title. But it can be anywhere
+         in the child node list. And there could be more than one, but all
+         but the first are ignored. Apparently. Spec isn't very clear, but
+         this is the OT's behavior. -->
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;[1]"/>
+    <div class="region">
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()[not(self::&topic_title;)]"/>
+    </div>
   </div>
 </xsl:template>
 
 <!-- = shortdesc = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_shortdesc;">
-  <p class="shortdesc">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p">
+    <xsl:with-param name="class" select="'shortdesc'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = stepresult = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepresult;">
-  <p>
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p"/>
 </xsl:template>
 
 <!-- = stepxmp = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepxmp;">
-  <div class="example">
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </div>
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'example'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = title = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_title;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="depth" select="count(ancestor::&topic_topic_all;) + 1"/>
   <xsl:variable name="depth_">
     <xsl:choose>
@@ -217,18 +252,14 @@ REMARK: Describe this module
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-      <xsl:apply-templates mode="dita2html.topic.mode"/>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </xsl:element>
   </div>
 </xsl:template>
 
 <!-- = tutorialinfo = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_tutorialinfo;">
-  <p>
-    <xsl:copy-of select="@id"/>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="dita2html.topic.mode"/>
-  </p>
+  <xsl:call-template name="dita2html.p"/>
 </xsl:template>
 
 </xsl:stylesheet>
