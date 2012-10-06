@@ -243,6 +243,26 @@ topic/shortdesc
 <!ENTITY topic_shortdesc "*[name(.) = 'shortdesc' or starts-with(@class, '- topic/shortdesc ')]">
 
 <!-- ===========================================================================
+topic/simpletable
+-->
+<!ENTITY topic_simpletable "*[name(.) = 'simpletable' or starts-with(@class, '- topic/simpletable ')]">
+
+<!-- ===========================================================================
+topic/stentry
+-->
+<!ENTITY topic_stentry "*[name(.) = 'stentry' or starts-with(@class, '- topic/stentry ')]">
+
+<!-- ===========================================================================
+topic/sthead
+-->
+<!ENTITY topic_sthead "*[name(.) = 'sthead' or starts-with(@class, '- topic/sthead ')]">
+
+<!-- ===========================================================================
+topic/strow
+-->
+<!ENTITY topic_strow "*[name(.) = 'strow' or starts-with(@class, '- topic/strow ')]">
+
+<!-- ===========================================================================
 topic/text
 -->
 <!ENTITY topic_text "*[name(.) = 'text' or starts-with(@class, '- topic/text ')]">

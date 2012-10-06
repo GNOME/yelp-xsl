@@ -91,8 +91,12 @@ li.stepsection {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   list-style-type: none;
 }
+
+th, td { border: solid 1px; }
+
 <!-- FIXME: perhaps into html.xsl? -->
 div.links > div.inner > div.region > div.desc { font-style: italic; }
+th { text-align: left; }
 </xsl:text>
 </xsl:template>
 

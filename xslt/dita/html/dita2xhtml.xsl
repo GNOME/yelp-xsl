@@ -59,6 +59,7 @@ http://www.w3.org/ns/ttml/feature/#timing
 <xsl:include href="dita2html-block.xsl"/>
 <xsl:include href="dita2html-inline.xsl"/>
 <xsl:include href="dita2html-list.xsl"/>
+<xsl:include href="dita2html-table.xsl"/>
 <xsl:include href="dita2html-topic.xsl"/>
 
 </xsl:stylesheet>
