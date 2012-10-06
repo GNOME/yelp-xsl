@@ -248,6 +248,16 @@ topic/simpletable
 <!ENTITY topic_simpletable "*[name(.) = 'simpletable' or starts-with(@class, '- topic/simpletable ')]">
 
 <!-- ===========================================================================
+topic/sl
+-->
+<!ENTITY topic_sl "*[name(.) = 'sl' or starts-with(@class, '- topic/sl ')]">
+
+ <!-- ===========================================================================
+topic/sli
+-->
+<!ENTITY topic_sli "*[name(.) = 'sli' or starts-with(@class, '- topic/sli ')]">
+
+<!-- ===========================================================================
 topic/stentry
 -->
 <!ENTITY topic_stentry "*[name(.) = 'stentry' or starts-with(@class, '- topic/stentry ')]">

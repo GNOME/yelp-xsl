@@ -91,6 +91,8 @@ li.stepsection {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   list-style-type: none;
 }
+ul.list-sli { list-style-type: none; }
+ul.compact-sli li { margin-top: 0; line-height: 1.44em; }
 
 th, td { border: solid 1px; }
 

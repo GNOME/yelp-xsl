@@ -48,15 +48,71 @@ REMARK: Describe this module
 <!-- = ol = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_ol;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="compact">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'compact'"/>
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
   <div class="list">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
-      <ol class="list">
+      <ol>
+        <xsl:attribute name="class">
+          <xsl:text>list</xsl:text>
+          <xsl:if test="$compact = 'yes'">
+            <xsl:text> compact</xsl:text>
+          </xsl:if>
+        </xsl:attribute>
         <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
       </ol>
     </div>
   </div>
+</xsl:template>
+
+<!-- = sl = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_sl;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="compact">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'compact'"/>
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <div class="list">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <div class="inner">
+      <ul>
+        <xsl:attribute name="class">
+          <xsl:text>list list-sli</xsl:text>
+          <!-- Non-compact sl is compact other lists. Compact sl is compacter. -->
+          <xsl:choose>
+            <xsl:when test="$compact = 'yes'">
+              <xsl:text> compact-sli</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text> compact</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+      </ul>
+    </div>
+  </div>
+</xsl:template>
+
+<!-- = sli = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_sli;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <li class="list">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </li>
 </xsl:template>
 
 <!-- = step = -->
@@ -137,11 +193,24 @@ REMARK: Describe this module
 <!-- = ul = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_ul;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="compact">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'compact'"/>
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
   <div class="list">
     <xsl:copy-of select="@id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
-      <ul class="list">
+      <ul>
+        <xsl:attribute name="class">
+          <xsl:text>list</xsl:text>
+          <xsl:if test="$compact = 'yes'">
+            <xsl:text> compact</xsl:text>
+          </xsl:if>
+        </xsl:attribute>
         <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
       </ul>
     </div>
