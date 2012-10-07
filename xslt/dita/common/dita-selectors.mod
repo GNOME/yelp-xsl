@@ -284,7 +284,10 @@ topic/shortdesc
 <!-- ===========================================================================
 topic/simpletable
 -->
-<!ENTITY topic_simpletable "*[name(.) = 'simpletable' or starts-with(@class, '- topic/simpletable ')]">
+<!ENTITY topic_simpletable "*[
+  name(.) = 'simpletable' or name(.) = 'choicetable' or
+  starts-with(@class, '- topic/simpletable ')
+  ]">
 
 <!-- ===========================================================================
 topic/sl
@@ -299,17 +302,27 @@ topic/sli
 <!-- ===========================================================================
 topic/stentry
 -->
-<!ENTITY topic_stentry "*[name(.) = 'stentry' or starts-with(@class, '- topic/stentry ')]">
+<!ENTITY topic_stentry "*[
+  name(.) = 'stentry' or name(.) = 'chdesc' or name(.) = 'chdeschd' or
+  name(.) = 'choption' or name(.) = 'choptionhd' or
+  starts-with(@class, '- topic/stentry ')
+  ]">
 
 <!-- ===========================================================================
 topic/sthead
 -->
-<!ENTITY topic_sthead "*[name(.) = 'sthead' or starts-with(@class, '- topic/sthead ')]">
+<!ENTITY topic_sthead "*[
+  name(.) = 'sthead' or name(.) = 'chhead' or
+  starts-with(@class, '- topic/sthead ')
+  ]">
 
 <!-- ===========================================================================
 topic/strow
 -->
-<!ENTITY topic_strow "*[name(.) = 'strow' or starts-with(@class, '- topic/strow ')]">
+<!ENTITY topic_strow "*[
+  name(.) = 'strow' or name(.) = 'chrow' or
+  starts-with(@class, '- topic/strow ')
+  ]">
 
 <!-- ===========================================================================
 topic/text
