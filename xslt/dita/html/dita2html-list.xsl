@@ -35,6 +35,107 @@ REMARK: Describe this module
 
 <!-- == Matched Templates == -->
 
+<!-- = choice = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_choice;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <li class="list">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </li>
+</xsl:template>
+
+<!-- = choices = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_choices;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <div class="list">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <div class="inner">
+      <ul class="list">
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+      </ul>
+    </div>
+  </div>
+</xsl:template>
+
+<!-- = dd = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dd;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <dd class="terms">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </dd>
+</xsl:template>
+
+<!-- = ddhd = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_ddhd;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <dd class="terms ddhd">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </dd>
+</xsl:template>
+
+<!-- = dl = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dl;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="compact">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'compact'"/>
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <div class="terms">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <dl>
+      <xsl:attribute name="class">
+        <xsl:text>terms</xsl:text>
+        <xsl:if test="$compact = 'yes'">
+          <xsl:text> compact</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+    </dl>
+  </div>
+</xsl:template>
+
+<!-- = dlentry = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dlentry;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+</xsl:template>
+
+<!-- = dlhead = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dlhead;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+</xsl:template>
+
+<!-- = dt = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dt;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <dt class="terms">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </dt>
+</xsl:template>
+
+<!-- = dthd = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_dthd;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <dt class="terms dthd">
+    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+  </dt>
+</xsl:template>
+
 <!-- = li = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_li;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>

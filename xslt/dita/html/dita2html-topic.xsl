@@ -93,7 +93,10 @@ li.stepsection {
 }
 ul.list-sli { list-style-type: none; }
 ul.compact-sli li { margin-top: 0; line-height: 1.44em; }
-
+dt.dthd, dd.ddhd {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
 th, td { border: solid 1px; }
 
 <!-- FIXME: perhaps into html.xsl? -->

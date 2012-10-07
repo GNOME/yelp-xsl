@@ -45,6 +45,41 @@ topic/desc
 <!ENTITY topic_desc "*[name(.) = 'desc' or starts-with(@class, '- topic/desc ')]">
 
 <!-- ===========================================================================
+topic/dd
+-->
+<!ENTITY topic_dd "*[name(.) = 'dd' or starts-with(@class, '- topic/dd ')]">
+
+<!-- ===========================================================================
+topic/ddhd
+-->
+<!ENTITY topic_ddhd "*[name(.) = 'ddhd' or starts-with(@class, '- topic/ddhd ')]">
+
+<!-- ===========================================================================
+topic/dl
+-->
+<!ENTITY topic_dl "*[name(.) = 'dl' or starts-with(@class, '- topic/dl ')]">
+
+<!-- ===========================================================================
+topic/dlentry
+-->
+<!ENTITY topic_dlentry "*[name(.) = 'dlentry' or starts-with(@class, '- topic/dlentry ')]">
+
+<!-- ===========================================================================
+topic/dlhead
+-->
+<!ENTITY topic_dlhead "*[name(.) = 'dlhead' or starts-with(@class, '- topic/dlhead ')]">
+
+<!-- ===========================================================================
+topic/dt
+-->
+<!ENTITY topic_dt "*[name(.) = 'dt' or starts-with(@class, '- topic/dt ')]">
+
+<!-- ===========================================================================
+topic/dthd
+-->
+<!ENTITY topic_dthd "*[name(.) = 'dthd' or starts-with(@class, '- topic/dthd ')]">
+
+<!-- ===========================================================================
 topic/fig
 -->
 <!ENTITY topic_fig "*[name(.) = 'fig' or starts-with(@class, '- topic/fig ')]">
@@ -79,6 +114,8 @@ topic/keyword
 <!-- ===========================================================================
 topic/li
 -->
+<!ENTITY topic_choice "*[
+  name(.) = 'choice' or starts-with(@class, '- topic/li task/choice ')]">
 <!ENTITY topic_step "*[
   name(.) = 'step' or starts-with(@class, '- topic/li task/step ')]">
 <!ENTITY topic_stepsection "*[
@@ -86,14 +123,16 @@ topic/li
 <!ENTITY topic_substep "*[
   name(.) = 'substep' or starts-with(@class, '- topic/li task/substep ')]">
 <!ENTITY topic_li "*[
-name(.) = 'li' or (
+  name(.) = 'li' or (
   starts-with(@class, '- topic/li ')
+  and not(starts-with(@class, '- topic/li task/choice '))
   and not(starts-with(@class, '- topic/li task/step '))
   and not(starts-with(@class, '- topic/li task/stepsection '))
   and not(starts-with(@class, '- topic/li task/substep '))
   )]">
 <!ENTITY topic_li_all "*[
-  name(.) = 'li' or name(.) = 'step' or name(.) = 'stepsection' or name(.) = 'substep' or
+  name(.) = 'li' or name(.) = 'choice' or name(.) = 'step' or
+  name(.) = 'stepsection' or name(.) = 'substep' or
   starts-with(@class, '- topic/li ')
   ]">
 
@@ -297,4 +336,14 @@ topic/topic
 <!-- ===========================================================================
 topic/ul
 -->
-<!ENTITY topic_ul "*[name(.) = 'ul' or starts-with(@class, '- topic/ul ')]">
+<!ENTITY topic_choices "*[
+  name(.) = 'choices' or starts-with(@class, '- topic/ul task/choices ')]">
+<!ENTITY topic_ul "*[
+  name(.) = 'ul' or (
+  starts-with(@class, '- topic/ul ')
+  and not(starts-with(@class, '- topic/ul task/choices '))
+  )]">
+<!ENTITY topic_ul_all "*[
+  name(.) = 'ul' or name(.) = 'choices' or
+  starts-with(@class, '- topic/ul ')
+  ]">
