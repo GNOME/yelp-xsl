@@ -746,6 +746,11 @@ thead td, thead th, tfoot td, tfoot th {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
 }
+th {
+  text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
 
 ul, ol, dl { margin: 0; padding: 0; }
 li {
@@ -761,6 +766,7 @@ dd {
   margin: 0.2em 0 0 0;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
 }
+dd + dd { margin-top: 1em; }
 ol.compact li { margin-top: 0.2em; }
 ul.compact li { margin-top: 0.2em; }
 ol.compact li:first-child { margin-top: 0; }
@@ -865,6 +871,7 @@ pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
 div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
+div.links > div.inner > div.region > div.desc { font-style: italic; }
 div.links ul { margin: 0; padding: 0; }
 div.links ul ul {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
