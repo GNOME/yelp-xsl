@@ -34,27 +34,9 @@ REMARK: Describe this module
 <xsl:import href="../../common/ttml.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
-<xsl:include href="../common/dita-ref.xsl"/>
+<xsl:import href="../common/dita-ref.xsl"/>
 
-<!--
-<xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
-<xsl:param name="mal.if.features" select="'
-mallard:1.0
-'"/>
-<xsl:param name="mal.if.maybe" select="'target:mobile'"/>
-<xsl:param name="mal.link.extension" select="$html.extension"/>
-<xsl:param name="ttml.features" select="'
-http://www.w3.org/ns/ttml/feature/#content
-http://www.w3.org/ns/ttml/feature/#core
-http://www.w3.org/ns/ttml/feature/#nested-div
-http://www.w3.org/ns/ttml/feature/#nested-span
-http://www.w3.org/ns/ttml/feature/#presentation
-http://www.w3.org/ns/ttml/feature/#profile
-http://www.w3.org/ns/ttml/feature/#structure
-http://www.w3.org/ns/ttml/feature/#time-offset
-http://www.w3.org/ns/ttml/feature/#timing
-'"/>
--->
+<xsl:param name="dita.ref.extension" select="$html.extension"/>
 
 <xsl:include href="dita2html-block.xsl"/>
 <xsl:include href="dita2html-inline.xsl"/>

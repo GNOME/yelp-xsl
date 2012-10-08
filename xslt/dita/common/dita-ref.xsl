@@ -34,6 +34,19 @@ DITA References
 REMARK: Describe this module
 -->
 
+
+<!--@@==========================================================================
+dita.ref.extension
+The filename extension for output files.
+:Revision:version="3.8" date="2012-10-08" status="final"
+
+When link targets are constructed by *{dita.ref.href.target.custom} from #{href}
+attributes, this string is appended. This is used to specify the file extension
+when creating output files from DITA topics.
+-->
+<xsl:param name="dita.ref.extension"/>
+
+
 <xsl:key name="dita.id.key" match="&topic_topic_all;[@id]" use="@id"/>
 <xsl:key name="dita.id.key" match="*[@id][not(self::&topic_topic_all;)]"
          use="concat(ancestor-or-self::&topic_topic_all;[1]/@id, '/', @id)"/>
@@ -156,7 +169,15 @@ REMARK: Describe this module
         </xsl:if>
       </xsl:variable>
       <xsl:if test="$uri != ''">
-        <xsl:text>FIXME</xsl:text>
+        <xsl:choose>
+          <xsl:when test="substring($uri, string-length($uri) - 4) = '.dita'">
+            <xsl:value-of select="substring($uri, 1, string-length($uri) - 5)"/>
+          </xsl:when>
+          <xsl:when test="substring($uri, string-length($uri) - 3) = '.xml'">
+            <xsl:value-of select="substring($uri, 1, string-length($uri) - 4)"/>
+          </xsl:when>
+        </xsl:choose>
+        <xsl:value-of select="$dita.ref.extension"/>
       </xsl:if>
       <xsl:if test="$frag != ''">
         <xsl:text>#</xsl:text>
