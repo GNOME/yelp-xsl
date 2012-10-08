@@ -360,3 +360,9 @@ topic/ul
   name(.) = 'ul' or name(.) = 'choices' or
   starts-with(@class, '- topic/ul ')
   ]">
+
+<!-- ===========================================================================
+topic/xref
+-->
+<!ENTITY topic_xref "*[name(.) = 'xref' or starts-with(@class, '- topic/xref ')]">
+

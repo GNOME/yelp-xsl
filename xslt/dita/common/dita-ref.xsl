@@ -22,8 +22,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:func="http://exslt.org/functions"
+                xmlns:yelp="http://projects.gnome.org/yelp/" 
                 xmlns="http://www.w3.org/1999/xhtml"
                 extension-element-prefixes="func"
+                exclude-result-prefixes="yelp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -35,6 +37,20 @@ REMARK: Describe this module
 <xsl:key name="dita.id.key" match="&topic_topic_all;[@id]" use="@id"/>
 <xsl:key name="dita.id.key" match="*[@id][not(self::&topic_topic_all;)]"
          use="concat(ancestor-or-self::&topic_topic_all;[1]/@id, '/', @id)"/>
+
+<xsl:template name="dita.id">
+  <xsl:param name="node" select="."/>
+  <xsl:choose>
+    <xsl:when test="$node/self::&topic_topic;">
+      <xsl:copy-of select="$node/@id"/>
+    </xsl:when>
+    <xsl:when test="$node/@id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="concat($node/ancestor::&topic_topic;[@id][1]/@id, '::', $node/@id)"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
 
 <xsl:template name="dita.ref.conref.attr">
   <xsl:param name="attr"/>
@@ -51,7 +67,7 @@ REMARK: Describe this module
   </xsl:choose>
 </xsl:template>
 
-<func:function xmlns:yelp="http://projects.gnome.org/yelp/" name="yelp:dita.ref.conref">
+<func:function name="yelp:dita.ref.conref">
   <xsl:param name="node" select="."/>
   <xsl:choose>
     <xsl:when test="not($node/@conref)">
@@ -85,16 +101,83 @@ REMARK: Describe this module
   </xsl:choose>
 </func:function>
 
-<!--
-<xsl:template name="dita.conref.node">
+<xsl:template name="dita.ref.href.target">
   <xsl:param name="node" select="."/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:variable name="format">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'format'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="scope">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'scope'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="type">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'type'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="custom">
+    <xsl:call-template name="dita.ref.href.target.custom">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="href" select="$href"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$node/@conref">
+    <xsl:when test="$custom != ''">
+      <xsl:value-of select="$custom"/>
+    </xsl:when>
+    <xsl:when test="$scope = 'external' or ($format != '' and $format != 'dita')">
+      <xsl:value-of select="$href"/>
     </xsl:when>
     <xsl:otherwise>
+      <xsl:variable name="uri">
+        <xsl:choose>
+          <xsl:when test="contains($href, '#')">
+            <xsl:value-of select="substring-before($href, '#')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$href"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="frag">
+        <xsl:if test="contains($href, '#')">
+          <xsl:value-of select="substring-after($href, '#')"/>
+        </xsl:if>
+      </xsl:variable>
+      <xsl:if test="$uri != ''">
+        <xsl:text>FIXME</xsl:text>
+      </xsl:if>
+      <xsl:if test="$frag != ''">
+        <xsl:text>#</xsl:text>
+        <xsl:choose>
+          <xsl:when test="contains($frag, '/')">
+            <xsl:value-of select="substring-before($frag, '/')"/>
+            <xsl:text>::</xsl:text>
+            <xsl:value-of select="substring-after($frag, '/')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$frag"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
--->
+
+<xsl:template name="dita.ref.href.target.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href" select="$node/@href"/>
+</xsl:template>
 
 </xsl:stylesheet>

@@ -47,7 +47,9 @@ FIXME
   <xsl:param name="class" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
   <div>
-    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="dita.id">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -75,7 +77,9 @@ FIXME
   <xsl:param name="class" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
   <p>
-    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="dita.id">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -102,7 +106,9 @@ FIXME
   <xsl:param name="class" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
   <div class="code">
-    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="dita.id">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -157,7 +163,7 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <div class="{$style}">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;"/>
@@ -208,7 +214,7 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <div>
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>note</xsl:text>
@@ -262,7 +268,7 @@ FIXME
 <xsl:template mode="dita2html.topic.mode" match="&topic_section;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="section">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <!-- A DITA section may have an optional title. But it can be anywhere
          in the child node list. And there could be more than one, but all
@@ -316,7 +322,7 @@ FIXME
     </xsl:choose>
   </xsl:variable>
   <div class="title">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>

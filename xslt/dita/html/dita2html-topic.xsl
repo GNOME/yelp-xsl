@@ -111,7 +111,7 @@ th { text-align: left; }
   <xsl:choose>
     <xsl:when test="parent::&topic_topic;">
       <div class="sect">
-        <xsl:copy-of select="@id"/>
+        <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
         <div class="inner">
           <xsl:call-template name="_dita2html.topic.inner"/>
@@ -156,7 +156,7 @@ th { text-align: left; }
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="region">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
@@ -169,7 +169,7 @@ th { text-align: left; }
     <div class="hgroup"/>
     <div class="contents">
       <div class="links">
-        <xsl:copy-of select="@id"/>
+        <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
         <div class="inner">
           <div class="region">
@@ -186,7 +186,7 @@ th { text-align: left; }
 <xsl:template mode="dita2html.topic.mode" match="&topic_link;">
   <!-- FIXME -->
   <li class="links">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <a>
       <xsl:attribute name="href">
@@ -222,7 +222,7 @@ th { text-align: left; }
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_linkinfo;">
   <li class="links links-linkinfo">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates modes="dita2html.topic.mode"/>
   </li>
@@ -233,7 +233,7 @@ th { text-align: left; }
     <xsl:when test="&topic_title; or &topic_desc; or &topic_linkinfo;">
       <li class="links">
         <div class="links">
-          <xsl:copy-of select="@id"/>
+          <xsl:call-template name="dita.id"/>
           <xsl:call-template name="html.lang.attrs"/>
           <div class="inner">
             <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title;"/>

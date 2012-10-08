@@ -38,7 +38,7 @@ REMARK: Describe this module
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="keycol" select="@keycol"/>
   <div class="table">
-    <xsl:copy-of select="@id"/>
+    <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <table class="table">
       <xsl:for-each select="$conref/&topic_sthead;[1]">
@@ -64,7 +64,9 @@ REMARK: Describe this module
   <xsl:param name="keycol"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
   <tr>
-    <xsl:copy-of select="$node/@id"/>
+    <xsl:call-template name="dita.id">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -72,7 +74,7 @@ REMARK: Describe this module
       <xsl:choose>
         <xsl:when test="position() = $keycol or $node[self::&topic_sthead;]">
           <th>
-            <xsl:copy-of select="@id"/>
+            <xsl:call-template name="dita.id"/>
             <xsl:call-template name="html.lang.attrs"/>
             <xsl:apply-templates mode="dita2html.topic.mode"
                                  select="yelp:dita.ref.conref(.)/node()"/>
@@ -80,7 +82,7 @@ REMARK: Describe this module
         </xsl:when>
         <xsl:otherwise>
           <td>
-            <xsl:copy-of select="@id"/>
+            <xsl:call-template name="dita.id"/>
             <xsl:call-template name="html.lang.attrs"/>
             <xsl:apply-templates mode="dita2html.topic.mode"
                                  select="yelp:dita.ref.conref(.)/node()"/>
