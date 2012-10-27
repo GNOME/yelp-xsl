@@ -122,7 +122,7 @@ parameter will be used if provided.
         <xsl:variable name="uithumbs">
           <xsl:variable name="uithumbs_">
             <xsl:for-each select="str:split(@ui:thumbs)">
-              <xsl:if test="string(.)='grid' or string(.)='hover'">
+              <xsl:if test="string(.)='tiles' or string(.)='hover'">
                 <xsl:value-of select="."/>
               </xsl:if>
               <xsl:text> </xsl:text>
@@ -137,8 +137,8 @@ parameter will be used if provided.
               <xsl:with-param name="links" select="$links"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="$uithumbs = 'grid'">
-            <xsl:call-template name="mal2html.ui.links.grid">
+          <xsl:when test="$uithumbs = 'tiles'">
+            <xsl:call-template name="mal2html.ui.links.tiles">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>

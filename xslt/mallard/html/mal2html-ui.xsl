@@ -90,14 +90,14 @@ for blocks that produce automatic titles.
 
 
 <!--**==========================================================================
-mal2html.ui.links.grid
-Output links as a grid of thumbnails.
-:Revision:version="3.4" date="2012-02-25" status="final"
+mal2html.ui.links.tiles
+Output links as thumbnail tiles.
+:Revision:version="3.8" date="2012-10-27" status="final"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A link role, used to select the appropriate title.
 
-This template outputs links as a grid of thumbnails, as per the UI extension.
+This template outputs links as thumbnail tiles, as per the UI extension.
 For each link, it outputs an inline-block #{div} element with a thumbnail,
 title, and desc (unless the #{nodesc} style hint is used). This template calls
 *{mal2html.ui.links.img} to find the best-match thumbnail and output the HTML
@@ -105,7 +105,7 @@ title, and desc (unless the #{nodesc} style hint is used). This template calls
 
 This template handles link sorting.
 -->
-<xsl:template name="mal2html.ui.links.grid">
+<xsl:template name="mal2html.ui.links.tiles">
   <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
@@ -135,7 +135,7 @@ This template handles link sorting.
     <xsl:variable name="link" select="."/>
     <xsl:for-each select="$mal.cache">
       <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
-      <div class="links-ui-grid {$link/@class}">
+      <div class="links-ui-tiles {$link/@class}">
         <xsl:for-each select="$link/@*">
           <xsl:if test="starts-with(name(.), 'data-')">
             <xsl:copy-of select="."/>
@@ -155,7 +155,7 @@ This template handles link sorting.
               <xsl:with-param name="xref" select="$link/@xref"/>
             </xsl:call-template>
           </xsl:attribute>
-          <span class="links-ui-grid-img" style="width: {$width}px; height: {$height}px;">
+          <span class="links-ui-tiles-img" style="width: {$width}px; height: {$height}px;">
             <xsl:call-template name="mal2html.ui.links.img">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="thumbs" select="$thumbs"/>

@@ -918,13 +918,13 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
-div.links-ui-grid {
+div.links-ui-tiles {
   display: inline-block;
   vertical-align: top;
   clear: both
   margin: 0;
 }
-div.links-ui-grid > a {
+div.links-ui-tiles > a {
   display: inline-block;
   vertical-align: top;
   margin: 0;
@@ -932,19 +932,19 @@ div.links-ui-grid > a {
   padding: 1em;
   border-radius: 6px;
 }
-div.links-ui-grid > a { border: none; }
-div.links-ui-grid > a:hover {
+div.links-ui-tiles > a { border: none; }
+div.links-ui-tiles > a:hover {
   box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
-div.links-ui-grid > a > * {
+div.links-ui-tiles > a > * {
   display: block;
   overflow: hidden;
 }
-div.links-ui-grid > a > span.title {
+div.links-ui-tiles > a > span.title {
   margin-top: 0.5em;
   font-weight: bold;
 }
-span.links-ui-grid-img { text-align: center; }
+span.links-ui-tiles-img { text-align: center; }
 
 div.links-ui-hover {
   text-align: center;
