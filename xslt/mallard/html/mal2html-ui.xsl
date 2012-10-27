@@ -95,7 +95,7 @@ Output links as thumbnail tiles.
 :Revision:version="3.8" date="2012-10-27" status="final"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
-$role: A link role, used to select the appropriate title.
+$role: A link role, used to select the appropriate title and thumbnail.
 
 This template outputs links as thumbnail tiles, as per the UI extension.
 For each link, it outputs an inline-block #{div} element with a thumbnail,
@@ -191,7 +191,7 @@ Output links with thumbnails shown on hover.
 :Revision:version="3.4" date="2012-02-26" status="final"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
-$role: A link role, used to select the appropriate title.
+$role: A link role, used to select the appropriate title and thumbnail.
 
 This template outputs links alongside thumbnail images, using the UI extension.
 The thumbnail image for each link is shown when the user hovers over that link.
@@ -295,9 +295,10 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.ui.links.img
 Output an image for a link using UI thumbnails.
-:Revision:version="3.4" date="2012-02-25" status="final"
+:Revision:version="3.8" date="2012-10-27" status="final"
 $node: A #{links} element to link from.
 $thumbs: A list of candidate #{ui:thumb} elements.
+$role: A link role, used to select the appropriate thumbnail.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
@@ -306,6 +307,15 @@ the aspect ratio and dimensions of each image matches the ${width} and ${height}
 parameters. It outputs an HTML #{img} element for the best-fit thumbnail and
 calls ${mal2html.ui.links.img.attrs} to output #{width} and #{height}
 attributes.
+
+Before checking for a best-fit thumbnail on dimensions, this template first
+looks for #{ui:thumb} elements with the #{type} attribute set to #{"links"}.
+Within those, it looks for #{ui:thumb} elements whose #{role} attribute
+matches the ${role} parameter. This is similar to how link titles are
+selected.
+
+If the ${thumbs} parameter is empty, this template attempts to use a default
+thumbnail provided by a #{ui:thumb} child element of ${node}.
 
 The ${width} and ${height} parameters can be computed automatically from the
 ${node} element.
@@ -316,7 +326,7 @@ ${node} element.
   <xsl:param name="role"/>
   <xsl:param name="width" select="$node/@ui:width"/>
   <xsl:param name="height" select="$node/@ui:height"/>
-<xsl:choose>
+  <xsl:choose>
   <xsl:when test="$thumbs">
     <img>
       <xsl:for-each select="$thumbs[not(@type) or (
@@ -355,7 +365,7 @@ ${node} element.
           </xsl:call-template>
     </img>
   </xsl:when>
-</xsl:choose>
+  </xsl:choose>
 </xsl:template>
 
 
