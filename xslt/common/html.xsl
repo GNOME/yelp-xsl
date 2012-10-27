@@ -1314,15 +1314,19 @@ div.media-ttml-p {
 div.yelp-data { display: none; }
 div.ui-expander > div.inner > div.title span.title:before,
 div.ui-expander > div.inner > div.hgroup span.title:before {
-  font-size: 1.2em;
+  font-size: 2em;
   font-weight: normal;
-  content: "⊞";
+  content: "⌃";
+  display: inline-block;
+  line-height: 0.2em;
+  vertical-align: bottom;
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
 div.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
 div.ui-expander-e > div.inner > div.title span.title:before,
 div.ui-expander-e > div.inner > div.hgroup span.title:before {
-  content: "⊟";
+  content: "⌄";
+  vertical-align: top;
 }
 div.ui-expander > div.inner > div.title:hover,
 div.ui-expander > div.inner > div.hgroup:hover * {
