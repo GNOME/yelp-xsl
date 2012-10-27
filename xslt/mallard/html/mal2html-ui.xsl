@@ -129,13 +129,18 @@ This template handles link sorting.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="tiles-side">
+    <xsl:if test="contains(concat(' ', $node/@style, ' '), ' tiles-side ')">
+      <xsl:text>ui-tile-side</xsl:text>
+    </xsl:if>
+  </xsl:variable>
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
     <xsl:variable name="link" select="."/>
     <xsl:for-each select="$mal.cache">
       <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
-      <div class="links-ui-tiles {$link/@class}">
+      <div class="ui-tile {$link/@class} {$tiles-side}">
         <xsl:for-each select="$link/@*">
           <xsl:if test="starts-with(name(.), 'data-')">
             <xsl:copy-of select="."/>
@@ -155,7 +160,7 @@ This template handles link sorting.
               <xsl:with-param name="xref" select="$link/@xref"/>
             </xsl:call-template>
           </xsl:attribute>
-          <span class="links-ui-tiles-img" style="width: {$width}px; height: {$height}px;">
+          <span class="ui-tile-img" style="width: {$width}px; height: {$height}px;">
             <xsl:call-template name="mal2html.ui.links.img">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="thumbs" select="$thumbs"/>
@@ -164,20 +169,34 @@ This template handles link sorting.
               <xsl:with-param name="height" select="$height"/>
             </xsl:call-template>
           </span>
-          <span class="title" style="width: {$width}px;">
-            <xsl:call-template name="mal.link.content">
-              <xsl:with-param name="node" select="$node"/>
-              <xsl:with-param name="xref" select="$link/@xref"/>
-              <xsl:with-param name="role" select="$role"/>
-            </xsl:call-template>
-          </span>
-          <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
-            <xsl:if test="$target/mal:info/mal:desc">
-              <span class="desc" style="width: {$width}px;">
-                <xsl:apply-templates select="$target/mal:info/mal:desc/node()"/>
-              </span>
+          <span class="ui-tile-text">
+            <xsl:attribute name="style">
+              <xsl:text>max-width: </xsl:text>
+              <xsl:choose>
+                <xsl:when test="$tiles-side != ''">
+                  <xsl:value-of select="2 * number($width)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$width"/>
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:text>px;</xsl:text>
+            </xsl:attribute>
+            <span class="title">
+              <xsl:call-template name="mal.link.content">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$link/@xref"/>
+                <xsl:with-param name="role" select="$role"/>
+              </xsl:call-template>
+            </span>
+            <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
+              <xsl:if test="$target/mal:info/mal:desc">
+                <span class="desc">
+                  <xsl:apply-templates select="$target/mal:info/mal:desc/node()"/>
+                </span>
+              </xsl:if>
             </xsl:if>
-          </xsl:if>
+          </span>
         </a>
       </div>
     </xsl:for-each>

@@ -918,13 +918,13 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
-div.links-ui-tiles {
+div.ui-tile {
   display: inline-block;
   vertical-align: top;
   clear: both
   margin: 0;
 }
-div.links-ui-tiles > a {
+div.ui-tile > a {
   display: inline-block;
   vertical-align: top;
   margin: 0;
@@ -932,19 +932,26 @@ div.links-ui-tiles > a {
   padding: 1em;
   border-radius: 6px;
 }
-div.links-ui-tiles > a { border: none; }
-div.links-ui-tiles > a:hover {
+div.ui-tile > a { border: none; }
+div.ui-tile > a:hover {
   box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
-div.links-ui-tiles > a > * {
-  display: block;
-  overflow: hidden;
+div.ui-tile > a > * { display: block; }
+div.ui-tile-side > a > * {
+  display: inline-block;
+  vertical-align: top;
 }
-div.links-ui-tiles > a > span.title {
+div.ui-tile-side > a > span.ui-tile-text {
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
+}
+div.ui-tile > a > span.ui-tile-text > span.title {
+  display: block;
   margin-top: 0.5em;
   font-weight: bold;
 }
-span.links-ui-tiles-img { text-align: center; }
+div.ui-tile-side > a > span.ui-tile-text > span.title { margin-top: 0; }
+div.ui-tile > a > span.ui-tile-text > span.desc { display: block; }
+span.ui-tile-img { text-align: center; }
 
 div.links-ui-hover {
   text-align: center;
