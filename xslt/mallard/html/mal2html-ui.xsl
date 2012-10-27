@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:math="http://exslt.org/math"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui"
+                exclude-result-prefixes="mal ui math"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -158,11 +159,12 @@ This template handles link sorting.
             <xsl:call-template name="mal2html.ui.links.img">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="thumbs" select="$thumbs"/>
+              <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="width" select="$width"/>
               <xsl:with-param name="height" select="$height"/>
             </xsl:call-template>
           </span>
-          <span class="title" style="width: {$width}px; max-height: {number($height) div 2}px;">
+          <span class="title" style="width: {$width}px;">
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$link/@xref"/>
@@ -171,7 +173,7 @@ This template handles link sorting.
           </span>
           <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
             <xsl:if test="$target/mal:info/mal:desc">
-              <span class="desc" style="width: {$width}px; max-height: {number($height) div 2}px;">
+              <span class="desc" style="width: {$width}px;">
                 <xsl:apply-templates select="$target/mal:info/mal:desc/node()"/>
               </span>
             </xsl:if>
@@ -269,6 +271,7 @@ This template handles link sorting.
               <xsl:call-template name="mal2html.ui.links.img">
                 <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="thumbs" select="$thumbs"/>
+                <xsl:with-param name="role" select="$role"/>
                 <xsl:with-param name="width" select="$width"/>
                 <xsl:with-param name="height" select="$height"/>
               </xsl:call-template>
@@ -310,11 +313,16 @@ ${node} element.
 <xsl:template name="mal2html.ui.links.img">
   <xsl:param name="node"/>
   <xsl:param name="thumbs"/>
+  <xsl:param name="role"/>
   <xsl:param name="width" select="$node/@ui:width"/>
   <xsl:param name="height" select="$node/@ui:height"/>
-  <xsl:if test="$thumbs">
+<xsl:choose>
+  <xsl:when test="$thumbs">
     <img>
-      <xsl:for-each select="$thumbs">
+      <xsl:for-each select="$thumbs[not(@type) or (
+                            @type = 'link' and (not(@role) or @role = $role))]">
+        <xsl:sort data-type="number" select="number(not(@type = 'link'))"/>
+        <xsl:sort data-type="number" select="number(not(@role = $role))"/>
         <xsl:sort data-type="number" select="number(not(@width))"/>
         <xsl:sort data-type="number" select="number(not(@height))"/>
         <xsl:sort data-type="number" select="($width div $height) div (@width div @height)"/>
@@ -333,7 +341,21 @@ ${node} element.
         </xsl:if>
       </xsl:for-each>
     </img>
-  </xsl:if>
+  </xsl:when>
+  <xsl:when test="$node/ui:thumb">
+    <img>
+      <xsl:attribute name="src">
+        <xsl:value-of select="$node/ui:thumb/@src"/>
+      </xsl:attribute>
+          <xsl:call-template name="mal2html.ui.links.img.attrs">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="thumb" select="$node/ui:thumb"/>
+            <xsl:with-param name="width" select="$width"/>
+            <xsl:with-param name="height" select="$height"/>
+          </xsl:call-template>
+    </img>
+  </xsl:when>
+</xsl:choose>
 </xsl:template>
 
 
@@ -380,6 +402,9 @@ ${node} element.
       <xsl:variable name="ratio" select="$width div $height"/>
       <xsl:variable name="tratio" select="$thumb/@width div $thumb/@height"/>
       <xsl:choose>
+        <xsl:when test="$thumb/@width &lt; $width and $thumb/@height &lt; $height">
+          <xsl:copy-of select="$thumb/@width | $thumb/@height"/>
+        </xsl:when>
         <xsl:when test="$ratio &lt; $tratio">
           <xsl:attribute name="width">
             <xsl:value-of select="$width"/>
