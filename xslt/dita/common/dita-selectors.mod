@@ -28,6 +28,20 @@ grouped according to their most base element.
 -->
 
 <!-- ===========================================================================
+map/map
+-->
+<!ENTITY map_map "*[
+  name(.) = 'map' or name(.) = 'bookmap' or
+  starts-with(@class, '- map/map ')]">
+
+<!-- ===========================================================================
+map/topicref
+-->
+<!ENTITY map_topicref "*[
+  name(.) = 'topicref' or name(.) = 'chapter' or name(.) = 'part' or
+  starts-with(@class, '- map/topicref ')]">
+
+<!-- ===========================================================================
 topic/body
 -->
 <!ENTITY topic_body "*[
