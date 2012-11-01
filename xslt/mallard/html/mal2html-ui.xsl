@@ -18,10 +18,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:math="http://exslt.org/math"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui math"
+                exclude-result-prefixes="mal ui uix math"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -52,9 +53,10 @@ for blocks that produce automatic titles.
 -->
 <xsl:template name="mal2html.ui.expander.data">
   <xsl:param name="node" select="."/>
-  <xsl:param name="expander" select="$node/mal:title and
-                                     ($node/@ui:expanded or $node/self::ui:expander)"/>
-  <xsl:if test="$expander">
+  <xsl:if test="$node/@uix:expanded">
+    <!-- FIXME: deprecation warning -->
+  </xsl:if>
+  <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/@uix:expanded)">
     <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
     <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
     <div class="yelp-data yelp-data-ui-expander">
@@ -63,14 +65,14 @@ for blocks that produce automatic titles.
       </xsl:attribute>
       <xsl:attribute name="data-yelp-expanded">
         <xsl:choose>
-          <xsl:when test="$node/self::ui:expander/@expanded = 'no'">
-            <xsl:text>no</xsl:text>
+          <xsl:when test="$node/@ui:expanded = 'false'">
+            <xsl:text>false</xsl:text>
           </xsl:when>
-          <xsl:when test="$node/@ui:expanded = 'no'">
-            <xsl:text>no</xsl:text>
+          <xsl:when test="$node/@uix:expanded = 'no'">
+            <xsl:text>false</xsl:text>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>yes</xsl:text>
+            <xsl:text>true</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
@@ -111,8 +113,8 @@ This template handles link sorting.
   <xsl:param name="role"/>
   <xsl:variable name="width">
     <xsl:choose>
-      <xsl:when test="$node/@ui:width">
-        <xsl:value-of select="$node/@ui:width"/>
+      <xsl:when test="$node/@uix:width">
+        <xsl:value-of select="$node/@uix:width"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>200</xsl:text>
@@ -121,8 +123,8 @@ This template handles link sorting.
   </xsl:variable>
   <xsl:variable name="height">
     <xsl:choose>
-      <xsl:when test="$node/@ui:height">
-        <xsl:value-of select="$node/@ui:height"/>
+      <xsl:when test="$node/@uix:height">
+        <xsl:value-of select="$node/@uix:height"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>200</xsl:text>
@@ -146,7 +148,7 @@ This template handles link sorting.
             <xsl:copy-of select="."/>
           </xsl:if>
         </xsl:for-each>
-        <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
+        <xsl:variable name="thumbs" select="$target/mal:info/uix:thumb"/>
         <a>
           <xsl:attribute name="href">
             <xsl:call-template name="mal.link.target">
@@ -228,8 +230,8 @@ This template handles link sorting.
   <xsl:param name="role"/>
   <xsl:variable name="width">
     <xsl:choose>
-      <xsl:when test="$node/@ui:width">
-        <xsl:value-of select="$node/@ui:width"/>
+      <xsl:when test="$node/@uix:width">
+        <xsl:value-of select="$node/@uix:width"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>250</xsl:text>
@@ -238,8 +240,8 @@ This template handles link sorting.
   </xsl:variable>
   <xsl:variable name="height">
     <xsl:choose>
-      <xsl:when test="$node/@ui:height">
-        <xsl:value-of select="$node/@ui:height"/>
+      <xsl:when test="$node/@uix:height">
+        <xsl:value-of select="$node/@uix:height"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>200</xsl:text>
@@ -247,7 +249,7 @@ This template handles link sorting.
     </xsl:choose>
   </xsl:variable>
   <div class="links-ui-hover" style="width: {$width}px; height: {$height}px;">
-    <xsl:for-each select="$node/ui:thumb[1]">
+    <xsl:for-each select="$node/uix:thumb[1]">
       <img>
         <xsl:copy-of select="@src"/>
         <xsl:call-template name="mal2html.ui.links.img.attrs">
@@ -267,7 +269,7 @@ This template handles link sorting.
       <xsl:variable name="xref" select="@xref"/>
       <xsl:for-each select="$mal.cache">
         <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
-        <xsl:variable name="thumbs" select="$target/mal:info/ui:thumb"/>
+        <xsl:variable name="thumbs" select="$target/mal:info/uix:thumb"/>
         <li class="links {$link/@class}">
           <xsl:for-each select="$link/@*">
             <xsl:if test="starts-with(name(.), 'data-')">
@@ -316,7 +318,7 @@ mal2html.ui.links.img
 Output an image for a link using UI thumbnails.
 :Revision:version="3.8" date="2012-10-27" status="final"
 $node: A #{links} element to link from.
-$thumbs: A list of candidate #{ui:thumb} elements.
+$thumbs: A list of candidate #{uix:thumb} elements.
 $role: A link role, used to select the appropriate thumbnail.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
@@ -328,13 +330,13 @@ calls ${mal2html.ui.links.img.attrs} to output #{width} and #{height}
 attributes.
 
 Before checking for a best-fit thumbnail on dimensions, this template first
-looks for #{ui:thumb} elements with the #{type} attribute set to #{"links"}.
-Within those, it looks for #{ui:thumb} elements whose #{role} attribute
+looks for #{uix:thumb} elements with the #{type} attribute set to #{"links"}.
+Within those, it looks for #{uix:thumb} elements whose #{role} attribute
 matches the ${role} parameter. This is similar to how link titles are
 selected.
 
 If the ${thumbs} parameter is empty, this template attempts to use a default
-thumbnail provided by a #{ui:thumb} child element of ${node}.
+thumbnail provided by a #{uix:thumb} child element of ${node}.
 
 The ${width} and ${height} parameters can be computed automatically from the
 ${node} element.
@@ -343,8 +345,8 @@ ${node} element.
   <xsl:param name="node"/>
   <xsl:param name="thumbs"/>
   <xsl:param name="role"/>
-  <xsl:param name="width" select="$node/@ui:width"/>
-  <xsl:param name="height" select="$node/@ui:height"/>
+  <xsl:param name="width" select="$node/@uix:width"/>
+  <xsl:param name="height" select="$node/@uix:height"/>
   <xsl:choose>
   <xsl:when test="$thumbs">
     <img>
@@ -371,14 +373,14 @@ ${node} element.
       </xsl:for-each>
     </img>
   </xsl:when>
-  <xsl:when test="$node/ui:thumb">
+  <xsl:when test="$node/uix:thumb">
     <img>
       <xsl:attribute name="src">
-        <xsl:value-of select="$node/ui:thumb/@src"/>
+        <xsl:value-of select="$node/uix:thumb/@src"/>
       </xsl:attribute>
           <xsl:call-template name="mal2html.ui.links.img.attrs">
             <xsl:with-param name="node" select="$node"/>
-            <xsl:with-param name="thumb" select="$node/ui:thumb"/>
+            <xsl:with-param name="thumb" select="$node/uix:thumb"/>
             <xsl:with-param name="width" select="$width"/>
             <xsl:with-param name="height" select="$height"/>
           </xsl:call-template>
@@ -393,33 +395,33 @@ mal2html.ui.links.img.attrs
 Output the #{width} and #{height} attributes for a thumbnail image.
 :Revision:version="3.4" date="2012-02-25" status="final"
 $node: A #{links} element to link from.
-$thumbs: A list of candidate #{ui:thumb} elements.
+$thumbs: A list of candidate #{uix:thumb} elements.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
 This template outputs #{width} and #{height} attributes for the HTML #{img}
-element created from ${thumb}, based on the #{ui:overflow} attribute on ${node}.
+element created from ${thumb}, based on the #{uix:overflow} attribute on ${node}.
 The ${width} and ${height} parameters can be computed automatically from the
 ${node} element.
 -->
 <xsl:template name="mal2html.ui.links.img.attrs">
   <xsl:param name="node"/>
   <xsl:param name="thumb"/>
-  <xsl:param name="width" select="$node/@ui:width"/>
-  <xsl:param name="height" select="$node/@ui:height"/>
+  <xsl:param name="width" select="$node/@uix:width"/>
+  <xsl:param name="height" select="$node/@uix:height"/>
   <xsl:choose>
-    <xsl:when test="$node/@ui:overflow = 'crop'"/>
-    <xsl:when test="$node/@ui:overflow = 'width'">
+    <xsl:when test="$node/@uix:overflow = 'crop'"/>
+    <xsl:when test="$node/@uix:overflow = 'width'">
       <xsl:attribute name="width">
         <xsl:value-of select="$width"/>
       </xsl:attribute>
     </xsl:when>
-    <xsl:when test="$node/@ui:overflow = 'height'">
+    <xsl:when test="$node/@uix:overflow = 'height'">
       <xsl:attribute name="height">
         <xsl:value-of select="$height"/>
       </xsl:attribute>
     </xsl:when>
-    <xsl:when test="$node/@ui:overflow = 'scale'">
+    <xsl:when test="$node/@uix:overflow = 'scale'">
       <xsl:attribute name="width">
         <xsl:value-of select="$width"/>
       </xsl:attribute>

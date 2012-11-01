@@ -18,7 +18,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:api="http://projectmallard.org/experimental/api/"
                 xmlns:exsl="http://exslt.org/common"
@@ -26,7 +27,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:str="http://exslt.org/strings"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui e api exsl math str html"
+                exclude-result-prefixes="mal ui uix e api exsl math str html"
                 version="1.0">
 
 
@@ -76,7 +77,9 @@ parameter will be used if provided.
   <xsl:variable name="style" select="concat(' ', $node[self::mal:links or $role = 'topic']/@style, ' ')"/>
   <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
   <xsl:variable name="maltitle" select="$node/self::mal:links/mal:title"/>
-  <xsl:variable name="expander" select="($maltitle or ($title != '')) and $node/self::mal:links/@ui:expanded"/>
+  <xsl:variable name="expander" select="($maltitle or ($title != '')) and
+                                        ($node/self::mal:links/@ui:expanded or
+                                         $node/self::mal:links/@uix:expanded)"/>
   <xsl:variable name="depth_">
     <xsl:choose>
       <xsl:when test="$depth &lt; 6">
@@ -121,7 +124,7 @@ parameter will be used if provided.
       <div class="region">
         <xsl:variable name="uithumbs">
           <xsl:variable name="uithumbs_">
-            <xsl:for-each select="str:split(@ui:thumbs)">
+            <xsl:for-each select="str:split(@uix:thumbs)">
               <xsl:if test="string(.)='tiles' or string(.)='hover'">
                 <xsl:value-of select="."/>
               </xsl:if>
@@ -482,7 +485,7 @@ element containing ${node}.
             <xsl:text> floatright</xsl:text>
           </xsl:when>
         </xsl:choose>
-        <xsl:if test="mal:title and $node/@ui:expanded">
+        <xsl:if test="mal:title and ($node/@ui:expanded or $node/@uix:expanded)">
           <xsl:text> ui-expander</xsl:text>
         </xsl:if>
       </xsl:attribute>
@@ -578,7 +581,9 @@ This template calls *{mal2html.links.series.prev} and
   <xsl:variable name="page" select="$node/ancestor-or-self::mal:page[last()]"/>
   <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
-  <xsl:variable name="expander" select="$title and $node/self::mal:links/@ui:expanded"/>
+  <xsl:variable name="expander" select="$title and
+                                        ($node/self::mal:links/@ui:expanded or
+                                         $node/self::mal:links/@uix:expanded)"/>
   <div>
     <xsl:attribute name="class">
       <xsl:text>links serieslinks</xsl:text>

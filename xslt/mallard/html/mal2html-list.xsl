@@ -18,10 +18,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui str"
+                exclude-result-prefixes="mal ui uix str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -54,7 +55,7 @@ as well as any special processing for child #{item} elements.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>list</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -110,7 +111,7 @@ as well as any special processing for child #{item} elements.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>steps</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -156,7 +157,7 @@ as well as any special processing for child #{item} elements.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>terms</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -226,7 +227,7 @@ as well as any special processing for child #{item} elements.
       <xsl:if test="$lines">
         <xsl:text> tree-lines</xsl:text>
       </xsl:if>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">

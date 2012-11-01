@@ -18,10 +18,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui str"
+                exclude-result-prefixes="mal ui uix str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -170,7 +171,7 @@ REMARK: Describe this module
       <xsl:for-each select="str:tokenize(@style)">
         <xsl:value-of select="concat(' style-', .)"/>
       </xsl:for-each>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">

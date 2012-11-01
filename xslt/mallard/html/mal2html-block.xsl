@@ -19,10 +19,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:if="http://projectmallard.org/if/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal if ui msg"
+                exclude-result-prefixes="mal if ui uix msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -212,7 +213,7 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:call-template name="html.lang.attrs"/>
       <xsl:attribute name="class">
         <xsl:text>comment</xsl:text>
-        <xsl:if test="mal:title and @ui:expanded">
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
           <xsl:text> ui-expander</xsl:text>
         </xsl:if>
         <xsl:if test="$if != 'true'">
@@ -303,7 +304,7 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>figure</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -346,7 +347,7 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>listing</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -405,7 +406,7 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:if test="$notestyle != 'Note'">
         <xsl:value-of select="concat(' note-', translate($notestyle, 'ABISTW', 'abistw'))"/>
       </xsl:if>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -423,7 +424,7 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="region">
         <div class="contents">
-          <xsl:if test="mal:title and @ui:expanded">
+          <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
             <xsl:attribute name="id">
               <xsl:value-of select="concat('-yelp-', generate-id(.))"/>
             </xsl:attribute>
@@ -463,7 +464,7 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>quote</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">
@@ -522,7 +523,7 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="class">
       <xsl:text>synopsis</xsl:text>
-      <xsl:if test="mal:title and @ui:expanded">
+      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
       <xsl:if test="$if != 'true'">

@@ -1668,7 +1668,7 @@ $(document).ready(function () {
       yelpdata.append($('<div class="yelp-title-expanded"></div>').html(titlespan.html()));
     if (title_c.length == 0)
       yelpdata.append($('<div class="yelp-title-collapsed"></div>').html(titlespan.html()));
-    if (yelpdata.attr('data-yelp-expanded') == 'no') {
+    if (yelpdata.attr('data-yelp-expanded') == 'false') {
       expander.addClass('ui-expander-c');
       region.attr('aria-expanded', 'false').hide();
       if (title_c.length != 0)

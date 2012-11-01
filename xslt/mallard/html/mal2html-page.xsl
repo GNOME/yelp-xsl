@@ -18,13 +18,14 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:ui="http://projectmallard.org/experimental/ui/"
+                xmlns:ui="http://projectmallard.org/ui/1.0/"
+                xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:e="http://projectmallard.org/experimental/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui e exsl set msg"
+                exclude-result-prefixes="mal ui uix e exsl set msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -595,7 +596,7 @@ templates that handle #{page} and #{section} elements.
   <div id="{$node/@id}">
     <xsl:attribute name="class">
       <xsl:text>sect</xsl:text>
-      <xsl:if test="@ui:expanded">
+      <xsl:if test="@ui:expanded or @uix:expanded">
         <xsl:text> ui-expander</xsl:text>
       </xsl:if>
     </xsl:attribute>
