@@ -54,7 +54,12 @@ for blocks that produce automatic titles.
 <xsl:template name="mal2html.ui.expander.data">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/@uix:expanded">
-    <!-- FIXME: deprecation warning -->
+    <xsl:message>
+      <xsl:text>DEPRECATION WARNING: The expanded attribute from the expander/ui namespace
+is deprecated. Use the expanded attribute from the ui/1.0 namespace instead.
+Note that the non-experimental attribute takes true/false instead of yes/no.
+http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
+    </xsl:message>
   </xsl:if>
   <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/@uix:expanded)">
     <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
