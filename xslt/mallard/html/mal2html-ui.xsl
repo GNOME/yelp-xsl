@@ -473,6 +473,9 @@ ${node} element.
 
 <!-- == Matched Templates == -->
 
+<!-- = ui:thumb = -->
+<xsl:template mode="mal2html.block.mode" match="uix:thumb"/>
+
 <!-- = ui:overlay = -->
 <xsl:template mode="mal2html.block.mode" match="uix:overlay">
   <xsl:variable name="media" select="mal:media[1]"/>
