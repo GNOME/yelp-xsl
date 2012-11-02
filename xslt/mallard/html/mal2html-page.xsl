@@ -919,22 +919,56 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
+div.ui-screen {
+  display: none;
+  position: fixed;
+  margin: 0;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  opacity: 0.6;
+}
+div.ui-overlay {
+  display: none;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+div.ui-overlay > div.contents {
+  display: inline-block;
+  padding: 8px;
+  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+
 div.ui-tile {
   display: inline-block;
+  margin-bottom: 1em;
   vertical-align: top;
   clear: both
-  margin: 0;
 }
+div.ui-tile:first-child, div.ui-tile + div.ui-tile { margin-top: 0; }
 div.ui-tile > a {
   display: inline-block;
   vertical-align: top;
   margin: 0;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
   padding: 1em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
   border-radius: 6px;
 }
-div.ui-tile > a { border: none; }
+div.ui-tile > a {
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
 div.ui-tile > a:hover {
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 div.ui-tile > a > * { display: block; }
@@ -1269,6 +1303,40 @@ $(document).ready(function () {
           mlink.find('img').parent('span').hide();
         }
       );
+    });
+  });
+  $('a.ui-overlay').each(function () {
+    $(this).click(function () {
+      var overlay = $(this).parent('div').children('div.ui-overlay');
+      var contents = overlay.children('div.contents');
+      var screen = $('div.ui-screen');
+      if (screen.length == 0) {
+        screen = $('<div class="ui-screen"></div>');
+        $('body').append(screen);
+      }
+      var hideoverlay = function () {
+        screen.unbind('click');
+        screen.fadeOut('slow');
+        overlay.unbind('click');
+        overlay.slideUp('fast');
+      };
+      screen.click(hideoverlay);
+      overlay.click(function (event) {
+        var target = event.target;
+        do {
+          if (target == contents[0]) {
+            break;
+          }
+        } while (target = target.parentNode);
+        if (target != contents[0]) {
+          hideoverlay();
+          return false;
+        }
+      });
+      overlay.css({top: $(this).offset().top});
+      screen.fadeIn('slow');
+      overlay.slideDown('fast');
+      return false;
     });
   });
 });

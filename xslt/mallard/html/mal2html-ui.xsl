@@ -55,7 +55,7 @@ for blocks that produce automatic titles.
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/@uix:expanded">
     <xsl:message>
-      <xsl:text>DEPRECATION WARNING: The expanded attribute from the expander/ui namespace
+      <xsl:text>DEPRECATION WARNING: The expanded attribute from the experimental/ui namespace
 is deprecated. Use the expanded attribute from the ui/1.0 namespace instead.
 Note that the non-experimental attribute takes true/false instead of yes/no.
 http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
@@ -468,6 +468,83 @@ ${node} element.
       </xsl:attribute>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+
+<!-- == Matched Templates == -->
+
+<!-- = ui:overlay = -->
+<xsl:template mode="mal2html.block.mode" match="uix:overlay">
+  <xsl:variable name="media" select="mal:media[1]"/>
+  <xsl:variable name="width">
+    <xsl:choose>
+      <xsl:when test="@width">
+        <xsl:value-of select="@width"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>80</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="height">
+    <xsl:choose>
+      <xsl:when test="@height">
+        <xsl:value-of select="@height"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>80</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <div class="ui-tile ui-tile-side">
+    <a href="{$media/@src}" class="ui-overlay">
+      <span class="ui-tile-img" style="width: {$width}px; height: {$height}px;">
+        <xsl:choose>
+          <xsl:when test="$media/uix:thumb">
+            <img src="{$media/uix:thumb[1]/@src}">
+              <xsl:call-template name="mal2html.ui.links.img.attrs">
+                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="thumb" select="$media/uix:thumb[1]"/>
+                <xsl:with-param name="width" select="$width"/>
+                <xsl:with-param name="height" select="$height"/>
+              </xsl:call-template>
+            </img>
+          </xsl:when>
+          <!-- FIXME: audio/video with image child -->
+          <!--
+          <xsl:when test="($media/@type = 'video' or $media/@type = 'audio') and
+            $media/mal:media[not(@type) or @type = 'image']">
+          </xsl:when>
+          -->
+          <xsl:when test="$media/@type = 'video'">
+            <video src="{$media/@src}">
+              <xsl:call-template name="mal2html.ui.links.img.attrs">
+                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="thumb" select="$media"/>
+                <xsl:with-param name="width" select="$width"/>
+                <xsl:with-param name="height" select="$height"/>
+              </xsl:call-template>
+            </video>
+          </xsl:when>
+          <xsl:otherwise>
+            <img src="{$media/@src}">
+              <xsl:call-template name="mal2html.ui.links.img.attrs">
+                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="thumb" select="$media"/>
+                <xsl:with-param name="width" select="$width"/>
+                <xsl:with-param name="height" select="$height"/>
+              </xsl:call-template>
+            </img>
+          </xsl:otherwise>
+        </xsl:choose>
+      </span>
+    </a>
+    <div class="ui-overlay">
+      <div class="contents">
+        <xsl:apply-templates mode="mal2html.block.mode" select="$media"/>
+      </div>
+    </div>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>
