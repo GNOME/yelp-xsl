@@ -540,8 +540,18 @@ ${node} element.
       </span>
     </a>
     <div class="ui-overlay">
-      <div class="contents">
-        <xsl:apply-templates mode="mal2html.block.mode" select="$media"/>
+      <div class="inner">
+        <a href="#" class="ui-overlay-close">
+          <xsl:attribute name="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Close'"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:text>⨯</xsl:text>
+        </a>
+        <div class="contents">
+          <xsl:apply-templates mode="mal2html.block.mode" select="$media"/>
+        </div>
       </div>
     </div>
   </div>

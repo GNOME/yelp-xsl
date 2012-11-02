@@ -125,6 +125,11 @@ reviewed, and it awaiting a final approval.
 <msgstr>Candidate</msgstr>
 </msg>
 
+<msg id="Close">
+<its:locNote>Accessible title for an close button.</its:locNote>
+<msgstr>Close</msgstr>
+</msg>
+
 <msg id="Colophon">
 <its:locNote>Default title for a colophon section.</its:locNote>
 <msgstr>Colophon</msgstr>

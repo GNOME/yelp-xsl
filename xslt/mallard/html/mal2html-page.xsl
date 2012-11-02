@@ -936,15 +936,40 @@ div.ui-overlay {
   width: 100%;
   z-index: 10;
 }
-div.ui-overlay > div.contents {
+div.ui-overlay > div.inner {
+  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   display: inline-block;
-  padding: 8px;
+  padding: 0 8px 8px 8px;
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
+}
+div.ui-overlay > div.inner > div.contents {
+  text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+  margin-top: -8px;
+}
+a.ui-overlay-close {
+  display: inline-block;
+  width: 12px; height: 12px;
+  font-size: 12px; line-height: 12px;
+  position: relative;
+  top: -8px;
+  </xsl:text><xsl:value-of select="$right"/><xsl:text>: -16px;
+  padding: 1px 2px 3px 2px;
+  text-align: center;
+  border: none;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+}
+a.ui-overlay-close:hover {
+  text-decoration: none;
+  border: none;
 }
 
 div.ui-tile {
@@ -1308,27 +1333,37 @@ $(document).ready(function () {
   $('a.ui-overlay').each(function () {
     $(this).click(function () {
       var overlay = $(this).parent('div').children('div.ui-overlay');
-      var contents = overlay.children('div.contents');
+      var inner = overlay.children('div.inner');
+      var close = inner.children('a.ui-overlay-close');
       var screen = $('div.ui-screen');
       if (screen.length == 0) {
         screen = $('<div class="ui-screen"></div>');
         $('body').append(screen);
       }
       var hideoverlay = function () {
+        $(document).unbind('keydown.yelp-ui-overlay');
+        close.unbind('click');
         screen.unbind('click');
         screen.fadeOut('slow');
         overlay.unbind('click');
         overlay.slideUp('fast');
+        return false;
       };
       screen.click(hideoverlay);
+      close.click(hideoverlay);
+      $(document).bind('keydown.yelp-ui-overlay', function (event) {
+        if (event.which == 27) {
+          hideoverlay();
+        }
+      });
       overlay.click(function (event) {
         var target = event.target;
         do {
-          if (target == contents[0]) {
+          if (target == inner[0]) {
             break;
           }
         } while (target = target.parentNode);
-        if (target != contents[0]) {
+        if (target != inner[0]) {
           hideoverlay();
           return false;
         }
