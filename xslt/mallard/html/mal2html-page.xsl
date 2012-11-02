@@ -1335,12 +1335,14 @@ $(document).ready(function () {
       var overlay = $(this).parent('div').children('div.ui-overlay');
       var inner = overlay.children('div.inner');
       var close = inner.children('a.ui-overlay-close');
+      var media = inner.find('audio, video');
       var screen = $('div.ui-screen');
       if (screen.length == 0) {
         screen = $('<div class="ui-screen"></div>');
         $('body').append(screen);
       }
       var hideoverlay = function () {
+        media[0].pause();
         $(document).unbind('keydown.yelp-ui-overlay');
         close.unbind('click');
         screen.unbind('click');
@@ -1370,7 +1372,9 @@ $(document).ready(function () {
       });
       overlay.css({top: $(this).offset().top});
       screen.fadeIn('slow');
-      overlay.slideDown('fast');
+      overlay.slideDown('fast', function () {
+        media[0].play();
+      });
       return false;
     });
   });
