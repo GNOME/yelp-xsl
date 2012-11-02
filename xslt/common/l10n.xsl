@@ -135,7 +135,24 @@ REMARK: Lots of documentation is needed
         </xsl:for-each>
       </xsl:when>
       <xsl:when test="$normlang = 'c'">
-        <xsl:value-of select="$msgid"/>
+        <xsl:variable name="cmsg" select="key('l10n.msgstr.key', concat($msgid, '__LC__'))"/>
+        <xsl:choose>
+          <xsl:when test="$cmsg">
+            <xsl:for-each select="$source">
+              <xsl:call-template name="l10n.gettext.msg">
+                <xsl:with-param name="msg" select="$cmsg"/>
+                <xsl:with-param name="form" select="$form"/>
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="string" select="$string"/>
+                <xsl:with-param name="format" select="$format"/>
+              </xsl:call-template>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$msgid"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:for-each select="$source">
