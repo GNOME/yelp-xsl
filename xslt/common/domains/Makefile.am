@@ -1,7 +1,7 @@
 ALL_LINGUAS = @ALL_LINGUAS@
 
 $(srcdir)/yelp-xsl.pot: yelp-xsl.xml.in
-	itstool -o "$@" yelp-xsl.xml.in
+	itstool -o "$@" "$^"
 
 all: $(srcdir)/yelp-xsl.pot
 
