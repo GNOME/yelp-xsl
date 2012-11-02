@@ -651,10 +651,11 @@ div.trail {
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
-  margin: 0 0 0.5em 0;
+  margin: 1em 0 0.5em 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 div.sect div.hgroup {
+  margin-top: 0;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
