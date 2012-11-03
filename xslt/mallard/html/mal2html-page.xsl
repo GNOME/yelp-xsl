@@ -1342,7 +1342,8 @@ $(document).ready(function () {
         $('body').append(screen);
       }
       var hideoverlay = function () {
-        media[0].pause();
+        if (media.length > 0)
+          media[0].pause();
         $(document).unbind('keydown.yelp-ui-overlay');
         close.unbind('click');
         screen.unbind('click');
@@ -1373,7 +1374,8 @@ $(document).ready(function () {
       overlay.css({top: $(this).offset().top});
       screen.fadeIn('slow');
       overlay.slideDown('fast', function () {
-        media[0].play();
+        if (media.length > 0)
+          media[0].play();
       });
       return false;
     });
