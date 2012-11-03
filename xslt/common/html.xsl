@@ -269,7 +269,7 @@ as ${node} to this template.
       <xsl:call-template name="html.top.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <div class="page">
+      <div class="page" role="main">
         <div class="header"> 
           <xsl:call-template name="html.header.custom">
             <xsl:with-param name="node" select="$node"/>

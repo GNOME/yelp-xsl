@@ -367,7 +367,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     ($authors | $editors | $translators))"/>
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
   <xsl:if test="$copyrights or $authors or $editors or $translators or $othercredits or $legal">
-    <div class="sect about">
+    <div class="sect about" role="contentinfo">
       <div class="hgroup">
         <h2>
           <xsl:call-template name="l10n.gettext">

@@ -468,7 +468,7 @@ element containing ${node}.
     </xsl:choose>
   </xsl:variable>
   <xsl:if test="$node/../mal:section">
-    <div>
+    <div role="navigation">
       <xsl:attribute name="class">
         <xsl:text>links sectionlinks</xsl:text>
         <xsl:choose>

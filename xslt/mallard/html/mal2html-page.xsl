@@ -59,7 +59,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
-  <div class="sect about">
+  <div class="sect about" role="contentinfo">
     <div class="hgroup">
       <h2>
         <xsl:call-template name="l10n.gettext">
@@ -248,7 +248,7 @@ on each one. Otherwise, it calls the stub template *{mal2html.page.linktrails.em
   <xsl:variable name="trailnodes" select="exsl:node-set($linktrails)/*"/>
   <xsl:choose>
     <xsl:when test="count($trailnodes) &gt; 0">
-      <div class="trails">
+      <div class="trails" role="navigation">
         <xsl:for-each select="$trailnodes">
           <xsl:sort select="(.//mal:title[@type='sort'])[1]"/>
           <xsl:sort select="(.//mal:title[@type='sort'])[2]"/>
@@ -719,7 +719,7 @@ templates that handle #{page} and #{section} elements.
                   ($postlinks[self::mal:links[@type = 'seealso']] or
                     (mal:section and not(mal:links[@type = 'seealso']))))
                 ">
-    <div class="sect sect-links">
+    <div class="sect sect-links" role="navigation">
       <div class="hgroup"/>
       <div class="contents">
         <xsl:for-each select="$postlinks">

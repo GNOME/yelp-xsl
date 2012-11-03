@@ -42,7 +42,7 @@ This template outputs a trail of links for the ancestor pages of ${node}.
 <xsl:template name="db2html.links.linktrail">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/ancestor::*">
-    <div class="trails">
+    <div class="trails" role="navigation">
       <div class="trail">
         <!-- The parens put the nodes back in document order -->
         <xsl:for-each select="($node/ancestor::*)">
@@ -175,7 +175,7 @@ whether or not they are chunked.
   <xsl:param name="node" select="."/>
   <xsl:param name="divisions" select="/false"/>
   <xsl:if test="$divisions">
-    <div class="links sectionlinks">
+    <div class="links sectionlinks" role="navigation">
       <ul>
         <xsl:for-each select="$divisions">
           <li class="links">
