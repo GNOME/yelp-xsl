@@ -1584,26 +1584,22 @@ $(document).ready(function () {
   });
 });
 $(document).ready (function () {
-  if (location.hash != '') {
-    var sect = $(location.hash);
-    var hgrp = sect.find('div.hgroup:first')
-    sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
-    hgrp.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>')
-    window.setTimeout(function () {
-      sect.css({
-        '-webkit-transition': 'background-color 2s linear',
-        '-moz-transition': 'background-color 2s linear',
-        'transition': 'background-color 2s linear',
-        'background-color': '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>'
-      });
-      hgrp.css({
-        '-webkit-transition': 'background-color 2s linear',
-        '-moz-transition': 'background-color 2s linear',
-        'transition': 'background-color 2s linear',
-        'background-color': '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>'
-      });
-    }, 200);
-  }
+  var highlight_hash = function () {
+    if (location.hash != '') {
+      var sect = $(location.hash);
+      sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
+      window.setTimeout(function () {
+        sect.css({
+          '-webkit-transition': 'background-color 2s linear',
+          '-moz-transition': 'background-color 2s linear',
+          'transition': 'background-color 2s linear',
+          'background-color': 'rgba(1, 1, 1, 0)'
+        });
+      }, 200);
+    }
+  };
+  $(window).bind('hashchange', highlight_hash);
+  highlight_hash();
 });
 </xsl:text>
 </xsl:template>
@@ -1621,13 +1617,15 @@ such as expandable blocks and sections.
 <xsl:template name="html.js.ui">
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
-$.fn.yelp_ui_expander_toggle = function (onlyopen) {
+$.fn.yelp_ui_expander_toggle = function (onlyopen, callback) {
   var expander = $(this);
   var region = expander.children('.inner').children('.region');
   var yelpdata = expander.children('div.yelp-data-ui-expander');
-  var compfunc = function () { return true; };
-  if (expander.is('div.figure'))
-    compfunc = function () { expander.yelp_auto_resize(); };
+  var compfunc = function () {
+    if (expander.is('div.figure')) { expander.yelp_auto_resize(); }
+    if (callback) { callback(); }
+    return true;
+  };
   var title = expander.children('.inner').children('.title');
   if (title.length == 0)
     title = expander.children('.inner').children('.hgroup');
@@ -1686,15 +1684,21 @@ $(document).ready(function () {
   });
 });
 $(document).ready(function () {
-  if (location.hash != '') {
-    var target = $(location.hash);
-    var parents = target.parents('div.ui-expander');
-    if (target.is('div.ui-expander'))
-      parents = parents.andSelf();
-    parents.each(function () {
-      $(this).yelp_ui_expander_toggle(true);
-    });
-  }
+  var expand_hash = function () {
+    if (location.hash != '') {
+      var target = $(location.hash);
+      var parents = target.parents('div.ui-expander');
+      if (target.is('div.ui-expander'))
+        parents = parents.andSelf();
+      parents.each(function () {
+        $(this).yelp_ui_expander_toggle(true, function () {
+          window.scrollTo(0, $(target).offset().top);
+        });
+      });
+    }
+  };
+  $(window).bind('hashchange', expand_hash);
+  expand_hash();
 });
 ]]></xsl:text>
 </xsl:template>
