@@ -976,7 +976,7 @@ div.region > div.ui-tile {
   margin-top: 0;
   margin-bottom: 1em;
 }
-div.ui-tile:first-child { margin-top: 0; }
+div.ui-tile:first-child { margin-top: 1em; }
 div.ui-tile > a {
   display: inline-block;
   vertical-align: top;
