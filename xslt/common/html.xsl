@@ -1238,7 +1238,11 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
-.media-block { display: block; }
+
+.ui-tile .media-controls { display: none; }
+span.media { display: inline-block; }
+video { display: block; }
+div.media-audio > div.inner > div.media-controls { display: inline-block; }
 div.media-video > div.inner { display: inline-block; text-align: center; }
 div.media-video > div.inner video { margin: 0; }
 div.media-controls {
@@ -1965,7 +1969,7 @@ function yelp_init_video (element) {
   });
 };
 $(document).ready(function () {
-  $('video.media-block, audio.media-block').each(function () { yelp_init_video(this) });;
+  $('video, audio').each(function () { yelp_init_video(this) });;
 });
 ]]></xsl:text>
 </xsl:template>
