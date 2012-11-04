@@ -1257,6 +1257,12 @@ div.media-controls {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
+div.media-controls-audio {
+  border-top: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
 button.media-play {
   height: 24px;
   padding: 0 2px 0 2px; line-height: 0;
@@ -1845,7 +1851,7 @@ function yelp_init_video (element) {
   var video = $(element);
   video.removeAttr('controls');
 
-  var controls = $('<div class="media-controls"></div>');
+  var controls = $('<div class="media-controls media-controls-' + element.nodeName + '"></div>');
   var playControl = $('<button class="media-play"></button>').attr({
     'data-play-label': video.attr('data-play-label'),
     'data-pause-label': video.attr('data-pause-label'),
@@ -1959,7 +1965,7 @@ function yelp_init_video (element) {
   });
 };
 $(document).ready(function () {
-  $('video.media-block').each(function () { yelp_init_video(this) });;
+  $('video.media-block, audio.media-block').each(function () { yelp_init_video(this) });;
 });
 ]]></xsl:text>
 </xsl:template>
