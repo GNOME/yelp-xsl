@@ -1239,12 +1239,10 @@ pre span.prompt {
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
 
-.ui-tile .media-controls { display: none; }
+.ui-tile-img .media-controls { display: none; }
 span.media { display: inline-block; }
-video { display: block; }
-div.media-audio > div.inner > div.media-controls { display: inline-block; }
-div.media-video > div.inner { display: inline-block; text-align: center; }
-div.media-video > div.inner video { margin: 0; }
+audio, video { display: block; margin: 0; }
+div.media > div.inner { display: inline-block; text-align: center; }
 div.media-controls {
   min-width: 24em;
   height: 24px;

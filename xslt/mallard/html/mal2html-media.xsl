@@ -156,6 +156,9 @@ FIXME
       </xsl:otherwise>
     </xsl:choose>
   </audio>
+  <xsl:if test="not($inline)">
+    <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>
+  </xsl:if>
 </xsl:template>
 
 
