@@ -1238,6 +1238,7 @@ pre span.prompt {
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
+.media-block { display: block; }
 div.media-video > div.inner { display: inline-block; text-align: center; }
 div.media-video > div.inner video { margin: 0; }
 div.media-controls {

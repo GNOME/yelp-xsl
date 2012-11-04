@@ -937,9 +937,8 @@ div.ui-overlay {
   z-index: 10;
 }
 div.ui-overlay > div.inner {
-  text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   display: inline-block;
-  padding: 0 8px 8px 8px;
+  padding: 8px;
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
@@ -947,17 +946,13 @@ div.ui-overlay > div.inner {
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
-div.ui-overlay > div.inner > div.contents {
-  text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  margin-top: -8px;
-}
 a.ui-overlay-close {
-  display: inline-block;
+  display: block;
+  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   width: 12px; height: 12px;
   font-size: 12px; line-height: 12px;
-  position: relative;
-  top: -8px;
-  </xsl:text><xsl:value-of select="$right"/><xsl:text>: -16px;
+  margin-top: -16px;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: -17px;
   padding: 1px 2px 3px 2px;
   text-align: center;
   border: none;

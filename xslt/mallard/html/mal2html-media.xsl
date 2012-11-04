@@ -42,6 +42,17 @@ FIXME
   <img src="{$node/@src}">
     <xsl:copy-of select="@height"/>
     <xsl:copy-of select="@width"/>
+    <xsl:attribute name="class">
+      <xsl:text>media </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$inline">
+          <xsl:text>media-inline</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>media-block</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:attribute name="alt">
       <xsl:choose>
         <xsl:when test="$inline">
@@ -125,6 +136,17 @@ FIXME
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
   <audio src="{$node/@src}" autobuffer="autobuffer" controls="controls">
+    <xsl:attribute name="class">
+      <xsl:text>media </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$inline">
+          <xsl:text>media-inline</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>media-block</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$inline">
         <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
