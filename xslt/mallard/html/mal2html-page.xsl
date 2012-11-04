@@ -974,11 +974,14 @@ a.ui-overlay-close:hover {
 
 div.ui-tile {
   display: inline-block;
-  margin-bottom: 1em;
   vertical-align: top;
   clear: both
 }
-div.ui-tile:first-child, div.ui-tile + div.ui-tile { margin-top: 0; }
+div.region > div.ui-tile {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+div.ui-tile:first-child { margin-top: 0; }
 div.ui-tile > a {
   display: inline-block;
   vertical-align: top;
