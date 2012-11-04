@@ -1244,37 +1244,30 @@ div.media-video > div.inner video { margin: 0; }
 div.media-controls {
   min-width: 24em;
   height: 24px;
-  margin: 0; padding: 4px;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
-  color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+  margin: 0; padding: 0;
+  border-left: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
+  border-right: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
+  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  -moz-border-bottom-left-radius: 4px;
+  -moz-border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 button.media-play {
   height: 24px;
+  padding: 0 2px 0 2px; line-height: 0;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  padding: 0; line-height: 0;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  border: none;
+  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
+    <xsl:value-of select="$color.text"/><xsl:text>;;
 }
 button.media-play:hover, button.media-play:focus {
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
-  border-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-  -moz-box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
-  -webkit-box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
-  box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 button.media-play canvas { margin: 0; }
 div.media-range {
@@ -1283,10 +1276,20 @@ div.media-range {
   padding: 0;
   height: 20px;
 }
-span.media-current {
+div.media-time {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+  margin: 0;
   font-size: 16px;
-  line-height: 20px;
+  height: 24px;
+  line-height: 24px;
+}
+div.media-time > span {
+  padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 8px;
+}
+span.media-duration {
+  font-size: 12px;
+  color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  opacity: 0.8;
 }
 div.media-ttml { margin: 0; padding: 0; }
 .media-ttml-pre { white-space: pre; }
@@ -1719,6 +1722,8 @@ control for audio and video elements as well as support for captions.
 <xsl:text><![CDATA[
 yelp_color_text_light = ']]></xsl:text>
 <xsl:value-of select="$color.text_light"/><xsl:text><![CDATA[';
+yelp_color_gray_background = ']]></xsl:text>
+<xsl:value-of select="$color.gray_background"/><xsl:text><![CDATA[';
 yelp_color_gray_border = ']]></xsl:text>
 <xsl:value-of select="$color.gray_border"/><xsl:text><![CDATA[';
 yelp_paint_zoom = function (zoom, zoomed) {
@@ -1854,12 +1859,15 @@ function yelp_init_video (element) {
   rangeCanvasCtxt.strokeWidth = 1;
   rangeCanvasCtxt.strokeRect(0.5, 0.5, 103, 19);
   var currentSpan = $('<span class="media-current">0:00</span>');
-  controls.append(playControl, $('<div class="media-range"></div>').append(rangeCanvas), currentSpan);
+  var durationSpan = $('<span class="media-duration">-:--</span>');
+  controls.append(playControl,
+                  $('<div class="media-range"></div>').append(rangeCanvas),
+                  $('<div class="media-time"></div>').append(currentSpan, durationSpan));
   video.after(controls);
 
   var playCanvasCtxt = playCanvas[0].getContext('2d');
   var paintPlayButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_text_light;
+    playCanvasCtxt.fillStyle = yelp_color_gray_background;
     playCanvasCtxt.clearRect(0, 0, 20, 20);
     playCanvasCtxt.beginPath();
     playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(5, 15);
@@ -1867,7 +1875,7 @@ function yelp_init_video (element) {
     playCanvasCtxt.fill();
   }
   var paintPauseButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_text_light;
+    playCanvasCtxt.fillStyle = yelp_color_gray_background;
     playCanvasCtxt.clearRect(0, 0, 20, 20);
     playCanvasCtxt.beginPath();
     playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(9, 5);
@@ -1932,6 +1940,14 @@ function yelp_init_video (element) {
     });
   };
   element.addEventListener('timeupdate', timeUpdate, false);
+  var durationUpdate = function () {
+    if (!isNaN(element.duration)) {
+      mins = parseInt(element.duration / 60);
+      secs = parseInt(element.duration - (60 * mins));
+      durationSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
+    }
+  };
+  element.addEventListener('durationchange', durationUpdate, false);
 
   rangeCanvas.click(function (event) {
     var pct = event.clientX - Math.floor(rangeCanvas.offset().left);

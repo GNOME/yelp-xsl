@@ -87,7 +87,7 @@ FIXME
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <video src="{$node/@src}" autobuffer="autobuffer" controls="controls">
+  <video src="{$node/@src}" preload="auto" controls="controls">
     <xsl:attribute name="class">
       <xsl:text>media </xsl:text>
       <xsl:choose>
@@ -135,7 +135,7 @@ FIXME
 <xsl:template name="mal2html.media.audio">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <audio src="{$node/@src}" autobuffer="autobuffer" controls="controls">
+  <audio src="{$node/@src}" preload="auto" controls="controls">
     <xsl:attribute name="class">
       <xsl:text>media </xsl:text>
       <xsl:choose>
