@@ -541,6 +541,22 @@ ${node} element.
           </xsl:otherwise>
         </xsl:choose>
       </span>
+      <xsl:if test="$media/uix:thumb/uix:caption">
+        <span class="ui-tile-text" style="max-width: {2 * number($width)}px;">
+          <xsl:if test="$media/uix:thumb/uix:caption/mal:title">
+            <span class="title">
+              <xsl:apply-templates mode="mal2html.inline.mode"
+                                   select="$media/uix:thumb/uix:caption/mal:title[1]/node()"/>
+            </span>
+          </xsl:if>
+          <xsl:if test="$media/uix:thumb/uix:caption/mal:desc">
+            <span class="desc">
+              <xsl:apply-templates mode="mal2html.inline.mode"
+                                   select="$media/uix:thumb/uix:caption/mal:desc[1]/node()"/>
+            </span>
+          </xsl:if>
+        </span>
+      </xsl:if>
     </a>
     <div class="ui-overlay">
       <div class="inner">
@@ -552,9 +568,11 @@ ${node} element.
           </xsl:attribute>
           <xsl:text>⨯</xsl:text>
         </a>
+        <xsl:apply-templates mode="mal2html.block.mode" select="uix:caption/mal:title[1]"/>
         <div class="contents">
           <xsl:apply-templates mode="mal2html.block.mode" select="$media"/>
         </div>
+        <xsl:apply-templates mode="mal2html.block.mode" select="uix:caption/mal:desc[1]"/>
       </div>
     </div>
   </div>

@@ -945,7 +945,9 @@ div.ui-overlay > div.inner {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
+  text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
 }
+div.ui-overlay > div.inner > div.title { margin-top: -4px; }
 a.ui-overlay-close {
   display: block;
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
@@ -1008,7 +1010,11 @@ div.ui-tile > a > span.ui-tile-text > span.title {
   font-weight: bold;
 }
 div.ui-tile-side > a > span.ui-tile-text > span.title { margin-top: 0; }
-div.ui-tile > a > span.ui-tile-text > span.desc { display: block; }
+div.ui-tile > a > span.ui-tile-text > span.desc {
+  display: block;
+  margin: 0.2em 0 0 0;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
 span.ui-tile-img { text-align: center; }
 
 div.links-ui-hover {
