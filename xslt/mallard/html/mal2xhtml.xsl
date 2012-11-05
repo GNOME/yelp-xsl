@@ -25,8 +25,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to XHTML
+Transform Mallard to XHTML.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-REMARK: Describe this module
+This top-level stylesheet includes all the necessary stylesheets to transform
+Mallard documents into XHTML. This stylesheet sets the parameters
+@{mal.if.target}, @{mal.if.features}, @{mal.if.maybe}, @{mal.link.extension},
+and @{ttml.features}.
 -->
 
 <xsl:import href="../../common/l10n.xsl"/>

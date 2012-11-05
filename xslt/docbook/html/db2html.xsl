@@ -22,6 +22,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML
+Transform DocBook to HTML.
+:Revision:version="3.8" date="2012-11-05" status="final"
+
+This top-level stylesheet includes all the necessary stylesheets to transform
+DocBook documents into HTML. It imports !{db2xhtml}, overrides parameters, and
+sets a namespace alias to output non-XML HTML. This stylesheet sets
+@{html.xhtml} to #{false}.
 -->
 
 <xsl:include href="db2xhtml.xsl" pass="true"><?pass?></xsl:include>

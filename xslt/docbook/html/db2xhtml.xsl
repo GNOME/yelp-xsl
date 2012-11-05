@@ -22,6 +22,12 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to XHTML
+Transform DocBook to XHTML.
+:Revision:version="3.8" date="2012-11-05" status="final"
+
+This top-level stylesheet includes all the necessary stylesheets to transform
+DocBook documents into XHTML. This stylesheet sets the parameter
+@{db.chunk.extension}.
 -->
 
 <xsl:import href="../../common/l10n.xsl"/>

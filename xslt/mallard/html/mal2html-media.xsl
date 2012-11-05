@@ -26,15 +26,24 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML - Media Elements
+Handle Mallard media elements.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates for handling Mallard #{media} elements.
+It also handles TTML inside block audio and video #{media} elements.
 -->
+
 
 <!--**==========================================================================
 mal2html.media.image
-FIXME
+Output an #{img} element for an image.
+:Revision:version="3.8" date="2012-11-05" status="final"
+$node: The Mallard #{media} element.
+$inline: Whether ${node} is inline.
 
-FIXME
+This template outputs an HTML #{img} element for a Mallard #{media} element
+with the #{type} attribute set to #{"image"} (or with no #{type} attribute).
+If ${node} has fallback content, it is used for the #{alt} attribute.
 -->
 <xsl:template name="mal2html.media.image">
   <xsl:param name="node" select="."/>
@@ -80,9 +89,15 @@ FIXME
 
 <!--**==========================================================================
 mal2html.media.video
-FIXME
+Output a #{video} element for a video.
+:Revision:version="3.8" date="2012-11-05" status="final"
+$node: The Mallard #{media} element.
+$inline: Whether ${node} is inline.
 
-FIXME
+This template outputs an HTML #{video} element for a Mallard #{media} element
+with the #{type} attribute set to #{"video"}. It converts any fallback content
+in the source to the #{video} element's fallback content. If ${inline} is
+#{false}, this template will process TTML child content.
 -->
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
@@ -128,9 +143,15 @@ FIXME
 
 <!--**==========================================================================
 mal2html.media.audio
-FIXME
+Output an #{audio} element for an audio object.
+:Revision:version="3.8" date="2012-11-05" status="final"
+$node: The Mallard #{media} element.
+$inline: Whether ${node} is inline.
 
-FIXME
+This template outputs an HTML #{audio} element for a Mallard #{media} element
+with the #{type} attribute set to #{"audio"}. It converts any fallback content
+in the source to the #{audio} element's fallback content. If ${inline} is
+#{false}, this template will process TTML child content.
 -->
 <xsl:template name="mal2html.media.audio">
   <xsl:param name="node" select="."/>
@@ -166,6 +187,15 @@ FIXME
 
 <xsl:template mode="mal2html.block.mode" match="tt:*"/>
 
+<!--%%==========================================================================
+mal2html.ttml.mode
+Process TTML subtitles in a Mallard #{media} element.
+:Revision:version="3.8" date="2012-11-05" status="final"
+
+This mode is applied to TTML elements inside block audio and video elements.
+It outputs HTML elements that are hidden by default and shown dynamically as
+the parent media element is played.
+-->
 <xsl:template mode="mal2html.ttml.mode" match="tt:tt">
   <xsl:variable name="profile">
     <xsl:choose>

@@ -29,7 +29,7 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Mallard Conditionals
 Support for run-time conditional processing.
-:Revision:version="1.0" date="2011-04-28" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This stylesheet contains utilities for handling conditional processing
 in Mallard documents.
@@ -39,7 +39,7 @@ in Mallard documents.
 <!--@@==========================================================================
 mal.if.target
 The list of supported target tokens.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template *{mal.if.test}. This parameter is meant
@@ -52,7 +52,7 @@ importing stylesheet.
 <!--@@==========================================================================
 mal.if.platform
 The list of supported platform tokens.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template *{mal.if.test}. This parameter is meant
@@ -65,7 +65,7 @@ by a customization stylesheet.
 <!--@@==========================================================================
 mal.if.features
 The list of supported feature tokens.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template *{mal.if.test}. This parameter is meant
@@ -80,7 +80,7 @@ mallard:1.0
 <!--@@==========================================================================
 mal.if.custom
 A custom list of supported tokens.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template *{mal.if.test}. This parameter is meant
@@ -92,7 +92,7 @@ to hold extra values enabled by hand or by a customization stylesheet.
 <!--@@==========================================================================
 mal.if.maybe
 A list of tokens that may be true.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 This parameter takes a space-separated list of tokens that may be true. The
 template *{mal.if.test} returns special flags when a condition may be true,
@@ -114,7 +114,7 @@ stylesheet.
 <!--**==========================================================================
 mal.if.test
 Test if a condition is true.
-:Revision:version="1.0" date="2012-01-17" status="review"
+:Revision:version="3.8" date="2012-11-05" status="final"
 $node: The element to check the condition for.
 $test: The test expression.
 
@@ -123,7 +123,7 @@ from the #{test} or #{if:test} attribute of $node. It splits the expression on
 commas into subexpression, then splits each subexpression on spaces into tokens.
 A token is taken to be true if it's in one of the space-separated lists from
 @{mal.if.target}, @{mal.if.platform}, @{mal.if.features}, or @{mal.if.custom}.
-If the token starts with an examation point, the exclamation point is stripped
+If the token starts with an exclamation point, the exclamation point is stripped
 and the resulting truth value is negated.
 
 A subexpression is true if all its tokens is true. The full test expression is
@@ -230,6 +230,7 @@ of dynamically showing or hiding content based on those tokens.
   </xsl:choose>
 </xsl:template>
 
+<!--#* _mal.if.test.check_token -->
 <xsl:template name="_mal.if.test.check_token">
   <xsl:param name="token"/>
   <xsl:choose>
@@ -247,6 +248,7 @@ of dynamically showing or hiding content based on those tokens.
   </xsl:choose>
 </xsl:template>
 
+<!--#* _mal.if.test.flatten_token -->
 <xsl:template name="_mal.if.test.flatten_token">
   <xsl:param name="token"/>
   <xsl:for-each select="str:split($token, '')">

@@ -30,14 +30,19 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML - Pages
+Handle pages, sections, and top-level data.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates to process Mallard #{page} and #{section}
+elements, including implementations of the interfaces provided by the common
+!{html} stylesheet.
 -->
 
 
 <!--@@==========================================================================
 mal2html.editor_mode
 Add information that's useful to writers and editors.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
 When this parameter is set to true, these stylesheets will output editorial
 comments, status markers, and other information that's useful to writers and
@@ -49,7 +54,7 @@ editors.
 <!--**==========================================================================
 mal2html.page.about
 Output the copyrights, credits, and license information at the bottom of a page.
-:Revision:version="3.4" date="2011-11-06"
+:Revision:version="3.8" date="2012-11-05" status="final"
 $node: The top-level #{page} element.
 
 This template outputs copyright information, credits, and license information for
@@ -399,6 +404,16 @@ separators used between links.
 </xsl:template>
 
 
+<!--**==========================================================================
+mal2html.editor.badge
+Output a badge for a link showing the revision status of the target.
+:Revision:version="3.8" date="2012-11-05" status="final"
+$target: The page or section being linked to.
+
+This template may be called by link formatters to output a badge showing the
+revision status of the linked-to page or section. It only outputs a badge if
+@{mal2html.editor_mode} is #{true}.
+-->
 <xsl:template name="mal2html.editor.badge">
   <xsl:param name="target" select="."/>
   <xsl:if test="$mal2html.editor_mode">
@@ -419,7 +434,6 @@ separators used between links.
         <xsl:attribute name="class">
           <xsl:value-of select="concat('status status-', $revision/@status)"/>
         </xsl:attribute>
-        <!-- FIXME: i18n -->
         <xsl:choose>
           <xsl:when test="$revision/@status = 'stub'">
             <xsl:call-template name="l10n.gettext">
@@ -462,6 +476,17 @@ separators used between links.
   </xsl:if>
 </xsl:template>
 
+
+<!--**==========================================================================
+mal2html.editor.banner
+Output a banner with the revision status of a page.
+:Revision:version="3.8" date="2012-11-05" status="final"
+$node: The top-level #{page} element.
+
+This template is called by the %{html.body.mode} implementation for #{page}
+elements. It outputs a banner providing information about the revision status
+of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
+-->
 <xsl:template name="mal2html.editor.banner">
   <xsl:param name="node" select="."/>
   <xsl:if test="$mal2html.editor_mode">
@@ -785,9 +810,12 @@ templates that handle #{page} and #{section} elements.
 
 <!--%%==========================================================================
 mal2html.title.mode
-FIXME
+Output headings for titles and subtitles.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-FIXME
+This template is called on #{title} and #{subtitle} elements that appear as
+direct child content of #{page} or #{section} elements. Normal block titles
+are processed in %{mal2html.block.mode}.
 -->
 <!-- = subtitle = -->
 <xsl:template mode="mal2html.title.mode" match="mal:subtitle">

@@ -23,8 +23,13 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML
+Transform Mallard to HTML.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-REMARK: Describe this module
+This top-level stylesheet includes all the necessary stylesheets to transform
+Mallard documents into HTML. It imports !{mal2xhtml}, overrides parameters, and
+sets a namespace alias to output non-XML HTML. In particular, this stylesheet
+sets @{html.xhtml} to #{false} and @{mal.if.target} to #{'target:html'}.
 -->
 
 <xsl:param name="html.xhtml" select="false()"/>

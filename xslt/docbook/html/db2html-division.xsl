@@ -25,9 +25,12 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Divisions
-:Requires: db-chunk db-title db-xref db2html-css db2html-footnote db2html-xref l10n
+Handle division-level DocBook elements.
+:Revision:version="3.8" date="2012-11-05" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates to process top-level and sectioning elements
+in DocBook. It handles chunking and implements the interfaces provided by the
+common !{html} stylesheet.
 -->
 
 
@@ -328,8 +331,9 @@ REMARK: Talk about the different kinds of title blocks
 <!--**==========================================================================
 db2html.division.about
 Output the copyrights, credits, and license information at the bottom of a page.
-:Revision:version="3.4" date="2011-11-07"
+:Revision:version="3.8" date="2012-11-05" status="final"
 $node: A division-level element a page is being created for.
+$info: The info child element of ${node}
 
 This template outputs copyright information, credits, and license information for
 the division. By default it is called by the %{html.footer.mode} implementation.
