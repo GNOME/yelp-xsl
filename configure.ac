@@ -71,8 +71,6 @@ xslt/common/domains/Makefile
 xslt/docbook/Makefile
 xslt/docbook/common/Makefile
 xslt/docbook/html/Makefile
-xslt/docbook/omf/Makefile
-xslt/docbook/utils/Makefile
 xslt/mallard/Makefile
 xslt/mallard/cache/Makefile
 xslt/mallard/common/Makefile
