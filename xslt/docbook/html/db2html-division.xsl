@@ -367,12 +367,16 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     ($authors | $editors | $translators))"/>
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
   <xsl:if test="$copyrights or $authors or $editors or $translators or $othercredits or $legal">
-    <div class="sect about" role="contentinfo">
+    <div class="sect about ui-expander" role="contentinfo">
+      <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
+      <div class="inner">
       <div class="hgroup">
         <h2>
-          <xsl:call-template name="l10n.gettext">
-            <xsl:with-param name="msgid" select="'About'"/>
-          </xsl:call-template>
+          <span class="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'About'"/>
+            </xsl:call-template>
+          </span>
         </h2>
       </div>
       <div class="region">
@@ -481,6 +485,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
             </div>
           </xsl:for-each>
         </div>
+      </div>
       </div>
     </div>
   </xsl:if>

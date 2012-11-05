@@ -59,12 +59,16 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
-  <div class="sect about" role="contentinfo">
+  <div class="sect about ui-expander" role="contentinfo">
+    <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
+    <div class="inner">
     <div class="hgroup">
       <h2>
-        <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="'About'"/>
-        </xsl:call-template>
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="'About'"/>
+          </xsl:call-template>
+        </span>
       </h2>
     </div>
     <div class="region">
@@ -209,6 +213,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
           </div>
         </xsl:for-each>
       </div>
+    </div>
     </div>
   </div>
   </xsl:if>
