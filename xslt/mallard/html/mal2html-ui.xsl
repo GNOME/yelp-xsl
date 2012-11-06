@@ -499,7 +499,12 @@ ${node} element.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="ui-tile ui-tile-side">
+  <xsl:variable name="tiles-side">
+    <xsl:if test="contains(concat(' ', @style, ' '), ' tiles-side ')">
+      <xsl:text>ui-tile-side</xsl:text>
+    </xsl:if>
+  </xsl:variable>
+  <div class="ui-tile {$tiles-side}">
     <a href="{$media/@src}" class="ui-overlay">
       <span class="ui-tile-img" style="width: {$width}px; height: {$height}px;">
         <xsl:choose>
@@ -542,7 +547,19 @@ ${node} element.
         </xsl:choose>
       </span>
       <xsl:if test="$media/uix:thumb/uix:caption">
-        <span class="ui-tile-text" style="max-width: {2 * number($width)}px;">
+        <span class="ui-tile-text">
+          <xsl:attribute name="style">
+            <xsl:text>max-width: </xsl:text>
+            <xsl:choose>
+              <xsl:when test="$tiles-side != ''">
+                <xsl:value-of select="2 * number($width)"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$width"/>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text>px;</xsl:text>
+          </xsl:attribute>
           <xsl:if test="$media/uix:thumb/uix:caption/mal:title">
             <span class="title">
               <xsl:apply-templates mode="mal2html.inline.mode"
