@@ -38,23 +38,6 @@ xsldoc-check: C/index.cache
 	done
 endif
 
-gnome-doc-xslt-check-includes:
-	@incs=`$(YELP_XSL_AWK) $(gnome_doc_xslt_includes) "$(srcdir)/C/gnome-doc-xslt.xml" | sort`; \
-	xmls=`echo $(xsldoc_base) | sort`; \
-	exs=""; \
-	for xml in $$xmls; do \
-	  if echo "$$incs" | tr '\n' '\ ' | grep -v "\<$$xml\>" 1>/dev/null; then \
-	    exs="$$exs$$xml "; \
-	fi; done; \
-	if [ "x$$exs" != "x" ]; then \
-	  echo "gnome-doc-xslt.xml does not include the following reference pages: $$exs" 1>&2; \
-	  exit 1; \
-	fi
-gnome-doc-xslt-check-xsldoc: $(xsldoc_docs)
-	@echo "Running xsldoc checks";
-	@(echo "<xsldoc>"; cat $(xsldoc_docs); echo "</xsldoc>") \
-	| xsltproc "$(srcdir)/xsldoc-check.xsl" - 1> /dev/null
-
 .PHONY: xsldoc-clean
 clean-local: xsldoc-clean
 xsldoc-clean:
