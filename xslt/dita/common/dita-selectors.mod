@@ -42,6 +42,11 @@ map/topicref
   starts-with(@class, '- map/topicref ')]">
 
 <!-- ===========================================================================
+topic/desc
+-->
+<!ENTITY topic_alt "*[name(.) = 'alt' or starts-with(@class, '- topic/alt ')]">
+
+<!-- ===========================================================================
 topic/body
 -->
 <!ENTITY topic_body "*[

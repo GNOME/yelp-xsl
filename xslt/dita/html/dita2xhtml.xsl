@@ -42,6 +42,7 @@ REMARK: Describe this module
 <xsl:include href="dita2html-block.xsl"/>
 <xsl:include href="dita2html-inline.xsl"/>
 <xsl:include href="dita2html-list.xsl"/>
+<xsl:include href="dita2html-media.xsl"/>
 <xsl:include href="dita2html-table.xsl"/>
 <xsl:include href="dita2html-topic.xsl"/>
 
