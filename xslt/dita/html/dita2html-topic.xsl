@@ -314,6 +314,7 @@ th, td { border: solid 1px; }
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="contents">
+      <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </div>
     <xsl:if test="$subtopics">
@@ -335,6 +336,13 @@ th, td { border: solid 1px; }
                   </xsl:otherwise>
                 </xsl:choose>
               </a>
+              <xsl:variable name="desc" select="document(@href, $node)/&topic_topic_all;/&topic_shortdesc;"/>
+              <xsl:if test="$desc">
+                <span class="desc">
+                  <xsl:text> &#x2014; </xsl:text>
+                  <xsl:apply-templates mode="dita2html.topic.mode" select="yelp:dita.ref.conref($desc)/node()"/>
+                </span>
+              </xsl:if>
             </li>
           </xsl:for-each>
         </ul>
