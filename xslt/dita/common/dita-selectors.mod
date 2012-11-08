@@ -224,6 +224,8 @@ topic/ph
   name(.) = 'filepath' or starts-with(@class, '- topic/ph sw-d/filepath ')]">
 <!ENTITY topic_i "*[
   name(.) = 'i' or starts-with(@class, '- topic/ph hi-d/i ')]">
+<!ENTITY topic_mainbooktitle "*[
+  name(.) = 'mainbooktitle' or starts-with(@class, '- topic/ph bookmap/mainbooktitle ')]">
 <!ENTITY topic_menucascade "*[
   name(.) = 'menucascade' or starts-with(@class, '- topic/ph hi-d/menucascade ')]">
 <!ENTITY topic_systemoutput "*[
@@ -346,7 +348,17 @@ topic/text
 <!-- ===========================================================================
 topic/title
 -->
-<!ENTITY topic_title "*[name(.) = 'title' or starts-with(@class, '- topic/title ')]">
+<!ENTITY topic_booktitle "*[
+  name(.) = 'booktitle' or starts-with(@class, '- topic/title bookmap/booktitle ')]">
+<!ENTITY topic_title "*[
+  name(.) = 'title' or (
+  starts-with(@class, '- topic/title ')
+  and not(starts-with(@class, '- topic/title bookmap/booktitle '))
+  )]">
+<!ENTITY topic_title_all "*[
+  name(.) = 'title' or name(.) = 'booktitle' or
+  starts-with(@class, '- topic/title ')
+]">
 
 <!-- ===========================================================================
 topic/topic

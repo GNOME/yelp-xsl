@@ -21,9 +21,11 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
+                xmlns:str="http://exslt.org/strings"
                 xmlns:yelp="http://projects.gnome.org/yelp/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="yelp"
+                exclude-result-prefixes="exsl str yelp"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -33,40 +35,186 @@ REMARK: Describe this module
 -->
 
 
-<!-- == Matched Templates == -->
-
-<!--%# html.title.mode -->
-<xsl:template mode="html.title.mode" match="&topic_topic;">
-  <xsl:value-of select="&topic_title;"/>
+<xsl:template match="/">
+  <xsl:choose>
+    <xsl:when test="&map_map;">
+      <xsl:for-each select="$dita.map">
+        <xsl:call-template name="html.output">
+          <xsl:with-param name="node" select="&map_map;"/>
+          <xsl:with-param name="href" select="concat('index', $html.extension)"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>Unmatched root element: </xsl:text>
+        <xsl:value-of select="local-name(*)"/>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
-<!--%# html.header.mode -->
-<xsl:template mode="html.header.mode" match="&topic_topic;">
-  <div class="trails">
+
+<!-- == map == -->
+
+<!-- = map % html.output.after.mode = -->
+<xsl:template mode="html.output.after.mode" match="/&map_map;">
+  <xsl:for-each select="//&map_topicref;">
+    <xsl:call-template name="html.output">
+      <xsl:with-param name="href">
+        <xsl:call-template name="dita.ref.href.target"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:for-each>
+</xsl:template>
+
+<!-- = map % html.body.mode = -->
+<xsl:template mode="html.body.mode" match="&map_map;">
+  <div class="hgroup">
+    <h1 class="title">
+      <span class="title">
+        <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title_all;/node()"/>
+      </span>
+    </h1>
   </div>
-  <!-- FIXME -->
-  <!--
-  <xsl:call-template name="mal2html.page.linktrails"/>
-  -->
+  <div class="region">
+    <xsl:call-template name="dita.id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <div class="links sectionlinks" role="navigation">
+      <ul>
+        <xsl:for-each select="&map_topicref;">
+          <li class="links">
+            <a>
+              <xsl:attribute name="href">
+                <xsl:call-template name="dita.ref.href.target"/>
+              </xsl:attribute>
+              <xsl:choose>
+                <xsl:when test="@navtitle">
+                  <xsl:value-of select="@navtitle"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates mode="dita2html.topic.mode"
+                                       select="document(@href, $dita.map.base)/&topic_topic_all;/&topic_title_all;/node()"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </a>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
+  </div>
 </xsl:template>
 
-<!--%# html.footer.mode -->
-<xsl:template mode="html.footer.mode" match="&topic_topic;">
+
+<!-- == topicref == -->
+
+<!-- = topicref % html.title.mode = -->
+<xsl:template mode="html.title.mode" match="&map_topicref;">
+  <xsl:value-of select="document(@href, $dita.map.base)/&topic_topic_all;/&topic_title_all;"/>
+</xsl:template>
+
+<!-- = topicref % html.header.mode = -->
+<xsl:template mode="html.header.mode" match="&map_topicref;">
+  <xsl:variable name="node" select="."/>
+  <xsl:variable name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:variable>
+  <xsl:variable name="sep">
+    <xsl:choose>
+      <xsl:when test="$direction = 'rtl'">
+        <xsl:text>&#x00A0;« </xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>&#x00A0;» </xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <div class="trails">
+    <div class="trail">
+      <a class="trail">
+        <xsl:attribute name="href">
+          <xsl:for-each select="str:split($node/@href, '/')">
+            <xsl:if test="position() != last()">
+              <xsl:text>../</xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:text>index</xsl:text>
+          <xsl:value-of select="$html.extension"/>
+        </xsl:attribute>
+        <xsl:choose>
+          <xsl:when test="/&map_map;/&topic_booktitle;">
+            <xsl:apply-templates mode="dita2html.topic.mode"
+                                 select="/&map_map;/&topic_title_all;/&topic_mainbooktitle;/node()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="dita2html.topic.mode"
+                                 select="/&map_map;/&topic_title_all;/node()"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </a>
+      <xsl:value-of select="$sep"/>
+      <xsl:for-each select="ancestor::&map_topicref;">
+        <a class="trail">
+          <xsl:attribute name="href">
+            <xsl:for-each select="str:split($node/@href, '/')">
+              <xsl:if test="position() != last()">
+                <xsl:text>../</xsl:text>
+              </xsl:if>
+            </xsl:for-each>
+            <xsl:call-template name="dita.ref.href.target"/>
+          </xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="@navtitle">
+              <xsl:value-of select="@navtitle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="dita2html.topic.mode"
+                                   select="document(@href, $dita.map.base)/&topic_topic_all;/&topic_title_all;/node()"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </a>
+        <xsl:value-of select="$sep"/>
+      </xsl:for-each>
+    </div>
+  </div>
+</xsl:template>
+
+<!-- = topicref % html.footer.mode = -->
+<xsl:template mode="html.footer.mode" match="&map_topicref;">
   <!-- FIXME -->
   <!--
   <xsl:call-template name="mal2html.page.about"/>
   -->
 </xsl:template>
 
-<!--%# html.body.mode -->
-<xsl:template mode="html.body.mode" match="&topic_topic;">
-  <!-- FIXME: prevnext -->
-  <xsl:apply-templates mode="dita2html.topic.mode" select="."/>
-  <div class="clear"/>
+<!-- = topicref % html.body.mode = -->
+<xsl:template mode="html.body.mode" match="&map_topicref;">
+  <xsl:variable name="node" select="."/>
+  <xsl:variable name="subtopics">
+    <xsl:for-each select="&map_topicref;">
+      <xsl:copy>
+        <xsl:copy-of select="@*[name(.) != 'href']"/>
+        <xsl:attribute name="href">
+          <xsl:for-each select="str:split($node/@href, '/')">
+            <xsl:if test="position() != last()">
+              <xsl:text>../</xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:value-of select="@href"/>
+        </xsl:attribute>
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="document(@href, $dita.map.base)/*">
+    <xsl:with-param name="subtopics" select="exsl:node-set($subtopics)/*"/>
+  </xsl:apply-templates>
 </xsl:template>
 
-<!--%# html.css.mode -->
-<xsl:template mode="html.css.mode" match="&topic_topic;">
+
+<!-- == CSS == -->
+
+<xsl:template mode="html.css.mode" match="*">
+<!-- FIXME: open document for @lang -->
   <xsl:param name="direction">
     <xsl:call-template name="l10n.direction"/>
   </xsl:param>
@@ -103,10 +251,13 @@ th, td { border: solid 1px; }
 </xsl:template>
 
 
+<!-- == Matched Templates == -->
+
 <!-- = topic = -->
-<xsl:template mode="dita2html.topic.mode" match="&topic_topic;">
+<xsl:template mode="dita2html.topic.mode" match="&topic_topic_all;">
+  <xsl:param name="subtopics"/>
   <xsl:choose>
-    <xsl:when test="parent::&topic_topic;">
+    <xsl:when test="parent::&topic_topic_all;">
       <div class="sect">
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
@@ -116,13 +267,16 @@ th, td { border: solid 1px; }
       </div>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="_dita2html.topic.inner"/>
+      <xsl:call-template name="_dita2html.topic.inner">
+        <xsl:with-param name="subtopics" select="$subtopics"/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <!--#* _dita2html.topic.inner -->
 <xsl:template name="_dita2html.topic.inner">
+  <xsl:param name="subtopics"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="depth" select="count(ancestor::*) + 1"/>
   <xsl:variable name="depth_">
@@ -141,16 +295,20 @@ th, td { border: solid 1px; }
         <xsl:text>title</xsl:text>
       </xsl:attribute>
       <span class="title">
-        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;"/>
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;/node()"/>
       </span>
     </xsl:element>
   </div>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;"/>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic;"/>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;">
+    <xsl:with-param name="subtopics" select="$subtopics"/>
+  </xsl:apply-templates>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic_all;"/>
   <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
+  <xsl:param name="subtopics"/>
+  <xsl:variable name="node" select="."/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <div class="region">
     <xsl:call-template name="dita.id"/>
@@ -158,6 +316,30 @@ th, td { border: solid 1px; }
     <div class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </div>
+    <xsl:if test="$subtopics">
+      <div class="links sectionlinks" role="navigation">
+        <ul>
+          <xsl:for-each select="$subtopics">
+            <li class="links">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="dita.ref.href.target"/>
+                </xsl:attribute>
+                <xsl:choose>
+                  <xsl:when test="@navtitle">
+                    <xsl:value-of select="@navtitle"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:apply-templates mode="dita2html.topic.mode"
+                                         select="document(@href, $node)/&topic_topic_all;/&topic_title_all;/node()"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </div>
+    </xsl:if>
   </div>
 </xsl:template>
 
@@ -227,13 +409,13 @@ th, td { border: solid 1px; }
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_linklist;">
   <xsl:choose>
-    <xsl:when test="&topic_title; or &topic_desc; or &topic_linkinfo;">
+    <xsl:when test="&topic_title_all; or &topic_desc; or &topic_linkinfo;">
       <li class="links">
         <div class="links">
           <xsl:call-template name="dita.id"/>
           <xsl:call-template name="html.lang.attrs"/>
           <div class="inner">
-            <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title;"/>
+            <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title_all;"/>
             <div class="region">
               <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_desc;"/>
               <ul>

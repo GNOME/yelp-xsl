@@ -166,14 +166,14 @@ FIXME
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;"/>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;"/>
       <div class="region">
         <xsl:if test="$style = 'listing'">
           <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_desc;"/>
         </xsl:if>
         <div class="contents">
           <xsl:apply-templates mode="dita2html.topic.mode"
-                               select="$conref/node()[not(self::&topic_title; or self::&topic_desc;)]"/>
+                               select="$conref/node()[not(self::&topic_title_all; or self::&topic_desc;)]"/>
         </div>
         <xsl:if test="$style = 'figure'">
           <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_desc;"/>
@@ -274,9 +274,9 @@ FIXME
          in the child node list. And there could be more than one, but all
          but the first are ignored. Apparently. Spec isn't very clear, but
          this is the OT's behavior. -->
-    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title;[1]"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;[1]"/>
     <div class="region">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()[not(self::&topic_title;)]"/>
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()[not(self::&topic_title_all;)]"/>
     </div>
   </div>
 </xsl:template>
@@ -308,7 +308,7 @@ FIXME
 </xsl:template>
 
 <!-- = title = -->
-<xsl:template mode="dita2html.topic.mode" match="&topic_title;">
+<xsl:template mode="dita2html.topic.mode" match="&topic_title_all;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="depth" select="count(ancestor::&topic_topic_all;) + 1"/>
   <xsl:variable name="depth_">

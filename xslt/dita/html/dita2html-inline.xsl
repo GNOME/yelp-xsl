@@ -239,7 +239,7 @@ FIXME
             </xsl:choose>
           </xsl:variable>
           <xsl:variable name="tnode" select="key('dita.id.key', $frag)"/>
-          <xsl:apply-templates mode="dita2html.topic.mode" select="$tnode/&topic_title;/node()"/>
+          <xsl:apply-templates mode="dita2html.topic.mode" select="$tnode/&topic_title_all;/node()"/>
         </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>

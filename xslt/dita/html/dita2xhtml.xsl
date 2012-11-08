@@ -34,6 +34,7 @@ REMARK: Describe this module
 <xsl:import href="../../common/ttml.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
+<xsl:import href="../common/dita-map.xsl"/>
 <xsl:import href="../common/dita-ref.xsl"/>
 
 <xsl:param name="dita.ref.extension" select="$html.extension"/>
