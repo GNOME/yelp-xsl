@@ -64,27 +64,33 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="@format = 'ditamap'">
+    <!-- FIXME: conref and keyref -->
+    <xsl:when test="@href and @format = 'ditamap'">
       <xsl:apply-templates mode="dita.map.copy.mode"
                            select="document($uri, $dita.map.base)/*/*[not(self::&topic_title_all;)]">
         <xsl:with-param name="base">
-          <xsl:if test="contains($uri, '/')">
-            <xsl:for-each select="str:split($uri, '/')">
-              <xsl:if test="position() != last()">
-                <xsl:value-of select="."/>
-                <xsl:text>/</xsl:text>
-              </xsl:if>
-            </xsl:for-each>
-          </xsl:if>
+          <xsl:variable name="_base">
+            <xsl:if test="contains($uri, '/')">
+              <xsl:for-each select="str:split($uri, '/')">
+                <xsl:if test="position() != last()">
+                  <xsl:value-of select="."/>
+                  <xsl:text>/</xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+          </xsl:variable>
+          <xsl:value-of select="$_base"/>
         </xsl:with-param>
       </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy>
         <xsl:copy-of select="@*[name(.) != 'href']"/>
-        <xsl:attribute name="href">
-          <xsl:value-of select="$uri"/>
-        </xsl:attribute>
+        <xsl:if test="@href">
+          <xsl:attribute name="href">
+            <xsl:value-of select="$uri"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates mode="dita.map.copy.mode">
           <xsl:with-param name="base" select="$base"/>
         </xsl:apply-templates>
