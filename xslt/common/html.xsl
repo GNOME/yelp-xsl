@@ -1241,7 +1241,7 @@ span.sys { font-family: monospace; }
 span.var { font-style: italic; }
 
 .ui-tile-img .media-controls { display: none; }
-span.media { display: inline-block; }
+span.media-audio, span.media-video { display: inline-block; }
 audio, video { display: block; margin: 0; }
 div.media > div.inner { display: inline-block; text-align: center; }
 div.media-controls {
