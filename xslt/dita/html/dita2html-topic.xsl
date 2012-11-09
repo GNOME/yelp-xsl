@@ -55,6 +55,91 @@ REMARK: Describe this module
 </xsl:template>
 
 
+<!-- == dita2html.links.prevnext == -->
+<xsl:template name="dita2html.links.prevnext">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="prev" select="($node/parent::&map_topicref; |
+                                     $node/preceding::&map_topicref;[1] |
+                                     ancestor::&map_map;[1]
+                                    )[last()]"/>
+  <xsl:variable name="next" select="($node/&map_topicref; | $node/following::&map_topicref;)[1]"/>
+  <div class="links nextlinks">
+    <xsl:if test="$prev">
+      <a class="nextlinks-prev">
+        <xsl:attribute name="href">
+          <xsl:for-each select="str:split($node/@href, '/')">
+            <xsl:if test="position() != last()">
+              <xsl:text>../</xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:choose>
+            <xsl:when test="$prev[self::&map_map;]">
+              <xsl:call-template name="dita.ref.href.target">
+                <xsl:with-param name="href" select="'index'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="dita.ref.href.target">
+                <xsl:with-param name="node" select="$prev"/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:choose>
+            <xsl:when test="$prev[self::&map_map;]">
+              <xsl:apply-templates mode="dita2html.topic.mode"
+                                   select="$prev/&topic_title;/node()"/>
+            </xsl:when>
+            <xsl:when test="$prev/@navtitle">
+              <xsl:value-of select="$prev/@navtitle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="dita2html.topic.mode"
+                                   select="document($prev/@href, $dita.map.base)/&topic_topic_all;/&topic_title_all;/node()"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Previous'"/>
+        </xsl:call-template>
+      </a>
+    </xsl:if>
+    <xsl:if test="$prev and $next">
+      <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
+    </xsl:if>
+    <xsl:if test="$next">
+      <a class="nextlinks-next">
+        <xsl:attribute name="href">
+          <xsl:for-each select="str:split($node/@href, '/')">
+            <xsl:if test="position() != last()">
+              <xsl:text>../</xsl:text>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:call-template name="dita.ref.href.target">
+            <xsl:with-param name="node" select="$next"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="title">
+          <xsl:choose>
+            <xsl:when test="$next/@navtitle">
+              <xsl:value-of select="$next/@navtitle"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="dita2html.topic.mode"
+                                   select="document($next/@href, $dita.map.base)/&topic_topic_all;/&topic_title_all;/node()"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </a>
+    </xsl:if>
+  </div>
+</xsl:template>
+
+
 <!-- == map == -->
 
 <!-- = map % html.output.after.mode = -->
@@ -70,6 +155,7 @@ REMARK: Describe this module
 
 <!-- = map % html.body.mode = -->
 <xsl:template mode="html.body.mode" match="&map_map;">
+  <xsl:call-template name="dita2html.links.prevnext"/>
   <div class="hgroup">
     <h1 class="title">
       <span class="title">
@@ -103,6 +189,8 @@ REMARK: Describe this module
       </ul>
     </div>
   </div>
+  <xsl:call-template name="dita2html.links.prevnext"/>
+  <div class="clear"/>
 </xsl:template>
 
 
@@ -138,8 +226,9 @@ REMARK: Describe this module
               <xsl:text>../</xsl:text>
             </xsl:if>
           </xsl:for-each>
-          <xsl:text>index</xsl:text>
-          <xsl:value-of select="$html.extension"/>
+          <xsl:call-template name="dita.ref.href.target">
+            <xsl:with-param name="href" select="'index'"/>
+          </xsl:call-template>
         </xsl:attribute>
         <xsl:choose>
           <xsl:when test="/&map_map;/&topic_booktitle;">
@@ -205,9 +294,12 @@ REMARK: Describe this module
       </xsl:copy>
     </xsl:for-each>
   </xsl:variable>
+  <xsl:call-template name="dita2html.links.prevnext"/>
   <xsl:apply-templates mode="dita2html.topic.mode" select="document(@href, $dita.map.base)/*">
     <xsl:with-param name="subtopics" select="exsl:node-set($subtopics)/*"/>
   </xsl:apply-templates>
+  <xsl:call-template name="dita2html.links.prevnext"/>
+  <div class="clear"/>
 </xsl:template>
 
 

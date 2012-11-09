@@ -175,6 +175,9 @@ when creating output files from DITA topics.
           <xsl:when test="substring($uri, string-length($uri) - 3) = '.xml'">
             <xsl:value-of select="substring($uri, 1, string-length($uri) - 4)"/>
           </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$uri"/>
+          </xsl:otherwise>
         </xsl:choose>
         <xsl:value-of select="$dita.ref.extension"/>
       </xsl:if>

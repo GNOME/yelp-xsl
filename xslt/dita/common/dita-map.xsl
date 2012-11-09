@@ -65,7 +65,8 @@ REMARK: Describe this module
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="@format = 'ditamap'">
-      <xsl:apply-templates mode="dita.map.copy.mode" select="document($uri, $dita.map.base)/*/*">
+      <xsl:apply-templates mode="dita.map.copy.mode"
+                           select="document($uri, $dita.map.base)/*/*[not(self::&topic_title_all;)]">
         <xsl:with-param name="base">
           <xsl:if test="contains($uri, '/')">
             <xsl:for-each select="str:split($uri, '/')">
