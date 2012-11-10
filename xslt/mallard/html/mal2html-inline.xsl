@@ -26,9 +26,10 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <!--!!==========================================================================
 Mallard to HTML - Inlines
 Handle simple Mallard block elements.
-:Revision:version="1.0" date="2010-06-03" status="final"
+:Revision:version="3.8" date="2012-11-09" status="final"
 
 This stylesheet contains templates to handle most Mallard inline elements.
+It also maps %{mal.link.content.mode} to %{mal2html.inline.mode}.
 -->
 
 <xsl:template mode="mal.link.content.mode" match="*">
