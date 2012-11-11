@@ -50,6 +50,11 @@ when creating output files from DITA topics.
 <xsl:key name="dita.id.key" match="*[@id][not(self::&topic_topic_all;)]"
          use="concat(ancestor-or-self::&topic_topic_all;[1]/@id, '/', @id)"/>
 
+
+<xsl:template mode="dita.ref.content.mode" match="* | text()">
+  <xsl:value-of select="."/>
+</xsl:template>
+
 <xsl:template name="dita.id">
   <xsl:param name="node" select="."/>
   <xsl:choose>
@@ -203,4 +208,58 @@ when creating output files from DITA topics.
   <xsl:param name="href" select="$node/@href"/>
 </xsl:template>
 
+<xsl:template name="dita.ref.topicref.navtitle">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="base" select="$dita.map.base"/>
+  <xsl:choose>
+    <xsl:when test="$node[self::&map_map;]/&topic_booktitle;/&topic_mainbooktitle;">
+      <xsl:apply-templates mode="dita.ref.content.mode"
+                           select="$node/&topic_booktitle;/&topic_mainbooktitle;/node()"/>
+    </xsl:when>
+    <xsl:when test="$node[self::&map_map;]">
+      <xsl:apply-templates mode="dita.ref.content.mode" select="$node/&topic_title;/node()"/>
+    </xsl:when>
+    <xsl:when test="$node/&map_topicmeta;/&topic_navtitle;">
+      <xsl:apply-templates mode="dita.ref.content.mode"
+                           select="$node/&map_topicmeta;/&topic_navtitle;/node()"/>
+    </xsl:when>
+    <xsl:when test="$node/@navtitle">
+      <xsl:value-of select="$node/@navtitle"/>
+    </xsl:when>
+    <xsl:when test="$href != ''">
+      <xsl:variable name="topic" select="document($href, $base)/&topic_topic_all;"/>
+      <xsl:choose>
+        <xsl:when test="$topic/&topic_titlealts;/&topic_navtitle;">
+          <xsl:apply-templates mode="dita.ref.content.mode"
+                               select="$topic/&topic_titlealts;/&topic_navtitle;/node()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="dita.ref.content.mode"
+                               select="$topic/&topic_title_all;/node()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="dita.ref.topicref.shortdesc">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="base" select="$dita.map.base"/>
+  <xsl:choose>
+    <xsl:when test="$node/&map_topicmeta;/&topic_shortdesc;">
+      <xsl:apply-templates mode="dita.ref.content.mode"
+                           select="$node/&map_topicmeta;/&topic_shortdesc;/node()"/>
+    </xsl:when>
+    <xsl:when test="$href != ''">
+      <xsl:variable name="topic" select="document($href, $base)/&topic_topic_all;"/>
+      <xsl:if test="$topic/&topic_shortdesc;">
+        <xsl:apply-templates mode="dita.ref.content.mode"
+                             select="$topic/&topic_shortdesc;/node()"/>
+      </xsl:if>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+ 
 </xsl:stylesheet>

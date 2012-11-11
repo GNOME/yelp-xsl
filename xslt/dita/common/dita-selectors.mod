@@ -35,6 +35,11 @@ map/map
   starts-with(@class, '- map/map ')]">
 
 <!-- ===========================================================================
+map/topicmeta
+-->
+<!ENTITY map_topicmeta "*[name(.) = 'topicmeta' or starts-with(@class, '- map/topicmeta ')]">
+
+<!-- ===========================================================================
 map/topicref
 -->
 <!ENTITY map_topicref "*[
@@ -42,7 +47,7 @@ map/topicref
   starts-with(@class, '- map/topicref ')]">
 
 <!-- ===========================================================================
-topic/desc
+topic/alt
 -->
 <!ENTITY topic_alt "*[name(.) = 'alt' or starts-with(@class, '- topic/alt ')]">
 
@@ -179,6 +184,11 @@ topic/linkpool
 topic/linktext
 -->
 <!ENTITY topic_linktext "*[name(.) = 'linktext' or starts-with(@class, '- topic/linktext ')]">
+
+<!-- ===========================================================================
+topic/navtitle
+-->
+<!ENTITY topic_navtitle "*[name(.) = 'navtitle' or starts-with(@class, '- topic/navtitle ')]">
 
 <!-- ===========================================================================
 topic/note
@@ -364,6 +374,11 @@ topic/title
   name(.) = 'title' or name(.) = 'booktitle' or
   starts-with(@class, '- topic/title ')
 ]">
+
+<!-- ===========================================================================
+topic/titlealts
+-->
+<!ENTITY topic_titlealts "*[name(.) = 'titlealts' or starts-with(@class, '- topic/titlealts ')]">
 
 <!-- ===========================================================================
 topic/topic

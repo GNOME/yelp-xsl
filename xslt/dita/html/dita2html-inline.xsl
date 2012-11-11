@@ -32,6 +32,12 @@ DITA to HTML - Inlines
 REMARK: Describe this module
 -->
 
+
+<xsl:template mode="dita.ref.content.mode" match="*">
+  <xsl:apply-templates mode="dita2html.topic.mode" select="."/>
+</xsl:template>
+
+
 <!--**==========================================================================
 dita2html.span
 Output an HTML #{span} element.
