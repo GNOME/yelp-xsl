@@ -1133,7 +1133,8 @@ ol.steps .steps {
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
-div.synopsis > div.inner > div.region > div.contents, div.synopsis > pre.contents {
+div.synopsis > div.inner > div.region > div.contents,
+div.synopsis > div.contents, div.synopsis > pre.contents {
   padding: 0.5em 1em 0.5em 1em;
   border-top: solid 1px;
   border-bottom: solid 1px;

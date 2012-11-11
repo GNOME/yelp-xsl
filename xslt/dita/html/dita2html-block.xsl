@@ -58,7 +58,9 @@ FIXME
         <xsl:value-of select="$class"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+    <div class="contents">
+      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+    </div>
   </div>
 </xsl:template>
 
@@ -105,13 +107,18 @@ FIXME
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
-  <div class="code">
+  <div>
     <xsl:call-template name="dita.id">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
+    <xsl:if test="$class != ''">
+      <xsl:attribute name="class">
+        <xsl:value-of select="$class"/>
+      </xsl:attribute>
+    </xsl:if>
     <pre class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </pre>
@@ -120,6 +127,13 @@ FIXME
 
 
 <!-- == Matched Templates == -->
+
+<!-- = bodydiv = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_bodydiv_all;">
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'bodydiv'"/>
+  </xsl:call-template>
+</xsl:template>
 
 <!-- = cmd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_cmd;">
@@ -254,6 +268,13 @@ FIXME
 <xsl:template mode="dita2html.topic.mode" match="&topic_prereq;">
   <xsl:call-template name="dita2html.div">
     <xsl:with-param name="class" select="'prereq'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = refsyn = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_refsyn;">
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'synopsis'"/>
   </xsl:call-template>
 </xsl:template>
 

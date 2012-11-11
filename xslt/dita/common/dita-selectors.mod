@@ -55,12 +55,26 @@ topic/alt
 topic/body
 -->
 <!ENTITY topic_body "*[
-  name(.) = 'body' or name(.) = 'conbody' or name(.) = 'taskbody' or
+  name(.) = 'body' or name(.) = 'conbody' or name(.) = 'refbody' or
+  name(.) = 'taskbody' or
   starts-with(@class, '- topic/body ')
   ]">
 <!ENTITY topic_body_all "*[
-  name(.) = 'body' or name(.) = 'conbody' or name(.) = 'taskbody' or
+  name(.) = 'body' or name(.) = 'conbody' or name(.) = 'refbody' or
+  name(.) = 'taskbody' or
   starts-with(@class, '- topic/body ')
+  ]">
+
+<!-- ===========================================================================
+topic/bodydiv
+-->
+<!ENTITY topic_bodydiv "*[
+  name(.) = 'bodydiv' or name(.) = 'conbodydiv' or name(.) = 'refbodydiv' or
+  starts-with(@class, '- topic/bodydiv ')
+  ]">
+<!ENTITY topic_bodydiv_all "*[
+  name(.) = 'bodydiv' or name(.) = 'conbodydiv' or name(.) = 'refbodydiv' or
+  starts-with(@class, '- topic/bodydiv ')
   ]">
 
 <!-- ===========================================================================
@@ -288,6 +302,8 @@ topic/section
   name(.) = 'postreq' or starts-with(@class, '- topic/section task/postreq ')]">
 <!ENTITY topic_prereq  "*[
   name(.) = 'prereq'  or starts-with(@class, '- topic/section task/prereq ')]">
+<!ENTITY topic_refsyn  "*[
+  name(.) = 'refsyn'  or starts-with(@class, '- topic/section reference/refsyn ')]">
 <!ENTITY topic_result  "*[
   name(.) = 'result'  or starts-with(@class, '- topic/section task/result ')]">
 <!ENTITY topic_steps-informal "*[
@@ -298,12 +314,14 @@ topic/section
   and not(starts-with(@class, '- topic/section task/context '))
   and not(starts-with(@class, '- topic/section task/postreq '))
   and not(starts-with(@class, '- topic/section task/prereq '))
+  and not(starts-with(@class, '- topic/section reference/refsyn '))
   and not(starts-with(@class, '- topic/section task/result '))
   and not(starts-with(@class, '- topic/section task/steps-informal '))
   )]">
 <!ENTITY topic_section_all "*[
   name(.) = 'section' or name(.) = 'context' or name(.) = 'prereq' or
-  name(.) = 'postreq' or name(.) = 'result'  or name(.) = 'steps-informal' or
+  name(.) = 'postreq' or name(.) = 'refsyn'  or name(.) = 'result' or
+  name(.) = 'steps-informal' or
   starts-with(@class, '- topic/section ')
   ]">
 
@@ -316,7 +334,7 @@ topic/shortdesc
 topic/simpletable
 -->
 <!ENTITY topic_simpletable "*[
-  name(.) = 'simpletable' or name(.) = 'choicetable' or
+  name(.) = 'simpletable' or name(.) = 'choicetable' or name(.) = 'properties' or
   starts-with(@class, '- topic/simpletable ')
   ]">
 
@@ -334,8 +352,10 @@ topic/sli
 topic/stentry
 -->
 <!ENTITY topic_stentry "*[
-  name(.) = 'stentry' or name(.) = 'chdesc' or name(.) = 'chdeschd' or
-  name(.) = 'choption' or name(.) = 'choptionhd' or
+  name(.) = 'stentry'    or name(.) = 'chdesc'      or name(.) = 'chdeschd'   or
+  name(.) = 'choption'   or name(.) = 'choptionhd'  or name(.) = 'propdesc'   or
+  name(.) = 'proptype'   or name(.) = 'propvalue'   or name(.) = 'propdeschd' or
+  name(.) = 'proptypehd' or name(.) = 'propvaluehd' or
   starts-with(@class, '- topic/stentry ')
   ]">
 
@@ -343,7 +363,7 @@ topic/stentry
 topic/sthead
 -->
 <!ENTITY topic_sthead "*[
-  name(.) = 'sthead' or name(.) = 'chhead' or
+  name(.) = 'sthead' or name(.) = 'chhead' or name(.) = 'prophead' or
   starts-with(@class, '- topic/sthead ')
   ]">
 
@@ -351,7 +371,7 @@ topic/sthead
 topic/strow
 -->
 <!ENTITY topic_strow "*[
-  name(.) = 'strow' or name(.) = 'chrow' or
+  name(.) = 'strow' or name(.) = 'chrow' or name(.) = 'property' or
   starts-with(@class, '- topic/strow ')
   ]">
 
@@ -384,11 +404,13 @@ topic/titlealts
 topic/topic
 -->
 <!ENTITY topic_topic "*[
-  name(.) = 'topic' or name(.) = 'concept' or name(.) = 'task' or
+  name(.) = 'topic' or name(.) = 'concept' or name(.) = 'reference' or
+  name(.) = 'task' or
   starts-with(@class, '- topic/topic ')
   ]">
 <!ENTITY topic_topic_all "*[
-  name(.) = 'topic' or name(.) = 'concept' or name(.) = 'task' or
+  name(.) = 'topic' or name(.) = 'concept' or name(.) = 'reference' or
+  name(.) = 'task' or
   starts-with(@class, '- topic/topic ')
   ]">
 
