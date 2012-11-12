@@ -24,8 +24,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
                 xmlns:yelp="http://projects.gnome.org/yelp/"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="exsl str yelp"
+                exclude-result-prefixes="exsl str yelp msg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -127,7 +128,6 @@ REMARK: Describe this module
 
 
 <!-- == dita2html.links.topic == -->
-
 <xsl:template name="dita2html.links.topic">
   <xsl:param name="source" select="."/>
   <xsl:if test="$source/&map_topicref;">
@@ -183,6 +183,97 @@ REMARK: Describe this module
 </xsl:template>
 
 
+<!-- == dita2html.topic.about == -->
+<xsl:template name="dita2html.topic.about">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="info" select="yelp:dita.ref.conref($node/&topic_prolog;) |
+                                    yelp:dita.ref.conref($node/&map_topicmeta;)"/>
+  <xsl:variable name="copyrights" select="$info/&topic_copyright;"/>
+  <xsl:variable name="authors" select="$info/&topic_author;[@type = 'creator']"/>
+  <xsl:variable name="others" select="$info/&topic_author;[@type != 'creator']"/>
+  <xsl:if test="$copyrights or $authors or $others">
+    <div class="sect about ui-expander" role="contentinfo">
+      <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
+      <div class="inner">
+        <div class="hgroup">
+          <h2>
+            <span class="title">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'About'"/>
+              </xsl:call-template>
+            </span>
+          </h2>
+        </div>
+        <div class="region">
+          <div class="contents">
+            <xsl:if test="$copyrights">
+              <div class="copyrights">
+                <xsl:for-each  select="$copyrights">
+                  <div class="copyright">
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'copyright.format'"/>
+                      <xsl:with-param name="node" select="."/>
+                      <xsl:with-param name="format" select="true()"/>
+                    </xsl:call-template>
+                  </div>
+                </xsl:for-each>
+              </div>
+            </xsl:if>
+            <xsl:if test="$authors">
+              <div class="aboutblurb authors">
+                <div class="title">
+                  <span class="title">
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'Written By'"/>
+                    </xsl:call-template>
+                  </span>
+                </div>
+                <ul class="credits">
+                  <xsl:for-each select="$authors">
+                    <li>
+                      <xsl:apply-templates mode="dita2html.topic.mode"/>
+                    </li>
+                  </xsl:for-each>
+                </ul>
+              </div>
+            </xsl:if>
+            <xsl:if test="$others">
+              <div class="aboutblurb othercredits">
+                <div class="title">
+                  <span class="title">
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'Other Credits'"/>
+                    </xsl:call-template>
+                  </span>
+                </div>
+                <ul class="credits">
+                  <xsl:for-each select="$others">
+                    <li>
+                      <xsl:apply-templates mode="dita2html.topic.mode"/>
+                    </li>
+                  </xsl:for-each>
+                </ul>
+              </div>
+            </xsl:if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.years">
+  <xsl:param name="node"/>
+  <xsl:value-of select="$node/&topic_copyryear;/@year"/>
+</xsl:template>
+
+<xsl:template mode="l10n.format.mode" match="msg:copyright.name">
+  <xsl:param name="node"/>
+  <xsl:apply-templates mode="dita2html.topic.mode"
+                       select="$node/&topic_copyrholder;/node()"/>
+</xsl:template>
+
+
 <!-- == map == -->
 
 <!-- = map % html.output.after.mode = -->
@@ -206,6 +297,11 @@ REMARK: Describe this module
       <xsl:value-of select="&topic_title_all;"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- = map % html.footer.mode = -->
+<xsl:template mode="html.footer.mode" match="&map_map;">
+  <xsl:call-template name="dita2html.topic.about"/>
 </xsl:template>
 
 <!-- = map % html.body.mode = -->
@@ -253,7 +349,7 @@ REMARK: Describe this module
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="trails">
+  <div class="trails" role="navigation">
     <div class="trail">
       <a class="trail">
         <xsl:attribute name="href">
@@ -298,10 +394,9 @@ REMARK: Describe this module
 
 <!-- = topicref % html.footer.mode = -->
 <xsl:template mode="html.footer.mode" match="&map_topicref;">
-  <!-- FIXME -->
-  <!--
-  <xsl:call-template name="mal2html.page.about"/>
-  -->
+  <xsl:call-template name="dita2html.topic.about">
+    <xsl:with-param name="node" select="document(@href, $dita.map.base)/*"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- = topicref % html.body.mode = -->
@@ -429,7 +524,7 @@ th, td { border: solid 1px; }
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_related-links;">
-  <div class="sect sect-links">
+  <div class="sect sect-links" role="navigation">
     <div class="hgroup"/>
     <div class="contents">
       <div class="links">

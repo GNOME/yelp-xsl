@@ -52,6 +52,11 @@ topic/alt
 <!ENTITY topic_alt "*[name(.) = 'alt' or starts-with(@class, '- topic/alt ')]">
 
 <!-- ===========================================================================
+topic/author
+-->
+<!ENTITY topic_author "*[name(.) = 'author' or starts-with(@class, '- topic/author ')]">
+
+<!-- ===========================================================================
 topic/body
 -->
 <!ENTITY topic_body "*[
@@ -76,6 +81,21 @@ topic/bodydiv
   name(.) = 'bodydiv' or name(.) = 'conbodydiv' or name(.) = 'refbodydiv' or
   starts-with(@class, '- topic/bodydiv ')
   ]">
+
+<!-- ===========================================================================
+topic/copyright
+-->
+<!ENTITY topic_copyright "*[name(.) = 'copyright' or starts-with(@class, '- topic/copyright ')]">
+
+<!-- ===========================================================================
+topic/copyrholder
+-->
+<!ENTITY topic_copyrholder "*[name(.) = 'copyrholder' or starts-with(@class, '- topic/copyrholder ')]">
+
+<!-- ===========================================================================
+topic/copyryear
+-->
+<!ENTITY topic_copyryear "*[name(.) = 'copyryear' or starts-with(@class, '- topic/copyryear ')]">
 
 <!-- ===========================================================================
 topic/desc
