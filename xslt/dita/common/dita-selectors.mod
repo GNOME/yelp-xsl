@@ -317,6 +317,11 @@ topic/prolog
 <!ENTITY topic_prolog "*[name(.) = 'prolog' or starts-with(@class, '- topic/prolog ')]">
 
 <!-- ===========================================================================
+topic/publisher
+-->
+<!ENTITY topic_publisher "*[name(.) = 'publisher' or starts-with(@class, '- topic/publisher ')]">
+
+<!-- ===========================================================================
 topic/related-links
 -->
 <!ENTITY topic_related-links "*[name(.) = 'related-links' or starts-with(@class, '- topic/related-links ')]">

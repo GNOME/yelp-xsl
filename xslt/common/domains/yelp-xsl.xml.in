@@ -254,6 +254,11 @@ but needs to be updated to reflect software updates.
 <msgstr>Previous</msgstr>
 </msg>
 
+<msg id="Published By">
+<its:locNote>Title for a list of publishers.</its:locNote>
+<msgstr>Published By</msgstr>
+</msg>
+
 <msg id="Ready for review">
 <its:locNote>
 Revision status of a document or page. Content has been written

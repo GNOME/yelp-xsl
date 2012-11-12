@@ -107,7 +107,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
             <ul class="credits">
               <xsl:for-each select="$authors">
                 <li>
-                  <xsl:value-of select="mal:name"/>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
                 </li>
               </xsl:for-each>
             </ul>
@@ -127,7 +127,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
             <ul class="credits">
               <xsl:for-each select="$editors">
                 <li>
-                  <xsl:value-of select="mal:name"/>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
                 </li>
               </xsl:for-each>
             </ul>
@@ -147,7 +147,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
             <ul class="credits">
               <xsl:for-each select="$maintainers">
                 <li>
-                  <xsl:value-of select="mal:name"/>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
                 </li>
               </xsl:for-each>
             </ul>
@@ -167,7 +167,27 @@ the #{page} element. Information is extracted from the #{info} element of ${node
             <ul class="credits">
               <xsl:for-each select="$translators">
                 <li>
-                  <xsl:value-of select="mal:name"/>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+        <xsl:variable name="publishers"
+                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' publisher ')]"/>
+        <xsl:if test="$publishers">
+          <div class="aboutblurb publishers">
+            <div class="title">
+              <span class="title">
+                <xsl:call-template name="l10n.gettext">
+                  <xsl:with-param name="msgid" select="'Published By'"/>
+                </xsl:call-template>
+              </span>
+            </div>
+            <ul class="credits">
+              <xsl:for-each select="$publishers">
+                <li>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
                 </li>
               </xsl:for-each>
             </ul>
@@ -175,7 +195,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
         </xsl:if>
         <xsl:variable name="others"
                       select="set:difference($node/mal:info/mal:credit,
-                              $copyrights | $authors | $editors | $maintainers | $translators)"/>
+                              $copyrights | $authors | $editors | $maintainers | $translators | $publishers)"/>
         <xsl:if test="$others">
           <div class="aboutblurb othercredits">
             <div class="title">
@@ -188,7 +208,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
             <ul class="credits">
               <xsl:for-each select="$others">
                 <li>
-                  <xsl:value-of select="mal:name"/>
+                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
                 </li>
               </xsl:for-each>
             </ul>

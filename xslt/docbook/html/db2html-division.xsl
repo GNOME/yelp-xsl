@@ -362,15 +362,15 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     $info/authorgroup/othercredit[@role = 'translator']  |
     $info/db:othercredit[@class = 'translator']          |
     $info/db:authorgroup/db:othercredit[@class = 'translator']"/>
+  <xsl:variable name="publishers" select="$info/publisher | $info/db:publisher"/>
   <xsl:variable name="othercredits" select="set:difference(
     $info/collab | $info/authorgroup/collab | $info/db:collab |
-    $info/publisher      | $info/db:publisher |
     $info/corpcredit     | $info/authorgroup/corpcredit  |
     $info/othercredit    | $info/authorgroup/othercredit |
     $info/db:othercredit | $info/db:authorgroup/db:othercredit,
     ($authors | $editors | $translators))"/>
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
-  <xsl:if test="$copyrights or $authors or $editors or $translators or $othercredits or $legal">
+  <xsl:if test="$copyrights or $authors or $editors or $translators or $publishers or $othercredits or $legal">
     <div class="sect about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
@@ -441,6 +441,24 @@ the division. By default it is called by the %{html.footer.mode} implementation.
               </div>
               <ul class="credits">
                 <xsl:for-each select="$translators">
+                  <li>
+                    <xsl:apply-templates select="."/>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </div>
+          </xsl:if>
+          <xsl:if test="$publishers">
+            <div class="aboutblurb publishers">
+              <div class="title">
+                <span class="title">
+                  <xsl:call-template name="l10n.gettext">
+                    <xsl:with-param name="msgid" select="'Published By'"/>
+                  </xsl:call-template>
+                </span>
+              </div>
+              <ul class="credits">
+                <xsl:for-each select="$publishers">
                   <li>
                     <xsl:apply-templates select="."/>
                   </li>

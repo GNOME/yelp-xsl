@@ -190,8 +190,10 @@ REMARK: Describe this module
                                     yelp:dita.ref.conref($node/&map_topicmeta;)"/>
   <xsl:variable name="copyrights" select="$info/&topic_copyright;"/>
   <xsl:variable name="authors" select="$info/&topic_author;[@type = 'creator']"/>
-  <xsl:variable name="others" select="$info/&topic_author;[@type != 'creator']"/>
-  <xsl:if test="$copyrights or $authors or $others">
+  <xsl:variable name="translators" select="$info/&topic_author;[@type = 'translator']"/>
+  <xsl:variable name="publishers" select="$info/&topic_publisher;"/>
+  <xsl:variable name="others" select="$info/&topic_author;[not(@type = 'creator' or @type = 'translator')]"/>
+  <xsl:if test="$copyrights or $authors or $translators or $publishers or $others">
     <div class="sect about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
@@ -230,6 +232,42 @@ REMARK: Describe this module
                 </div>
                 <ul class="credits">
                   <xsl:for-each select="$authors">
+                    <li>
+                      <xsl:apply-templates mode="dita2html.topic.mode"/>
+                    </li>
+                  </xsl:for-each>
+                </ul>
+              </div>
+            </xsl:if>
+            <xsl:if test="$translators">
+              <div class="aboutblurb translators">
+                <div class="title">
+                  <span class="title">
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'Translated By'"/>
+                    </xsl:call-template>
+                  </span>
+                </div>
+                <ul class="credits">
+                  <xsl:for-each select="$translators">
+                    <li>
+                      <xsl:apply-templates mode="dita2html.topic.mode"/>
+                    </li>
+                  </xsl:for-each>
+                </ul>
+              </div>
+            </xsl:if>
+            <xsl:if test="$publishers">
+              <div class="aboutblurb publishers">
+                <div class="title">
+                  <span class="title">
+                    <xsl:call-template name="l10n.gettext">
+                      <xsl:with-param name="msgid" select="'Published By'"/>
+                    </xsl:call-template>
+                  </span>
+                </div>
+                <ul class="credits">
+                  <xsl:for-each select="$publishers">
                     <li>
                       <xsl:apply-templates mode="dita2html.topic.mode"/>
                     </li>
