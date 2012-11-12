@@ -85,7 +85,9 @@ topic/desc
 <!-- ===========================================================================
 topic/dd
 -->
-<!ENTITY topic_dd "*[name(.) = 'dd' or starts-with(@class, '- topic/dd ')]">
+<!ENTITY topic_dd "*[
+  name(.) = 'dd' or name(.) = 'pd' or
+  starts-with(@class, '- topic/dd ')]">
 
 <!-- ===========================================================================
 topic/ddhd
@@ -95,12 +97,16 @@ topic/ddhd
 <!-- ===========================================================================
 topic/dl
 -->
-<!ENTITY topic_dl "*[name(.) = 'dl' or starts-with(@class, '- topic/dl ')]">
+<!ENTITY topic_dl "*[
+  name(.) = 'dl' or name(.) = 'parml' or
+  starts-with(@class, '- topic/dl ')]">
 
 <!-- ===========================================================================
 topic/dlentry
 -->
-<!ENTITY topic_dlentry "*[name(.) = 'dlentry' or starts-with(@class, '- topic/dlentry ')]">
+<!ENTITY topic_dlentry "*[
+  name(.) = 'dlentry' or name(.) = 'plentry' or
+  starts-with(@class, '- topic/dlentry ')]">
 
 <!-- ===========================================================================
 topic/dlhead
@@ -110,7 +116,9 @@ topic/dlhead
 <!-- ===========================================================================
 topic/dt
 -->
-<!ENTITY topic_dt "*[name(.) = 'dt' or starts-with(@class, '- topic/dt ')]">
+<!ENTITY topic_dt "*[
+  name(.) = 'dt' or name(.) = 'pt' or
+  starts-with(@class, '- topic/dt ')]">
 
 <!-- ===========================================================================
 topic/dthd
@@ -296,6 +304,8 @@ topic/related-links
 <!-- ===========================================================================
 topic/section
 -->
+<!ENTITY topic_example "*[
+  name(.) = 'example' or starts-with(@class, '- topic/section topic/example ')]">
 <!ENTITY topic_context "*[
   name(.) = 'context' or starts-with(@class, '- topic/section task/context ')]">
 <!ENTITY topic_postreq "*[
@@ -311,6 +321,7 @@ topic/section
 <!ENTITY topic_section "*[
   name(.) = 'section'  or (
   starts-with(@class, '- topic/section ')
+  and not(starts-with(@class, '- topic/section topic/example '))
   and not(starts-with(@class, '- topic/section task/context '))
   and not(starts-with(@class, '- topic/section task/postreq '))
   and not(starts-with(@class, '- topic/section task/prereq '))
@@ -319,9 +330,9 @@ topic/section
   and not(starts-with(@class, '- topic/section task/steps-informal '))
   )]">
 <!ENTITY topic_section_all "*[
-  name(.) = 'section' or name(.) = 'context' or name(.) = 'prereq' or
-  name(.) = 'postreq' or name(.) = 'refsyn'  or name(.) = 'result' or
-  name(.) = 'steps-informal' or
+  name(.) = 'section' or name(.) = 'context' or name(.) = 'example' or
+  name(.) = 'prereq'  or name(.) = 'postreq' or name(.) = 'refsyn'  or
+  name(.) = 'result'  or name(.) = 'steps-informal' or
   starts-with(@class, '- topic/section ')
   ]">
 

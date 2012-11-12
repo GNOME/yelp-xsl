@@ -161,6 +161,13 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
+<!-- = example = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_example;">
+  <xsl:call-template name="dita2html.div">
+    <xsl:with-param name="class" select="'example'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = fig = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_fig;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
