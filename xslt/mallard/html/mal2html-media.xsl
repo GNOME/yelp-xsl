@@ -98,6 +98,10 @@ This template outputs an HTML #{video} element for a Mallard #{media} element
 with the #{type} attribute set to #{"video"}. It converts any fallback content
 in the source to the #{video} element's fallback content. If ${inline} is
 #{false}, this template will process TTML child content.
+
+If ${node} has a child image #{media} element with the #{style} attribute set
+to #{"poster"}, that image will be used for the #{poster} attribute on the
+HTML #{video} element.
 -->
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
@@ -116,6 +120,13 @@ in the source to the #{video} element's fallback content. If ${inline} is
     </xsl:attribute>
     <xsl:copy-of select="$node/@height"/>
     <xsl:copy-of select="$node/@width"/>
+    <xsl:variable name="poster"
+                  select="$node/mal:media[not(@type) or @type = 'image'][@style = 'poster']"/>
+    <xsl:if test="$poster">
+      <xsl:attribute name="poster">
+        <xsl:value-of select="$poster[1]/@src"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:attribute name="data-play-label">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'Play'"/>
