@@ -45,12 +45,6 @@ and @{ttml.features}.
 <xsl:import href="../common/mal-if.xsl"/>
 <xsl:import href="../common/mal-link.xsl"/>
 
-<xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
-<xsl:param name="mal.if.features" select="'
-mallard:1.0
-'"/>
-<xsl:param name="mal.if.maybe" select="'target:mobile'"/>
-<xsl:param name="mal.link.extension" select="$html.extension"/>
 <xsl:param name="ttml.features" select="'
 http://www.w3.org/ns/ttml/feature/#content
 http://www.w3.org/ns/ttml/feature/#core
@@ -62,6 +56,12 @@ http://www.w3.org/ns/ttml/feature/#structure
 http://www.w3.org/ns/ttml/feature/#time-offset
 http://www.w3.org/ns/ttml/feature/#timing
 '"/>
+<xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
+<xsl:param name="mal.if.features" select="concat('
+mallard:1.0
+', $ttml.features)"/>
+<xsl:param name="mal.if.maybe" select="'target:mobile'"/>
+<xsl:param name="mal.link.extension" select="$html.extension"/>
 
 <xsl:include href="mal2html-api.xsl"/>
 <xsl:include href="mal2html-block.xsl"/>
@@ -70,6 +70,7 @@ http://www.w3.org/ns/ttml/feature/#timing
 <xsl:include href="mal2html-inline.xsl"/>
 <xsl:include href="mal2html-links.xsl"/>
 <xsl:include href="mal2html-list.xsl"/>
+<xsl:include href="mal2html-math.xsl"/>
 <xsl:include href="mal2html-media.xsl"/>
 <xsl:include href="mal2html-page.xsl"/>
 <xsl:include href="mal2html-svg.xsl"/>

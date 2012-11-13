@@ -18,11 +18,12 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:math="http://www.w3.org/1998/Math/MathML"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:its="http://www.w3.org/2005/11/its"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html set its"
+                exclude-result-prefixes="html math set its"
                 extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -1489,6 +1490,9 @@ ouput the contents of that tag.
   <xsl:call-template name="html.js.jquery">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
+  <xsl:call-template name="html.js.mathjax">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
   <xsl:call-template name="html.js.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
@@ -1525,6 +1529,26 @@ output relative to @{html.js.root}.
       <xsl:attribute name="src">
         <xsl:value-of select="$html.js.root"/>
         <xsl:text>jquery.syntax.js</xsl:text>
+      </xsl:attribute>
+    </script>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.mathjax
+Output #{script} element to include MathJax.
+:Revision: version="1.0" date="2012-11-13" status="incomplete"
+$node: The node to create JavaScript for.
+
+FIXME
+-->
+<xsl:template name="html.js.mathjax">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$node//math:*[1]">
+    <script type="text/javascript">
+      <xsl:attribute name="src">
+        <xsl:text>http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML</xsl:text>
       </xsl:attribute>
     </script>
   </xsl:if>

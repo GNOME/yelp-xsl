@@ -25,8 +25,8 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 Mallard to HTML - Inlines
-Handle simple Mallard block elements.
-:Revision:version="3.8" date="2012-11-09" status="final"
+Handle simple Mallard inline elements.
+:Revision:version="3.8" date="2012-11-13" status="final"
 
 This stylesheet contains templates to handle most Mallard inline elements.
 It also maps %{mal.link.content.mode} to %{mal2html.inline.mode}.
@@ -40,11 +40,11 @@ It also maps %{mal.link.content.mode} to %{mal2html.inline.mode}.
 <!--%%==========================================================================
 mal2html.inline.mode
 Process Mallard elements in inline mode.
-:Revision:version="1.0" date="2010-06-03" status="final"
+:Revision:version="3.8" date="2012-11-13" status="final"
 
 This mode is applied to elements in inline context. It is be called by certain
 block elements and inline elements to process child content. Certain elements
-may appear in both block an inline mode, and the processing expectations for
+may appear in both block and inline mode, and the processing expectations for
 those elements is different depending on context.
 
 Implementations of this mode should handle ubiquitous linking, text directionality,
