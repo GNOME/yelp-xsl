@@ -179,6 +179,16 @@ in the source to the #{audio} element's fallback content. If ${inline} is
         </xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
+    <xsl:attribute name="data-play-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Play'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="data-pause-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Pause'"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$inline">
         <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>

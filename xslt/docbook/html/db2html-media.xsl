@@ -61,6 +61,16 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
         </xsl:when>
       </xsl:choose>
     </xsl:attribute>
+    <xsl:attribute name="data-play-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Play'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="data-pause-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Pause'"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:call-template name="db2html.mediaobject.fallback">
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
@@ -173,6 +183,16 @@ attribute on the HTML #{video} element. This template calls
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
+    <xsl:attribute name="data-play-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Play'"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:attribute name="data-pause-label">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="'Pause'"/>
+      </xsl:call-template>
+    </xsl:attribute>
     <xsl:call-template name="db2html.mediaobject.fallback">
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
