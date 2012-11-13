@@ -24,154 +24,259 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <!--!!==========================================================================
 DocBook to HTML - Images and Media
-:Requires: db2html-block db2html-xref
+Handle DocBook media elements.
+:Revision:version="3.8" date="2012-11-13" status="final"
 
-REMARK: Describe this module
+This stylesheet contains templates for handling DocBook #{mediaobject} and
+#{inlinemediaobject} elements, as well as the various #{object} and #{data}
+elements found in these elements. This stylesheet also handles the deprecated
+DocBook 4 #{graphic} and #{inlinegraphic} elements.
 -->
 
 
 <!--**==========================================================================
-db2html.imagedata
-Renders an #{imagedata} element into an #{img} element
-$node: The element to render
+db2html.audiodata
+Output an HTML #{audio} element for a #{audiodata} element.
+:Revision:version="3.8" date="2012-11-12" status="final"
+$node: The #{audiodata} element.
 
-This template creates an #{img} element in the HTML output.  This named template
+This template creates an #{audio} element in the HTML output. This template
+calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
+-->
+<xsl:template name="db2html.audiodata">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="media" select="($node/ancestor::mediaobject[1] |
+                                      $node/ancestor::inlinemediaobject[1] |
+                                      $node/ancestor::db:mediaobject[1] |
+                                      $node/ancestor::db:inlinemediaobject[1]
+                                     )[last()]"/>
+  <audio preload="auto" controls="controls">
+    <xsl:attribute name="src">
+      <xsl:choose>
+        <xsl:when test="$node/@fileref">
+          <xsl:value-of select="$node/@fileref"/>
+        </xsl:when>
+        <xsl:when test="$node/@entityref">
+          <xsl:value-of select="unparsed-entity-uri($node/@entityref)"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:attribute>
+    <xsl:call-template name="db2html.mediaobject.fallback">
+      <xsl:with-param name="node" select="$media"/>
+    </xsl:call-template>
+  </audio>
+</xsl:template>
+
+
+<!--**==========================================================================
+db2html.imagedata
+Output an HTML #{img} element for a #{imagedata} element.
+:Revision:version="3.8" date="2012-11-12" status="final"
+$node: The #{imagedata} or other graphic element.
+
+This template creates an #{img} element in the HTML output.  This template
 is called not only for #{imagedata} elements, but also for #{graphic} and
 #{inlinegraphic} elements.  Note that #{graphic} and #{inlinegraphic} are
 deprecated and should not be used in any newly-written DocBook files.  Use
 #{mediaobject} instead.
-
-REMARK: calls db2html.imagedata.src, how other attrs are gotten
 -->
 <xsl:template name="db2html.imagedata">
   <xsl:param name="node" select="."/>
   <img>
     <xsl:attribute name="src">
-      <xsl:call-template name="db2html.imagedata.src">
-        <xsl:with-param name="node" select="$node"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$node/@fileref">
+          <xsl:value-of select="$node/@fileref"/>
+        </xsl:when>
+        <xsl:when test="$node/@entityref">
+          <xsl:value-of select="unparsed-entity-uri($node/@entityref)"/>
+        </xsl:when>
+      </xsl:choose>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$node/@scale">
-        <xsl:attribute name="width">
-          <xsl:value-of select="concat($node/@scale, '%')"/>
-        </xsl:attribute>
-      </xsl:when>
-      <xsl:when test="$node/@width">
-        <xsl:attribute name="width">
-          <xsl:value-of select="$node/@width"/>
-        </xsl:attribute>
-        <xsl:if test="$node/@height">
-          <xsl:attribute name="height">
-            <xsl:value-of select="$node/@height"/>
-          </xsl:attribute>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
-    <xsl:if test="$node/@align">
-      <xsl:attribute name="align">
-        <xsl:value-of select="$node/@align"/>
+    <xsl:if test="$node/@contentwidth">
+      <xsl:attribute name="width">
+        <xsl:value-of select="$node/@contentwidth"/>
       </xsl:attribute>
     </xsl:if>
-<!-- FIXME
-    <xsl:if test="$textobject/phrase">
+    <xsl:if test="$node/@contentdepth">
+      <xsl:attribute name="height">
+        <xsl:value-of select="$node/@contentdepth"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:variable name="media" select="(self::imagedata/ancestor::mediaobject[1] |
+                                        self::imagedata/ancestor::inlinemediaobject[1] |
+                                        self::db:imagedata/ancestor::db:mediaobject[1] |
+                                        self::db:imagedata/ancestor::db:inlinemediaobject[1]
+                                       )[last()]"/>
+    <xsl:variable name="alt" select="$media/textobject/phrase | $media/db:textobject/db:phrase"/>
+    <xsl:if test="$alt">
       <xsl:attribute name="alt">
-        <xsl:value-of select="phrase[1]"/>
+        <xsl:value-of select="$alt[1]"/>
       </xsl:attribute>
     </xsl:if>
--->
-    <!-- FIXME: longdesc -->
   </img>
 </xsl:template>
 
 
 <!--**==========================================================================
-db2html.imagedata.src
-Outputs the content of the #{src} attribute for an #{img} element
-$node: The element to render
+db2html.videodata
+Output an HTML #{video} element for a #{videodata} element.
+:Revision:version="3.8" date="2012-11-12" status="final"
+$node: The #{videodata} element.
 
-This template is called by *{db2html.imagedata.src} for the content of the
-#{src} attribute of an #{img} element.
+This template creates a #{video} element in the HTML output. If the containing
+#{mediaobject} or #{inlinemediaobject} element has an #{imageobject} with the
+#{role} attribute set to #{"poster"}, that image will be used for the #{poster}
+attribute on the HTML #{video} element. This template calls
+*{db2html.mediaobject.fallback} for the contents of the #{video} element.
 -->
-<xsl:template name="db2html.imagedata.src">
+<xsl:template name="db2html.videodata">
   <xsl:param name="node" select="."/>
-  <xsl:choose>
-    <xsl:when test="$node/@fileref">
-      <!-- FIXME: do this less stupidly, or not at all -->
+  <xsl:variable name="media" select="($node/ancestor::mediaobject[1] |
+                                      $node/ancestor::inlinemediaobject[1] |
+                                      $node/ancestor::db:mediaobject[1] |
+                                      $node/ancestor::db:inlinemediaobject[1]
+                                     )[last()]"/>
+  <video preload="auto" controls="controls">
+    <xsl:attribute name="src">
       <xsl:choose>
-        <xsl:when test="$node/@format = 'PNG' and
-                        (substring($node/@fileref, string-length($node/@fileref) - 3)
-                          != '.png')">
-          <xsl:value-of select="concat($node/@fileref, '.png')"/>
-        </xsl:when>
-        <xsl:otherwise>
+        <xsl:when test="$node/@fileref">
           <xsl:value-of select="$node/@fileref"/>
-        </xsl:otherwise>
+        </xsl:when>
+        <xsl:when test="$node/@entityref">
+          <xsl:value-of select="unparsed-entity-uri($node/@entityref)"/>
+        </xsl:when>
       </xsl:choose>
-    </xsl:when>
-    <xsl:when test="$node/@entityref">
-      <xsl:value-of select="unparsed-entity-uri($node/@entityref)"/>
-    </xsl:when>
-  </xsl:choose>
+    </xsl:attribute>
+    <xsl:if test="$node/@contentwidth">
+      <xsl:attribute name="width">
+        <xsl:value-of select="$node/@contentwidth"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$node/@contentdepth">
+      <xsl:attribute name="height">
+        <xsl:value-of select="$node/@contentdepth"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:variable name="poster"
+                  select="$media/imageobject[@role = 'poster']/imagedata |
+                          $media/db:imageobject[@role = 'poster']/db:imagedata"/>
+    <xsl:if test="$poster">
+      <xsl:attribute name="poster">
+        <xsl:choose>
+          <xsl:when test="$poster/@fileref">
+            <xsl:value-of select="$poster/@fileref"/>
+          </xsl:when>
+          <xsl:when test="$poster/@entityref">
+            <xsl:value-of select="unparsed-entity-uri($poster/@entityref)"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="db2html.mediaobject.fallback">
+      <xsl:with-param name="node" select="$media"/>
+    </xsl:call-template>
+  </video>
 </xsl:template>
 
 
 <!--**==========================================================================
 db2html.mediaobject
-Outputs HTML for a #{mediaobject} element
-$node: The element to render
+Outputs HTML for a #{mediaobject} element.
+:Revision:version="3.8" date="2012-11-13" status="final"
+$node: The #{mediaobject} element.
 
 This template processes a #{mediaobject} element and outputs the appropriate
-HTML.  DocBook allows multiple objects to be listed in a #{mediaobject} element.
-Processing tools are expected to choose the earliest suitable object.  Currently,
-this template only chooses the first suitable #{imageobject} element.  Support
-for #{videobject} and #{audioobject} should be added in future versions, as well
-as a text-only mode.
+HTML. DocBook allows multiple objects to be listed in a #{mediaobject} element.
+Processing tools are expected to choose the earliest suitable object. This
+template will select the first audio, image, or video object it can handle,
+filtering out images in non-web formats. If no suitable non-text objects are
+found, this template calls *{db2html.mediaobject.fallback}.
 -->
 <xsl:template name="db2html.mediaobject">
   <xsl:param name="node" select="."/>
+  <xsl:variable name="objs" select="
+    $node/audioobject | $node/db:audioobject |
+    $node/videoobject | $node/db:videoobject |
+    $node/imageobject[imagedata[
+      @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
+      @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
+      not(@format)]] |
+    $node/imageobjectco[imageobject/imagedata[
+      @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
+      @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
+      not(@format)]] |
+    $node/db:imageobject[db:imagedata[
+      @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
+      @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
+      not(@format)]] |
+    $node/db:imageobjectco[db:imageobject/db:imagedata[
+      @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
+      @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
+      not(@format)]] "/>
   <xsl:choose>
-<!-- FIXME
-    <xsl:when test="$text_only">
-      <xsl:apply-templates select="textobject[1]"/>
-    </xsl:when>
--->
-    <xsl:when test="$node/imageobject[imagedata/@format = 'PNG']">
-      <xsl:apply-templates
-       select="$node/imageobject[imagedata/@format = 'PNG'][1]">
-        <xsl:with-param name="textobject" select="$node/textobject[1]"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:when test="$node/db:imageobject[db:imagedata/@format = 'PNG']">
-      <xsl:apply-templates
-       select="$node/db:imageobject[db:imagedata/@format = 'PNG'][1]">
-        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:when test="$node/imageobjectco[imageobject/imagedata/@format = 'PNG']">
-      <xsl:apply-templates
-       select="$node/imageobjectco[imageobject/imagedata/@format = 'PNG'][1]">
-        <xsl:with-param name="textobject" select="$node/textobject[1]"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:when test="$node/db:imageobjectco[db:imageobject/db:imagedata/@format = 'PNG']">
-      <xsl:apply-templates
-       select="$node/db:imageobjectco[db:imageobject/db:imagedata/@format = 'PNG'][1]">
-        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
-      </xsl:apply-templates>
+    <xsl:when test="$objs">
+      <xsl:apply-templates select="$objs[1]"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="($node/imageobject | $node/imageobjectco |
-                                    $node/db:imageobject |
-                                    $node/db:imageobjectco)[1]">
-        <xsl:with-param name="textobject" select="$node/db:textobject[1]"/>
-      </xsl:apply-templates>
+      <xsl:call-template name="db2html.mediaobject.fallback">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+db2html.mediaobject.fallback
+Outputs fallback HTML for a #{mediaobject} element.
+:Revision:version="3.8" date="2012-11-13" status="final"
+$node: The #{mediaobject} element.
+
+This template outputs HTML for the first suitable #{textobject} child element
+of ${node}. If ${node} is an #{inlinemediaobject}, it looks for a #{textobject}
+that contains a #{phrase} element. Otherwise, it looks for a #{textobject} with
+normal block content.
+-->
+<xsl:template name="db2html.mediaobject.fallback">
+  <xsl:param name="node" select="."/>
+  <xsl:choose>
+    <xsl:when test="local-name($node) = 'inlinemediaobject'">
+      <xsl:apply-templates select="($node/textobject/phrase | $node/db:textobject/db:phrase)[1]"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="($node/textobject[not(phrase or textdata)] |
+                                    $node/db:textobject[not(db:phrase or db:textdata)]
+                                   )[1]/*"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 
 <!-- == Matched Templates == -->
+
+<!-- = audiodata = -->
+<xsl:template match="mediaobject/audioobject/audiodata |
+                     db:mediaobject/db:audioobject/db:audiodata">
+  <div class="media media-audio">
+    <div class="inner">
+      <xsl:call-template name="db2html.audiodata">
+        <xsl:with-param name="inline" select="false()"/>
+      </xsl:call-template>
+    </div>
+  </div>
+</xsl:template>
+<xsl:template match="inlinemediaobject/audioobject/audiodata |
+                     db:inlinemediaobject/db:audioobject/db:audiodata">
+  <span class="media media-audio">
+    <xsl:call-template name="db2html.audiodata"/>
+  </span>
+</xsl:template>
+
+<!-- = audioobject = -->
+<xsl:template match="audioobject | db:audioobject">
+  <xsl:apply-templates select="audiodata | db:audiodata"/>
+</xsl:template>
 
 <!-- = graphic = -->
 <xsl:template match="graphic">
@@ -222,6 +327,29 @@ as a text-only mode.
       <xsl:apply-templates select="caption | db:caption"/>
     </xsl:if>
   </div>
+</xsl:template>
+
+<!-- = videodata = -->
+<xsl:template match="mediaobject/videoobject/videodata |
+                     db:mediaobject/db:videoobject/db:videodata">
+  <div class="media media-video">
+    <div class="inner">
+      <xsl:call-template name="db2html.videodata">
+        <xsl:with-param name="inline" select="false()"/>
+      </xsl:call-template>
+    </div>
+  </div>
+</xsl:template>
+<xsl:template match="inlinemediaobject/videoobject/videodata |
+                     db:inlinemediaobject/db:videoobject/db:videodata">
+  <span class="media media-video">
+    <xsl:call-template name="db2html.videodata"/>
+  </span>
+</xsl:template>
+
+<!-- = videoobject = -->
+<xsl:template match="videoobject | db:videoobject">
+  <xsl:apply-templates select="videodata | db:videodata"/>
 </xsl:template>
 
 </xsl:stylesheet>
