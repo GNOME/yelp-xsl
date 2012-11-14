@@ -18,50 +18,39 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
-                xmlns:math="http://www.w3.org/1998/Math/MathML"
+                xmlns:mml="http://www.w3.org/1998/Math/MathML"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal math xlink"
+                exclude-result-prefixes="mal mml xlink"
                 version="1.0">
 
 <!--!!==========================================================================
 Mallard to HTML - MathML
-Handle embedded MathML.
+Handle MathML in Mallard documents.
 :Revision: version="3.8" date="2012-11-13" status="final"
 
 This stylesheet matches embedded MathML in %{mal2html.block.mode} and
 %{mal2html.inline.mode} and processes it in %{mal2html.math.mode}. The
-matched templates for the #{math:math} element automatically set the
+matched templates for the #{mml:math} element automatically set the
 #{display} attribute based on whether the element is in block or inline
 context.
 -->
 
 
-<xsl:variable name="math.namespace">
-  <xsl:choose>
-    <xsl:when test="$html.namespace = 'http://www.w3.org/1999/xhtml'">
-      <xsl:text>http://www.w3.org/1998/Math/MathML</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text></xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
-
-
 <!--%%==========================================================================
 mal2html.math.mode
-Output MathML and handle Mallard extension.
+Output MathML and handle Mallard extensions.
 :Revision: version="3.8" date="2012-11-13" status="final"
 
 This mode is used for processing MathML embedded into Mallard documents. For
-most types of MathML content, it simply copies the input directly. It checks
-for Mallard linking using the #{mal:xref} attribute and transforms this to a
-MathML #{href} attribute. It also converts #{xlink:href} attributes from
-MathML 2 to #{href} attributes for MathML 3.
+most types of MathML content, it simply copies the input directly, except it
+outputs the MathML in a way that allows the namespace to stripped for non-XML
+output. It checks for Mallard linking using the #{mal:xref} attribute and
+transforms this to a MathML #{href} attribute. It also converts #{xlink:href}
+attributes from MathML 2 to #{href} attributes for MathML 3.
 -->
-<xsl:template mode="mal2html.math.mode" match="math:*">
-  <xsl:element name="{local-name(.)}" namespace="{$math.namespace}">
+<xsl:template mode="mal2html.math.mode" match="mml:*">
+  <xsl:element name="{local-name(.)}" namespace="{$html.mathml.namespace}">
     <xsl:for-each select="@*[name(.) != 'href']">
       <xsl:copy-of select="."/>
     </xsl:for-each>
@@ -91,7 +80,9 @@ MathML 2 to #{href} attributes for MathML 3.
   <xsl:value-of select="."/>
 </xsl:template>
 
-<xsl:template mode="mal2html.block.mode" match="math:math">
+<xsl:template mode="mal2html.math.mode" match="*"/>
+
+<xsl:template mode="mal2html.block.mode" match="mml:math">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
@@ -102,7 +93,7 @@ MathML 2 to #{href} attributes for MathML 3.
         <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
-    <xsl:element name="math" namespace="{$math.namespace}">
+    <xsl:element name="math" namespace="{$html.mathml.namespace}">
       <xsl:for-each select="@*[name(.) != 'display']
                               [not(starts-with(namespace-uri(.), 'http://projectmallard.org/'))]">
         <xsl:copy-of select="."/>
@@ -116,10 +107,10 @@ MathML 2 to #{href} attributes for MathML 3.
 </xsl:if>
 </xsl:template>
 
-<xsl:template mode="mal2html.inline.mode" match="math:math">
+<xsl:template mode="mal2html.inline.mode" match="mml:math">
   <span class="math">
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:element name="math" namespace="{$math.namespace}">
+    <xsl:element name="math" namespace="{$html.mathml.namespace}">
       <xsl:for-each select="@*[name(.) != 'display']
                               [not(starts-with(namespace-uri(.), 'http://projectmallard.org/'))]">
         <xsl:copy-of select="."/>

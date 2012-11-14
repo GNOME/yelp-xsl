@@ -18,12 +18,12 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
-                xmlns:math="http://www.w3.org/1998/Math/MathML"
+                xmlns:mml="http://www.w3.org/1998/Math/MathML"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:its="http://www.w3.org/2005/11/its"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html math set its"
+                exclude-result-prefixes="html mml set its"
                 extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -111,6 +111,28 @@ using #{xsl:element}.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:param>
+
+
+<!--@@==========================================================================
+html.mathml.namespace
+The XML namespace for the output document.
+:Revision:version="3.8" date="2012-11-13" status="final"
+
+This parameter specifies the XML namespace for MathML in output documents. It
+will be set automatically based on the ${html.xhtml} parameter, either to the
+MathML namespace namespace, or to the empty namespace. Stylesheets can use this
+parameter when using #{xsl:element}.
+-->
+<xsl:variable name="html.mathml.namespace">
+  <xsl:choose>
+    <xsl:when test="$html.xhtml">
+      <xsl:value-of select="'http://www.w3.org/1998/Math/MathML'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text></xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
 
 
 <!--@@==========================================================================
@@ -1538,14 +1560,17 @@ output relative to @{html.js.root}.
 <!--**==========================================================================
 html.js.mathjax
 Output #{script} element to include MathJax.
-:Revision: version="1.0" date="2012-11-13" status="incomplete"
+:Revision: version="1.0" date="2012-11-13" status="final"
 $node: The node to create JavaScript for.
 
-FIXME
+This template outputs an HTML #{script} tag to reference MathJax. It only
+outputs a #{script} element if ${node} has MathML descendent content. By
+default, this template uses #{cnd.mathjax.org}. If you wish to use a local
+copy, override this template and provide the necessary files.
 -->
 <xsl:template name="html.js.mathjax">
   <xsl:param name="node" select="."/>
-  <xsl:if test="$node//math:*[1]">
+  <xsl:if test="$node//mml:*[1]">
     <script type="text/javascript">
       <xsl:attribute name="src">
         <xsl:text>http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML</xsl:text>
