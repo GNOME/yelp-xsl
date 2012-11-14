@@ -18,8 +18,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:mml="http://www.w3.org/1998/Math/MathML"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db"
+                exclude-result-prefixes="db mml"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -212,6 +213,10 @@ Processing tools are expected to choose the earliest suitable object. This
 template will select the first audio, image, or video object it can handle,
 filtering out images in non-web formats. If no suitable non-text objects are
 found, this template calls *{db2html.mediaobject.fallback}.
+
+This template also detects MathML embedded in a DocBook 5 #{imagedata} element
+with the #{format} attribute #{"mathml"}, and passes it to the templates in
+!{db2html-math}.
 -->
 <xsl:template name="db2html.mediaobject">
   <xsl:param name="node" select="."/>
@@ -230,6 +235,7 @@ found, this template calls *{db2html.mediaobject.fallback}.
       @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
       @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
       not(@format)]] |
+    $node/db:imageobject[db:imagedata[@format = 'mathml'][mml:math]] |
     $node/db:imageobjectco[db:imageobject/db:imagedata[
       @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
       @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
@@ -308,7 +314,14 @@ normal block content.
 
 <!-- = imagedata = -->
 <xsl:template match="imagedata | db:imagedata">
-  <xsl:call-template name="db2html.imagedata"/>
+  <xsl:choose>
+    <xsl:when test="@format = 'mathml' and mml:math">
+      <xsl:apply-templates select="mml:math"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="db2html.imagedata"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- = imageobject = -->
