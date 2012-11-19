@@ -1,3 +1,24 @@
+3.7.2
+=====
+* MathML support for Mallard and DocBook
+* Audio and video support for DocBook
+* Ability to set poster image for video
+* TTML subtitles for audio and inline media
+* Updated media controls
+* Fixed #hash auto-expanding and colorizing
+* Translator and publisher credits
+* Use quote char on :before for blockquote
+* ARIA landmark roles
+* Changed marker for expanders
+* Switched ui:expanded to non-experimental
+* Experimental Mallard UI overlays
+* Dropped unused DocBook utility XSLT
+* Use itstool "join mode" for translations
+* More experimental thumbnail link styles
+* Updated translations:
+  km    (Khoem Sokhem)
+  sl    (Matej Urbančič)
+
 3.6.0
 =====
 * Updated translations:
