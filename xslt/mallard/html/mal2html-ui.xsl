@@ -53,7 +53,7 @@ for blocks that produce automatic titles.
 -->
 <xsl:template name="mal2html.ui.expander.data">
   <xsl:param name="node" select="."/>
-  <xsl:if test="$node/@uix:expanded">
+  <xsl:if test="$node/@uix:expanded and not($node/@ui:expanded)">
     <xsl:message>
       <xsl:text>DEPRECATION WARNING: The expanded attribute from the experimental/ui namespace
 is deprecated. Use the expanded attribute from the ui/1.0 namespace instead.
