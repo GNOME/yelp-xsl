@@ -312,18 +312,26 @@ REMARK: Describe this module
 </xsl:template>
 
 
-<!-- == map == -->
-
-<!-- = map % html.output.after.mode = -->
-<xsl:template mode="html.output.after.mode" match="/&map_map;">
-  <xsl:for-each select="//&map_topicref;[@href]">
-    <xsl:call-template name="html.output">
-      <xsl:with-param name="href">
-        <xsl:call-template name="dita.ref.href.target"/>
-      </xsl:with-param>
-    </xsl:call-template>
+<!--#% html.output.after.mode -->
+<xsl:template mode="html.output.after.mode" match="/&map_map; | &map_topicref;">
+  <xsl:for-each select="&map_topicref;">
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:call-template name="html.output">
+          <xsl:with-param name="href">
+            <xsl:call-template name="dita.ref.href.target"/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="html.output.after.mode" select="."/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:for-each>
 </xsl:template>
+
+
+<!-- == map == -->
 
 <!-- = map % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_map;">
