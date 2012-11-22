@@ -3,8 +3,6 @@ ALL_LINGUAS = @ALL_LINGUAS@
 $(srcdir)/yelp-xsl.pot: yelp-xsl.xml.in
 	itstool -o "$@" "$^"
 
-all: $(srcdir)/yelp-xsl.pot
-
 yelp-xsl.xml: yelp-xsl.xml.in
 	$(AM_V_GEN) ( \
 	for lang in $(ALL_LINGUAS); do \
