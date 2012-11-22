@@ -17,4 +17,4 @@ xsl_DATA = yelp-xsl.xml
 
 EXTRA_DIST = yelp-xsl.xml yelp-xsl.xml.in
 
-CLEANFILES = yelp-xsl.xml yelp-xsl.pot
+CLEANFILES = yelp-xsl.xml
