@@ -269,6 +269,11 @@ topic/p
 <!ENTITY topic_p "*[name(.) = 'p' or starts-with(@class, '- topic/p ')]">
 
 <!-- ===========================================================================
+topic/param
+-->
+<!ENTITY topic_param "*[name(.) = 'param' or starts-with(@class, '- topic/param ')]">
+
+<!-- ===========================================================================
 topic/ph
 -->
 <!ENTITY topic_b "*[

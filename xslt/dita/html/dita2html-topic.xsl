@@ -492,6 +492,11 @@ dt.dthd, dd.ddhd {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 th, td { border: solid 1px; }
+div.dita-object > div.desc {
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+}
 
 </xsl:text>
 </xsl:template>

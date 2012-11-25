@@ -123,4 +123,56 @@ REMARK: Describe this module
   </img>
 </xsl:template>
 
+<!-- = object = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_object;">
+  <xsl:variable name="node" select="."/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <div class="dita-object">
+    <xsl:call-template name="dita.id">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_desc;"/>
+    <div class="contents">
+      <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
+        <xsl:for-each select="@*[namespace-uri(.) = '']">
+          <xsl:attribute name="{local-name(.)}">
+            <xsl:call-template name="dita.ref.conref.attr">
+              <xsl:with-param name="attr" select="local-name(.)"/>
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="conref" select="$conref"/>
+            </xsl:call-template>
+          </xsl:attribute>
+        </xsl:for-each>
+        <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_param;"/>
+      </xsl:element>
+    </div>
+  </div>
+</xsl:template>
+
+<!-- = param = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_param;">
+  <xsl:variable name="node" select="."/>
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:call-template name="dita.id">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.lang.attrs">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
+    <xsl:for-each select="@*[namespace-uri(.) = '']">
+      <xsl:attribute name="{local-name(.)}">
+        <xsl:call-template name="dita.ref.conref.attr">
+          <xsl:with-param name="attr" select="local-name(.)"/>
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="conref" select="$conref"/>
+        </xsl:call-template>
+      </xsl:attribute>
+    </xsl:for-each>
+  </xsl:element>
+</xsl:template>
+
 </xsl:stylesheet>
