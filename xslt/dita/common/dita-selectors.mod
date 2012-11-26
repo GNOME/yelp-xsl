@@ -32,29 +32,29 @@ map/map
 -->
 <!ENTITY map_map "*[
   name(.) = 'map' or name(.) = 'bookmap' or
-  starts-with(@class, '- map/map ')]">
+  contains(@class, ' map/map ')]">
 
 <!-- ===========================================================================
 map/topicmeta
 -->
-<!ENTITY map_topicmeta "*[name(.) = 'topicmeta' or starts-with(@class, '- map/topicmeta ')]">
+<!ENTITY map_topicmeta "*[name(.) = 'topicmeta' or contains(@class, ' map/topicmeta ')]">
 
 <!-- ===========================================================================
 map/topicref
 -->
 <!ENTITY map_topicref "*[
   name(.) = 'topicref' or name(.) = 'chapter' or name(.) = 'part' or
-  starts-with(@class, '- map/topicref ')]">
+  contains(@class, ' map/topicref ')]">
 
 <!-- ===========================================================================
 topic/alt
 -->
-<!ENTITY topic_alt "*[name(.) = 'alt' or starts-with(@class, '- topic/alt ')]">
+<!ENTITY topic_alt "*[name(.) = 'alt' or contains(@class, ' topic/alt ')]">
 
 <!-- ===========================================================================
 topic/author
 -->
-<!ENTITY topic_author "*[name(.) = 'author' or starts-with(@class, '- topic/author ')]">
+<!ENTITY topic_author "*[name(.) = 'author' or contains(@class, ' topic/author ')]">
 
 <!-- ===========================================================================
 topic/body
@@ -62,12 +62,12 @@ topic/body
 <!ENTITY topic_body "*[
   name(.) = 'body' or name(.) = 'conbody' or name(.) = 'refbody' or
   name(.) = 'taskbody' or
-  starts-with(@class, '- topic/body ')
+  contains(@class, ' topic/body ')
   ]">
 <!ENTITY topic_body_all "*[
   name(.) = 'body' or name(.) = 'conbody' or name(.) = 'refbody' or
   name(.) = 'taskbody' or
-  starts-with(@class, '- topic/body ')
+  contains(@class, ' topic/body ')
   ]">
 
 <!-- ===========================================================================
@@ -75,319 +75,319 @@ topic/bodydiv
 -->
 <!ENTITY topic_bodydiv "*[
   name(.) = 'bodydiv' or name(.) = 'conbodydiv' or name(.) = 'refbodydiv' or
-  starts-with(@class, '- topic/bodydiv ')
+  contains(@class, ' topic/bodydiv ')
   ]">
 <!ENTITY topic_bodydiv_all "*[
   name(.) = 'bodydiv' or name(.) = 'conbodydiv' or name(.) = 'refbodydiv' or
-  starts-with(@class, '- topic/bodydiv ')
+  contains(@class, ' topic/bodydiv ')
   ]">
 
 <!-- ===========================================================================
 topic/copyright
 -->
-<!ENTITY topic_copyright "*[name(.) = 'copyright' or starts-with(@class, '- topic/copyright ')]">
+<!ENTITY topic_copyright "*[name(.) = 'copyright' or contains(@class, ' topic/copyright ')]">
 
 <!-- ===========================================================================
 topic/copyrholder
 -->
-<!ENTITY topic_copyrholder "*[name(.) = 'copyrholder' or starts-with(@class, '- topic/copyrholder ')]">
+<!ENTITY topic_copyrholder "*[name(.) = 'copyrholder' or contains(@class, ' topic/copyrholder ')]">
 
 <!-- ===========================================================================
 topic/copyryear
 -->
-<!ENTITY topic_copyryear "*[name(.) = 'copyryear' or starts-with(@class, '- topic/copyryear ')]">
+<!ENTITY topic_copyryear "*[name(.) = 'copyryear' or contains(@class, ' topic/copyryear ')]">
 
 <!-- ===========================================================================
 topic/desc
 -->
-<!ENTITY topic_desc "*[name(.) = 'desc' or starts-with(@class, '- topic/desc ')]">
+<!ENTITY topic_desc "*[name(.) = 'desc' or contains(@class, ' topic/desc ')]">
 
 <!-- ===========================================================================
 topic/dd
 -->
 <!ENTITY topic_dd "*[
   name(.) = 'dd' or name(.) = 'pd' or
-  starts-with(@class, '- topic/dd ')]">
+  contains(@class, ' topic/dd ')]">
 
 <!-- ===========================================================================
 topic/ddhd
 -->
-<!ENTITY topic_ddhd "*[name(.) = 'ddhd' or starts-with(@class, '- topic/ddhd ')]">
+<!ENTITY topic_ddhd "*[name(.) = 'ddhd' or contains(@class, ' topic/ddhd ')]">
 
 <!-- ===========================================================================
 topic/dl
 -->
 <!ENTITY topic_dl "*[
   name(.) = 'dl' or name(.) = 'parml' or
-  starts-with(@class, '- topic/dl ')]">
+  contains(@class, ' topic/dl ')]">
 
 <!-- ===========================================================================
 topic/dlentry
 -->
 <!ENTITY topic_dlentry "*[
   name(.) = 'dlentry' or name(.) = 'plentry' or
-  starts-with(@class, '- topic/dlentry ')]">
+  contains(@class, ' topic/dlentry ')]">
 
 <!-- ===========================================================================
 topic/dlhead
 -->
-<!ENTITY topic_dlhead "*[name(.) = 'dlhead' or starts-with(@class, '- topic/dlhead ')]">
+<!ENTITY topic_dlhead "*[name(.) = 'dlhead' or contains(@class, ' topic/dlhead ')]">
 
 <!-- ===========================================================================
 topic/dt
 -->
 <!ENTITY topic_dt "*[
   name(.) = 'dt' or name(.) = 'pt' or
-  starts-with(@class, '- topic/dt ')]">
+  contains(@class, ' topic/dt ')]">
 
 <!-- ===========================================================================
 topic/dthd
 -->
-<!ENTITY topic_dthd "*[name(.) = 'dthd' or starts-with(@class, '- topic/dthd ')]">
+<!ENTITY topic_dthd "*[name(.) = 'dthd' or contains(@class, ' topic/dthd ')]">
 
 <!-- ===========================================================================
 topic/fig
 -->
-<!ENTITY topic_fig "*[name(.) = 'fig' or starts-with(@class, '- topic/fig ')]">
+<!ENTITY topic_fig "*[name(.) = 'fig' or contains(@class, ' topic/fig ')]">
 
 <!-- ===========================================================================
 topic/image
 -->
-<!ENTITY topic_image "*[name(.) = 'image' or starts-with(@class, '- topic/image ')]">
+<!ENTITY topic_image "*[name(.) = 'image' or contains(@class, ' topic/image ')]">
 
 <!-- ===========================================================================
 topic/itemgroup
 -->
 <!ENTITY topic_info "*[
-  name(.) = 'info' or starts-with(@class, '- topic/itemgroup task/info ')]">
+  name(.) = 'info' or contains(@class, ' topic/itemgroup task/info ')]">
 <!ENTITY topic_stepresult "*[
-  name(.) = 'stepresult' or starts-with(@class, '- topic/itemgroup task/stepresult ')]">
+  name(.) = 'stepresult' or contains(@class, ' topic/itemgroup task/stepresult ')]">
 <!ENTITY topic_stepxmp "*[
-  name(.) = 'stepxmp' or starts-with(@class, '- topic/itemgroup task/stepxmp ')]">
+  name(.) = 'stepxmp' or contains(@class, ' topic/itemgroup task/stepxmp ')]">
 <!ENTITY topic_tutorialinfo "*[
-  name(.) = 'tutorialinfo' or starts-with(@class, '- topic/itemgroup task/tutorialinfo ')]">
+  name(.) = 'tutorialinfo' or contains(@class, ' topic/itemgroup task/tutorialinfo ')]">
 
 <!-- ===========================================================================
 topic/keyword
 -->
 <!ENTITY topic_cmdname "*[
-  name(.) = 'cmdname' or starts-with(@class, '- topic/keyword sw-d/cmdname ')]">
+  name(.) = 'cmdname' or contains(@class, ' topic/keyword sw-d/cmdname ')]">
 <!ENTITY topic_varname "*[
-  name(.) = 'varname' or starts-with(@class, '- topic/keyword sw-d/varname ')]">
+  name(.) = 'varname' or contains(@class, ' topic/keyword sw-d/varname ')]">
 <!ENTITY topic_wintitle "*[
-  name(.) = 'wintitle' or starts-with(@class, '- topic/keyword sw-d/wintitle ')]">
+  name(.) = 'wintitle' or contains(@class, ' topic/keyword sw-d/wintitle ')]">
 
 <!-- ===========================================================================
 topic/li
 -->
 <!ENTITY topic_choice "*[
-  name(.) = 'choice' or starts-with(@class, '- topic/li task/choice ')]">
+  name(.) = 'choice' or contains(@class, ' topic/li task/choice ')]">
 <!ENTITY topic_step "*[
-  name(.) = 'step' or starts-with(@class, '- topic/li task/step ')]">
+  name(.) = 'step' or contains(@class, ' topic/li task/step ')]">
 <!ENTITY topic_stepsection "*[
-  name(.) = 'stepsection' or starts-with(@class, '- topic/li task/stepsection ')]">
+  name(.) = 'stepsection' or contains(@class, ' topic/li task/stepsection ')]">
 <!ENTITY topic_substep "*[
-  name(.) = 'substep' or starts-with(@class, '- topic/li task/substep ')]">
+  name(.) = 'substep' or contains(@class, ' topic/li task/substep ')]">
 <!ENTITY topic_li "*[
   name(.) = 'li' or (
-  starts-with(@class, '- topic/li ')
-  and not(starts-with(@class, '- topic/li task/choice '))
-  and not(starts-with(@class, '- topic/li task/step '))
-  and not(starts-with(@class, '- topic/li task/stepsection '))
-  and not(starts-with(@class, '- topic/li task/substep '))
+  contains(@class, ' topic/li ')
+  and not(contains(@class, ' topic/li task/choice '))
+  and not(contains(@class, ' topic/li task/step '))
+  and not(contains(@class, ' topic/li task/stepsection '))
+  and not(contains(@class, ' topic/li task/substep '))
   )]">
 <!ENTITY topic_li_all "*[
   name(.) = 'li' or name(.) = 'choice' or name(.) = 'step' or
   name(.) = 'stepsection' or name(.) = 'substep' or
-  starts-with(@class, '- topic/li ')
+  contains(@class, ' topic/li ')
   ]">
 
 <!-- ===========================================================================
 topic/link
 -->
-<!ENTITY topic_link "*[name(.) = 'link' or starts-with(@class, '- topic/link ')]">
+<!ENTITY topic_link "*[name(.) = 'link' or contains(@class, ' topic/link ')]">
 
 <!-- ===========================================================================
 topic/linkinfo
 -->
-<!ENTITY topic_linkinfo "*[name(.) = 'linkinfo' or starts-with(@class, '- topic/linkinfo ')]">
+<!ENTITY topic_linkinfo "*[name(.) = 'linkinfo' or contains(@class, ' topic/linkinfo ')]">
 
 <!-- ===========================================================================
 topic/linklist
 -->
-<!ENTITY topic_linklist "*[name(.) = 'linklist' or starts-with(@class, '- topic/linklist ')]">
+<!ENTITY topic_linklist "*[name(.) = 'linklist' or contains(@class, ' topic/linklist ')]">
 
 <!-- ===========================================================================
 topic/linkpool
 -->
-<!ENTITY topic_linkpool "*[name(.) = 'linkpool' or starts-with(@class, '- topic/linkpool ')]">
+<!ENTITY topic_linkpool "*[name(.) = 'linkpool' or contains(@class, ' topic/linkpool ')]">
 
 <!-- ===========================================================================
 topic/linktext
 -->
-<!ENTITY topic_linktext "*[name(.) = 'linktext' or starts-with(@class, '- topic/linktext ')]">
+<!ENTITY topic_linktext "*[name(.) = 'linktext' or contains(@class, ' topic/linktext ')]">
 
 <!-- ===========================================================================
 topic/navtitle
 -->
-<!ENTITY topic_navtitle "*[name(.) = 'navtitle' or starts-with(@class, '- topic/navtitle ')]">
+<!ENTITY topic_navtitle "*[name(.) = 'navtitle' or contains(@class, ' topic/navtitle ')]">
 
 <!-- ===========================================================================
 topic/note
 -->
-<!ENTITY topic_note "*[name(.) = 'note' or starts-with(@class, '- topic/note ')]">
+<!ENTITY topic_note "*[name(.) = 'note' or contains(@class, ' topic/note ')]">
 
 <!-- ===========================================================================
 topic/object
 -->
-<!ENTITY topic_object "*[name(.) = 'object' or starts-with(@class, '- topic/object ')]">
+<!ENTITY topic_object "*[name(.) = 'object' or contains(@class, ' topic/object ')]">
 
 <!-- ===========================================================================
 topic/ol
 -->
 <!ENTITY topic_steps "*[
-  name(.) = 'steps' or starts-with(@class, '- topic/ol task/steps ')]">
+  name(.) = 'steps' or contains(@class, ' topic/ol task/steps ')]">
 <!ENTITY topic_steps-unordered "*[
-  name(.) = 'steps-unordered' or starts-with(@class, '- topic/ol task/steps-unordered ')]">
+  name(.) = 'steps-unordered' or contains(@class, ' topic/ol task/steps-unordered ')]">
 <!ENTITY topic_substeps "*[
-  name(.) = 'substeps' or starts-with(@class, '- topic/ol task/substeps ')]">
+  name(.) = 'substeps' or contains(@class, ' topic/ol task/substeps ')]">
 <!ENTITY topic_ol "*[
   name(.) = 'ol' or (
-  starts-with(@class, '- topic/ol ')
-  and not(starts-with(@class, '- topic/ol task/steps '))
-  and not(starts-with(@class, '- topic/ol task/steps-unordered '))
-  and not(starts-with(@class, '- topic/ol task/substeps '))
+  contains(@class, ' topic/ol ')
+  and not(contains(@class, ' topic/ol task/steps '))
+  and not(contains(@class, ' topic/ol task/steps-unordered '))
+  and not(contains(@class, ' topic/ol task/substeps '))
 )]">
 <!ENTITY topic_ol_all "*[
   name(.) = 'ol' or name(.) = 'steps' or name(.) = 'steps-unordered' or name(.) = 'substeps' or
-  starts-with(@class, '- topic/ol ')
+  contains(@class, ' topic/ol ')
   ]">
 
 <!-- ===========================================================================
 topic/p
 -->
-<!ENTITY topic_p "*[name(.) = 'p' or starts-with(@class, '- topic/p ')]">
+<!ENTITY topic_p "*[name(.) = 'p' or contains(@class, ' topic/p ')]">
 
 <!-- ===========================================================================
 topic/param
 -->
-<!ENTITY topic_param "*[name(.) = 'param' or starts-with(@class, '- topic/param ')]">
+<!ENTITY topic_param "*[name(.) = 'param' or contains(@class, ' topic/param ')]">
 
 <!-- ===========================================================================
 topic/ph
 -->
 <!ENTITY topic_b "*[
-  name(.) = 'b' or starts-with(@class, '- topic/ph hi-d/b ')]">
+  name(.) = 'b' or contains(@class, ' topic/ph hi-d/b ')]">
 <!ENTITY topic_cmd "*[
-  name(.) = 'cmd' or starts-with(@class, '- topic/ph task/cmd ')]">
+  name(.) = 'cmd' or contains(@class, ' topic/ph task/cmd ')]">
 <!ENTITY topic_codeph "*[
-  name(.) = 'codeph' or starts-with(@class, '- topic/ph pr-d/codeph ')]">
+  name(.) = 'codeph' or contains(@class, ' topic/ph pr-d/codeph ')]">
 <!ENTITY topic_filepath "*[
-  name(.) = 'filepath' or starts-with(@class, '- topic/ph sw-d/filepath ')]">
+  name(.) = 'filepath' or contains(@class, ' topic/ph sw-d/filepath ')]">
 <!ENTITY topic_i "*[
-  name(.) = 'i' or starts-with(@class, '- topic/ph hi-d/i ')]">
+  name(.) = 'i' or contains(@class, ' topic/ph hi-d/i ')]">
 <!ENTITY topic_mainbooktitle "*[
-  name(.) = 'mainbooktitle' or starts-with(@class, '- topic/ph bookmap/mainbooktitle ')]">
+  name(.) = 'mainbooktitle' or contains(@class, ' topic/ph bookmap/mainbooktitle ')]">
 <!ENTITY topic_menucascade "*[
-  name(.) = 'menucascade' or starts-with(@class, '- topic/ph hi-d/menucascade ')]">
+  name(.) = 'menucascade' or contains(@class, ' topic/ph hi-d/menucascade ')]">
 <!ENTITY topic_systemoutput "*[
-  name(.) = 'systemoutput' or starts-with(@class, '- topic/ph sw-d/systemoutput ')]">
+  name(.) = 'systemoutput' or contains(@class, ' topic/ph sw-d/systemoutput ')]">
 <!ENTITY topic_tt "*[
-  name(.) = 'tt' or starts-with(@class, '- topic/ph hi-d/tt ')]">
+  name(.) = 'tt' or contains(@class, ' topic/ph hi-d/tt ')]">
 <!ENTITY topic_u "*[
-  name(.) = 'u' or starts-with(@class, '- topic/ph hi-d/u ')]">
+  name(.) = 'u' or contains(@class, ' topic/ph hi-d/u ')]">
 <!ENTITY topic_uicontrol "*[
-  name(.) = 'uicontrol' or starts-with(@class, '- topic/ph ui-d/uicontrol ')]">
+  name(.) = 'uicontrol' or contains(@class, ' topic/ph ui-d/uicontrol ')]">
 <!ENTITY topic_userinput "*[
-  name(.) = 'userinput' or starts-with(@class, '- topic/ph sw-d/userinput ')]">
+  name(.) = 'userinput' or contains(@class, ' topic/ph sw-d/userinput ')]">
 
 <!-- ===========================================================================
 topic/pre
 -->
 <!ENTITY topic_codeblock "*[
-  name(.) = 'codeblock' or starts-with(@class, '- topic/pre pr-d/codeblock ')]">
+  name(.) = 'codeblock' or contains(@class, ' topic/pre pr-d/codeblock ')]">
 <!ENTITY topic_pre "*[
   name(.) = 'pre' or (
-  starts-with(@class, '- topic/pre ')
-  and not(starts-with(@class, '- topic/pre pr-d/codeblock '))
+  contains(@class, ' topic/pre ')
+  and not(contains(@class, ' topic/pre pr-d/codeblock '))
   )]">
 <!ENTITY topic_pre_all "*[
   name(.) = 'pre' or name(.) = 'codeblock' or
-  starts-with(@class, '- topic/pre ')
+  contains(@class, ' topic/pre ')
   ]">
 
 <!-- ===========================================================================
 topic/prolog
 -->
-<!ENTITY topic_prolog "*[name(.) = 'prolog' or starts-with(@class, '- topic/prolog ')]">
+<!ENTITY topic_prolog "*[name(.) = 'prolog' or contains(@class, ' topic/prolog ')]">
 
 <!-- ===========================================================================
 topic/publisher
 -->
-<!ENTITY topic_publisher "*[name(.) = 'publisher' or starts-with(@class, '- topic/publisher ')]">
+<!ENTITY topic_publisher "*[name(.) = 'publisher' or contains(@class, ' topic/publisher ')]">
 
 <!-- ===========================================================================
 topic/related-links
 -->
-<!ENTITY topic_related-links "*[name(.) = 'related-links' or starts-with(@class, '- topic/related-links ')]">
+<!ENTITY topic_related-links "*[name(.) = 'related-links' or contains(@class, ' topic/related-links ')]">
 
 <!-- ===========================================================================
 topic/section
 -->
 <!ENTITY topic_example "*[
-  name(.) = 'example' or starts-with(@class, '- topic/section topic/example ')]">
+  name(.) = 'example' or contains(@class, ' topic/section topic/example ')]">
 <!ENTITY topic_context "*[
-  name(.) = 'context' or starts-with(@class, '- topic/section task/context ')]">
+  name(.) = 'context' or contains(@class, ' topic/section task/context ')]">
 <!ENTITY topic_postreq "*[
-  name(.) = 'postreq' or starts-with(@class, '- topic/section task/postreq ')]">
+  name(.) = 'postreq' or contains(@class, ' topic/section task/postreq ')]">
 <!ENTITY topic_prereq  "*[
-  name(.) = 'prereq'  or starts-with(@class, '- topic/section task/prereq ')]">
+  name(.) = 'prereq'  or contains(@class, ' topic/section task/prereq ')]">
 <!ENTITY topic_refsyn  "*[
-  name(.) = 'refsyn'  or starts-with(@class, '- topic/section reference/refsyn ')]">
+  name(.) = 'refsyn'  or contains(@class, ' topic/section reference/refsyn ')]">
 <!ENTITY topic_result  "*[
-  name(.) = 'result'  or starts-with(@class, '- topic/section task/result ')]">
+  name(.) = 'result'  or contains(@class, ' topic/section task/result ')]">
 <!ENTITY topic_steps-informal "*[
-  name(.) = 'steps-informal'  or starts-with(@class, '- topic/section task/steps-informal ')]">
+  name(.) = 'steps-informal'  or contains(@class, ' topic/section task/steps-informal ')]">
 <!ENTITY topic_section "*[
   name(.) = 'section'  or (
-  starts-with(@class, '- topic/section ')
-  and not(starts-with(@class, '- topic/section topic/example '))
-  and not(starts-with(@class, '- topic/section task/context '))
-  and not(starts-with(@class, '- topic/section task/postreq '))
-  and not(starts-with(@class, '- topic/section task/prereq '))
-  and not(starts-with(@class, '- topic/section reference/refsyn '))
-  and not(starts-with(@class, '- topic/section task/result '))
-  and not(starts-with(@class, '- topic/section task/steps-informal '))
+  contains(@class, ' topic/section ')
+  and not(contains(@class, ' topic/section topic/example '))
+  and not(contains(@class, ' topic/section task/context '))
+  and not(contains(@class, ' topic/section task/postreq '))
+  and not(contains(@class, ' topic/section task/prereq '))
+  and not(contains(@class, ' topic/section reference/refsyn '))
+  and not(contains(@class, ' topic/section task/result '))
+  and not(contains(@class, ' topic/section task/steps-informal '))
   )]">
 <!ENTITY topic_section_all "*[
   name(.) = 'section' or name(.) = 'context' or name(.) = 'example' or
   name(.) = 'prereq'  or name(.) = 'postreq' or name(.) = 'refsyn'  or
   name(.) = 'result'  or name(.) = 'steps-informal' or
-  starts-with(@class, '- topic/section ')
+  contains(@class, ' topic/section ')
   ]">
 
 <!-- ===========================================================================
 topic/shortdesc
 -->
-<!ENTITY topic_shortdesc "*[name(.) = 'shortdesc' or starts-with(@class, '- topic/shortdesc ')]">
+<!ENTITY topic_shortdesc "*[name(.) = 'shortdesc' or contains(@class, ' topic/shortdesc ')]">
 
 <!-- ===========================================================================
 topic/simpletable
 -->
 <!ENTITY topic_simpletable "*[
   name(.) = 'simpletable' or name(.) = 'choicetable' or name(.) = 'properties' or
-  starts-with(@class, '- topic/simpletable ')
+  contains(@class, ' topic/simpletable ')
   ]">
 
 <!-- ===========================================================================
 topic/sl
 -->
-<!ENTITY topic_sl "*[name(.) = 'sl' or starts-with(@class, '- topic/sl ')]">
+<!ENTITY topic_sl "*[name(.) = 'sl' or contains(@class, ' topic/sl ')]">
 
  <!-- ===========================================================================
 topic/sli
 -->
-<!ENTITY topic_sli "*[name(.) = 'sli' or starts-with(@class, '- topic/sli ')]">
+<!ENTITY topic_sli "*[name(.) = 'sli' or contains(@class, ' topic/sli ')]">
 
 <!-- ===========================================================================
 topic/stentry
@@ -397,7 +397,7 @@ topic/stentry
   name(.) = 'choption'   or name(.) = 'choptionhd'  or name(.) = 'propdesc'   or
   name(.) = 'proptype'   or name(.) = 'propvalue'   or name(.) = 'propdeschd' or
   name(.) = 'proptypehd' or name(.) = 'propvaluehd' or
-  starts-with(@class, '- topic/stentry ')
+  contains(@class, ' topic/stentry ')
   ]">
 
 <!-- ===========================================================================
@@ -405,7 +405,7 @@ topic/sthead
 -->
 <!ENTITY topic_sthead "*[
   name(.) = 'sthead' or name(.) = 'chhead' or name(.) = 'prophead' or
-  starts-with(@class, '- topic/sthead ')
+  contains(@class, ' topic/sthead ')
   ]">
 
 <!-- ===========================================================================
@@ -413,33 +413,33 @@ topic/strow
 -->
 <!ENTITY topic_strow "*[
   name(.) = 'strow' or name(.) = 'chrow' or name(.) = 'property' or
-  starts-with(@class, '- topic/strow ')
+  contains(@class, ' topic/strow ')
   ]">
 
 <!-- ===========================================================================
 topic/text
 -->
-<!ENTITY topic_text "*[name(.) = 'text' or starts-with(@class, '- topic/text ')]">
+<!ENTITY topic_text "*[name(.) = 'text' or contains(@class, ' topic/text ')]">
 
 <!-- ===========================================================================
 topic/title
 -->
 <!ENTITY topic_booktitle "*[
-  name(.) = 'booktitle' or starts-with(@class, '- topic/title bookmap/booktitle ')]">
+  name(.) = 'booktitle' or contains(@class, ' topic/title bookmap/booktitle ')]">
 <!ENTITY topic_title "*[
   name(.) = 'title' or (
-  starts-with(@class, '- topic/title ')
-  and not(starts-with(@class, '- topic/title bookmap/booktitle '))
+  contains(@class, ' topic/title ')
+  and not(contains(@class, ' topic/title bookmap/booktitle '))
   )]">
 <!ENTITY topic_title_all "*[
   name(.) = 'title' or name(.) = 'booktitle' or
-  starts-with(@class, '- topic/title ')
+  contains(@class, ' topic/title ')
 ]">
 
 <!-- ===========================================================================
 topic/titlealts
 -->
-<!ENTITY topic_titlealts "*[name(.) = 'titlealts' or starts-with(@class, '- topic/titlealts ')]">
+<!ENTITY topic_titlealts "*[name(.) = 'titlealts' or contains(@class, ' topic/titlealts ')]">
 
 <!-- ===========================================================================
 topic/topic
@@ -447,31 +447,31 @@ topic/topic
 <!ENTITY topic_topic "*[
   name(.) = 'topic' or name(.) = 'concept' or name(.) = 'reference' or
   name(.) = 'task' or
-  starts-with(@class, '- topic/topic ')
+  contains(@class, ' topic/topic ')
   ]">
 <!ENTITY topic_topic_all "*[
   name(.) = 'topic' or name(.) = 'concept' or name(.) = 'reference' or
   name(.) = 'task' or
-  starts-with(@class, '- topic/topic ')
+  contains(@class, ' topic/topic ')
   ]">
 
 <!-- ===========================================================================
 topic/ul
 -->
 <!ENTITY topic_choices "*[
-  name(.) = 'choices' or starts-with(@class, '- topic/ul task/choices ')]">
+  name(.) = 'choices' or contains(@class, ' topic/ul task/choices ')]">
 <!ENTITY topic_ul "*[
   name(.) = 'ul' or (
-  starts-with(@class, '- topic/ul ')
-  and not(starts-with(@class, '- topic/ul task/choices '))
+  contains(@class, ' topic/ul ')
+  and not(contains(@class, ' topic/ul task/choices '))
   )]">
 <!ENTITY topic_ul_all "*[
   name(.) = 'ul' or name(.) = 'choices' or
-  starts-with(@class, '- topic/ul ')
+  contains(@class, ' topic/ul ')
   ]">
 
 <!-- ===========================================================================
 topic/xref
 -->
-<!ENTITY topic_xref "*[name(.) = 'xref' or starts-with(@class, '- topic/xref ')]">
+<!ENTITY topic_xref "*[name(.) = 'xref' or contains(@class, ' topic/xref ')]">
 
