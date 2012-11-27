@@ -270,9 +270,12 @@ page or section cannot be found, ${xref} is used as the text content.
               <xsl:when test="$href">
                 <xsl:value-of select="$href"/>
               </xsl:when>
-              <xsl:otherwise>
+              <xsl:when test="$xref">
                 <xsl:value-of select="$xref"/>
-              </xsl:otherwise>
+              </xsl:when>
+              <xsl:when test="$action">
+                <xsl:value-of select="$action"/>
+              </xsl:when>
             </xsl:choose>
           </xsl:otherwise>
         </xsl:choose>

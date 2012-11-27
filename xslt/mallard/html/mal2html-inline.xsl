@@ -99,13 +99,18 @@ an #{xref} or #{href} attribute.
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
+    <xsl:variable name="href">
+      <xsl:if test="$node/@action | $node/@xref | $node/@href">
+        <xsl:call-template name="mal.link.target">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="$node/@action | $node/@xref | $node/@href">
+      <xsl:when test="normalize-space($href) != ''">
         <a>
           <xsl:attribute name="href">
-            <xsl:call-template name="mal.link.target">
-              <xsl:with-param name="node" select="$node"/>
-            </xsl:call-template>
+            <xsl:value-of select="$href"/>
           </xsl:attribute>
           <xsl:attribute name="title">
             <xsl:call-template name="mal.link.tooltip">
