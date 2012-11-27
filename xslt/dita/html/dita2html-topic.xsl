@@ -481,6 +481,7 @@ span.b {
 }
 span.i { font-style: italic; }
 span.u { text-decoration: underline; }
+span.shortcut { text-decoration: underline; }
 li.stepsection {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   list-style-type: none;

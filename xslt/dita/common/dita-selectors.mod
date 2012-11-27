@@ -191,6 +191,8 @@ topic/keyword
   name(.) = 'cmdname' or contains(@class, ' topic/keyword sw-d/cmdname ')]">
 <!ENTITY topic_shape "*[
   name(.) = 'shape' or contains(@class, ' topic/keyword ut-d/shape ')]">
+<!ENTITY topic_shortcut "*[
+  name(.) = 'shortcut' or contains(@class, ' topic/keyword ui-d/shortcut ')]">
 <!ENTITY topic_varname "*[
   name(.) = 'varname' or contains(@class, ' topic/keyword sw-d/varname ')]">
 <!ENTITY topic_wintitle "*[
@@ -327,13 +329,16 @@ topic/pre
 -->
 <!ENTITY topic_codeblock "*[
   name(.) = 'codeblock' or contains(@class, ' topic/pre pr-d/codeblock ')]">
+<!ENTITY topic_screen "*[
+  name(.) = 'screen' or contains(@class, ' topic/pre ui-d/screen ')]">
 <!ENTITY topic_pre "*[
   name(.) = 'pre' or (
   contains(@class, ' topic/pre ')
   and not(contains(@class, ' topic/pre pr-d/codeblock '))
+  and not(contains(@class, ' topic/pre ui-d/screen '))
   )]">
 <!ENTITY topic_pre_all "*[
-  name(.) = 'pre' or name(.) = 'codeblock' or
+  name(.) = 'pre' or name(.) = 'codeblock' or name(.) = 'screen' or
   contains(@class, ' topic/pre ')
   ]">
 

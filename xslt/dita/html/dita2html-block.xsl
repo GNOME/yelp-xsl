@@ -107,6 +107,7 @@ FIXME
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:variable name="children" select="$conref/node()"/>
   <div>
     <xsl:call-template name="dita.id">
       <xsl:with-param name="node" select="$node"/>
@@ -120,7 +121,19 @@ FIXME
       </xsl:attribute>
     </xsl:if>
     <pre class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
+      <!-- Strip off a leading newline -->
+      <xsl:if test="$children[1]/self::text()">
+        <xsl:choose>
+          <xsl:when test="starts-with($node/text()[1], '&#x000A;')">
+            <xsl:value-of select="substring-after($node/text()[1], '&#x000A;')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$node/text()[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+      <xsl:apply-templates mode="dita2html.topic.mdoe"
+                           select="$children[not(position() = 1 and self::text())]"/>
     </pre>
   </div>
 </xsl:template>
@@ -289,6 +302,13 @@ FIXME
 <xsl:template mode="dita2html.topic.mode" match="&topic_result;">
   <xsl:call-template name="dita2html.div">
     <xsl:with-param name="class" select="'result'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- = screen = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_screen;">
+  <xsl:call-template name="dita2html.pre">
+    <xsl:with-param name="class" select="'screen'"/>
   </xsl:call-template>
 </xsl:template>
 

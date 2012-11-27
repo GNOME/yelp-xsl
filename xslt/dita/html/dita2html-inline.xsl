@@ -133,6 +133,13 @@ FIXME
   </xsl:for-each>
 </xsl:template>
 
+<!-- = shortcut = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_shortcut;">
+  <xsl:call-template name="dita2html.span">
+    <xsl:with-param name="class" select="'shortcut'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = systemoutput = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_systemoutput;">
   <xsl:call-template name="dita2html.span">
