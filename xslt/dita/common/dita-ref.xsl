@@ -120,8 +120,14 @@ when creating output files from DITA topics.
 
 <xsl:template name="dita.ref.href.target">
   <xsl:param name="node" select="."/>
-  <xsl:param name="href" select="$node/@href"/>
-  <xsl:variable name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:param name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:param name="href">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'href'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:param>
   <xsl:variable name="format">
     <xsl:call-template name="dita.ref.conref.attr">
       <xsl:with-param name="attr" select="'format'"/>
@@ -205,7 +211,84 @@ when creating output files from DITA topics.
 
 <xsl:template name="dita.ref.href.target.custom">
   <xsl:param name="node" select="."/>
-  <xsl:param name="href" select="$node/@href"/>
+  <xsl:param name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:param name="href">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'href'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:param>
+</xsl:template>
+
+<xsl:template name="dita.ref.href.content">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:param name="href">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'href'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:variable name="format">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'format'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="scope">
+    <xsl:call-template name="dita.ref.conref.attr">
+      <xsl:with-param name="attr" select="'scope'"/>
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conref" select="$conref"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$conref/node()[not(self::&topic_desc;)]">
+      <xsl:apply-templates mode="dita2html.topic.mode"
+                           select="$conref/node()[not(self::&topic_desc;)]"/>
+    </xsl:when>
+    <xsl:when test="$scope = 'external' or ($format != '' and $format != 'dita')">
+      <xsl:value-of select="@href"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="uri">
+        <xsl:choose>
+          <xsl:when test="contains($href, '#')">
+            <xsl:value-of select="substring-before($href, '#')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$href"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:for-each select="document($uri, .)">
+        <xsl:variable name="frag">
+          <xsl:choose>
+            <xsl:when test="contains($href, '#')">
+              <xsl:value-of select="substring-after($href, '#')"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="/*/@id"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="tnode" select="key('dita.id.key', $frag)"/>
+        <xsl:choose>
+          <xsl:when test="$tnode/&topic_titlealts;/&topic_navtitle;">
+            <xsl:apply-templates mode="dita.ref.content.mode"
+                                 select="$tnode/&topic_titlealts;/&topic_navtitle;/node()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="dita.ref.content.mode"
+                                 select="$tnode/&topic_title_all;/node()"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="dita.ref.topicref.navtitle">

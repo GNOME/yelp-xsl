@@ -148,7 +148,24 @@ topic/dthd
 <!-- ===========================================================================
 topic/fig
 -->
-<!ENTITY topic_fig "*[name(.) = 'fig' or contains(@class, ' topic/fig ')]">
+<!ENTITY topic_imagemap "*[
+  name(.) = 'imagemap' or contains(@class, ' topic/fig ut-d/imagemap ')]">
+<!ENTITY topic_fig "*[
+  name(.) = 'fig' or (
+  contains(@class, ' topic/fig ')
+  and not(contains(@class, ' topic/fig ut-d/imagemap '))
+  )]">
+
+<!-- ===========================================================================
+topic/figgroup
+-->
+<!ENTITY topic_area "*[
+  name(.) = 'area' or contains(@class, ' topic/figgroup ut-d/area ')]">
+<!ENTITY topic_figgroup "*[
+  name(.) = 'figgroup' or (
+  contains(@class, ' topic/figgroup ')
+  and not(contains(@class, ' topic/figgroup ut-d/area '))
+  )]">
 
 <!-- ===========================================================================
 topic/image
@@ -172,6 +189,8 @@ topic/keyword
 -->
 <!ENTITY topic_cmdname "*[
   name(.) = 'cmdname' or contains(@class, ' topic/keyword sw-d/cmdname ')]">
+<!ENTITY topic_shape "*[
+  name(.) = 'shape' or contains(@class, ' topic/keyword ut-d/shape ')]">
 <!ENTITY topic_varname "*[
   name(.) = 'varname' or contains(@class, ' topic/keyword sw-d/varname ')]">
 <!ENTITY topic_wintitle "*[
@@ -280,6 +299,8 @@ topic/ph
   name(.) = 'b' or contains(@class, ' topic/ph hi-d/b ')]">
 <!ENTITY topic_cmd "*[
   name(.) = 'cmd' or contains(@class, ' topic/ph task/cmd ')]">
+<!ENTITY topic_coords "*[
+  name(.) = 'coords' or contains(@class, ' topic/ph ut-d/coords ')]">
 <!ENTITY topic_codeph "*[
   name(.) = 'codeph' or contains(@class, ' topic/ph pr-d/codeph ')]">
 <!ENTITY topic_filepath "*[

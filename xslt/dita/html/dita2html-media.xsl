@@ -35,6 +35,7 @@ REMARK: Describe this module
 
 <!-- = image = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_image;">
+  <xsl:param name="usemap" select="''"/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="placement">
     <xsl:call-template name="dita.ref.conref.attr">
@@ -49,6 +50,7 @@ REMARK: Describe this module
         <div class="inner">
           <xsl:call-template name="_dita2html.image.img">
             <xsl:with-param name="conref" select="$conref"/>
+            <xsl:with-param name="usemap" select="$usemap"/>
           </xsl:call-template>
         </div>
       </div>
@@ -57,6 +59,7 @@ REMARK: Describe this module
       <span class="media media-image">
         <xsl:call-template name="_dita2html.image.img">
           <xsl:with-param name="conref" select="$conref"/>
+          <xsl:with-param name="usemap" select="$usemap"/>
         </xsl:call-template>
       </span>
     </xsl:otherwise>
@@ -67,6 +70,7 @@ REMARK: Describe this module
 <xsl:template name="_dita2html.image.img">
   <xsl:param name="node" select="."/>
   <xsl:param name="conref" select="yelp:dita.ref.conref($node)"/>
+  <xsl:param name="usemap" select="''"/>
   <xsl:variable name="href">
     <xsl:call-template name="dita.ref.conref.attr">
       <xsl:with-param name="attr" select="'href'"/>
@@ -103,6 +107,11 @@ REMARK: Describe this module
         </xsl:attribute>
       </xsl:if>
     </xsl:if>
+    <xsl:if test="$usemap != ''">
+      <xsl:attribute name="usemap">
+        <xsl:value-of select="$usemap"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:choose>
       <xsl:when test="&topic_alt;">
         <xsl:attribute name="alt">
@@ -121,6 +130,48 @@ REMARK: Describe this module
       </xsl:when>
     </xsl:choose>
   </img>
+</xsl:template>
+
+<!-- = imagemap = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_imagemap;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <xsl:variable name="name">
+    <xsl:choose>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="generate-id()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_image;">
+    <xsl:with-param name="usemap" select="concat('#', $name)"/>
+  </xsl:apply-templates>
+  <map name="{$name}">
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_area;"/>
+  </map>
+</xsl:template>
+
+<!-- = area = -->
+<xsl:template mode="dita2html.topic.mode" match="&topic_area;">
+  <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
+  <area>
+    <xsl:attribute name="shape">
+      <xsl:value-of select="$conref/&topic_shape;"/>
+    </xsl:attribute>
+    <xsl:attribute name="coords">
+      <xsl:value-of select="$conref/&topic_coords;"/>
+    </xsl:attribute>
+    <xsl:for-each select="&topic_xref;[1]">
+      <xsl:attribute name="href">
+        <xsl:call-template name="dita.ref.href.target"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:call-template name="dita.ref.href.content"/>
+      </xsl:attribute>
+    </xsl:for-each>
+  </area>
 </xsl:template>
 
 <!-- = object = -->
@@ -146,7 +197,7 @@ REMARK: Describe this module
             </xsl:call-template>
           </xsl:attribute>
         </xsl:for-each>
-        <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_param;"/>
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_param;"/>
       </xsl:element>
     </div>
   </div>
