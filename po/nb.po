@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp-xsl 3.6.0\n"
+"Project-Id-Version: yelp-xsl 3.7.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-05 14:13+0100\n"
-"PO-Revision-Date: 2012-11-05 14:14+0100\n"
+"POT-Creation-Date: 2012-12-05 19:59+0100\n"
+"PO-Revision-Date: 2012-12-05 20:00+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. translate it to "predefinito:LTR", if it isn't default:LTR
 #. or default:RTL it will not work.
 #.
-#: yelp-xsl.xml.in:29
+#: yelp-xsl.xml.in:34
 msgid "default:LTR"
 msgstr "default:LTR"
 
@@ -34,7 +34,7 @@ msgstr "default:LTR"
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:42
+#: yelp-xsl.xml.in:47
 #, no-wrap
 msgid ", "
 msgstr ", "
@@ -47,7 +47,7 @@ msgstr ", "
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:55
+#: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
 msgstr ", og "
@@ -58,7 +58,7 @@ msgstr ", og "
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:66
+#: yelp-xsl.xml.in:71
 #, no-wrap
 msgid " and "
 msgstr " og "
@@ -72,7 +72,7 @@ msgstr " og "
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label questions.
 #.
-#: yelp-xsl.xml.in:81
+#: yelp-xsl.xml.in:86
 msgid "Q:"
 msgstr "Q:"
 
@@ -85,7 +85,7 @@ msgstr "Q:"
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label answers.
 #.
-#: yelp-xsl.xml.in:94
+#: yelp-xsl.xml.in:99
 msgid "A:"
 msgstr "A:"
 
@@ -93,25 +93,25 @@ msgstr "A:"
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
 #.
-#: yelp-xsl.xml.in:104
+#: yelp-xsl.xml.in:109
 msgid "About"
 msgstr "Om"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:109
+#: yelp-xsl.xml.in:114
 msgid "Advanced"
 msgstr "Avansert"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:114
+#: yelp-xsl.xml.in:119
 msgid "Bibliography"
 msgstr "Bibliografi"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:119
+#: yelp-xsl.xml.in:124
 msgid "Bug"
 msgstr "Feil"
 
@@ -119,31 +119,31 @@ msgstr "Feil"
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:127
+#: yelp-xsl.xml.in:132
 msgid "Candidate"
 msgstr "Kandidat"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an close button.
-#: yelp-xsl.xml.in:132
+#: yelp-xsl.xml.in:137
 msgid "Close"
 msgstr "Lukk"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:137
+#: yelp-xsl.xml.in:142
 msgid "Colophon"
 msgstr "Kolofon"
 
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:142
+#: yelp-xsl.xml.in:147
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:147
+#: yelp-xsl.xml.in:152
 msgid "Dedication"
 msgstr "Tilegnet"
 
@@ -151,13 +151,13 @@ msgstr "Tilegnet"
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:155
+#: yelp-xsl.xml.in:160
 msgid "Draft"
 msgstr "Skisse"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:160
+#: yelp-xsl.xml.in:165
 msgid "Edited By"
 msgstr "Redigert av"
 
@@ -165,19 +165,19 @@ msgstr "Redigert av"
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:168
+#: yelp-xsl.xml.in:173
 msgid "Final"
 msgstr "Endelig"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:173
+#: yelp-xsl.xml.in:178
 msgid "Glossary"
 msgstr "Ordbok"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:178
+#: yelp-xsl.xml.in:183
 msgid "Important"
 msgstr "Viktig"
 
@@ -185,50 +185,50 @@ msgstr "Viktig"
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:186
+#: yelp-xsl.xml.in:191
 msgid "Incomplete"
 msgstr "Uferdig"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:191
+#: yelp-xsl.xml.in:196
 msgid "Index"
 msgstr "Indeks"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:196
+#: yelp-xsl.xml.in:201
 msgid "Legal"
 msgstr "Juridisk"
 
 #. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:203
+#: yelp-xsl.xml.in:208
 msgid "License"
 msgstr "Lisens"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:208
+#: yelp-xsl.xml.in:213
 msgid "Maintained By"
 msgstr "Vedlikeholdt av"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:213
+#: yelp-xsl.xml.in:218
 msgid "More Information"
 msgstr "Mer informasjon"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:218
+#: yelp-xsl.xml.in:223
 msgid "Next"
 msgstr "Neste"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:223
+#: yelp-xsl.xml.in:228
 msgid "Note"
 msgstr "Merknad"
 
@@ -236,7 +236,7 @@ msgstr "Merknad"
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:231
+#: yelp-xsl.xml.in:236
 msgid "Other Credits"
 msgstr "Andre bidragsytere"
 
@@ -244,39 +244,45 @@ msgstr "Andre bidragsytere"
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:239
+#: yelp-xsl.xml.in:244
 msgid "Outdated"
 msgstr "Utdatert"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:244
+#: yelp-xsl.xml.in:249
 msgid "Pause"
 msgstr "Pause"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:249
+#: yelp-xsl.xml.in:254
 msgid "Play"
 msgstr "Spill av"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:254
+#: yelp-xsl.xml.in:259
 msgid "Previous"
 msgstr "Forrige"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+#: yelp-xsl.xml.in:264
+msgid "Published By"
+msgstr "Publisert av"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:262
+#: yelp-xsl.xml.in:272
 msgid "Ready for review"
 msgstr "Klar for gjennomsyn"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:267
+#: yelp-xsl.xml.in:277
 msgid "See Also"
 msgstr "Se også"
 
@@ -285,20 +291,20 @@ msgstr "Se også"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:276
+#: yelp-xsl.xml.in:286
 msgid "Scale images down"
 msgstr "Skaled ned bilder"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:281
+#: yelp-xsl.xml.in:291
 msgid "Sidebar"
 msgstr "Sidelinje"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:288
+#: yelp-xsl.xml.in:298
 msgid "Stub"
 msgstr "Stubbe"
 
@@ -306,19 +312,19 @@ msgstr "Stubbe"
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:296
+#: yelp-xsl.xml.in:306
 msgid "Synopsis"
 msgstr "Synopsis"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:301
+#: yelp-xsl.xml.in:311
 msgid "Tip"
 msgstr "Tips"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:306
+#: yelp-xsl.xml.in:316
 msgid "Translated By"
 msgstr "Oversatt av"
 
@@ -326,19 +332,19 @@ msgstr "Oversatt av"
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:314
+#: yelp-xsl.xml.in:324
 msgid "View images at normal size"
 msgstr "Vis bilder i normal størrelse"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:319
+#: yelp-xsl.xml.in:329
 msgid "Warning"
 msgstr "Advarsel"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:324
+#: yelp-xsl.xml.in:334
 msgid "Written By"
 msgstr "Skrevet av"
 
@@ -352,7 +358,7 @@ msgstr "Skrevet av"
 #.
 #. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:340
+#: yelp-xsl.xml.in:350
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Vis bibliografioppføring <biblioentry.label/>."
 
@@ -375,7 +381,7 @@ msgstr "Vis bibliografioppføring <biblioentry.label/>."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:363
+#: yelp-xsl.xml.in:373
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -392,7 +398,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation.label/> - The text content of the citation element, possibly
 #.                     as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:380
+#: yelp-xsl.xml.in:390
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -421,7 +427,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:409
+#: yelp-xsl.xml.in:419
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "fra <comment.name/> <comment.date/>"
 
@@ -449,7 +455,7 @@ msgstr "fra <comment.name/> <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:437
+#: yelp-xsl.xml.in:447
 msgid "from <comment.name/>"
 msgstr "fra <comment.name/>"
 
@@ -462,7 +468,7 @@ msgstr "fra <comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:450
+#: yelp-xsl.xml.in:460
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
@@ -474,7 +480,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:462
+#: yelp-xsl.xml.in:472
 msgid "Send email to ‘<string/>’."
 msgstr "Send e-post til «<string/>»."
 
@@ -486,7 +492,7 @@ msgstr "Send e-post til «<string/>»."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:474
+#: yelp-xsl.xml.in:484
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Les definisjonen for «<glossterm/>»."
 
@@ -507,7 +513,7 @@ msgstr "Les definisjonen for «<glossterm/>»."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:495
+#: yelp-xsl.xml.in:505
 msgid "See <glosssee/>."
 msgstr "Se <glosssee/>."
 
@@ -529,7 +535,7 @@ msgstr "Se <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:517
+#: yelp-xsl.xml.in:527
 msgid "See also <glosssee/>."
 msgstr "Se også <glosssee/>."
 
@@ -541,7 +547,7 @@ msgstr "Se også <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:529
+#: yelp-xsl.xml.in:539
 msgid "“<node/>”"
 msgstr "«<node/>»"
 
@@ -553,7 +559,7 @@ msgstr "«<node/>»"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:541
+#: yelp-xsl.xml.in:551
 msgid "‘<node/>’"
 msgstr "'<node/>'"
 
@@ -568,7 +574,7 @@ msgstr "'<node/>'"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:556
+#: yelp-xsl.xml.in:566
 msgid "See <seeie/>."
 msgstr "Se <seeie/>."
 
@@ -583,6 +589,6 @@ msgstr "Se <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:571
+#: yelp-xsl.xml.in:581
 msgid "See also <seeie/>."
 msgstr "Se også <seeie/>."
