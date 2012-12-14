@@ -79,6 +79,11 @@ as well as any special processing for child #{item} elements.
               <xsl:value-of select="concat('list-style-type:', @type)"/>
             </xsl:attribute>
           </xsl:if>
+          <xsl:if test="contains(concat(' ', @style, ' '), ' continues ')">
+            <xsl:attribute name="start">
+              <xsl:call-template name="mal.list.start"/>
+            </xsl:attribute>
+          </xsl:if>
           <xsl:apply-templates select="mal:item"/>
         </xsl:element>
       </div>
@@ -124,12 +129,43 @@ as well as any special processing for child #{item} elements.
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="region">
         <ol class="steps">
+          <xsl:if test="contains(concat(' ', @style, ' '), ' continues ')">
+            <xsl:attribute name="start">
+              <xsl:call-template name="mal.list.start"/>
+            </xsl:attribute>
+          </xsl:if>
           <xsl:apply-templates select="mal:item"/>
         </ol>
       </div>
     </div>
   </div>
 </xsl:if>
+</xsl:template>
+
+<xsl:template name="mal.list.start">
+  <xsl:param name="node" select="."/>
+  <xsl:choose>
+    <xsl:when test="contains(concat(' ', $node/@style, ' '), ' continues ')">
+      <xsl:variable name="prevlist"
+                    select="$node/preceding::*[name(.) = name($node)]
+                            [not(@type) and not($node/@type) or (@type = $node/@type)][1]"/>
+      <xsl:choose>
+        <xsl:when test="count($prevlist) = 0">1</xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="prevlength" select="count($prevlist/mal:item)"/>
+          <xsl:variable name="prevstart">
+            <xsl:call-template name="mal.list.start">
+              <xsl:with-param name="node" select="$prevlist"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:value-of select="$prevstart + $prevlength"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>1</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- = steps/item = -->
