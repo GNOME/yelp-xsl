@@ -1,3 +1,13 @@
+3.7.3
+=====
+* Added style="continues" for Mallard lists and steps
+* Better handling of broken internal Mallard links
+* Updated translations:
+  es    (Daniel Mustieles)
+  nb    (Kjartan Maraas)
+  pl    (Piotr Drąg)
+  sk    (Marian Scerbak)
+
 3.7.2
 =====
 * MathML support for Mallard and DocBook
