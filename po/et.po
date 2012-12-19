@@ -15,24 +15,26 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-29 23:25+0000\n"
-"PO-Revision-Date: 2012-03-01 12:44+0200\n"
+"POT-Creation-Date: 2012-12-18 07:45+0000\n"
+"PO-Revision-Date: 2012-12-19 18:51+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+#. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
 #. translate it to "predefinito:LTR", if it isn't default:LTR
 #. or default:RTL it will not work.
 #.
 msgid "default:LTR"
-msgstr "default:LTR"
+msgstr "LTR"
 
+#. (itstool) path: msg/msgstr
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
 #. string of ", ", a list would look like this: A, B, C, D.  Using the
@@ -44,6 +46,7 @@ msgstr "default:LTR"
 msgid ", "
 msgstr ", "
 
+#. (itstool) path: msg/msgstr
 #. This is used as the final separator in an inline list of three or
 #. more elements.  The string ", " will be used to separate all but
 #. the last pair of elements.  Using these two strings, a list of
@@ -55,6 +58,7 @@ msgstr ", "
 msgid ", and "
 msgstr " ja "
 
+#. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
 #.
@@ -64,6 +68,7 @@ msgstr " ja "
 msgid " and "
 msgstr " ja "
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before questions in a question-and-answer
@@ -75,6 +80,7 @@ msgstr " ja "
 msgid "Q:"
 msgstr "K:"
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before answers in a question-and-answer
@@ -86,135 +92,174 @@ msgstr "K:"
 msgid "A:"
 msgstr "V:"
 
+#. (itstool) path: msg/msgstr
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
 #.
 msgid "About"
 msgstr "Lähemalt"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an advanced note.
 msgid "Advanced"
 msgstr "Täiendav"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a bibliography.
 msgid "Bibliography"
 msgstr "Bibliograafia"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note about a software bug.
 msgid "Bug"
 msgstr "Viga"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
 msgid "Candidate"
 msgstr "Kandidaat"
 
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+msgid "Close"
+msgstr "Sulge"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
 msgid "Colophon"
 msgstr "Lõpumärgis"
 
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
 msgid "Dedication"
 msgstr "Pühendus"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
 msgid "Draft"
 msgstr "Mustand"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of editors.
 msgid "Edited By"
 msgstr "Toimetajad"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
 msgid "Final"
 msgstr "Valmis"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a glossary.
 msgid "Glossary"
 msgstr "Sõnaseletuste loend"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
 msgid "Important"
 msgstr "Oluline"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
 msgid "Incomplete"
 msgstr "Pooleliolev"
 
+#. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
 msgid "Index"
 msgstr "Sisuregister"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
 msgid "Legal"
 msgstr "Autoriõigus"
 
+#. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
 msgid "License"
 msgstr "Litsents"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
 msgid "Maintained By"
 msgstr "Haldajad"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
 msgid "More Information"
 msgstr "Veel infot"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
 msgid "Next"
 msgstr "Järgmine"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note.
 msgid "Note"
 msgstr "Märkus"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
 msgid "Other Credits"
 msgstr "Tänusõnad"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
 msgid "Outdated"
 msgstr "Aegunud"
 
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
 msgid "Pause"
 msgstr "Pausi"
 
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
 msgid "Play"
 msgstr "Esita"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
 msgid "Previous"
 msgstr "Eelmine"
 
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+msgid "Published By"
+msgstr "Väljaandja"
+
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
 msgid "Ready for review"
 msgstr "Valmis ülevaatuseks"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
 msgid "See Also"
 msgstr "Vaata ka"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
@@ -222,66 +267,52 @@ msgstr "Vaata ka"
 msgid "Scale images down"
 msgstr "Pilte vähendatakse"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
 msgid "Sidebar"
 msgstr "Külgriba"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
 msgid "Stub"
 msgstr "Alge"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
 msgid "Synopsis"
 msgstr "Sünopsis"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
 msgid "Tip"
 msgstr "Vihje"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of translators.
 msgid "Translated By"
 msgstr "Tõlkijad"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
 msgid "View images at normal size"
 msgstr "Pilte kuvatakse tavasuuruses"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
 msgid "Warning"
 msgstr "Hoiatus"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of authors.
 msgid "Written By"
 msgstr "Autorid"
 
-#. This is an image of the opening quotation character for your language.
-#. The image is used as a watermark on blockquote elements.  There are a
-#. number of different quote characters used by various languages, so the
-#. image name is translatable.  The name of the icon should be of the form
-#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
-#. quote character.  For example, some languages use the double angle quotation
-#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
-#.
-#. The image, however, is not automatically created.  Do not translate
-#. this to a value if there isn't a corresponding file in yelp-xsl under
-#. the directory icons/hicolor/48x48/status.
-#.
-#. Languages that use guillemets (angle quotation marks) should use either
-#. 00AB or 00BB, depending on whether the opening quotation is the left
-#. guillemet or the right guillemet.  Languages that use inverted comma
-#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
-#. don't make very nice watermarks, so if you would normally open a quote
-#. with single quotation marks in your language, use the corresponding
-#. double quotation mark for the watermark image.
-#.
-msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-201E.png"
-
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to bibliography entries.
@@ -289,11 +320,12 @@ msgstr "yelp-quote-201E.png"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <label/> - The term being defined by the glossary entry
+#. <biblioentry.label/> - The term being defined by the glossary entry
 #.
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Vaata bibliograafikakirjet <biblioentry.label/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
 #. a bibliography.  The content of the label is often an abbreviation
@@ -315,6 +347,7 @@ msgstr "Vaata bibliograafikakirjet <biblioentry.label/>."
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
 #. published works.  The content is typically an abbreviation of the
@@ -324,12 +357,13 @@ msgstr "[<biblioentry.label/>]"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#. as a link to an entry in the bibliography
 #.
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -340,10 +374,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -357,6 +391,7 @@ msgstr "[<citation.label/>]"
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "kommenteeris <comment.name/>, <comment.date/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -367,10 +402,10 @@ msgstr "kommenteeris <comment.name/>, <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -383,6 +418,7 @@ msgstr "kommenteeris <comment.name/>, <comment.date/>"
 msgid "from <comment.name/>"
 msgstr "kommenteeris <comment.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: copyright.format
 #. This is a format message used to format copyright notices. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -394,6 +430,7 @@ msgstr "kommenteeris <comment.name/>"
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -404,6 +441,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 msgid "Send email to ‘<string/>’."
 msgstr "Saada e-kiri aadressile ‘<string/>’."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to glossary entries. Special elements in the message will be replaced
@@ -414,6 +452,7 @@ msgstr "Saada e-kiri aadressile ‘<string/>’."
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Loe termini ‘<glossterm/>’ definitsiooni."
 
+#. (itstool) path: msg/msgstr
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -433,6 +472,7 @@ msgstr "Loe termini ‘<glossterm/>’ definitsiooni."
 msgid "See <glosssee/>."
 msgstr "Vaata <glosssee/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -453,6 +493,7 @@ msgstr "Vaata <glosssee/>."
 msgid "See also <glosssee/>."
 msgstr "Vaata ka <glosssee/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -463,6 +504,7 @@ msgstr "Vaata ka <glosssee/>."
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
 #. other inline quotations. Special elements in the message will be
@@ -473,6 +515,7 @@ msgstr "“<node/>”"
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
+#. (itstool) path: msg/msgstr
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -486,6 +529,7 @@ msgstr "‘<node/>’"
 msgid "See <seeie/>."
 msgstr "Vaata <seeie/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -498,3 +542,6 @@ msgstr "Vaata <seeie/>."
 #.
 msgid "See also <seeie/>."
 msgstr "Vaata ka <seeie/>."
+
+#~ msgid "yelp-quote-201C.png"
+#~ msgstr "yelp-quote-201E.png"
