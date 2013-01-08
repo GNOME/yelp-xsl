@@ -1,23 +1,26 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
-srcdir=`dirname $0`
-test -z "$srcdir" && srcdir=.
-abs_srcdir=`(cd $srcdir && pwd)`
+test -n "$srcdir" || srcdir=`dirname "$0"`
+test -n "$srcdir" || srcdir=.
 
-PKG_NAME="yelp-xsl"
+olddir=`pwd`
+cd $srcdir
 
-(test -f $srcdir/configure.ac \
-  && test -f $srcdir/README \
-  && test -d $srcdir/xslt) || {
-    echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level $PKG_NAME directory"
-    exit 1
-}
+AUTORECONF=`which autoreconf`
+if test -z $AUTORECONF; then
+        echo "*** No autoreconf found, please intall it ***"
+        exit 1
+fi
 
-which gnome-autogen.sh || {
-    echo "You need to install gnome-common from git.gnome.org"
-    exit 1
-}
+INTLTOOLIZE=`which intltoolize`
+if test -z $INTLTOOLIZE; then
+        echo "*** No intltoolize found, please install the intltool package ***"
+        exit 1
+fi
 
-USE_GNOME2_MACROS=1 . gnome-autogen.sh
+intltoolize --automake --copy
+autoreconf --force --install --verbose
+
+cd $olddir
+test -n "$NOCONFIGURE" || "$srcdir/configure" "$@"
