@@ -161,6 +161,7 @@ of dynamically showing or hiding content based on those tokens.
                 <xsl:when test="starts-with(., '!')">
                   <xsl:variable name="tmp">
                     <xsl:call-template name="_mal.if.test.check_token">
+                      <xsl:with-param name="node" select="$node"/>
                       <xsl:with-param name="token" select="substring(., 2)"/>
                     </xsl:call-template>
                   </xsl:variable>
@@ -178,6 +179,7 @@ of dynamically showing or hiding content based on those tokens.
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:call-template name="_mal.if.test.check_token">
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="token" select="."/>
                   </xsl:call-template>
                 </xsl:otherwise>
@@ -232,8 +234,31 @@ of dynamically showing or hiding content based on those tokens.
 
 <!--#* _mal.if.test.check_token -->
 <xsl:template name="_mal.if.test.check_token">
+  <xsl:param name="node"/>
   <xsl:param name="token"/>
   <xsl:choose>
+    <xsl:when test="$token = 'lang:C' or $token = 'lang:c'">
+      <xsl:choose>
+        <xsl:when test="not(ancestor-or-self::*/@xml:lang)">
+          <xsl:text>1</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>0</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="starts-with($token, 'lang:')">
+      <xsl:for-each select="$node">
+        <xsl:choose>
+          <xsl:when test="lang(substring($token, 6))">
+            <xsl:text>1</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>0</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:when>
     <xsl:when test="contains($_mal.if.tokens, concat(' ', $token, ' '))">
       <xsl:text>1</xsl:text>
     </xsl:when>
