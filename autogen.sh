@@ -9,13 +9,13 @@ cd $srcdir
 
 AUTORECONF=`which autoreconf`
 if test -z $AUTORECONF; then
-        echo "*** No autoreconf found, please intall it ***"
+        echo "*** autoreconf not found. Install autoconf. ***"
         exit 1
 fi
 
 INTLTOOLIZE=`which intltoolize`
 if test -z $INTLTOOLIZE; then
-        echo "*** No intltoolize found, please install the intltool package ***"
+        echo "*** intltoolize not found. Install intltool. ***"
         exit 1
 fi
 

@@ -1,3 +1,15 @@
+3.7.4
+=====
+* Support for Mallard conditional language test tokens
+* Updated translations:
+  bg    (Alexander Shopov)
+  el    (Dimitris Spingos)
+  et    (Mattias Põldaru)
+  gl    (Fran Diéguez)
+  he    (Yaron Shahrabani)
+  kn    (Shankar Prasad)
+  sl    (Matej Urbančič)
+
 3.7.3
 =====
 * Added style="continues" for Mallard lists and steps
