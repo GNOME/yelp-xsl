@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the gnome-doc-utils package.
 # Maintainer: Danilo Šegan <danilo@gnome.org>
 # Reviewed on 2005-09-06 by: Danilo Šegan <danilo@gnome.org>
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011, 2012.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-01-26 23:34+0000\n"
-"PO-Revision-Date: 2012-02-19 19:15+0200\n"
+"POT-Creation-Date: 2012-12-05 19:00+0000\n"
+"PO-Revision-Date: 2013-01-19 12:08+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -21,15 +21,17 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
+#. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
 #. translate it to "predefinito:LTR", if it isn't default:LTR
 #. or default:RTL it will not work.
 #.
-#: yelp-xsl.xml.in:27(msg/msgstr)
+#: yelp-xsl.xml.in:34
 msgid "default:LTR"
 msgstr "default:LTR"
 
+#. (itstool) path: msg/msgstr
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
 #. string of ", ", a list would look like this: A, B, C, D.  Using the
@@ -37,11 +39,12 @@ msgstr "default:LTR"
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:40(msg/msgstr)
+#: yelp-xsl.xml.in:47
 #, no-wrap
 msgid ", "
 msgstr ", "
 
+#. (itstool) path: msg/msgstr
 #. This is used as the final separator in an inline list of three or
 #. more elements.  The string ", " will be used to separate all but
 #. the last pair of elements.  Using these two strings, a list of
@@ -49,21 +52,23 @@ msgstr ", "
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:53(msg/msgstr)
+#: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
 msgstr " i "
 
+#. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:64(msg/msgstr)
+#: yelp-xsl.xml.in:71
 #, no-wrap
 msgid " and "
 msgstr " i "
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before questions in a question-and-answer
@@ -72,10 +77,11 @@ msgstr " i "
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label questions.
 #.
-#: yelp-xsl.xml.in:79(msg/msgstr)
+#: yelp-xsl.xml.in:86
 msgid "Q:"
 msgstr "P:"
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before answers in a question-and-answer
@@ -84,247 +90,270 @@ msgstr "P:"
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label answers.
 #.
-#: yelp-xsl.xml.in:92(msg/msgstr)
+#: yelp-xsl.xml.in:99
 msgid "A:"
 msgstr "O:"
 
+#. (itstool) path: msg/msgstr
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
 #.
-#: yelp-xsl.xml.in:102(msg/msgstr)
-#| msgid "More About"
+#: yelp-xsl.xml.in:109
 msgid "About"
 msgstr "O programu"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:107(msg/msgstr)
+#: yelp-xsl.xml.in:114
 msgid "Advanced"
 msgstr "Dodatni detalji"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:112(msg/msgstr)
+#: yelp-xsl.xml.in:119
 msgid "Bibliography"
 msgstr "Bibliografija"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:117(msg/msgstr)
+#: yelp-xsl.xml.in:124
 msgid "Bug"
 msgstr "Greška"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:125(msg/msgstr)
+#: yelp-xsl.xml.in:132
 msgid "Candidate"
 msgstr "Kandidat"
 
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:137
+msgid "Close"
+msgstr "Zatvori"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:130(msg/msgstr)
+#: yelp-xsl.xml.in:142
 msgid "Colophon"
 msgstr "Impresum"
 
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:135(msg/msgstr)
+#: yelp-xsl.xml.in:147
 msgid "Creative Commons"
 msgstr "Zajedničko stvaralaštvo"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:140(msg/msgstr)
+#: yelp-xsl.xml.in:152
 msgid "Dedication"
 msgstr "Posveta"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:148(msg/msgstr)
+#: yelp-xsl.xml.in:160
 msgid "Draft"
 msgstr "Nacrt"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:153(msg/msgstr)
+#: yelp-xsl.xml.in:165
 msgid "Edited By"
 msgstr "Urednici"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:161(msg/msgstr)
+#: yelp-xsl.xml.in:173
 msgid "Final"
 msgstr "Završni"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:166(msg/msgstr)
+#: yelp-xsl.xml.in:178
 msgid "Glossary"
 msgstr "Pojmovnik"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:171(msg/msgstr)
+#: yelp-xsl.xml.in:183
 msgid "Important"
 msgstr "Važno"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:179(msg/msgstr)
+#: yelp-xsl.xml.in:191
 msgid "Incomplete"
 msgstr "Nepotpuno"
 
+#. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:184(msg/msgstr)
+#: yelp-xsl.xml.in:196
 msgid "Index"
 msgstr "Registar"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:189(msg/msgstr)
-#| msgid "Level"
+#: yelp-xsl.xml.in:201
 msgid "Legal"
 msgstr "Pravno"
 
+#. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:196(msg/msgstr)
+#: yelp-xsl.xml.in:208
 msgid "License"
 msgstr "Dozvola"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:201(msg/msgstr)
+#: yelp-xsl.xml.in:213
 msgid "Maintained By"
 msgstr "Održavaoci"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:206(msg/msgstr)
-#| msgid "Release Information"
+#: yelp-xsl.xml.in:218
 msgid "More Information"
 msgstr "Još podataka"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:211(msg/msgstr)
+#: yelp-xsl.xml.in:223
 msgid "Next"
 msgstr "Sledeće"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:216(msg/msgstr)
+#: yelp-xsl.xml.in:228
 msgid "Note"
 msgstr "Beleška"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:224(msg/msgstr)
+#: yelp-xsl.xml.in:236
 msgid "Other Credits"
 msgstr "Ostale zasluge"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:232(msg/msgstr)
+#: yelp-xsl.xml.in:244
 msgid "Outdated"
 msgstr "Zastarelo"
 
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:237(msg/msgstr)
+#: yelp-xsl.xml.in:249
 msgid "Pause"
 msgstr "Pauziraj"
 
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:242(msg/msgstr)
+#: yelp-xsl.xml.in:254
 msgid "Play"
 msgstr "Pusti"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:247(msg/msgstr)
+#: yelp-xsl.xml.in:259
 msgid "Previous"
 msgstr "Prethodno"
 
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+#: yelp-xsl.xml.in:264
+msgid "Published By"
+msgstr "Izdavač"
+
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:255(msg/msgstr)
+#: yelp-xsl.xml.in:272
 msgid "Ready for review"
 msgstr "Spreman za pregled"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:260(msg/msgstr)
+#: yelp-xsl.xml.in:277
 msgid "See Also"
 msgstr "Pogledajte i"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:269(msg/msgstr)
+#: yelp-xsl.xml.in:286
 msgid "Scale images down"
 msgstr "Umanji sliku"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:274(msg/msgstr)
+#: yelp-xsl.xml.in:291
 msgid "Sidebar"
 msgstr "Bočna površ"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:281(msg/msgstr)
+#: yelp-xsl.xml.in:298
 msgid "Stub"
 msgstr "U začetku"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:289(msg/msgstr)
+#: yelp-xsl.xml.in:306
 msgid "Synopsis"
 msgstr "Siže"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:294(msg/msgstr)
+#: yelp-xsl.xml.in:311
 msgid "Tip"
 msgstr "Savet"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:299(msg/msgstr)
+#: yelp-xsl.xml.in:316
 msgid "Translated By"
 msgstr "Prevodioci"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:307(msg/msgstr)
+#: yelp-xsl.xml.in:324
 msgid "View images at normal size"
 msgstr "Prikaži slike u normalnoj veličini"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:312(msg/msgstr)
+#: yelp-xsl.xml.in:329
 msgid "Warning"
 msgstr "Upozorenje"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:317(msg/msgstr)
+#: yelp-xsl.xml.in:334
 msgid "Written By"
 msgstr "Napisali su"
 
-#. This is an image of the opening quotation character for your language.
-#. The image is used as a watermark on blockquote elements.  There are a
-#. number of different quote characters used by various languages, so the
-#. image name is translatable.  The name of the icon should be of the form
-#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
-#. quote character.  For example, some languages use the double angle quotation
-#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
-#.
-#. The image, however, is not automatically created.  Do not translate
-#. this to a value if there isn't a corresponding file in yelp-xsl under
-#. the directory icons/hicolor/48x48/status.
-#.
-#. Languages that use guillemets (angle quotation marks) should use either
-#. 00AB or 00BB, depending on whether the opening quotation is the left
-#. guillemet or the right guillemet.  Languages that use inverted comma
-#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
-#. don't make very nice watermarks, so if you would normally open a quote
-#. with single quotation marks in your language, use the corresponding
-#. double quotation mark for the watermark image.
-#.
-#: yelp-xsl.xml.in:344(msg/msgstr)
-msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-201E.png"
-
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to bibliography entries.
@@ -332,12 +361,13 @@ msgstr "yelp-quote-201E.png"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <label/> - The term being defined by the glossary entry
+#. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:360(msg/msgstr)
+#: yelp-xsl.xml.in:350
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Pregled bibliografskog unosa <biblioentry.label/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
 #. a bibliography.  The content of the label is often an abbreviation
@@ -356,10 +386,11 @@ msgstr "Pregled bibliografskog unosa <biblioentry.label/>."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:383(msg/msgstr)
+#: yelp-xsl.xml.in:373
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
 #. published works.  The content is typically an abbreviation of the
@@ -369,13 +400,14 @@ msgstr "[<biblioentry.label/>]"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:400(msg/msgstr)
+#: yelp-xsl.xml.in:390
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -400,10 +432,11 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:429(msg/msgstr)
+#: yelp-xsl.xml.in:419
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "<comment.name/>, <comment.date/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -427,10 +460,11 @@ msgstr "<comment.name/>, <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:457(msg/msgstr)
+#: yelp-xsl.xml.in:447
 msgid "from <comment.name/>"
 msgstr "<comment.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: copyright.format
 #. This is a format message used to format copyright notices. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -439,10 +473,11 @@ msgstr "<comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:470(msg/msgstr)
+#: yelp-xsl.xml.in:460
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -450,10 +485,11 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:482(msg/msgstr)
+#: yelp-xsl.xml.in:472
 msgid "Send email to ‘<string/>’."
 msgstr "Pošaljite poruku „<string/>“."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to glossary entries. Special elements in the message will be replaced
@@ -461,10 +497,11 @@ msgstr "Pošaljite poruku „<string/>“."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:494(msg/msgstr)
+#: yelp-xsl.xml.in:484
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Pročitajte definiciju za „<glossterm/>“."
 
+#. (itstool) path: msg/msgstr
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -481,10 +518,11 @@ msgstr "Pročitajte definiciju za „<glossterm/>“."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:515(msg/msgstr)
+#: yelp-xsl.xml.in:505
 msgid "See <glosssee/>."
 msgstr "Pogledajte „<glosssee/>“."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -502,10 +540,11 @@ msgstr "Pogledajte „<glosssee/>“."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:537(msg/msgstr)
+#: yelp-xsl.xml.in:527
 msgid "See also <glosssee/>."
 msgstr "Pogledajte takođe „<glosssee/>“."
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -513,10 +552,11 @@ msgstr "Pogledajte takođe „<glosssee/>“."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:549(msg/msgstr)
+#: yelp-xsl.xml.in:539
 msgid "“<node/>”"
 msgstr "„<node/>“"
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
 #. other inline quotations. Special elements in the message will be
@@ -524,10 +564,11 @@ msgstr "„<node/>“"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:561(msg/msgstr)
+#: yelp-xsl.xml.in:551
 msgid "‘<node/>’"
 msgstr "„<node/>“"
 
+#. (itstool) path: msg/msgstr
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -538,10 +579,11 @@ msgstr "„<node/>“"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:576(msg/msgstr)
+#: yelp-xsl.xml.in:566
 msgid "See <seeie/>."
 msgstr "Pogledajte <seeie/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -552,487 +594,6 @@ msgstr "Pogledajte <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:591(msg/msgstr)
+#: yelp-xsl.xml.in:581
 msgid "See also <seeie/>."
 msgstr "Pogledajte takođe <seeie/>."
-
-#~ msgid "Contents"
-#~ msgstr "Sadržaj"
-
-#~ msgid "Further Reading"
-#~ msgstr "Još za čitanje"
-
-#~ msgid "Name"
-#~ msgstr "Ime"
-
-#~ msgid "Preface"
-#~ msgstr "Predgovor"
-
-#~ msgid " — "
-#~ msgstr " — "
-
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Pogledajte bibliografski zapis "
-#~ "<label/>.</msgstr>"
-
-#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-
-#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>„<node/>“</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-
-#~| msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> "
-#~ "on <comment.date/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr> <comment.name/>, "
-#~ "<comment.date/></msgstr>"
-
-#~| msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgid ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr> <comment.name/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Pošalji e-poštu na „<string/>“.</"
-#~ "msgstr>"
-
-#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>„<glossterm/>“</msgstr>"
-
-#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glosssee.format</msgid> <msgstr>Pogledajte <glosssee/>.</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Takođe pogledajte i <glosssee/"
-#~ ">.</msgstr>"
-
-#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Pitanje "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
-#~ msgstr "<msgid>question.xref</msgid> <msgstr>Pitanje <number/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>„<node/>“</msgstr>"
-
-#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>seealsoie.format</msgid> <msgstr>Pogledajte i <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
-#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Pogledajte <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-
-#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-#~ msgstr "<msgstr>Autori</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr "<msgstr>Saradnici</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr "<msgstr>Autorska prava</msgstr>"
-
-#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr "<msgstr>Urednici</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr "<msgstr>Ostali doprinosioci</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-#~ msgstr "<msgstr>Izdavači</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr "<msgstr form='0'>Preveo</msgstr> <msgstr form='1'>Preveli</msgstr>"
-
-#~ msgid "A:&#x2003;"
-#~ msgstr "O:&#x2003;"
-
-#~ msgid "About This Document"
-#~ msgstr "O ovom dokumentu"
-
-#~ msgid "Affiliation"
-#~ msgstr "Zaposlenje"
-
-#~ msgid "Caution"
-#~ msgstr "Pažnja"
-
-#~ msgid "Email"
-#~ msgstr "E-pošta"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Zakonska poruka"
-
-#~ msgid "Q:&#x2003;"
-#~ msgstr "P:&#x2003;"
-
-#~ msgid "Revision History"
-#~ msgstr "Istorijat verzija"
-
-#~ msgid "See"
-#~ msgstr "Pogledajte"
-
-# bug: yes, we do:
-# A B V G D Đ E Ž Z I J K L Lj M N Nj O P R S T Ć U F H C Č Dž Š
-# a b v g d đ e ž z i j k l lj m n nj o p r s t ć u f h c č dž š
-#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-#~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Dodatak "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Dodatak <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Glava "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Glava <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Primer <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Primer <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Primer <number/></msgstr>"
-
-#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
-#~ msgstr "<msgid>example.xref</msgid> <msgstr>Primer <number/></msgstr>"
-
-#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Slika <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Slika <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Slika <number/></msgstr>"
-
-#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
-#~ msgstr "<msgid>figure.xref</msgid> <msgstr>Slika <number/></msgstr>"
-
-#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-#~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Deo <number/"
-#~ "></msgstr>"
-
-#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-#~ msgstr "<msgid>part.xref</msgid> <msgstr>Deo <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Odeljak "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Odeljak <number/> ― <title/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Odeljak "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.xref</msgid> <msgstr>Odeljak <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Tabela <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Tabela <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Tabela <number/></msgstr>"
-
-#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
-#~ msgstr "<msgid>table.xref</msgid> <msgstr>Tabela <number/></msgstr>"
-
-#~ msgid "format.appendix.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\">%t{number}.&#x2003;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"li\">%t{number}.&#x2002;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"xref\">Dodatak %t{number} ― %t{title}</msg:msgstr>\n"
-#~ "<msg:msgstr>Dodatak %t{number}</msg:msgstr>"
-
-#~ msgid "format.chapter.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\">%t{number}.&#x2003;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"li\">%t{number}.&#x2002;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"xref\">Glava %t{number} ― %t{title}</msg:msgstr>\n"
-#~ "<msg:msgstr>Glava %t{number}</msg:msgstr>"
-
-#~ msgid "format.citetitle"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"article\">„%t{node}“</msg:msgstr>\n"
-#~ "<msg:msgstr><i>%t{node}</i></msg:msgstr>"
-
-#~ msgid "format.date"
-#~ msgstr ""
-#~ "<xsl:template>\n"
-#~ "<xsl:value-of select=\"$day\"/>\n"
-#~ "<xsl:text>. </xsl:text>\n"
-#~ "<xsl:choose>\n"
-#~ "<xsl:when test=\"$month =  1\"><xsl:text>januar</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  2\"><xsl:text>februar</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  3\"><xsl:text>mart</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  4\"><xsl:text>april</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  5\"><xsl:text>maj</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  6\"><xsl:text>jun</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  7\"><xsl:text>jul</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  8\"><xsl:text>avgust</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month =  9\"><xsl:text>septembar</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month = 10\"><xsl:text>oktobar</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month = 11\"><xsl:text>novembar</xsl:text></xsl:when>\n"
-#~ "<xsl:when test=\"$month = 12\"><xsl:text>decembar</xsl:text></xsl:when>\n"
-#~ "</xsl:choose>\n"
-#~ "<xsl:text> </xsl:text>\n"
-#~ "<xsl:value-of select=\"$year\"/>\n"
-#~ "</xsl:template>"
-
-#~ msgid "format.example.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\"><i>Primer %t{number}</i>&#x2003;</msg:"
-#~ "msgstr>\n"
-#~ "<msg:msgstr>Primer %t{number}</msg:msgstr>"
-
-#~ msgid "format.example.number"
-#~ msgstr "%t{parent}-%1{number}"
-
-#~ msgid "format.example.number.flat"
-#~ msgstr "%1{number}"
-
-#~ msgid "format.figure.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\"><i>Slika %t{number}</i>&#x2003;</msg:msgstr>\n"
-#~ "<msg:msgstr>Slika %t{number}</msg:msgstr>"
-
-#~ msgid "format.figure.number"
-#~ msgstr "%t{parent}-%1{number}"
-
-#~ msgid "format.figure.number.flat"
-#~ msgstr "%1{number}"
-
-#~ msgid "format.manvolnum"
-#~ msgstr "(%t{node})"
-
-#~ msgid "format.part.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\">%t{number}.&#x2003;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"li\">%t{number}.&#x2002;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"xref\">Deo %t{number} ― %t{title}</msg:msgstr>\n"
-#~ "<msg:msgstr>Deo %t{number}</msg:msgstr>"
-
-#~ msgid "format.part.number"
-#~ msgstr "%I{number}"
-
-#~ msgid "format.quote.inner"
-#~ msgstr "‘%t{node}’"
-
-#~ msgid "format.quote.outer"
-#~ msgstr "„%t{node}“"
-
-#~ msgid "format.refentry.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"xref\">%t{title}</msg:msgstr>\n"
-#~ "<msg:msgstr>%t{title}</msg:msgstr>"
-
-#~ msgid "format.section.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\">%t{number}.&#x2003;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"li\">%t{number}.&#x2002;</msg:msgstr>\n"
-#~ "<msg:msgstr role=\"xref\">Odeljak %t{number} ― %t{title}</msg:msgstr>\n"
-#~ "<msg:msgstr>Odeljak %t{number}</msg:msgstr>"
-
-#~ msgid "format.table.label"
-#~ msgstr ""
-#~ "<msg:msgstr role=\"header\"><i>Tabela %t{number}</i>&#x2003;</msg:"
-#~ "msgstr>\n"
-#~ "<msg:msgstr>Tabela %t{number}</msg:msgstr>"
-
-#~ msgid "format.table.number"
-#~ msgstr "%t{parent}-%1{number}"
-
-#~ msgid "format.table.number.flat"
-#~ msgstr "%1{number}"
-
-#~ msgid "format.tooltip.glossentry"
-#~ msgstr "Pročitajte definiciju za „%s{node}“"
-
-#~ msgid "format.tooltip.mailto"
-#~ msgstr "Pošaljite e-pismo na „%s{address}“"
-
-#~ msgid "Message Audience"
-#~ msgstr "Ciljna grupa poruke"
-
-#~ msgid "Message Level"
-#~ msgstr "Nivo poruke"
-
-#~ msgid "Message Origin"
-#~ msgstr "Poreklo poruke"
-
-#~ msgid "Origin"
-#~ msgstr "Poreklo"
-
-#~ msgid "Reference"
-#~ msgstr "Referenca"
-
-#~ msgid "Set Index"
-#~ msgstr "Postavi registar"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Sadržaj"
-
-#~ msgid "Title"
-#~ msgstr "Naslov"
