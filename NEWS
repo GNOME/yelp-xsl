@@ -1,3 +1,17 @@
+3.7.90
+======
+* Updated translations:
+  ca          (Gil Forcada)
+  ca@valencia (Carles Ferrando)
+  it          (Milo Casagrande)
+  lt          (Aurimas Černius)
+  ml          (Anish A)
+  sr          (Мирослав Николић)
+  sr@latin    (Мирослав Николић)
+  ug          (Gheyret Kenji)
+  zh_HK       (Chao-Hsiung Liao)
+  zh_TW       (Chao-Hsiung Liao)
+
 3.7.4
 =====
 * Support for Mallard conditional language test tokens
