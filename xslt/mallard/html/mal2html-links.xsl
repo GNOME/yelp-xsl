@@ -352,7 +352,7 @@ the links itself. They must be passed in with the ${links} parameter.
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="depth" select="$depth"/>
       <xsl:with-param name="links" select="$links"/>
-      <xsl:with-param name="role" select="'seealso'"/>
+      <xsl:with-param name="role" select="'guide'"/>
       <xsl:with-param name="title">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="'More Information'"/>
