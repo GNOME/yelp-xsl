@@ -1,0 +1,15 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="js_type1">
+
+<info>
+  <api:type>
+    <api:name>type1</api:name>
+  </api:type>
+  <link type="guide" xref="index" group="js"/>
+</info>
+
+<title>JavaScript Type #1</title>
+
+</page>

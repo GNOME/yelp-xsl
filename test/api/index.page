@@ -13,4 +13,8 @@
   <title>Python</title>
 </links>
 
+<links type="topic" groups="js" api:mime="application/javascript">
+  <title>JavaScript</title>
+</links>
+
 </page>

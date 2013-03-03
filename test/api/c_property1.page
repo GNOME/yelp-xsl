@@ -1,0 +1,18 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="c_property1">
+
+<info>
+  <api:property>
+    <api:flag>Read</api:flag>
+    <api:flag>Write</api:flag>
+    <api:type>type1</api:type>
+    <api:name>property1</api:name>
+  </api:property>
+  <link type="guide" xref="index" group="c"/>
+</info>
+
+<title>Property #1</title>
+
+</page>

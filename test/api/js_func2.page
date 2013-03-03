@@ -1,0 +1,21 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:api="http://projectmallard.org/experimental/api/"
+      type="topic"
+      id="js_func2">
+
+<info>
+  <api:function>
+    <api:name>js_func_2</api:name>
+    <api:arg>
+      <api:name>arg1</api:name>
+    </api:arg>
+    <api:arg>
+      <api:name>arg2</api:name>
+    </api:arg>
+  </api:function>
+  <link type="guide" xref="index" group="js"/>
+</info>
+
+<title>Function #2</title>
+
+</page>

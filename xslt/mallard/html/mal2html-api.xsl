@@ -71,6 +71,12 @@ elements. It should be called by an appropriate template that handles the
         <xsl:with-param name="links" select="$links"/>
       </xsl:call-template>
     </xsl:when>
+    <xsl:when test="$node/@api:mime = 'application/javascript'">
+      <xsl:call-template name="mal2html.api.links.js">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="links" select="$links"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="mal2html.links.ul">
         <xsl:with-param name="node" select="$node"/>
@@ -649,6 +655,142 @@ contains an #{api:function} element in its #{info}.
       <xsl:text> -> </xsl:text>
       <xsl:apply-templates mode="mal2html.inline.mode" select="$function/api:returns/api:type/node()"/>
     </xsl:if>
+    <xsl:text>&#x000A;</xsl:text>
+  </span></div>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.api.links.js
+Output links as a synopsis for the JavaScript programming language.
+$node: A #{links} element to link from.
+$links: A list of links, as from a template in !{mal-link}.
+
+This template outputs links as a synopsis in the JavaScript programming language.
+It is called by *{mal2html.api.links} when the #{api:mime} attribute of ${node}
+is #{application/javascript}. The target nodes of ${links} are expected to have
+appropriate API metadata elements in their #{info} elements. Links to targets
+without correct API metadata are output with *{mal2html.links.ul} after the
+synopsis.
+
+This template calls other templates to format each link, based on what type of
+API the target node is declared as.
+
+This template handles link sorting, and may have specialized sorting using the
+API metadata of the target nodes.
+-->
+<xsl:template name="mal2html.api.links.js">
+  <xsl:param name="node"/>
+  <xsl:param name="links"/>
+  <xsl:variable name="apilinks_">
+    <xsl:for-each select="$links">
+      <xsl:variable name="link" select="."/>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
+        <xsl:variable name="apiname" select="$target/mal:info/api:*/api:name[1]"/>
+        <xsl:for-each select="$link">
+          <xsl:copy>
+            <xsl:copy-of select="@*"/>
+            <xsl:copy-of select="*"/>
+            <xsl:copy-of select="$apiname"/>
+          </xsl:copy>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="apilinks" select="exsl:node-set($apilinks_)/*"/>
+  <xsl:variable name="out_">
+    <xsl:for-each select="$apilinks">
+      <xsl:sort select="api:name"/>
+      <xsl:sort data-type="number" select="@groupsort"/>
+      <xsl:sort select="mal:title[@type = 'sort']"/>
+      <xsl:variable name="link" select="."/>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
+        <xsl:choose>
+          <xsl:when test="$target/mal:info/api:function/api:name">
+            <xsl:call-template name="mal2html.api.links.js.function">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="link" select="$link"/>
+              <xsl:with-param name="target" select="$target"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy-of select="$link"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="out" select="exsl:node-set($out_)"/>
+  <xsl:if test="$out/*[not(self::mal:link)]">
+    <div class="synopsis">
+      <pre class="contents">
+        <xsl:copy-of select="$out/*[not(self::mal:link)]"/>
+      </pre>
+    </div>
+  </xsl:if>
+  <xsl:if test="$out/mal:link">
+    <xsl:call-template name="mal2html.links.ul">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="links" select="$out/mal:link"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.api.links.js.function
+Output a link as a function for a synopsis in JavaScript.
+$node: A #{links} element to link from.
+$links: A list of links, as from a template in !{mal-link}.
+$link: The #{mal:link} element from ${links} to process.
+$target: The node pointed to by ${link}.
+
+This template formats a link as a function for a synopsis in the JavaScript
+programming language. It is called by *{mal2html.api.links.js} when the
+${target} contains an #{api:function} element in its #{info}.
+-->
+<xsl:template name="mal2html.api.links.js.function">
+  <xsl:param name="node"/>
+  <xsl:param name="links"/>
+  <xsl:param name="link"/>
+  <xsl:param name="target"/>
+  <xsl:variable name="function" select="$target/mal:info/api:function[api:name][1]"/>
+  <div class="api-link {$link/@class}"><span>
+    <xsl:for-each select="$link/@*">
+      <xsl:if test="starts-with(name(.), 'data-')">
+        <xsl:copy-of select="."/>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:text>function </xsl:text>
+    <xsl:variable name="name">
+      <xsl:apply-templates mode="mal2html.inline.mode" select="$function/api:name/node()"/>
+    </xsl:variable>
+    <a>
+      <xsl:attribute name="href">
+        <xsl:call-template name="mal.link.target">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$link/@xref"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:call-template name="mal.link.tooltip">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="xref" select="$link/@xref"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:copy-of select="$name"/>
+    </a>
+    <xsl:text>(</xsl:text>
+    <xsl:for-each select="$function/api:arg">
+      <xsl:if test="position() != 1">
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+      <xsl:apply-templates mode="mal2html.inline.mode" select="api:name/node()"/>
+    </xsl:for-each>
+    <xsl:text>)</xsl:text>
     <xsl:text>&#x000A;</xsl:text>
   </span></div>
 </xsl:template>
