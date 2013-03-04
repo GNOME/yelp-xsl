@@ -940,6 +940,15 @@ div.floatend {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
+div.title-heading h1, div.title-heading h2, div.title-heading h3,
+div.title-heading h4, div.title-heading h5, div.title-heading h6 {
+  font-size: 1.72em;
+  font-weight: bold;
+}
+ul.links-heading > li { margin: 2em 0 2em 0; padding: 0; }
+div.links-heading > a { font-size: 1.72em; font-weight: bold; }
+ul.links-heading > li > div.desc { margin-top: 0.5em; }
+
 div.mouseovers {
   width: 250px;
   height: 200px;

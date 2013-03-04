@@ -560,7 +560,14 @@ in accordance with the Mallard specification on fallback block content.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="title title-{local-name(..)}">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>title title-</xsl:text>
+      <xsl:value-of select="local-name(..)"/>
+      <xsl:if test="contains(concat(' ', @style, ' '), ' heading ')">
+        <xsl:text> title-heading</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <span class="title">
