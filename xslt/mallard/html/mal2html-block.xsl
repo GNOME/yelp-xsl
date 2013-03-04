@@ -385,6 +385,9 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:when test="contains(concat(' ', @style, ' '), ' important ')">
         <xsl:text>Important</xsl:text>
       </xsl:when>
+      <xsl:when test="contains(concat(' ', @style, ' '), ' plain ')">
+        <xsl:text>plain</xsl:text>
+      </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' sidebar ')">
         <xsl:text>Sidebar</xsl:text>
       </xsl:when>
@@ -414,11 +417,13 @@ in accordance with the Mallard specification on fallback block content.
         <xsl:value-of select="$if"/>
       </xsl:if>
     </xsl:attribute>
-    <xsl:attribute name="title">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="$notestyle"/>
-      </xsl:call-template>
-    </xsl:attribute>
+    <xsl:if test="$notestyle != 'plain'">
+      <xsl:attribute name="title">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="$notestyle"/>
+        </xsl:call-template>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>

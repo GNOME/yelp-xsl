@@ -1053,6 +1053,11 @@ div.note-sidebar > div.inner > div.title { margin-</xsl:text>
   <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.note-sidebar > div.inner > div.region > div.contents { margin-</xsl:text>
   <xsl:value-of select="$left"/><xsl:text>: 0px; }
+div.note-plain > div.inner { background-image: none; }
+div.note-plain > div.inner > div.title { margin-</xsl:text>
+  <xsl:value-of select="$left"/><xsl:text>: 0px; }
+div.note-plain > div.inner > div.region > div.contents { margin-</xsl:text>
+  <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.quote {
   padding: 0;
   min-height: </xsl:text>
