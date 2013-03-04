@@ -1,3 +1,12 @@
+3.7.91
+======
+* Added style hints for new Getting Started designs
+* Fixed incorrect automatic link role for guide links
+* Updated translations:
+  de    (Mario Blättermann)
+  fr    (Alexandre Franke)
+  pa    (A S Alam)
+
 3.7.90
 ======
 * Updated translations:
