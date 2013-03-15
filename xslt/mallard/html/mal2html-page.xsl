@@ -1006,22 +1006,27 @@ div.ui-overlay > div.inner > div.title { margin-top: -4px; }
 a.ui-overlay-close {
   display: block;
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  width: 12px; height: 12px;
-  font-size: 12px; line-height: 12px;
-  margin-top: -16px;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: -17px;
+  width: 23px; height: 23px;
+  font-size: 18px; line-height: 23px;
+  font-weight: bold;
+  margin-top: -28px;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: -24px;
   padding: 1px 2px 3px 2px;
   text-align: center;
   border: none;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
+  background-image: radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
+  background-image: -webkit-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
+  border: 3px solid </xsl:text><xsl:value-of select="$color.background"/><xsl:text>; 
   color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
 }
 a.ui-overlay-close:hover {
-  text-decoration: none;
-  border: none;
 }
 
 div.ui-tile {
