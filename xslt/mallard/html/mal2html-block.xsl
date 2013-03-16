@@ -193,7 +193,13 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = desc = -->
 <xsl:template mode="mal2html.block.mode" match="mal:desc">
-  <div class="desc">
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>desc</xsl:text>
+      <xsl:if test="contains(concat(' ', @style, ' '), ' center ')">
+        <xsl:text> center</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </div>
@@ -565,12 +571,16 @@ in accordance with the Mallard specification on fallback block content.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div>
     <xsl:attribute name="class">
       <xsl:text>title title-</xsl:text>
       <xsl:value-of select="local-name(..)"/>
-      <xsl:if test="contains(concat(' ', @style, ' '), ' heading ')">
+      <xsl:if test="contains($style, ' heading ')">
         <xsl:text> title-heading</xsl:text>
+      </xsl:if>
+      <xsl:if test="contains($style, ' center ')">
+        <xsl:text> center</xsl:text>
       </xsl:if>
     </xsl:attribute>
     <xsl:call-template name="html.lang.attrs"/>

@@ -716,6 +716,7 @@ div.clear {
   height: 0; line-height: 0;
   clear: both;
 }
+.center { text-align: center; }
 
 div.about {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;

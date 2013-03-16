@@ -560,16 +560,28 @@ ${node} element.
             </xsl:choose>
             <xsl:text>px;</xsl:text>
           </xsl:attribute>
-          <xsl:if test="$media/uix:thumb/uix:caption/mal:title">
-            <span class="title">
-              <xsl:apply-templates mode="mal2html.inline.mode"
-                                   select="$media/uix:thumb/uix:caption/mal:title[1]/node()"/>
+          <xsl:variable name="title" select="$media/uix:thumb/uix:caption/mal:title[1]"/>
+          <xsl:if test="$title">
+            <span>
+              <xsl:attribute name="class">
+                <xsl:text>title</xsl:text>
+                <xsl:if test="contains(concat(' ', $title/@style, ' '), ' center ')">
+                  <xsl:text> center</xsl:text>
+                </xsl:if>
+              </xsl:attribute>
+              <xsl:apply-templates mode="mal2html.inline.mode" select="$title/node()"/>
             </span>
           </xsl:if>
-          <xsl:if test="$media/uix:thumb/uix:caption/mal:desc">
-            <span class="desc">
-              <xsl:apply-templates mode="mal2html.inline.mode"
-                                   select="$media/uix:thumb/uix:caption/mal:desc[1]/node()"/>
+          <xsl:variable name="desc" select="$media/uix:thumb/uix:caption/mal:desc[1]"/>
+          <xsl:if test="$desc">
+            <span>
+              <xsl:attribute name="class">
+                <xsl:text>desc</xsl:text>
+                <xsl:if test="contains(concat(' ', $desc/@style, ' '), ' center ')">
+                  <xsl:text> center</xsl:text>
+                </xsl:if>
+              </xsl:attribute>
+              <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
             </span>
           </xsl:if>
         </span>
