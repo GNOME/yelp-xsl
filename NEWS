@@ -1,3 +1,22 @@
+3.8.0
+=====
+* Added "center" style hint for block title and desc
+* Updated translations:
+  as    (Nilamdyuti Goswami)
+  be    (Ihar Hrachyshka)
+  cs    (Marek Černocký)
+  da    (Ask H. Larsen)
+  fa    (Arash Mousavi)
+  fi    (Ville-Pekka Vainio)
+  hi    (Rajesh Ranjan)
+  hu    (Balázs Úr)
+  ko    (Changwoo Ryu)
+  lv    (Rūdolfs Mazurs)
+  pt    (Duarte Loreto)
+  pt_BR (Rafael Ferreira)
+  ta    (Dr.T.Vasudevan)
+  tg    (Victor Ibragimov)
+
 3.7.91
 ======
 * Added style hints for new Getting Started designs
