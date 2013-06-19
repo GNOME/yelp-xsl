@@ -899,7 +899,11 @@ are processed in %{mal2html.block.mode}.
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
-span.link-button a {
+div.link-button {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.link-button a {
   display: inline-block;
   background-color: </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
@@ -914,14 +918,23 @@ span.link-button a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-span.link-button a:visited {
+.link-button a:visited {
   color: </xsl:text>
     <xsl:value-of select="$color.background"/><xsl:text>;
 }
-span.link-button a:hover {
+.link-button a:hover {
   text-decoration: none;
   color: </xsl:text>
     <xsl:value-of select="$color.background"/><xsl:text>;
+  box-shadow: 1px 1px 1px </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.link-button a .desc {
+  display: block;
+  font-weight: normal;
+  font-size: 0.83em;
+  color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.floatleft {
   float: left;

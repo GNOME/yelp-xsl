@@ -896,6 +896,7 @@ div.contents + div.desc { margin: 0.2em 0 0 0; }
 pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
+div.links-center { text-align: center; }
 div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
 div.links > div.inner > div.region > div.desc { font-style: italic; }
 div.links ul { margin: 0; padding: 0; }
