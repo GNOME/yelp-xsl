@@ -51,7 +51,13 @@ sub sub { font-size: 1em; }
 sup { font-size: 0.83em; }
 sup sup { font-size: 1em; }
 table.table-pgwide { width: 100%; }
-
+table.table-rules-groups thead + *, table.table-rules-rows thead + *,
+table.table-rules-groups tfoot + *, table.table-rules-rows tfoot + *,
+table.table-rules-groups tbody + *, table.table-rules-rows tbody + *,
+table.table-rules-rows tr + * { border-top: solid 1px; }
+table.table-rules-cols td + *, table.table-rules-cols th + * {
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px;
+}
 
 td.td-colsep { border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px; }
 td.td-rowsep { border-bottom: solid 1px; }
