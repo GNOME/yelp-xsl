@@ -47,7 +47,11 @@ then outputs MathML content. It sets the #{display} attribute on the output to
 -->
 <xsl:template name="db2html.math.div">
   <xsl:param name="node" select="."/>
-  <div class="math">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="'math'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>

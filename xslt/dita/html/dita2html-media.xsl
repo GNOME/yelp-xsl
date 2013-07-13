@@ -46,7 +46,11 @@ REMARK: Describe this module
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$placement = 'break'">
-      <div class="media media-image">
+      <div>
+        <xsl:call-template name="html.lang.attrs"/>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'media media-image'"/>
+        </xsl:call-template>
         <div class="inner">
           <xsl:call-template name="_dita2html.image.img">
             <xsl:with-param name="conref" select="$conref"/>
@@ -56,7 +60,11 @@ REMARK: Describe this module
       </div>
     </xsl:when>
     <xsl:otherwise>
-      <span class="media media-image">
+      <span>
+        <xsl:call-template name="html.lang.attrs"/>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'media media-image'"/>
+        </xsl:call-template>
         <xsl:call-template name="_dita2html.image.img">
           <xsl:with-param name="conref" select="$conref"/>
           <xsl:with-param name="usemap" select="$usemap"/>
@@ -149,6 +157,8 @@ REMARK: Describe this module
     <xsl:with-param name="usemap" select="concat('#', $name)"/>
   </xsl:apply-templates>
   <map name="{$name}">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_area;"/>
   </map>
 </xsl:template>
@@ -157,6 +167,8 @@ REMARK: Describe this module
 <xsl:template mode="dita2html.topic.mode" match="&topic_area;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <area>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:attribute name="shape">
       <xsl:value-of select="$conref/&topic_shape;"/>
     </xsl:attribute>
@@ -176,14 +188,12 @@ REMARK: Describe this module
 
 <!-- = object = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_object;">
-  <xsl:variable name="node" select="."/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="dita-object">
-    <xsl:call-template name="dita.id">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-    <xsl:call-template name="html.lang.attrs">
-      <xsl:with-param name="node" select="$node"/>
+  <div>
+    <xsl:call-template name="dita.id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'dita-object'"/>
     </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_desc;"/>
     <div class="contents">
@@ -192,7 +202,6 @@ REMARK: Describe this module
           <xsl:attribute name="{local-name(.)}">
             <xsl:call-template name="dita.ref.conref.attr">
               <xsl:with-param name="attr" select="local-name(.)"/>
-              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="conref" select="$conref"/>
             </xsl:call-template>
           </xsl:attribute>
@@ -205,15 +214,11 @@ REMARK: Describe this module
 
 <!-- = param = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_param;">
-  <xsl:variable name="node" select="."/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <xsl:call-template name="dita.id">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
-  <xsl:call-template name="html.lang.attrs">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
   <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
+    <xsl:call-template name="dita.id"/>
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:for-each select="@*[namespace-uri(.) = '']">
       <xsl:attribute name="{local-name(.)}">
         <xsl:call-template name="dita.ref.conref.attr">

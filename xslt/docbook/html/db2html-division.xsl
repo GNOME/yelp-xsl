@@ -128,10 +128,13 @@ REMARK: Talk about some of the parameters
         <xsl:call-template name="html.lang.attrs">
           <xsl:with-param name="node" select="$node"/>
         </xsl:call-template>
-        <xsl:attribute name="class">
-          <xsl:value-of select="local-name($node)"/>
-          <xsl:text> sect</xsl:text>
-        </xsl:attribute>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="class">
+            <xsl:value-of select="local-name($node)"/>
+            <xsl:text> sect</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
         <xsl:if test="$node/@id">
           <xsl:attribute name="id">
             <xsl:value-of select="$node/@id"/>

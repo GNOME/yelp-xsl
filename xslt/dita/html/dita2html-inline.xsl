@@ -50,12 +50,16 @@ FIXME
 <xsl:template name="dita2html.span">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
-  <span class="{$class}">
+  <span>
     <xsl:call-template name="dita.id">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
     </xsl:call-template>
     <xsl:apply-templates mode="dita2html.inline.content.mode" select="$node"/>
   </span>
@@ -196,6 +200,8 @@ FIXME
 <xsl:template mode="dita2html.topic.mode" match="&topic_xref;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <a>
+    <xsl:call-template name="html.class.attr"/>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:attribute name="href">
       <xsl:call-template name="dita.ref.href.target">
         <xsl:with-param name="node" select="."/>

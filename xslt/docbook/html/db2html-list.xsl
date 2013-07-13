@@ -35,7 +35,10 @@ REMARK: Describe this module
 
 <!-- = glosslist = -->
 <xsl:template match="glosslist | db:glosslist">
-  <div class="list glosslist">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list glosslist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
@@ -47,7 +50,10 @@ REMARK: Describe this module
 
 <!-- = glossdef = -->
 <xsl:template match="glossdef | db:glossdef">
-  <dd class="glossdef">
+  <dd>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'glossdef'"/>
+    </xsl:call-template>
     <xsl:apply-templates select="*[not(self::glossseealso) and not(self::db:glossseealso)]"/>
   </dd>
   <xsl:apply-templates select="glossseealso[1] | db:glossseealso[1]"/>
@@ -56,9 +62,9 @@ REMARK: Describe this module
 <!-- = glossentry = -->
 <xsl:template match="glossentry | db:glossentry">
   <dt>
-    <xsl:attribute name="class">
-      <xsl:text>glossterm</xsl:text>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'glossterm'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="glossterm | db:glossterm"/>
@@ -73,7 +79,10 @@ REMARK: Describe this module
 
 <!-- = glosssee(also) = -->
 <xsl:template match="glosssee | glossseealso | db:glosssee | db:glossseealso">
-  <dd class="{local-name(.)}">
+  <dd>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="local-name(.)"/>
+    </xsl:call-template>
     <p>
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="concat(local-name(.), '.format')"/>
@@ -129,7 +138,10 @@ REMARK: Describe this module
 
 <!-- = itemizedlist = -->
 <xsl:template match="itemizedlist | db:itemizedlist">
-  <div class="list itemizedlist">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list itemizedlist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
@@ -158,7 +170,10 @@ REMARK: Describe this module
 
 <!-- = itemizedlist/listitem = -->
 <xsl:template match="itemizedlist/listitem | db:itemizedlist/db:listitem">
-  <li class="list itemizedlist">
+  <li>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list itemizedlist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="@override">
       <xsl:attribute name="style">
@@ -192,7 +207,10 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <!-- FIXME: auto-numeration for nested lists -->
-  <div class="list orderedlist">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list orderedlist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
@@ -229,7 +247,10 @@ REMARK: Describe this module
 
 <!-- = orderedlist/listitem = -->
 <xsl:template match="orderedlist/listitem | db:orderedlist/db:listitem">
-  <li class="list orderedlist">
+  <li>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list orderedlist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="@override">
       <xsl:attribute name="value">
@@ -243,7 +264,10 @@ REMARK: Describe this module
 
 <!-- = procedure = -->
 <xsl:template match="procedure | db:procedure">
-  <div class="steps">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <div class="inner">
@@ -267,7 +291,10 @@ REMARK: Describe this module
 
 <!-- = answer = -->
 <xsl:template match="answer | db:answer">
-  <dd class="answer">
+  <dd>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'answer'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="label | db:label">
@@ -295,7 +322,10 @@ REMARK: Describe this module
 
 <!-- = question = -->
 <xsl:template match="question | db:question">
-  <dt class="question">
+  <dt>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'question'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="label | db:label">
@@ -321,7 +351,10 @@ REMARK: Describe this module
   <xsl:variable name="position"
                 select="count(preceding-sibling::seg) +
                         count(preceding-sibling::db:seg) + 1"/>
-  <p class="seg">
+  <p>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'seg'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="../../segtitle[position() = $position] |
                                  ../../db:segtitle[position() = $position]"/>
@@ -334,7 +367,10 @@ REMARK: Describe this module
   <xsl:param name="position"
               select="count(preceding-sibling::seglistitem) +
                       count(preceding-sibling::db:seglistitem) + 1"/>
-  <div class="seglistitem">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'seglistitem'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <div>
       <xsl:attribute name="class">
@@ -355,7 +391,10 @@ REMARK: Describe this module
 <!-- FIXME: Implement tabular segmentedlists -->
 <!-- = segmentedlist = -->
 <xsl:template match="segmentedlist | db:segmentedlist">
-  <div class="list segmentedlist">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list segmentedlist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
@@ -367,6 +406,7 @@ REMARK: Describe this module
 <xsl:template match="segtitle | db:segtitle">
   <!-- FIXME: no style tags -->
   <b>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
     <!-- FIXME: i18n -->
@@ -388,7 +428,10 @@ REMARK: Describe this module
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="@type = 'inline'">
-      <span class="simplelist">
+      <span>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'simplelist'"/>
+        </xsl:call-template>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <xsl:for-each select="member | db:member">
@@ -402,7 +445,10 @@ REMARK: Describe this module
       </span>
     </xsl:when>
     <xsl:when test="@type = 'horiz'">
-      <div class="list simplelist">
+      <div>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'list simplelist'"/>
+        </xsl:call-template>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <table class="simplelist">
@@ -429,7 +475,10 @@ REMARK: Describe this module
       </div>
     </xsl:when>
     <xsl:otherwise>
-      <div class="list simplelist">
+      <div>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'list simplelist'"/>
+        </xsl:call-template>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <xsl:variable name="rows"
@@ -465,7 +514,10 @@ REMARK: Describe this module
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step | db:step">
-  <li class="steps">
+  <li>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
   </li>
@@ -476,7 +528,10 @@ REMARK: Describe this module
 <xsl:template match="substeps | db:substeps">
   <xsl:variable name="depth" select="count(ancestor::substeps |
                                            ancestor::db:substeps)"/>
-  <div class="steps substeps">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps substeps'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <ol class="steps substeps">
@@ -494,7 +549,10 @@ REMARK: Describe this module
 
 <!-- = term = -->
 <xsl:template match="term | db:term">
-  <dt class="terms">
+  <dt>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:if test="(../varlistentry/@id and not(preceding-sibling::term)) or
                   (../db:varlistentry/@xml:id and not(preceding-sibling::db:term))">
@@ -509,7 +567,10 @@ REMARK: Describe this module
 
 <!-- = variablelist = -->
 <xsl:template match="variablelist | db:variablelist">
-  <div class="terms variablelist">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms variablelist'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="db:info/db:title"/>
@@ -529,7 +590,10 @@ REMARK: Describe this module
 
 <!-- = varlistentry/listitem = -->
 <xsl:template match="varlistentry/listitem | db:varlistentry/db:listitem">
-  <dd class="terms">
+  <dd>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>

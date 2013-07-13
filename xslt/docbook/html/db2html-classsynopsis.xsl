@@ -80,10 +80,12 @@ at the root of a DocBook document.
   </xsl:variable>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>synopsis </xsl:text>
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>synopsis </xsl:text>
+        <xsl:value-of select="local-name(.)"/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <pre class="contents {local-name(.)} classsynopsis-{$language}">
       <xsl:choose>
@@ -114,7 +116,10 @@ at the root of a DocBook document.
 
 <!-- = methodparam = -->
 <xsl:template match="methodparam | db:methodparam">
-  <span class="methodparam">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'methodparam'"/>
+    </xsl:call-template>
     <xsl:for-each select="*">
       <xsl:if test="position() != 1">
         <xsl:text> </xsl:text>
@@ -328,7 +333,10 @@ methods is expected to mark the visibility, such as #{public} or #{private}.
 <!-- = methodparam % db2html.class.cpp.mode = -->
 <xsl:template mode="db2html.class.cpp.mode"
               match="methodparam | db:methodparam">
-  <span class="methodparam">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'methodparam'"/>
+    </xsl:call-template>
     <xsl:for-each select="*">
       <xsl:if test="position() != 1">
         <xsl:text> </xsl:text>

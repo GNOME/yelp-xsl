@@ -108,7 +108,10 @@ attributes from MathML 2 to #{href} attributes for MathML 3.
 </xsl:template>
 
 <xsl:template mode="mal2html.inline.mode" match="mml:math">
-  <span class="math">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'math'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="math" namespace="{$html.mathml.namespace}">
       <xsl:for-each select="@*[name(.) != 'display']

@@ -644,12 +644,15 @@ templates that handle #{page} and #{section} elements.
 <xsl:template name="mal2html.section">
   <xsl:param name="node" select="."/>
   <div id="{$node/@id}">
-    <xsl:attribute name="class">
-      <xsl:text>sect</xsl:text>
-      <xsl:if test="@ui:expanded or @uix:expanded">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class">
+        <xsl:text>sect</xsl:text>
+        <xsl:if test="@ui:expanded or @uix:expanded">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -831,16 +834,15 @@ templates that handle #{page} and #{section} elements.
 <!--%%==========================================================================
 mal2html.title.mode
 Output headings for titles and subtitles.
-:Revision:version="3.8" date="2012-11-05" status="final"
+:Revision:version="3.10" date="2013-07-10" status="final"
 
 This template is called on #{title} and #{subtitle} elements that appear as
 direct child content of #{page} or #{section} elements. Normal block titles
 are processed in %{mal2html.block.mode}.
 -->
-<!-- = subtitle = -->
-<xsl:template mode="mal2html.title.mode" match="mal:subtitle">
+<xsl:template mode="mal2html.title.mode" match="mal:title | mal:subtitle">
   <xsl:variable name="depth"
-                select="count(ancestor::mal:section) + 2"/>
+                select="count(ancestor::mal:section) + 1 + boolean(self::mal:subtitle)"/>
   <xsl:variable name="depth_">
     <xsl:choose>
       <xsl:when test="$depth &lt; 6">
@@ -852,32 +854,10 @@ are processed in %{mal2html.block.mode}.
     </xsl:choose>
   </xsl:variable>
   <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-    <xsl:attribute name="class">
-      <xsl:text>subtitle</xsl:text>
-    </xsl:attribute>
-    <xsl:apply-templates mode="mal2html.inline.mode"/>
-  </xsl:element>
-</xsl:template>
-
-<!-- = title = -->
-<xsl:template mode="mal2html.title.mode" match="mal:title">
-  <xsl:variable name="depth"
-                select="count(ancestor::mal:section) + 1"/>
-  <xsl:variable name="depth_">
-    <xsl:choose>
-      <xsl:when test="$depth &lt; 6">
-        <xsl:value-of select="$depth"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="6"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
-    <xsl:attribute name="class">
-      <xsl:text>title</xsl:text>
-    </xsl:attribute>
-    <span class="title">
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="local-name(.)"/>
+    </xsl:call-template>
+    <span class="{local-name(.)}">
       <xsl:apply-templates mode="mal2html.inline.mode"/>
     </span>
   </xsl:element>

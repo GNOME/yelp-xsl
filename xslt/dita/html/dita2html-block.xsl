@@ -53,11 +53,10 @@ FIXME
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:if test="$class != ''">
-      <xsl:attribute name="class">
-        <xsl:value-of select="$class"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <div class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </div>
@@ -85,11 +84,10 @@ FIXME
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:if test="$class != ''">
-      <xsl:attribute name="class">
-        <xsl:value-of select="$class"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </p>
 </xsl:template>
@@ -115,11 +113,10 @@ FIXME
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:if test="$class != ''">
-      <xsl:attribute name="class">
-        <xsl:value-of select="$class"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <pre class="contents">
       <!-- Strip off a leading newline -->
       <xsl:if test="$children[1]/self::text()">
@@ -196,8 +193,11 @@ FIXME
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="{$style}">
+  <div>
     <xsl:call-template name="dita.id"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="$style"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;"/>
@@ -250,13 +250,15 @@ FIXME
   <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>note</xsl:text>
-      <xsl:if test="$notetype != ''">
-        <xsl:text> note-</xsl:text>
-        <xsl:value-of select="$notetype"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>note</xsl:text>
+        <xsl:if test="$notetype != ''">
+          <xsl:text> note-</xsl:text>
+          <xsl:value-of select="$notetype"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <div class="inner">
       <div class="region">
         <div class="contents">
@@ -315,9 +317,12 @@ FIXME
 <!-- = section = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_section;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="section">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'section'"/>
+    </xsl:call-template>
     <!-- A DITA section may have an optional title. But it can be anywhere
          in the child node list. And there could be more than one, but all
          but the first are ignored. Apparently. Spec isn't very clear, but
@@ -369,9 +374,12 @@ FIXME
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="title">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'title'"/>
+    </xsl:call-template>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </xsl:element>

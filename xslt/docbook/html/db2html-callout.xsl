@@ -68,7 +68,10 @@ element, locate the corresponding #{co} element and call this template on it.
 <!-- = callout == -->
 <xsl:template match="callout | db:callout">
   <xsl:variable name="node" select="."/>
-  <div class="callout">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'callout'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <div class="co">

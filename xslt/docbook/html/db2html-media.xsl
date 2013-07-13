@@ -284,7 +284,10 @@ normal block content.
 <!-- = audiodata = -->
 <xsl:template match="mediaobject/audioobject/audiodata |
                      db:mediaobject/db:audioobject/db:audiodata">
-  <div class="media media-audio">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'media media-audio'"/>
+    </xsl:call-template>
     <div class="inner">
       <xsl:call-template name="db2html.audiodata">
         <xsl:with-param name="inline" select="false()"/>
@@ -294,7 +297,10 @@ normal block content.
 </xsl:template>
 <xsl:template match="inlinemediaobject/audioobject/audiodata |
                      db:inlinemediaobject/db:audioobject/db:audiodata">
-  <span class="media media-audio">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'media media-audio'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.audiodata"/>
   </span>
 </xsl:template>
@@ -306,7 +312,10 @@ normal block content.
 
 <!-- = graphic = -->
 <xsl:template match="graphic">
-  <div class="graphic">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'graphic'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.imagedata"/>
   </div>
@@ -331,7 +340,10 @@ normal block content.
 
 <!-- = inlinegraphic = -->
 <xsl:template match="inlinegraphic">
-  <span class="inlinegraphic">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'inlinegraphic'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.imagedata"/>
   </span>
@@ -339,7 +351,10 @@ normal block content.
 
 <!-- = inlinemediaobject = -->
 <xsl:template match="inlinemediaobject | db:inlinemediaobject">
-  <span class="inlinemediaobject">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'inlinemediaobject'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.mediaobject"/>
   </span>
@@ -347,7 +362,10 @@ normal block content.
 
 <!-- = mediaojbect = -->
 <xsl:template match="mediaobject | db:mediaobject">
-  <div class="mediaobject">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'mediaobject'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.mediaobject"/>
     <!-- When a figure contains only a single mediaobject, it eats the caption -->
@@ -365,7 +383,10 @@ normal block content.
 <!-- = videodata = -->
 <xsl:template match="mediaobject/videoobject/videodata |
                      db:mediaobject/db:videoobject/db:videodata">
-  <div class="media media-video">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'media media-video'"/>
+    </xsl:call-template>
     <div class="inner">
       <xsl:call-template name="db2html.videodata">
         <xsl:with-param name="inline" select="false()"/>
@@ -375,7 +396,10 @@ normal block content.
 </xsl:template>
 <xsl:template match="inlinemediaobject/videoobject/videodata |
                      db:inlinemediaobject/db:videoobject/db:videodata">
-  <span class="media media-video">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'media media-video'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.videodata"/>
   </span>
 </xsl:template>

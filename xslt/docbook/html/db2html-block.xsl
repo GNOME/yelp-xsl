@@ -37,17 +37,22 @@ complex block-level elements.
 <!--**==========================================================================
 db2html.block
 Output an HTML #{div} element for a block-level element.
-:Revision:version="3.4" date="2011-11-12" status="final"
+:Revision:version="3.10" date="2011-07-11" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 
 This template creates an HTML #{div} element for the given DocBook element.
+It passes the ${class} parameter to *{html.class.attr}.
 If the ${class} parameter is not provided, it uses the local name of ${node}.
 -->
 <xsl:template name="db2html.block">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
-  <div class="{$class}">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -62,7 +67,7 @@ If the ${class} parameter is not provided, it uses the local name of ${node}.
 <!--**==========================================================================
 db2html.block.formal
 Output HTML for a block-level element with an optional title and caption.
-:Revision:version="3.4" date="2011-11-12" status="final"
+:Revision:version="3.10" date="2011-07-11" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 $title: An element to use for the title.
@@ -70,7 +75,8 @@ $caption: An element to use for the caption.
 $titleattr: An optional value for the HTML #{title} attribute.
 
 This template outputs HTML for a formal DocBook element, one that can have
-a title or caption. If the ${class} parameter is not provided, it uses the
+a title or caption. It passes the ${class} parameter to *{html.class.attr}.
+If the ${class} parameter is not provided, it uses the
 local name of ${node}. Even if ${title} and ${caption} are both empty, this
 template still outputs the extra wrapper elements for formal elements. If
 ${titleattr} is provided, it is used for the value of the HTML #{title}
@@ -84,7 +90,11 @@ attribute on the outermost #{div} element.
   <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
   <xsl:param name="titleattr" select="''"/>
 
-  <div class="{$class}">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <xsl:if test="$titleattr != ''">
       <xsl:attribute name="title">
         <xsl:value-of select="$titleattr"/>
@@ -156,7 +166,11 @@ element.  It is called by *{db2html.block.formal}.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="title">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$title"/>
+      <xsl:with-param name="class" select="'title'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$title"/>
     </xsl:call-template>
@@ -175,7 +189,7 @@ element.  It is called by *{db2html.block.formal}.
 <!--**==========================================================================
 db2html.blockquote
 Output an HTML #{blockquote} element.
-:Revision:version="3.4" date="2011-11-12" status="final"
+:Revision:version="3.10" date="2011-07-11" status="final"
 $node: The DocBook element ot render as a quote.
 
 This template creates an HTML #{blockquote} element for the given DocBook
@@ -184,10 +198,13 @@ element. It's used for the DocBook #{blockquote} and #{epigraph} elements.
 <xsl:template name="db2html.blockquote">
   <xsl:param name="node" select="."/>
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>quote </xsl:text>
-      <xsl:value-of select="local-name($node)"/>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class">
+        <xsl:text>quote </xsl:text>
+        <xsl:value-of select="local-name($node)"/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -212,17 +229,22 @@ element. It's used for the DocBook #{blockquote} and #{epigraph} elements.
 <!--**==========================================================================
 db2html.para
 Output an HTML #{p} element for a block-level element.
-:Revision:version="3.4" date="2011-11-12" status="final"
+:Revision:version="3.10" date="2011-07-11" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 
 This template creates an HTML #{p} element for the given DocBook element.
+It passes the ${class} parameter to *{html.class.attr}.
 If the ${class} parameter is not provided, it uses the local name of ${node}.
 -->
 <xsl:template name="db2html.para">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
-  <p class="{$class}">
+  <p>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -237,12 +259,13 @@ If the ${class} parameter is not provided, it uses the local name of ${node}.
 <!--**==========================================================================
 db2html.pre
 Output an HTML #{pre} element for a block-level element.
-:Revision:version="3.4" date="2011-11-12" status="final"
+:Revision:version="3.10" date="2011-07-11" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 $children: The child elements to process.
 
 This template creates an HTML #{pre} element for the given DocBook element.
+It passes the ${class} parameter to *{html.class.attr}.
 If the ${class} parameter is not provided, it uses the local name of ${node}.
 
 If ${node} has the #{linenumbering} attribute set to #{"numbered"}, then this
@@ -259,7 +282,11 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
   <xsl:param name="children" select="$node/node()"/>
-  <div class="{$class}">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -421,7 +448,10 @@ syntax highlighting support based on the #{language} attribute of ${node}.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="hgroup bridgehead">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'hgroup bridgehead'"/>
+    </xsl:call-template>
     <xsl:element name="{$title_h}" namespace="{$html.namespace}">
       <xsl:apply-templates/>
     </xsl:element>

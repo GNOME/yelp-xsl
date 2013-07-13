@@ -169,7 +169,10 @@ This mode is used when processing the child elements of a #{biblioentry} or a
 inside a bibliography entry.
 -->
 <xsl:template mode="db2html.biblioentry.mode" match="*">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="local-name(.)"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates mode="db2html.biblioentry.mode"/>
@@ -332,7 +335,10 @@ inside a bibliography entry.
 
 <!-- = biblioentry = -->
 <xsl:template match="biblioentry | db:biblioentry">
-  <div class="biblioentry">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'biblioentry'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>
@@ -343,7 +349,10 @@ inside a bibliography entry.
 <!-- = bibliomixed = -->
 <xsl:template match="bibliomixed | db:bibliomixed">
   <xsl:variable name="node" select="."/>
-  <div class="bibliomixed">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'biblimixed'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.biblioentry.label"/>

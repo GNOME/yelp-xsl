@@ -510,9 +510,12 @@ div.dita-object > div.desc {
   <xsl:param name="topicref" select="/false"/>
   <xsl:choose>
     <xsl:when test="parent::&topic_topic_all;">
-      <div class="sect">
+      <div>
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'sect'"/>
+        </xsl:call-template>
         <div class="inner">
           <xsl:call-template name="_dita2html.topic.inner"/>
         </div>
@@ -562,9 +565,12 @@ div.dita-object > div.desc {
   <xsl:param name="topicref" select="/false"/>
   <xsl:variable name="node" select="."/>
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="region">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'region'"/>
+    </xsl:call-template>
     <div class="contents">
       <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
@@ -576,7 +582,11 @@ div.dita-object > div.desc {
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_related-links;">
-  <div class="sect sect-links" role="navigation">
+  <div role="navigation">
+    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'sect sect-links'"/>
+    </xsl:call-template>
     <div class="hgroup"/>
     <div class="contents">
       <div class="links">
@@ -596,9 +606,12 @@ div.dita-object > div.desc {
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_link;">
   <!-- FIXME -->
-  <li class="links">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'links'"/>
+    </xsl:call-template>
     <a>
       <xsl:attribute name="href">
         <!-- FIXME -->
@@ -632,9 +645,12 @@ div.dita-object > div.desc {
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_linkinfo;">
-  <li class="links links-linkinfo">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'links links-linkinfo'"/>
+    </xsl:call-template>
     <xsl:apply-templates modes="dita2html.topic.mode"/>
   </li>
 </xsl:template>
@@ -643,9 +659,12 @@ div.dita-object > div.desc {
   <xsl:choose>
     <xsl:when test="&topic_title_all; or &topic_desc; or &topic_linkinfo;">
       <li class="links">
-        <div class="links">
+        <div>
           <xsl:call-template name="dita.id"/>
           <xsl:call-template name="html.lang.attrs"/>
+          <xsl:call-template name="html.class.attr">
+            <xsl:with-param name="class" select="'links'"/>
+          </xsl:call-template>
           <div class="inner">
             <xsl:apply-templates mode="dita2html.topic.mode" select="&topic_title_all;"/>
             <div class="region">

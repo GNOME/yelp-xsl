@@ -38,9 +38,12 @@ REMARK: Describe this module
 <!-- = choice = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_choice;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <li class="list">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -48,9 +51,12 @@ REMARK: Describe this module
 <!-- = choices = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_choices;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="list">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <div class="inner">
       <ul class="list">
         <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
@@ -62,9 +68,12 @@ REMARK: Describe this module
 <!-- = dd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_dd;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <dd class="terms">
+  <dd>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </dd>
 </xsl:template>
@@ -72,9 +81,12 @@ REMARK: Describe this module
 <!-- = ddhd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_ddhd;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <dd class="terms ddhd">
+  <dd>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms ddhd'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </dd>
 </xsl:template>
@@ -89,9 +101,12 @@ REMARK: Describe this module
       <xsl:with-param name="conref" select="$conref"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="terms">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms'"/>
+    </xsl:call-template>
     <dl>
       <xsl:attribute name="class">
         <xsl:text>terms</xsl:text>
@@ -119,9 +134,12 @@ REMARK: Describe this module
 <!-- = dt = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_dt;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <dt class="terms">
+  <dt>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </dt>
 </xsl:template>
@@ -129,9 +147,12 @@ REMARK: Describe this module
 <!-- = dthd = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_dthd;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <dt class="terms dthd">
+  <dt>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'terms dthd'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </dt>
 </xsl:template>
@@ -139,9 +160,12 @@ REMARK: Describe this module
 <!-- = li = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_li;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <li class="list">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -156,9 +180,12 @@ REMARK: Describe this module
       <xsl:with-param name="conref" select="$conref"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="list">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <div class="inner">
       <ol>
         <xsl:attribute name="class">
@@ -183,9 +210,12 @@ REMARK: Describe this module
       <xsl:with-param name="conref" select="$conref"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="list">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <div class="inner">
       <ul>
         <xsl:attribute name="class">
@@ -209,9 +239,12 @@ REMARK: Describe this module
 <!-- = sli = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_sli;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <li class="list">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -220,9 +253,12 @@ REMARK: Describe this module
 <xsl:template mode="dita2html.topic.mode" match="&topic_step;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="pre" select="preceding-sibling::&topic_step;"/>
-  <li class="steps" value="{count($pre) + 1}">
+  <li value="{count($pre) + 1}">
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -230,9 +266,12 @@ REMARK: Describe this module
 <!-- = steps = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_steps;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="steps">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps'"/>
+    </xsl:call-template>
     <div class="inner">
       <div class="region">
         <ol class="steps">
@@ -246,9 +285,12 @@ REMARK: Describe this module
 <!-- = steps-unordered = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_steps-unordered;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="steps">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps'"/>
+    </xsl:call-template>
     <div class="inner">
       <div class="region">
         <ul class="steps">
@@ -262,9 +304,12 @@ REMARK: Describe this module
 <!-- = stepsection = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_stepsection;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <li class="stepsection">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'stepsection'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -272,9 +317,12 @@ REMARK: Describe this module
 <!-- = substep = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_substep;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <li class="steps substeps">
+  <li>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'steps substeps'"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
   </li>
 </xsl:template>
@@ -282,9 +330,12 @@ REMARK: Describe this module
 <!-- = substeps = -->
 <xsl:template mode="dita2html.topic.mode" match="&topic_substeps;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
-  <div class="substeps">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'substeps'"/>
+    </xsl:call-template>
     <ol class="substeps">
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     </ol>
@@ -301,9 +352,12 @@ REMARK: Describe this module
       <xsl:with-param name="conref" select="$conref"/>
     </xsl:call-template>
   </xsl:variable>
-  <div class="list">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'list'"/>
+    </xsl:call-template>
     <div class="inner">
       <ul>
         <xsl:attribute name="class">

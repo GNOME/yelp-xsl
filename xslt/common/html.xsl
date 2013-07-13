@@ -460,6 +460,52 @@ to provide additional elements in the HTML #{head} element of output files.
 
 
 <!--**==========================================================================
+html.class.attr
+Output a #{class} attribute for an HTML element.
+:Revision: version="3.10" date="2013-07-10" status="final"
+$node: The source node for which an HTML element is being output.
+$class: The value of the #{class} attribute provided by the calling template.
+
+This template is called by templates that output an HTML element corresponding
+to a source element. This template applies %{html.class.attr.mode} to ${node}
+to gather a value from extensions stylesheets. It combines this value with the
+value passed in the ${class} parameter and, if the result is non-empty, outputs
+a #{class} attribute.
+-->
+<xsl:template name="html.class.attr">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="class"/>
+  <xsl:variable name="fclass">
+    <xsl:value-of select="$class"/>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates mode="html.class.attr.mode" select="$node"/>
+  </xsl:variable>
+  <xsl:variable name="nclass" select="normalize-space($fclass)"/>
+  <xsl:if test="$nclass != ''">
+    <xsl:attribute name="class">
+      <xsl:value-of select="$nclass"/>
+    </xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.class.attr.mode
+Output additional values for an HTML #{class} attribute.
+:Revision:version="3.10" date="2013-07-10" status="final"
+
+This mode is called by *{html.class.attr} on a source element. This mode is
+intended for extensions to have an easy way to add additional HTML class values
+for styling.
+
+Note that these stylesheets use CSS classes extensively for styling and for
+certain JavaScript functionality. Extensions should be careful to output class
+values that do not conflict with those used in these stylesheets.
+-->
+<xsl:template mode="html.class.attr.mode" match="*"/>
+
+
+<!--**==========================================================================
 html.css
 Output all CSS for an HTML output page.
 :Revision:version="1.0" date="2010-12-23" status="final"

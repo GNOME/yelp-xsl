@@ -37,9 +37,12 @@ REMARK: Describe this module
 <xsl:template mode="dita2html.topic.mode" match="&topic_simpletable;">
   <xsl:variable name="conref" select="yelp:dita.ref.conref(.)"/>
   <xsl:variable name="keycol" select="@keycol"/>
-  <div class="table">
+  <div>
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'table'"/>
+    </xsl:call-template>
     <table class="table">
       <xsl:for-each select="$conref/&topic_sthead;[1]">
         <thead>
@@ -68,6 +71,9 @@ REMARK: Describe this module
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:for-each select="$conref/&topic_stentry;">

@@ -166,19 +166,21 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>table</xsl:text>
-      <xsl:for-each select="str:tokenize(@style)">
-        <xsl:value-of select="concat(' style-', .)"/>
-      </xsl:for-each>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>table</xsl:text>
+        <xsl:for-each select="str:tokenize(@style)">
+          <xsl:value-of select="concat(' style-', .)"/>
+        </xsl:for-each>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -226,6 +228,8 @@ REMARK: Describe this module
   <xsl:param name="rowshade"/>
   <xsl:param name="colshade"/>
   <tbody>
+    <xsl:call-template name="html.class.attr"/>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="mal:tr[1]">
       <xsl:with-param name="cols" select="$cols"/>
       <xsl:with-param name="rowrules" select="$rowrules"/>
@@ -244,6 +248,8 @@ REMARK: Describe this module
   <xsl:param name="rowshade"/>
   <xsl:param name="colshade"/>
   <thead>
+    <xsl:call-template name="html.class.attr"/>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="mal:tr[1]">
       <xsl:with-param name="cols" select="$cols"/>
       <xsl:with-param name="rowrules" select="$rowrules"/>
@@ -262,6 +268,8 @@ REMARK: Describe this module
   <xsl:param name="rowshade"/>
   <xsl:param name="colshade"/>
   <tfoot>
+    <xsl:call-template name="html.class.attr"/>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="mal:tr[1]">
       <xsl:with-param name="cols" select="$cols"/>
       <xsl:with-param name="rowrules" select="$rowrules"/>
@@ -316,11 +324,13 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <tr>
-    <xsl:if test="$shaderow = 1">
-      <xsl:attribute name="class">
-        <xsl:text>shade</xsl:text>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:if test="$shaderow = 1">
+          <xsl:text>shade</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates select="mal:td">
       <xsl:with-param name="cols" select="$cols"/>
       <xsl:with-param name="rowrules" select="$rowrules"/>
@@ -495,11 +505,13 @@ REMARK: Describe this module
     </xsl:choose>
   </xsl:variable>
   <td>
-    <xsl:if test="$shadecol = 1">
-      <xsl:attribute name="class">
-        <xsl:text>shade</xsl:text>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:if test="$shadecol = 1">
+          <xsl:text>shade</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:if test="$style != ''">
       <xsl:attribute name="style">
         <xsl:value-of select="$style"/>

@@ -59,13 +59,16 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name($node)"/>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class">
+        <xsl:value-of select="local-name($node)"/>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:if test="$numbered">
       <pre class="numbered"><xsl:call-template name="utils.linenumbering">
         <xsl:with-param name="node" select="$node"/>
@@ -194,12 +197,14 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = desc = -->
 <xsl:template mode="mal2html.block.mode" match="mal:desc">
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>desc</xsl:text>
-      <xsl:if test="contains(concat(' ', @style, ' '), ' center ')">
-        <xsl:text> center</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>desc</xsl:text>
+        <xsl:if test="contains(concat(' ', @style, ' '), ' center ')">
+          <xsl:text> center</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </div>
@@ -217,16 +222,18 @@ in accordance with the Mallard specification on fallback block content.
                 or processing-instruction('mal2html.show_comment')">
     <div>
       <xsl:call-template name="html.lang.attrs"/>
-      <xsl:attribute name="class">
-        <xsl:text>comment</xsl:text>
-        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
-        <xsl:if test="$if != 'true'">
-          <xsl:text> if-if </xsl:text>
-          <xsl:value-of select="$if"/>
-        </xsl:if>
-      </xsl:attribute>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class">
+          <xsl:text>comment</xsl:text>
+          <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+            <xsl:text> ui-expander</xsl:text>
+          </xsl:if>
+          <xsl:if test="$if != 'true'">
+            <xsl:text> if-if </xsl:text>
+            <xsl:value-of select="$if"/>
+          </xsl:if>
+        </xsl:with-param>
+      </xsl:call-template>
       <xsl:call-template name="mal2html.ui.expander.data"/>
       <div class="inner">
         <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -246,7 +253,10 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = comment/cite = -->
 <xsl:template mode="mal2html.block.mode" match="mal:comment/mal:cite">
-  <div class="cite cite-comment">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'cite cite-comment'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="@date">
@@ -290,13 +300,15 @@ in accordance with the Mallard specification on fallback block content.
 <xsl:template mode="mal2html.block.mode" match="mal:example">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>example</xsl:text>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>example</xsl:text>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </div>
@@ -308,16 +320,18 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>figure</xsl:text>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>figure</xsl:text>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <a href="#" class="zoom">
@@ -351,16 +365,18 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>listing</xsl:text>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>listing</xsl:text>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -410,19 +426,21 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:variable>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>note</xsl:text>
-      <xsl:if test="$notestyle != 'Note'">
-        <xsl:value-of select="concat(' note-', translate($notestyle, 'ABISTW', 'abistw'))"/>
-      </xsl:if>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>note</xsl:text>
+        <xsl:if test="$notestyle != 'Note'">
+          <xsl:value-of select="concat(' note-', translate($notestyle, 'ABISTW', 'abistw'))"/>
+        </xsl:if>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:if test="$notestyle != 'plain'">
       <xsl:attribute name="title">
         <xsl:call-template name="l10n.gettext">
@@ -455,13 +473,15 @@ in accordance with the Mallard specification on fallback block content.
 <xsl:template mode="mal2html.block.mode" match="mal:p">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <p>
-    <xsl:attribute name="class">
-      <xsl:text>p</xsl:text>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>p</xsl:text>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates mode="mal2html.inline.mode"/>
   </p>
@@ -473,16 +493,18 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>quote</xsl:text>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>quote</xsl:text>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -501,7 +523,10 @@ in accordance with the Mallard specification on fallback block content.
 
 <!-- = quote/cite = -->
 <xsl:template mode="mal2html.block.mode" match="mal:quote/mal:cite">
-  <div class="cite cite-quote">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'cite cite-quote'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:choose>
       <xsl:when test="@href">
@@ -532,16 +557,18 @@ in accordance with the Mallard specification on fallback block content.
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:attribute name="class">
-      <xsl:text>synopsis</xsl:text>
-      <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="$if != 'true'">
-        <xsl:text> if-if </xsl:text>
-        <xsl:value-of select="$if"/>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>synopsis</xsl:text>
+        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
@@ -573,16 +600,18 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:variable>
   <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>title title-</xsl:text>
-      <xsl:value-of select="local-name(..)"/>
-      <xsl:if test="contains($style, ' heading ')">
-        <xsl:text> title-heading</xsl:text>
-      </xsl:if>
-      <xsl:if test="contains($style, ' center ')">
-        <xsl:text> center</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>title title-</xsl:text>
+        <xsl:value-of select="local-name(..)"/>
+        <xsl:if test="contains($style, ' heading ')">
+          <xsl:text> title-heading</xsl:text>
+        </xsl:if>
+        <xsl:if test="contains($style, ' center ')">
+          <xsl:text> center</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <span class="title">

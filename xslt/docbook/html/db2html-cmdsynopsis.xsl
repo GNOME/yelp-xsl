@@ -82,7 +82,10 @@ This module contains templates to process DocBook command synopsis elements.
         <xsl:text>[</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <span class="arg">
+    <span>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'arg'"/>
+      </xsl:call-template>
       <xsl:for-each select="node()">
         <xsl:choose>
           <xsl:when test="self::sbr or self::db:sbr">
@@ -130,9 +133,9 @@ This module contains templates to process DocBook command synopsis elements.
     </xsl:choose>
   </xsl:param>
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>synopsis cmdsynopsis</xsl:text>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'synopsis cmdsynopsis'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <pre class="contents cmdsynopsis">
@@ -224,7 +227,10 @@ This module contains templates to process DocBook command synopsis elements.
         <xsl:text>[</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <span class="group">
+    <span>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'group'"/>
+      </xsl:call-template>
       <xsl:for-each select="*">
         <xsl:choose>
           <xsl:when test="self::sbr or self::db:sbr">
@@ -274,7 +280,10 @@ This module contains templates to process DocBook command synopsis elements.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
-  <div class="synopfragment">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'synopfragment'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:variable name="count" select="count(preceding-sibling::synopfragment) +
                                        count(preceding-sibling::db:synopfragment)"/>

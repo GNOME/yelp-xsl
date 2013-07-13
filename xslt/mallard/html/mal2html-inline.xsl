@@ -80,14 +80,14 @@ template.
 <!--**==========================================================================
 mal2html.span
 Output an HTML #{span} element.
-:Revision:version="1.0" date="2010-06-03" status="final"
+:Revision:version="3.10" date="2013-07-10" status="final"
 $node: The source element to output a #{span} for.
 $class: An additional string to prepend to the #{class} attribute.
 
 This template outputs an HTML #{span} element for a source element. It creates
-a #{class} attribute automatically from the #{class} attribute of ${node},
-prepending any value set in the ${class} parameter. To output the contents
-of ${node}, it applies the mode %{mal2html.inline.content.mode} to ${node}.
+a #{class} attribute automatically by passing the local name of ${node} and the
+${class} parameter to *{html.class.attr}. To output the contents of ${node}, it
+applies the mode %{mal2html.inline.content.mode} to ${node}.
 
 This template automatically handles ubiquitous linking if ${node} contains
 an #{xref} or #{href} attribute.
@@ -95,7 +95,11 @@ an #{xref} or #{href} attribute.
 <xsl:template name="mal2html.span">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="''"/>
-  <span class="{concat($class, ' ', local-name($node))}">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="concat($class, ' ', local-name($node))"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>

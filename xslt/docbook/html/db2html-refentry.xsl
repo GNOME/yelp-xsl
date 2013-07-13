@@ -102,7 +102,10 @@ REMARK: Describe this module. Talk about refenty and friends
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
-  <div class="refnamediv">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'refnamediv'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:choose>
       <xsl:when test="refdescriptor">

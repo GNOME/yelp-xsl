@@ -76,7 +76,11 @@ REMARK: Document this template
   <xsl:variable name="linkend" select="$node/@linkend"/>
 
   <!-- FIXME: do CSS classes, rather than inline styles -->
-  <span class="{$class} {$name-class}">
+  <span>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="concat($class, ' ', $name-class)"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>

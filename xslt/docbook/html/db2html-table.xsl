@@ -50,12 +50,15 @@ FIXME
   <xsl:param name="rowsep" select="''"/>
   <xsl:param name="spanstr"/>
   <tr>
-    <xsl:if test="($row/../self::tbody and (count($row/preceding-sibling::row) mod 2 = 1)) or
-                  ($row/../self::db:tbody and (count($row/preceding-sibling::db:row) mod 2 = 1))">
-      <xsl:attribute name="class">
-        <xsl:text>shade</xsl:text>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$row"/>
+      <xsl:with-param name="class">
+        <xsl:if test="($row/../self::tbody and (count($row/preceding-sibling::row) mod 2 = 1)) or
+                      ($row/../self::db:tbody and (count($row/preceding-sibling::db:row) mod 2 = 1))">
+          <xsl:text>shade</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:if test="$row/*[1]">
       <xsl:call-template name="db2html.entry">
         <xsl:with-param name="entry" select="$row/*[1]"/>
@@ -424,14 +427,13 @@ element to output the next #{td}.
         <xsl:call-template name="html.lang.attrs">
           <xsl:with-param name="parent" select=".."/>
         </xsl:call-template>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="node" select="$entry"/>
+          <xsl:with-param name="class" select="$class"/>
+        </xsl:call-template>
         <xsl:if test="$style != ''">
           <xsl:attribute name="style">
             <xsl:value-of select="normalize-space($style)"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:if test="$class != ''">
-          <xsl:attribute name="class">
-            <xsl:value-of select="normalize-space($class)"/>
           </xsl:attribute>
         </xsl:if>
         <xsl:if test="number($rowspan) &gt; 1">
@@ -957,6 +959,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:choose>
   </xsl:variable>
   <table>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates select="thead | db:thead">
       <xsl:with-param name="colspecs" select="colspec | db:colspec"/>
@@ -975,7 +978,10 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 
 <!-- = table = -->
 <xsl:template match="table | informaltable | db:table | db:informaltable">
-  <div class="table">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'table'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
@@ -1072,7 +1078,13 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     </xsl:if>
   </xsl:variable>
   <table>
-    <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:if test="$table/title or $table/db:title or $table/db:info/db:title">
       <xsl:attribute name="summary">
         <xsl:value-of select="$table/title | $table/db:title | $table/db:info/db:title"/>
@@ -1081,11 +1093,6 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
     <xsl:if test="$style != ''">
       <xsl:attribute name="style">
         <xsl:value-of select="normalize-space($style)"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$class != ''">
-      <xsl:attribute name="class">
-        <xsl:value-of select="normalize-space($class)"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
@@ -1129,6 +1136,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
   <xsl:param name="rowsep" select="''"/>
   <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:if test="@valign">
       <xsl:attribute name="valign">
         <xsl:value-of select="@valign"/>
@@ -1167,6 +1175,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 <xsl:template match="tr | db:tr">
   <tr>
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:choose>
       <xsl:when test="@align = 'left' or @align = 'center' or 
                       @align = 'right' or @align = 'justify' ">
@@ -1198,6 +1207,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 <xsl:template match="td | th | db:td | db:th">
   <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
     <xsl:call-template name="html.lang.attrs"/>
+    <xsl:call-template name="html.class.attr"/>
     <xsl:copy-of select="@valign | @rowspan | @colspan"/>
     <xsl:choose>
       <xsl:when test="@align = 'left' or @align = 'center' or 

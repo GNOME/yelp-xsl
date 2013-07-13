@@ -47,7 +47,10 @@ REMARK: Describe this module
 
 <!-- = productionset = -->
 <xsl:template match="productionset | db:productionset">
-  <div class="productionset">
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'productionset'"/>
+    </xsl:call-template>
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <table class="productionset">

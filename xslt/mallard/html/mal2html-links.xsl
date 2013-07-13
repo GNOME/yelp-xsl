@@ -91,18 +91,21 @@ parameter will be used if provided.
     </xsl:choose>
   </xsl:variable>
   <div>
-    <xsl:attribute name="class">
-      <xsl:text>links </xsl:text>
-      <xsl:if test="$role != ''">
-        <xsl:value-of select="concat($role, 'links')"/>
-      </xsl:if>
-      <xsl:if test="$expander">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
-      <xsl:if test="contains($style, ' center ')">
-        <xsl:text> links-center</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="node" select="$node[self::mal:links]"/>
+      <xsl:with-param name="class">
+        <xsl:text>links </xsl:text>
+        <xsl:if test="$role != ''">
+          <xsl:value-of select="concat($role, 'links')"/>
+        </xsl:if>
+        <xsl:if test="$expander">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
+        <xsl:if test="contains($style, ' center ')">
+          <xsl:text> links-center</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="expander" select="$expander"/>

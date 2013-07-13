@@ -99,38 +99,31 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$html.xhtml">
-      <div>
-        <xsl:attribute name="class">
-          <xsl:text>svg</xsl:text>
-          <xsl:if test="$if != 'true'">
-            <xsl:text> if-if </xsl:text>
-            <xsl:value-of select="$if"/>
-          </xsl:if>
-        </xsl:attribute>
+  <div>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class">
+        <xsl:text>svg</xsl:text>
+        <xsl:if test="$if != 'true'">
+          <xsl:text> if-if </xsl:text>
+          <xsl:value-of select="$if"/>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$html.xhtml">
         <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-      </div>
-    </xsl:when>
-    <xsl:otherwise>
-      <div>
-        <xsl:attribute name="class">
-          <xsl:text>svg</xsl:text>
-          <xsl:if test="$if != 'true'">
-            <xsl:text> if-if </xsl:text>
-            <xsl:value-of select="$if"/>
-          </xsl:if>
-        </xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
         <object data="{$id}.svg" type="image/svg+xml">
           <xsl:copy-of select="@width"/>
           <xsl:copy-of select="@height"/>
         </object>
-      </div>
-      <exsl:document href="{$id}.svg">
-        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-      </exsl:document>
-    </xsl:otherwise>
-  </xsl:choose>
+        <exsl:document href="{$id}.svg">
+          <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
+        </exsl:document>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:if>
 </xsl:template>
 

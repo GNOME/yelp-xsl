@@ -101,7 +101,10 @@ include a link to their defining page.
 
 <xsl:template mode="mal2html.inline.mode" match="gloss:term">
   <xsl:variable name="node" select="."/>
-  <a class="gloss-term">
+  <a>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'gloss-term'"/>
+    </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:variable name="target">
       <xsl:call-template name="mal.link.target">

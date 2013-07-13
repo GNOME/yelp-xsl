@@ -57,7 +57,10 @@ REMARK: Describe this template
 <xsl:template name="db2html.link" match="link">
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="target" select="key('db.id.key', $linkend)"/>
-  <a class="link">
+  <a>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'link'"/>
+    </xsl:call-template>
     <xsl:attribute name="href">
       <xsl:call-template name="db.xref.target">
         <xsl:with-param name="linkend" select="$linkend"/>
@@ -92,7 +95,10 @@ REMARK: Describe this template
 <xsl:template name="db2html.ulink" match="ulink">
   <xsl:param name="url" select="@url"/>
   <xsl:param name="content" select="false()"/>
-  <a class="ulink" href="{$url}">
+  <a href="{$url}">
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'ulink'"/>
+    </xsl:call-template>
     <xsl:attribute name="title">
       <xsl:call-template name="db.ulink.tooltip"/>
     </xsl:attribute>
@@ -165,7 +171,10 @@ REMARK: Describe this template
   <xsl:param name="endterm"   select="@endterm"/>
   <xsl:param name="xrefstyle" select="@xrefstyle"/>
   <xsl:param name="content"   select="false()"/>
-  <a class="xref">
+  <a>
+    <xsl:call-template name="html.class.attr">
+      <xsl:with-param name="class" select="'xref'"/>
+    </xsl:call-template>
     <xsl:attribute name="href">
       <xsl:call-template name="db.xref.target">
         <xsl:with-param name="linkend" select="$linkend"/>
