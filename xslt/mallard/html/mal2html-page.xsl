@@ -985,9 +985,10 @@ div.ui-screen {
 }
 div.ui-overlay {
   display: none;
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 0;
+  top: 20px;
   width: 100%;
   z-index: 10;
 }
@@ -1435,7 +1436,6 @@ $(document).ready(function () {
           return false;
         }
       });
-      overlay.css({top: $(this).offset().top});
       screen.fadeIn('slow');
       overlay.slideDown('fast', function () {
         if (media.length > 0)
