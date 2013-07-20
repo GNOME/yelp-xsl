@@ -758,6 +758,9 @@ templates that handle #{page} and #{section} elements.
   <xsl:for-each select="mal:section">
     <xsl:call-template name="mal2html.section"/>
   </xsl:for-each>
+  <xsl:if test="self::mal:page and not(mal:links[@type = 'prevnext'])">
+    <xsl:call-template name="mal2html.links.prevnext"/>
+  </xsl:if>
   <xsl:variable name="postlinks" select="mal:section/following-sibling::mal:links"/>
   <xsl:if test="(not(mal:section) and (
                   ($guidenodes and not(mal:links[@type = 'guide']))

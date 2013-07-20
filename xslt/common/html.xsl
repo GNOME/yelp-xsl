@@ -976,24 +976,51 @@ div.sectionlinks div.sectionlinks li {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
 }
 div.nextlinks {
+  font-size: 1.2em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   clear: both;
 }
-a.nextlinks-prev::before {
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x25C0;&#x00A0;&#x00A0;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x25B6;&#x00A0;&#x00A0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  vertical-align: bottom;
+div.nextlinks a {
+  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  display: inline-block;
+  position: relative;
+  height: 1.44em;
+  padding: 0.2em 0.83em;
+  margin-bottom: 1em;
 }
-a.nextlinks-next::after {
-  content: '</xsl:text><xsl:choose>
-  <xsl:when test="$left = 'left'"><xsl:text>&#x00A0;&#x00A0;&#x25B6;</xsl:text></xsl:when>
-  <xsl:otherwise><xsl:text>&#x00A0;&#x00A0;&#x25C0;</xsl:text></xsl:otherwise>
-  </xsl:choose><xsl:text>';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+a.nextlinks-prev { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0.72em; }
+a.nextlinks-next { margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.72em; }
+a.nextlinks-prev:after, a.nextlinks-next:after {
+  border: solid transparent;
+  content: " ";
+  position: absolute;
+  height: 0; width: 0;
+  border-width: 0.92em;
+  top: 50%;
+  margin-top: -0.92em;
+}
+a.nextlinks-prev:after {
+  </xsl:text><xsl:value-of select="$right"/><xsl:text>: 100%;
+  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
+a.nextlinks-next:after {
+  </xsl:text><xsl:value-of select="$left"/><xsl:text>: 100%;
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
+    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
+div.nextlinks a:hover {
+border: none;
+  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>
+}
+a.nextlinks-prev:hover:after {
+  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>
+}
+a.nextlinks-next:hover:after {
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>
 }
 div.serieslinks {
   display: inline-block;

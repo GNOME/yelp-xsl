@@ -98,9 +98,6 @@ REMARK: Describe this module
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$prev and $next">
-      <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
-    </xsl:if>
     <xsl:if test="$next">
       <a class="nextlinks-next">
         <xsl:attribute name="href">

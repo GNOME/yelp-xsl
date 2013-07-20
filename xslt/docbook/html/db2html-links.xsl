@@ -135,9 +135,6 @@ and "Next", although the actual page titles are used for tooltips.
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$prev_id != '' and $next_id != ''">
-      <xsl:text>&#x00A0;&#x00A0;|&#x00A0;&#x00A0;</xsl:text>
-    </xsl:if>
     <xsl:if test="$next_id != ''">
       <a class="nextlinks-next">
         <xsl:attribute name="href">
