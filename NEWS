@@ -1,3 +1,14 @@
+3.9.1
+=====
+* Style work on previous and next links
+* Use fixed positioning for ui overlays
+* Use nicer close buttons on ui overlays (Jakub Steiner)
+* Added html.class.attr and html.class.attr.mode
+* Fixed issued with HTML tables in DocBook
+* Added "center" and "button" style hints to links element
+* Updated translations:
+  cs    (Marek Černocký)
+
 3.8.1
 =====
 * Updated translations:
