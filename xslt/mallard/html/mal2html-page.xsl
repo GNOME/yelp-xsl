@@ -386,12 +386,13 @@ separators used between links.
     <xsl:attribute name="title">
       <xsl:call-template name="mal.link.tooltip">
         <xsl:with-param name="xref" select="$node/@xref"/>
+        <xsl:with-param name="role" select="'trail guide'"/>
       </xsl:call-template>
     </xsl:attribute>
     <xsl:call-template name="mal.link.content">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="xref" select="$node/@xref"/>
-      <xsl:with-param name="role" select="'trail'"/>
+      <xsl:with-param name="role" select="'trail guide'"/>
     </xsl:call-template>
   </a>
   <xsl:choose>

@@ -198,18 +198,20 @@ See *{mal.link.linkid} for more on link IDs.
 <!--**==========================================================================
 mal.link.content
 Output the content for a #{link} element.
-:Revision:version="3.4" date="2012-01-17" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 
 This template outputs the automatic text content for a link.  It should only
 be used for links that do not have specified content.  If ${xref} points to a
 valid page or section, the appropriate link title from that page or section
-will be selected, based on ${role}.  The %{mal.link.content.mode} mode will
-be applied to the contents of that title.  Stylesheets using this template
+will be selected, based on the list of roles in ${role}. The first role for
+which a matching link title is found will be used. Otherwise, the link title
+without a role is used, or the primary title. The %{mal.link.content.mode}
+mode is applied to the contents of that title.  Stylesheets using this template
 should map that mode to inline processing.
 
 This template first calls *{mal.link.content.custom} with the same arguments.
@@ -250,10 +252,18 @@ page or section cannot be found, ${xref} is used as the text content.
         <xsl:choose>
           <xsl:when test="$target">
             <xsl:variable name="titles" select="$target/mal:info/mal:title[@type = 'link']"/>
+            <xsl:variable name="realrole">
+              <xsl:for-each select="str:split($role)">
+                <xsl:variable name="thisrole" select="string(.)"/>
+                <xsl:if test="$titles[@role=$thisrole]">
+                  <xsl:value-of select="concat($thisrole, ' ')"/>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:variable>
             <xsl:choose>
-              <xsl:when test="$role != '' and $titles[@role = $role]">
+              <xsl:when test="$realrole != ''">
                 <xsl:apply-templates mode="mal.link.content.mode"
-                                     select="$titles[@role = $role][1]/node()"/>
+                                     select="$titles[@role = substring-before($realrole, ' ')][1]/node()"/>
               </xsl:when>
               <xsl:when test="$titles[not(@role)]">
                 <xsl:apply-templates mode="mal.link.content.mode"
@@ -289,12 +299,12 @@ page or section cannot be found, ${xref} is used as the text content.
 mal.link.content.custom
 Output the content for a custom #{link} element.
 :Stub: true
-:Revision:version="3.4" date="2012-01-17" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 
 This template is called by *{mal.link.content} to create content for custom
 links. Use this template to support the #{action} attribute or extended #{xref}
@@ -326,12 +336,12 @@ By default, it returns the string value of its input.  Stylesheets that use
 <!--**==========================================================================
 mal.link.tooltip
 Output a tooltip for a #{link} element.
-:Revision:version="3.4" date="2012-01-18" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 
 This template outputs a text-only tooltip for a link. If ${xref} points to a
 valid page or section, the text title from that page or section will be used.
@@ -408,12 +418,12 @@ tooltips may be provided for certain URI schemes.
 mal.link.tooltip.custom
 Output a tooltip for a custom #{link} element.
 :Stub: true
-:Revision:version="3.4" date="2012-01-17" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
 $href: The #{href} attribute of ${node}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 
 This template is called by *{mal.link.tooltip} to create tooltips for custom
 links. Use this template to support the #{action} attribute or extended #{xref}
@@ -509,9 +519,9 @@ attributes containing slash or colon characters.
 <!--**==========================================================================
 mal.link.guidelinks
 Output the guide links for a page or section.
-:Revision:version="3.4" date="2011-11-01" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{page} or #{section} element to generate links for.
-$role: A link role, used to select the appropriate title, default #{"guide"}.
+$role: A space-separated list of link roles, used to select the appropriate title, default #{"guide"}.
 
 This template outputs all the guide links for a page or section, whether
 declared as guide links in the page or section or as topic links from another
@@ -581,10 +591,10 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.topiclinks
 Output the topic links for a page or section.
-:Revision:version="3.4" date="2011-11-01" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{page} or #{section} element to generate links for.
 $groups: The list of all valid link groups for ${node}.
-$role: A link role, used to select the appropriate title, default #{"topic"}.
+$role: A space-separated list of link roles, used to select the appropriate title, default #{"topic"}.
 
 This template outputs all the topic links for a guide page or section, whether
 declared as topic links in the page or section or as guide links from another
@@ -751,9 +761,9 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.seealsolinks
 Output the see-also links for a page or section.
-:Revision:version="3.4" date="2011-11-01" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{page} or #{section} element to generate links for.
-$role: A link role, used to select the appropriate title, default #{"seealso"}.
+$role: A space-separated list of link roles, used to select the appropriate title, default #{"seealso"}.
 
 This template outputs all the see-also links for a page or section, whether
 declared in the page or section or in another page or section.  It outputs
@@ -1018,9 +1028,9 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.sorttitle
 Output the sort title for a page or section.
-:Revision:version="3.4" date="2011-11-01" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: The #{page} or #{section} element to output a sort title for.
-$role: A link role, used to select an appropriate link title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 
 This template returns a sort title for a page or section as a normalized string.
 If ${node} defines a sort title in its #{info} element, the value of that title

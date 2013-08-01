@@ -45,11 +45,11 @@ Mallard links element and implicitly.
 <!--**==========================================================================
 mal2html.links.links
 Output links in one of a number of formats.
-:Revision:version="3.4" date="2012-02-24" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $node: A #{links}, #{page}, or #{section} element to link from.
 $depth: The depth level for the HTML header element.
 $links: A list of links, as from a template in !{mal-link}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 $divs: Whether to default to divs instead of a list.
 $title: A default title to use if no #{title} element is found.
 
@@ -246,9 +246,9 @@ parameter will be used if provided.
 <!--**==========================================================================
 mal2html.links.ul
 Output links in an HTML #{ul} element.
-:Revision:version="1.0" date="2011-06-15" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $links: A list of links, as from a template in !{mal-link}.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 $bold: Whether to bold the link titles.
 $nodesc: Whether to omit descriptions.
 
@@ -281,10 +281,10 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.links.ul.li
 Output a list item with a link.
-:Revision:version="1.0" date="2011-06-15" status="final"
+:Revision:version="3.10" date="2013-07-30" status="final"
 $link: The #{link} element from a list of links.
 $xref: An #{xref} string pointing to the target node.
-$role: A link role, used to select the appropriate title.
+$role: A space-separated list of link roles, used to select the appropriate title.
 $bold: Whether to bold the link titles.
 $nodesc: Whether to omit descriptions.
 
@@ -319,6 +319,7 @@ a link for each target.
         <xsl:attribute name="title">
           <xsl:call-template name="mal.link.tooltip">
             <xsl:with-param name="xref" select="$xref"/>
+            <xsl:with-param name="role" select="$role"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:call-template name="mal.link.content">
@@ -369,12 +370,13 @@ the links itself. They must be passed in with the ${links} parameter.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <xsl:if test="$links">
     <xsl:call-template name="mal2html.links.links">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="depth" select="$depth"/>
       <xsl:with-param name="links" select="$links"/>
-      <xsl:with-param name="role" select="'guide'"/>
+      <xsl:with-param name="role" select="concat($role, ' guide')"/>
       <xsl:with-param name="title">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="'More Information'"/>
@@ -475,6 +477,7 @@ element containing ${node}.
 <xsl:template name="mal2html.links.section" match="mal:links[@type = 'section']">
   <xsl:param name="node" select="."/>
   <xsl:param name="depth" select="count($node/ancestor-or-self::mal:section) + 2"/>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
   <xsl:variable name="sectdepth">
     <xsl:choose>
@@ -519,6 +522,7 @@ element containing ${node}.
           <xsl:call-template name="_mal2html.links.section.ul">
             <xsl:with-param name="node" select="$node/.."/>
             <xsl:with-param name="depth" select="number($sectdepth)"/>
+            <xsl:with-param name="role" select="$role"/>
           </xsl:call-template>
         </div>
       </div>
@@ -530,11 +534,12 @@ element containing ${node}.
 <xsl:template name="_mal2html.links.section.ul">
   <xsl:param name="node"/>
   <xsl:param name="depth"/>
+  <xsl:param name="role"/>
   <ul>
     <xsl:for-each select="$node/mal:section">
       <xsl:call-template name="mal2html.links.ul.li">
         <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
-        <xsl:with-param name="role" select="'section'"/>
+        <xsl:with-param name="role" select="concat($role, ' section')"/>
       </xsl:call-template>
       <xsl:if test="$depth > 1 and mal:section">
         <li class="links">
@@ -542,6 +547,7 @@ element containing ${node}.
             <xsl:call-template name="_mal2html.links.section.ul">
               <xsl:with-param name="node" select="."/>
               <xsl:with-param name="depth" select="$depth - 1"/>
+              <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </ul>
         </li>
@@ -566,12 +572,13 @@ the links itself. They must be passed in with the ${links} parameter.
   <xsl:param name="node" select="."/>
   <xsl:param name="depth" select="count($node/ancestor-or-self::mal:section) + 2"/>
   <xsl:param name="links" select="/false"/>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <xsl:if test="$links">
     <xsl:call-template name="mal2html.links.links">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="depth" select="$depth"/>
       <xsl:with-param name="links" select="$links"/>
-      <xsl:with-param name="role" select="'seealso'"/>
+      <xsl:with-param name="role" select="concat($role, ' seealso')"/>
       <xsl:with-param name="title">
         <xsl:call-template name="l10n.gettext">
           <xsl:with-param name="msgid" select="'See Also'"/>
@@ -603,6 +610,7 @@ This template calls *{mal2html.links.series.prev} and
   <xsl:variable name="expander" select="$title and
                                         ($node/self::mal:links/@ui:expanded or
                                          $node/self::mal:links/@uix:expanded)"/>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <div>
     <xsl:attribute name="class">
       <xsl:text>links serieslinks</xsl:text>
@@ -634,16 +642,18 @@ This template calls *{mal2html.links.series.prev} and
         <ul>
           <xsl:call-template name="mal2html.links.series.prev">
             <xsl:with-param name="node" select="$page"/>
+            <xsl:with-param name="links" select="$node/self::mal:links"/>
           </xsl:call-template>
           <li class="links">
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="$page"/>
               <xsl:with-param name="xref" select="$page/@id"/>
-              <xsl:with-param name="role" select="'series'"/>
+              <xsl:with-param name="role" select="concat($role, ' series')"/>
             </xsl:call-template>
           </li>
           <xsl:call-template name="mal2html.links.series.next">
             <xsl:with-param name="node" select="$page"/>
+            <xsl:with-param name="links" select="$node/self::mal:links"/>
           </xsl:call-template>
         </ul>
       </div>
@@ -657,6 +667,7 @@ mal2html.links.series.prev
 Output preceding links to pages in a series.
 :Revision:version="1.0" date="2011-06-15" status="final"
 $node: The current #{page} element.
+$links: The series #{links} element.
 
 This template is called by *{mal2html.links.series} to output the pages before
 the starting page in the series. This template finds the previous page for the
@@ -665,6 +676,8 @@ to it.
 -->
 <xsl:template name="mal2html.links.series.prev">
   <xsl:param name="node"/>
+  <xsl:param name="links" select="/false"/>
+  <xsl:variable name="role" select="$links/self::mal:links/@role"/>
   <xsl:variable name="linkid">
     <xsl:call-template name="mal.link.linkid">
       <xsl:with-param name="node" select="$node"/>
@@ -675,6 +688,7 @@ to it.
     <xsl:if test="$prev">
       <xsl:call-template name="mal2html.links.series.prev">
         <xsl:with-param name="node" select="key('mal.cache.key', $prev/../../@id)"/>
+        <xsl:with-param name="links" select="$links"/>
       </xsl:call-template>
       <li class="links">
         <a>
@@ -688,13 +702,13 @@ to it.
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$prev"/>
               <xsl:with-param name="xref" select="$prev/../../@id"/>
-              <xsl:with-param name="role" select="'series'"/>
+              <xsl:with-param name="role" select="concat($role, ' series')"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$prev"/>
             <xsl:with-param name="xref" select="$prev/../../@id"/>
-            <xsl:with-param name="role" select="'series'"/>
+            <xsl:with-param name="role" select="concat($role, ' series')"/>
           </xsl:call-template>
         </a>
       </li>
@@ -708,6 +722,7 @@ mal2html.links.series.next
 Output following links to pages in a series.
 :Revision:version="1.0" date="2011-06-15" status="final"
 $node: The current #{page} element.
+$links: The series #{links} element.
 
 This template is called by *{mal2html.links.series} to output the pages after
 the starting page in the series. This template finds the next page for the page
@@ -716,6 +731,8 @@ page.
 -->
 <xsl:template name="mal2html.links.series.next">
   <xsl:param name="node"/>
+  <xsl:param name="links" select="/false"/>
+  <xsl:variable name="role" select="$links/self::mal:links/@role"/>
   <xsl:variable name="linkid">
     <xsl:call-template name="mal.link.linkid">
       <xsl:with-param name="node" select="$node"/>
@@ -736,18 +753,19 @@ page.
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$next"/>
               <xsl:with-param name="xref" select="$next/@xref"/>
-              <xsl:with-param name="role" select="'series'"/>
+              <xsl:with-param name="role" select="concat($role, ' series')"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
             <xsl:with-param name="node" select="$next"/>
             <xsl:with-param name="xref" select="$next/@xref"/>
-            <xsl:with-param name="role" select="'series'"/>
+            <xsl:with-param name="role" select="concat($role, ' series')"/>
           </xsl:call-template>
         </a>
       </li>
       <xsl:call-template name="mal2html.links.series.next">
         <xsl:with-param name="node" select="key('mal.cache.key', $next/@xref)"/>
+        <xsl:with-param name="links" select="$links"/>
       </xsl:call-template>
     </xsl:for-each>
   </xsl:if>
@@ -788,6 +806,7 @@ when determining which links to output.
     <xsl:text> </xsl:text>
   </xsl:param>
   <xsl:param name="allgroups" select="''"/>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <xsl:if test="$node/ancestor-or-self::mal:page[last()]/@type = 'guide'">
     <xsl:variable name="_groups">
       <xsl:if test="not(contains($allgroups, ' #first '))">
@@ -813,7 +832,7 @@ when determining which links to output.
         <xsl:with-param name="node" select="$node"/>
         <xsl:with-param name="depth" select="$depth"/>
         <xsl:with-param name="links" select="$_links"/>
-        <xsl:with-param name="role" select="'topic'"/>
+        <xsl:with-param name="role" select="concat($role, ' topic')"/>
         <xsl:with-param name="divs" select="true()"/>
       </xsl:call-template>
     </xsl:if>
@@ -825,6 +844,7 @@ when determining which links to output.
 <xsl:template name="_mal2html.links.mouseovers">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
+  <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <div class="mouseovers">
     <xsl:for-each select="$node/e:mouseover[not(@match)]">
       <img>
@@ -849,6 +869,7 @@ when determining which links to output.
             <xsl:attribute name="title">
               <xsl:call-template name="mal.link.tooltip">
                 <xsl:with-param name="xref" select="$xref"/>
+                <xsl:with-param name="role" select="concat($role, ' topic')"/>
               </xsl:call-template>
             </xsl:attribute>
             <xsl:for-each select="$node/e:mouseover[@match = $xref]">
@@ -859,7 +880,7 @@ when determining which links to output.
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="."/>
               <xsl:with-param name="xref" select="$xref"/>
-              <xsl:with-param name="role" select="'topic'"/>
+              <xsl:with-param name="role" select="concat($role, ' topic')"/>
             </xsl:call-template>
           </a>
         </li>
@@ -896,6 +917,7 @@ when determining which links to output.
           <xsl:attribute name="title">
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="xref" select="$xref"/>
+              <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
@@ -1091,6 +1113,7 @@ when determining which links to output.
               <xsl:attribute name="title">
                 <xsl:call-template name="mal.link.tooltip">
                   <xsl:with-param name="xref" select="$xref"/>
+                  <xsl:with-param name="role" select="$role"/>
                 </xsl:call-template>
               </xsl:attribute>
               <xsl:call-template name="mal.link.content">

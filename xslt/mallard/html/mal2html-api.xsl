@@ -129,6 +129,7 @@ the synopsis.
                   <xsl:call-template name="mal.link.tooltip">
                     <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$link/@xref"/>
+                    <!-- FIXME: role -->
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:value-of select="$function/api:name"/>

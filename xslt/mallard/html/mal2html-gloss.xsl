@@ -77,6 +77,7 @@ include a link to their defining page.
                 <xsl:attribute name="title">
                   <xsl:call-template name="mal.link.tooltip">
                     <xsl:with-param name="xref" select="@xref"/>
+                    <xsl:with-param name="role" select="'gloss:page'"/>
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:call-template name="mal.link.content">

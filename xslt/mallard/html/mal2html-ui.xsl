@@ -165,6 +165,7 @@ This template handles link sorting.
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$link/@xref"/>
+              <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:attribute>
           <span class="ui-tile-img" style="width: {$width}px; height: {$height}px;">

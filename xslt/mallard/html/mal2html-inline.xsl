@@ -119,6 +119,7 @@ an #{xref} or #{href} attribute.
           <xsl:attribute name="title">
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="role" select="$node/@role"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:apply-templates mode="mal2html.inline.content.mode" select="$node"/>
