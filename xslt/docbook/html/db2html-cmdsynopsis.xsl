@@ -132,6 +132,8 @@ This module contains templates to process DocBook command synopsis elements.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'synopsis cmdsynopsis'"/>
@@ -167,6 +169,7 @@ This module contains templates to process DocBook command synopsis elements.
       </xsl:apply-templates>
     </pre>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = group = -->

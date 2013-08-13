@@ -47,6 +47,8 @@ indexterm (autoidx)
 
 <!-- = indexentry = -->
 <xsl:template match="indexentry | db:indexentry">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dt class="primaryie">
     <xsl:apply-templates select="primaryie/node() | db:primaryie/node()"/>
   </dt>
@@ -119,6 +121,7 @@ indexterm (autoidx)
       </dl>
     </dd>
   </xsl:for-each>
+  </xsl:if>
 </xsl:template>
 
 <!-- = index = -->

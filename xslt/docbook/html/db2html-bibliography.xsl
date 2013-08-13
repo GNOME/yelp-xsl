@@ -185,11 +185,6 @@ inside a bibliography entry.
 <!-- = affiliation % db2html.biblioentry.mode = -->
 <xsl:template mode="db2html.biblioentry.mode" match="affiliation | db:affiliation"/>
 
-<!-- = annotation % db2html.biblioentry.mode = -->
-<xsl:template mode="db2html.biblioentry.mode" match="db:annotation">
-  <xsl:apply-templates select="."/>
-</xsl:template>
-
 <!-- = author % db2html.biblioentry.mode = -->
 <xsl:template mode="db2html.biblioentry.mode" match="author | db:author">
   <xsl:call-template name="db.personname"/>
@@ -335,6 +330,8 @@ inside a bibliography entry.
 
 <!-- = biblioentry = -->
 <xsl:template match="biblioentry | db:biblioentry">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'biblioentry'"/>
@@ -344,11 +341,14 @@ inside a bibliography entry.
     <xsl:call-template name="db2html.biblioentry.label"/>
     <xsl:call-template name="db2html.biblioentry.data"/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = bibliomixed = -->
 <xsl:template match="bibliomixed | db:bibliomixed">
   <xsl:variable name="node" select="."/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'biblimixed'"/>
@@ -359,6 +359,7 @@ inside a bibliography entry.
     <xsl:apply-templates mode="db2html.biblioentry.mode"
                          select="node()[not(set:has-same-node(., $node/*[1]/self::abbrev | $node/*[1]/self::db:abbrev))]"/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = bibliolist = -->

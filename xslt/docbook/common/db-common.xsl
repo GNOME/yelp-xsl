@@ -126,32 +126,64 @@ of the same name, counts its lines, and handles any #{startinglinenumber} or
 
 <!--**==========================================================================
 db.orderedlist.start
-Determines the number to use for the first #{listitem} in an #{orderedlist}
-$node: The #{orderedlist} element to use
+Determine the number to use for the first #{listitem} in an #{orderedlist}.
+:Revision:version="3.10" date="2013-08-12" status="final"
+$node: The #{orderedlist} element to use.
+$continuation: The value of the #{continuation} attribute.
 
 This template determines the starting number for an #{orderedlist} element using
-the #{continuation} attribute.  Thi template finds the first preceding #{orderedlist}
-element and counts its list items.  If that element also uses the #{continuation},
-this template calls itself recursively to add that element's starting line number
-to its list item count.
+the #{continuation} attribute.  The template finds the first preceding #{orderedlist}
+element and counts its list items.  If that element also uses the #{continuation}
+attribute, this template calls itself recursively to add that element's starting
+line number to its list item count.
+
+This template uses conditional processing when looking at preceding ordered lists
+and their child list items.
+
+The ${continuation} parameter is automatically set based on the #{continuation}
+attribute of ${node}. It exists as a parameter to allow this template to force
+continuation when it calls itself recursively for conditional processing.
 -->
 <xsl:template name="db.orderedlist.start">
   <xsl:param name="node" select="."/>
+  <xsl:param name="continuation" select="$node/@continuation"/>
   <xsl:choose>
-    <xsl:when test="$node/@continutation != 'continues'">1</xsl:when>
+    <xsl:when test="$continuation != 'continues'">1</xsl:when>
     <xsl:otherwise>
       <xsl:variable name="prevlist"
-                    select="$node/preceding::orderedlist[1]"/>
+                    select="($node/preceding::orderedlist[1] | $node/preceding::db:orderedlist[1])[last()]"/>
       <xsl:choose>
         <xsl:when test="count($prevlist) = 0">1</xsl:when>
         <xsl:otherwise>
-          <xsl:variable name="prevlength" select="count($prevlist/listitem)"/>
-          <xsl:variable name="prevstart">
-            <xsl:call-template name="db.orderedlist.start">
+          <xsl:variable name="prevlistif">
+            <xsl:call-template name="db.profile.test">
               <xsl:with-param name="node" select="$prevlist"/>
             </xsl:call-template>
           </xsl:variable>
-          <xsl:value-of select="$prevstart + $prevlength"/>
+          <xsl:choose>
+            <xsl:when test="$prevlistif = ''">
+              <xsl:call-template name="db.orderedlist.start">
+                <xsl:with-param name="node" select="$prevlist"/>
+                <xsl:with-param name="continuation" select="'continues'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:variable name="prevlength">
+                <xsl:for-each select="$prevlist/listitem | $prevlist/db:listitem">
+                  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+                  <xsl:if test="$if != ''">
+                    <xsl:text>x</xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:variable>
+              <xsl:variable name="prevstart">
+                <xsl:call-template name="db.orderedlist.start">
+                  <xsl:with-param name="node" select="$prevlist"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:value-of select="$prevstart + string-length($prevlength)"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>

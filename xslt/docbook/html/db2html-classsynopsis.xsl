@@ -68,6 +68,8 @@ at the root of a DocBook document.
               methodsynopsis    | destructorsynopsis     |
               db:classsynopsis  | db:constructorsynopsis | db:fieldsynopsis |
               db:methodsynopsis | db:destructorsynopsis  |">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <xsl:variable name="language">
     <xsl:choose>
       <xsl:when test="@language">
@@ -105,6 +107,7 @@ at the root of a DocBook document.
       </xsl:choose>
     </pre>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = classsynopsisinfo = -->

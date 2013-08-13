@@ -102,6 +102,8 @@ REMARK: Describe this module. Talk about refenty and friends
   <xsl:param name="depth_of_chunk">
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'refnamediv'"/>
@@ -130,6 +132,7 @@ REMARK: Describe this module. Talk about refenty and friends
     </xsl:call-template>
     <xsl:apply-templates select="refpurpose | db:refpurpose"/>
   </div>
+  </xsl:if>
   <!-- FIXME: what to do with refclass? -->
 </xsl:template>
 

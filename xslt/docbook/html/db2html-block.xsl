@@ -37,17 +37,25 @@ complex block-level elements.
 <!--**==========================================================================
 db2html.block
 Output an HTML #{div} element for a block-level element.
-:Revision:version="3.10" date="2011-07-11" status="final"
+:Revision:version="3.10" date="2013-08-09" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 
 This template creates an HTML #{div} element for the given DocBook element.
 It passes the ${class} parameter to *{html.class.attr}.
 If the ${class} parameter is not provided, it uses the local name of ${node}.
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.block">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -61,13 +69,14 @@ If the ${class} parameter is not provided, it uses the local name of ${node}.
     </xsl:call-template>
     <xsl:apply-templates select="$node/node()"/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 
 <!--**==========================================================================
 db2html.block.formal
 Output HTML for a block-level element with an optional title and caption.
-:Revision:version="3.10" date="2011-07-11" status="final"
+:Revision:version="3.10" date="2013-08-09" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 $title: An element to use for the title.
@@ -81,6 +90,8 @@ local name of ${node}. Even if ${title} and ${caption} are both empty, this
 template still outputs the extra wrapper elements for formal elements. If
 ${titleattr} is provided, it is used for the value of the HTML #{title}
 attribute on the outermost #{div} element.
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.block.formal">
   <xsl:param name="node" select="."/>
@@ -90,6 +101,12 @@ attribute on the outermost #{div} element.
   <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
   <xsl:param name="titleattr" select="''"/>
 
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -135,6 +152,7 @@ attribute on the outermost #{div} element.
       </div>
     </div>
   </div>
+  </xsl:if>
 </xsl:template>
 
 
@@ -189,14 +207,22 @@ element.  It is called by *{db2html.block.formal}.
 <!--**==========================================================================
 db2html.blockquote
 Output an HTML #{blockquote} element.
-:Revision:version="3.10" date="2011-07-11" status="final"
+:Revision:version="3.10" date="2013-08-09" status="final"
 $node: The DocBook element ot render as a quote.
 
 This template creates an HTML #{blockquote} element for the given DocBook
 element. It's used for the DocBook #{blockquote} and #{epigraph} elements.
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.blockquote">
   <xsl:param name="node" select="."/>
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -223,23 +249,32 @@ element. It's used for the DocBook #{blockquote} and #{epigraph} elements.
       </div>
     </div>
   </div>
+  </xsl:if>
 </xsl:template>
 
 
 <!--**==========================================================================
 db2html.para
 Output an HTML #{p} element for a block-level element.
-:Revision:version="3.10" date="2011-07-11" status="final"
+:Revision:version="3.10" date="2013-08-09" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 
 This template creates an HTML #{p} element for the given DocBook element.
 It passes the ${class} parameter to *{html.class.attr}.
 If the ${class} parameter is not provided, it uses the local name of ${node}.
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.para">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <p>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -253,13 +288,14 @@ If the ${class} parameter is not provided, it uses the local name of ${node}.
     </xsl:call-template>
     <xsl:apply-templates select="$node/node()"/>
   </p>
+  </xsl:if>
 </xsl:template>
 
 
 <!--**==========================================================================
 db2html.pre
 Output an HTML #{pre} element for a block-level element.
-:Revision:version="3.10" date="2011-07-11" status="final"
+:Revision:version="3.10" date="2013-08-09" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 $children: The child elements to process.
@@ -277,11 +313,19 @@ nodes in the ${children} parameter to override this behavior.
 
 If @{html.syntax.highlight} is #{true}, this template automatically outputs
 syntax highlighting support based on the #{language} attribute of ${node}.
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:param name="class" select="local-name($node)"/>
   <xsl:param name="children" select="$node/node()"/>
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -385,6 +429,7 @@ syntax highlighting support based on the #{language} attribute of ${node}.
       <xsl:apply-templates select="$children[not(position() = 1 and self::text())]"/>
     </pre>
   </div>
+  </xsl:if>
 </xsl:template>
 
 
@@ -427,6 +472,8 @@ syntax highlighting support based on the #{language} attribute of ${node}.
   <xsl:param name="depth_in_chunk">
     <xsl:call-template name="db.chunk.depth-in-chunk"/>
   </xsl:param>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <xsl:variable name="render">
     <xsl:choose>
       <xsl:when test="starts-with(@renderas, 'sect')">
@@ -456,6 +503,7 @@ syntax highlighting support based on the #{language} attribute of ${node}.
       <xsl:apply-templates/>
     </xsl:element>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = caption = -->

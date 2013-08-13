@@ -978,6 +978,8 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 
 <!-- = table = -->
 <xsl:template match="table | informaltable | db:table | db:informaltable">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'table'"/>
@@ -1008,6 +1010,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
       </xsl:otherwise>
     </xsl:choose>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = tgroup = -->

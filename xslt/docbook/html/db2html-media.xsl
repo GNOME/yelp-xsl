@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:mml="http://www.w3.org/1998/Math/MathML"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db mml"
+                exclude-result-prefixes="db mml str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -82,7 +83,7 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
 <!--**==========================================================================
 db2html.imagedata
 Output an HTML #{img} element for a #{imagedata} element.
-:Revision:version="3.8" date="2012-11-12" status="final"
+:Revision:version="3.10" date="2013-08-11" status="final"
 $node: The #{imagedata} or other graphic element.
 
 This template creates an #{img} element in the HTML output.  This template
@@ -90,6 +91,10 @@ is called not only for #{imagedata} elements, but also for #{graphic} and
 #{inlinegraphic} elements.  Note that #{graphic} and #{inlinegraphic} are
 deprecated and should not be used in any newly-written DocBook files.  Use
 #{mediaobject} instead.
+
+This template looks for a #{textobject} with a #{phrase} child in an ancestor
+#{mediaobject} or #{inlinemediaobject} element. It uses the first available,
+taking conditional processing into consideration.
 -->
 <xsl:template name="db2html.imagedata">
   <xsl:param name="node" select="."/>
@@ -119,10 +124,19 @@ deprecated and should not be used in any newly-written DocBook files.  Use
                                         self::db:imagedata/ancestor::db:mediaobject[1] |
                                         self::db:imagedata/ancestor::db:inlinemediaobject[1]
                                        )[last()]"/>
-    <xsl:variable name="alt" select="$media/textobject/phrase | $media/db:textobject/db:phrase"/>
-    <xsl:if test="$alt">
+    <xsl:variable name="alt" select="$media/textobject[phrase] | $media/db:textobject[db:phrase]"/>
+    <xsl:variable name="altpos">
+      <xsl:for-each select="$alt">
+        <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+        <xsl:if test="$if != ''">
+          <xsl:value-of select="concat(',', position())"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:if test="$altpos != ''">
       <xsl:attribute name="alt">
-        <xsl:value-of select="$alt[1]"/>
+        <xsl:variable name="obj" select="$alt[position() = number(str:split($altpos, ',')[1])]"/>
+        <xsl:value-of select="$obj/phrase | $obj/db:phrase"/>
       </xsl:attribute>
     </xsl:if>
   </img>
@@ -204,15 +218,16 @@ attribute on the HTML #{video} element. This template calls
 <!--**==========================================================================
 db2html.mediaobject
 Outputs HTML for a #{mediaobject} element.
-:Revision:version="3.8" date="2012-11-13" status="final"
+:Revision:version="3.10" date="2013-08-11" status="final"
 $node: The #{mediaobject} element.
 
 This template processes a #{mediaobject} element and outputs the appropriate
 HTML. DocBook allows multiple objects to be listed in a #{mediaobject} element.
 Processing tools are expected to choose the earliest suitable object. This
 template will select the first audio, image, or video object it can handle,
-filtering out images in non-web formats. If no suitable non-text objects are
-found, this template calls *{db2html.mediaobject.fallback}.
+filtering out images in non-web formats, and taking conditional processing
+into consideration. If no suitable non-text objects are found, this template
+calls *{db2html.mediaobject.fallback}.
 
 This template also detects MathML embedded in a DocBook 5 #{imagedata} element
 with the #{format} attribute #{"mathml"}, and passes it to the templates in
@@ -240,9 +255,17 @@ with the #{format} attribute #{"mathml"}, and passes it to the templates in
       @format = 'GIF'  or @format = 'GIF87a' or @format = 'GIF89a' or
       @format = 'JPEG' or @format = 'JPG'    or @format = 'PNG'    or
       not(@format)]] "/>
+  <xsl:variable name="objspos">
+    <xsl:for-each select="$objs">
+      <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+      <xsl:if test="$if != ''">
+        <xsl:value-of select="concat(',', position())"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$objs">
-      <xsl:apply-templates select="$objs[1]"/>
+    <xsl:when test="$objspos != ''">
+      <xsl:apply-templates select="$objs[position() = number(str:split($objspos, ',')[1])]"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="db2html.mediaobject.fallback">
@@ -256,24 +279,47 @@ with the #{format} attribute #{"mathml"}, and passes it to the templates in
 <!--**==========================================================================
 db2html.mediaobject.fallback
 Outputs fallback HTML for a #{mediaobject} element.
-:Revision:version="3.8" date="2012-11-13" status="final"
+:Revision:version="3.10" date="2013-08-11" status="final"
 $node: The #{mediaobject} element.
 
 This template outputs HTML for the first suitable #{textobject} child element
 of ${node}. If ${node} is an #{inlinemediaobject}, it looks for a #{textobject}
 that contains a #{phrase} element. Otherwise, it looks for a #{textobject} with
-normal block content.
+normal block content. It also handles conditional processing on the #{textobject}
+elements.
 -->
 <xsl:template name="db2html.mediaobject.fallback">
   <xsl:param name="node" select="."/>
   <xsl:choose>
     <xsl:when test="local-name($node) = 'inlinemediaobject'">
-      <xsl:apply-templates select="($node/textobject/phrase | $node/db:textobject/db:phrase)[1]"/>
+      <xsl:variable name="alt" select="$node/textobject[phrase] | $node/db:textobject[db:phrase]"/>
+      <xsl:variable name="altpos">
+        <xsl:for-each select="$alt">
+          <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+          <xsl:if test="$if != ''">
+            <xsl:value-of select="concat(',', position())"/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:if test="$altpos != ''">
+        <xsl:variable name="obj" select="$alt[position() = number(str:split($altpos, ',')[1])]"/>
+        <xsl:apply-templates select="$obj/phrase | $obj/db:phrase"/>
+      </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="($node/textobject[not(phrase or textdata)] |
-                                    $node/db:textobject[not(db:phrase or db:textdata)]
-                                   )[1]/*"/>
+      <xsl:variable name="alt" select="$node/textobject[not(phrase or textdata)] |
+                                       $node/db:textobject[not(db:phrase or db:textdata)]"/>
+      <xsl:variable name="altpos">
+        <xsl:for-each select="$alt">
+          <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+          <xsl:if test="$if != ''">
+            <xsl:value-of select="concat(',', position())"/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:if test="$altpos != ''">
+        <xsl:apply-templates select="$alt[position() = number(str:split($altpos, ',')[1])]/*"/>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -351,6 +397,8 @@ normal block content.
 
 <!-- = inlinemediaobject = -->
 <xsl:template match="inlinemediaobject | db:inlinemediaobject">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <span>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'inlinemediaobject'"/>
@@ -358,10 +406,13 @@ normal block content.
     <xsl:call-template name="db2html.anchor"/>
     <xsl:call-template name="db2html.mediaobject"/>
   </span>
+  </xsl:if>
 </xsl:template>
 
 <!-- = mediaojbect = -->
 <xsl:template match="mediaobject | db:mediaobject">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'mediaobject'"/>
@@ -378,6 +429,7 @@ normal block content.
       <xsl:apply-templates select="caption | db:caption"/>
     </xsl:if>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = videodata = -->

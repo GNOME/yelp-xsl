@@ -19,8 +19,9 @@ Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                xmlns:str="http://exslt.org/strings"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db msg"
+                exclude-result-prefixes="db msg str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -35,6 +36,8 @@ REMARK: Describe this module
 
 <!-- = glosslist = -->
 <xsl:template match="glosslist | db:glosslist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list glosslist'"/>
@@ -46,10 +49,13 @@ REMARK: Describe this module
       <xsl:apply-templates select="glossentry | db:glossentry"/>
     </dl>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = glossdef = -->
 <xsl:template match="glossdef | db:glossdef">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dd>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'glossdef'"/>
@@ -57,10 +63,13 @@ REMARK: Describe this module
     <xsl:apply-templates select="*[not(self::glossseealso) and not(self::db:glossseealso)]"/>
   </dd>
   <xsl:apply-templates select="glossseealso[1] | db:glossseealso[1]"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- = glossentry = -->
 <xsl:template match="glossentry | db:glossentry">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dt>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'glossterm'"/>
@@ -75,10 +84,13 @@ REMARK: Describe this module
     </xsl:if>
   </dt>
   <xsl:apply-templates select="glossdef | glosssee[1] | db:glossdef | db:glosssee[1]"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- = glosssee(also) = -->
 <xsl:template match="glosssee | glossseealso | db:glosssee | db:glossseealso">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dd>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="local-name(.)"/>
@@ -91,6 +103,7 @@ REMARK: Describe this module
       </xsl:call-template>
     </p>
   </dd>
+  </xsl:if>
 </xsl:template>
 
 <!--#% l10n.format.mode -->
@@ -138,6 +151,8 @@ REMARK: Describe this module
 
 <!-- = itemizedlist = -->
 <xsl:template match="itemizedlist | db:itemizedlist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list itemizedlist'"/>
@@ -166,10 +181,13 @@ REMARK: Describe this module
       <xsl:apply-templates select="listitem | db:listitem"/>
     </ul>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = itemizedlist/listitem = -->
 <xsl:template match="itemizedlist/listitem | db:itemizedlist/db:listitem">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <li>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list itemizedlist'"/>
@@ -188,6 +206,7 @@ REMARK: Describe this module
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </li>
+  </xsl:if>
 </xsl:template>
 
 <!-- = member = -->
@@ -198,6 +217,8 @@ REMARK: Describe this module
 
 <!-- = orderedlist = -->
 <xsl:template match="orderedlist | db:orderedlist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <xsl:variable name="start">
     <xsl:choose>
       <xsl:when test="@continuation = 'continues'">
@@ -243,10 +264,13 @@ REMARK: Describe this module
       <xsl:apply-templates select="listitem | db:listitem"/>
     </ol>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = orderedlist/listitem = -->
 <xsl:template match="orderedlist/listitem | db:orderedlist/db:listitem">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <li>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list orderedlist'"/>
@@ -260,10 +284,13 @@ REMARK: Describe this module
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </li>
+  </xsl:if>
 </xsl:template>
 
 <!-- = procedure = -->
 <xsl:template match="procedure | db:procedure">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'steps'"/>
@@ -287,10 +314,13 @@ REMARK: Describe this module
     </xsl:choose>
     </div>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = answer = -->
 <xsl:template match="answer | db:answer">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dd>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'answer'"/>
@@ -313,15 +343,21 @@ REMARK: Describe this module
     </xsl:choose>
     <xsl:apply-templates/>
   </dd>
+  </xsl:if>
 </xsl:template>
 
 <!-- = qandaentry = -->
 <xsl:template match="qandaentry | db:qandaentry">
-  <xsl:apply-templates/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <xsl:apply-templates/>
+  </xsl:if>
 </xsl:template>
 
 <!-- = question = -->
 <xsl:template match="question | db:question">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dt>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'question'"/>
@@ -344,6 +380,7 @@ REMARK: Describe this module
     </xsl:choose>
     <xsl:apply-templates/>
   </dt>
+  </xsl:if>
 </xsl:template>
 
 <!-- = seg = -->
@@ -364,33 +401,24 @@ REMARK: Describe this module
 
 <!-- = seglistitem = -->
 <xsl:template match="seglistitem | db:seglistitem">
-  <xsl:param name="position"
-              select="count(preceding-sibling::seglistitem) +
-                      count(preceding-sibling::db:seglistitem) + 1"/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'seglistitem'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
-    <div>
-      <xsl:attribute name="class">
-        <xsl:choose>
-          <xsl:when test="($position mod 2) = 1">
-            <xsl:value-of select="'odd'"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="'even'"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-      <xsl:apply-templates/>
-    </div>
+    <xsl:call-template name="db2html.anchor"/>
+    <xsl:apply-templates select="seg | db:seg"/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- FIXME: Implement tabular segmentedlists -->
 <!-- = segmentedlist = -->
 <xsl:template match="segmentedlist | db:segmentedlist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list segmentedlist'"/>
@@ -400,6 +428,7 @@ REMARK: Describe this module
     <xsl:apply-templates select="title | db:title | db:info/db:title"/>
     <xsl:apply-templates select="seglistitem | db:seglistitem"/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = segtitle = -->
@@ -416,6 +445,8 @@ REMARK: Describe this module
 
 <!-- = simplelist = -->
 <xsl:template match="simplelist | db:simplelist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <xsl:variable name="columns">
     <xsl:choose>
       <xsl:when test="@columns">
@@ -426,6 +457,17 @@ REMARK: Describe this module
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="allmembers" select="member | db:member"/>
+  <xsl:variable name="memberpos">
+    <xsl:for-each select="member | db:member">
+      <xsl:variable name="memberif">
+        <xsl:call-template name="db.profile.test"/>
+      </xsl:variable>
+      <xsl:if test="$memberif != ''">
+        <xsl:value-of select="concat(',', position())"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
   <xsl:choose>
     <xsl:when test="@type = 'inline'">
       <span>
@@ -434,13 +476,14 @@ REMARK: Describe this module
         </xsl:call-template>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
-        <xsl:for-each select="member | db:member">
+        <xsl:for-each select="str:split($memberpos, ',')">
           <xsl:if test="position() != 1">
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="', '"/>
             </xsl:call-template>
           </xsl:if>
-          <xsl:apply-templates select="."/>
+          <xsl:variable name="pos" select="number(.)"/>
+          <xsl:apply-templates select="$allmembers[$pos]"/>
         </xsl:for-each>
       </span>
     </xsl:when>
@@ -452,20 +495,19 @@ REMARK: Describe this module
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <table class="simplelist">
-          <xsl:for-each select="(member | db:member)[$columns = 1 or position() mod $columns = 1]">
+          <xsl:for-each select="str:split($memberpos, ',')[$columns = 1 or position() mod $columns = 1]">
+            <xsl:variable name="pos" select="number(.)"/>
             <tr>
               <td>
-                <xsl:apply-templates select="."/>
+                <xsl:apply-templates select="$allmembers[$pos]"/>
               </td>
-              <xsl:for-each select="(following-sibling::member |
-                                     following-sibling::db:member)[
-                                     position() &lt; $columns]">
+              <xsl:for-each select="following-sibling::*[position() &lt; $columns]">
+                <xsl:variable name="fpos" select="number(.)"/>
                 <td>
-                  <xsl:apply-templates select="."/>
+                  <xsl:apply-templates select="$allmembers[$fpos]"/>
                 </td>
               </xsl:for-each>
-              <xsl:variable name="fcount" select="count(following-sibling::member) +
-                                                  count(following-sibling::db:member)"/>
+              <xsl:variable name="fcount" select="count(following-sibling::*)"/>
               <xsl:if test="$fcount &lt; ($columns - 1)">
                 <td colspan="{$columns - $fcount - 1}"/>
               </xsl:if>
@@ -482,26 +524,24 @@ REMARK: Describe this module
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="db2html.anchor"/>
         <xsl:variable name="rows"
-                      select="ceiling(count(member | db:member) div $columns)"/>
+                      select="ceiling(count(str:split($memberpos, ',')) div $columns)"/>
         <table class="simplelist">
-          <xsl:for-each select="(member | db:member)[position() &lt;= $rows]">
+          <xsl:for-each select="str:split($memberpos, ',')[position() &lt;= $rows]">
+            <xsl:variable name="pos" select="number(.)"/>
             <tr>
               <td>
-                <xsl:apply-templates select="."/>
+                <xsl:apply-templates select="$allmembers[$pos]"/>
               </td>
-              <xsl:for-each select="(following-sibling::member |
-                                    following-sibling::db:member)[
-                                    position() mod $rows = 0]">
+              <xsl:for-each select="following-sibling::*[position() mod $rows = 0]">
+                <xsl:variable name="fpos" select="number(.)"/>
                 <td>
-                  <xsl:apply-templates select="."/>
+                  <xsl:apply-templates select="$allmembers[$fpos]"/>
                 </td>
               </xsl:for-each>
-              <xsl:if test="position() = $rows">
-                <xsl:variable name="fcount"
-                              select="count((following-sibling::member | following-sibling::db:member)[position() mod $rows = 0])"/>
-                <xsl:if test="$fcount &lt; ($columns - 1)">
-                  <td colspan="{$columns - $fcount - 1}"/>
-                </xsl:if>
+              <xsl:variable name="fcount"
+                            select="count(following-sibling::*[position() mod $rows = 0])"/>
+              <xsl:if test="$fcount &lt; ($columns - 1)">
+                <td/>
               </xsl:if>
             </tr>
           </xsl:for-each>
@@ -509,11 +549,14 @@ REMARK: Describe this module
       </div>
     </xsl:otherwise>
   </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step | db:step">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <li>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'steps'"/>
@@ -521,13 +564,15 @@ REMARK: Describe this module
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
   </li>
+  </xsl:if>
 </xsl:template>
 
 <!-- FIXME: Do something with @performance -->
 <!-- = substeps = -->
 <xsl:template match="substeps | db:substeps">
-  <xsl:variable name="depth" select="count(ancestor::substeps |
-                                           ancestor::db:substeps)"/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+  <xsl:variable name="depth" select="count(ancestor::substeps | ancestor::db:substeps)"/>
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'steps substeps'"/>
@@ -545,10 +590,13 @@ REMARK: Describe this module
       <xsl:apply-templates/>
     </ol>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = term = -->
 <xsl:template match="term | db:term">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <dt>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'terms'"/>
@@ -563,10 +611,13 @@ REMARK: Describe this module
     <xsl:apply-templates select="db:info/db:title"/>
     <xsl:apply-templates/>
   </dt>
+  </xsl:if>
 </xsl:template>
 
 <!-- = variablelist = -->
 <xsl:template match="variablelist | db:variablelist">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'terms variablelist'"/>
@@ -580,12 +631,16 @@ REMARK: Describe this module
       <xsl:apply-templates select="varlistentry |db:varlistentry"/>
     </dl>
   </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- = varlistentry = -->
 <xsl:template match="varlistentry | db:varlistentry">
-  <xsl:apply-templates select="term | db:term"/>
-  <xsl:apply-templates select="listitem | db:listitem"/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <xsl:apply-templates select="term | db:term"/>
+    <xsl:apply-templates select="listitem | db:listitem"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- = varlistentry/listitem = -->

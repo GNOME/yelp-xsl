@@ -57,7 +57,10 @@ element, locate the corresponding #{co} element and call this template on it.
 
 <!-- = co = -->
 <xsl:template match="co | db:co">
-  <xsl:call-template name="db2html.callout.label"/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <xsl:call-template name="db2html.callout.label"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- = calloutlist = -->
@@ -68,6 +71,8 @@ element, locate the corresponding #{co} element and call this template on it.
 <!-- = callout == -->
 <xsl:template match="callout | db:callout">
   <xsl:variable name="node" select="."/>
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <div>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'callout'"/>
@@ -89,6 +94,7 @@ element, locate the corresponding #{co} element and call this template on it.
     </div>
     <xsl:apply-templates/>
   </div>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

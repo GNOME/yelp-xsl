@@ -65,6 +65,8 @@ $lang: The locale of the text in ${node}
 $name-class: The class to use for the name of the element
 
 REMARK: Document this template
+
+This template handles conditional processing.
 -->
 <xsl:template name="db2html.inline">
   <xsl:param name="node" select="."/>
@@ -75,7 +77,12 @@ REMARK: Document this template
   <xsl:variable name="xlink" select="$node/@xl:href"/>
   <xsl:variable name="linkend" select="$node/@linkend"/>
 
-  <!-- FIXME: do CSS classes, rather than inline styles -->
+  <xsl:variable name="if">
+    <xsl:call-template name="db.profile.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <span>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
@@ -107,6 +114,7 @@ REMARK: Document this template
       </xsl:otherwise>
     </xsl:choose>
   </span>
+  </xsl:if>
 </xsl:template>
 
 
@@ -1178,18 +1186,24 @@ FIXME
 
 <!-- = subscript = -->
 <xsl:template match="subscript | db:subscript">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <sub class="subscript">
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </sub>
+  </xsl:if>
 </xsl:template>
 
 <!-- = superscript = -->
 <xsl:template match="superscript | db:superscript">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
   <sup class="superscript">
     <xsl:call-template name="db2html.anchor"/>
     <xsl:apply-templates/>
   </sup>
+  </xsl:if>
 </xsl:template>
 
 <!-- = surname = -->

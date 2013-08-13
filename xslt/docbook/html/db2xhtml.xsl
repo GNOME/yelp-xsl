@@ -38,10 +38,12 @@ DocBook documents into XHTML. This stylesheet sets the parameter
 
 <xsl:import href="../common/db-chunk.xsl"/>
 <xsl:import href="../common/db-common.xsl"/>
+<xsl:import href="../common/db-profile.xsl"/>
 <xsl:import href="../common/db-title.xsl"/>
 <xsl:import href="../common/db-xref.xsl"/>
 
 <xsl:param name="db.chunk.extension" select="$html.extension"/>
+<xsl:param name="db.profile.outputformat" select="'html;xhtml'"/>
 
 <xsl:include href="db2html-bibliography.xsl"/>
 <xsl:include href="db2html-block.xsl"/>
