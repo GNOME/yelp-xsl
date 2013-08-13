@@ -52,7 +52,12 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
   <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), 'numbered')"/>
-  <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <xsl:variable name="if">
+    <xsl:call-template name="mal.if.test">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="$if != ''">
   <xsl:variable name="first" select="$node/node()[1]/self::text()"/>
   <xsl:variable name="last" select="$node/node()[last()]/self::text()"/>
   <div>
@@ -476,6 +481,9 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class">
         <xsl:text>p</xsl:text>
+        <xsl:if test="contains(concat(' ', @style, ' '), ' lead ')">
+          <xsl:text> lead</xsl:text>
+        </xsl:if>
         <xsl:if test="$if != 'true'">
           <xsl:text> if-if </xsl:text>
           <xsl:value-of select="$if"/>

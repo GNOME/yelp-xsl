@@ -757,6 +757,7 @@ li > *:first-child { margin-top: 0; }
 div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
 pre.contents div { margin-top: 0 !important; }
 p img { vertical-align: middle; }
+p.lead { font-size: 1.2em; }
 div.clear {
   margin: 0; padding: 0;
   height: 0; line-height: 0;

@@ -278,7 +278,12 @@ This template handles conditional processing.
   <p>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="class" select="$class"/>
+      <xsl:with-param name="class">
+        <xsl:value-of select="$class"/>
+        <xsl:if test="contains(concat(' ', $node/@role, ' '), ' lead ')">
+          <xsl:text> lead</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs">
       <xsl:with-param name="node" select="$node"/>
