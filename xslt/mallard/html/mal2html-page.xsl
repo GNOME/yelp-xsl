@@ -395,28 +395,20 @@ separators used between links.
       <xsl:with-param name="role" select="'trail guide'"/>
     </xsl:call-template>
   </a>
+  <xsl:if test="$direction = 'rtl'">
+    <xsl:text>&#x200F;</xsl:text>
+  </xsl:if>
   <xsl:choose>
-    <xsl:when test="$direction = 'rtl'">
-      <xsl:choose>
-        <xsl:when test="$node/@child = 'section'">
-          <xsl:text>&#x00A0;‹ </xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>&#x00A0;« </xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:when test="$node/@child = 'section'">
+      <xsl:text>&#x00A0;› </xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:choose>
-        <xsl:when test="$node/@child = 'section'">
-          <xsl:text>&#x00A0;› </xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>&#x00A0;» </xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:text>&#x00A0;» </xsl:text>
     </xsl:otherwise>
   </xsl:choose>
+  <xsl:if test="$direction = 'rtl'">
+    <xsl:text>&#x200F;</xsl:text>
+  </xsl:if>
   <xsl:for-each select="$node/mal:link">
     <xsl:call-template name="mal2html.page.linktrails.link">
       <xsl:with-param name="direction" select="$direction"/>
