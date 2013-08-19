@@ -1,3 +1,12 @@
+3.9.90
+======
+* Added support for DocBook conditional processing
+* Fixed RTL issues in link trails for Mallard, DocBook, and DITA
+* Added "lead" style hint for paragraphs in Mallard and DocBook
+* Allow experimental role attribute on Mallard links element
+* Updated translations:
+  ja    (Jiro Matsuzawa)
+
 3.9.1
 =====
 * Style work on previous and next links
