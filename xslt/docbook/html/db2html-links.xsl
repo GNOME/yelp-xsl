@@ -41,6 +41,9 @@ This template outputs a trail of links for the ancestor pages of ${node}.
 -->
 <xsl:template name="db2html.links.linktrail">
   <xsl:param name="node" select="."/>
+  <xsl:variable name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:variable>
   <xsl:if test="$node/ancestor::*">
     <div class="trails" role="navigation">
       <div class="trail">
@@ -64,7 +67,14 @@ This template outputs a trail of links for the ancestor pages of ${node}.
               <xsl:with-param name="node" select="."/>
             </xsl:call-template>
           </a>
-          <xsl:text>&#x00A0;» </xsl:text>
+          <xsl:choose>
+            <xsl:when test="$direction = 'rtl'">
+              <xsl:text>&#x200F;&#x00A0;» &#x200F;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>&#x00A0;» </xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </div>
     </div>

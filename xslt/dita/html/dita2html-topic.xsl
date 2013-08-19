@@ -385,7 +385,7 @@ REMARK: Describe this module
   <xsl:variable name="sep">
     <xsl:choose>
       <xsl:when test="$direction = 'rtl'">
-        <xsl:text>&#x00A0;« </xsl:text>
+        <xsl:text>&#x200F;&#x00A0;» &#x200F;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>&#x00A0;» </xsl:text>
