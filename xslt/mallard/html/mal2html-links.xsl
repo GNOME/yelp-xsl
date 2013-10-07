@@ -72,9 +72,10 @@ parameter will be used if provided.
   <xsl:param name="role" select="''"/>
   <xsl:param name="divs" select="false()"/>
   <xsl:param name="title" select="''"/>
+  <xsl:variable name="lastrole" select="str:split($role)[last()]"/>
   <!-- We use the style attribute on page for links styles for backwards
        compatibility, but only for topic links. -->
-  <xsl:variable name="style" select="concat(' ', $node[self::mal:links or $role = 'topic']/@style, ' ')"/>
+  <xsl:variable name="style" select="concat(' ', $node[self::mal:links or $lastrole = 'topic']/@style, ' ')"/>
   <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
   <xsl:variable name="maltitle" select="$node/self::mal:links/mal:title"/>
   <xsl:variable name="expander" select="($maltitle or ($title != '')) and
@@ -95,8 +96,8 @@ parameter will be used if provided.
       <xsl:with-param name="node" select="$node[self::mal:links]"/>
       <xsl:with-param name="class">
         <xsl:text>links </xsl:text>
-        <xsl:if test="$role != ''">
-          <xsl:value-of select="concat($role, 'links')"/>
+        <xsl:if test="$lastrole != ''">
+          <xsl:value-of select="concat($lastrole, 'links')"/>
         </xsl:if>
         <xsl:if test="$expander">
           <xsl:text> ui-expander</xsl:text>
