@@ -39,7 +39,7 @@ except the list and table elements.
 <!--**==========================================================================
 mal2html.pre
 Output an HTML #{pre} element.
-:Revision:version="1.0" date="2010-06-03" status="final"
+:Revision:version="3.12" date="2013-11-02" status="final"
 $node: The source element to output a #{pre} for.
 
 This template outputs an HTML #{pre} element along with a wrapper #{div} element
@@ -47,7 +47,8 @@ for CSS styling. It should be called for verbatim block elements. It will
 automatically strip leading and trailing newlines using *{utils.strip_newlines}.
 
 If @{html.syntax.highlight} is #{true}, this template automatically outputs
-syntax highlighting support based on the #{mime} attribute of ${node}.
+syntax highlighting support based on the #{mime} attribute of ${node}, using
+*{html.syntax.class} to determine the correct highlighter.
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
@@ -83,62 +84,9 @@ syntax highlighting support based on the #{mime} attribute of ${node}.
       <xsl:attribute name="class">
         <xsl:text>contents </xsl:text>
         <xsl:if test="$html.syntax.highlight and $node/@mime">
-          <xsl:choose>
-            <xsl:when test="@mime = 'application/x-shellscript'">
-              <xsl:text>syntax brush-bash-script</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-csrc' or @mime = 'text/x-chdr' or
-                            @mime = 'text/x-c++hdr' or @mime = 'text/x-c++src' or
-                            @mime = 'text/x-objcsrc'">
-              <xsl:text>syntax brush-clang</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-csharp'">
-              <xsl:text>syntax brush-csharp</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/css'">
-              <xsl:text>syntax brush-css</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-patch'">
-              <xsl:text>syntax brush-diff</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/html' or @mime = 'application/xml' or
-                            substring(@mime, string-length(@mime) - 3) = '+xml'">
-              <xsl:text>syntax brush-html</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-java'">
-              <xsl:text>syntax brush-java</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'application/javascript'">
-              <xsl:text>syntax brush-javascript</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-scheme' or @mime = 'text/x-emacs-lisp'">
-              <xsl:text>syntax brush-lisp</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-lua'">
-              <xsl:text>syntax brush-lua</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-pascal'">
-              <xsl:text>syntax brush-pascal</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'application/x-perl'">
-              <xsl:text>syntax brush-perl5</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'application/x-php'">
-              <xsl:text>syntax brush-php-script</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-python'">
-              <xsl:text>syntax brush-python</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'application/x-ruby'">
-              <xsl:text>syntax brush-ruby</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'text/x-sql'">
-              <xsl:text>syntax brush-sql</xsl:text>
-            </xsl:when>
-            <xsl:when test="@mime = 'application/x-yaml'">
-              <xsl:text>syntax brush-yaml</xsl:text>
-            </xsl:when>
-          </xsl:choose>
+          <xsl:call-template name="html.syntax.class">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:if>
       </xsl:attribute>
       <xsl:if test="$first">

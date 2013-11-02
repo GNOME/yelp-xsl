@@ -300,7 +300,7 @@ This template handles conditional processing.
 <!--**==========================================================================
 db2html.pre
 Output an HTML #{pre} element for a block-level element.
-:Revision:version="3.10" date="2013-08-09" status="final"
+:Revision:version="3.12" date="2013-11-02" status="final"
 $node: The block-level element to render.
 $class: The value of the HTML #{class} attribute.
 $children: The child elements to process.
@@ -317,7 +317,8 @@ By default, this template applies templates to all child nodes. Pass child
 nodes in the ${children} parameter to override this behavior.
 
 If @{html.syntax.highlight} is #{true}, this template automatically outputs
-syntax highlighting support based on the #{language} attribute of ${node}.
+syntax highlighting support based on the #{language} attribute of ${node},
+using *{html.syntax.class} to determine the correct highlighter.
 
 This template handles conditional processing.
 -->
@@ -365,59 +366,9 @@ This template handles conditional processing.
       <xsl:attribute name="class">
         <xsl:text>contents </xsl:text>
         <xsl:if test="$html.syntax.highlight and $node/@language">
-          <xsl:choose>
-            <xsl:when test="@language = 'bash'">
-              <xsl:text>syntax brush-bash-script</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'c' or @language = 'cpp' or @language = 'objc'">
-              <xsl:text>syntax brush-clang</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'csharp'">
-              <xsl:text>syntax brush-csharp</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'css'">
-              <xsl:text>syntax brush-css</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'diff'">
-              <xsl:text>syntax brush-diff</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'html' or @language = 'xml'">
-              <xsl:text>syntax brush-html</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'java'">
-              <xsl:text>syntax brush-java</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'javascript'">
-              <xsl:text>syntax brush-javascript</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'lisp'">
-              <xsl:text>syntax brush-lisp</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'lua'">
-              <xsl:text>syntax brush-lua</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'pascal'">
-              <xsl:text>syntax brush-pascal</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'perl'">
-              <xsl:text>syntax brush-perl5</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'php'">
-              <xsl:text>syntax brush-php-script</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'python'">
-              <xsl:text>syntax brush-python</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'ruby'">
-              <xsl:text>syntax brush-ruby</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'sql'">
-              <xsl:text>syntax brush-sql</xsl:text>
-            </xsl:when>
-            <xsl:when test="@language = 'yaml'">
-              <xsl:text>syntax brush-yaml</xsl:text>
-            </xsl:when>
-          </xsl:choose>
+          <xsl:call-template name="html.syntax.class">
+            <xsl:with-param name="node" select="$node"/>
+          </xsl:call-template>
         </xsl:if>
       </xsl:attribute>
       <!-- Strip off a leading newline -->

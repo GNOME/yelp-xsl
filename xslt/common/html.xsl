@@ -2249,4 +2249,83 @@ if ${dir} is non-empty.
   </xsl:if>
 </xsl:template>
 
+
+<!--**==========================================================================
+html.syntax.class
+Output HTML class values for syntax highlighting.
+:Revision:version="3.12" date="2013-11-02" status="final"
+$node: The source element whose content will be syntax highlighted.
+$mime: A MIME type identifying the content, as from a Mallard #{mime} attribute.
+$language: A name identifying the content as from a DocBook #{language} attribute.
+
+This template looks at ${mime} and ${language} and determines if there is a
+suitable syntax highlighting brush available. If so, it outputs a string that
+should be placed in the #{class} attribute of a #{pre} element by the calling
+template.
+-->
+<xsl:template name="html.syntax.class">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="mime" select="$node/@mime"/>
+  <xsl:param name="language" select="$node/@language"/>
+  <xsl:choose>
+    <xsl:when test="$mime = 'application/x-shellscript' or $language = 'bash'">
+      <xsl:text>syntax brush-bash-script</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-csrc' or $mime = 'text/x-chdr' or
+                    $mime = 'text/x-c++hdr' or $mime = 'text/x-c++src' or
+                    $mime = 'text/x-objcsrc' or $language = 'c' or
+                    $language = 'cpp' or $language = 'objc'">
+      <xsl:text>syntax brush-clang</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-csharp' or $language = 'csharp'">
+      <xsl:text>syntax brush-csharp</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/css' or $language = 'css'">
+      <xsl:text>syntax brush-css</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-patch' or $language = 'diff'">
+      <xsl:text>syntax brush-diff</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/html' or $mime = 'application/xml' or
+                    substring($mime, string-length($mime) - 3) = '+xml' or
+                    $language = 'html' or $language = 'xml'">
+      <xsl:text>syntax brush-html</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-java' or $language = 'java'">
+      <xsl:text>syntax brush-java</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'application/javascript' or $language = 'javascript'">
+      <xsl:text>syntax brush-javascript</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-scheme' or $mime = 'text/x-emacs-lisp' or
+                    $language = 'lisp'">
+      <xsl:text>syntax brush-lisp</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-lua' or $language = 'lua'">
+      <xsl:text>syntax brush-lua</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-pascal' or $language = 'pascal'">
+      <xsl:text>syntax brush-pascal</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'application/x-perl' or $language = 'perl'">
+      <xsl:text>syntax brush-perl5</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'application/x-php' or $language = 'php'">
+      <xsl:text>syntax brush-php-script</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-python' or $language = 'python'">
+      <xsl:text>syntax brush-python</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'application/x-ruby' or $language = 'ruby'">
+      <xsl:text>syntax brush-ruby</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'text/x-sql' or $language = 'sql'">
+      <xsl:text>syntax brush-sql</xsl:text>
+    </xsl:when>
+    <xsl:when test="$mime = 'application/x-yaml' or $language = 'yaml'">
+      <xsl:text>syntax brush-yaml</xsl:text>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
