@@ -17,7 +17,6 @@ else
 fi
 AC_SUBST(YELP_XSL_AWK)
 
-AC_ARG_VAR([ITSTOOL], [Path to the `itstool` command])
 AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
 if test x"$ITSTOOL" = x; then
   AC_MSG_ERROR([itstool is required to build the translation XML files])
@@ -26,13 +25,6 @@ ITSTOOL_VERSION=`itstool --version | cut -d' ' -f2 | awk -F. '{print $ 1 * 10000
 if test "$ITSTOOL_VERSION" -lt 10200; then
   AC_MSG_ERROR([itstool >= 1.2.0 is required to build the translation XML files])
 fi
-
-# Dependecies
-PKG_CHECK_MODULES(YELP_XSL,
-[
-	libxml-2.0 >= 2.6.12
-	libxslt    >= 1.1.8
-])
 
 # i18n stuff
 GETTEXT_PACKAGE=yelp-xsl
@@ -48,6 +40,17 @@ AC_ARG_ENABLE(doc,
               [AS_HELP_STRING([--enable-doc],[build and install developer documentation [default=no]])],,
               enable_doc=no)
 AM_CONDITIONAL(ENABLE_DOC, test "x$enable_doc" != "xno")
+
+AS_IF([test "x$enable_doc" != "xno"],[
+AC_CHECK_PROG(XMLLINT, xmllint, xmllint)
+if test x"$XMLLINT" = x; then
+  AC_MSG_ERROR([xmllint not found])
+fi
+AC_CHECK_PROG(XSLTPROC, xsltproc, xsltproc)
+if test x"$XSLTPROC" = x; then
+  AC_MSG_ERROR([xsltproc not found])
+fi
+])
 
 AC_CONFIG_FILES([
 Makefile
