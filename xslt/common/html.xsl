@@ -1791,7 +1791,7 @@ $(document).ready(function () {
     }
     if (region.attr('id') == '')
       region.attr('id', yelp_generate_id());
-    title.attr('role', 'button').attr('aria-controls', region.attr('id'));
+    title.attr('aria-controls', region.attr('id'));
     var titlespan = title.find('span.title:first');
     var title_e = yelpdata.children('div.yelp-title-expanded');
     var title_c = yelpdata.children('div.yelp-title-collapsed');
