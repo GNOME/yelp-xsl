@@ -14,8 +14,7 @@
 # for more details.
 #
 # You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# with this program; if not, see <http://www.gnu.org/licenses/>.
 
 # This program is free software, but that doesn't mean you should use it.
 # It's a hackish bit of awk and XSLT to do inline XSLT documentation with
