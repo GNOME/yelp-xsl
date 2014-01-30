@@ -835,6 +835,7 @@ direct child content of #{page} or #{section} elements. Normal block titles
 are processed in %{mal2html.block.mode}.
 -->
 <xsl:template mode="mal2html.title.mode" match="mal:title | mal:subtitle">
+  <xsl:if test="not(contains(concat(' ', @style, ' '), ' hidden '))">
   <xsl:variable name="depth"
                 select="count(ancestor::mal:section) + 1 + boolean(self::mal:subtitle)"/>
   <xsl:variable name="depth_">
@@ -855,6 +856,7 @@ are processed in %{mal2html.block.mode}.
       <xsl:apply-templates mode="mal2html.inline.mode"/>
     </span>
   </xsl:element>
+  </xsl:if>
 </xsl:template>
 
 <!--%# html.css.mode -->
