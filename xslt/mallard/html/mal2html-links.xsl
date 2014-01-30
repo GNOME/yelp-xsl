@@ -172,6 +172,13 @@ parameter will be used if provided.
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
+          <xsl:when test="contains($style, ' norwich ')">
+            <xsl:call-template name="_mal2html.links.norwich">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
+            </xsl:call-template>
+          </xsl:when>
           <xsl:when test="contains($style, ' linklist ')">
             <xsl:variable name="bold" select="contains($style, ' bold ')"/>
             <xsl:call-template name="mal2html.links.ul">
@@ -936,6 +943,113 @@ when determining which links to output.
       </xsl:for-each>
     </div>
   </xsl:for-each>
+</xsl:template>
+
+<!--#* _mal2html.links.norwich -->
+<xsl:template name="_mal2html.links.norwich">
+  <xsl:param name="node"/>
+  <xsl:param name="links"/>
+  <xsl:param name="role"/>
+  <div class="links-norwich">
+    <div class="links-norwich-primary">
+      <xsl:for-each select="$links">
+        <xsl:sort data-type="number" select="@groupsort"/>
+        <xsl:sort select="mal:title[@type = 'sort']"/>
+        <xsl:if test="position() &lt; 3">
+          <xsl:variable name="xref" select="@xref"/>
+          <xsl:for-each select="$mal.cache">
+            <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+            <div class="links-norwich-big">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="mal.link.target">
+                    <xsl:with-param name="xref" select="$xref"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:attribute name="title">
+                  <xsl:call-template name="mal.link.tooltip">
+                    <xsl:with-param name="xref" select="$xref"/>
+                    <xsl:with-param name="role" select="$role"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <!-- FIXME: role and dimensions -->
+                <xsl:if test="$target/mal:info/uix:thumb">
+                  <xsl:attribute name="style">
+                    <xsl:text>background-image: url(</xsl:text>
+                    <xsl:value-of select="$target/mal:info/uix:thumb/@src"/>
+                    <xsl:text>);</xsl:text>
+                  </xsl:attribute>
+                </xsl:if>
+                <span class="title">
+                  <xsl:call-template name="mal.link.content">
+                    <xsl:with-param name="node" select="."/>
+                    <xsl:with-param name="xref" select="$xref"/>
+                    <xsl:with-param name="role" select="$role"/>
+                  </xsl:call-template>
+                </span>
+                <xsl:if test="$target/mal:info/mal:desc">
+                  <div class="desc">
+                    <span class="desc">
+                      <xsl:variable name="desc">
+                        <xsl:apply-templates mode="mal2html.inline.mode"
+                                             select="$target/mal:info/mal:desc[1]/node()"/>
+                      </xsl:variable>
+                      <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode"
+                                           select="exsl:node-set($desc)"/>
+                    </span>
+                  </div>
+                </xsl:if>
+              </a>
+            </div>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:for-each>
+    </div>
+    <div class="links-norwich-secondary">
+      <xsl:for-each select="$links">
+        <xsl:sort data-type="number" select="@groupsort"/>
+        <xsl:sort select="mal:title[@type = 'sort']"/>
+        <xsl:if test="position() &gt;= 3">
+          <xsl:variable name="xref" select="@xref"/>
+          <xsl:for-each select="$mal.cache">
+            <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
+            <xsl:variable name="thumbs" select="$target/mal:info/uix:thumb"/>
+            <div class="links-norwich-small">
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="mal.link.target">
+                    <xsl:with-param name="xref" select="$xref"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:attribute name="title">
+                  <xsl:call-template name="mal.link.tooltip">
+                    <xsl:with-param name="xref" select="$xref"/>
+                    <xsl:with-param name="role" select="$role"/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <!-- FIXME: role and dimensions -->
+                <xsl:if test="$target/mal:info/uix:thumb">
+                  <xsl:attribute name="style">
+                    <xsl:text>background-image: url(</xsl:text>
+                    <xsl:value-of select="$target/mal:info/uix:thumb/@src"/>
+                    <xsl:text>);</xsl:text>
+                  </xsl:attribute>
+                </xsl:if>
+                <span class="title">
+                  <xsl:call-template name="mal.link.content">
+                    <xsl:with-param name="node" select="."/>
+                    <xsl:with-param name="xref" select="$xref"/>
+                    <xsl:with-param name="role" select="$role"/>
+                  </xsl:call-template>
+                </span>
+              </a>
+            </div>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:for-each>
+    </div>
+  </div>
+  <div class="clear"/>
 </xsl:template>
 
 

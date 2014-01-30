@@ -1129,6 +1129,101 @@ div.links-grid > div.desc {
   }
 }
 
+div.links-norwich {
+  width: 900px;
+}
+div.links-norwich-primary {
+  float: left;
+  vertical-align: top;
+  margin: 0; padding: 0;
+}
+div.links-norwich-big {
+  vertical-align: top;
+  display: inline-block;
+  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
+    <xsl:value-of select="$color.blue_background"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.blue_border"/><xsl:text>);
+  margin: 0 20px 20px 0;
+}
+div.links-norwich-big + div.links-norwich-big {
+  background: </xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
+    <xsl:value-of select="$color.yellow_background"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.yellow_border"/><xsl:text>);
+}
+div.links-norwich-big a {
+  display: block;
+  width: 230px;
+  height: 500px;
+  height: 320px;
+  padding: 9px;
+  font-size: 1.2em;
+  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  background-repeat: no-repeat;
+  background-position: right -80px bottom -80px;
+}
+div.links-norwich-big a:hover {
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+div.links-norwich-big a span.title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+div.links-norwich-big a .desc {
+  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  font-weight: normal;
+}
+div.links-norwich-secondary {
+  vertical-align: top;
+  margin: 0; padding: 0;
+}
+div.links-norwich-small {
+  display: inline-block;
+  vertical-align: top;
+  background: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  margin: 0 20px 20px 0;
+}
+div.links-norwich-small a {
+  display: block;
+  width: 140px;
+  height: 140px;
+  padding: 9px;
+  font-weight: bold;
+  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+  background-repeat: no-repeat;
+  background-position: right 4px bottom 4px;
+}
+div.links-norwich-small a:hover {
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+}
+@media only screen and (max-width: 900px) {
+  div.links-norwich {
+    width: 720px;
+  }
+}
+@media only screen and (max-width: 720px) {
+  div.links-norwich {
+    width: 540px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  div.links-norwich {
+    width: 100%;
+  }
+  div.links-norwich-big {
+    width: 100%;
+    margin-right: 0;
+  }
+  div.links-norwich-big a {
+    width: auto;
+  }
+}
+
 div.links-twocolumn {
   display: inline-block;
   width: 48%;
