@@ -297,14 +297,14 @@ in accordance with the Mallard specification on fallback block content.
           </xsl:call-template>
         </xsl:attribute>
       </a>
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
       <div class="region">
         <div class="contents">
           <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
             <xsl:apply-templates mode="mal2html.block.mode" select="."/>
           </xsl:for-each>
         </div>
-        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc[1]"/>
       </div>
     </div>
   </div>
@@ -330,9 +330,9 @@ in accordance with the Mallard specification on fallback block content.
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
       <div class="region">
-        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc[1]"/>
         <div class="contents">
           <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
             <xsl:apply-templates mode="mal2html.block.mode" select="."/>
@@ -525,9 +525,9 @@ in accordance with the Mallard specification on fallback block content.
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
       <div class="region">
-        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc[1]"/>
         <div class="contents">
           <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
             <xsl:apply-templates mode="mal2html.block.mode" select="."/>

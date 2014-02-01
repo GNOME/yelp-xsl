@@ -335,7 +335,7 @@ a link for each target.
         <xsl:if test="$desc">
           <span class="desc">
             <xsl:text> &#x2014; </xsl:text>
-            <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+            <xsl:apply-templates mode="mal2html.inline.mode" select="$desc[1]/node()"/>
           </span>
         </xsl:if>
       </xsl:if>
@@ -929,7 +929,7 @@ when determining which links to output.
         <xsl:if test="$desc">
           <div class="desc">
             <span class="desc">
-              <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+              <xsl:apply-templates mode="mal2html.inline.mode" select="$desc[1]/node()"/>
             </span>
           </div>
         </xsl:if>
@@ -1129,7 +1129,7 @@ when determining which links to output.
             <xsl:variable name="desc" select="$target/mal:info/mal:desc"/>
             <xsl:if test="$desc">
               <div class="desc">
-                <xsl:apply-templates mode="mal2html.inline.mode" select="$desc/node()"/>
+                <xsl:apply-templates mode="mal2html.inline.mode" select="$desc[1]/node()"/>
               </div>
             </xsl:if>
           </xsl:if>

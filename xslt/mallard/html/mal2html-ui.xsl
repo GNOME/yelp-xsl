@@ -198,7 +198,7 @@ This template handles link sorting.
             <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
               <xsl:if test="$target/mal:info/mal:desc">
                 <span class="desc">
-                  <xsl:apply-templates select="$target/mal:info/mal:desc/node()"/>
+                  <xsl:apply-templates select="$target/mal:info/mal:desc[1]/node()"/>
                 </span>
               </xsl:if>
             </xsl:if>

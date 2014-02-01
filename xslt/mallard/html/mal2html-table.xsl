@@ -181,9 +181,9 @@ REMARK: Describe this module
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
-      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
       <div class="region">
-        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc"/>
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc[1]"/>
         <table class="table">
           <xsl:if test="$style != ''">
             <xsl:attribute name="style">
