@@ -1043,9 +1043,6 @@ pre.numbered {
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
 div.code {
-  background: url('</xsl:text>
-    <xsl:value-of select="$icons.code"/><xsl:text>') no-repeat top </xsl:text>
-    <xsl:value-of select="$right"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }

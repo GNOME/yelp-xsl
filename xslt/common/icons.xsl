@@ -125,29 +125,4 @@ This parameters still affects the size of that character.
 <xsl:param name="icons.size.quote" select="48"/>
 
 
-<!--@@==========================================================================
-icons.size.code
-The size of the code icons.
-:Revision:version="1.0" date="2010-05-03" status="final"
-
-This parameter specifies the size of the code icons. Use an integer giving
-the width of the image files in pixels. Icons are assumed to be square, and
-all code icons are assumed to have the same size.
--->
-<xsl:param name="icons.size.quote" select="128"/>
-
-
-<!--@@==========================================================================
-icons.code
-The URL for the block code watermark.
-:Revision:version="1.0" date="2010-05-03" status="final"
-
-This parameter specifies the URL for the watermark for code blocks.
--->
-<xsl:param name="icons.code">
-  <xsl:value-of select="$icons.base_url"/>
-  <xsl:text>yelp-code.png</xsl:text>
-</xsl:param>
-
-
 </xsl:stylesheet>
