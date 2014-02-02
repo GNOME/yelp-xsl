@@ -663,6 +663,18 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
+<!-- = keycap % db2html.inline.content.mode = -->
+<xsl:template mode="db2html.inline.content.mode" match="keycap | db:keycap">
+  <kbd>
+    <xsl:if test=". = 'Fn'">
+      <xsl:attribute name="class">
+        <xsl:text>key-Fn</xsl:text>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </kbd>
+</xsl:template>
+
 <!-- = keycode = -->
 <xsl:template match="keycode | db:keycode">
   <xsl:call-template name="db2html.inline">

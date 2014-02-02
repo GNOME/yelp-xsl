@@ -219,7 +219,7 @@ an #{xref} or #{href} attribute.
   <xsl:call-template name="mal2html.span"/>
 </xsl:template>
 
-<!-- = keyseq % mal2html.inline.content.mode = -->
+<!-- = key % mal2html.inline.content.mode = -->
 <xsl:template mode="mal2html.inline.content.mode" match="mal:key">
   <kbd>
     <xsl:if test=". = 'Fn'">
