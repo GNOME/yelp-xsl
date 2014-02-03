@@ -1,3 +1,11 @@
+3.11.5
+======
+* Use <kdb> to fix DocBook keycap styling, #709943
+* Removed the completely unused code watermark image
+* Made Mallard transform robust against multiple desc elements
+* Updated translations:
+  zh_CN    (Wylmer Wang)
+
 3.11.4
 ======
 * Don't assign ARIA role "button" for expander headers, #719571
