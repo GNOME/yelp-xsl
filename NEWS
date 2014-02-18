@@ -1,3 +1,8 @@
+3.11.90
+=======
+* Added "hidden" style hint on page and section titles
+* Added "norwich" style on links elements
+
 3.11.5
 ======
 * Use <kdb> to fix DocBook keycap styling, #709943
