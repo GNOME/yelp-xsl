@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gnome-doc-utils fr\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-02-26 02:01+0000\n"
-"PO-Revision-Date: 2013-02-26 15:57+0100\n"
+"POT-Creation-Date: 2013-04-03 13:21+0000\n"
+"PO-Revision-Date: 2014-03-21 10:50+0100\n"
 "Last-Translator: guillemin <luc.guillemin@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
@@ -171,7 +171,7 @@ msgstr "Brouillon"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:165
 msgid "Edited By"
-msgstr "Créé par"
+msgstr "Revu par"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
