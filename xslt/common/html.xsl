@@ -703,7 +703,6 @@ div.sect {
 }
 div.sect div.sect {
   margin-top: 1.44em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
 }
 div.trails {
   margin: 0;
