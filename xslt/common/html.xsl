@@ -229,11 +229,23 @@ use this to process output files without blocking earlier output.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
-  <exsl:document href="{$href}">
-    <xsl:call-template name="html.page">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </exsl:document>
+  <xsl:choose>
+    <xsl:when test="$html.xhtml">
+      <exsl:document href="{$href}">
+	<xsl:call-template name="html.page">
+	  <xsl:with-param name="node" select="$node"/>
+	</xsl:call-template>
+      </exsl:document>
+    </xsl:when>
+    <xsl:otherwise>
+      <exsl:document href="{$href}" method="html"
+		     doctype-system="about:legacy-compat">
+	<xsl:call-template name="html.page">
+	  <xsl:with-param name="node" select="$node"/>
+	</xsl:call-template>
+      </exsl:document>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:apply-templates mode="html.output.after.mode" select="$node"/>
 </xsl:template>
 
