@@ -280,7 +280,7 @@ an #{xref} or #{href} attribute.
 <!-- = link % mal2html.inline.content.mode = -->
 <xsl:template mode="mal2html.inline.content.mode" match="mal:link">
   <xsl:choose>
-    <xsl:when test="normalize-space(.) != ''">
+    <xsl:when test="* or normalize-space(.) != ''">
       <xsl:apply-templates mode="mal2html.inline.mode"/>
     </xsl:when>
     <xsl:otherwise>
