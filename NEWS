@@ -1,3 +1,8 @@
+3.16.1
+======
+* Fixed Mallard link content when it's only an image
+* Make sure TTML spans are displayed inline, #746550
+
 3.16.0
 ======
 * Stable release
