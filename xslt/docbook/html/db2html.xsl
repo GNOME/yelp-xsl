@@ -31,10 +31,10 @@ sets a namespace alias to output non-XML HTML. This stylesheet sets
 @{html.xhtml} to #{false}.
 -->
 
+<xsl:import href="db2xhtml.xsl"><?pass?></xsl:import>
+
 <xsl:param name="html.xhtml" select="false()"/>
 <xsl:param name="db.profile.outputformat" select="'html'"/>
-
-<xsl:include href="db2xhtml.xsl" pass="true"><?pass?></xsl:include>
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 <xsl:namespace-alias stylesheet-prefix="mml" result-prefix="#default"/>

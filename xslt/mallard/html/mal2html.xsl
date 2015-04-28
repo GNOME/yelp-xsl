@@ -31,10 +31,10 @@ sets a namespace alias to output non-XML HTML. In particular, this stylesheet
 sets @{html.xhtml} to #{false} and @{mal.if.target} to #{'target:html'}.
 -->
 
+<xsl:import href="mal2xhtml.xsl"><?pass?></xsl:import>
+
 <xsl:param name="html.xhtml" select="false()"/>
 <xsl:param name="mal.if.target" select="'target:html'"/>
-
-<xsl:include href="mal2xhtml.xsl" pass="true"><?pass?></xsl:include>
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 <xsl:namespace-alias stylesheet-prefix="mml" result-prefix="#default"/>
