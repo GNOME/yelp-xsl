@@ -35,12 +35,14 @@ in %{mal2html.svg.mode}.
 
 <!--%%==========================================================================
 mal2html.svg.mode
-Output SVG and handle Mallard extension.
-:Revision: version="1.0" date="2010-06-04" status="final"
+Output SVG and handle Mallard extensions.
+:Revision: version="3.18" date="2015-05-04" status="final"
 
 This mode is used for processing SVG embedded into Mallard documents. For most
-types of SVG content, it simply copies the input directly. It does check for
-certain Mallard extensions, for example to use the Mallard linking mechanism.
+types of SVG content, it simply copies the input directly, except it outputs
+the SVG in a way that allows the namespace to stripped for non-XML output. It
+checks for Mallard linking using the #{mal:xref} attribute and transforms this
+to an XLink #{xlink:href} attribute.
 -->
 <xsl:template mode="mal2html.svg.mode" match="svg:*">
   <xsl:choose>
@@ -57,23 +59,24 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
           <xsl:with-param name="role" select="'text'"/>
         </xsl:call-template>
       </xsl:variable>
-      <svg:a xlink:href="{$target}" xlink:show="replace"
-             xlink:title="{$title}" target="_top">
-        <xsl:copy>
-          <xsl:for-each select="@*">
-            <xsl:copy/>
+      <svg:a xlink:href="{$target}" xlink:title="{$title}">
+        <xsl:element name="{local-name(.)}" namespace="{$html.svg.namespace}">
+          <xsl:for-each select="@*[
+                                namespace-uri(.)!='http://projectmallard.org/1.0/' and
+                                namespace-uri(.)!='http://www.w3.org/1999/xlink']">
+            <xsl:copy-of select="."/>
           </xsl:for-each>
           <xsl:apply-templates mode="mal2html.svg.mode" select="node()"/>
-        </xsl:copy>
+        </xsl:element>
       </svg:a>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:copy>
-        <xsl:for-each select="@*">
-          <xsl:copy/>
+      <xsl:element name="{local-name(.)}" namespace="{$html.svg.namespace}">
+        <xsl:for-each select="@*[namespace-uri(.)!='http://projectmallard.org/1.0/']">
+          <xsl:copy-of select="."/>
         </xsl:for-each>
         <xsl:apply-templates mode="mal2html.svg.mode" select="node()"/>
-      </xsl:copy>
+      </xsl:element>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -107,20 +110,7 @@ certain Mallard extensions, for example to use the Mallard linking mechanism.
         </xsl:if>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:choose>
-      <xsl:when test="$html.xhtml">
-        <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-      </xsl:when>
-      <xsl:otherwise>
-        <object data="{$id}.svg" type="image/svg+xml">
-          <xsl:copy-of select="@width"/>
-          <xsl:copy-of select="@height"/>
-        </object>
-        <exsl:document href="{$id}.svg">
-          <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
-        </exsl:document>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates mode="mal2html.svg.mode" select="."/>
   </div>
 </xsl:if>
 </xsl:template>

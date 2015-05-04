@@ -113,8 +113,8 @@ using #{xsl:element}.
 
 <!--@@==========================================================================
 html.mathml.namespace
-The XML namespace for the output document.
-:Revision:version="3.8" date="2012-11-13" status="final"
+The XML namespace for MathML in the output document.
+:Revision:version="3.18" date="2015-05-04" status="final"
 
 This parameter specifies the XML namespace for MathML in output documents. It
 will be set automatically based on the ${html.xhtml} parameter, either to the
@@ -125,6 +125,28 @@ parameter when using #{xsl:element}.
   <xsl:choose>
     <xsl:when test="$html.xhtml">
       <xsl:value-of select="'http://www.w3.org/1998/Math/MathML'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text></xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+
+<!--@@==========================================================================
+html.svg.namespace
+The XML namespace for SVG in the output document.
+:Revision:version="3.18" date="2015-05-04" status="final"
+
+This parameter specifies the XML namespace for SVG in output documents. It
+will be set automatically based on the ${html.xhtml} parameter, either to the
+SVG namespace namespace, or to the empty namespace. Stylesheets can use this
+parameter when using #{xsl:element}.
+-->
+<xsl:variable name="html.svg.namespace">
+  <xsl:choose>
+    <xsl:when test="$html.xhtml">
+      <xsl:value-of select="'http://www.w3.org/2000/svg'"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text></xsl:text>
