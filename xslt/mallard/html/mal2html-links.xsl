@@ -1198,8 +1198,8 @@ when determining which links to output.
 
 <!--#* _mal2html.links.heading -->
 <xsl:template name="_mal2html.links.heading">
-  <xsl:param name="node" select="$node"/>
-  <xsl:param name="links" select="$links"/>
+  <xsl:param name="node" select="."/>
+  <xsl:param name="links" select="/false"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="nodesc" select="false()"/>
   <ul class="links-heading">
