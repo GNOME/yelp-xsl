@@ -15,12 +15,13 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exsl="http://exslt.org/common"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:ui="http://projectmallard.org/ui/1.0/"
                 xmlns:uix="http://projectmallard.org/experimental/ui/"
                 xmlns:math="http://exslt.org/math"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="mal ui uix math"
+                exclude-result-prefixes="mal ui uix math exsl"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -151,19 +152,23 @@ This template handles link sorting.
             <xsl:copy-of select="."/>
           </xsl:if>
         </xsl:for-each>
-        <xsl:variable name="thumbs" select="$target/mal:info/uix:thumb"/>
+        <xsl:variable name="infos" select="$target/mal:info | $link[@href]/mal:info"/>
+        <xsl:variable name="thumbs" select="$infos/uix:thumb"/>
         <a>
           <xsl:attribute name="href">
             <xsl:call-template name="mal.link.target">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$link/@xref"/>
+              <xsl:with-param name="href" select="$link/@href"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="title">
             <xsl:call-template name="mal.link.tooltip">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$link/@xref"/>
+              <xsl:with-param name="href" select="$link/@href"/>
               <xsl:with-param name="role" select="$role"/>
+              <xsl:with-param name="info" select="$link[@href]/mal:info"/>
             </xsl:call-template>
           </xsl:attribute>
           <span class="ui-tile-img" style="width: {$width}px; height: {$height}px;">
@@ -192,13 +197,24 @@ This template handles link sorting.
               <xsl:call-template name="mal.link.content">
                 <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$link/@xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="info" select="$link[@href]/mal:info"/>
               </xsl:call-template>
             </span>
             <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
-              <xsl:if test="$target/mal:info/mal:desc">
+              <xsl:variable name="desc">
+                <xsl:call-template name="mal.link.desc">
+                  <xsl:with-param name="node" select="$node"/>
+                  <xsl:with-param name="xref" select="$link/@xref"/>
+                  <xsl:with-param name="href" select="$link/@href"/>
+                  <xsl:with-param name="role" select="$role"/>
+                  <xsl:with-param name="info" select="$link[@href]/mal:info"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:if test="exsl:node-set($desc)/node()">
                 <span class="desc">
-                  <xsl:apply-templates select="$target/mal:info/mal:desc[1]/node()"/>
+                  <xsl:copy-of select="$desc"/>
                 </span>
               </xsl:if>
             </xsl:if>
@@ -273,7 +289,8 @@ This template handles link sorting.
       <xsl:variable name="xref" select="@xref"/>
       <xsl:for-each select="$mal.cache">
         <xsl:variable name="target" select="key('mal.cache.key', $xref)"/>
-        <xsl:variable name="thumbs" select="$target/mal:info/uix:thumb"/>
+        <xsl:variable name="infos" select="$target/mal:info | $link[@href]/mal:info"/>
+        <xsl:variable name="thumbs" select="$infos/uix:thumb"/>
         <li class="links {$link/@class}">
           <xsl:for-each select="$link/@*">
             <xsl:if test="starts-with(name(.), 'data-')">
@@ -284,12 +301,15 @@ This template handles link sorting.
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
                 <xsl:with-param name="xref" select="$xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
               </xsl:call-template>
             </xsl:attribute>
             <xsl:attribute name="title">
               <xsl:call-template name="mal.link.tooltip">
                 <xsl:with-param name="xref" select="$xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="info" select="$link[@href]/mal:info"/>
               </xsl:call-template>
             </xsl:attribute>
             <span class="links-ui-hover-img" style="width: {$width}px; height: {$height}px;">
@@ -305,7 +325,9 @@ This template handles link sorting.
               <xsl:call-template name="mal.link.content">
                 <xsl:with-param name="node" select="."/>
                 <xsl:with-param name="xref" select="$xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="info" select="$link[@href]/mal:info"/>
               </xsl:call-template>
             </span>
           </a>
