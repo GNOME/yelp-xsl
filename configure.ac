@@ -11,7 +11,7 @@ dnl  bug reports after busted tarballs were shipped, we use -W compat
 dnl  whenever our awk is gawk.
 AC_PROG_AWK
 if test x$AWK = xgawk; then
-   YELP_XSL_AWK='gawk -W compat';
+   YELP_XSL_AWK='gawk --traditional';
 else
    YELP_XSL_AWK=$AWK;
 fi
