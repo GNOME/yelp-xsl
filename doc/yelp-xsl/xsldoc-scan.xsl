@@ -206,7 +206,7 @@ free software.
       <title>Calls Parameters</title>
       <xsl:for-each select="set:distinct($calls_params_nodes)">
         <xsl:sort select="."/>
-        <item><p><link xref="{concat('P.', .)}"/></p></item>
+        <item><p><link xref="{.}"/></p></item>
       </xsl:for-each>
     </list>
   </xsl:if>
@@ -273,7 +273,7 @@ free software.
       <xsl:for-each select="$xslt_file/xsl:param/@name">
         <xsl:variable name="name" select="string(.)"/>
         <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <link type="xslt-defines-param" xref="{concat('P.', $name)}"/>
+          <link type="xslt-defines-param" xref="{$name}"/>
         </xsl:if>
       </xsl:for-each>
     </info>
@@ -350,9 +350,6 @@ free software.
     </xsl:choose>
   </xsl:variable>
   <xsl:variable name="id">
-    <xsl:if test="$type = 'parameters'">
-      <xsl:text>P.</xsl:text>
-    </xsl:if>
     <xsl:value-of select="mal:title"/>
   </xsl:variable>
   <exsl:document href="{$id}.page">

@@ -71,7 +71,7 @@ function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
   else if (char == "+")
       fmt = "<code style='xslt-key' xref='%s'>%s</code>";
 	else if (char == "@") 
-	    fmt = "<code style='xslt-param' xref='P.%s'>%s</code>";
+	    fmt = "<code style='xslt-param' xref='%s'>%s</code>";
 	else if (char == "$") 
 	    fmt = "<code style='xslt-param'>"name"</code>";
 	else if (char == "#")
