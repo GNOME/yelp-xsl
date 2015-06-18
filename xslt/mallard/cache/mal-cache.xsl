@@ -17,6 +17,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
                 xmlns:mal='http://projectmallard.org/1.0/'
                 xmlns:cache='http://projectmallard.org/cache/1.0/'
+                xmlns:site='http://projectmallard.org/site/1.0/'
                 xmlns='http://projectmallard.org/1.0/'
                 version='1.0'>
 
@@ -105,9 +106,8 @@ mal.cache.info
   <xsl:param name="node_in"/>
   <page>
     <xsl:copy-of select="@*"/>
-    <xsl:attribute name="cache:href">
-      <xsl:value-of select="$node_in/@cache:href"/>
-    </xsl:attribute>
+    <xsl:copy-of select="$node_in/@cache:*"/>
+    <xsl:copy-of select="$node_in/@site:*"/>
     <xsl:call-template name="mal.cache.id">
       <xsl:with-param name="node_in" select="$node_in"/>
     </xsl:call-template>
