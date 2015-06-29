@@ -1,3 +1,9 @@
+3.17.3
+======
+* Support external info links topic, guide, and seealso
+* Support for Mallard Sites in cache generator
+* Drop P. prefix for parameter pages in docs
+
 3.17.2
 ======
 * Embed Mallard+SVG directly in HTML5 instead of using <object>
