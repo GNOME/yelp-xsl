@@ -1,20 +1,23 @@
 # yelp-xsl' Portuguese translation.
 # Copyright © 2004, 2005, 2006, 2007, 2009, 2011, 2012, 2013 yelp-xsl
 # This file is distributed under the same license as the yelp-xsl package.
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2004, 2005, 2006, 2007, 2009, 2011, 2012, 2013.
 # 
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2004, 2005, 2006, 2007, 2009, 2011, 2012, 2013., 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.8\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-15 00:57+0000\n"
-"PO-Revision-Date: 2013-03-15 01:00+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2015-06-08 00:11+0000\n"
+"PO-Revision-Date: 2015-06-20 09:25+0100\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -121,7 +124,7 @@ msgstr "Erro"
 #.
 #: yelp-xsl.xml.in:132
 msgid "Candidate"
-msgstr "Proposto"
+msgstr "Candidato"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an close button.
@@ -133,7 +136,7 @@ msgstr "Fechar"
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:142
 msgid "Colophon"
-msgstr "Notas Finais"
+msgstr "Notas finais"
 
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
@@ -159,7 +162,7 @@ msgstr "Rascunho"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:165
 msgid "Edited By"
-msgstr "Editado Por"
+msgstr "Editado por"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
@@ -212,13 +215,13 @@ msgstr "Licença"
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:213
 msgid "Maintained By"
-msgstr "Mantido Por"
+msgstr "Mantido por"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:218
 msgid "More Information"
-msgstr "Mais Informação"
+msgstr "Mais informação"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
@@ -238,7 +241,7 @@ msgstr "Nota"
 #.
 #: yelp-xsl.xml.in:236
 msgid "Other Credits"
-msgstr "Outros Reconhecimentos"
+msgstr "Outros reconhecimentos"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
@@ -270,7 +273,7 @@ msgstr "Anterior"
 #. Title for a list of publishers.
 #: yelp-xsl.xml.in:264
 msgid "Published By"
-msgstr "Publicado Por"
+msgstr "Publicado por"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
@@ -284,7 +287,7 @@ msgstr "Preparado para revisão"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:277
 msgid "See Also"
-msgstr "Consulte Também"
+msgstr "Consulte também"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -326,7 +329,7 @@ msgstr "Dica"
 #. Title for a list of translators.
 #: yelp-xsl.xml.in:316
 msgid "Translated By"
-msgstr "Traduzido Por"
+msgstr "Traduzido por"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -334,7 +337,7 @@ msgstr "Traduzido Por"
 #.
 #: yelp-xsl.xml.in:324
 msgid "View images at normal size"
-msgstr "Visualizar as imagens no seu tamanho original"
+msgstr "Ver as imagens no seu tamanho original"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -346,7 +349,7 @@ msgstr "Aviso"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:334
 msgid "Written By"
-msgstr "Escrito Por"
+msgstr "Escrito por"
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
@@ -482,7 +485,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:472
 msgid "Send email to ‘<string/>’."
-msgstr "Enviar email para ‘<string/>’."
+msgstr "Enviar email para \"<string/>\"."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -494,7 +497,7 @@ msgstr "Enviar email para ‘<string/>’."
 #.
 #: yelp-xsl.xml.in:484
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "Consultar a definição de ‘<glossterm/>’."
+msgstr "Consultar a definição de \"<glossterm/>\"."
 
 #. (itstool) path: msg/msgstr
 #. ID: glosssee.format
@@ -561,7 +564,7 @@ msgstr "“<node/>”"
 #.
 #: yelp-xsl.xml.in:551
 msgid "‘<node/>’"
-msgstr "‘<node/>’"
+msgstr "\"<node/>\""
 
 #. (itstool) path: msg/msgstr
 #. ID: seeie.format
@@ -938,8 +941,8 @@ msgstr "Consulte também <seeie/>."
 
 #~ msgid "format.citetitle"
 #~ msgstr ""
-#~ "<msg:msgstr role=\"article\">“%t{node}”</msg:msgstr> <msg:msgstr><i>%t"
-#~ "{node}</i></msg:msgstr>"
+#~ "<msg:msgstr role=\"article\">“%t{node}”</msg:msgstr> <msg:msgstr><i>"
+#~ "%t{node}</i></msg:msgstr>"
 
 #~ msgid "format.date"
 #~ msgstr "format.date"
