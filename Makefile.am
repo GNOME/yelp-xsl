@@ -20,7 +20,7 @@ DISTCLEANFILES =					\
 	intltool-merge    				\
 	intltool-update
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-doc
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-doc
 
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
