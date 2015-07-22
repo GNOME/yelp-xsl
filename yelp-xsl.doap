@@ -6,12 +6,14 @@
 
   <name xml:lang="en">Yelp XSLT</name>
   <shortdesc xml:lang="en">Document transformations from Yelp</shortdesc>
+  <description>Document transformations from Yelp</description>
 
-  <homepage rdf:resource="https://wiki.gnome.org/Apps/Yelp"/>
+  <homepage rdf:resource="http://yelp.io"/>
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gnome-doc-devel-list"/>
   <download-page rdf:resource="http://download.gnome.org/sources/yelp-xsl/"/>
   <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=yelp-xsl"/>
   <category rdf:resource="http://api.gnome.org/doap-extensions#core"/>
+  <programming-language>XSLT</programming-language>
 
   <maintainer>
     <foaf:Person>
