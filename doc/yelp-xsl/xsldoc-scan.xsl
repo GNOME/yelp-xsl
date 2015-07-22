@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <!--
 xsldoc-scan.xsl - Put more information in the output from xsldoc-scan.awk
-Copyright (C) 2006 Shaun McCance <shaunm@gnome.org>
+Copyright (C) 2006-2015 Shaun McCance <shaunm@gnome.org>
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -94,7 +94,9 @@ free software.
         <title>Calls Templates</title>
         <xsl:for-each select="$calls_templates_nodes">
           <xsl:sort select="."/>
-          <item><p><xsl:copy-of select="."/></p></item>
+          <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
+            <item><p><xsl:copy-of select="."/></p></item>
+          </xsl:if>
         </xsl:for-each>
       </list>
     </xsl:if>
@@ -212,6 +214,51 @@ free software.
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="implements_templates">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page"/>
+  <xsl:param name="xslt_node"/>
+  <xsl:variable name="impls">
+    <xsl:for-each select="$xslt_node/xsl:template[@match]">
+      <xsl:variable name="mode" select="@mode"/>
+      <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
+        <template mode="{$mode}" match="{@match}"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="impls_nodes" select="exsl:node-set($impls)/*"/>
+  <xsl:if test="count($impls_nodes) != 0">
+    <table>
+      <title>Implements Templates</title>
+      <thead>
+        <tr>
+          <th><p>Mode</p></th>
+          <th><p>Match</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <xsl:for-each select="$impls_nodes">
+          <xsl:sort select="@mode"/>
+          <tr>
+            <td><p>
+              <xsl:choose>
+                <xsl:when test="@mode != ''">
+                  <link xref="{@mode}">
+                    <xsl:value-of select="@mode"/>
+                  </link>
+                </xsl:when>
+              </xsl:choose>
+            </p></td>
+            <td><p>
+              <code><xsl:value-of select="@match"/></code>
+            </p></td>
+          </tr>
+        </xsl:for-each>
+      </tbody>
+    </table>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="read_chars">
   <xsl:param name="string" select="''"/>
   <xsl:if test="$string != ''">
@@ -322,6 +369,10 @@ free software.
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>
     <xsl:call-template name="calls_params">
+      <xsl:with-param name="page" select="$page"/>
+      <xsl:with-param name="xslt_node" select="$xslt_file"/>
+    </xsl:call-template>
+    <xsl:call-template name="implements_templates">
       <xsl:with-param name="page" select="$page"/>
       <xsl:with-param name="xslt_node" select="$xslt_file"/>
     </xsl:call-template>

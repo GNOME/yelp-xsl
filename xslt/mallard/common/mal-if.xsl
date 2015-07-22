@@ -115,7 +115,7 @@ $test: The test expression.
 
 This template evaluates the test expression ${test}, which is taken automatically
 from the #{test} or #{if:test} attribute of $node. It splits the expression on
-commas into subexpression, then splits each subexpression on spaces into tokens.
+commas into subexpressions, then splits each subexpression on spaces into tokens.
 A token is taken to be true if it's in one of the space-separated lists from
 @{mal.if.target}, @{mal.if.platform}, @{mal.if.features}, or @{mal.if.custom}.
 If the token starts with an exclamation point, the exclamation point is stripped

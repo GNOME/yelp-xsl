@@ -599,6 +599,7 @@ in accordance with the Mallard specification on fallback block content.
   </xsl:if>
 </xsl:template>
 
+<!--#% _mal2html.choose.mode -->
 <xsl:template mode="_mal2html.choose.mode" match="if:when">
   <xsl:variable name="if">
     <xsl:call-template name="mal.if.test"/>
