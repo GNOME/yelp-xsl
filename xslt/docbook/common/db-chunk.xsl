@@ -35,13 +35,12 @@ A space-seperated list of the names of elements that should be chunked.
 
 REMARK: This parameter sucks
 -->
-<xsl:param name="db.chunk.chunks" select="
-           'appendix    article     bibliography  bibliodiv  book    chapter
+<xsl:param name="db.chunk.chunks" select="'
+            appendix    article     bibliography  bibliodiv  book    chapter
             colophon    dedication  glossary      glossdiv   index
             lot         part        preface       refentry   reference
             sect1       sect2       sect3         sect4      sect5
-            section     setindex    simplesect    toc'"/>
-<xsl:variable name="db.chunk.chunks_" select="concat(' ', $db.chunk.chunks, ' ')"/>
+            section     setindex    simplesect    toc        '"/>
 
 
 <!--@@==========================================================================
@@ -179,7 +178,7 @@ REMARK: Explain how this works
   <xsl:param name="node" select="."/>
   <xsl:variable name="divs"
                 select="$node/ancestor-or-self::*
-                         [contains($db.chunk.chunks_,
+                         [contains($db.chunk.chunks,
                             concat(' ', local-name(.), ' '))]"/>
   <xsl:choose>
     <xsl:when test="count($divs) - 1 &lt; $db.chunk.max_depth">
@@ -263,7 +262,7 @@ REMARK: Explain how this works, and what the axes are
     <xsl:when test="$axis = 'following'">
       <xsl:variable name="divs"
                     select="$node/following-sibling::*
-                             [contains($db.chunk.chunks_,
+                             [contains($db.chunk.chunks,
                                 concat(' ', local-name(.), ' '))]"/>
       <xsl:choose>
         <xsl:when test="$divs">
@@ -286,7 +285,7 @@ REMARK: Explain how this works, and what the axes are
     <!-- last-descendant -->
     <xsl:when test="$axis = 'last-descendant'">
       <xsl:variable name="divs"
-                    select="$node/*[contains($db.chunk.chunks_,
+                    select="$node/*[contains($db.chunk.chunks,
                                       concat(' ', local-name(.), ' '))]"/>
       <xsl:choose>
         <xsl:when test="($depth_of_chunk &gt;= $db.chunk.max_depth)">
@@ -323,7 +322,7 @@ REMARK: Explain how this works, and what the axes are
     <!-- next -->
     <xsl:when test="$axis = 'next'">
       <xsl:variable name="divs"
-                    select="$node/*[contains($db.chunk.chunks_,
+                    select="$node/*[contains($db.chunk.chunks,
                                       concat(' ', local-name(.), ' '))]"/>
       <xsl:choose>
         <xsl:when test="($depth_of_chunk &lt; $db.chunk.max_depth) and $divs">
@@ -347,7 +346,7 @@ REMARK: Explain how this works, and what the axes are
     <xsl:when test="$axis = 'previous'">
       <xsl:variable name="divs"
                     select="$node/preceding-sibling::*
-                             [contains($db.chunk.chunks_,
+                             [contains($db.chunk.chunks,
                                 concat(' ', local-name(.), ' '))]"/>
       <xsl:choose>
         <xsl:when test="$divs and ($depth_of_chunk &lt; $db.chunk.max_depth)">

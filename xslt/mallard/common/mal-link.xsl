@@ -94,8 +94,13 @@ The context node must be in the document @{mal.cache} when this key is called.
          use="concat(@type, ':', @xref)"/>
 
 
-<!--============================================================================
+<!--++==========================================================================
 mal.facet.all.key
+Get all #{page} and #{section} elements with #{facet:tag} elements.
+
+This key returns all #{page} and #{section} elements that have at least one
+#{facet:tag} element in their #{info} element. Pass the emptry string as the
+key argument.
 -->
 <xsl:key name="mal.facet.all.key"
          match="mal:page[mal:info/facet:tag] | mal:section[mal:info/facet:tag]"

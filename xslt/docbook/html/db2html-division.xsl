@@ -197,7 +197,7 @@ REMARK: Talk about some of the parameters
       </xsl:call-template>
     </xsl:if>
     <xsl:for-each select="$divisions">
-      <xsl:if test="not($chunk_divisions) or not(contains($db.chunk.chunks_, local-name(.)))">
+      <xsl:if test="not($chunk_divisions) or not(contains($db.chunk.chunks, local-name(.)))">
         <xsl:apply-templates select=".">
           <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
           <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>

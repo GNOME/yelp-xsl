@@ -32,6 +32,14 @@ with the Mallard Glossary extension.
 -->
 
 
+<!--++==========================================================================
+mal.gloss.key
+Get a #{gloss:term} element from its #{id} attribute.
+
+This key returns #{gloss:term} elements based on their #{id} attribute. This
+key only applies to elements inside a cache file. Make sure to make the cache
+file the context document before calling this key.
+-->
 <xsl:key name="mal.gloss.key"
          match="/cache:cache//mal:info/gloss:term[@id]"
          use="@id"/>

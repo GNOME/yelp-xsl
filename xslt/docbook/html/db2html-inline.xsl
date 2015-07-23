@@ -176,31 +176,6 @@ FIXME
   <xsl:call-template name="db2html.inline"/>
 </xsl:template>
 
-<!-- = bibkey-abbrev = -->
-<xsl:key name="bibkey-abbrev"
-         match="biblioentry[@id and *[1]/self::abbrev] |
-                bibliomixed[@id and *[1]/self::abbrev] |
-                db:biblioentry[@xml:id and *[1]/self::db:abbrev] |
-                db:bibliomixed[@xml:id and *[1]/self::db:abbrev]"
-         use="string(*[1])"/>
-
-<!-- = bibkey-label = -->
-<xsl:key name="bibkey-label"
-         match="biblioentry[@id and @xreflabel] |
-                bibliomixed[@id and @xreflabel] |
-                db:biblioentry[@xml:id and @xreflabel] |
-                db:bibliomixed[@xml:id and @xreflabel]"
-         use="string(@xreflabel)"/>
-
-<!-- = bibkey-id = -->
-<xsl:key name="bibkey-id"
-         match="biblioentry[@id] | bibliomixed[@id]"
-         use="string(@id)"/>
-
-<xsl:key name="bibkey-id"
-         match="db:biblioentry[@xml:id] | db:bibliomixed[@xml:id]"
-         use="string(@xml:id)"/>
-
 <!-- = biblioid = -->
 <xsl:template match="db:biblioid">
   <xsl:call-template name="db2html.inline"/>
@@ -224,7 +199,8 @@ FIXME
 <xsl:template mode="l10n.format.mode" match="msg:citation.label">
   <xsl:param name="node"/>
   <xsl:for-each select="$node[1]">
-    <xsl:variable name="entry_abbrev" select="key('bibkey-abbrev', string($node))"/>
+    <xsl:variable name="entry_abbrev"
+                  select="key('db.biblio.abbrev.key', string($node))"/>
     <xsl:choose>
       <xsl:when test="$entry_abbrev">
         <xsl:call-template name="db2html.xref">
@@ -236,7 +212,8 @@ FIXME
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="entry_label" select="key('bibkey-label', string($node))"/>
+        <xsl:variable name="entry_label"
+                      select="key('db.biblio.label.key', string($node))"/>
         <xsl:choose>
           <xsl:when test="$entry_label">
             <xsl:call-template name="db2html.xref">
@@ -248,7 +225,8 @@ FIXME
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:variable name="entry_id" select="key('bibkey-id', string($node))"/>
+            <xsl:variable name="entry_id"
+                          select="key('db.biblio.id.key', string($node))"/>
             <xsl:choose>
               <xsl:when test="$entry_id">
                 <xsl:call-template name="db2html.xref">
@@ -512,10 +490,6 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
-<!-- = glosskey = -->
-<xsl:key name="glosskey" match="glossentry[@id]" use="string(glossterm)"/>
-<xsl:key name="glosskey" match="db:glossentry[@xml:id]" use="string(db:glossterm)"/>
-
 <!-- = glossterm = -->
 <xsl:template match="glossterm | db:glossterm">
   <xsl:call-template name="db2html.inline"/>
@@ -533,7 +507,7 @@ FIXME
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="not(../self::glossentry) and not(../self::db:glossentry)">
-      <xsl:variable name="glossentry" select="key('glosskey', string(.))"/>
+      <xsl:variable name="glossentry" select="key('db.glossentry.key', string(.))"/>
       <xsl:choose>
         <xsl:when test="$glossentry">
           <xsl:call-template name="db2html.xref">

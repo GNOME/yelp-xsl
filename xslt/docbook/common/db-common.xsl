@@ -41,6 +41,73 @@ attribute in DocBook 5.
 <xsl:key name="db.id.key" match="*" use="@id | @xml:id"/>
 
 
+<!--++==========================================================================
+db.biblio.abbrev.key
+Get a #{biblioentry} or #{bibliomixed} element from its #{abbrev}.
+:Revision:version="3.18" date="2015-07-23" status="final"
+
+This key returns #{biblioentry} and #{bibliomixed} elements based on their child
+#{abbrev} elements. The #{abbrev} element must be the first child element of the
+#{biblioentry} or #{bibliomixed} element. This key only returns elements that
+have an #{id} attribute for DocBook 4 or an #{xml:id} attribute for DocBook 5.
+-->
+<xsl:key name="db.biblio.abbrev.key"
+         match="biblioentry[@id and *[1]/self::abbrev] |
+                bibliomixed[@id and *[1]/self::abbrev] |
+                db:biblioentry[@xml:id and *[1]/self::db:abbrev] |
+                db:bibliomixed[@xml:id and *[1]/self::db:abbrev]"
+         use="string(*[1])"/>
+
+
+<!--++==========================================================================
+db.biblio.label.key
+Get a #{biblioentry} or #{bibliomixed} element from its #{xreflabel}.
+:Revision:version="3.18" date="2015-07-23" status="final"
+
+This key returns #{biblioentry} and #{bibliomixed} elements based on their
+#{xreflabel} attributes. It only returns elements that have an #{id} attribute
+for DocBook 4 or an #{xml:id} attribute for DocBook 5.
+-->
+<xsl:key name="db.biblio.label.key"
+         match="biblioentry[@id and @xreflabel] |
+                bibliomixed[@id and @xreflabel] |
+                db:biblioentry[@xml:id and @xreflabel] |
+                db:bibliomixed[@xml:id and @xreflabel]"
+         use="string(@xreflabel)"/>
+
+
+<!--++==========================================================================
+db.biblio.id.key
+Get a #{biblioentry} or #{bibliomixed} element from its #{id}.
+:Revision:version="3.18" date="2015-07-23" status="final"
+
+This key returns #{biblioentry} and #{bibliomixed} elements based on their #{id}
+or #{xml:id} attributes. The {#id} attribute is used for DocBook 4, and the
+#{xml:id} attribute is used for DocBook 5.
+-->
+<xsl:key name="db.biblio.id.key"
+         match="biblioentry[@id] | bibliomixed[@id]"
+         use="string(@id)"/>
+<xsl:key name="db.biblio.id.key"
+         match="db:biblioentry[@xml:id] | db:bibliomixed[@xml:id]"
+         use="string(@xml:id)"/>
+
+
+<!--++==========================================================================
+db.glossentry.key
+Get a #{glossentry} element from its #{glossterm}.
+:Revision:version="3.18" date="2015-07-22" status="final"
+
+This key returns #{glossentry} elements based on the text in their #{glossterm}
+child elements. It only returns #{glossentry} elements that have an #{id}
+attribute in DocBook 4 or an #{xml:id} attribute in DocBook 5.
+-->
+<xsl:key name="db.glossentry.key"
+         match="glossentry[@id]" use="string(glossterm)"/>
+<xsl:key name="db.glossentry.key"
+         match="db:glossentry[@xml:id]" use="string(db:glossterm)"/>
+
+
 <!--**==========================================================================
 db.copyright
 Outputs copyright information

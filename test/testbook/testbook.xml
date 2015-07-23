@@ -1869,6 +1869,12 @@ porttitor condimentum nulla.</para>
           or keyboard.</para>
         </glossdef>
       </glossentry>
+      <glossentry id="gloss-button">
+        <glossterm>button</glossterm>
+        <glossdef>
+          <para>The thing you press.</para>
+        </glossdef>
+      </glossentry>
       <glossentry>
         <glossterm>desktop</glossterm>
         <glossdef>
