@@ -13,6 +13,10 @@ details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY % selectors SYSTEM "../common/db-selectors.mod">
+%selectors;
+]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
@@ -197,7 +201,7 @@ REMARK: Talk about some of the parameters
       </xsl:call-template>
     </xsl:if>
     <xsl:for-each select="$divisions">
-      <xsl:if test="not($chunk_divisions) or not(contains($db.chunk.chunks, local-name(.)))">
+      <xsl:if test="not($chunk_divisions) or not(self::&db_chunks;)">
         <xsl:apply-templates select=".">
           <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
           <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>

@@ -10,6 +10,7 @@ xsl_DATA =			\
 	db-common.xsl		\
 	db-profile.xsl		\
 	db-title.xsl		\
-	db-xref.xsl
+	db-xref.xsl		\
+	db-selectors.mod
 
 EXTRA_DIST=$(xsl_DATA)

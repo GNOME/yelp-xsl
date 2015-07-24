@@ -13,6 +13,10 @@ details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY % selectors SYSTEM "db-selectors.mod">
+%selectors;
+]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
@@ -27,20 +31,6 @@ DocBook Chunking
 
 REMARK: Describe this module
 -->
-
-
-<!--@@==========================================================================
-db.chunk.chunks
-A space-seperated list of the names of elements that should be chunked.
-
-REMARK: This parameter sucks
--->
-<xsl:param name="db.chunk.chunks" select="'
-            appendix    article     bibliography  bibliodiv  book    chapter
-            colophon    dedication  glossary      glossdiv   index
-            lot         part        preface       refentry   reference
-            sect1       sect2       sect3         sect4      sect5
-            section     setindex    simplesect    toc        '"/>
 
 
 <!--@@==========================================================================
@@ -104,58 +94,7 @@ REMARK: Explain how this works
 -->
 <xsl:template name="db.chunk.depth-in-chunk">
   <xsl:param name="node" select="."/>
-  <xsl:variable name="divs"
-                select="
-                        count($node/ancestor-or-self::appendix        ) + 
-                        count($node/ancestor-or-self::article         ) + 
-                        count($node/ancestor-or-self::bibliography    ) + 
-                        count($node/ancestor-or-self::bibliodiv       ) +
-                        count($node/ancestor-or-self::book            ) + 
-                        count($node/ancestor-or-self::chapter         ) + 
-                        count($node/ancestor-or-self::colophon        ) + 
-                        count($node/ancestor-or-self::dedication      ) + 
-                        count($node/ancestor-or-self::glossary        ) + 
-                        count($node/ancestor-or-self::glossdiv        ) + 
-                        count($node/ancestor-or-self::index           ) + 
-                        count($node/ancestor-or-self::lot             ) + 
-                        count($node/ancestor-or-self::part            ) + 
-                        count($node/ancestor-or-self::preface         ) + 
-                        count($node/ancestor-or-self::refentry        ) + 
-                        count($node/ancestor-or-self::reference       ) + 
-                        count($node/ancestor-or-self::sect1           ) + 
-                        count($node/ancestor-or-self::sect2           ) + 
-                        count($node/ancestor-or-self::sect3           ) + 
-                        count($node/ancestor-or-self::sect4           ) + 
-                        count($node/ancestor-or-self::sect5           ) + 
-                        count($node/ancestor-or-self::section         ) + 
-                        count($node/ancestor-or-self::setindex        ) + 
-                        count($node/ancestor-or-self::simplesect      ) + 
-                        count($node/ancestor-or-self::toc             ) +
-                        count($node/ancestor-or-self::db:appendix     ) + 
-                        count($node/ancestor-or-self::db:article      ) + 
-                        count($node/ancestor-or-self::db:bibliography ) + 
-                        count($node/ancestor-or-self::db:bibliodiv    ) +
-                        count($node/ancestor-or-self::db:book         ) + 
-                        count($node/ancestor-or-self::db:chapter      ) + 
-                        count($node/ancestor-or-self::db:colophon     ) + 
-                        count($node/ancestor-or-self::db:dedication   ) + 
-                        count($node/ancestor-or-self::db:glossary     ) + 
-                        count($node/ancestor-or-self::db:glossdiv     ) + 
-                        count($node/ancestor-or-self::db:index        ) + 
-                        count($node/ancestor-or-self::db:lot          ) + 
-                        count($node/ancestor-or-self::db:part         ) + 
-                        count($node/ancestor-or-self::db:preface      ) + 
-                        count($node/ancestor-or-self::db:refentry     ) + 
-                        count($node/ancestor-or-self::db:reference    ) + 
-                        count($node/ancestor-or-self::db:sect1        ) + 
-                        count($node/ancestor-or-self::db:sect2        ) + 
-                        count($node/ancestor-or-self::db:sect3        ) + 
-                        count($node/ancestor-or-self::db:sect4        ) + 
-                        count($node/ancestor-or-self::db:sect5        ) + 
-                        count($node/ancestor-or-self::db:section      ) + 
-                        count($node/ancestor-or-self::db:setindex     ) + 
-                        count($node/ancestor-or-self::db:simplesect   ) + 
-                        count($node/ancestor-or-self::db:toc          )"/>
+  <xsl:variable name="divs" select="count($node/ancestor-or-self::&db_chunk;)"/>
   <xsl:choose>
     <xsl:when test="$divs &lt; ($db.chunk.max_depth + 1)">
       <xsl:value-of select="count($node/ancestor-or-self::*) - $divs"/>
@@ -176,10 +115,7 @@ REMARK: Explain how this works
 -->
 <xsl:template name="db.chunk.depth-of-chunk">
   <xsl:param name="node" select="."/>
-  <xsl:variable name="divs"
-                select="$node/ancestor-or-self::*
-                         [contains($db.chunk.chunks,
-                            concat(' ', local-name(.), ' '))]"/>
+  <xsl:variable name="divs" select="$node/ancestor-or-self::&db_chunks;"/>
   <xsl:choose>
     <xsl:when test="count($divs) - 1 &lt; $db.chunk.max_depth">
       <xsl:value-of select="count($divs) - 1"/>
@@ -261,9 +197,7 @@ REMARK: Explain how this works, and what the axes are
     <!-- following -->
     <xsl:when test="$axis = 'following'">
       <xsl:variable name="divs"
-                    select="$node/following-sibling::*
-                             [contains($db.chunk.chunks,
-                                concat(' ', local-name(.), ' '))]"/>
+                    select="$node/following-sibling::&db_chunks;"/>
       <xsl:choose>
         <xsl:when test="$divs">
           <xsl:call-template name="db.chunk.chunk-id">
@@ -284,9 +218,7 @@ REMARK: Explain how this works, and what the axes are
     </xsl:when>
     <!-- last-descendant -->
     <xsl:when test="$axis = 'last-descendant'">
-      <xsl:variable name="divs"
-                    select="$node/*[contains($db.chunk.chunks,
-                                      concat(' ', local-name(.), ' '))]"/>
+      <xsl:variable name="divs" select="$node/&db_chunks;"/>
       <xsl:choose>
         <xsl:when test="($depth_of_chunk &gt;= $db.chunk.max_depth)">
           <xsl:call-template name="db.chunk.chunk-id">
@@ -321,9 +253,7 @@ REMARK: Explain how this works, and what the axes are
     </xsl:when>
     <!-- next -->
     <xsl:when test="$axis = 'next'">
-      <xsl:variable name="divs"
-                    select="$node/*[contains($db.chunk.chunks,
-                                      concat(' ', local-name(.), ' '))]"/>
+      <xsl:variable name="divs" select="$node/&db_chunks;"/>
       <xsl:choose>
         <xsl:when test="($depth_of_chunk &lt; $db.chunk.max_depth) and $divs">
           <xsl:call-template name="db.chunk.chunk-id">
@@ -344,10 +274,7 @@ REMARK: Explain how this works, and what the axes are
     </xsl:when>
     <!-- previous -->
     <xsl:when test="$axis = 'previous'">
-      <xsl:variable name="divs"
-                    select="$node/preceding-sibling::*
-                             [contains($db.chunk.chunks,
-                                concat(' ', local-name(.), ' '))]"/>
+      <xsl:variable name="divs" select="$node/preceding-sibling::&db_chunks;"/>
       <xsl:choose>
         <xsl:when test="$divs and ($depth_of_chunk &lt; $db.chunk.max_depth)">
           <xsl:call-template name="db.chunk.chunk-id.axis">
