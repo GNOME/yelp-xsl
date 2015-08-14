@@ -11,12 +11,12 @@ FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu.org/licenses/>.
+along with this program; see the file COPYING.LGPL.  If not, see
+<http://www.gnu.org/licenses/>.
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:math="http://exslt.org/math"
-                exclude-result-prefixes="msg"
                 extension-element-prefixes="math"
                 version="1.0">
 

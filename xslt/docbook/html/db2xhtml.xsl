@@ -54,7 +54,6 @@ DocBook documents into XHTML. This stylesheet sets the parameter
 <xsl:include href="db2html-funcsynopsis.xsl"/>
 <xsl:include href="db2html-index.xsl"/>
 <xsl:include href="db2html-inline.xsl"/>
-<xsl:include href="db2html-l10n.xsl"/>
 <xsl:include href="db2html-links.xsl"/>
 <xsl:include href="db2html-math.xsl"/>
 <xsl:include href="db2html-media.xsl"/>
