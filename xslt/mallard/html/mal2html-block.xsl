@@ -251,17 +251,31 @@ in accordance with the Mallard specification on fallback block content.
 <xsl:template mode="mal2html.block.mode" match="mal:example">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
   <div>
+    <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class">
         <xsl:text>example</xsl:text>
+        <xsl:if test="mal:title and @ui:expanded">
+          <xsl:text> ui-expander</xsl:text>
+        </xsl:if>
         <xsl:if test="$if != 'true'">
           <xsl:text> if-if </xsl:text>
           <xsl:value-of select="$if"/>
         </xsl:if>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:call-template name="html.lang.attrs"/>
-    <xsl:apply-templates mode="mal2html.block.mode"/>
+    <xsl:call-template name="mal2html.ui.expander.data"/>
+    <div class="inner">
+      <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
+      <div class="region">
+        <xsl:apply-templates mode="mal2html.block.mode" select="mal:desc[1]"/>
+        <div class="contents">
+          <xsl:for-each select="*[not(self::mal:title or self::mal:desc)]">
+            <xsl:apply-templates mode="mal2html.block.mode" select="."/>
+          </xsl:for-each>
+        </div>
+      </div>
+    </div>
   </div>
 </xsl:if>
 </xsl:template>

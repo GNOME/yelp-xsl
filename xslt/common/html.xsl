@@ -1084,6 +1084,7 @@ div.example {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
+div.example > div.inner > div.region > div.desc { font-style: italic; }
 div.figure {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
   padding: 4px;
