@@ -32,7 +32,7 @@ msgstr ""
 #. or default:RTL it will not work.
 #.
 msgid "default:LTR"
-msgstr "LTR"
+msgstr "default:LTR"
 
 #. (itstool) path: msg/msgstr
 #. This is used a simple list item seperator in places where simple
