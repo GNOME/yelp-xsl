@@ -24,7 +24,7 @@ msgstr ""
 #. 
 #: yelp-xsl.xml.in:27(msg/msgstr)
 msgid "default:LTR"
-msgstr "සාමාන්‍ය:LTR"
+msgstr "default:LTR"
 
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
