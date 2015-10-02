@@ -298,10 +298,13 @@ on each one. Otherwise, it calls the stub template *{mal2html.page.linktrails.em
 
 <!--**==========================================================================
 mal2html.page.linktrails.empty
-Stub to output something when no link trails are present.
+Deprecated stub to output something when no link trails are present.
 :Stub: true
-:Revision:version="3.4" date="2011-11-19" status="final"
+:Revision:version="3.20" date="2015-09-17" status="final"
 $node: The top-level #{page} element.
+
+This template is deprecated. Use *{html.linktrails.empty} instead. By default,
+this template calls *{html.linktrails.empty}, passing the ${node} parameter.
 
 This template is a stub. It is called by ${mal2html.page.linktrails} when there
 are no link trails to output. Some customizations prepend extra site links to
@@ -310,19 +313,22 @@ trails would otherwise be present.
 -->
 <xsl:template name="mal2html.page.linktrails.empty">
   <xsl:param name="node" select="."/>
+  <xsl:call-template name="html.linktrails.empty">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 </xsl:template>
 
 
 <!--**==========================================================================
 mal2html.page.linktrails.trail
 Output one trail of guide links.
-:Revision:version="3.4" date="2011-11-19" status="final"
+:Revision:version="3.20" date="2015-09-19" status="final"
 $node: A #{link} element from *{mal.link.linktrails}.
 
 This template outputs an HTML #{div} element containing all the links in a
-single link trail. It calls *{mal2html.page.linktrails.trail.prefix} to output
-a custom boilerplate prefix, then calls *{mal2html.page.linktrails.link} to
-output the actual links.
+single link trail. It calls *{html.linktrails.prefix} (by way of 
+*{mal2html.page.linktrails.trail.prefix}) to output a custom boilerplate prefix,
+then calls *{mal2html.page.linktrails.link} to output the actual links.
 -->
 <xsl:template name="mal2html.page.linktrails.trail">
   <xsl:param name="node" select="."/>
@@ -339,18 +345,24 @@ output the actual links.
 
 <!--**==========================================================================
 mal2html.page.linktrails.trail.prefix
-Stub to output extra content before a link trail.
+Deprecated stub to output extra content before a link trail.
 :Stub: true
-:Revision:version="3.4" date="2011-11-19" status="final"
+:Revision:version="3.20" date="2015-09-17" status="final"
 $node: A #{link} element from *{mal.link.linktrails}.
 
-This template is a stub. It is called by *{mal2html.page.linktrails.trail} for each
-link trail before the normal links are output with *{mal2html.page.linktrails.link}.
-This template is useful for adding extra site links at the beginning of each link
-trail.
+This template is deprecated. Use *{html.linktrails.prefix} instead. By default,
+this template calls *{html.linktrails.prefix}, passing the ${node} parameter.
+
+This template is a stub. It is called by *{mal2html.page.linktrails.trail} for
+each link trail before the normal links are output with
+*{mal2html.page.linktrails.link}. This template is useful for adding extra site
+links at the beginning of each link trail.
 -->
 <xsl:template name="mal2html.page.linktrails.trail.prefix">
   <xsl:param name="node" select="."/>
+  <xsl:call-template name="html.linktrails.prefix">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 </xsl:template>
 
 

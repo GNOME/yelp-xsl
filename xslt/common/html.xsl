@@ -492,6 +492,39 @@ to provide additional elements in the HTML #{head} element of output files.
 
 
 <!--**==========================================================================
+html.linktrails.empty
+Stub to output something when no link trails are present.
+:Stub: true
+:Revision:version="3.20" date="2015-10-02" status="final"
+$node: The source element a page is bring created for.
+
+This template is a stub. It is called by templates that output link trails when
+there are no link trails to output. Some customizations prepend extra site links
+to link trails. This template allows them to output those links even when no link
+trails would otherwise be present.
+-->
+<xsl:template name="html.linktrails.empty">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.linktrails.prefix
+Stub to output extra content before a link trail.
+:Stub: true
+:Revision:version="3.20" date="2015-10-02" status="final"
+$node: A source-specific element providing information about the link trail.
+
+This template is a stub. It is called by templates that output link trails
+before the normal links are output. This template is useful for adding extra
+site links at the beginning of each link trail.
+-->
+<xsl:template name="html.linktrails.prefix">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
 html.class.attr
 Output a #{class} attribute for an HTML element.
 :Revision: version="3.10" date="2013-07-10" status="final"

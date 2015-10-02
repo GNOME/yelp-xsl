@@ -340,6 +340,13 @@ REMARK: Describe this module
   </xsl:choose>
 </xsl:template>
 
+<!-- = map % html.header.mode = -->
+<xsl:template mode="html.header.mode" match="&map_map;">
+  <xsl:call-template name="html.linktrails.empty">
+    <xsl:with-param name="node" select="."/>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = map % html.footer.mode = -->
 <xsl:template mode="html.footer.mode" match="&map_map;">
   <xsl:call-template name="dita2html.topic.about"/>
@@ -392,6 +399,9 @@ REMARK: Describe this module
   </xsl:variable>
   <div class="trails" role="navigation">
     <div class="trail">
+      <xsl:call-template name="html.linktrails.prefix">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
       <a class="trail">
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
@@ -408,7 +418,7 @@ REMARK: Describe this module
         </xsl:call-template>
       </a>
       <xsl:value-of select="$sep"/>
-      <xsl:for-each select="ancestor::&map_topicref;">
+      <xsl:for-each select="(ancestor::&map_topicref;)">
         <xsl:choose>
           <xsl:when test="@href">
             <a class="trail">

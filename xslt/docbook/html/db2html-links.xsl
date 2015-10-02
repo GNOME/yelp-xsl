@@ -32,19 +32,26 @@ This stylesheet contains templates to handle implicit automatic links.
 <!--**==========================================================================
 db2html.links.linktrail
 Generate links to pages from ancestor elements.
-:Revision:version="3.4" date="2011-11-08" status="final"
+:Revision:version="3.20" date="2015-09-15" status="final"
 $node: The element to generate links for.
 
-This template outputs a trail of links for the ancestor pages of ${node}.
+This template outputs a trail of links for the ancestor pages of ${node}. If
+${node} has no ancestors, then it calls *{html.linktrails.empty} instead. This
+template calls *{html.linktrails.prefix} before the first link, passing ${node}
+as that template's #{node} parameter.
 -->
 <xsl:template name="db2html.links.linktrail">
   <xsl:param name="node" select="."/>
   <xsl:variable name="direction">
     <xsl:call-template name="l10n.direction"/>
   </xsl:variable>
-  <xsl:if test="$node/ancestor::*">
+  <xsl:choose>
+    <xsl:when test="$node/ancestor::*">
     <div class="trails" role="navigation">
       <div class="trail">
+        <xsl:call-template name="html.linktrails.prefix">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
         <!-- The parens put the nodes back in document order -->
         <xsl:for-each select="($node/ancestor::*)">
           <a class="trail">
@@ -76,7 +83,13 @@ This template outputs a trail of links for the ancestor pages of ${node}.
         </xsl:for-each>
       </div>
     </div>
-  </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="html.linktrails.empty">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
