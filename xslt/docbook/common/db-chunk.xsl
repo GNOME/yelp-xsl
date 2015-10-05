@@ -94,7 +94,7 @@ REMARK: Explain how this works
 -->
 <xsl:template name="db.chunk.depth-in-chunk">
   <xsl:param name="node" select="."/>
-  <xsl:variable name="divs" select="count($node/ancestor-or-self::&db_chunk;)"/>
+  <xsl:variable name="divs" select="count($node/ancestor-or-self::&db_chunks;)"/>
   <xsl:choose>
     <xsl:when test="$divs &lt; ($db.chunk.max_depth + 1)">
       <xsl:value-of select="count($node/ancestor-or-self::*) - $divs"/>
