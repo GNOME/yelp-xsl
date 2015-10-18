@@ -214,8 +214,6 @@ parameter will be used if provided.
                 <xsl:with-param name="nodesc" select="$nodesc"/>
                 <xsl:with-param name="max" select="$coltot"/>
               </xsl:call-template>
-            </div>
-            <div class="links-twocolumn">
               <xsl:call-template name="_mal2html.links.divs">
                 <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="links" select="$links"/>
@@ -921,6 +919,7 @@ when determining which links to output.
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
+  <div class="links-grid-container">
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -976,6 +975,7 @@ when determining which links to output.
       </xsl:for-each>
     </div>
   </xsl:for-each>
+  </div>
 </xsl:template>
 
 <!--#* _mal2html.links.norwich -->
@@ -1112,6 +1112,7 @@ when determining which links to output.
   <xsl:param name="nodesc" select="false()"/>
   <xsl:param name="min" select="-1"/>
   <xsl:param name="max" select="-1"/>
+  <div class="links-divs">
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -1182,6 +1183,7 @@ when determining which links to output.
       </xsl:for-each>
     </xsl:if>
   </xsl:for-each>
+  </div>
 </xsl:template>
 
 <!--#% _mal2html.links.divs.nolink.mode -->

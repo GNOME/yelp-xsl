@@ -887,6 +887,16 @@ are processed in %{mal2html.block.mode}.
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
+<!-- links -->
+div.links .desc a {
+  color: inherit;
+}
+div.links .desc a:hover {
+  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+}
+a.bold { font-weight: bold; }
+
+<!-- link/@style = 'button' -->
 div.link-button {
   font-size: 1.2em;
   font-weight: bold;
@@ -902,8 +912,6 @@ div.link-button {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.link"/><xsl:text>;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 .link-button a:visited {
@@ -924,6 +932,8 @@ div.link-button a .desc {
   color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
+
+<!-- @style = 'float*' -->
 div.floatleft {
   float: left;
   margin-right: 1em;
@@ -941,6 +951,7 @@ div.floatend {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
+<!-- FIXME -->
 div.title-heading h1, div.title-heading h2, div.title-heading h3,
 div.title-heading h4, div.title-heading h5, div.title-heading h6 {
   font-size: 1.72em;
@@ -950,6 +961,7 @@ ul.links-heading > li { margin: 2em 0 2em 0; padding: 0; }
 div.links-heading > a { font-size: 1.72em; font-weight: bold; }
 ul.links-heading > li > div.desc { margin-top: 0.5em; }
 
+<!-- FIXME -->
 div.mouseovers {
   width: 250px;
   height: 200px;
@@ -972,7 +984,7 @@ ul.mouseovers a img {
   position: absolute;
   margin: 0; padding: 0;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
   ul.mouseovers a {
     display: block;
     padding: 12px;
@@ -982,6 +994,7 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
+<!-- FIXME -->
 div.ui-screen {
   display: none;
   position: fixed;
@@ -1038,6 +1051,7 @@ a.ui-overlay-close {
 a.ui-overlay-close:hover {
 }
 
+<!-- FIXME -->
 div.ui-tile {
   display: inline-block;
   vertical-align: top;
@@ -1086,6 +1100,7 @@ div.ui-tile > a > span.ui-tile-text > span.desc {
 }
 span.ui-tile-img { text-align: center; }
 
+<!-- FIXME -->
 div.links-ui-hover {
   text-align: center;
   margin: 0;
@@ -1111,7 +1126,7 @@ span.links-ui-hover-img {
   background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   text-align: center;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
   ul.links-ui-hover a {
     display: block;
     padding: 12px;
@@ -1121,28 +1136,37 @@ span.links-ui-hover-img {
   div.links-ui-hover { display: none; }
 }
 
-div.links-grid {
-  display: inline-block;
-  clear: both
-  margin-top: 1em;
-  width: 30%;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 2%;
+<!-- links/@style = 'grid' -->
+div.links-grid-container {
+  margin-left: -10px;
+  margin-right: -10px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
   vertical-align: top;
+  clear: both
+}
+div.links-grid { flex: 0 0 300px; }
+@media (max-width: 960px) {
+  div.links-grid { flex: 0 1 50%; }
+}
+@media (max-width: 640px) {
+  div.links-grid { flex: 0 1 100%; }
 }
 div.links-grid-link {
   margin: 0;
+  padding: 10px 10px 2px 10px;
   font-weight: bold;
 }
 div.links-grid > div.desc {
   margin: 0;
+  padding: 0 10px;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-@media only screen and (max-width: 400px) {
-  div.links-grid {
-    width: 47%;
-  }
-}
 
+<!-- FIXME -->
+<!-- links/@style = 'norwich' -->
 div.links-norwich {
   width: 900px;
 }
@@ -1238,32 +1262,15 @@ div.links-norwich-small a:hover {
   }
 }
 
-div.links-twocolumn {
-  display: inline-block;
-  width: 48%;
-  margin-top: 0;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
-  vertical-align: top;
+<!-- links/@type = 'topic' and @style = '2column' -->
+div.links-divs {
+  margin-left: -10px;
+  margin-right: -10px;
 }
-@media only screen and (max-width: 400px) {
-  div.links-twocolumn {
-    width: 100%;
-    margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
-  }
-}
-
-div.links .desc a {
-  color: inherit;
-}
-div.links .desc a:hover {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
-}
-a.bold { font-weight: bold; }
-div.linkdiv { margin: 0; padding: 0; }
 a.linkdiv {
   display: block;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px;
   border-bottom: none;
 }
 a.linkdiv:hover {
@@ -1284,17 +1291,27 @@ a.linkdiv > span.desc {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
-@media only screen and (max-width: 400px) {
-  div.linkdiv {
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  div.linkdiv a {
-    padding-left: 12px;
-    padding-right: 12px;
+div.links-twocolumn {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  vertical-align: top;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+div.links-twocolumn > div.links-divs {
+  flex: 0 1 50%;
+  vertical-align: top;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  div.links-twocolumn > div.links-divs {
+    flex: 0 1 100%;
   }
 }
 
+<!-- FIXME -->
 div.comment {
   padding: 0.5em;
   border: solid 2px </xsl:text>
@@ -1310,6 +1327,7 @@ div.comment div.cite {
   font-style: italic;
 }
 
+<!-- FIXME -->
 div.tree > div.inner > div.title { margin-bottom: 0.5em; }
 ul.tree {
   margin: 0; padding: 0;
@@ -1322,11 +1340,13 @@ ul.tree ul.tree {
 }
 div.tree-lines ul.tree { margin-left: 0; }
 
+<!-- FIXME -->
 span.hi {
   background-color: </xsl:text>
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
 }
 
+<!-- FIXME -->
 div.facets {
   display: inline-block;
   padding: 6px;
@@ -1351,6 +1371,8 @@ div.facet input {
   vertical-align: middle;
   margin: 0;
 }
+
+<!-- FIXME -->
 dt.gloss-term {
   margin-top: 1.2em;
   font-weight: bold;
@@ -1390,14 +1412,11 @@ span.gloss-desc {
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.yellow_border"/><xsl:text>;
-  -moz-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 
+<!-- conditional processing -->
 .if-if { display: none; }
 .if-choose, .if-when, .if-else { margin: 0; padding: 0; }
 .if-choose > .if-when { display: none; }
@@ -1405,7 +1424,7 @@ span.gloss-desc {
 .if-if.if__not-target-mobile { display: block; }
 .if-choose.if__not-target-mobile > .if-when { display: block; }
 .if-choose.if__not-target-mobile > .if-else { display: none; }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
   .if-if.if__target-mobile { display: block; }
   .if-if.if__not-target-mobile { display: none; }
   .if-choose.if__target-mobile > .if-when { display: block; }

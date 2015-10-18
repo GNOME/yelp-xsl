@@ -325,21 +325,21 @@ as ${node} to this template.
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
       <div class="page" role="main">
-        <div class="header"> 
+        <header>
           <xsl:call-template name="html.header.custom">
             <xsl:with-param name="node" select="$node"/>
           </xsl:call-template>
           <xsl:apply-templates mode="html.header.mode" select="$node"/>
-        </div>
-        <div class="body">
+        </header>
+        <article>
           <xsl:apply-templates mode="html.body.mode" select="$node"/>
-        </div>
-        <div class="footer">
+        </article>
+        <footer>
           <xsl:apply-templates mode="html.footer.mode" select="$node"/>
           <xsl:call-template name="html.footer.custom">
             <xsl:with-param name="node" select="$node"/>
           </xsl:call-template>
-        </div>
+        </footer>
       </div>
       <xsl:call-template name="html.bottom.custom">
         <xsl:with-param name="node" select="$node"/>
@@ -748,22 +748,36 @@ body {
     <xsl:value-of select="$color.text"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
+article, aside, nav, header, footer, section {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
 div.page {
-  margin: 1em auto 1em auto;
-  max-width: 60em;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flext-start;
+  max-width: 960px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+div.page > article {
+  flex: 1 0 100%;
+  padding: 10px;
+}
+div.page > header {
+  flex: 0 1 auto;
+}
+div.page > footer {
+  flex: 0 1 auto;
 }
 div.body {
-  margin: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 1em;
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  padding: 10px;
 }
-div.header { margin: 0; }
-div.footer { margin: 0; }
 div.sect {
   margin-top: 2.4em;
   clear: both;
@@ -773,33 +787,38 @@ div.sect div.sect {
 }
 div.trails {
   margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.2em 10px;
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
 }
 div.trail {
-  margin: 0.2em 0 0 0;
+  margin: 0.2em 0;
   padding: 0 1em 0 1em;
   text-indent: -1em;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
-  margin: 1em 0 0.5em 0;
+  margin: 0 0 0.5em 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-div.sect div.hgroup {
+div.sect > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-div.sect-links div.hgroup {
+div.sect-links > div.hgroup {
   border-bottom: solid 2px </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-div.sect div.sect-links {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
-}
-div.sect div.sect-links div.hgroup {
+div.sect div.sect-links > div.hgroup {
   border: none;
 }
 h1, h2, h3, h4, h5, h6, h7 {
@@ -811,15 +830,12 @@ h1 { font-size: 2em; }
 h2 { font-size: 1.44em; }
 h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
 h3, h4, h5, h6, h7 { font-size: 1em; }
-
-p { line-height: 1.72em; }
-div, pre, p { margin: 1em 0 0 0; padding: 0; }
-div.contents > *:first-child,
-th > *:first-child, td > *:first-child,
-dt > *:first-child, dd > *:first-child,
-li > *:first-child { margin-top: 0; }
-div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
-pre.contents div { margin-top: 0 !important; }
+p { line-height: 1.44em; }
+div, pre, p { margin: 0; padding: 0; }
+div.contents > * + *,
+th > * + *, td > * + *,
+dt > * + *, dd > * + *,
+li > * + * { margin-top: 1em; }
 p img { vertical-align: middle; }
 p.lead { font-size: 1.2em; }
 div.clear {
@@ -831,6 +847,8 @@ div.clear {
 
 div.about {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  margin: 0;
+  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
 div.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
@@ -844,19 +862,33 @@ div.about > div.inner > div.hgroup > h2 {
 div.about.ui-expander > div.inner > div.hgroup span.title:before {
   content: "";
 }
+div.about > div.inner > div.region > div.contents {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  vertical-align: top;
+}
 div.copyrights {
-  margin: 1em;
   text-align: center;
+  flex: 1 1 100%;
+  padding: 10px;
 }
 div.copyright {
   margin: 0;
 }
 div.aboutblurb {
-  display: inline-block;
   vertical-align: top;
   text-align: left;
-  max-width: 18em;
-  margin: 0 1em 1em 1em;
+  flex: 0 1 300px;
+  margin: 0;
+  padding: 10px;
+}
+@media (max-width: 974px) {
+  div.aboutblurb { flex: 1 1 300px; }
+}
+@media (max-width: 640px) {
+  div.aboutblurb { flex: 1 0 100%; }
 }
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
@@ -896,6 +928,11 @@ li {
   padding: 0;
 }
 li:first-child { margin-top: 0; }
+@media (max-width: 480px) {
+  li {
+    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+  }
+}
 dt { margin-top: 1em; }
 dt:first-child { margin-top: 0; }
 dt + dt { margin-top: 0; }
@@ -927,33 +964,6 @@ p a {
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
 a img { border: none; }
-@media only screen and (max-width: 400px) {
-  div.page {
-    margin: 0;
-    border: none;
-  }
-  div.body {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  div.body > div.hgroup,
-  div.body > div.region > div.contents > *,
-  div.body > div.region > div.sect > div.inner > div.hgroup > *,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > * {
-    margin-left: 12px;
-    margin-right: 12px;
-  }
-  div.body > div.region > div.sect-links {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  div.trails {
-    padding: 12px;
-  }
-  li {
-    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-  }
-}
 </xsl:text>
 </xsl:template>
 
@@ -1017,7 +1027,6 @@ div.links ul ul {
 li.links {
   margin: 0.5em 0 0.5em 0;
   padding: 0;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   list-style-type: none;
 }
 div.sectionlinks {
@@ -1282,10 +1291,6 @@ ol.steps, ul.steps {
   padding: 0.5em 1em 0.5em 1em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
     <xsl:value-of select="$color.yellow_border"/><xsl:text>;
-  -moz-box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 0 1px 2px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
@@ -1293,8 +1298,6 @@ ol.steps .steps {
   padding: 0;
   border: none;
   background-color: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
@@ -1370,10 +1373,6 @@ kbd {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  -moz-box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 1px 1px 2px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   margin: 0 0.2em 0 0.2em;
@@ -1485,10 +1484,6 @@ div.media-ttml-p {
     <xsl:value-of select="$color.yellow_border"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.yellow_background"/><xsl:text>;
-  -moz-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
@@ -1520,28 +1515,26 @@ div.ui-expander > div.inner > div.hgroup:hover * {
 div.ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
-@media only screen and (max-width: 400px) {
-  div.links {
-    margin-left: 12px;
-    margin-right: 12px;
-  } 
-  li.links { padding: 0; }
+@media only screen and (max-width: 480px) {
   div.body > div.region > div.contents > div.example,
   div.body > div.region > div.contents > div.steps,
   div.body > div.region > div.contents > div.note,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > div.example,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > div.steps,
   div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: -10px;
+    margin-right: -10px;
   }
   div.steps > div.inner > div.title {
-    margin-left: 18px;
-    margin-right: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  div.body > div.region > div.contents > div.note,
+  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
+    border-left: none;
+    border-right: none;
   }
   ol.steps, ul.steps {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
   }
   div.note-sidebar {
@@ -1554,8 +1547,8 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
   }
   div.note-sidebar > div.inner > div.title,
   div.note-sidebar > div.inner > div.region > div.contents {
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 </xsl:text>
