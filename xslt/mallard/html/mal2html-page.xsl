@@ -994,8 +994,8 @@ ul.mouseovers a img {
   div.mouseovers { display: none; }
 }
 
-<!-- FIXME -->
-div.ui-screen {
+<!-- uix:overlay -->
+div.ui-overlay-screen {
   display: none;
   position: fixed;
   margin: 0;
@@ -1019,10 +1019,12 @@ div.ui-overlay > div.inner {
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
   border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+}
+div.ui-overlay img, div.ui-overlay video {
+  max-height: 80vh;
+  max-width: 90vw;
 }
 div.ui-overlay > div.inner > div.title { margin-top: -4px; }
 a.ui-overlay-close {
@@ -1036,8 +1038,6 @@ a.ui-overlay-close {
   padding: 1px 2px 3px 2px;
   text-align: center;
   border: none;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   background-color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
   background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
@@ -1048,57 +1048,56 @@ a.ui-overlay-close {
   box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
   text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
 }
-a.ui-overlay-close:hover {
-}
 
-<!-- FIXME -->
-div.ui-tile {
-  display: inline-block;
+<!-- links/@uix:thumbs = 'tiles' -->
+div.links-tiles {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: stretch;
   vertical-align: top;
-  clear: both
+  clear: both;
+  margin: 0 -10px;
 }
-div.region > div.ui-tile {
-  margin-top: 0;
-  margin-bottom: 1em;
-}
-div.ui-tile:first-child { margin-top: 1em; }
-div.ui-tile > a {
-  display: inline-block;
+div.links-tile {
+  flex: 1 0 300px;
   vertical-align: top;
   margin: 0;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
-  padding: 1em;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
+  padding: 10px;
+}
+div.links-tile:empty { padding: 0 10px; height: 0; }
+div.links-tile > a {
+  display: block;
+  vertical-align: top;
+  padding: 9px;
   border-radius: 6px;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
-div.ui-tile > a {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
-}
-div.ui-tile > a:hover {
+div.links-tile > a:hover {
   border: solid 1px </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
   box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
-div.ui-tile > a > * { display: block; }
-div.ui-tile-side > a > * {
-  display: inline-block;
-  vertical-align: top;
-}
-div.ui-tile-side > a > span.ui-tile-text {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-}
-div.ui-tile > a > span.ui-tile-text > span.title {
+div.links-tile > a > span.links-tile-img {
   display: block;
-  margin-top: 0.5em;
+  text-align: center;
+  max-width: 360px;
+}
+div.links-tile > a > span.links-tile-img > img {
+  width: 100%;
+  border-radius: 3px;
+}
+div.links-tile > a > span.links-tile-text > span.title {
+  display: block;
   font-weight: bold;
 }
-div.ui-tile-side > a > span.ui-tile-text > span.title { margin-top: 0; }
-div.ui-tile > a > span.ui-tile-text > span.desc {
+div.links-tile > a > span.links-tile-text > * + span.title {
+  margin-top: 0.5em;
+}
+div.links-tile > a > span.links-tile-text > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-span.ui-tile-img { text-align: center; }
 
 <!-- FIXME -->
 div.links-ui-hover {
@@ -1523,9 +1522,9 @@ $(document).ready(function () {
       var inner = overlay.children('div.inner');
       var close = inner.children('a.ui-overlay-close');
       var media = inner.find('audio, video');
-      var screen = $('div.ui-screen');
+      var screen = $('div.ui-overlay-screen');
       if (screen.length == 0) {
-        screen = $('<div class="ui-screen"></div>');
+        screen = $('<div class="ui-overlay-screen"></div>');
         $('body').append(screen);
       }
       var hideoverlay = function () {
