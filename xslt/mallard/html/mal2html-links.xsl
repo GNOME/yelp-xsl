@@ -975,6 +975,9 @@ when determining which links to output.
       </xsl:for-each>
     </div>
   </xsl:for-each>
+  <!-- blank divs for homogeneous sizing -->
+  <div class="links-grid"></div>
+  <div class="links-grid"></div>
   </div>
 </xsl:template>
 

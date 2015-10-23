@@ -1146,21 +1146,14 @@ div.links-grid-container {
   vertical-align: top;
   clear: both
 }
-div.links-grid { flex: 0 0 300px; }
-@media (max-width: 960px) {
-  div.links-grid { flex: 0 1 50%; }
+div.links-grid {
+  flex: 1 0 300px;
+  padding: 10px;
 }
-@media (max-width: 640px) {
-  div.links-grid { flex: 0 1 100%; }
-}
-div.links-grid-link {
-  margin: 0;
-  padding: 10px 10px 2px 10px;
-  font-weight: bold;
-}
+div.links-grid:empty { padding: 0 10px; height: 0; }
+div.links-grid-link { font-weight: bold; }
 div.links-grid > div.desc {
-  margin: 0;
-  padding: 0 10px;
+  margin: 0.2em 0 0 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
 
@@ -1300,14 +1293,9 @@ div.links-twocolumn {
   margin-right: -10px;
 }
 div.links-twocolumn > div.links-divs {
-  flex: 0 1 50%;
+  flex: 1 0 320px;
   vertical-align: top;
   margin: 0;
-}
-@media (max-width: 640px) {
-  div.links-twocolumn > div.links-divs {
-    flex: 0 1 100%;
-  }
 }
 
 <!-- FIXME -->
