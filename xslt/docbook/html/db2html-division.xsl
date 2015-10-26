@@ -345,13 +345,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
 -->
 <xsl:template name="db2html.division.about">
   <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="
-    $node/appendixinfo | $node/articleinfo  | $node/bibliographyinfo | $node/bookinfo |
-    $node/chapterinfo  | $node/glossaryinfo | $node/indexinfo        | $node/partinfo |
-    $node/prefaceinfo  | $node/refentryinfo | $node/referenceinfo    | $node/refsect1info |
-    $node/refsect2info | $node/refsect3info | $node/refsectioninfo   | $node/sect1info |
-    $node/sect2info    | $node/sect3info    | $node/sect4info        | $node/sect5info |
-    $node/sectioninfo  | $node/setindexinfo | $node/db:info "/>
+  <xsl:param name="info" select="$node/ancestor-or-self::*/&db_infos;"/>
   <xsl:variable name="copyrights" select="$info/copyright | $info/db:copyright"/>
   <xsl:variable name="authors" select="
     $info/author     | $info/authorgroup/author       |
@@ -375,7 +369,8 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     $info/db:othercredit | $info/db:authorgroup/db:othercredit,
     ($authors | $editors | $translators))"/>
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
-  <xsl:if test="$copyrights or $authors or $editors or $translators or $publishers or $othercredits or $legal">
+  <xsl:if test="$copyrights or $authors or $editors or $translators or
+                $publishers or $othercredits or $legal">
     <div class="sect about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
@@ -399,98 +394,37 @@ the division. By default it is called by the %{html.footer.mode} implementation.
               </xsl:for-each>
             </div>
           </xsl:if>
-          <xsl:if test="$authors">
-            <div class="aboutblurb authors">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Written By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$authors">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$editors">
-            <div class="aboutblurb editors">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Edited By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$editors">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$translators">
-            <div class="aboutblurb translators">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Translated By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$translators">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$publishers">
-            <div class="aboutblurb publishers">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Published By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$publishers">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$othercredits">
-            <div class="aboutblurb othercredits">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Other Credits'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$othercredits">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
+          <xsl:if test="$authors or $editors or $translators or $publishers or $othercredits">
+            <div class="credits">
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-authors'"/>
+                <xsl:with-param name="title" select="'Written By'"/>
+                <xsl:with-param name="credits" select="$authors"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-editors'"/>
+                <xsl:with-param name="title" select="'Edited By'"/>
+                <xsl:with-param name="credits" select="$editors"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-translators'"/>
+                <xsl:with-param name="title" select="'Translated By'"/>
+                <xsl:with-param name="credits" select="$translators"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-publishers'"/>
+                <xsl:with-param name="title" select="'Published By'"/>
+                <xsl:with-param name="credits" select="$publishers"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-others'"/>
+                <xsl:with-param name="title" select="'Other Credits'"/>
+                <xsl:with-param name="credits" select="$othercredits"/>
+              </xsl:call-template>
             </div>
           </xsl:if>
           <xsl:for-each select="$legal">
-            <div class="aboutblurb license">
+            <div class="license">
               <div class="title">
                 <span class="title">
                   <xsl:choose>
@@ -517,6 +451,32 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     </div>
   </xsl:if>
 </xsl:template>
+
+<!--#* _db2html.division.about.credits -->
+<xsl:template name="_db2html.division.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates select="."/>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 
 
 <!-- == Matched Templates == -->

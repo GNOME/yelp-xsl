@@ -216,76 +216,28 @@ REMARK: Describe this module
                 </xsl:for-each>
               </div>
             </xsl:if>
-            <xsl:if test="$authors">
-              <div class="aboutblurb authors">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Written By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$authors">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$translators">
-              <div class="aboutblurb translators">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Translated By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$translators">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$publishers">
-              <div class="aboutblurb publishers">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Published By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$publishers">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$others">
-              <div class="aboutblurb othercredits">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Other Credits'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$others">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
+            <xsl:if test="$authors or $translators or $publishers or $others">
+              <div class="credits">
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-authors'"/>
+                  <xsl:with-param name="title" select="'Written By'"/>
+                  <xsl:with-param name="credits" select="$authors"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-translators'"/>
+                  <xsl:with-param name="title" select="'Translated By'"/>
+                  <xsl:with-param name="credits" select="$translators"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-publishers'"/>
+                  <xsl:with-param name="title" select="'Published By'"/>
+                  <xsl:with-param name="credits" select="$publishers"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-others'"/>
+                  <xsl:with-param name="title" select="'Other Credits'"/>
+                  <xsl:with-param name="credits" select="$others"/>
+                </xsl:call-template>
               </div>
             </xsl:if>
           </div>
@@ -294,6 +246,32 @@ REMARK: Describe this module
     </div>
   </xsl:if>
 </xsl:template>
+
+<!--#* _dita2html.topic.about.credits -->
+<xsl:template name="_dita2html.topic.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates mode="dita2html.topic.mode"/>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 
 <xsl:template mode="l10n.format.mode" match="msg:copyright.years">
   <xsl:param name="node"/>

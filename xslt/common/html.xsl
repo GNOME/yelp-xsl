@@ -862,34 +862,29 @@ div.about > div.inner > div.hgroup > h2 {
 div.about.ui-expander > div.inner > div.hgroup span.title:before {
   content: "";
 }
-div.about > div.inner > div.region > div.contents {
+div.copyrights {
+  max-width: 700px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+}
+div.copyright { margin: 0; }
+div.credits {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
   justify-content: flex-start;
-  vertical-align: top;
+  max-width: 720px;
+  margin: 0 auto;
 }
-div.copyrights {
-  text-align: center;
-  flex: 1 1 100%;
-  padding: 10px;
-}
-div.copyright {
-  margin: 0;
-}
-div.aboutblurb {
+div.credits > * {
   vertical-align: top;
   text-align: left;
-  flex: 0 1 300px;
+  flex: 1 0 220px;
   margin: 0;
   padding: 10px;
 }
-@media (max-width: 974px) {
-  div.aboutblurb { flex: 1 1 300px; }
-}
-@media (max-width: 640px) {
-  div.aboutblurb { flex: 1 0 100%; }
-}
+div.credits > *:empty { padding: 0 10px; height: 0; }
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
   list-style-type: none;
@@ -897,6 +892,11 @@ ul.credits, ul.credits li {
 ul.credits li {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   text-indent: -1em;
+}
+div.license {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 table {

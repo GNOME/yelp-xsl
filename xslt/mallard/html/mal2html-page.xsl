@@ -76,8 +76,10 @@ the #{page} element. Information is extracted from the #{info} element of ${node
     </div>
     <div class="region">
       <div class="contents">
+        <xsl:variable name="credits" select="$node/mal:info/mal:credit"/>
         <xsl:variable name="copyrights"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' copyright ')][mal:years]"/>
+                      select="$credits[contains(concat(' ', @type, ' '), ' copyright ')]
+                              [mal:years]"/>
         <xsl:if test="$copyrights">
           <div class="copyrights">
             <xsl:for-each  select="$copyrights">
@@ -92,128 +94,59 @@ the #{page} element. Information is extracted from the #{info} element of ${node
           </div>
         </xsl:if>
         <xsl:variable name="authors"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' author ')]"/>
-        <xsl:if test="$authors">
-          <div class="aboutblurb authors">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Written By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$authors">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' author ')]"/>
         <xsl:variable name="editors"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' editor ')]"/>
-        <xsl:if test="$editors">
-          <div class="aboutblurb editors">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Edited By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$editors">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' editor ')]"/>
         <xsl:variable name="maintainers"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' maintainer ')]"/>
-        <xsl:if test="$maintainers">
-          <div class="aboutblurb maintainers">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Maintained By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$maintainers">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' maintainer ')]"/>
         <xsl:variable name="translators"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' translator ')]"/>
-        <xsl:if test="$translators">
-          <div class="aboutblurb translators">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Translated By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$translators">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' translator ')]"/>
         <xsl:variable name="publishers"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' publisher ')]"/>
-        <xsl:if test="$publishers">
-          <div class="aboutblurb publishers">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Published By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$publishers">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' publisher ')]"/>
+        <!-- others doesn't exclude all copyrights, just credits that are only copyrights -->
         <xsl:variable name="others"
-                      select="set:difference($node/mal:info/mal:credit,
-                              $copyrights | $authors | $editors | $maintainers | $translators | $publishers)"/>
-        <xsl:if test="$others">
-          <div class="aboutblurb othercredits">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Other Credits'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$others">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
+                      select="set:difference($credits,
+                              $authors | $editors | $maintainers | $translators | $publishers)
+                              [not(@type = 'copyright' and mal:years)]"/>
+        <xsl:if test="$authors or $editors or $maintainers or
+                      $translators or publishers or $others">
+          <div class="credits">
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-authors'"/>
+              <xsl:with-param name="title" select="'Written By'"/>
+              <xsl:with-param name="credits" select="$authors"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-editors'"/>
+              <xsl:with-param name="title" select="'Edited By'"/>
+              <xsl:with-param name="credits" select="$editors"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-maintainers'"/>
+              <xsl:with-param name="title" select="'Maintained By'"/>
+              <xsl:with-param name="credits" select="$maintainers"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-translators'"/>
+              <xsl:with-param name="title" select="'Translated By'"/>
+              <xsl:with-param name="credits" select="$translators"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-publishers'"/>
+              <xsl:with-param name="title" select="'Published By'"/>
+              <xsl:with-param name="credits" select="$publishers"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-other'"/>
+              <xsl:with-param name="title" select="'Other Credits'"/>
+              <xsl:with-param name="credits" select="$others"/>
+            </xsl:call-template>
+            <div class="credits-blank"></div>
+            <div class="credits-blank"></div>
           </div>
         </xsl:if>
         <xsl:for-each select="$node/mal:info/mal:license">
-          <div class="aboutblurb license">
+          <div class="license">
             <div class="title">
               <span class="title">
                 <xsl:choose>
@@ -239,6 +172,31 @@ the #{page} element. Information is extracted from the #{info} element of ${node
     </div>
     </div>
   </div>
+  </xsl:if>
+</xsl:template>
+
+<!--#* _mal2html.page.about.credits -->
+<xsl:template name="_mal2html.page.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
   </xsl:if>
 </xsl:template>
 
