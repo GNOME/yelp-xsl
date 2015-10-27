@@ -62,7 +62,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
-  <div class="sect about ui-expander" role="contentinfo">
+  <footer class="about ui-expander" role="contentinfo">
     <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
     <div class="inner">
     <div class="hgroup">
@@ -171,7 +171,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
       </div>
     </div>
     </div>
-  </div>
+  </footer>
   </xsl:if>
 </xsl:template>
 
@@ -604,13 +604,12 @@ templates that handle #{page} and #{section} elements.
 -->
 <xsl:template name="mal2html.section">
   <xsl:param name="node" select="."/>
-  <div id="{$node/@id}">
+  <section id="{$node/@id}">
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="class">
-        <xsl:text>sect</xsl:text>
         <xsl:if test="@ui:expanded or @uix:expanded">
-          <xsl:text> ui-expander</xsl:text>
+          <xsl:text>ui-expander</xsl:text>
         </xsl:if>
       </xsl:with-param>
     </xsl:call-template>
@@ -620,7 +619,7 @@ templates that handle #{page} and #{section} elements.
     <div class="inner">
       <xsl:apply-templates select="$node"/>
     </div>
-  </div>
+  </section>
 </xsl:template>
 
 
@@ -736,7 +735,7 @@ templates that handle #{page} and #{section} elements.
                   ($postlinks[self::mal:links[@type = 'seealso']] or
                     (mal:section and not(mal:links[@type = 'seealso']))))
                 ">
-    <div class="sect sect-links" role="navigation">
+    <section class="links" role="navigation">
       <div class="hgroup"/>
       <div class="contents">
         <xsl:for-each select="$postlinks">
@@ -789,7 +788,7 @@ templates that handle #{page} and #{section} elements.
           </xsl:call-template>
         </xsl:if>
       </div>
-    </div>
+    </section>
   </xsl:if>
   </div>
 </xsl:template>

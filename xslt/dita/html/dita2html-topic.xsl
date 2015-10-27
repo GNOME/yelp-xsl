@@ -189,7 +189,7 @@ REMARK: Describe this module
   <xsl:variable name="publishers" select="$info/&topic_publisher;"/>
   <xsl:variable name="others" select="$info/&topic_author;[not(@type = 'creator' or @type = 'translator')]"/>
   <xsl:if test="$copyrights or $authors or $translators or $publishers or $others">
-    <div class="sect about ui-expander" role="contentinfo">
+    <footer class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
         <div class="hgroup">
@@ -243,7 +243,7 @@ REMARK: Describe this module
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   </xsl:if>
 </xsl:template>
 
@@ -493,16 +493,16 @@ div.dita-object > div.desc {
   <xsl:param name="topicref" select="/false"/>
   <xsl:choose>
     <xsl:when test="parent::&topic_topic_all;">
-      <div>
+      <section>
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="html.class.attr">
-          <xsl:with-param name="class" select="'sect'"/>
+          <xsl:with-param name="class" select="local-name(.)"/>
         </xsl:call-template>
         <div class="inner">
           <xsl:call-template name="_dita2html.topic.inner"/>
         </div>
-      </div>
+      </section>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="_dita2html.topic.inner">
@@ -565,10 +565,10 @@ div.dita-object > div.desc {
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_related-links;">
-  <div role="navigation">
+  <section role="navigation">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
-      <xsl:with-param name="class" select="'sect sect-links'"/>
+      <xsl:with-param name="class" select="'links'"/>
     </xsl:call-template>
     <div class="hgroup"/>
     <div class="contents">
@@ -584,7 +584,7 @@ div.dita-object > div.desc {
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_link;">

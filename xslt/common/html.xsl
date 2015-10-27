@@ -778,11 +778,11 @@ div.body {
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
   padding: 10px;
 }
-div.sect {
+section {
   margin-top: 2.4em;
   clear: both;
 }
-div.sect div.sect {
+section section {
   margin-top: 1.44em;
 }
 div.trails {
@@ -801,7 +801,7 @@ div.hgroup {
   margin: 0 0 0.5em 0;
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
 }
-div.sect > div.inner > div.hgroup {
+section > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
@@ -810,7 +810,7 @@ div.sect > div.inner > div.hgroup {
   padding-left: 10px;
   padding-right: 10px;
 }
-div.sect-links > div.hgroup {
+section.links > div.hgroup {
   border-bottom: solid 2px </xsl:text>
     <xsl:value-of select="$color.blue_border"/><xsl:text>;
   margin-left: -10px;
@@ -818,7 +818,7 @@ div.sect-links > div.hgroup {
   padding-left: 10px;
   padding-right: 10px;
 }
-div.sect div.sect-links > div.hgroup {
+section section.links > div.hgroup {
   border: none;
 }
 h1, h2, h3, h4, h5, h6, h7 {
@@ -845,21 +845,21 @@ div.clear {
 }
 .center { text-align: center; }
 
-div.about {
+footer.about {
   color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
   margin: 0;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
 }
-div.about > div.inner > div.hgroup {
+footer.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
   text-align: center;
   border: none;
 }
-div.about > div.inner > div.hgroup > h2 {
+footer.about > div.inner > div.hgroup > h2 {
   margin: 0; padding: 0.2em;
   font-size: inherit;
 }
-div.about.ui-expander > div.inner > div.hgroup span.title:before {
+footer.about.ui-expander > div.inner > div.hgroup span.title:before {
   content: "";
 }
 div.copyrights {
@@ -1488,12 +1488,12 @@ div.media-ttml-p {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
 }
 div.yelp-data { display: none; }
-div.ui-expander > div.inner > div.title span.title,
-div.ui-expander > div.inner > div.hgroup span.title {
+.ui-expander > div.inner > div.title span.title,
+.ui-expander > div.inner > div.hgroup span.title {
   cursor: default;
 }
-div.ui-expander > div.inner > div.title span.title:before,
-div.ui-expander > div.inner > div.hgroup span.title:before {
+.ui-expander > div.inner > div.title span.title:before,
+.ui-expander > div.inner > div.hgroup span.title:before {
   font-size: 2em;
   font-weight: normal;
   content: "⌃";
@@ -1502,26 +1502,26 @@ div.ui-expander > div.inner > div.hgroup span.title:before {
   vertical-align: bottom;
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
-div.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
-div.ui-expander-e > div.inner > div.title span.title:before,
-div.ui-expander-e > div.inner > div.hgroup span.title:before {
+.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
+.ui-expander-e > div.inner > div.title span.title:before,
+.ui-expander-e > div.inner > div.hgroup span.title:before {
   content: "⌄";
   vertical-align: top;
 }
-div.ui-expander > div.inner > div.title:hover,
-div.ui-expander > div.inner > div.hgroup:hover * {
+.ui-expander > div.inner > div.title:hover,
+.ui-expander > div.inner > div.hgroup:hover * {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
 }
-div.ui-expander > div.inner > div.hgroup > .subtitle {
+.ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
 @media only screen and (max-width: 480px) {
   div.body > div.region > div.contents > div.example,
   div.body > div.region > div.contents > div.steps,
   div.body > div.region > div.contents > div.note,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.example,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.steps,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
+  div.body > div.region > section > div.inner > div.region > div.contents > div.example,
+  div.body > div.region > section > div.inner > div.region > div.contents > div.steps,
+  div.body > div.region > section > div.inner > div.region > div.contents > div.note {
     margin-left: -10px;
     margin-right: -10px;
   }
@@ -1530,7 +1530,7 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
     margin-right: 10px;
   }
   div.body > div.region > div.contents > div.note,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
+  div.body > div.region > section > div.inner > div.region > div.contents > div.note {
     border-left: none;
     border-right: none;
   }
@@ -1874,8 +1874,8 @@ $(document).ready(function () {
   var expand_hash = function () {
     if (location.hash != '') {
       var target = $(location.hash);
-      var parents = target.parents('div.ui-expander');
-      if (target.is('div.ui-expander'))
+      var parents = target.parents('.ui-expander');
+      if (target.is('.ui-expander'))
         parents = parents.andSelf();
       parents.each(function () {
         $(this).yelp_ui_expander_toggle(true, function () {

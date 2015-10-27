@@ -120,28 +120,31 @@ REMARK: Talk about some of the parameters
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:param>
-  <!-- FIXME: these two parameters don't make much sense now -->
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
   <xsl:choose>
     <xsl:when test="$depth_in_chunk != 0">
-      <div>
+      <section>
+        <xsl:choose>
+          <xsl:when test="$node/@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="$node/@xml:id"/>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="$node/@id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="$node/@id"/>
+            </xsl:attribute>
+          </xsl:when>
+        </xsl:choose>
         <xsl:call-template name="html.lang.attrs">
           <xsl:with-param name="node" select="$node"/>
         </xsl:call-template>
         <xsl:call-template name="html.class.attr">
           <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="class">
-            <xsl:value-of select="local-name($node)"/>
-            <xsl:text> sect</xsl:text>
-          </xsl:with-param>
+          <xsl:with-param name="class" select="local-name($node)"/>
         </xsl:call-template>
-        <xsl:if test="$node/@id">
-          <xsl:attribute name="id">
-            <xsl:value-of select="$node/@id"/>
-          </xsl:attribute>
-        </xsl:if>
         <div class="inner">
           <xsl:call-template name="_db2html.division.div.inner">
             <xsl:with-param name="node" select="$node"/>
@@ -153,7 +156,7 @@ REMARK: Talk about some of the parameters
             <xsl:with-param name="chunk_divisions" select="$chunk_divisions"/>
           </xsl:call-template>
         </div>
-      </div>
+      </section>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="_db2html.division.div.inner">
@@ -371,7 +374,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
   <xsl:if test="$copyrights or $authors or $editors or $translators or
                 $publishers or $othercredits or $legal">
-    <div class="sect about ui-expander" role="contentinfo">
+    <footer class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
       <div class="hgroup">
@@ -448,7 +451,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
         </div>
       </div>
       </div>
-    </div>
+    </footer>
   </xsl:if>
 </xsl:template>
 

@@ -70,5 +70,5 @@ self::sect3info or
 self::sect4info or
 self::sect5info or
 self::sectioninfo or
-self::setindexinfo or
+self::setindexinfo
 ]">
