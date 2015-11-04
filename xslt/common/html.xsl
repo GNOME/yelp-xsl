@@ -773,7 +773,7 @@ div.page > header {
 div.page > footer {
   flex: 0 1 auto;
 }
-div.body {
+article {
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
   padding: 10px;
@@ -1128,6 +1128,7 @@ div.example {
 }
 div.example > div.inner > div.region > div.desc { font-style: italic; }
 div.figure {
+  display: inline-block;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
   padding: 4px;
   color: </xsl:text>
@@ -1136,6 +1137,11 @@ div.figure {
     <xsl:value-of select="$color.gray_border"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.gray_background"/><xsl:text>;
+}
+@media (max-width: 960px) {
+  div.figure {
+    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  }
 }
 div.figure > div.inner > a.zoom {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
@@ -1516,26 +1522,26 @@ div.yelp-data { display: none; }
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
 @media only screen and (max-width: 480px) {
-  div.body > div.region > div.contents > div.example,
-  div.body > div.region > div.contents > div.steps,
-  div.body > div.region > div.contents > div.note,
-  div.body > div.region > section > div.inner > div.region > div.contents > div.example,
-  div.body > div.region > section > div.inner > div.region > div.contents > div.steps,
-  div.body > div.region > section > div.inner > div.region > div.contents > div.note {
+  article > div.region > div.contents > div.example,
+  article > div.region > section > div.inner > div.region > div.contents > div.example {
     margin-left: -10px;
     margin-right: -10px;
   }
-  div.steps > div.inner > div.title {
-    margin-left: 10px;
-    margin-right: 10px;
+  div.example {
+    padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+    padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 10px;
   }
-  div.body > div.region > div.contents > div.note,
-  div.body > div.region > section > div.inner > div.region > div.contents > div.note {
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
     border-left: none;
     border-right: none;
-  }
-  ol.steps, ul.steps {
-    box-shadow: none;
   }
   div.note-sidebar {
     float: none;
@@ -1549,6 +1555,21 @@ div.yelp-data { display: none; }
   div.note-sidebar > div.inner > div.region > div.contents {
     margin-left: 10px;
     margin-right: 10px;
+  }
+  article > div.region > div.contents > div.steps,
+  article > div.region > section > div.inner > div.region > div.contents > div.steps {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  div.steps > div.inner > div.title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  ol.steps, ul.steps {
+    box-shadow: none;
+    padding: 0;
+    padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+    padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 10px;
   }
 }
 </xsl:text>
