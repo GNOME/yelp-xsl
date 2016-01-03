@@ -1,0 +1,41 @@
+= How to build highlight.pack.js
+
+yelp-xsl includes a pre-built copy of highlight.pack.js that includes many
+common languages. The default languages are those for which we have test
+files. If you want to add to the default languages in yelp-xsl, add a test
+code snippet under test/syntax/code, then XInclude it into the test files
+for Mallard, DocBook, and DITA under test/syntax.
+
+[steps]
+. Build highlight.pack.js with the default yelp-xsl languages:
+* git clone https://github.com/isagalaev/highlight.js.git
+* cd highlight.js
+* node tools/build.js $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
+
+You might want to add a language for your local site, keeping all of the
+default languages as well.
+
+[steps]
+. Build highlight.pack.js with language foo plus the default languages:
+* git clone https://github.com/isagalaev/highlight.js.git
+* cd highlight.js
+* node tools/build.js foo $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
+
+Or you might want to trim highlight.pack.js down to just the languages
+you know you use.
+
+[steps]
+. Build hightlight.pack.js with just languages foo and bar:
+* git clone https://github.com/isagalaev/highlight.js.git
+* cd highlight.js
+* node tools/build.js foo bar
+
+[note]
+  As of 2016-01-03, highlight.pack.js uses the new anonymous function syntax,
+  which may not be supported by the version of node.js on your system. If you
+  get an error, look for anonymous functions using the => syntax, and replace
+  them like so:
+
+  [code]
+  // return del(directories).then(() => done(null, blobs));
+  return del(directories).then(function() { done(null, blobs) });
