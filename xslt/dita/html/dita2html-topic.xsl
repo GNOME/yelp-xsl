@@ -44,6 +44,13 @@ REMARK: Describe this module
         </xsl:call-template>
       </xsl:for-each>
     </xsl:when>
+    <xsl:when test="&topic_topic;">
+      <!-- Don't call the stylesheets this way for publishing, but
+           sometimes it's useful for one-off simple topic tests. -->
+      <xsl:call-template name="html.output">
+        <xsl:with-param name="node" select="&topic_topic;"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:message>
         <xsl:text>Unmatched root element: </xsl:text>
@@ -304,7 +311,7 @@ REMARK: Describe this module
 </xsl:template>
 
 
-<!-- == map == -->
+<!-- == map & html.*.mode == -->
 
 <!-- = map % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_map;">
@@ -352,7 +359,7 @@ REMARK: Describe this module
 </xsl:template>
 
 
-<!-- == topicref == -->
+<!-- == topicref % html.*.mode == -->
 
 <!-- = topicref % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_topicref;">
@@ -437,6 +444,31 @@ REMARK: Describe this module
   </xsl:apply-templates>
   <xsl:call-template name="dita2html.links.prevnext"/>
   <div class="clear"/>
+</xsl:template>
+
+
+<!-- == topic % html.*.mode == -->
+<!-- These only get called when using a topic as a top-level, instead
+of a map. You shouldn't generally use these stylesheets that way, but
+it's occasionally useful for testing simple topics. -->
+
+<!-- = topic % html.title.mode = -->
+<xsl:template mode="html.title.mode" match="&topic_topic;">
+  <xsl:value-of select="&topic_title_all;"/>
+</xsl:template>
+
+<!-- = topic % html.header.mode = -->
+<xsl:template mode="html.header.mode" match="&topic_topic;">
+</xsl:template>
+
+<!-- = topic % html.footer.mode = -->
+<xsl:template mode="html.footer.mode" match="&topic_topic;">
+  <xsl:call-template name="dita2html.topic.about"/>
+</xsl:template>
+
+<!-- = topic % html.body.mode = -->
+<xsl:template mode="html.body.mode" match="&topic_topic;">
+  <xsl:apply-templates mode="dita2html.topic.mode" select="."/>
 </xsl:template>
 
 

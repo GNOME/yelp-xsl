@@ -1,0 +1,517 @@
+<article xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 xmlns:xi="http://www.w3.org/2001/XInclude"
+	 id="docbook">
+
+<title>Syntax Highlighting</title>
+
+<section id="embedded">
+<title>Embedded Markup</title>
+<programlisting language="c">
+#include &lt;stdlib.h>
+int main(char** argv) {
+    // This is a <link xlink:href="#">link</link>
+    /* This is <replaceable>replaceable text</replaceable> */
+    int i = 12;
+    printf("hello %s\n", world);
+}
+</programlisting>
+</section>
+
+<section id="actionscript">
+  <title>ActionScript</title>
+  <example>
+    <title><code>language="actionscript"</code></title>
+    <programlisting language="actionscript"><xi:include parse="text" href="code/actionscript"/></programlisting>
+  </example>
+</section>
+
+<section id="apache">
+  <title>Apache Config</title>
+  <example>
+    <title><code>language="apache"</code></title>
+    <programlisting language="apache"><xi:include parse="text" href="code/apache"/></programlisting>
+  </example>
+</section>
+
+<section id="asciidoc">
+  <title>AsciiDoc</title>
+  <example>
+    <title><code>language="asciidoc"</code></title>
+    <programlisting language="asciidoc"><xi:include parse="text" href="code/asciidoc"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="adoc"</code></title>
+    <programlisting language="adoc"><xi:include parse="text" href="code/asciidoc"/></programlisting>
+  </example>
+</section>
+
+<section id="bash">
+  <title>Bash</title>
+  <example>
+    <title><code>language="sh"</code></title>
+    <programlisting language="sh"><xi:include parse="text" href="code/bash"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="bash"</code></title>
+    <programlisting language="bash"><xi:include parse="text" href="code/bash"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="csh"</code></title>
+    <programlisting language="csh"><xi:include parse="text" href="code/bash"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="bourne"</code></title>
+    <programlisting language="bourne"><xi:include parse="text" href="code/bash"/></programlisting>
+  </example>
+</section>
+
+<section id="c">
+  <title>C</title>
+  <example>
+    <title><code>language="c"</code></title>
+    <programlisting language="c"><xi:include parse="text" href="code/cpp"/></programlisting>
+  </example>
+</section>
+
+<section id="cs">
+  <title>C#</title>
+  <example>
+    <title><code>language="cs"</code></title>
+    <programlisting language="cs"><xi:include parse="text" href="code/cs"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="csharp"</code></title>
+    <programlisting language="csharp"><xi:include parse="text" href="code/cs"/></programlisting>
+  </example>
+</section>
+
+<section id="cpp">
+  <title>C++</title>
+  <example>
+    <title><code>language="cpp"</code></title>
+    <programlisting language="cpp"><xi:include parse="text" href="code/cpp"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="c++"</code></title>
+    <programlisting language="c++"><xi:include parse="text" href="code/cpp"/></programlisting>
+  </example>
+</section>
+
+<section id="clojure">
+  <title>Clojure</title>
+  <example>
+    <title><code>language="clojure"</code></title>
+    <programlisting language="clojure"><xi:include parse="text" href="code/clojure"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="clj"</code></title>
+    <programlisting language="clj"><xi:include parse="text" href="code/clojure"/></programlisting>
+  </example>
+</section>
+
+<section id="cmake">
+  <title>CMake</title>
+  <example>
+    <title><code>language="cmake"</code></title>
+    <programlisting language="cmake"><xi:include parse="text" href="code/cmake"/></programlisting>
+  </example>
+</section>
+
+<section id="css">
+  <title>CSS</title>
+  <example>
+    <title><code>language="css"</code></title>
+    <programlisting language="css"><xi:include parse="text" href="code/css"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="css21"</code></title>
+    <programlisting language="css21"><xi:include parse="text" href="code/css"/></programlisting>
+  </example>
+</section>
+
+<section id="d">
+  <title>D</title>
+  <example>
+    <title><code>language="d"</code></title>
+    <programlisting language="d"><xi:include parse="text" href="code/d"/></programlisting>
+  </example>
+</section>
+
+<section id="diff">
+  <title>Diff</title>
+  <example>
+    <title><code>language="diff"</code></title>
+    <programlisting language="diff"><xi:include parse="text" href="code/diff"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="patch"</code></title>
+    <programlisting language="patch"><xi:include parse="text" href="code/diff"/></programlisting>
+  </example>
+</section>
+
+<section id="django">
+  <title>Django</title>
+  <example>
+    <title><code>language="django"</code></title>
+    <programlisting language="django"><xi:include parse="text" href="code/django"/></programlisting>
+  </example>
+</section>
+
+<section id="dockerfile">
+  <title>Dockerfile</title>
+  <example>
+    <title><code>language="dockerfile"</code></title>
+    <programlisting language="dockerfile"><xi:include parse="text" href="code/dockerfile"/></programlisting>
+  </example>
+</section>
+
+<section id="dos">
+  <title>DOS Batch</title>
+  <example>
+    <title><code>language="dos"</code></title>
+    <programlisting language="dos"><xi:include parse="text" href="code/dos"/></programlisting>
+  </example>
+</section>
+
+<section id="erb">
+  <title>Embedded Ruby</title>
+  <example>
+    <title><code>language="erb"</code></title>
+    <programlisting language="erb"><xi:include parse="text" href="code/erb"/></programlisting>
+  </example>
+</section>
+
+<section id="fsharp">
+  <title>F#</title>
+  <example>
+    <title><code>language="fsharp"</code></title>
+    <programlisting language="fsharp"><xi:include parse="text" href="code/fsharp"/></programlisting>
+  </example>
+</section>
+
+<section id="go">
+  <title>Go</title>
+  <example>
+    <title><code>language="go"</code></title>
+    <programlisting language="go"><xi:include parse="text" href="code/go"/></programlisting>
+  </example>
+</section>
+
+<section id="haml">
+  <title>Haml</title>
+  <example>
+    <title><code>language="haml"</code></title>
+    <programlisting language="haml"><xi:include parse="text" href="code/haml"/></programlisting>
+  </example>
+</section>
+
+<section id="haskell">
+  <title>Haskell</title>
+  <example>
+    <title><code>language="haskell"</code></title>
+    <programlisting language="haskell"><xi:include parse="text" href="code/haskell"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="hs"</code></title>
+    <programlisting language="hs"><xi:include parse="text" href="code/haskell"/></programlisting>
+  </example>
+</section>
+
+<section id="html">
+  <title>HTML</title>
+  <example>
+    <title><code>language="html"</code></title>
+    <programlisting language="html"><xi:include parse="text" href="code/xml"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="xhtml"</code></title>
+    <programlisting language="xhtml"><xi:include parse="text" href="code/xml"/></programlisting>
+  </example>
+</section>
+
+<section id="http">
+  <title>HTTP</title>
+  <example>
+    <title><code>language="http"</code></title>
+    <programlisting language="http"><xi:include parse="text" href="code/http"/></programlisting>
+  </example>
+</section>
+
+<section id="ini">
+  <title>INI</title>
+  <example>
+    <title><code>language="ini"</code></title>
+    <programlisting language="ini"><xi:include parse="text" href="code/ini"/></programlisting>
+  </example>
+</section>
+
+<section id="java">
+  <title>Java</title>
+  <example>
+    <title><code>language="java"</code></title>
+    <programlisting language="java"><xi:include parse="text" href="code/java"/></programlisting>
+  </example>
+</section>
+
+<section id="json">
+  <title>JSON</title>
+  <example>
+    <title><code>language="json"</code></title>
+    <programlisting language="json"><xi:include parse="text" href="code/json"/></programlisting>
+  </example>
+</section>
+
+<section id="javascript">
+  <title>JavaScript</title>
+  <example>
+    <title><code>language="javascript"</code></title>
+    <programlisting language="javascript"><xi:include parse="text" href="code/javascript"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="js"</code></title>
+    <programlisting language="js"><xi:include parse="text" href="code/javascript"/></programlisting>
+  </example>
+</section>
+
+<section id="LISP">
+  <title>LISP</title>
+  <example>
+    <title><code>language="lisp"</code></title>
+    <programlisting language="lisp"><xi:include parse="text" href="code/lisp"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="cl"</code></title>
+    <programlisting language="cl"><xi:include parse="text" href="code/lisp"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="el"</code></title>
+    <programlisting language="el"><xi:include parse="text" href="code/lisp"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="lsp"</code></title>
+    <programlisting language="lsp"><xi:include parse="text" href="code/lisp"/></programlisting>
+  </example>
+</section>
+
+<section id="lua">
+  <title>Lua</title>
+  <example>
+    <title><code>language="lua"</code></title>
+    <programlisting language="lua"><xi:include parse="text" href="code/lua"/></programlisting>
+  </example>
+</section>
+
+<section id="makefile">
+  <title>Makefile</title>
+  <example>
+    <title><code>language="makefile"</code></title>
+    <programlisting language="makefile"><xi:include parse="text" href="code/makefile"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="make"</code></title>
+    <programlisting language="make"><xi:include parse="text" href="code/makefile"/></programlisting>
+  </example>
+</section>
+
+<section id="markdown">
+  <title>Markdown</title>
+  <example>
+    <title><code>language="markdown"</code></title>
+    <programlisting language="markdown"><xi:include parse="text" href="code/markdown"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="md"</code></title>
+    <programlisting language="md"><xi:include parse="text" href="code/markdown"/></programlisting>
+  </example>
+</section>
+
+<section id="matlab">
+  <title>MATLAB/Octave</title>
+  <example>
+    <title><code>language="matlab"</code></title>
+    <programlisting language="matlab"><xi:include parse="text" href="code/matlab"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="octave"</code></title>
+    <programlisting language="octave"><xi:include parse="text" href="code/matlab"/></programlisting>
+  </example>
+</section>
+
+<section id="nginx">
+  <title>Nginx Config</title>
+  <example>
+    <title><code>language="nginx"</code></title>
+    <programlisting language="nginx"><xi:include parse="text" href="code/nginx"/></programlisting>
+  </example>
+</section>
+
+<section id="objectivec">
+  <title>Objective-C</title>
+  <example>
+    <title><code>language="objc"</code></title>
+    <programlisting language="objc"><xi:include parse="text" href="code/objectivec"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="m"</code></title>
+    <programlisting language="m"><xi:include parse="text" href="code/objectivec"/></programlisting>
+  </example>
+</section>
+
+<section id="perl">
+  <title>Perl</title>
+  <example>
+    <title><code>language="perl"</code></title>
+    <programlisting language="perl"><xi:include parse="text" href="code/perl"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="pl"</code></title>
+    <programlisting language="pl"><xi:include parse="text" href="code/perl"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="pm"</code></title>
+    <programlisting language="pm"><xi:include parse="text" href="code/perl"/></programlisting>
+  </example>
+</section>
+
+<section id="php">
+  <title>PHP</title>
+  <example>
+    <title><code>language="php"</code></title>
+    <programlisting language="php"><xi:include parse="text" href="code/php"/></programlisting>
+  </example>
+</section>
+
+<section id="python">
+  <title>Python</title>
+  <example>
+    <title><code>language="python"</code></title>
+    <programlisting language="python"><xi:include parse="text" href="code/python"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="py"</code></title>
+    <programlisting language="py"><xi:include parse="text" href="code/python"/></programlisting>
+  </example>
+</section>
+
+<section id="r">
+  <title>R/S</title>
+  <example>
+    <title><code>language="r"</code></title>
+    <programlisting language="r"><xi:include parse="text" href="code/r"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="s"</code></title>
+    <programlisting language="s"><xi:include parse="text" href="code/r"/></programlisting>
+  </example>
+</section>
+
+<section id="ruby">
+  <title>Ruby</title>
+  <example>
+    <title><code>language="ruby"</code></title>
+    <programlisting language="ruby"><xi:include parse="text" href="code/ruby"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="rb"</code></title>
+    <programlisting language="rb"><xi:include parse="text" href="code/ruby"/></programlisting>
+  </example>
+</section>
+
+<section id="rust">
+  <title>Rust</title>
+  <example>
+    <title><code>language="rust"</code></title>
+    <programlisting language="rust"><xi:include parse="text" href="code/rust"/></programlisting>
+  </example>
+</section>
+
+<section id="scala">
+  <title>Scala</title>
+  <example>
+    <title><code>language="scala"</code></title>
+    <programlisting language="scala"><xi:include parse="text" href="code/scala"/></programlisting>
+  </example>
+</section>
+
+<section id="scheme">
+  <title>Scheme</title>
+  <example>
+    <title><code>language="scheme"</code></title>
+    <programlisting language="scheme"><xi:include parse="text" href="code/scheme"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="scm"</code></title>
+    <programlisting language="scm"><xi:include parse="text" href="code/scheme"/></programlisting>
+  </example>
+</section>
+
+<section id="smalltalk">
+  <title>Smalltalk</title>
+  <example>
+    <title><code>language="smalltalk"</code></title>
+    <programlisting language="smalltalk"><xi:include parse="text" href="code/smalltalk"/></programlisting>
+  </example>
+</section>
+
+<section id="tcl">
+  <title>TCL</title>
+  <example>
+    <title><code>language="tcl"</code></title>
+    <programlisting language="tcl"><xi:include parse="text" href="code/tcl"/></programlisting>
+  </example>
+</section>
+
+<section id="tex">
+  <title>TeX</title>
+  <example>
+    <title><code>language="tex"</code></title>
+    <programlisting language="tex"><xi:include parse="text" href="code/tex"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="latex"</code></title>
+    <programlisting language="latex"><xi:include parse="text" href="code/tex"/></programlisting>
+  </example>
+</section>
+
+<section id="vala">
+  <title>Vala</title>
+  <example>
+    <title><code>language="vala"</code></title>
+    <programlisting language="vala"><xi:include parse="text" href="code/vala"/></programlisting>
+  </example>
+</section>
+
+<section id="xml">
+  <title>XML</title>
+  <example>
+    <title><code>language="xml"</code></title>
+    <programlisting language="xml"><xi:include parse="text" href="code/xml"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="myxml"</code></title>
+    <programlisting language="myxml"><xi:include parse="text" href="code/xml"/></programlisting>
+  </example>
+</section>
+
+<section id="xquery">
+  <title>XQuery</title>
+  <example>
+    <title><code>language="xquery"</code></title>
+    <programlisting language="xquery"><xi:include parse="text" href="code/xquery"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="xq"</code></title>
+    <programlisting language="xq"><xi:include parse="text" href="code/xquery"/></programlisting>
+  </example>
+</section>
+
+<section id="yaml">
+  <title>YAML</title>
+  <example>
+    <title><code>language="yaml"</code></title>
+    <programlisting language="yaml"><xi:include parse="text" href="code/yaml"/></programlisting>
+  </example>
+</section>
+
+</article>

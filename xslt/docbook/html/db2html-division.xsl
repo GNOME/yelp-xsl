@@ -195,14 +195,14 @@ REMARK: Talk about some of the parameters
         <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:apply-templates>
+      <xsl:if test="$depth_in_chunk = 0 and
+                    not($node/processing-instruction('db2html.no_sectionlinks'))">
+        <xsl:call-template name="db2html.links.section">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="divisions" select="$divisions"/>
+        </xsl:call-template>
+      </xsl:if>
     </div>
-    <xsl:if test="$depth_in_chunk = 0 and
-                  not($node/processing-instruction('db2html.no_sectionlinks'))">
-      <xsl:call-template name="db2html.links.section">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="divisions" select="$divisions"/>
-      </xsl:call-template>
-    </xsl:if>
     <xsl:for-each select="$divisions">
       <xsl:if test="not($chunk_divisions) or not(self::&db_chunks;)">
         <xsl:apply-templates select=".">

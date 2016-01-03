@@ -1,0 +1,614 @@
+<topic xmlns:xi="http://www.w3.org/2001/XInclude"
+       id="dita">
+
+<title>Syntax Highlighting</title>
+
+<topic id="embedded">
+<title>Embedded Markup</title>
+<body>
+<codeblock outputclass="c">
+#include &lt;stdlib.h>
+int main(char** argv) {
+    // This is a <xref href="#">link</xref>
+    /* This is <varname>replaceable text</varname> */
+    int i = 12;
+    printf("hello %s\n", world);
+}
+</codeblock>
+</body>
+</topic>
+
+<topic id="actionscript">
+  <title>ActionScript</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="actionscript"</codeph></title>
+    <codeblock outputclass="actionscript"><xi:include parse="text" href="code/actionscript"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="apache">
+  <title>Apache Config</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="apache"</codeph></title>
+    <codeblock outputclass="apache"><xi:include parse="text" href="code/apache"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="asciidoc">
+  <title>AsciiDoc</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="asciidoc"</codeph></title>
+    <codeblock outputclass="asciidoc"><xi:include parse="text" href="code/asciidoc"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="adoc"</codeph></title>
+    <codeblock outputclass="adoc"><xi:include parse="text" href="code/asciidoc"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="bash">
+  <title>Bash</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="sh"</codeph></title>
+    <codeblock outputclass="sh"><xi:include parse="text" href="code/bash"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="bash"</codeph></title>
+    <codeblock outputclass="bash"><xi:include parse="text" href="code/bash"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="csh"</codeph></title>
+    <codeblock outputclass="csh"><xi:include parse="text" href="code/bash"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="bourne"</codeph></title>
+    <codeblock outputclass="bourne"><xi:include parse="text" href="code/bash"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="c">
+  <title>C</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="c"</codeph></title>
+    <codeblock outputclass="c"><xi:include parse="text" href="code/cpp"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="cs">
+  <title>C#</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="cs"</codeph></title>
+    <codeblock outputclass="cs"><xi:include parse="text" href="code/cs"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="csharp"</codeph></title>
+    <codeblock outputclass="csharp"><xi:include parse="text" href="code/cs"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="cpp">
+  <title>C++</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="cpp"</codeph></title>
+    <codeblock outputclass="cpp"><xi:include parse="text" href="code/cpp"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="c++"</codeph></title>
+    <codeblock outputclass="c++"><xi:include parse="text" href="code/cpp"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="clojure">
+  <title>Clojure</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="clojure"</codeph></title>
+    <codeblock outputclass="clojure"><xi:include parse="text" href="code/clojure"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="clj"</codeph></title>
+    <codeblock outputclass="clj"><xi:include parse="text" href="code/clojure"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="cmake">
+  <title>CMake</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="cmake"</codeph></title>
+    <codeblock outputclass="cmake"><xi:include parse="text" href="code/cmake"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="css">
+  <title>CSS</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="css"</codeph></title>
+    <codeblock outputclass="css"><xi:include parse="text" href="code/css"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="css21"</codeph></title>
+    <codeblock outputclass="css21"><xi:include parse="text" href="code/css"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="d">
+  <title>D</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="d"</codeph></title>
+    <codeblock outputclass="d"><xi:include parse="text" href="code/d"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="diff">
+  <title>Diff</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="diff"</codeph></title>
+    <codeblock outputclass="diff"><xi:include parse="text" href="code/diff"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="patch"</codeph></title>
+    <codeblock outputclass="patch"><xi:include parse="text" href="code/diff"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="django">
+  <title>Django</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="django"</codeph></title>
+    <codeblock outputclass="django"><xi:include parse="text" href="code/django"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="dockerfile">
+  <title>Dockerfile</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="dockerfile"</codeph></title>
+    <codeblock outputclass="dockerfile"><xi:include parse="text" href="code/dockerfile"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="dos">
+  <title>DOS Batch</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="dos"</codeph></title>
+    <codeblock outputclass="dos"><xi:include parse="text" href="code/dos"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="erb">
+  <title>Embedded Ruby</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="erb"</codeph></title>
+    <codeblock outputclass="erb"><xi:include parse="text" href="code/erb"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="fsharp">
+  <title>F#</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="fsharp"</codeph></title>
+    <codeblock outputclass="fsharp"><xi:include parse="text" href="code/fsharp"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="go">
+  <title>Go</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="go"</codeph></title>
+    <codeblock outputclass="go"><xi:include parse="text" href="code/go"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="haml">
+  <title>Haml</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="haml"</codeph></title>
+    <codeblock outputclass="haml"><xi:include parse="text" href="code/haml"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="haskell">
+  <title>Haskell</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="haskell"</codeph></title>
+    <codeblock outputclass="haskell"><xi:include parse="text" href="code/haskell"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="hs"</codeph></title>
+    <codeblock outputclass="hs"><xi:include parse="text" href="code/haskell"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="html">
+  <title>HTML</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="html"</codeph></title>
+    <codeblock outputclass="html"><xi:include parse="text" href="code/xml"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="xhtml"</codeph></title>
+    <codeblock outputclass="xhtml"><xi:include parse="text" href="code/xml"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="http">
+  <title>HTTP</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="http"</codeph></title>
+    <codeblock outputclass="http"><xi:include parse="text" href="code/http"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="ini">
+  <title>INI</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="ini"</codeph></title>
+    <codeblock outputclass="ini"><xi:include parse="text" href="code/ini"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="java">
+  <title>Java</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="java"</codeph></title>
+    <codeblock outputclass="java"><xi:include parse="text" href="code/java"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="json">
+  <title>JSON</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="json"</codeph></title>
+    <codeblock outputclass="json"><xi:include parse="text" href="code/json"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="javascript">
+  <title>JavaScript</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="javascript"</codeph></title>
+    <codeblock outputclass="javascript"><xi:include parse="text" href="code/javascript"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="js"</codeph></title>
+    <codeblock outputclass="js"><xi:include parse="text" href="code/javascript"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="LISP">
+  <title>LISP</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="lisp"</codeph></title>
+    <codeblock outputclass="lisp"><xi:include parse="text" href="code/lisp"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="cl"</codeph></title>
+    <codeblock outputclass="cl"><xi:include parse="text" href="code/lisp"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="el"</codeph></title>
+    <codeblock outputclass="el"><xi:include parse="text" href="code/lisp"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="lsp"</codeph></title>
+    <codeblock outputclass="lsp"><xi:include parse="text" href="code/lisp"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="lua">
+  <title>Lua</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="lua"</codeph></title>
+    <codeblock outputclass="lua"><xi:include parse="text" href="code/lua"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="makefile">
+  <title>Makefile</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="makefile"</codeph></title>
+    <codeblock outputclass="makefile"><xi:include parse="text" href="code/makefile"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="make"</codeph></title>
+    <codeblock outputclass="make"><xi:include parse="text" href="code/makefile"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="markdown">
+  <title>Markdown</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="markdown"</codeph></title>
+    <codeblock outputclass="markdown"><xi:include parse="text" href="code/markdown"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="md"</codeph></title>
+    <codeblock outputclass="md"><xi:include parse="text" href="code/markdown"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="matlab">
+  <title>MATLAB/Octave</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="matlab"</codeph></title>
+    <codeblock outputclass="matlab"><xi:include parse="text" href="code/matlab"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="octave"</codeph></title>
+    <codeblock outputclass="octave"><xi:include parse="text" href="code/matlab"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="nginx">
+  <title>Nginx Config</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="nginx"</codeph></title>
+    <codeblock outputclass="nginx"><xi:include parse="text" href="code/nginx"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="objectivec">
+  <title>Objective-C</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="objc"</codeph></title>
+    <codeblock outputclass="objc"><xi:include parse="text" href="code/objectivec"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="m"</codeph></title>
+    <codeblock outputclass="m"><xi:include parse="text" href="code/objectivec"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="perl">
+  <title>Perl</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="perl"</codeph></title>
+    <codeblock outputclass="perl"><xi:include parse="text" href="code/perl"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="pl"</codeph></title>
+    <codeblock outputclass="pl"><xi:include parse="text" href="code/perl"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="pm"</codeph></title>
+    <codeblock outputclass="pm"><xi:include parse="text" href="code/perl"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="php">
+  <title>PHP</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="php"</codeph></title>
+    <codeblock outputclass="php"><xi:include parse="text" href="code/php"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="python">
+  <title>Python</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="python"</codeph></title>
+    <codeblock outputclass="python"><xi:include parse="text" href="code/python"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="py"</codeph></title>
+    <codeblock outputclass="py"><xi:include parse="text" href="code/python"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="r">
+  <title>R/S</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="r"</codeph></title>
+    <codeblock outputclass="r"><xi:include parse="text" href="code/r"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="s"</codeph></title>
+    <codeblock outputclass="s"><xi:include parse="text" href="code/r"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="ruby">
+  <title>Ruby</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="ruby"</codeph></title>
+    <codeblock outputclass="ruby"><xi:include parse="text" href="code/ruby"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="rb"</codeph></title>
+    <codeblock outputclass="rb"><xi:include parse="text" href="code/ruby"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="rust">
+  <title>Rust</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="rust"</codeph></title>
+    <codeblock outputclass="rust"><xi:include parse="text" href="code/rust"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="scala">
+  <title>Scala</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="scala"</codeph></title>
+    <codeblock outputclass="scala"><xi:include parse="text" href="code/scala"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="scheme">
+  <title>Scheme</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="scheme"</codeph></title>
+    <codeblock outputclass="scheme"><xi:include parse="text" href="code/scheme"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="scm"</codeph></title>
+    <codeblock outputclass="scm"><xi:include parse="text" href="code/scheme"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="smalltalk">
+  <title>Smalltalk</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="smalltalk"</codeph></title>
+    <codeblock outputclass="smalltalk"><xi:include parse="text" href="code/smalltalk"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="tcl">
+  <title>TCL</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="tcl"</codeph></title>
+    <codeblock outputclass="tcl"><xi:include parse="text" href="code/tcl"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="tex">
+  <title>TeX</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="tex"</codeph></title>
+    <codeblock outputclass="tex"><xi:include parse="text" href="code/tex"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="latex"</codeph></title>
+    <codeblock outputclass="latex"><xi:include parse="text" href="code/tex"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="vala">
+  <title>Vala</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="vala"</codeph></title>
+    <codeblock outputclass="vala"><xi:include parse="text" href="code/vala"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="xml">
+  <title>XML</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="xml"</codeph></title>
+    <codeblock outputclass="xml"><xi:include parse="text" href="code/xml"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="myxml"</codeph></title>
+    <codeblock outputclass="myxml"><xi:include parse="text" href="code/xml"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="xquery">
+  <title>XQuery</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="xquery"</codeph></title>
+    <codeblock outputclass="xquery"><xi:include parse="text" href="code/xquery"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="xq"</codeph></title>
+    <codeblock outputclass="xq"><xi:include parse="text" href="code/xquery"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="yaml">
+  <title>YAML</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="yaml"</codeph></title>
+    <codeblock outputclass="yaml"><xi:include parse="text" href="code/yaml"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+</topic>
+

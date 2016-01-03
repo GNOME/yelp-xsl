@@ -743,9 +743,9 @@ body {
   font-family: sans-serif;
   margin: 0; padding: 0;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   color: </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;
+    <xsl:value-of select="$color.fg"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
 article, aside, nav, header, footer, section {
@@ -775,7 +775,7 @@ div.page > footer {
 }
 article {
   min-height: 20em;
-  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
   padding: 10px;
 }
 section {
@@ -788,23 +788,23 @@ section section {
 div.trails {
   margin: 0;
   padding: 0.2em 10px;
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.trail {
   margin: 0.2em 0;
   padding: 0 1em 0 1em;
   text-indent: -1em;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
   margin: 0 0 0.5em 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 section > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   margin-left: -10px;
   margin-right: -10px;
   padding-left: 10px;
@@ -812,7 +812,7 @@ section > div.inner > div.hgroup {
 }
 section.links > div.hgroup {
   border-bottom: solid 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
   margin-left: -10px;
   margin-right: -10px;
   padding-left: 10px;
@@ -823,7 +823,7 @@ section section.links > div.hgroup {
 }
 h1, h2, h3, h4, h5, h6, h7 {
   margin: 0; padding: 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   font-weight: bold;
 }
 h1 { font-size: 2em; }
@@ -846,9 +846,9 @@ div.clear {
 .center { text-align: center; }
 
 footer.about {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
   margin: 0;
-  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
 }
 footer.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
@@ -901,24 +901,24 @@ div.license {
 
 table {
   border-collapse: collapse;
-  border-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   border-width: 1px;
 }
 td, th {
   padding: 0.5em;
   vertical-align: top;
-  border-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   border-width: 1px;
 }
 thead td, thead th, tfoot td, tfoot th {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 th {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
 ul, ol, dl { margin: 0; padding: 0; }
@@ -957,11 +957,11 @@ a:visited { color: </xsl:text>
   <xsl:value-of select="$color.link_visited"/><xsl:text>; }
 a:hover {
   border-bottom: dotted 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 p a {
   border-bottom: dotted 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 a img { border: none; }
 </xsl:text>
@@ -1004,7 +1004,7 @@ All parameters can be automatically computed if not provided.
 div.title {
   margin: 0 0 0.2em 0;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 div.title h1, div.title h2, div.title h3, div.title h4, div.title h5, div.title h6 {
   margin: 0;
@@ -1018,7 +1018,7 @@ pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
 div.links-center { text-align: center; }
-div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
+div.links .desc { color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>; }
 div.links > div.inner > div.region > div.desc { font-style: italic; }
 div.links ul { margin: 0; padding: 0; }
 div.links ul ul {
@@ -1033,9 +1033,9 @@ div.sectionlinks {
   display: inline-block;
   padding: 0 1em 0 1em;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 div.sectionlinks ul { margin: 0; }
 div.sectionlinks li { padding: 0; }
@@ -1056,7 +1056,7 @@ div.nextlinks {
   clear: both;
 }
 div.nextlinks a {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   display: inline-block;
   position: relative;
   height: 1.44em;
@@ -1077,32 +1077,32 @@ a.nextlinks-prev:after, a.nextlinks-next:after {
 a.nextlinks-prev:after {
   </xsl:text><xsl:value-of select="$right"/><xsl:text>: 100%;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 a.nextlinks-next:after {
   </xsl:text><xsl:value-of select="$left"/><xsl:text>: 100%;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.nextlinks a:hover {
 border: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>
 }
 a.nextlinks-prev:hover:after {
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>
 }
 a.nextlinks-next:hover:after {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>
 }
 div.serieslinks {
   display: inline-block;
   padding: 0 1em 0 1em;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 div.serieslinks ul { margin: 0; }
 div.serieslinks li { padding: 0; }
@@ -1113,17 +1113,17 @@ pre.numbered {
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.5em;
   text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 div.code {
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 div.example > div.inner > div.region > div.desc { font-style: italic; }
@@ -1132,11 +1132,11 @@ div.figure {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
   padding: 4px;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 @media (max-width: 960px) {
   div.figure {
@@ -1152,11 +1152,11 @@ div.figure > div.inner > div.region > div.contents {
   clear: both;
   text-align: center;
   color: </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;
+    <xsl:value-of select="$color.fg"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
 }
 div.list > div.inner > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
@@ -1164,9 +1164,9 @@ div.listing > div.inner > div.region > div.desc { font-style: italic; }
 div.note {
   padding: 6px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.note > div.inner > div.title {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
@@ -1262,7 +1262,7 @@ div.quote > div.inner:before {
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
   text-align: center;
   color: </xsl:text>
-    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 div.quote > div.inner > div.title {
   margin: 0;
@@ -1279,26 +1279,26 @@ div.quote > div.inner > div.region > div.cite {
   margin-top: 0.5em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
 }
 div.quote > div.inner > div.region > div.cite::before {
   <!-- FIXME: i18n -->
   content: '&#x2015; ';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
 }
 div.screen {
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps, ul.steps {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+    <xsl:value-of select="$color.yellow"/><xsl:text>;
   box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps .steps {
   padding: 0;
@@ -1314,9 +1314,9 @@ div.synopsis > div.contents, div.synopsis > pre.contents {
   border-top: solid 1px;
   border-bottom: solid 1px;
   border-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.synopsis > div.inner > div.region > div.desc { font-style: italic; }
 div.synopsis div.code {
@@ -1327,87 +1327,87 @@ div.synopsis div.code {
 div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
 div.table > div.desc { font-style: italic; }
 tr.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 td.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 tr.shade td.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 
 span.app { font-style: italic; }
 span.cmd {
   font-family: monospace;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   padding: 0 0.2em 0 0.2em;
 }
 span.cmd span.cmd { background-color: none; padding: 0; }
 pre span.cmd { background-color: none; padding: 0; }
 span.code {
   font-family: monospace;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 span.code span.code { border: none; }
 pre span.code { border: none; }
 span.em { font-style: italic; }
 span.em-bold {
   font-style: normal; font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 pre span.error {
-  color: </xsl:text><xsl:value-of select="$color.text_error"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.red"/><xsl:text>;
 }
 span.file { font-family: monospace; }
 span.gui, span.guiseq { color: </xsl:text>
-  <xsl:value-of select="$color.text_light"/><xsl:text>; }
+  <xsl:value-of select="$color.fg.dark"/><xsl:text>; }
 span.input { font-family: monospace; }
 pre span.input {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 kbd {
   font-family: inherit;
   font-size: inherit;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   margin: 0 0.2em 0 0.2em;
-  padding: 0 0.5em 0 0.5em;
+  padding: 0.2em 0.5em 0 0.5em;
   white-space: nowrap;
 }
 kbd.key-Fn {
   font-weight: bold;
   color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 span.key a {
   border-bottom: none;
 }
 a > kbd {
   color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
-  border-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 span.keyseq {
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   white-space: nowrap
 }
 span.output { font-family: monospace; }
 pre span.output {
-  color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
 pre span.prompt {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 span.sys { font-family: monospace; }
 span.var { font-style: italic; }
@@ -1420,11 +1420,11 @@ div.media-controls {
   min-width: 24em;
   height: 24px;
   margin: 0; padding: 0;
-  border-left: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  border-right: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  border-left: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-right: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
   -moz-border-bottom-left-radius: 4px;
   -moz-border-bottom-right-radius: 4px;
   -webkit-border-bottom-left-radius: 4px;
@@ -1433,7 +1433,7 @@ div.media-controls {
   border-bottom-right-radius: 4px;
 }
 div.media-controls-audio {
-  border-top: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
+  border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -1442,13 +1442,13 @@ button.media-play {
   height: 24px;
   padding: 0 2px 0 2px; line-height: 0;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: none;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;;
+    <xsl:value-of select="$color.fg"/><xsl:text>;;
 }
 button.media-play:hover, button.media-play:focus {
-  background-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 button.media-play canvas { margin: 0; }
 div.media-range {
@@ -1469,7 +1469,7 @@ div.media-time > span {
 }
 span.media-duration {
   font-size: 12px;
-  color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
   opacity: 0.8;
 }
 div.media-ttml { margin: 0; padding: 0; }
@@ -1487,11 +1487,11 @@ div.media-ttml-p {
   padding: 6px;
   max-width: 24em;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.yellow"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.yelp-data { display: none; }
 .ui-expander > div.inner > div.title span.title,
@@ -1609,15 +1609,56 @@ All parameters can be automatically computed if not provided.
     </xsl:call-template>
   </xsl:param>
   <xsl:if test="$html.syntax.highlight">
-  <xsl:text>
-pre.syntax span.function, pre.syntax span.keyword, pre.syntax span.tag {
-  color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+.hljs a {
+  color: inherit;
+  border-bottom: dotted 1px <xsl:value-of select="$color.fg.blue"/>;
 }
-pre.syntax span.string, pre.syntax span.operator {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+.hljs a:hover, .hljs a:hover * { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-addition {
+  color: <xsl:value-of select="$color.fg.green"/>;
+  background-color: <xsl:value-of select="$color.bg.green"/>;
 }
-</xsl:text>
-  </xsl:if>
+.hljs-deletion {
+  color: <xsl:value-of select="$color.fg.red"/>;
+  background-color: <xsl:value-of select="$color.bg.red"/>;
+}
+.hljs-emphasis  { font-style: italic; }
+.hljs-strong    { font-weight: bold; }
+.hljs-attr      { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-attribute { color: <xsl:value-of select="$color.fg.yellow"/>; }
+.hljs-built_in  { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-bullet    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-class     { }
+.hljs-code      { }
+.hljs-comment   { color: <xsl:value-of select="$color.fg.gray"/>; }
+.hljs-doctag    { }
+.hljs-formula   { color: <xsl:value-of select="$color.fg.dark"/>; }
+.hljs-function  { }
+.hljs-keyword   { color: <xsl:value-of select="$color.fg.purple"/>; }
+.hljs-link      { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-literal   { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-meta      { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-name      { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-number    { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-params    { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-quote     { color: <xsl:value-of select="$color.fg.gray"/>; }
+.hljs-regexp    { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-rest_arg  { }
+.hljs-section   { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-string    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-subst     { }
+.hljs-symbol    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-tag       { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-title     { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-type      { }
+.hljs-variable  { }
+.hljs-selector-attr  { }
+.hljs-selector-class { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-selector-id    { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-selector-tag   { color: <xsl:value-of select="$color.fg.purple"/>; }
+.hljs-template-tag      { }
+.hljs-template-variable { }
+</xsl:if>
 </xsl:template>
 
 
@@ -1669,6 +1710,9 @@ ouput the contents of that tag.
   <xsl:call-template name="html.js.jquery">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
+  <xsl:call-template name="html.js.syntax">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
   <xsl:call-template name="html.js.mathjax">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
@@ -1703,14 +1747,6 @@ output relative to @{html.js.root}.
       <xsl:text>jquery.js</xsl:text>
     </xsl:attribute>
   </script>
-  <xsl:if test="$html.syntax.highlight">
-    <script type="text/javascript">
-      <xsl:attribute name="src">
-        <xsl:value-of select="$html.js.root"/>
-        <xsl:text>jquery.syntax.js</xsl:text>
-      </xsl:attribute>
-    </script>
-  </xsl:if>
 </xsl:template>
 
 
@@ -1761,9 +1797,6 @@ and *{html.js.syntax}. It then calls the mode
   <xsl:call-template name="html.js.media">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
-  <xsl:call-template name="html.js.syntax">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
   <xsl:apply-templates mode="html.js.mode" select="$node"/>
   <xsl:call-template name="html.js.content.custom">
     <xsl:with-param name="node" select="$node"/>
@@ -1795,7 +1828,7 @@ $(document).ready (function () {
   var highlight_hash = function () {
     if (location.hash != '') {
       var sect = $(location.hash);
-      sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
+      sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.bg.yellow"/><xsl:text>');
       window.setTimeout(function () {
         sect.css({
           '-webkit-transition': 'background-color 2s linear',
@@ -1925,11 +1958,11 @@ control for audio and video elements as well as support for captions.
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
 yelp_color_text_light = ']]></xsl:text>
-<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA[';
+<xsl:value-of select="$color.fg.dark"/><xsl:text><![CDATA[';
 yelp_color_gray_background = ']]></xsl:text>
-<xsl:value-of select="$color.gray_background"/><xsl:text><![CDATA[';
+<xsl:value-of select="$color.bg.gray"/><xsl:text><![CDATA[';
 yelp_color_gray_border = ']]></xsl:text>
-<xsl:value-of select="$color.gray_border"/><xsl:text><![CDATA[';
+<xsl:value-of select="$color.gray"/><xsl:text><![CDATA[';
 yelp_paint_zoom = function (zoom, zoomed) {
   var ctxt = zoom.children('canvas')[0].getContext('2d');
   ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
@@ -2171,23 +2204,26 @@ $(document).ready(function () {
 
 <!--**==========================================================================
 html.js.syntax
-Output JavaScript for syntax highlighting
-:Revision: version="1.0" date="2011-04-16" status="final"
+Output #{script} elements for syntax highlighting.
+:Revision: version="3.20" date="2016-01-03" status="final"
 $node: The node to create JavaScript for.
 
-This template outputs JavaScript that does syntax highlighting. JavaScript
-@{html.syntax.highlight} is #{true}. Note that this content just initializes
-the syntax highlighting. The real work is done by #{jquery.syntax.js}, which
-is included by *{html.js.syntax}.
+This template outputs HTML #{script} elements to enable syntax highlighting.
+It only outputs if @{html.syntax.highlight} is #{true}. It outputs one #{script}
+element to load in #{highlight.js}, and another to initialize #{highlight.js}
+on all #{code} elements with #{"syntax"} in the class value.
 -->
 <xsl:template name="html.js.syntax">
   <xsl:param name="node" select="."/>
   <xsl:if test="$html.syntax.highlight">
-<xsl:text><![CDATA[
-$(document).ready( function () { jQuery.syntax({root: ']]></xsl:text>
-<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'yelp',
-theme: false, linkify: false}); });
-]]></xsl:text>
+  <script type="text/javascript" src="highlight.pack.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('code.syntax')
+  for (var match of matches) {
+    hljs.highlightBlock(match);
+  }
+}, false);</script>
   </xsl:if>
 </xsl:template>
 
@@ -2329,79 +2365,39 @@ if ${dir} is non-empty.
 <!--**==========================================================================
 html.syntax.class
 Output HTML class values for syntax highlighting.
-:Revision:version="3.12" date="2013-11-02" status="final"
+:Revision:version="3.20" date="2016-01-03" status="final"
 $node: The source element whose content will be syntax highlighted.
-$mime: A MIME type identifying the content, as from a Mallard #{mime} attribute.
-$language: A name identifying the content as from a DocBook #{language} attribute.
 
-This template looks at ${mime} and ${language} and determines if there is a
-suitable syntax highlighting brush available. If so, it outputs a string that
-should be placed in the #{class} attribute of a #{pre} element by the calling
-template.
+This template calls %{html.syntax.class.mode} on ${node}. If the result of that
+mode is a suitable language identifier, it outputs appropriate CSS class names
+to enable syntax highlighting. The output should be placed in the #{class}
+attribute of a #{pre} or similar output element by the calling template.
+
+Importing stylesheets should implement %{html.syntax.class.mode} for any source
+elements that may be syntax highlighted, then call this template when building
+the #{class} attribute for output elements.
 -->
 <xsl:template name="html.syntax.class">
   <xsl:param name="node" select="."/>
-  <xsl:param name="mime" select="$node/@mime"/>
-  <xsl:param name="language" select="$node/@language"/>
-  <xsl:choose>
-    <xsl:when test="$mime = 'application/x-shellscript' or $language = 'bash'">
-      <xsl:text>syntax brush-bash-script</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-csrc' or $mime = 'text/x-chdr' or
-                    $mime = 'text/x-c++hdr' or $mime = 'text/x-c++src' or
-                    $mime = 'text/x-objcsrc' or $language = 'c' or
-                    $language = 'cpp' or $language = 'objc'">
-      <xsl:text>syntax brush-clang</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-csharp' or $language = 'csharp'">
-      <xsl:text>syntax brush-csharp</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/css' or $language = 'css'">
-      <xsl:text>syntax brush-css</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-patch' or $language = 'diff'">
-      <xsl:text>syntax brush-diff</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/html' or $mime = 'application/xml' or
-                    substring($mime, string-length($mime) - 3) = '+xml' or
-                    $language = 'html' or $language = 'xml'">
-      <xsl:text>syntax brush-html</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-java' or $language = 'java'">
-      <xsl:text>syntax brush-java</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/javascript' or $language = 'javascript'">
-      <xsl:text>syntax brush-javascript</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-scheme' or $mime = 'text/x-emacs-lisp' or
-                    $language = 'lisp'">
-      <xsl:text>syntax brush-lisp</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-lua' or $language = 'lua'">
-      <xsl:text>syntax brush-lua</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-pascal' or $language = 'pascal'">
-      <xsl:text>syntax brush-pascal</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-perl' or $language = 'perl'">
-      <xsl:text>syntax brush-perl5</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-php' or $language = 'php'">
-      <xsl:text>syntax brush-php-script</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-python' or $language = 'python'">
-      <xsl:text>syntax brush-python</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-ruby' or $language = 'ruby'">
-      <xsl:text>syntax brush-ruby</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-sql' or $language = 'sql'">
-      <xsl:text>syntax brush-sql</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-yaml' or $language = 'yaml'">
-      <xsl:text>syntax brush-yaml</xsl:text>
-    </xsl:when>
-  </xsl:choose>
+  <xsl:variable name="class">
+    <xsl:apply-templates mode="html.syntax.class.mode" select="$node"/>
+  </xsl:variable>
+  <xsl:if test="normalize-space($class) != ''">
+    <xsl:text>syntax language-</xsl:text>
+    <xsl:value-of select="$class"/>
+  </xsl:if>
 </xsl:template>
+
+<!--%%==========================================================================
+html.syntax.class.mode
+Get the syntax highlighting language for a source-specific element.
+:Revision:version="3.20" date="2016-01-03" status="final"
+
+This mode is called by *{html.syntax.class} on source elements that may have
+syntax highlighted. This template should be implemented by importing stylesheets.
+It should return a simple language identifier.
+-->
+<xsl:template mode="html.syntax.class.mode" select="*"/>
+
 
 </xsl:stylesheet>

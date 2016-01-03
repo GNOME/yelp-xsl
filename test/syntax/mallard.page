@@ -1,0 +1,713 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      xmlns:ui="http://projectmallard.org/ui/1.0/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      id="mallard">
+<title>Syntax Highlighting</title>
+
+<section id="embedded">
+<title>Embedded Markup</title>
+<code mime="text/x-csrc">
+#include &lt;stdlib.h>
+int main(char** argv) {
+    // This is a <link href="#">link</link>
+    /* This is <var>replaceable text</var> */
+    int i = 12;
+    printf(<e:hi>"hello %s\n"</e:hi>, world);
+}
+</code>
+</section>
+
+<section id="actionscript">
+  <title>ActionScript</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-actionscript"</code></title>
+    <code mime="application/x-actionscript"><xi:include parse="text" href="code/actionscript"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="actionscript"</code></title>
+    <code type="actionscript"><xi:include parse="text" href="code/actionscript"/></code>
+  </listing>
+</section>
+
+<section id="apache">
+  <title>Apache Config</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-apacheconf"</code></title>
+    <code mime="text/x-apacheconf"><xi:include parse="text" href="code/apache"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="apache"</code></title>
+    <code type="apache"><xi:include parse="text" href="code/apache"/></code>
+  </listing>
+</section>
+
+<section id="asciidoc">
+  <title>AsciiDoc</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-asciidoc"</code></title>
+    <code mime="text/x-asciidoc"><xi:include parse="text" href="code/asciidoc"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="asciidoc"</code></title>
+    <code type="asciidoc"><xi:include parse="text" href="code/asciidoc"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="adoc"</code></title>
+    <code type="adoc"><xi:include parse="text" href="code/asciidoc"/></code>
+  </listing>
+</section>
+
+<section id="bash">
+  <title>Bash</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-shellscript"</code></title>
+    <code mime="application/x-shellscript"><xi:include parse="text" href="code/bash"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="sh"</code></title>
+    <code type="sh"><xi:include parse="text" href="code/bash"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="bash"</code></title>
+    <code type="bash"><xi:include parse="text" href="code/bash"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="csh"</code></title>
+    <code type="csh"><xi:include parse="text" href="code/bash"/></code>
+  </listing>
+</section>
+
+<section id="c">
+  <title>C</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-chdr"</code></title>
+    <code mime="text/x-chdr"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-csrc"</code></title>
+    <code mime="text/x-csrc"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="c"</code></title>
+    <code type="c"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+</section>
+
+<section id="cs">
+  <title>C#</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-csharp"</code></title>
+    <code mime="text/x-csharp"><xi:include parse="text" href="code/cs"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="cs"</code></title>
+    <code type="cs"><xi:include parse="text" href="code/cs"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="csharp"</code></title>
+    <code type="csharp"><xi:include parse="text" href="code/cs"/></code>
+  </listing>
+</section>
+
+<section id="cpp">
+  <title>C++</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-c++hdr"</code></title>
+    <code mime="text/x-c++hdr"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-c++src"</code></title>
+    <code mime="text/x-c++src"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="cpp"</code></title>
+    <code type="cpp"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="c++"</code></title>
+    <code type="c++"><xi:include parse="text" href="code/cpp"/></code>
+  </listing>
+</section>
+
+<section id="clojure">
+  <title>Clojure</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-clojure"</code></title>
+    <code mime="application/x-clojure"><xi:include parse="text" href="code/clojure"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="clojure"</code></title>
+    <code type="clojure"><xi:include parse="text" href="code/clojure"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="clj"</code></title>
+    <code type="clj"><xi:include parse="text" href="code/clojure"/></code>
+  </listing>
+</section>
+
+<section id="cmake">
+  <title>CMake</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-cmake"</code></title>
+    <code mime="text/x-cmake"><xi:include parse="text" href="code/cmake"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="cmake"</code></title>
+    <code type="cmake"><xi:include parse="text" href="code/cmake"/></code>
+  </listing>
+</section>
+
+<section id="css">
+  <title>CSS</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/css"</code></title>
+    <code mime="text/css"><xi:include parse="text" href="code/css"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="css"</code></title>
+    <code type="css"><xi:include parse="text" href="code/css"/></code>
+  </listing>
+</section>
+
+<section id="d">
+  <title>D</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-d"</code></title>
+    <code mime="text/x-d"><xi:include parse="text" href="code/d"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="d"</code></title>
+    <code type="d"><xi:include parse="text" href="code/d"/></code>
+  </listing>
+</section>
+
+<section id="diff">
+  <title>Diff</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-diff"</code></title>
+    <code mime="text/x-diff"><xi:include parse="text" href="code/diff"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-patch"</code></title>
+    <code mime="text/x-patch"><xi:include parse="text" href="code/diff"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="diff"</code></title>
+    <code type="diff"><xi:include parse="text" href="code/diff"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="patch"</code></title>
+    <code type="patch"><xi:include parse="text" href="code/diff"/></code>
+  </listing>
+</section>
+
+<section id="django">
+  <title>Django</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-django-templating"</code></title>
+    <code mime="application/x-django-templating"><xi:include parse="text" href="code/django"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="django"</code></title>
+    <code type="django"><xi:include parse="text" href="code/django"/></code>
+  </listing>
+</section>
+
+<section id="dockerfile">
+  <title>Dockerfile</title>
+  <listing ui:expanded="false">
+    <title><code>type="dockerfile"</code></title>
+    <code type="dockerfile"><xi:include parse="text" href="code/dockerfile"/></code>
+  </listing>
+</section>
+
+<section id="dos">
+  <title>DOS Batch</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-dos-batch"</code></title>
+    <code mime="application/x-dos-batch"><xi:include parse="text" href="code/dos"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="dos"</code></title>
+    <code type="dos"><xi:include parse="text" href="code/dos"/></code>
+  </listing>
+</section>
+
+<section id="erb">
+  <title>Embedded Ruby</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-ruby-templating"</code></title>
+    <code mime="application/x-ruby-templating"><xi:include parse="text" href="code/erb"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="erb"</code></title>
+    <code type="erb"><xi:include parse="text" href="code/erb"/></code>
+  </listing>
+</section>
+
+<section id="fsharp">
+  <title>F#</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-fsharp"</code></title>
+    <code mime="text/x-fsharp"><xi:include parse="text" href="code/fsharp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="fsharp"</code></title>
+    <code type="fsharp"><xi:include parse="text" href="code/fsharp"/></code>
+  </listing>
+</section>
+
+<section id="go">
+  <title>Go</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-go"</code></title>
+    <code mime="text/x-go"><xi:include parse="text" href="code/go"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="go"</code></title>
+    <code type="go"><xi:include parse="text" href="code/go"/></code>
+  </listing>
+</section>
+
+<section id="haml">
+  <title>Haml</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-haml"</code></title>
+    <code mime="text/x-haml"><xi:include parse="text" href="code/haml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="haml"</code></title>
+    <code type="haml"><xi:include parse="text" href="code/haml"/></code>
+  </listing>
+</section>
+
+<section id="haskell">
+  <title>Haskell</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-haskell"</code></title>
+    <code mime="text/x-haskell"><xi:include parse="text" href="code/haskell"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="haskell"</code></title>
+    <code type="haskell"><xi:include parse="text" href="code/haskell"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="hs"</code></title>
+    <code type="hs"><xi:include parse="text" href="code/haskell"/></code>
+  </listing>
+</section>
+
+<section id="html">
+  <title>HTML</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/html"</code></title>
+    <code mime="text/html"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="html"</code></title>
+    <code type="html"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="xhtml"</code></title>
+    <code type="xhtml"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+</section>
+
+<section id="http">
+  <title>HTTP</title>
+  <listing ui:expanded="false">
+    <title><code>type="http"</code></title>
+    <code type="http"><xi:include parse="text" href="code/http"/></code>
+  </listing>
+</section>
+
+<section id="ini">
+  <title>INI</title>
+  <listing ui:expanded="false">
+    <title><code>type="ini"</code></title>
+    <code type="ini"><xi:include parse="text" href="code/ini"/></code>
+  </listing>
+</section>
+
+<section id="java">
+  <title>Java</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-java"</code></title>
+    <code mime="text/x-java"><xi:include parse="text" href="code/java"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="java"</code></title>
+    <code type="java"><xi:include parse="text" href="code/java"/></code>
+  </listing>
+</section>
+
+<section id="json">
+  <title>JSON</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/json"</code></title>
+    <code mime="application/json"><xi:include parse="text" href="code/json"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="json"</code></title>
+    <code type="json"><xi:include parse="text" href="code/json"/></code>
+  </listing>
+</section>
+
+<section id="javascript">
+  <title>JavaScript</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/javascript"</code></title>
+    <code mime="application/javascript"><xi:include parse="text" href="code/javascript"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="javascript"</code></title>
+    <code type="javascript"><xi:include parse="text" href="code/javascript"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="js"</code></title>
+    <code type="js"><xi:include parse="text" href="code/javascript"/></code>
+  </listing>
+</section>
+
+<section id="LISP">
+  <title>LISP</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-lisp"</code></title>
+    <code mime="application/x-lisp"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-emacs-lisp"</code></title>
+    <code mime="text/x-emacs-lisp"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="lisp"</code></title>
+    <code type="lisp"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="cl"</code></title>
+    <code type="cl"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="el"</code></title>
+    <code type="el"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="lsp"</code></title>
+    <code type="lsp"><xi:include parse="text" href="code/lisp"/></code>
+  </listing>
+</section>
+
+<section id="lua">
+  <title>Lua</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-lua"</code></title>
+    <code mime="text/x-lua"><xi:include parse="text" href="code/lua"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="lua"</code></title>
+    <code type="lua"><xi:include parse="text" href="code/lua"/></code>
+  </listing>
+</section>
+
+<section id="makefile">
+  <title>Makefile</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-makefile"</code></title>
+    <code mime="text/x-makefile"><xi:include parse="text" href="code/makefile"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="makefile"</code></title>
+    <code type="makefile"><xi:include parse="text" href="code/makefile"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="make"</code></title>
+    <code type="make"><xi:include parse="text" href="code/makefile"/></code>
+  </listing>
+</section>
+
+<section id="markdown">
+  <title>Markdown</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-markdown"</code></title>
+    <code mime="text/x-markdown"><xi:include parse="text" href="code/markdown"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="markdown"</code></title>
+    <code type="markdown"><xi:include parse="text" href="code/markdown"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="md"</code></title>
+    <code type="md"><xi:include parse="text" href="code/markdown"/></code>
+  </listing>
+</section>
+
+<section id="matlab">
+  <title>MATLAB/Octave</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-matlab"</code></title>
+    <code mime="text/x-matlab"><xi:include parse="text" href="code/matlab"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-octave"</code></title>
+    <code mime="text/x-octave"><xi:include parse="text" href="code/matlab"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="matlab"</code></title>
+    <code type="matlab"><xi:include parse="text" href="code/matlab"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="octave"</code></title>
+    <code type="octave"><xi:include parse="text" href="code/matlab"/></code>
+  </listing>
+</section>
+
+<section id="nginx">
+  <title>Nginx Config</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-nginx-conf"</code></title>
+    <code mime="text/x-nginx-conf"><xi:include parse="text" href="code/nginx"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="nginx"</code></title>
+    <code type="nginx"><xi:include parse="text" href="code/nginx"/></code>
+  </listing>
+</section>
+
+<section id="objectivec">
+  <title>Objective-C</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-objcsrc"</code></title>
+    <code mime="text/x-objcsrc"><xi:include parse="text" href="code/objectivec"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="objc"</code></title>
+    <code type="objc"><xi:include parse="text" href="code/objectivec"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="m"</code></title>
+    <code type="m"><xi:include parse="text" href="code/objectivec"/></code>
+  </listing>
+</section>
+
+<section id="perl">
+  <title>Perl</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-perl"</code></title>
+    <code mime="application/x-perl"><xi:include parse="text" href="code/perl"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="perl"</code></title>
+    <code type="perl"><xi:include parse="text" href="code/perl"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="pl"</code></title>
+    <code type="pl"><xi:include parse="text" href="code/perl"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="pm"</code></title>
+    <code type="pm"><xi:include parse="text" href="code/perl"/></code>
+  </listing>
+</section>
+
+<section id="php">
+  <title>PHP</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-php"</code></title>
+    <code mime="application/x-php"><xi:include parse="text" href="code/php"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="php"</code></title>
+    <code type="php"><xi:include parse="text" href="code/php"/></code>
+  </listing>
+</section>
+
+<section id="python">
+  <title>Python</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-python"</code></title>
+    <code mime="text/x-python"><xi:include parse="text" href="code/python"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="python"</code></title>
+    <code type="python"><xi:include parse="text" href="code/python"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="py"</code></title>
+    <code type="py"><xi:include parse="text" href="code/python"/></code>
+  </listing>
+</section>
+
+<section id="r">
+  <title>R/S</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-r"</code></title>
+    <code mime="text/x-r"><xi:include parse="text" href="code/r"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-s"</code></title>
+    <code mime="text/x-s"><xi:include parse="text" href="code/r"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="r"</code></title>
+    <code type="r"><xi:include parse="text" href="code/r"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="s"</code></title>
+    <code type="s"><xi:include parse="text" href="code/r"/></code>
+  </listing>
+</section>
+
+<section id="ruby">
+  <title>Ruby</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-ruby"</code></title>
+    <code mime="application/x-ruby"><xi:include parse="text" href="code/ruby"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="ruby"</code></title>
+    <code type="ruby"><xi:include parse="text" href="code/ruby"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="rb"</code></title>
+    <code type="rb"><xi:include parse="text" href="code/ruby"/></code>
+  </listing>
+</section>
+
+<section id="rust">
+  <title>Rust</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-rust"</code></title>
+    <code mime="text/x-rust"><xi:include parse="text" href="code/rust"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="rust"</code></title>
+    <code type="rust"><xi:include parse="text" href="code/rust"/></code>
+  </listing>
+</section>
+
+<section id="scala">
+  <title>Scala</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-scala"</code></title>
+    <code mime="text/x-scala"><xi:include parse="text" href="code/scala"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="scala"</code></title>
+    <code type="scala"><xi:include parse="text" href="code/scala"/></code>
+  </listing>
+</section>
+
+<section id="scheme">
+  <title>Scheme</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-scheme"</code></title>
+    <code mime="text/x-scheme"><xi:include parse="text" href="code/scheme"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="scheme"</code></title>
+    <code type="scheme"><xi:include parse="text" href="code/scheme"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="scm"</code></title>
+    <code type="scm"><xi:include parse="text" href="code/scheme"/></code>
+  </listing>
+</section>
+
+<section id="smalltalk">
+  <title>Smalltalk</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-smalltalk"</code></title>
+    <code mime="text/x-smalltalk"><xi:include parse="text" href="code/smalltalk"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="smalltalk"</code></title>
+    <code type="smalltalk"><xi:include parse="text" href="code/smalltalk"/></code>
+  </listing>
+</section>
+
+<section id="tcl">
+  <title>TCL</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-tcl"</code></title>
+    <code mime="application/x-tcl"><xi:include parse="text" href="code/tcl"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="tcl"</code></title>
+    <code type="tcl"><xi:include parse="text" href="code/tcl"/></code>
+  </listing>
+</section>
+
+<section id="tex">
+  <title>TeX</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-tex"</code></title>
+    <code mime="text/x-tex"><xi:include parse="text" href="code/tex"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="tex"</code></title>
+    <code type="tex"><xi:include parse="text" href="code/tex"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="latex"</code></title>
+    <code type="latex"><xi:include parse="text" href="code/tex"/></code>
+  </listing>
+</section>
+
+<section id="vala">
+  <title>Vala</title>
+  <listing ui:expanded="false">
+    <title><code>mime="text/x-vala"</code></title>
+    <code mime="text/x-vala"><xi:include parse="text" href="code/vala"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="vala"</code></title>
+    <code type="vala"><xi:include parse="text" href="code/vala"/></code>
+  </listing>
+</section>
+
+<section id="xml">
+  <title>XML</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/xml"</code></title>
+    <code mime="application/xml"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>mime="application/docbook+xml"</code></title>
+    <code mime="application/docbook+xml"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="xml"</code></title>
+    <code type="xml"><xi:include parse="text" href="code/xml"/></code>
+  </listing>
+</section>
+
+<section id="xquery">
+  <title>XQuery</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/xquery"</code></title>
+    <code mime="application/xquery"><xi:include parse="text" href="code/xquery"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="xquery"</code></title>
+    <code type="xquery"><xi:include parse="text" href="code/xquery"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="xq"</code></title>
+    <code type="xq"><xi:include parse="text" href="code/xquery"/></code>
+  </listing>
+</section>
+
+<section id="yaml">
+  <title>YAML</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/x-yaml"</code></title>
+    <code mime="application/x-yaml"><xi:include parse="text" href="code/yaml"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="yaml"</code></title>
+    <code type="yaml"><xi:include parse="text" href="code/yaml"/></code>
+  </listing>
+</section>
+
+</page>

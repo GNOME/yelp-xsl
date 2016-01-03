@@ -16,7 +16,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html mml"
+                exclude-result-prefixes="html"
                 version="1.0">
 
 <!--!!==========================================================================
