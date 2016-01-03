@@ -626,6 +626,18 @@ int main(char** argv) {
   </listing>
 </section>
 
+<section id="sql">
+  <title>SQL</title>
+  <listing ui:expanded="false">
+    <title><code>mime="application/sql"</code></title>
+    <code mime="application/sql"><xi:include parse="text" href="code/sql"/></code>
+  </listing>
+  <listing ui:expanded="false">
+    <title><code>type="sql"</code></title>
+    <code type="sql"><xi:include parse="text" href="code/sql"/></code>
+  </listing>
+</section>
+
 <section id="tcl">
   <title>TCL</title>
   <listing ui:expanded="false">

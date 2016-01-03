@@ -454,6 +454,26 @@ int main(char** argv) {
   </example>
 </section>
 
+<section id="sql">
+  <title>SQL</title>
+  <example>
+    <title><code>language="sql"</code></title>
+    <programlisting language="sql"><xi:include parse="text" href="code/sql"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="sql92"</code></title>
+    <programlisting language="sql92"><xi:include parse="text" href="code/sql"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="sql1999"</code></title>
+    <programlisting language="sql1999"><xi:include parse="text" href="code/sql"/></programlisting>
+  </example>
+  <example>
+    <title><code>language="sql2003"</code></title>
+    <programlisting language="sql2003"><xi:include parse="text" href="code/sql"/></programlisting>
+  </example>
+</section>
+
 <section id="tcl">
   <title>TCL</title>
   <example>

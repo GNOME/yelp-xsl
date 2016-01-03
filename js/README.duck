@@ -4,7 +4,8 @@ yelp-xsl includes a pre-built copy of highlight.pack.js that includes many
 common languages. The default languages are those for which we have test
 files. If you want to add to the default languages in yelp-xsl, add a test
 code snippet under test/syntax/code, then XInclude it into the test files
-for Mallard, DocBook, and DITA under test/syntax.
+for Mallard, DocBook, and DITA under test/syntax. A good place to get test
+files is the live demo on highlightjs.org.
 
 [steps]
 . Build highlight.pack.js with the default yelp-xsl languages:

@@ -768,6 +768,11 @@ This template handles conditional processing.
     <xsl:when test="$language = 'smalltalk'">
       <xsl:text>smalltalk</xsl:text>
     </xsl:when>
+    <!-- SQL -->
+    <xsl:when test="$language = 'sql' or $language = 'sql92' or
+                    $language = 'sql1999' or $language = 'sql2003'">
+      <xsl:text>sql</xsl:text>
+    </xsl:when>
     <!-- TCL -->
     <xsl:when test="$language = 'tcl'">
       <xsl:text>tcl</xsl:text>

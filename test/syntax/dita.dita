@@ -538,6 +538,28 @@ int main(char** argv) {
   </body>
 </topic>
 
+<topic id="sql">
+  <title>SQL</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="sql"</codeph></title>
+    <codeblock outputclass="sql"><xi:include parse="text" href="code/sql"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="sql92"</codeph></title>
+    <codeblock outputclass="sql92"><xi:include parse="text" href="code/sql"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="sql1999"</codeph></title>
+    <codeblock outputclass="sql1999"><xi:include parse="text" href="code/sql"/></codeblock>
+  </section>
+  <section>
+    <title><codeph>outputclass="sql2003"</codeph></title>
+    <codeblock outputclass="sql2003"><xi:include parse="text" href="code/sql"/></codeblock>
+  </section>
+  </body>
+</topic>
+
 <topic id="tcl">
   <title>TCL</title>
   <body>

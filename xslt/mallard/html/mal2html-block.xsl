@@ -365,6 +365,10 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:when test="@mime = 'text/x-smalltalk' or contains($type, ' smalltalk ')">
       <xsl:text>smalltalk</xsl:text>
     </xsl:when>
+    <!-- SQL -->
+    <xsl:when test="@mime = 'application/sql' or contains($type, ' sql ')">
+      <xsl:text>sql</xsl:text>
+    </xsl:when>
     <!-- TCL -->
     <xsl:when test="@mime = 'application/x-tcl' or @mime = 'text/x-tcl' or
                     contains($type, ' tcl ')">
