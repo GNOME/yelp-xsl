@@ -785,6 +785,18 @@ section {
 section section {
   margin-top: 1.44em;
 }
+.yelp-hash-highlight {
+  animation-name: yelp-hash-highlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-hash-highlight {
+  from { transform: translateY(0px) }
+  25%  { transform: translateY(20px); }
+  50%  { transform: translateY(0); }
+  75%  { transform: translateY(10px); }
+  to   { transform: translateY(0px); }
+}
 div.trails {
   margin: 0;
   padding: 0.2em 10px;
@@ -1816,31 +1828,20 @@ Currently, it outputs code to highlight a section when #{location.hash} is set.
 <xsl:template name="html.js.core">
   <xsl:param name="node" select="."/>
 <xsl:text>
-var __yelp_generate_id_counter__ = 0;
-function yelp_generate_id () {
-  var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
-  if ($('#' + ret).length != 0)
-    return yelp_generate_id();
-  else
-    return ret;
-};
-$(document).ready (function () {
-  var highlight_hash = function () {
+document.addEventListener('DOMContentLoaded', function() {
+  var yelp_hash_highlight = function () {
     if (location.hash != '') {
-      var sect = $(location.hash);
-      sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.bg.yellow"/><xsl:text>');
-      window.setTimeout(function () {
-        sect.css({
-          '-webkit-transition': 'background-color 2s linear',
-          '-moz-transition': 'background-color 2s linear',
-          'transition': 'background-color 2s linear',
-          'background-color': 'rgba(1, 1, 1, 0)'
-        });
-      }, 200);
+      var sect = document.querySelector(location.hash);
+      if (sect != null) {
+        sect.classList.add('yelp-hash-highlight');
+        window.setTimeout(function () {
+          sect.classList.remove('yelp-hash-highlight');
+        }, 500);
+      }
     }
-  };
-  $(window).bind('hashchange', highlight_hash);
-  highlight_hash();
+  }
+  window.addEventListener('hashchange', yelp_hash_highlight, false);
+  yelp_hash_highlight();
 });
 </xsl:text>
 </xsl:template>
@@ -1883,6 +1884,14 @@ $.fn.yelp_ui_expander_toggle = function (onlyopen, callback) {
     region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
     title.html(yelpdata.children('div.yelp-title-expanded').html());
   }
+};
+var __yelp_generate_id_counter__ = 0;
+function yelp_generate_id () {
+  var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
+  if ($('#' + ret).length != 0)
+    return yelp_generate_id();
+  else
+    return ret;
 };
 $(document).ready(function () {
   $('.ui-expander').each(function () {
