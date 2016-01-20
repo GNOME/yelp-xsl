@@ -1708,14 +1708,14 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="1.0" date="2010-12-31" status="final"
+:Revision:version="3.20" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
-template *{html.js.jquery} to output references to jQuery files. It then
-calls *{html.js.custom} to output references to custom JavaScript files.
-Finally, it outputs an HTML #{script} tag and calls *{html.js.content} to
-ouput the contents of that tag.
+templates *{html.js.jquery}, *{html.js.syntax}, and *{html.js.mathjax} to
+output references to external libraries. It then calls *{html.js.custom} to
+output references to custom JavaScript files. Finally, it calls
+*{html.js.script} to output local JavaScript created by *{html.js.content}.
 -->
 <xsl:template name="html.js">
   <xsl:param name="node" select="."/>
@@ -1731,11 +1731,9 @@ ouput the contents of that tag.
   <xsl:call-template name="html.js.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
-  <script type="text/javascript">
-    <xsl:call-template name="html.js.content">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </script>
+  <xsl:call-template name="html.js.script">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -1786,17 +1784,39 @@ copy, override this template and provide the necessary files.
 
 
 <!--**==========================================================================
-html.js.content
-Output JavaScript content for an HTML output page.
-:Revision:version="3.4" date="2011-11-04" status="final"
+html.js.script
+Output a JavaScript #{script} tag containing local content.
+:Revision:version="3.20" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
-This template is called by *{html.js} to output JavaScript content. It does not
-output an HTML #{script} tag. The JavaScript output by this template or templates
-it calls may depend on the jQuery code referenced by *{html.js.jquery}. This
-template calls the templates *{html.js.core}, *{html.js.ui}, *{html.js.media},
-and *{html.js.syntax}. It then calls the mode
-%{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
+This template is called by *{html.js} to output JavaScript content. It outputs
+a #{script} tag and calls *{html.js.content} to output the contents. To force
+all JavaScript into external files, override this template to output a #{script}
+tag referencing an external file with the #{src} attribute, then output the
+result of *{html.js.content} to that file.
+-->
+<xsl:template name="html.js.script">
+  <xsl:param name="node" select="."/>
+  <script type="text/javascript">
+    <xsl:call-template name="html.js.content">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </script>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.content
+Output JavaScript content for an HTML output page.
+:Revision:version="3.20" date="2016-01-18" status="final"
+$node: The node to create JavaScript for.
+
+This template is called by *{html.js.script} to output JavaScript content. It
+does not output an HTML #{script} tag. The JavaScript output by this template
+or templates it calls may depend on the jQuery code referenced by
+*{html.js.jquery}. This template calls the templates *{html.js.core},
+*{html.js.ui}, and *{html.js.media}. It then calls the mode %{html.js.mode}
+on ${node} and calls the template *{html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
