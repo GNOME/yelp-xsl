@@ -849,7 +849,7 @@ div.links .desc a {
   color: inherit;
 }
 div.links .desc a:hover {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 a.bold { font-weight: bold; }
 
@@ -861,33 +861,33 @@ div.link-button {
 .link-button a {
   display: inline-block;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   text-shadow: </xsl:text>
-    <xsl:value-of select="$color.link"/><xsl:text> 1px 1px 0px;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text> 1px 1px 0px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.link"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
   padding: 0.2em 0.5em 0.2em 0.5em;
   border-radius: 2px;
 }
 .link-button a:visited {
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
 }
 .link-button a:hover {
   text-decoration: none;
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   box-shadow: 1px 1px 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 div.link-button a .desc {
   display: block;
   font-weight: normal;
   font-size: 0.83em;
   color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 
 <!-- @style = 'float*' -->
@@ -934,7 +934,7 @@ ul.mouseovers a {
 }
 ul.mouseovers a:hover {
   text-decoration: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 ul.mouseovers a img {
   display: none;
@@ -958,7 +958,7 @@ div.ui-overlay-screen {
   margin: 0;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   opacity: 0.6;
 }
 div.ui-overlay {
@@ -973,9 +973,9 @@ div.ui-overlay {
 div.ui-overlay > div.inner {
   display: inline-block;
   padding: 8px;
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border-radius: 6px;
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
 }
@@ -996,14 +996,14 @@ a.ui-overlay-close {
   text-align: center;
   border: none;
   border-radius: 50%;
-  background-color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  background-image: radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  background-image: -webkit-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  border: 3px solid </xsl:text><xsl:value-of select="$color.background"/><xsl:text>; 
-  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
-  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
+  background-image: radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
+  background-image: -webkit-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
+  border: 3px solid </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>; 
+  color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
 
 <!-- links/@uix:thumbs = 'tiles' -->
@@ -1028,11 +1028,11 @@ div.links-tile > a {
   vertical-align: top;
   padding: 9px;
   border-radius: 6px;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
 }
 div.links-tile > a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
+  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
 div.links-tile > a > span.links-tile-img {
   display: block;
@@ -1053,7 +1053,7 @@ div.links-tile > a > span.links-tile-text > * + span.title {
 div.links-tile > a > span.links-tile-text > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
 <!-- FIXME -->
@@ -1072,14 +1072,14 @@ ul.links-ui-hover a {
 }
 ul.links-ui-hover a:hover {
   text-decoration: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 span.links-ui-hover-img {
   display: none;
   position: absolute;
   margin: 0; padding: 0;
   overflow: hidden;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
   text-align: center;
 }
 @media only screen and (max-width: 480px) {
@@ -1111,7 +1111,7 @@ div.links-grid:empty { padding: 0 10px; height: 0; }
 div.links-grid-link { font-weight: bold; }
 div.links-grid > div.desc {
   margin: 0.2em 0 0 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
 <!-- FIXME -->
@@ -1127,17 +1127,17 @@ div.links-norwich-primary {
 div.links-norwich-big {
   vertical-align: top;
   display: inline-block;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
   background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>, </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>);
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.blue"/><xsl:text>);
   margin: 0 20px 20px 0;
 }
 div.links-norwich-big + div.links-norwich-big {
-  background: </xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>, </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>);
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.yellow"/><xsl:text>);
 }
 div.links-norwich-big a {
   display: block;
@@ -1146,21 +1146,21 @@ div.links-norwich-big a {
   height: 320px;
   padding: 9px;
   font-size: 1.2em;
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
   background-repeat: no-repeat;
   background-position: right -80px bottom -80px;
 }
 div.links-norwich-big a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
-  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
 div.links-norwich-big a span.title {
   font-size: 1.2em;
   font-weight: bold;
 }
 div.links-norwich-big a .desc {
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
   font-weight: normal;
 }
 div.links-norwich-secondary {
@@ -1170,7 +1170,7 @@ div.links-norwich-secondary {
 div.links-norwich-small {
   display: inline-block;
   vertical-align: top;
-  background: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   margin: 0 20px 20px 0;
 }
 div.links-norwich-small a {
@@ -1179,14 +1179,14 @@ div.links-norwich-small a {
   height: 140px;
   padding: 9px;
   font-weight: bold;
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   background-repeat: no-repeat;
   background-position: right 4px bottom 4px;
 }
 div.links-norwich-small a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
-  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
 @media only screen and (max-width: 900px) {
   div.links-norwich {
@@ -1225,7 +1225,7 @@ a.linkdiv {
 a.linkdiv:hover {
   text-decoration: none;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 a.linkdiv > span.title {
   display: block;
@@ -1237,7 +1237,7 @@ a.linkdiv > span.title {
 a.linkdiv > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
 div.links-twocolumn {
@@ -1259,9 +1259,9 @@ div.links-twocolumn > div.links-divs {
 div.comment {
   padding: 0.5em;
   border: solid 2px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.red_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.red"/><xsl:text>;
 }
 div.comment div.comment {
   margin: 1em 1em 0 1em;
@@ -1287,7 +1287,7 @@ div.tree-lines ul.tree { margin-left: 0; }
 <!-- FIXME -->
 span.hi {
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 
 <!-- FIXME -->
@@ -1295,9 +1295,9 @@ div.facets {
   display: inline-block;
   padding: 6px;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 } 
 div.facet {
  vertical-align: top;
@@ -1320,26 +1320,26 @@ div.facet input {
 dt.gloss-term {
   margin-top: 1.2em;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 dt.gloss-term:first-child, dt.gloss-term + dt.gloss-term { margin-top: 0; }
 dt.gloss-term + dd { margin-top: 0.2em; }
 dd.gloss-link {
   margin: 0 0.2em 0 0.2em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 dd.gloss-def {
   margin: 0 0.2em 1em 0.2em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 a.gloss-term {
   tabindex: 0;
   border-bottom: dashed 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 a.gloss-term:hover {
   text-decoration: none;
@@ -1351,13 +1351,13 @@ span.gloss-desc {
   margin: 0;
   padding: 0.2em 0.5em 0.2em 0.5em;
   max-width: 24em;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+    <xsl:value-of select="$color.yellow"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 
 <!-- conditional processing -->
@@ -1387,9 +1387,9 @@ div.version {
   padding: 0.5em 1em 0.5em 1em;
   max-width: 24em;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 div.version:hover { opacity: 0.8; }
 div.version p.version { margin-top: 0.2em; }
@@ -1399,14 +1399,14 @@ span.status {
   padding-left: 0.2em;
   padding-right: 0.2em;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 span.status-stub, span.status-draft, span.status-incomplete, span.status-outdated { background-color: </xsl:text>
-  <xsl:value-of select="$color.red_background"/><xsl:text>; }
+  <xsl:value-of select="$color.bg.red"/><xsl:text>; }
 </xsl:text>
 </xsl:if>
 </xsl:template>

@@ -63,7 +63,7 @@ td.td-rowsep { border-bottom: solid 1px; }
 <!-- == bibliography == -->
 span.bibliolabel {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 div.biblioentry span.title {
   font-weight: normal;
@@ -78,11 +78,11 @@ div.epigraph {
   text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 20%;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 div.programlisting .userinput {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 div.address, div.literallayout { white-space: pre; }
 
@@ -90,7 +90,7 @@ div.address, div.literallayout { white-space: pre; }
 <!-- == footnotes == -->
 div.footnotes {
   border-top: solid 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.footnote { margin-top: 1.44em; }
 sup.footnote { font-size: 0.83em; }
@@ -99,23 +99,17 @@ a.footnote {
   text-decoration: none;
   border-bottom: none;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 div.footnote > a.footnote {
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.83em;
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.footnote > a.footnote + p { display: inline-block; margin: 0; }
 a.footnote:hover, div.footnote > a.footnote:hover {
-  background-color: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-  -moz-box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-  -webkit-box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
   box-shadow: 0 0 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 
 <!-- == unsorted == -->
@@ -130,7 +124,7 @@ div.simplelist table { margin-left: 0; border: none; }
 div.simplelist td {
   padding: 0.5em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 <!--
 div.simplelist td.td-first {
@@ -182,13 +176,11 @@ dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
 
 div.synopfragment { padding-top: 0.5em; }
 span.co {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
   background-color: </xsl:text>
-  <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   outline: solid 1px </xsl:text>
-  <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+  <xsl:value-of select="$color.yellow"/><xsl:text>;
 }
 span.co a { text-decoration: none; }
 span.co a:hover { text-decoration: none; }

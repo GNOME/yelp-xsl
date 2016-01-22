@@ -963,10 +963,10 @@ dl.compact dt + dt { margin-top: 0; }
 
 a {
   text-decoration: none;
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 a:visited { color: </xsl:text>
-  <xsl:value-of select="$color.link_visited"/><xsl:text>; }
+  <xsl:value-of select="$color.fg.purple"/><xsl:text>; }
 a:hover {
   border-bottom: dotted 1px </xsl:text>
     <xsl:value-of select="$color.fg.blue"/><xsl:text>;
@@ -1406,7 +1406,7 @@ span.key a {
   border-bottom: none;
 }
 a > kbd {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
   border-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 span.keyseq {
@@ -1518,7 +1518,7 @@ div.yelp-data { display: none; }
   display: inline-block;
   line-height: 0.2em;
   vertical-align: bottom;
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 .ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
 .ui-expander-e > div.inner > div.title span.title:before,
@@ -1528,7 +1528,7 @@ div.yelp-data { display: none; }
 }
 .ui-expander > div.inner > div.title:hover,
 .ui-expander > div.inner > div.hgroup:hover * {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 .ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
