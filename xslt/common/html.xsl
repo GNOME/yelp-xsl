@@ -1512,19 +1512,21 @@ div.yelp-data { display: none; }
 }
 .ui-expander > div.inner > div.title span.title:before,
 .ui-expander > div.inner > div.hgroup span.title:before {
-  font-size: 2em;
-  font-weight: normal;
-  content: "⌃";
+  font-weight: bold;
+  content: "‹";
   display: inline-block;
-  line-height: 0.2em;
-  vertical-align: bottom;
   color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
+  transform: translateY(-0.1em) rotate(90deg);
+  -webkit-transform: translateY(-0.1em) rotate(90deg);
+  transition: transform 0.2s linear;
+  -webkit-transition: -webkit-transform 0.2s linear;
+  margin: 0 0.2em;
 }
 .ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
 .ui-expander-e > div.inner > div.title span.title:before,
 .ui-expander-e > div.inner > div.hgroup span.title:before {
-  content: "⌄";
-  vertical-align: top;
+  transform: translateY(-0.1em) rotate(270deg);
+  -webkit-transform: translateY(-0.1em) rotate(270deg);
 }
 .ui-expander > div.inner > div.title:hover,
 .ui-expander > div.inner > div.hgroup:hover * {
@@ -1533,6 +1535,22 @@ div.yelp-data { display: none; }
 .ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
+.ui-expander-c > div.inner > div.region {
+  display: none;
+}
+.ui-expander-e > div.inner > div.region {
+  animation-name: yelp-ui-expander-e;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  transform-origin: 0 0;
+}
+@keyframes yelp-ui-expander-e {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+
+
 @media only screen and (max-width: 480px) {
   article > div.region > div.contents > div.example,
   article > div.region > section > div.inner > div.region > div.contents > div.example {
@@ -1879,97 +1897,131 @@ such as expandable blocks and sections.
 <xsl:template name="html.js.ui">
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
-$.fn.yelp_ui_expander_toggle = function (onlyopen, callback) {
-  var expander = $(this);
-  var region = expander.children('.inner').children('.region');
-  var yelpdata = expander.children('div.yelp-data-ui-expander');
-  var compfunc = function () {
-    if (expander.is('div.figure')) { expander.yelp_auto_resize(); }
-    if (callback) { callback(); }
-    return true;
-  };
-  var title = expander.children('.inner').children('.title');
-  if (title.length == 0)
-    title = expander.children('.inner').children('.hgroup');
-  var title = title.find('span.title:first');
-  if (expander.is('.ui-expander-e')) {
-    if (!onlyopen) {
-      expander.removeClass('ui-expander-e').addClass('ui-expander-c');
-      region.attr('aria-expanded', 'false').slideUp('fast', compfunc);
-      title.html(yelpdata.children('div.yelp-title-collapsed').html());
-    }
-  }
-  else {
-    expander.removeClass('ui-expander-c').addClass('ui-expander-e');
-    region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
-    title.html(yelpdata.children('div.yelp-title-expanded').html());
-  }
-};
 var __yelp_generate_id_counter__ = 0;
 function yelp_generate_id () {
   var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
-  if ($('#' + ret).length != 0)
+  if (document.getElementById(ret) != null)
     return yelp_generate_id();
   else
     return ret;
 };
-$(document).ready(function () {
-  $('.ui-expander').each(function () {
-    var expander = $(this);
-    var yelpdata = expander.children('div.yelp-data-ui-expander');
-    var region = expander.children('.inner').children('.region');
-    var title = expander.children('.inner').children('.title');
-    var issect = false;
-    if (title.length == 0) {
-      title = expander.children('.inner').children('.hgroup');
+function yelp_ui_expander_init (expander) {
+  var yelpdata = null;
+  var innerdiv = null;
+  var region = null;
+  var title = null;
+  var title_e = null;
+  var title_c = null;
+  var titlespan = null;
+  var issect = false;
+  for (var i = 0; i < expander.children.length; i++) {
+    var child = expander.children[i];
+    if (child.classList.contains('yelp-data-ui-expander')) {
+      yelpdata = child;
+    }
+    else if (child.classList.contains('inner')) {
+      innerdiv = child;
+    }
+  }
+  if (innerdiv == null) {
+    return;
+  }
+  for (var i = 0; i < innerdiv.children.length; i++) {
+    var child = innerdiv.children[i];
+    if (child.classList.contains('region')) {
+      region = child;
+    }
+    else if (child.classList.contains('title')) {
+      title = child;
+    }
+    else if (child.classList.contains('hgroup')) {
+      title = child;
       issect = true;
     }
-    if (title.length == 0) {
-      return;
+  }
+  if (region == null || title == null) {
+    return;
+  }
+  if (!region.hasAttribute('id')) {
+    region.setAttribute('id', yelp_generate_id());
+  }
+  title.setAttribute('aria-controls', region.getAttribute('id'));
+
+  if (yelpdata != null) {
+    for (var i = 0; i < yelpdata.children.length; i++) {
+      var child = yelpdata.children[i];
+      if (child.classList.contains('yelp-title-expanded')) {
+        title_e = child;
+      }
+      else if (child.classList.contains('yelp-title-collapsed')) {
+        title_c = child;
+      }
     }
-    if (region.attr('id') == '')
-      region.attr('id', yelp_generate_id());
-    title.attr('aria-controls', region.attr('id'));
-    var titlespan = title.find('span.title:first');
-    var title_e = yelpdata.children('div.yelp-title-expanded');
-    var title_c = yelpdata.children('div.yelp-title-collapsed');
-    if (title_e.length == 0)
-      yelpdata.append($('<div class="yelp-title-expanded"></div>').html(titlespan.html()));
-    if (title_c.length == 0)
-      yelpdata.append($('<div class="yelp-title-collapsed"></div>').html(titlespan.html()));
-    if (yelpdata.attr('data-yelp-expanded') == 'false') {
-      expander.addClass('ui-expander-c');
-      region.attr('aria-expanded', 'false').hide();
-      if (title_c.length != 0)
-        titlespan.html(title_c.html());
-    } else {
-      expander.addClass('ui-expander-e');
-      region.attr('aria-expanded', 'true');
-      if (title_e.length != 0)
-        titlespan.html(title_e.html());
+  }
+  titlespan = title.querySelector('span.title');
+  if (titlespan == null) {
+    return;
+  }
+  if (title_e == null) {
+    var node = document.createElement('div');
+    node.className = 'yelp-title-expanded';
+    node.innerHTML = titlespan.innerHTML;
+    yelpdata.appendChild(node);
+    title_e = node;
+  }
+  if (title_c == null) {
+    var node = document.createElement('div');
+    node.className = 'yelp-title-collapsed';
+    node.innerHTML = titlespan.innerHTML;
+    yelpdata.appendChild(node);
+    title_c = node;
+  }
+
+  var ui_expander_toggle = function () {
+    if (yelpdata.getAttribute('data-yelp-expanded') == 'false') {
+      yelpdata.setAttribute('data-yelp-expanded', 'true');
+      expander.classList.remove('ui-expander-e');
+      expander.classList.add('ui-expander-c');
+      region.setAttribute('aria-expanded', 'false');
+      if (title_c != null)
+        titlespan.innerHTML = title_c.innerHTML;
     }
-    title.click(function () {
-      expander.yelp_ui_expander_toggle(false);
-    });
-  });
-});
-$(document).ready(function () {
-  var expand_hash = function () {
-    if (location.hash != '') {
-      var target = $(location.hash);
-      var parents = target.parents('.ui-expander');
-      if (target.is('.ui-expander'))
-        parents = parents.andSelf();
-      parents.each(function () {
-        $(this).yelp_ui_expander_toggle(true, function () {
-          window.scrollTo(0, $(target).offset().top);
-        });
-      });
+    else {
+      yelpdata.setAttribute('data-yelp-expanded', 'false');
+      expander.classList.remove('ui-expander-c');
+      expander.classList.add('ui-expander-e');
+      region.setAttribute('aria-expanded', 'true');
+      if (title_e != null)
+        titlespan.innerHTML = title_e.innerHTML;
     }
   };
-  $(window).bind('hashchange', expand_hash);
-  expand_hash();
-});
+  expander.yelp_ui_expander_toggle = ui_expander_toggle;
+  title.addEventListener('click', ui_expander_toggle);
+  ui_expander_toggle();
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('.ui-expander');
+  for (var i = 0; i < matches.length; i++) {
+    yelp_ui_expander_init(matches[i]);
+  }
+  var yelp_hash_ui_expand = function () {
+    if (location.hash != '') {
+      var sect = document.querySelector(location.hash);
+      if (sect != null) {
+        for (var cur = sect; cur instanceof Element; cur = cur.parentNode) {
+          if (cur.classList.contains('ui-expander')) {
+            if (cur.classList.contains('ui-expander-c')) {
+              cur.yelp_ui_expander_toggle();
+            }
+          }
+        }
+        sect.scrollIntoView();
+      }
+    }
+  };
+  window.addEventListener('hashchange', yelp_hash_ui_expand, false);
+  yelp_hash_ui_expand();
+}, false);
 ]]></xsl:text>
 </xsl:template>
 
@@ -2246,13 +2298,13 @@ on all #{code} elements with #{"syntax"} in the class value.
   <xsl:param name="node" select="."/>
   <xsl:if test="$html.syntax.highlight">
   <script type="text/javascript" src="highlight.pack.js"></script>
-  <script>
+  <script><![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
   var matches = document.querySelectorAll('code.syntax')
-  for (var match of matches) {
-    hljs.highlightBlock(match);
+  for (var i = 0; i < matches.length; i++) {
+    hljs.highlightBlock(matches[i]);
   }
-}, false);</script>
+}, false);]]></script>
   </xsl:if>
 </xsl:template>
 
