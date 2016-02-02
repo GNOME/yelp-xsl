@@ -542,7 +542,9 @@ FIXME
          this is the OT's behavior. -->
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;[1]"/>
     <div class="region">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()[not(self::&topic_title_all;)]"/>
+      <div class="contents">
+        <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()[not(self::&topic_title_all;)]"/>
+      </div>
     </div>
   </div>
 </xsl:template>

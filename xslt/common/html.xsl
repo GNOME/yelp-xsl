@@ -326,19 +326,23 @@ as ${node} to this template.
       </xsl:call-template>
       <div class="page" role="main">
         <header>
+          <div class="inner">
           <xsl:call-template name="html.header.custom">
             <xsl:with-param name="node" select="$node"/>
           </xsl:call-template>
           <xsl:apply-templates mode="html.header.mode" select="$node"/>
+          </div>
         </header>
         <article>
           <xsl:apply-templates mode="html.body.mode" select="$node"/>
         </article>
         <footer>
+          <div class="inner">
           <xsl:apply-templates mode="html.footer.mode" select="$node"/>
           <xsl:call-template name="html.footer.custom">
             <xsl:with-param name="node" select="$node"/>
           </xsl:call-template>
+          </div>
         </footer>
       </div>
       <xsl:call-template name="html.bottom.custom">
@@ -759,24 +763,30 @@ div.page {
   flex-flow: column;
   align-items: stretch;
   justify-content: flext-start;
-  max-width: 960px;
   min-height: 100vh;
+}
+div.page > article { flex: 1 0 100%; }
+div.page > header, div.page > footer { flex: 0 1 auto; }
+div.page > header > div.inner, div.page > footer > div.inner {
+  max-width: 960px;
   margin: 0 auto;
-}
-div.page > article {
-  flex: 1 0 100%;
-  padding: 10px;
-}
-div.page > header {
-  flex: 0 1 auto;
-}
-div.page > footer {
-  flex: 0 1 auto;
+  padding: 0;
 }
 article {
+  padding: 10px 0;
   min-height: 20em;
   background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
-  padding: 10px;
+}
+article > nav,
+article > div.hgroup,
+article > div.region > div.contents,
+article > div.region > nav,
+article > div.region > section > div.inner > * {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 section {
   margin-top: 2.4em;
@@ -817,20 +827,18 @@ section > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
+}
+section section > div.inner > div.hgroup {
   margin-left: -10px;
   margin-right: -10px;
   padding-left: 10px;
   padding-right: 10px;
 }
-section.links > div.hgroup {
+section.links > div.inner > div.hgroup {
   border-bottom: solid 2px </xsl:text>
     <xsl:value-of select="$color.fg.blue"/><xsl:text>;
-  margin-left: -10px;
-  margin-right: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
 }
-section section.links > div.hgroup {
+section section.links > div.inner > div.hgroup {
   border: none;
 }
 h1, h2, h3, h4, h5, h6, h7 {
@@ -1061,52 +1069,26 @@ div.sectionlinks div.sectionlinks {
 div.sectionlinks div.sectionlinks li {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
 }
-div.nextlinks {
-  font-size: 1.2em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
-  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  clear: both;
-}
-div.nextlinks a {
+nav.prevnext { clear: both; }
+div.region > nav.prevnext, div.region + nav.prevnext { margin-top: 1em; }
+nav.prevnext > div.inner { float: </xsl:text><xsl:value-of select="$right"/><xsl:text>; }
+nav.prevnext a {
   background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   display: inline-block;
   position: relative;
   height: 1.44em;
-  padding: 0.2em 0.83em;
+  padding: 0.2em 0.83em 0 0.83em;
   margin-bottom: 1em;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
 }
-a.nextlinks-prev { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0.72em; }
-a.nextlinks-next { margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.72em; }
-a.nextlinks-prev:after, a.nextlinks-next:after {
-  border: solid transparent;
-  content: " ";
-  position: absolute;
-  height: 0; width: 0;
-  border-width: 0.92em;
-  top: 50%;
-  margin-top: -0.92em;
+nav.prevnext a + a { border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: none; }
+nav.prevnext a:first-child {
+  border-top-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
+  border-bottom-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
 }
-a.nextlinks-prev:after {
-  </xsl:text><xsl:value-of select="$right"/><xsl:text>: 100%;
-  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
-}
-a.nextlinks-next:after {
-  </xsl:text><xsl:value-of select="$left"/><xsl:text>: 100%;
-  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
-}
-div.nextlinks a:hover {
-border: none;
-  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>
-}
-a.nextlinks-prev:hover:after {
-  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.bg.blue"/><xsl:text>
-}
-a.nextlinks-next:hover:after {
-  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.bg.blue"/><xsl:text>
+nav.prevnext a:last-child {
+  border-top-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
+  border-bottom-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
 }
 div.serieslinks {
   display: inline-block;
@@ -1548,8 +1530,6 @@ div.yelp-data { display: none; }
   from { transform: scaleY(0); }
   to   { transform: scaleY(1); }
 }
-
-
 
 @media only screen and (max-width: 480px) {
   article > div.region > div.contents > div.example,

@@ -736,6 +736,7 @@ templates that handle #{page} and #{section} elements.
                     (mal:section and not(mal:links[@type = 'seealso']))))
                 ">
     <section class="links" role="navigation">
+      <div class="inner">
       <div class="hgroup"/>
       <div class="contents">
         <xsl:for-each select="$postlinks">
@@ -787,6 +788,7 @@ templates that handle #{page} and #{section} elements.
             <xsl:with-param name="links" select="$seealsonodes"/>
           </xsl:call-template>
         </xsl:if>
+      </div>
       </div>
     </section>
   </xsl:if>

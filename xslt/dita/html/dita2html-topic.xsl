@@ -71,9 +71,9 @@ REMARK: Describe this module
   <xsl:variable name="next" select="($node//&map_topicref;[@href][1] |
                                      $node/following::&map_topicref;[@href]
                                     )[1]"/>
-  <div class="links nextlinks">
+  <nav class="prevnext"><div class="inner">
     <xsl:if test="$prev">
-      <a class="nextlinks-prev">
+      <a>
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
             <xsl:if test="position() != last()">
@@ -104,7 +104,7 @@ REMARK: Describe this module
       </a>
     </xsl:if>
     <xsl:if test="$next">
-      <a class="nextlinks-next">
+      <a>
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
             <xsl:if test="position() != last()">
@@ -125,7 +125,7 @@ REMARK: Describe this module
         </xsl:call-template>
       </a>
     </xsl:if>
-  </div>
+  </div></nav>
 </xsl:template>
 
 
@@ -350,9 +350,11 @@ REMARK: Describe this module
   <div class="region">
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:call-template name="dita2html.links.topic">
-      <xsl:with-param name="source" select="."/>
-    </xsl:call-template>
+    <div class="contents">
+      <xsl:call-template name="dita2html.links.topic">
+        <xsl:with-param name="source" select="."/>
+      </xsl:call-template>
+    </div>
   </div>
   <xsl:call-template name="dita2html.links.prevnext"/>
   <div class="clear"/>
@@ -569,11 +571,13 @@ div.dita-object > div.desc {
       </span>
     </xsl:element>
   </div>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;">
-    <xsl:with-param name="topicref" select="$topicref"/>
-  </xsl:apply-templates>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic_all;"/>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
+  <div class="region">
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;">
+      <xsl:with-param name="topicref" select="$topicref"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic_all;"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
+  </div>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
@@ -584,12 +588,10 @@ div.dita-object > div.desc {
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
-      <xsl:with-param name="class" select="'region'"/>
+      <xsl:with-param name="class" select="'contents'"/>
     </xsl:call-template>
-    <div class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
-    </div>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     <xsl:call-template name="dita2html.links.topic">
       <xsl:with-param name="source" select="$topicref"/>
     </xsl:call-template>
@@ -602,6 +604,7 @@ div.dita-object > div.desc {
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'links'"/>
     </xsl:call-template>
+    <div class="inner">
     <div class="hgroup"/>
     <div class="contents">
       <div class="links">
@@ -615,6 +618,7 @@ div.dita-object > div.desc {
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 </xsl:template>
