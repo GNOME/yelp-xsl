@@ -156,7 +156,8 @@ and "Next", although the actual page titles are used for tooltips.
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$next_id != ''">
+    <xsl:choose>
+    <xsl:when test="$next_id != ''">
       <a>
         <xsl:attribute name="href">
           <xsl:call-template name="db.xref.target">
@@ -174,7 +175,15 @@ and "Next", although the actual page titles are used for tooltips.
           <xsl:with-param name="msgid" select="'Next'"/>
         </xsl:call-template>
       </a>
-    </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <span>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </span>
+    </xsl:otherwise>
+    </xsl:choose>
   </div></nav>
 </xsl:template>
 

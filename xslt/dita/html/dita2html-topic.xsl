@@ -103,7 +103,8 @@ REMARK: Describe this module
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$next">
+    <xsl:choose>
+    <xsl:when test="$next">
       <a>
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
@@ -124,7 +125,15 @@ REMARK: Describe this module
           <xsl:with-param name="msgid" select="'Next'"/>
         </xsl:call-template>
       </a>
-    </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <span>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </span>
+    </xsl:otherwise>
+    </xsl:choose>
   </div></nav>
 </xsl:template>
 

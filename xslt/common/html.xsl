@@ -1072,7 +1072,7 @@ div.sectionlinks div.sectionlinks li {
 nav.prevnext { clear: both; }
 div.region > nav.prevnext, div.region + nav.prevnext { margin-top: 1em; }
 nav.prevnext > div.inner { float: </xsl:text><xsl:value-of select="$right"/><xsl:text>; }
-nav.prevnext a {
+nav.prevnext > div.inner > * {
   background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   display: inline-block;
   position: relative;
@@ -1081,12 +1081,15 @@ nav.prevnext a {
   margin-bottom: 1em;
   border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
 }
-nav.prevnext a + a { border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: none; }
-nav.prevnext a:first-child {
+nav.prevnext > div.inner > span { visibility: hidden; }
+nav.prevnext > div.inner > a + a {
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: none;
+}
+nav.prevnext > div.inner > a:first-child {
   border-top-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
   border-bottom-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
 }
-nav.prevnext a:last-child {
+nav.prevnext > div.inner > a:last-of-type {
   border-top-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
   border-bottom-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
 }
@@ -2458,7 +2461,6 @@ This mode is called by *{html.syntax.class} on source elements that may have
 syntax highlighted. This template should be implemented by importing stylesheets.
 It should return a simple language identifier.
 -->
-<xsl:template mode="html.syntax.class.mode" select="*"/>
-
+<xsl:template mode="html.syntax.class.mode" match="*"/>
 
 </xsl:stylesheet>

@@ -431,7 +431,6 @@ calling functions in !{mal2html-page}.
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
     <xsl:if test="$prev or $next">
-      <!-- FIXME: Get prev/next links in constant position -->
       <nav class="prevnext"><div class="inner">
         <xsl:if test="$prev">
           <a>
@@ -454,7 +453,8 @@ calling functions in !{mal2html-page}.
             </xsl:for-each>
           </a>
         </xsl:if>
-        <xsl:if test="$next">
+        <xsl:choose>
+        <xsl:when test="$next">
           <a>
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
@@ -474,7 +474,17 @@ calling functions in !{mal2html-page}.
               </xsl:call-template>
             </xsl:for-each>
           </a>
-        </xsl:if>
+        </xsl:when>
+        <xsl:otherwise>
+          <span>
+            <xsl:for-each select="$page">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Next'"/>
+              </xsl:call-template>
+            </xsl:for-each>
+          </span>
+        </xsl:otherwise>
+        </xsl:choose>
       </div></nav>
     </xsl:if>
   </xsl:for-each>
