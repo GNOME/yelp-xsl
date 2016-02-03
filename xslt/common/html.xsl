@@ -1498,21 +1498,31 @@ div.yelp-data { display: none; }
 .ui-expander > div.inner > div.title span.title:before,
 .ui-expander > div.inner > div.hgroup span.title:before {
   font-weight: bold;
-  content: "‹";
+  content: "⌃";
   display: inline-block;
+  margin: 0;
   color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
-  transform: translateY(-0.1em) rotate(90deg);
-  -webkit-transform: translateY(-0.1em) rotate(90deg);
+  transform: translateY(0.2em) rotate(0deg);
+  -webkit-transform: translateY(0.2em) rotate(0deg);
   transition: transform 0.2s linear;
+  transform-origin: 50% 30%;
+  -webkit-transform-origin: 50% 30%;
   -webkit-transition: -webkit-transform 0.2s linear;
   margin: 0 0.2em;
 }
 .ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
 .ui-expander-e > div.inner > div.title span.title:before,
-.ui-expander-e > div.inner > div.hgroup span.title:before {
-  transform: translateY(-0.1em) rotate(270deg);
-  -webkit-transform: translateY(-0.1em) rotate(270deg);
-}
+.ui-expander-e > div.inner > div.hgroup span.title:before {</xsl:text>
+<xsl:choose>
+<xsl:when test="$direction = 'rtl'">
+  transform: translateY(0.2em) rotate(-180deg);
+  -webkit-transform: translateY(0.2em) rotate(-180deg);
+</xsl:when>
+<xsl:otherwise>
+  transform: translateY(0.2em) rotate(180deg);
+  -webkit-transform: translateY(0.2em) rotate(180deg);
+</xsl:otherwise>
+</xsl:choose><xsl:text>}
 .ui-expander > div.inner > div.title:hover,
 .ui-expander > div.inner > div.hgroup:hover * {
   color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
