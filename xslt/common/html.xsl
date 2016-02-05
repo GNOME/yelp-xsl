@@ -1422,23 +1422,38 @@ div.media-controls {
   border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
-  -moz-border-bottom-left-radius: 4px;
-  -moz-border-bottom-right-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -webkit-border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.media-audio div.media-controls {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+div.media-controls > * {
+  flex: 0 1 auto;
+}
+div.media-controls > input.media-range {
+  flex: 1 0 auto;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+  margin: 0 10px;
+-webkit-appearance: none;
+}
+input.media-range::-webkit-slider-runnable-track {
+  height: 8px;
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+  border-radius: 2px;
 }
 div.media-controls-audio {
   border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 button.media-play {
   height: 24px;
   padding: 0 2px 0 2px; line-height: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: none;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
@@ -1448,14 +1463,7 @@ button.media-play:hover, button.media-play:focus {
   background-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 button.media-play canvas { margin: 0; }
-div.media-range {
-  display: inline-block;
-  margin: 2px 8px 0 8px;
-  padding: 0;
-  height: 20px;
-}
 div.media-time {
-  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   margin: 0;
   font-size: 16px;
   height: 24px;
@@ -1873,7 +1881,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   window.addEventListener('hashchange', yelp_hash_highlight, false);
   yelp_hash_highlight();
-});
+}, false);
 </xsl:text>
 </xsl:template>
 
@@ -1989,7 +1997,7 @@ function yelp_ui_expander_init (expander) {
     }
   };
   expander.yelp_ui_expander_toggle = ui_expander_toggle;
-  title.addEventListener('click', ui_expander_toggle);
+  title.addEventListener('click', ui_expander_toggle, false);
   ui_expander_toggle();
 }
 document.addEventListener('DOMContentLoaded', function() {
@@ -2152,31 +2160,50 @@ $(document).ready(function () {
   yelp_resize_imgs();
   $(window).bind('resize', yelp_resize_imgs);
 });
-function yelp_init_video (element) {
-  var video = $(element);
-  video.removeAttr('controls');
+function yelp_media_init (media) {
+  media.removeAttribute('controls');
+  media.addEventListener('click', function () {
+    if (media.paused)
+      media.play();
+    else
+      media.pause();
+  }, false);
 
-  var controls = $('<div class="media-controls media-controls-' + element.nodeName + '"></div>');
-  var playControl = $('<button class="media-play"></button>').attr({
-    'data-play-label': video.attr('data-play-label'),
-    'data-pause-label': video.attr('data-pause-label'),
-    'value': video.attr('data-play-label')
-  });
-  var playCanvas = $('<canvas width="20" height="20"></canvas>');
-  playControl.append(playCanvas);
-  var rangeCanvas = $('<canvas width="104" height="20"></canvas>');
-  var rangeCanvasCtxt = rangeCanvas[0].getContext('2d');
-  rangeCanvasCtxt.strokeStyle = yelp_color_gray_border;
-  rangeCanvasCtxt.strokeWidth = 1;
-  rangeCanvasCtxt.strokeRect(0.5, 0.5, 103, 19);
-  var currentSpan = $('<span class="media-current">0:00</span>');
-  var durationSpan = $('<span class="media-duration">-:--</span>');
-  controls.append(playControl,
-                  $('<div class="media-range"></div>').append(rangeCanvas),
-                  $('<div class="media-time"></div>').append(currentSpan, durationSpan));
-  video.after(controls);
+  var controls = document.createElement('div');
+  controls.className = 'media-controls media-controls-' + media.nodeName;
+  media.parentNode.insertBefore(controls, media.nextSibling);
 
-  var playCanvasCtxt = playCanvas[0].getContext('2d');
+  var playControl = document.createElement('button');
+  playControl.className = 'media-play';
+  playControl.setAttribute('data-play-label', media.getAttribute('data-play-label'));
+  playControl.setAttribute('data-pause-label', media.getAttribute('data-pause-label'));
+  playControl.setAttribute('value', media.getAttribute('data-play-label'));
+  controls.appendChild(playControl);
+
+  var playCanvas = document.createElement('canvas');
+  playCanvas.setAttribute('width', '20');
+  playCanvas.setAttribute('height', '20');
+  playControl.appendChild(playCanvas);
+
+  var rangeControl = document.createElement('input');
+  rangeControl.className = 'media-range'
+  rangeControl.setAttribute('type', 'range');
+  rangeControl.value = 0;
+  controls.appendChild(rangeControl);
+
+  var curSpan = document.createElement('span');
+  curSpan.className = 'media-current';
+  curSpan.textContent = '0:00';
+  var durSpan = document.createElement('span');
+  durSpan.className = 'media-duration';
+  durSpan.textContent = '-:--';
+  var timeDiv = document.createElement('div');
+  timeDiv.className = 'media-time';
+  timeDiv.appendChild(curSpan);
+  timeDiv.appendChild(durSpan);
+  controls.appendChild(timeDiv);
+
+  var playCanvasCtxt = playCanvas.getContext('2d');
   var paintPlayButton = function () {
     playCanvasCtxt.fillStyle = yelp_color_gray_background;
     playCanvasCtxt.clearRect(0, 0, 20, 20);
@@ -2199,79 +2226,87 @@ function yelp_init_video (element) {
   }
   paintPlayButton();
 
-  var video_el = video[0];
   var mediaChange = function () {
-    if (video_el.ended)
-      video_el.pause()
-    if (video_el.paused) {
-      playControl.attr('value', playControl.attr('data-play-label'));
+    if (media.ended)
+      media.pause()
+    if (media.paused) {
+      playControl.setAttribute('value', playControl.getAttribute('data-play-label'));
       paintPlayButton();
     }
     else {
-      playControl.attr('value', playControl.attr('data-pause-label'));
+      playControl.setAttribute('value', playControl.getAttribute('data-pause-label'));
       paintPauseButton();
     }
   }
-  video_el.addEventListener('play', mediaChange, false);
-  video_el.addEventListener('pause', mediaChange, false);
-  video_el.addEventListener('ended', mediaChange, false);
-
-  var playClick = function () {
-    if (video_el.paused || video_el.ended)
-      video_el.play();
+  media.addEventListener('play', mediaChange, false);
+  media.addEventListener('pause', mediaChange, false);
+  media.addEventListener('ended', mediaChange, false);
+  playControl.addEventListener('click', function () {
+    if (media.paused || media.ended)
+      media.play();
     else
-      video_el.pause();
-  };
-  playControl.click(playClick);
+      media.pause();
+  }, false);
 
-  var ttmlDiv = video.parent().children('div.media-ttml');
-  var ttmlNodes = ttmlDiv.find('.media-ttml-node');
+  var ttmlDiv = null;
+  var ttmlNodes = null;
+  for (var i = 0; i < media.parentNode.children.length; i++) {
+    var child = media.parentNode.children[i];
+    if (child.classList.contains('media-ttml'))
+      ttmlDiv = child;
+  }
+  if (ttmlDiv != null) {
+    ttmlNodes = ttmlDiv.querySelectorAll('.media-ttml-node');
+  }
 
   var timeUpdate = function () {
-    var pct = (element.currentTime / element.duration) * 100;
-    rangeCanvasCtxt.fillStyle = yelp_color_gray_border;
-    rangeCanvasCtxt.clearRect(2, 2, 100, 16);
-    rangeCanvasCtxt.fillRect(2, 2, pct, 16);
-    var mins = parseInt(element.currentTime / 60);
-    var secs = parseInt(element.currentTime - (60 * mins))
-    currentSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
-    ttmlNodes.each(function () {
-      var ttml = this;
-      if (element.currentTime >= parseFloat(ttml.getAttribute('data-ttml-begin')) &&
-          (!ttml.hasAttribute('data-ttml-end') ||
-           element.currentTime < parseFloat(ttml.getAttribute('data-ttml-end')) )) {
-        if (ttml.tagName == 'span' || ttml.tagName == 'SPAN')
-          ttml.style.display = 'inline';
-        else
-          ttml.style.display = 'block';
+    var pct = (media.currentTime / media.duration) * 100;
+    rangeControl.value = pct;
+    var mins = parseInt(media.currentTime / 60);
+    var secs = parseInt(media.currentTime - (60 * mins))
+    curSpan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    if (ttmlNodes != null) {
+      for (var i = 0; i < ttmlNodes.length; i++) {
+        var ttml = ttmlNodes[i];
+        if (media.currentTime >= parseFloat(ttml.getAttribute('data-ttml-begin')) &&
+            (!ttml.hasAttribute('data-ttml-end') ||
+             media.currentTime < parseFloat(ttml.getAttribute('data-ttml-end')) )) {
+          if (ttml.tagName == 'span' || ttml.tagName == 'SPAN')
+            ttml.style.display = 'inline';
+          else
+            ttml.style.display = 'block';
+        }
+        else {
+          ttml.style.display = 'none';
+        }
       }
-      else {
-        ttml.style.display = 'none';
-      }
-    });
-  };
-  element.addEventListener('timeupdate', timeUpdate, false);
-  var durationUpdate = function () {
-    if (!isNaN(element.duration)) {
-      mins = parseInt(element.duration / 60);
-      secs = parseInt(element.duration - (60 * mins));
-      durationSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
     }
   };
-  element.addEventListener('durationchange', durationUpdate, false);
+  media.addEventListener('timeupdate', timeUpdate, false);
+  var durationUpdate = function () {
+    if (!isNaN(media.duration)) {
+      mins = parseInt(media.duration / 60);
+      secs = parseInt(media.duration - (60 * mins));
+      durSpan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    }
+  };
+  media.addEventListener('durationchange', durationUpdate, false);
 
-  rangeCanvas.click(function (event) {
-    var pct = event.clientX - Math.floor(rangeCanvas.offset().left);
+  rangeControl.addEventListener('input', function () {
+    var pct = this.value;
     if (pct < 0)
       pct = 0;
     if (pct > 100)
       pct = 100;
-    element.currentTime = (pct / 100.0) * element.duration;
-  });
+    media.currentTime = (pct / 100.0) * media.duration;
+  }, false);
 };
-$(document).ready(function () {
-  $('video, audio').each(function () { yelp_init_video(this) });;
-});
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('video, audio');
+  for (var i = 0; i < matches.length; i++) {
+    yelp_media_init(matches[i]);
+  }
+}, false);
 ]]></xsl:text>
 </xsl:template>
 
