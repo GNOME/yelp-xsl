@@ -1437,15 +1437,40 @@ div.media-controls > * {
 div.media-controls > input.media-range {
   flex: 1 0 auto;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-  color: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
   margin: 0 10px;
--webkit-appearance: none;
+  -webkit-appearance: none;
 }
 input.media-range::-webkit-slider-runnable-track {
-  height: 8px;
-  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+  height: 4px;
+  background: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
   border-radius: 2px;
+}
+input.media-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  margin-top: -6px;
+}
+input.media-range::-webkit-slider-thumb:hover,
+input.media-range::-webkit-slider-thumb:focus {
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+}
+input.media-range::-moz-range-track {
+  height: 4px;
+  background: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+  border-radius: 2px;
+}
+input.media-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  margin-top: -6px;
 }
 div.media-controls-audio {
   border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
