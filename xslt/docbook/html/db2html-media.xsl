@@ -372,7 +372,14 @@ elements.
       <xsl:apply-templates select="mml:math"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="db2html.imagedata"/>
+      <div>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'media media-image'"/>
+        </xsl:call-template>
+        <div class="inner">
+          <xsl:call-template name="db2html.imagedata"/>
+        </div>
+      </div>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

@@ -1124,8 +1124,10 @@ div.example {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 div.example > div.inner > div.region > div.desc { font-style: italic; }
+div.figure img { max-width: 100%; }
 div.figure {
   display: inline-block;
+  max-width: 100%;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
   padding: 4px;
   color: </xsl:text>
@@ -1140,9 +1142,10 @@ div.figure {
     margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   }
 }
-div.figure > div.inner > a.zoom {
+a.figure-zoom {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
 }
+a.figure-zoom:hover { border-bottom: none; }
 div.figure > div.inner > div.region > div.contents {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
@@ -2070,121 +2073,116 @@ yelp_color_gray_background = ']]></xsl:text>
 <xsl:value-of select="$color.bg.gray"/><xsl:text><![CDATA[';
 yelp_color_gray_border = ']]></xsl:text>
 <xsl:value-of select="$color.gray"/><xsl:text><![CDATA[';
-yelp_paint_zoom = function (zoom, zoomed) {
-  var ctxt = zoom.children('canvas')[0].getContext('2d');
-  ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
-  ctxt.clearRect(0, 0, 10, 10);
-  ctxt.strokeRect(0.5, 0.5, 9, 9);
-  if (zoomed) {
-    ctxt.fillRect(1, 1, 9, 4);
-    ctxt.fillRect(5, 5, 4, 4);
-    zoom.attr('title', zoom.attr('data-zoom-out-title'));
-  }
-  else {
-    ctxt.fillRect(1, 5, 4, 4);
-    zoom.attr('title', zoom.attr('data-zoom-in-title'));
-  }
-}
-$.fn.yelp_auto_resize = function () {
-  var fig = $(this);
-  if (fig.is('img'))
-    fig = fig.parents('div.figure').eq(0);
-  if (fig.data('yelp-zoom-timeout') != undefined) {
-    clearInterval(fig.data('yelp-zoom-timeout'));
-    fig.removeData('yelp-zoom-timeout');
-  }
-  var imgs = fig.find('img');
-  for (var i = 0; i < imgs.length; i++) {
-    var img = $(imgs[i]);
-    if (img.data('yelp-load-bound') == true)
-      img.unbind('load', fig.yelp_auto_resize);
-    if (!imgs[i].complete) {
-      img.data('yelp-load-bound', true);
-      img.bind('load', fig.yelp_auto_resize);
-      return false;
-    }
-  }
-  $(window).unbind('resize', yelp_resize_imgs);
-  var zoom = fig.children('div.inner').children('a.zoom');
-  if (fig.find('div.contents:first').is(':hidden')) {
-    zoom.hide();
-    return;
-  }
-  for (var i = 0; i < imgs.length; i++) {
-    var img = $(imgs[i]);
-    if (img.data('yelp-original-width') == undefined) {
-      var iwidth = parseInt(img.attr('width'));
-      if (!iwidth)
-        iwidth = img[0].width;
-      img.data('yelp-original-width', iwidth);
-      var iheight = parseInt(img.attr('height'));
-      if (!iheight)
-        iheight = img[0].height * (iwidth / img[0].width);
-      img.data('yelp-original-height', iheight);
-    }
-    if (img.data('yelp-original-width') > img.parent().width()) {
-      if (img.data('yelp-zoomed') != true) {
-        img[0].width = img.parent().width();
-        img[0].height = (parseInt(img.data('yelp-original-height')) *
-                         img.width() / parseInt(img.data('yelp-original-width')));
-      }
-      zoom.show();
+function yelp_figure_init (figure) {
+  var zoom = figure.querySelector('a.figure-zoom');
+  var zoomCanvas = document.createElement('canvas');
+  zoomCanvas.setAttribute('width', '10');
+  zoomCanvas.setAttribute('height', '10');
+  zoom.setAttribute('data-yelp-zoomed', 'false');
+  zoom.appendChild(zoomCanvas);
+
+  var figure_resize = function () {
+    var zoomed = zoom.getAttribute('data-yelp-zoomed');
+    var ctxt = zoomCanvas.getContext('2d');
+    ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
+    ctxt.clearRect(0, 0, 10, 10);
+    ctxt.strokeRect(0.5, 0.5, 9, 9);
+    if (zoomed == 'true') {
+      ctxt.fillRect(1, 1, 9, 4);
+      ctxt.fillRect(5, 5, 4, 4);
+      zoom.setAttribute('title', zoom.getAttribute('data-zoom-out-title'));
     }
     else {
-      img[0].width = img.data('yelp-original-width');
-      img[0].height = img.data('yelp-original-height');
-      zoom.hide();
+      ctxt.fillRect(1, 5, 4, 4);
+      zoom.setAttribute('title', zoom.getAttribute('data-zoom-in-title'));
+    }
+    var imgs = figure.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      var mediaDiv = null;
+      for (var cur = img; cur instanceof Element; cur = cur.parentNode) {
+        if ((cur.nodeName == 'div' || cur.nodeName == 'DIV') &&
+            cur.classList.contains('media')) {
+          mediaDiv = cur;
+          break;
+        }
+      }
+      if (mediaDiv == null)
+        continue;
+      if (!img.hasAttribute('data-yelp-original-width')) {
+        var iwidth = null;
+        if (img.hasAttribute('width'))
+          iwidth = parseInt(img.getAttribute('width'));
+        else
+          iwidth = img.width;
+        img.setAttribute('data-yelp-original-width', iwidth);
+        var iheight = null;
+        if (img.hasAttribute('height'))
+          iheight = parseInt(img.getAttribute('height'));
+        else
+          iheight = img.height * (iwidth / img.width);
+        img.setAttribute('data-yelp-original-height', iheight);
+      }
+      var owidth = img.width;
+      var oheight = img.height;
+      img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+      img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+      var mediaw = mediaDiv.offsetWidth;
+      img.width = owidth;
+      img.height = oheight;
+      if (parseInt(img.getAttribute('data-yelp-original-width')) <= mediaw) {
+        img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+        img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+        zoom.style.display = 'none';
+      }
+      else if (zoomed == 'true') {
+        img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+        img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+        zoom.style.display = 'block';
+      }
+      else {
+        img.width = mediaw;
+        img.height = (parseInt(img.getAttribute('data-yelp-original-height')) *
+                      img.width /
+                      parseInt(img.getAttribute('data-yelp-original-width')));
+        zoom.style.display = 'block';
+      }
     }
   }
-  /* The image scaling above can cause the window to resize if it causes
-   * scrollbars to disappear or reapper. Unbind the resize handler before
-   * scaling the image. Don't rebind immediately, because we'll still get
-   * that resize event in an idle. Rebind on the callback instead.
-   */
-  var reresize = function () {
-    $(window).unbind('resize', reresize);
-    $(window).bind('resize', yelp_resize_imgs);
+  figure.yelp_figure_resize = figure_resize;
+  figure.yelp_figure_resize();
+
+  zoom.onclick = function (e) {
+    var zoomed = zoom.getAttribute('data-yelp-zoomed');
+    if (zoomed == 'true')
+      zoom.setAttribute('data-yelp-zoomed', 'false');
+    else
+      zoom.setAttribute('data-yelp-zoomed', 'true');
+    figure.yelp_figure_resize();
+    return false;
+  };
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var figures = document.querySelectorAll('div.figure');
+  for (var i = 0; i < figures.length; i++) {
+    if (figures[i].querySelector('img') != null)
+      yelp_figure_init(figures[i]);
   }
-  $(window).bind('resize', reresize);
-  return false;
-};
-yelp_resize_imgs = function () {
-  $('div.figure img').parents('div.figure').each(function () {
-    var div = $(this);
-    if (div.data('yelp-zoom-timeout') == undefined)
-      div.data('yelp-zoom-timeout', setTimeout(function () { div.yelp_auto_resize() }, 1));
-  });
-  return false;
-};
-$(document).ready(function () {
-  $('div.figure img').parents('div.figure').each(function () {
-    var fig = $(this);
-    var zoom = fig.children('div.inner').children('a.zoom');
-    zoom.append($('<canvas width="10" height="10"/>'));
-    yelp_paint_zoom(zoom, false);
-    zoom.data('yelp-zoomed', false);
-    zoom.click(function () {
-      var zoomed = !zoom.data('yelp-zoomed');
-      zoom.data('yelp-zoomed', zoomed);
-      zoom.parent().find('img').each(function () {
-        var zimg = $(this);
-        zimg.data('yelp-zoomed', zoomed);
-        if (zoomed) {
-          zimg[0].width = zimg.data('yelp-original-width');
-          zimg[0].height = zimg.data('yelp-original-height');
-        } else {
-          zimg[0].width = zimg.parent().width();
-          zimg[0].height = (parseInt(zimg.data('yelp-original-height')) *
-                            zimg.width() / parseInt(zimg.data('yelp-original-width')));
-        }
-        yelp_paint_zoom(zoom, zoomed);
-      });
-      return false;
-    });
-  });
-  yelp_resize_imgs();
-  $(window).bind('resize', yelp_resize_imgs);
-});
+  var timeout = null;
+  var yelp_figures_resize = function () {
+    if (timeout != null)
+      return;
+    timeout = window.setTimeout(function () {
+      for (var i = 0; i < figures.length; i++) {
+        if (figures[i].querySelector('img') != null)
+          figures[i].yelp_figure_resize();
+      }
+      window.clearTimeout(timeout);
+      timeout = null;
+    }, 100);
+  };
+  window.addEventListener('resize', yelp_figures_resize, false);
+}, false);
 function yelp_media_init (media) {
   media.removeAttribute('controls');
   media.addEventListener('click', function () {

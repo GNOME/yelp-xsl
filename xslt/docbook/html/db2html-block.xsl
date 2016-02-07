@@ -123,7 +123,7 @@ This template handles conditional processing.
     </xsl:call-template>
     <div class="inner">
       <xsl:if test="$node/self::figure or $node/self::db:figure">
-        <a href="#" class="zoom">
+        <a href="#" class="figure-zoom">
           <xsl:attribute name="data-zoom-in-title">
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="'View images at normal size'"/>

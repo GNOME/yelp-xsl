@@ -413,6 +413,20 @@ FIXME
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <div class="inner">
+      <xsl:if test="$style = 'figure'">
+        <a href="#" class="figure-zoom">
+          <xsl:attribute name="data-zoom-in-title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'View images at normal size'"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="data-zoom-out-title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Scale images down'"/>
+            </xsl:call-template>
+          </xsl:attribute>
+        </a>
+      </xsl:if>
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;"/>
       <div class="region">
         <xsl:if test="$style = 'listing'">

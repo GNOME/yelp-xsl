@@ -534,7 +534,7 @@ in accordance with the Mallard specification on fallback block content.
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data"/>
     <div class="inner">
-      <a href="#" class="zoom">
+      <a href="#" class="figure-zoom">
         <xsl:attribute name="data-zoom-in-title">
           <xsl:call-template name="l10n.gettext">
             <xsl:with-param name="msgid" select="'View images at normal size'"/>
