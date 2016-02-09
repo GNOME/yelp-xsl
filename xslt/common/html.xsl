@@ -2162,7 +2162,7 @@ function yelp_figure_init (figure) {
     return false;
   };
 }
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
   var figures = document.querySelectorAll('div.figure');
   for (var i = 0; i < figures.length; i++) {
     if (figures[i].querySelector('img') != null)
