@@ -48,18 +48,6 @@ mal.cache.id
 
 
 <!--**==========================================================================
-mal.cache.xref
--->
-<xsl:template name="mal.cache.xref">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="node_in"/>
-  <xsl:attribute name="xref">
-    <xsl:value-of select="$node/@xref"/>
-  </xsl:attribute>
-</xsl:template>
-
-
-<!--**==========================================================================
 mal.cache.info
 -->
 <xsl:template name="mal.cache.info">
@@ -68,21 +56,7 @@ mal.cache.info
   <xsl:param name="node_in"/>
   <info>
     <xsl:for-each select="$info/*">
-      <xsl:choose>
-        <xsl:when test="self::mal:link">
-          <link>
-            <xsl:call-template name="mal.cache.xref">
-              <xsl:with-param name="node_in" select="$node_in"/>
-            </xsl:call-template>
-            <xsl:for-each select="attribute::*[not(name(.) = 'xref')] | *">
-              <xsl:copy-of select="."/>
-            </xsl:for-each>
-          </link>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:copy-of select="."/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:copy-of select="."/>
     </xsl:for-each>
   </info>
 </xsl:template>
