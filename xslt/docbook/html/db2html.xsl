@@ -17,7 +17,8 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:mml="http://www.w3.org/1998/Math/MathML"
-                exclude-result-prefixes="html mml"
+                xmlns:svg="http://www.w3.org/2000/svg"
+                exclude-result-prefixes="html mml svg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -38,5 +39,6 @@ sets a namespace alias to output non-XML HTML. This stylesheet sets
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
 <xsl:namespace-alias stylesheet-prefix="mml" result-prefix="#default"/>
+<xsl:namespace-alias stylesheet-prefix="svg" result-prefix="#default"/>
 
 </xsl:stylesheet>

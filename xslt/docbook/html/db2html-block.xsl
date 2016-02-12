@@ -134,6 +134,8 @@ This template handles conditional processing.
               <xsl:with-param name="msgid" select="'Scale images down'"/>
             </xsl:call-template>
           </xsl:attribute>
+          <xsl:call-template name="icons.svg.figure.zoom.in"/>
+          <xsl:call-template name="icons.svg.figure.zoom.out"/>
         </a>
       </xsl:if>
       <xsl:if test="$title">

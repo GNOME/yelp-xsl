@@ -545,6 +545,8 @@ in accordance with the Mallard specification on fallback block content.
             <xsl:with-param name="msgid" select="'Scale images down'"/>
           </xsl:call-template>
         </xsl:attribute>
+        <xsl:call-template name="icons.svg.figure.zoom.in"/>
+        <xsl:call-template name="icons.svg.figure.zoom.out"/>
       </a>
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title[1]"/>
       <div class="region">

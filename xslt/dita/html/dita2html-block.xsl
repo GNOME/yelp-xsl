@@ -425,6 +425,8 @@ FIXME
               <xsl:with-param name="msgid" select="'Scale images down'"/>
             </xsl:call-template>
           </xsl:attribute>
+          <xsl:call-template name="icons.svg.figure.zoom.in"/>
+          <xsl:call-template name="icons.svg.figure.zoom.out"/>
         </a>
       </xsl:if>
       <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_title_all;"/>

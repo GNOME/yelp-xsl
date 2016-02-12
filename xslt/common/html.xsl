@@ -1021,6 +1021,12 @@ All parameters can be automatically computed if not provided.
     </xsl:call-template>
   </xsl:param>
   <xsl:text>
+.yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+}
+.yelp-svg-stroke {
+  stroke: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+}
 div.title {
   margin: 0 0 0.2em 0;
   font-weight: bold;
@@ -1124,11 +1130,12 @@ div.example {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 div.example > div.inner > div.region > div.desc { font-style: italic; }
-div.figure img { max-width: 100%; }
 div.figure {
   display: inline-block;
   max-width: 100%;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+}
+div.figure > div.inner {
   padding: 4px;
   color: </xsl:text>
     <xsl:value-of select="$color.fg.dark"/><xsl:text>;
@@ -1146,6 +1153,13 @@ a.figure-zoom {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
 }
 a.figure-zoom:hover { border-bottom: none; }
+a.figure-zoom:hover .yelp-svg-fill { fill: </xsl:text>
+  <xsl:value-of select="$color.blue"/><xsl:text>; }
+a.figure-zoom:hover .yelp-svg-stroke { stroke: </xsl:text>
+  <xsl:value-of select="$color.blue"/><xsl:text>; }
+a.figure-zoom .figure-zoom-out { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-in { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-out { display: inline-block; }
 div.figure > div.inner > div.region > div.contents {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
@@ -2075,27 +2089,9 @@ yelp_color_gray_border = ']]></xsl:text>
 <xsl:value-of select="$color.gray"/><xsl:text><![CDATA[';
 function yelp_figure_init (figure) {
   var zoom = figure.querySelector('a.figure-zoom');
-  var zoomCanvas = document.createElement('canvas');
-  zoomCanvas.setAttribute('width', '10');
-  zoomCanvas.setAttribute('height', '10');
-  zoom.setAttribute('data-yelp-zoomed', 'false');
-  zoom.appendChild(zoomCanvas);
 
   var figure_resize = function () {
-    var zoomed = zoom.getAttribute('data-yelp-zoomed');
-    var ctxt = zoomCanvas.getContext('2d');
-    ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
-    ctxt.clearRect(0, 0, 10, 10);
-    ctxt.strokeRect(0.5, 0.5, 9, 9);
-    if (zoomed == 'true') {
-      ctxt.fillRect(1, 1, 9, 4);
-      ctxt.fillRect(5, 5, 4, 4);
-      zoom.setAttribute('title', zoom.getAttribute('data-zoom-out-title'));
-    }
-    else {
-      ctxt.fillRect(1, 5, 4, 4);
-      zoom.setAttribute('title', zoom.getAttribute('data-zoom-in-title'));
-    }
+    var zoomed = zoom.classList.contains('figure-zoomed');
     var imgs = figure.querySelectorAll('img');
     for (var i = 0; i < imgs.length; i++) {
       var img = imgs[i];
@@ -2135,7 +2131,7 @@ function yelp_figure_init (figure) {
         img.height = parseInt(img.getAttribute('data-yelp-original-height'));
         zoom.style.display = 'none';
       }
-      else if (zoomed == 'true') {
+      else if (zoomed) {
         img.width = parseInt(img.getAttribute('data-yelp-original-width'));
         img.height = parseInt(img.getAttribute('data-yelp-original-height'));
         zoom.style.display = 'block';
@@ -2153,11 +2149,11 @@ function yelp_figure_init (figure) {
   figure.yelp_figure_resize();
 
   zoom.onclick = function (e) {
-    var zoomed = zoom.getAttribute('data-yelp-zoomed');
-    if (zoomed == 'true')
-      zoom.setAttribute('data-yelp-zoomed', 'false');
+    var zoomed = zoom.classList.contains('figure-zoomed');
+    if (zoomed)
+      zoom.classList.remove('figure-zoomed');
     else
-      zoom.setAttribute('data-yelp-zoomed', 'true');
+      zoom.classList.add('figure-zoomed');
     figure.yelp_figure_resize();
     return false;
   };

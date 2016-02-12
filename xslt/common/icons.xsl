@@ -15,12 +15,12 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:svg="http://www.w3.org/2000/svg"
                 version="1.0">
 
 <!--!!==========================================================================
 Icons
 Specify common named icons to style output.
-:Requires: l10n
 :Revision:version="1.0" date="2010-05-25" status="final"
 
 This stylesheet provides a common interface to specify icons for transformations
@@ -124,5 +124,52 @@ This parameters still affects the size of that character.
 -->
 <xsl:param name="icons.size.quote" select="48"/>
 
+
+
+
+<!--**==========================================================================
+icons.svg.figure.zoom.in
+Output an #{svg} element for a figure zoom-in icon.
+:Revision: version="3.20" date="2016-02-11" status="final"
+
+This template outputs an SVG #{svg} element with the zoom-in icon for figures.
+Figures automatically scale images down. This icon shows them at their original
+size.
+
+SVG icons can use CSS class names to pick up colors from the !{colors} module.
+By default, this icon uses the #{yelp-svg-stroke} and #{yelp-svg-fill} class
+names.
+-->
+<xsl:template name="icons.svg.figure.zoom.in">
+  <svg:svg width="10" height="10" class="figure-zoom-in">
+    <svg:rect x="0.5" y="0.5" width="9" height="9"
+              class="yelp-svg-stroke" stroke-width="1" fill="none"/>
+    <svg:rect x="0" y="5" width="5" height="5"
+              class="yelp-svg-fill"/>
+  </svg:svg>
+</xsl:template>
+
+
+<!--**==========================================================================
+icons.svg.figure.zoom.out
+Output an #{svg} element for a figure zoom-out icon.
+:Revision: version="3.20" date="2016-02-11" status="final"
+
+This template outputs an SVG #{svg} element with the zoom-in icon for figures.
+Figures automatically scale images down. This icon scales them back down after
+they have been zoomed.
+
+SVG icons can use CSS class names to pick up colors from the !{colors} module.
+By default, this icon uses the #{yelp-svg-stroke} and #{yelp-svg-fill} class
+names.
+-->
+<xsl:template name="icons.svg.figure.zoom.out">
+  <svg:svg width="10" height="10" class="figure-zoom-out">
+    <svg:rect x="0.5" y="0.5" width="9" height="9"
+              class="yelp-svg-stroke" stroke-width="1" fill="none"/>
+    <svg:polygon points="0,0 10,0 10,10 5,10 5,5 10,5 0,5"
+                 class="yelp-svg-fill"/>
+  </svg:svg>
+</xsl:template>
 
 </xsl:stylesheet>
