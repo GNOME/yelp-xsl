@@ -172,4 +172,39 @@ names.
   </svg:svg>
 </xsl:template>
 
+
+<!--**==========================================================================
+icons.svg.media.play
+Output an #{svg} element for a figure zoom-out icon.
+:Revision: version="3.20" date="2016-02-12" status="final"
+
+This template outputs an SVG #{svg} element with a play icon for media controls.
+
+SVG icons can use CSS class names to pick up colors from the !{colors} module.
+By default, this icon uses the #{yelp-svg-fill} class name.
+-->
+<xsl:template name="icons.svg.media.play">
+  <svg:svg width="20" height="20" class="media-play">
+    <svg:polygon points="5,4 5,16 15,10" class="yelp-svg-fill"/>
+  </svg:svg>
+</xsl:template>
+
+
+<!--**==========================================================================
+icons.svg.media.pause
+Output an #{svg} element for a figure zoom-out icon.
+:Revision: version="3.20" date="2016-02-12" status="final"
+
+This template outputs an SVG #{svg} element with a pause icon for media controls.
+
+SVG icons can use CSS class names to pick up colors from the !{colors} module.
+By default, this icon uses the #{yelp-svg-fill} class name.
+-->
+<xsl:template name="icons.svg.media.pause">
+  <svg:svg width="20" height="20" class="media-pause">
+    <svg:rect x="4" y="4" width="4" height="12" class="yelp-svg-fill"/>
+    <svg:rect x="12" y="4" width="4" height="12" class="yelp-svg-fill"/>
+  </svg:svg>
+</xsl:template>
+
 </xsl:stylesheet>

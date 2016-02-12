@@ -108,7 +108,7 @@ HTML #{video} element.
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <video src="{$node/@src}" preload="auto" controls="controls">
+  <video src="{$node/@src}" preload="auto">
     <xsl:attribute name="class">
       <xsl:text>media </xsl:text>
       <xsl:choose>
@@ -129,16 +129,6 @@ HTML #{video} element.
         <xsl:value-of select="$poster[1]/@src"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:attribute name="data-play-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Play'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="data-pause-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Pause'"/>
-      </xsl:call-template>
-    </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$inline">
         <xsl:apply-templates mode="mal2html.inline.mode" select="$node/node()"/>
@@ -148,6 +138,9 @@ HTML #{video} element.
       </xsl:otherwise>
     </xsl:choose>
   </video>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'video'"/>
+  </xsl:call-template>
   <xsl:if test="not($inline)">
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>
   </xsl:if>
@@ -169,7 +162,7 @@ in the source to the #{audio} element's fallback content. If ${inline} is
 <xsl:template name="mal2html.media.audio">
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
-  <audio src="{$node/@src}" preload="auto" controls="controls">
+  <audio src="{$node/@src}" preload="auto">
     <xsl:attribute name="class">
       <xsl:text>media </xsl:text>
       <xsl:choose>
@@ -200,6 +193,9 @@ in the source to the #{audio} element's fallback content. If ${inline} is
       </xsl:otherwise>
     </xsl:choose>
   </audio>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'audio'"/>
+  </xsl:call-template>
   <xsl:if test="not($inline)">
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>
   </xsl:if>

@@ -1430,7 +1430,7 @@ span.var { font-style: italic; }
 span.media-audio, span.media-video { display: inline-block; }
 audio, video { display: block; margin: 0; }
 div.media > div.inner { display: inline-block; text-align: center; }
-div.media-controls {
+.media-controls {
   min-width: 24em;
   height: 24px;
   margin: 0; padding: 0;
@@ -1444,14 +1444,14 @@ div.media-controls {
   display: flex;
   align-items: center;
 }
-.media-audio div.media-controls {
+.media-audio .media-controls {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-div.media-controls > * {
+.media-controls > * {
   flex: 0 1 auto;
 }
-div.media-controls > input.media-range {
+.media-controls > input.media-range {
   flex: 1 0 auto;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   margin: 0 10px;
@@ -1489,7 +1489,7 @@ input.media-range::-moz-range-thumb {
   border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   margin-top: -6px;
 }
-div.media-controls-audio {
+.media-controls-audio {
   border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
   border-radius: 4px;
 }
@@ -1504,17 +1504,21 @@ button.media-play {
 button.media-play:hover, button.media-play:focus {
   background-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
-button.media-play canvas { margin: 0; }
-div.media-time {
+button.media-play .yelp-svg-fill { fill: </xsl:text>
+  <xsl:value-of select="$color.bg.gray"/><xsl:text>; }
+button.media-play .media-pause { display: none; }
+button.media-play-playing .media-play { display: none; }
+button.media-play-playing .media-pause { display: inline; }
+.media-time {
   margin: 0;
   font-size: 16px;
   height: 24px;
   line-height: 24px;
 }
-div.media-time > span {
+.media-time > span {
   padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 8px;
 }
-span.media-duration {
+.media-duration {
   font-size: 12px;
   color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
   opacity: 0.8;
@@ -2188,84 +2192,60 @@ function yelp_media_init (media) {
       media.pause();
   }, false);
 
-  var controls = document.createElement('div');
-  controls.className = 'media-controls media-controls-' + media.nodeName;
-  media.parentNode.insertBefore(controls, media.nextSibling);
-
-  var playControl = document.createElement('button');
-  playControl.className = 'media-play';
-  playControl.setAttribute('data-play-label', media.getAttribute('data-play-label'));
-  playControl.setAttribute('data-pause-label', media.getAttribute('data-pause-label'));
-  playControl.setAttribute('value', media.getAttribute('data-play-label'));
-  controls.appendChild(playControl);
-
-  var playCanvas = document.createElement('canvas');
-  playCanvas.setAttribute('width', '20');
-  playCanvas.setAttribute('height', '20');
-  playControl.appendChild(playCanvas);
-
-  var rangeControl = document.createElement('input');
-  rangeControl.className = 'media-range'
-  rangeControl.setAttribute('type', 'range');
-  rangeControl.value = 0;
-  controls.appendChild(rangeControl);
-
-  var curSpan = document.createElement('span');
-  curSpan.className = 'media-current';
-  curSpan.textContent = '0:00';
-  var durSpan = document.createElement('span');
-  durSpan.className = 'media-duration';
-  durSpan.textContent = '-:--';
-  var timeDiv = document.createElement('div');
-  timeDiv.className = 'media-time';
-  timeDiv.appendChild(curSpan);
-  timeDiv.appendChild(durSpan);
-  controls.appendChild(timeDiv);
-
-  var playCanvasCtxt = playCanvas.getContext('2d');
-  var paintPlayButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_gray_background;
-    playCanvasCtxt.clearRect(0, 0, 20, 20);
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(15, 10); playCanvasCtxt.lineTo(5, 5);
-    playCanvasCtxt.fill();
-  }
-  var paintPauseButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_gray_background;
-    playCanvasCtxt.clearRect(0, 0, 20, 20);
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(9, 5);
-    playCanvasCtxt.lineTo(9, 15);  playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(5, 5);   playCanvasCtxt.fill();
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(11, 5);  playCanvasCtxt.lineTo(15, 5);
-    playCanvasCtxt.lineTo(15, 15); playCanvasCtxt.lineTo(11, 15);
-    playCanvasCtxt.lineTo(11, 5);  playCanvasCtxt.fill();
-  }
-  paintPlayButton();
-
-  var mediaChange = function () {
-    if (media.ended)
-      media.pause()
-    if (media.paused) {
-      playControl.setAttribute('value', playControl.getAttribute('data-play-label'));
-      paintPlayButton();
-    }
-    else {
-      playControl.setAttribute('value', playControl.getAttribute('data-pause-label'));
-      paintPauseButton();
+  var controls = null;
+  for (var cur = media.nextSibling; cur instanceof Element; cur = cur.nextSibling) {
+    if (cur.classList.contains('media-controls')) {
+      controls = cur;
+      break;
     }
   }
-  media.addEventListener('play', mediaChange, false);
-  media.addEventListener('pause', mediaChange, false);
-  media.addEventListener('ended', mediaChange, false);
-  playControl.addEventListener('click', function () {
+  if (controls == null) {
+    media.setAttribute('controls', 'controls');
+    return;
+  }
+  var playbutton = controls.querySelector('button.media-play');
+  playbutton.addEventListener('click', function () {
     if (media.paused || media.ended)
       media.play();
     else
       media.pause();
   }, false);
+
+  var mediachange = function () {
+    if (media.ended)
+      media.pause()
+    if (media.paused) {
+      playbutton.setAttribute('value', playbutton.getAttribute('data-play-label'));
+      playbutton.classList.remove('media-play-playing');
+    }
+    else {
+      playbutton.setAttribute('value', playbutton.getAttribute('data-pause-label'));
+      playbutton.classList.add('media-play-playing');
+    }
+  }
+  media.addEventListener('play', mediachange, false);
+  media.addEventListener('pause', mediachange, false);
+  media.addEventListener('ended', mediachange, false);
+
+  var mediarange = controls.querySelector('input.media-range');
+  mediarange.addEventListener('input', function () {
+    var pct = this.value;
+    if (pct < 0)
+      pct = 0;
+    if (pct > 100)
+      pct = 100;
+    media.currentTime = (pct / 100.0) * media.duration;
+  }, false);
+  var curspan = controls.querySelector('span.media-current');
+  var durspan = controls.querySelector('span.media-duration');
+  var durationUpdate = function () {
+    if (!isNaN(media.duration)) {
+      mins = parseInt(media.duration / 60);
+      secs = parseInt(media.duration - (60 * mins));
+      durspan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    }
+  };
+  media.addEventListener('durationchange', durationUpdate, false);
 
   var ttmlDiv = null;
   var ttmlNodes = null;
@@ -2280,10 +2260,10 @@ function yelp_media_init (media) {
 
   var timeUpdate = function () {
     var pct = (media.currentTime / media.duration) * 100;
-    rangeControl.value = pct;
+    mediarange.value = pct;
     var mins = parseInt(media.currentTime / 60);
     var secs = parseInt(media.currentTime - (60 * mins))
-    curSpan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    curspan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
     if (ttmlNodes != null) {
       for (var i = 0; i < ttmlNodes.length; i++) {
         var ttml = ttmlNodes[i];
@@ -2302,23 +2282,6 @@ function yelp_media_init (media) {
     }
   };
   media.addEventListener('timeupdate', timeUpdate, false);
-  var durationUpdate = function () {
-    if (!isNaN(media.duration)) {
-      mins = parseInt(media.duration / 60);
-      secs = parseInt(media.duration - (60 * mins));
-      durSpan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
-    }
-  };
-  media.addEventListener('durationchange', durationUpdate, false);
-
-  rangeControl.addEventListener('input', function () {
-    var pct = this.value;
-    if (pct < 0)
-      pct = 0;
-    if (pct > 100)
-      pct = 100;
-    media.currentTime = (pct / 100.0) * media.duration;
-  }, false);
 };
 document.addEventListener('DOMContentLoaded', function() {
   var matches = document.querySelectorAll('video, audio');
@@ -2526,5 +2489,45 @@ syntax highlighted. This template should be implemented by importing stylesheets
 It should return a simple language identifier.
 -->
 <xsl:template mode="html.syntax.class.mode" match="*"/>
+
+
+<!--**==========================================================================
+html.media.controls
+Output media controls for a video or audio object.
+:Revision:version="3.20" date="2016-02-12" status="final"
+
+This template outputs HTML containing controls for a media play for audio or
+video HTML elements. To work with the built-in JavaScript binding code, it
+should be placed immediately after the #{audio} or #{video} element.
+-->
+<xsl:template name="html.media.controls">
+  <xsl:param name="type" select="'video'"/>
+  <span class="media-controls media-controls-{$type}">
+    <button class="media-play">
+      <xsl:attribute name="data-play-label">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Play'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="data-pause-label">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Pause'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="value">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Play'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:call-template name="icons.svg.media.play"/>
+      <xsl:call-template name="icons.svg.media.pause"/>
+    </button>
+    <input type="range" class="media-range" value="0"/>
+    <span class="media-time">
+      <span class="media-current">0:00</span>
+      <span class="media-duration">-:--</span>
+    </span>
+  </span>
+</xsl:template>
 
 </xsl:stylesheet>

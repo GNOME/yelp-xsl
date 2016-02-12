@@ -50,7 +50,7 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
                                       $node/ancestor::db:mediaobject[1] |
                                       $node/ancestor::db:inlinemediaobject[1]
                                      )[last()]"/>
-  <audio preload="auto" controls="controls">
+  <audio preload="auto">
     <xsl:attribute name="src">
       <xsl:choose>
         <xsl:when test="$node/@fileref">
@@ -75,6 +75,9 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
   </audio>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'audio'"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -160,7 +163,7 @@ attribute on the HTML #{video} element. This template calls
                                       $node/ancestor::db:mediaobject[1] |
                                       $node/ancestor::db:inlinemediaobject[1]
                                      )[last()]"/>
-  <video preload="auto" controls="controls">
+  <video preload="auto">
     <xsl:attribute name="src">
       <xsl:choose>
         <xsl:when test="$node/@fileref">
@@ -210,6 +213,9 @@ attribute on the HTML #{video} element. This template calls
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
   </video>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'video'"/>
+  </xsl:call-template>
 </xsl:template>
 
 
