@@ -1,3 +1,29 @@
+3.19.90
+=======
+* Move linktrails stubs to common for all source formats to use
+* Allow Mallard example to be a formal element with title
+* Added html.js.script template for easier site overrides
+* Don't force xref attributes on links in Mallard cache
+* Updated translations:
+  et    (Piotr Drąg)
+  hi    (Piotr Drąg)
+  is    (Sveinn í Felli)
+  km    (Piotr Drąg)
+  pt    (Piotr Drąg)
+  si    (Piotr Drąg)
+  sl    (Piotr Drąg)
+
+3.18.1
+======
+* Fixed broken selector entity in DocBook chunker (Robert Harris)
+* Fixed various translations (Piotr Drąg)
+
+3.18.0
+======
+* Updated translations:
+  zh_TW (Chao-Hsiung Liao)
+  pl    (Piotr Drąg)
+
 3.17.90
 =======
 * Updated localization templates, removing unused code
