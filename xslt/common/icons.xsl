@@ -130,7 +130,7 @@ This parameters still affects the size of that character.
 <!--**==========================================================================
 icons.svg.figure.zoom.in
 Output an #{svg} element for a figure zoom-in icon.
-:Revision: version="3.20" date="2016-02-11" status="final"
+:Revision: version="3.22" date="2016-02-11" status="final"
 
 This template outputs an SVG #{svg} element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon shows them at their original
@@ -153,7 +153,7 @@ names.
 <!--**==========================================================================
 icons.svg.figure.zoom.out
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.20" date="2016-02-11" status="final"
+:Revision: version="3.22" date="2016-02-11" status="final"
 
 This template outputs an SVG #{svg} element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon scales them back down after
@@ -176,7 +176,7 @@ names.
 <!--**==========================================================================
 icons.svg.media.play
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.20" date="2016-02-12" status="final"
+:Revision: version="3.22" date="2016-02-12" status="final"
 
 This template outputs an SVG #{svg} element with a play icon for media controls.
 
@@ -193,7 +193,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.media.pause
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.20" date="2016-02-12" status="final"
+:Revision: version="3.22" date="2016-02-12" status="final"
 
 This template outputs an SVG #{svg} element with a pause icon for media controls.
 

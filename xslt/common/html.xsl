@@ -2296,7 +2296,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--**==========================================================================
 html.js.syntax
 Output #{script} elements for syntax highlighting.
-:Revision: version="3.20" date="2016-01-03" status="final"
+:Revision: version="3.22" date="2016-01-03" status="final"
 $node: The node to create JavaScript for.
 
 This template outputs HTML #{script} elements to enable syntax highlighting.
@@ -2456,7 +2456,7 @@ if ${dir} is non-empty.
 <!--**==========================================================================
 html.syntax.class
 Output HTML class values for syntax highlighting.
-:Revision:version="3.20" date="2016-01-03" status="final"
+:Revision:version="3.22" date="2016-01-03" status="final"
 $node: The source element whose content will be syntax highlighted.
 
 This template calls %{html.syntax.class.mode} on ${node}. If the result of that
@@ -2482,7 +2482,7 @@ the #{class} attribute for output elements.
 <!--%%==========================================================================
 html.syntax.class.mode
 Get the syntax highlighting language for a source-specific element.
-:Revision:version="3.20" date="2016-01-03" status="final"
+:Revision:version="3.22" date="2016-01-03" status="final"
 
 This mode is called by *{html.syntax.class} on source elements that may have
 syntax highlighted. This template should be implemented by importing stylesheets.
@@ -2494,7 +2494,7 @@ It should return a simple language identifier.
 <!--**==========================================================================
 html.media.controls
 Output media controls for a video or audio object.
-:Revision:version="3.20" date="2016-02-12" status="final"
+:Revision:version="3.22" date="2016-02-12" status="final"
 
 This template outputs HTML containing controls for a media play for audio or
 video HTML elements. To work with the built-in JavaScript binding code, it
