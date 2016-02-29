@@ -1,6 +1,6 @@
-# Occitan translation of Yelp.
-# Copyright (C) 2002-2012 Free Software Foundation, Inc.
-# This file is under the same license as the yelp package.
+# Occitan translation for gnome-doc-utils.
+# Copyright (C) 2004-2011 the GNOME Foudnation
+# This file is distributed under the same license as the gnome-doc-utils package.
 # Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2006-2008, 2010.
 # Cédric Valmary (Tot en Òc) <cvalmary@yahoo.fr>, 2010-2013.
 # None <None>, 2013.
@@ -8,610 +8,597 @@
 # Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>, 2016.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&ke"
-"ywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-06-23 08:57+0000\n"
-"PO-Revision-Date: 2016-02-27 15:26+0200\n"
+"Project-Id-Version: gnome-doc-utils fr\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-02-29 15:19+0000\n"
+"PO-Revision-Date: 2016-02-29 19:17+0200\n"
 "Last-Translator: Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8 bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
+"X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
 "X-Project-Style: gnome\n"
+"MIME-Versocion: 1.0\n"
 
 #. (itstool) path: msg/msgstr
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
+#. Translate to default:RTL if your language should be displayed
+#. right-to-left, otherwise translate to default:LTR.  Do *not*
+#. translate it to "predefinito:LTR", if it isn't default:LTR
+#. or default:RTL it will not work.
 #.
-#. <string/> - The package to install
+#: yelp-xsl.xml.in:34
+msgid "default:LTR"
+msgstr "default:LTR"
+
+#. (itstool) path: msg/msgstr
+#. This is used a simple list item seperator in places where simple
+#. inline lists have to be constructed dynamically.  Using the default
+#. string of ", ", a list would look like this: A, B, C, D.  Using the
+#. nonsensical string " - ", a list would look like this: A - B - C - D.
 #.
-#: yelp.xml.in:36
-msgid "Install <string/>"
-msgstr "Installar <string/>"
-
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
-msgid "Invalid compressed data"
-msgstr "Donadas compressadas invalidas"
-
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
-msgid "Not enough memory"
-msgstr "Memòria insufisenta"
-
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
-#, c-format
-msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "La pagina « %s » es pas estada trobada dins lo document « %s »."
-
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
-#, c-format
-msgid "The file does not exist."
-msgstr "Lo fichièr existís pas."
-
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
-#, c-format
-msgid "The file ‘%s’ does not exist."
-msgstr "Lo fichièr « %s » existís pas."
-
-#: ../libyelp/yelp-docbook-document.c:345
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Lo fichièr « %s » a pas pogut èsser analisat, perque es pas un document XML "
-"format corrèctament."
-
-#: ../libyelp/yelp-docbook-document.c:358
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Lo fichièr « %s » a pas pogut èsser analisat, perque un o mantun de sos "
-"fichièrs incluses es pas un document XML format corrèctament."
-
-#: ../libyelp/yelp-docbook-document.c:788
-msgid "Unknown"
-msgstr "Desconegut"
-
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
-#, c-format
-msgid "The requested page was not found in the document ‘%s’."
-msgstr "La pagina demandada es pas estada trobada dins lo document « %s »."
-
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Indexat"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Indica se lo contengut del document es estat indexat o pas"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "URI del document"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "L'URI qu'identifica lo document"
-
-#: ../libyelp/yelp-document.c:1022
-#, c-format
-msgid "Search results for “%s”"
-msgstr "Resultats de la recèrca per « %s »"
-
-#: ../libyelp/yelp-document.c:1034
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "Cap de pagina d'ajuda correspondenta pas trobada dins « %s »."
-
-#: ../libyelp/yelp-document.c:1040
-msgid "No matching help pages found."
-msgstr "Cap de pagina d'ajuda correspondenta pas trobada."
-
-#: ../libyelp/yelp-error.c:35
-#, c-format
-msgid "An unknown error occurred."
-msgstr "Una error desconeguda s'es producha."
-
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
-msgid "All Help Documents"
-msgstr "Totes los documents d'ajuda"
-
-#: ../libyelp/yelp-info-document.c:380
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Lo fichièr « %s » a pas pogut èsser analisat, perque es pas una pagina info "
-"formada corrèctament."
-
-#: ../libyelp/yelp-mallard-document.c:340
-#, c-format
-msgid "The directory ‘%s’ does not exist."
-msgstr "Lo repertòri « %s » existís pas."
-
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Vista"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Una instància YelpView de contrarotlar"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Signets"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Una instància d'implementacion de YelpBookmarks"
-
-#: ../libyelp/yelp-search-entry.c:433
-#, c-format
-msgid "Search for “%s”"
-msgstr "Recèrca de « %s »"
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Un objècte GtkSettings d'ont obténer de paramètres"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Un objècte GtkIconTheme d'ont obténer d'icònas"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Ajustament de la poliça"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Un ajustament de talha d'apondre a las talhas de poliça"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Afichar lo cursor de tèxte"
-
-# note typo in source
-# note typo in source
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Aficha lo cursor de tèxte o caret per una navigacion accessibla"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Mòde edicion"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Activa las foncions utilas pels editors"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Nom de fichièr de banca de donadas"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Lo nom de fichièr de la banca de donadas sqlite"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "Fuèlh d'estil XSLT"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "L'emplaçament del fuèlh d'estil XSLT"
-
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Lo fuèlh d'estil « %s » es mancant o es pas valid."
-
-#: ../libyelp/yelp-transform.c:518
-msgid "No href attribute found on yelp:document\n"
-msgstr "Cap d'atribut href pas trobat dins yelp:document\n"
-
-#: ../libyelp/yelp-transform.c:533
-msgid "Out of memory"
-msgstr "Memòria insufisenta"
-
-#: ../libyelp/yelp-view.c:241
-msgid "C_opy Code Block"
-msgstr "C_opiar lo blòt de còde"
-
-#: ../libyelp/yelp-view.c:246
-msgid "_Copy Link Location"
-msgstr "_Copiar l'emplaçament del ligam"
-
-#: ../libyelp/yelp-view.c:251
-msgid "_Open Link"
-msgstr "D_obrir lo ligam"
-
-#: ../libyelp/yelp-view.c:256
-msgid "Open Link in New _Window"
-msgstr "Dobrir lo ligam dins una fenèstra _novèla"
-
-#: ../libyelp/yelp-view.c:266
-msgid "_Install Packages"
-msgstr "_Installar los paquets"
-
-#: ../libyelp/yelp-view.c:271
-msgid "Save Code _Block As…"
-msgstr "Enregistrar lo _bloc de code jos…"
-
-#: ../libyelp/yelp-view.c:286
-msgid "_Copy Text"
-msgstr "_Copiar lo tèxte"
-
-#: ../libyelp/yelp-view.c:517
-msgid "Yelp URI"
-msgstr "URI de Yelp"
-
-#: ../libyelp/yelp-view.c:518
-msgid "A YelpUri with the current location"
-msgstr "Una YelpUri que conten l'emplaçament actual"
-
-#: ../libyelp/yelp-view.c:526
-msgid "Loading State"
-msgstr "Estat del cargament"
-
-#: ../libyelp/yelp-view.c:527
-msgid "The loading state of the view"
-msgstr "L'estat del cargament de l'afichatge"
-
-#: ../libyelp/yelp-view.c:536
-msgid "Page ID"
-msgstr "ID de pagina"
-
-#: ../libyelp/yelp-view.c:537
-msgid "The ID of the root page of the page being viewed"
-msgstr "L'ID de la pagina raiç de la pagina afichada actualament"
-
-#: ../libyelp/yelp-view.c:545
-msgid "Root Title"
-msgstr "Títol raiç"
-
-#: ../libyelp/yelp-view.c:546
-msgid "The title of the root page of the page being viewed"
-msgstr "Lo títol de la pagina raiç de la pagina afichada actualament"
-
-#: ../libyelp/yelp-view.c:554
-msgid "Page Title"
-msgstr "Títol de la pagina"
-
-#: ../libyelp/yelp-view.c:555
-msgid "The title of the page being viewed"
-msgstr "Lo títol de la pagina afichada actualament"
-
-#: ../libyelp/yelp-view.c:563
-msgid "Page Description"
-msgstr "Descripcion de la pagina"
-
-#: ../libyelp/yelp-view.c:564
-msgid "The description of the page being viewed"
-msgstr "La descripcion de la pagina afichada actualament"
-
-#: ../libyelp/yelp-view.c:572
-msgid "Page Icon"
-msgstr "Icòna de la pagina"
-
-#: ../libyelp/yelp-view.c:573
-msgid "The icon of the page being viewed"
-msgstr "L'icòna de la pagina afichada actualament"
-
-#: ../libyelp/yelp-view.c:808 ../libyelp/yelp-view.c:2176
-#, c-format
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "L'URI « %s » se referís pas a una pagina valida."
-
-#: ../libyelp/yelp-view.c:814 ../libyelp/yelp-view.c:2182
-#, c-format
-msgid "The URI does not point to a valid page."
-msgstr "L'URI se referís pas a una pagina valida."
-
-#: ../libyelp/yelp-view.c:819 ../libyelp/yelp-view.c:2188
-#, c-format
-msgid "The URI ‘%s’ could not be parsed."
-msgstr "Impossible d'analisar l'URI « %s »."
-
-#: ../libyelp/yelp-view.c:824
-#, c-format
-#| msgid "Unknown Error"
-msgid "Unknown Error."
-msgstr "Error desconeguda."
-
-#: ../libyelp/yelp-view.c:978
-msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"PackageKit es pas installat. Los ligams d'installacion de paquets necessitan "
-"PackageKit."
-
-#: ../libyelp/yelp-view.c:1225
-msgid "Save Image"
-msgstr "Enregistrar l'imatge"
-
-#: ../libyelp/yelp-view.c:1324
-msgid "Save Code"
-msgstr "Enregistrar lo còde"
-
-#: ../libyelp/yelp-view.c:1420
-#, c-format
-msgid "Send email to %s"
-msgstr "Mandar un corrièr electronic a %s"
-
-#: ../libyelp/yelp-view.c:1524
-msgid "_Save Image As…"
-msgstr "_Enregistrar l'imatge jos…"
-
-#: ../libyelp/yelp-view.c:1525
-msgid "_Save Video As…"
-msgstr "_Enregistrar la vidèo jos…"
-
-#: ../libyelp/yelp-view.c:1533
-msgid "S_end Image To…"
-msgstr "Ma_dar l'imatge a…"
-
-#: ../libyelp/yelp-view.c:1534
-msgid "S_end Video To…"
-msgstr "Man_dar la vidèo a…"
-
-#: ../libyelp/yelp-view.c:1870
-#, c-format
-msgid "Could not load a document for ‘%s’"
-msgstr "Impossible de cargar un document per « %s »"
-
-#: ../libyelp/yelp-view.c:1876
-#, c-format
-msgid "Could not load a document"
-msgstr "Impossible de cargar un document"
-
-#: ../libyelp/yelp-view.c:1960
-msgid "Document Not Found"
-msgstr "Document pas trobat"
-
-#: ../libyelp/yelp-view.c:1962
-msgid "Page Not Found"
-msgstr "Pagina pas trobada"
-
-#: ../libyelp/yelp-view.c:1965
-msgid "Cannot Read"
-msgstr "Lectura impossibla"
-
-#: ../libyelp/yelp-view.c:1971
-msgid "Unknown Error"
-msgstr "Error desconeguda"
-
-#: ../libyelp/yelp-view.c:1991
-msgid "Search for packages containing this document."
-msgstr "Recèrca de paquets que conten aqueste document."
-
-#: ../src/yelp-application.c:59
-msgid "Turn on editor mode"
-msgstr "Bascular en mòde edicion"
-
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
-msgid "Help"
-msgstr "Ajuda"
-
-#: ../src/yelp-application.c:320
-msgid "New Window"
-msgstr "Novèla fenèstra"
-
-#: ../src/yelp-application.c:324
-msgid "Larger Text"
-msgstr "Agrandir lo tèxte"
-
-#: ../src/yelp-application.c:325
-msgid "Smaller Text"
-msgstr "Reduire lo tèxte"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Aplicacion"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Una instància de YelpApplication que contraròtla aquesta fenèstra"
-
-#: ../src/yelp-window.c:343
-msgid "Back"
-msgstr "Precedent"
-
-#: ../src/yelp-window.c:350
-msgid "Forward"
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:47
+#, no-wrap
+msgid ", "
+msgstr ", "
+
+#. (itstool) path: msg/msgstr
+#. This is used as the final separator in an inline list of three or
+#. more elements.  The string ", " will be used to separate all but
+#. the last pair of elements.  Using these two strings, a list of
+#. names would be formatted as "Tom, Dick, and Harry".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:60
+msgid ", and "
+msgstr ", e "
+
+#. (itstool) path: msg/msgstr
+#. This is used as a list item seperator for inline lists of exactly two
+#. elements.  A list of two names would be formatted as "Tom and Dick".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:71
+msgid " and "
+msgstr " e "
+
+#. (itstool) path: msg/msgstr
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before questions in a question-and-answer
+#. set.  Typically, questions are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label questions.
+#.
+#: yelp-xsl.xml.in:86
+msgid "Q:"
+msgstr "Q :"
+
+#. (itstool) path: msg/msgstr
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before answers in a question-and-answer
+#. set.  Typically, answers are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label answers.
+#.
+#: yelp-xsl.xml.in:99
+msgid "A:"
+msgstr "A :"
+
+#. (itstool) path: msg/msgstr
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:109
+msgid "About"
+msgstr "A prepaus"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an advanced note.
+#: yelp-xsl.xml.in:114
+msgid "Advanced"
+msgstr "Detalhs avançat"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:119
+msgid "Bibliography"
+msgstr "Bibliografia"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:124
+msgid "Bug"
+msgstr "Anomalia"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content has been written and
+#. reviewed, and it awaiting a final approval.
+#.
+#: yelp-xsl.xml.in:132
+msgid "Candidate"
+msgstr "Candidat(a)"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:137
+msgid "Close"
+msgstr "Tampar"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a colophon section.
+#: yelp-xsl.xml.in:142
+msgid "Colophon"
+msgstr "Colophon"
+
+#. (itstool) path: msg/msgstr
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:147
+msgid "Creative Commons"
+msgstr "Creative Commons"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a dedication section.
+#: yelp-xsl.xml.in:152
+msgid "Dedication"
+msgstr "Dedicàcia"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Most content has been
+#. written, but revisions are still happening.
+#.
+#: yelp-xsl.xml.in:160
+msgid "Draft"
+msgstr "Borrolhon"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:165
+msgid "Edited By"
+msgstr "Modificat(-ada) per"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. A senior member of the
+#. documentation team has reviewed and approved.
+#.
+#: yelp-xsl.xml.in:173
+msgid "Final"
+msgstr "Definitiu"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a glossary.
+#: yelp-xsl.xml.in:178
+msgid "Glossary"
+msgstr "Glossari"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:183
+msgid "Important"
+msgstr "Important"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Work has begun, but
+#. not all content has been written.
+#.
+#: yelp-xsl.xml.in:191
+msgid "Incomplete"
+msgstr "Incomplet"
+
+#. (itstool) path: msg/msgstr
+#. Default title for an index of terms in a book.
+#: yelp-xsl.xml.in:196
+msgid "Index"
+msgstr "Indèx"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:201
+msgid "Legal"
+msgstr "Avís legal"
+
+#. (itstool) path: msg/msgstr
+#. Generic title for license information when it's not a known license.
+#.
+#: yelp-xsl.xml.in:208
+msgid "License"
+msgstr "Licéncia"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:213
+msgid "Maintained By"
+msgstr "Mantengut per"
+
+#. (itstool) path: msg/msgstr
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:218
+msgid "More Information"
+msgstr "Mai d'entresenhas"
+
+#. (itstool) path: msg/msgstr
+#. Link text for a link to the next page in a series.
+#: yelp-xsl.xml.in:223
+msgid "Next"
 msgstr "Seguent"
 
-#: ../src/yelp-window.c:361
-msgid "Menu"
-msgstr "Menú"
+#. (itstool) path: msg/msgstr
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:228
+msgid "Note"
+msgstr "Nòta"
 
-#: ../src/yelp-window.c:366
-msgid "Find…"
-msgstr "Recercar…"
+#. (itstool) path: msg/msgstr
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:236
+msgid "Other Credits"
+msgstr "Autres credits"
 
-#: ../src/yelp-window.c:367
-msgid "Print…"
-msgstr "Imprimir…"
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content was once current,
+#. but needs to be updated to reflect software updates.
+#.
+#: yelp-xsl.xml.in:244
+msgid "Outdated"
+msgstr "Obsolèt"
 
-#: ../src/yelp-window.c:372
-msgid "Previous Page"
-msgstr "Pagina precedenta"
+#. (itstool) path: msg/msgstr
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:249
+msgid "Pause"
+msgstr "Metre en pausa"
 
-#: ../src/yelp-window.c:373
-msgid "Next Page"
-msgstr "Pagina seguenta"
+#. (itstool) path: msg/msgstr
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:254
+msgid "Play"
+msgstr "Lectura"
 
-#: ../src/yelp-window.c:378
-msgid "All Help"
-msgstr "Aide generala"
+#. (itstool) path: msg/msgstr
+#. Link text for a link to the previous page in a series.
+#: yelp-xsl.xml.in:259
+msgid "Previous"
+msgstr "Precedent"
 
-#: ../src/yelp-window.c:400
-msgid "Search (Ctrl+S)"
-msgstr "Recercar (Ctrl+S)"
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+#: yelp-xsl.xml.in:264
+msgid "Published By"
+msgstr "Publicat per"
 
-#: ../src/yelp-window.c:434
-msgid "No bookmarks"
-msgstr "Pas cap de signet"
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content has been written
+#. and should be reviewed by other team members.
+#.
+#: yelp-xsl.xml.in:272
+msgid "Ready for review"
+msgstr "Prèst per la relectura"
 
-#: ../src/yelp-window.c:442
-msgid "Add Bookmark"
-msgstr "Apondre un signet"
+#. (itstool) path: msg/msgstr
+#. Automatic heading above a list of see-also links.
+#: yelp-xsl.xml.in:277
+msgid "See Also"
+msgstr "Vejatz tanben"
 
-#: ../src/yelp-window.c:448
-msgid "Remove Bookmark"
-msgstr "Suprimir lo signet"
+#. (itstool) path: msg/msgstr
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to shrink images back down after
+#. they've been expanded to full size.
+#.
+#: yelp-xsl.xml.in:286
+msgid "Scale images down"
+msgstr "Redusir la talha dels imatges"
 
-#: ../yelp.desktop.in.in.h:2
-msgid "Get help with GNOME"
-msgstr "Obténer d'ajuda amb GNOME"
+#. (itstool) path: msg/msgstr
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:291
+msgid "Sidebar"
+msgstr "Barra laterala"
 
-#: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "documentacion;informacion;manual;"
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. No content has been written yet.
+#.
+#: yelp-xsl.xml.in:298
+msgid "Stub"
+msgstr "Esbòs"
 
-#~ msgid "Enable Search"
-#~ msgstr "Activar la recèrca"
+#. (itstool) path: msg/msgstr
+#. Default title for a refsynopsisdiv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:306
+msgid "Synopsis"
+msgstr "Resumit"
 
-#~ msgid "Whether the location entry can be used as a search field"
-#~ msgstr ""
-#~ "Indica se la zòna de picada d'emplaçament pòt èsser utilizada coma camp "
-#~ "de recèrca"
+#. (itstool) path: msg/msgstr
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:311
+msgid "Tip"
+msgstr "Astúcia"
 
-#~ msgid "Search..."
-#~ msgstr "Recercar..."
+#. (itstool) path: msg/msgstr
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:316
+msgid "Translated By"
+msgstr "Traduch per"
 
-#~ msgid "Clear the search text"
-#~ msgstr "Escafar lo tèxte de la recèrca"
+#. (itstool) path: msg/msgstr
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to expand images to full size.
+#.
+#: yelp-xsl.xml.in:324
+msgid "View images at normal size"
+msgstr "Veire los imatges a talha normala"
 
-#~ msgid "Bookmark this page"
-#~ msgstr "Metre en signet aquesta page"
+#. (itstool) path: msg/msgstr
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:329
+msgid "Warning"
+msgstr "Alèrta"
 
-#~ msgid "Remove bookmark"
-#~ msgstr "Suprimir lo signet"
+#. (itstool) path: msg/msgstr
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:334
+msgid "Written By"
+msgstr "Escrich per"
 
-#~ msgid "Loading"
-#~ msgstr "Cargament"
+#. (itstool) path: msg/msgstr
+#. ID: biblioentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to bibliography entries.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:350
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "Veire l'entrada bibliografica <biblioentry.label/>."
 
-#~ msgid "_Print..."
-#~ msgstr "_Imprimir..."
+#. (itstool) path: msg/msgstr
+#. ID: biblioentry.label
+#. This is a format message used to format the labels for entries in
+#. a bibliography.  The content of the label is often an abbreviation
+#. of the authors' names and the year of publication.  In English,
+#. these are generally formatted with [square brackets] surrounding
+#. them.
+#.
+#. This string is similar to citation.label, but they are used in
+#. different places.  The citation formatter is used when referencing
+#. a bibliography entry in running prose.  This formatter is used for
+#. the actual bibliography entry.  You may use the same formatting for
+#. both, but you don't have to.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The text content of the bibliography label
+#.
+#: yelp-xsl.xml.in:373
+msgid "[<biblioentry.label/>]"
+msgstr "[<biblioentry.label/>]"
 
-#~ msgid "_Back"
-#~ msgstr "_Precedent"
+#. (itstool) path: msg/msgstr
+#. ID: citation.label
+#. This is a format message used to format inline citations to other
+#. published works.  The content is typically an abbreviation of the
+#. authors' last names.  In English, this abbreviation is usually
+#. written inside [square brackets].
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
+#.
+#: yelp-xsl.xml.in:390
+msgid "[<citation.label/>]"
+msgstr "[<citation.label/>]"
 
-#~ msgid "_Forward"
-#~ msgstr "_Seguent"
+#. (itstool) path: msg/msgstr
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#.
+#.   Here is the text of the comment.
+#.
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#.
+#: yelp-xsl.xml.in:419
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "per <comment.name/>, lo <comment.date/>"
 
-#~ msgid "_Previous Page"
-#~ msgstr "Pagina p_recedenta"
+#. (itstool) path: msg/msgstr
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#.
+#: yelp-xsl.xml.in:447
+msgid "from <comment.name/>"
+msgstr "per <comment.name/>"
 
-#~ msgid "_Next Page"
-#~ msgstr "Pagina seg_uenta"
+#. (itstool) path: msg/msgstr
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:460
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
 
-#~ msgid "_Save Image As..."
-#~ msgstr "_Enregistrar l'imatge jos..."
+#. (itstool) path: msg/msgstr
+#. ID: email.tooltip
+#. This is a format message used to format tooltips on mailto: links.
+#. Special elements in the message will be replaced with the appropriate
+#. content, as follows:
+#.
+#. <string/> - The linked-to email address
+#.
+#: yelp-xsl.xml.in:472
+msgid "Send email to ‘<string/>’."
+msgstr "Mandar un corrièl a « <string/> »."
 
-#~ msgid "_Save Video As..."
-#~ msgstr "_Enregistrar la vidèo jos..."
+#. (itstool) path: msg/msgstr
+#. ID: glossentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to glossary entries. Special elements in the message will be replaced
+#. with the appropriate content, as follows:
+#.
+#. <glossterm/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:484
+msgid "Read the definition for ‘<glossterm/>’."
+msgstr "Legir la definicion de « <glossterm/> »."
 
-#~ msgid "S_end Image To..."
-#~ msgstr "Man_dar l'imatge a..."
+#. (itstool) path: msg/msgstr
+#. ID: glosssee.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glosssee elements are presented as a links to the user
+#. in the glossary, formatted as a single prose sentence.  For example,
+#. if the user is being directed to the entry "foo", the glosssee may
+#. be formatted as "See foo."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:505
+msgid "See <glosssee/>."
+msgstr "Veire <glosssee/>."
 
-#~ msgid "S_end Video To..."
-#~ msgstr "Man_dar la vidèo a..."
+#. (itstool) path: msg/msgstr
+#. ID: glossseealso.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glossseealso elements are presented as a links to the
+#. user in the glossary, formatted as a single prose sentence.  For
+#. example, if the user is being directed to the entries "foo", "bar",
+#. and "baz", the glossseealso may be formatted as "See also foo, bar,
+#. baz."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:527
+msgid "See also <glosssee/>."
+msgstr "Vejatz tanben <glosssee/>."
 
-#~ msgid "Save Code _Block As..."
-#~ msgstr "Enregistrar lo _blòt de còde jos..."
+#. (itstool) path: msg/msgstr
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:539
+msgid "“<node/>”"
+msgstr "« <node/> »"
 
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Veire totes los resultats de recèrca per « %s »"
+#. (itstool) path: msg/msgstr
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:551
+msgid "‘<node/>’"
+msgstr "« <node/> »"
 
-#~ msgid "_Larger Text"
-#~ msgstr "A_grandir lo tèxte"
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:566
+msgid "See <seeie/>."
+msgstr "Vejatz <seeie/>."
 
-#~ msgid "Increase the size of the text"
-#~ msgstr "Aumenta la talha del tèxte"
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:581
+msgid "See also <seeie/>."
+msgstr "Vejatz tanben <seeie/>."
 
-#~ msgid "_Smaller Text"
-#~ msgstr "_Reduire lo tèxte"
-
-# note typo in source
-# note typo in source
-#~ msgid "Decrease the size of the text"
-#~ msgstr "Demesís la talha del tèxte"
-
-#~ msgid "Show Text _Cursor"
-#~ msgstr "Afichar lo _cursor de tèxte"
-
-#~ msgid "_Page"
-#~ msgstr "_Pagina"
-
-#~ msgid "_View"
-#~ msgstr "_Afichatge"
-
-#~ msgid "_Go"
-#~ msgstr "A_nar a"
-
-#~ msgid "_Bookmarks"
-#~ msgstr "_Signets"
-
-#~ msgid "_New Window"
-#~ msgstr "Fenèstra _Novèla"
-
-#~ msgid "_Close"
-#~ msgstr "_Tampar"
-
-#~ msgid "_All Documents"
-#~ msgstr "_Totes los documents"
-
-#~ msgid "_Add Bookmark"
-#~ msgstr "_Apondre un signet"
-
-#~ msgid "_Remove Bookmark"
-#~ msgstr "_Suprimir lo signet"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Recercar dins la pagina..."
-
-#~ msgid "Open Location"
-#~ msgstr "Dobrir un emplaçament"
-
-#~ msgid "Read Link _Later"
-#~ msgstr "Legir lo _ligam pus tard"
-
-#~ msgid "Find:"
-#~ msgstr "Recercar :"
-
-#~ msgid "Read Later"
-#~ msgstr "Legir pus tard"
-
-#~ msgid "%i match"
-#~ msgid_plural "%i matches"
-#~ msgstr[0] "%i correspondéncia"
-#~ msgstr[1] "%i correspondéncias"
-
-#~ msgid "No matches"
-#~ msgstr "Pas cap de resultat"
+#~ msgid "yelp-quote-201C.png"
+#~ msgstr "yelp-quote-00AB.png"
