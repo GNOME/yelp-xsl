@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-17 14:51+0100\n"
-"PO-Revision-Date: 2013-03-16 17:54+0100\n"
+"POT-Creation-Date: 2016-03-20 23:21+0100\n"
+"PO-Revision-Date: 2016-03-20 20:40+0100\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -502,7 +502,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:472
 msgid "Send email to ‘<string/>’."
-msgstr "Send e-post til \"<string/>\"."
+msgstr "Send e-mail til \"<string/>\"."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -698,7 +698,7 @@ msgstr "Se også <seeie/>."
 
 #~ msgid ""
 #~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr "<msgstr>Send e-post til: <string/>.</msgstr>"
+#~ msgstr "<msgstr>Send e-mail til: <string/>.</msgstr>"
 
 #~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgstr>1</msgstr>"
@@ -921,7 +921,7 @@ msgstr "Se også <seeie/>."
 #~ msgstr "Forsigtig"
 
 #~ msgid "Email"
-#~ msgstr "E-post"
+#~ msgstr "E-mail"
 
 #~ msgid "Legal Notice"
 #~ msgstr "Juridisk information"
