@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.title.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Output the title of an element.</desc></info><title>html.title.mode</title><p>Output the title of an element.</p>
+  
+  
+  <p>This mode is called by <code style="xslt-template" xref="html.page">html.page</code> to output the contents of the HTML <code>title</code> element inside the <code>head</code> element. Importing stylesheets should implement this mode for any element that will be passed to <code style="xslt-template" xref="html.page">html.page</code>. Because this is used in the <code>head</code>, the output should be text-only.</p>
+</page>

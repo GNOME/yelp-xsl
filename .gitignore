@@ -18,27 +18,6 @@ intltool-update.in
 missing
 yelp-xsl.pc
 
-/doc/yelp-xsl/C/*.*.page
-/doc/yelp-xsl/C/db-*.page
-/doc/yelp-xsl/C/db2html-*.page
-/doc/yelp-xsl/C/db2html.page
-/doc/yelp-xsl/C/db2xhtml.page
-/doc/yelp-xsl/C/dita-*.page
-/doc/yelp-xsl/C/dita2html-*.page
-/doc/yelp-xsl/C/dita2html.page
-/doc/yelp-xsl/C/dita2xhtml.page
-/doc/yelp-xsl/C/mal-*.page
-/doc/yelp-xsl/C/mal2html-*.page
-/doc/yelp-xsl/C/mal2html.page
-/doc/yelp-xsl/C/mal2xhtml.page
-/doc/yelp-xsl/C/color.page
-/doc/yelp-xsl/C/html.page
-/doc/yelp-xsl/C/icons.page
-/doc/yelp-xsl/C/l10n.page
-/doc/yelp-xsl/C/l10n-numbers.page
-/doc/yelp-xsl/C/ttml.page
-/doc/yelp-xsl/C/utils.page
-
 /xslt/theme/test-theme.html
 /xslt/common/domains/yelp-xsl.xml
 /test/testdocs/html

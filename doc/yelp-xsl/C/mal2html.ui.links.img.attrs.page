@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.img.attrs" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.4" date="2012-02-25" status="final"/><desc>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</desc></info><title>mal2html.ui.links.img.attrs</title><p>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> element to link from.</p>
+    </item>
+    <item>
+      <title><code>thumbs</code></title>
+      <p>A list of candidate <code>uix:thumb</code> elements.</p>
+    </item>
+    <item>
+      <title><code>width</code></title>
+      <p>The width to fit thumbnails into.</p>
+    </item>
+    <item>
+      <title><code>height</code></title>
+      <p>The height to fit thumbnails into.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs <code>width</code> and <code>height</code> attributes for the HTML <code>img</code> element created from <code style="xslt-param">thumb</code>, based on the <code>uix:overflow</code> attribute on <code style="xslt-param">node</code>. The <code style="xslt-param">width</code> and <code style="xslt-param">height</code> parameters can be computed automatically from the <code style="xslt-param">node</code> element.</p>
+</page>

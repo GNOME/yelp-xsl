@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.syntax.highlight" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="1.0" date="2010-12-06" status="final"/><desc>Whether to include syntax highlighting support for code blocks.</desc></info><title>html.syntax.highlight</title><p>Whether to include syntax highlighting support for code blocks.</p>
+  
+  
+  <p>This parameter specifies whether syntax highlighting should be enabled for code blocks in the output HTML. Syntax highlighting is done at document load time by JavaScript.</p>
+</page>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.links.section" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-links" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-08" status="final"/><desc>Output links to subsections.</desc></info><title>db2html.links.section</title><p>Output links to subsections.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to generate links for.</p>
+    </item>
+    <item>
+      <title><code>divisions</code></title>
+      <p>The division-level child elements of <code style="xslt-param">node</code> to link to.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs links to the child division-level elements of <code style="xslt-param">node</code>, whether or not they are chunked.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.xref"/></p></item></list></page>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.text" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The normal text color.</desc></info><title>color.text</title><p>The normal text color.</p>
+  
+  
+  <p>This parameter specifies the default color for normal text.  It should be legible on all background colors.</p>
+</page>

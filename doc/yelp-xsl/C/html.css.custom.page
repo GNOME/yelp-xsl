@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.css.custom" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><link type="guide" xref="stubs" group="html"/><revision version="1.0" date="2010-05-25" status="final"/><desc>Stub to output custom CSS common to all HTML transformations.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>html.css.custom</title><p>Stub to output custom CSS common to all HTML transformations.</p><note><p>This template is a stub. Customizations may override it for
+            additional functionality.</p></note>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create CSS for.</p>
+    </item>
+    <item>
+      <title><code>direction</code></title>
+      <p>The directionality of the text, either <code>ltr</code> or <code>rtl</code>.</p>
+    </item>
+    <item>
+      <title><code>left</code></title>
+      <p>The starting alignment, either <code>left</code> or <code>right</code>.</p>
+    </item>
+    <item>
+      <title><code>right</code></title>
+      <p>The ending alignment, either <code>left</code> or <code>right</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is a stub, called by <code style="xslt-template" xref="html.css.content">html.css.content</code>. You can override this template to provide additional CSS that will be used by all HTML output.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="l10n.align.start"/></p></item></list></page>

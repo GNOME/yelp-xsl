@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.basename" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The base filename of the primary output file.</desc></info><title>html.basename</title><p>The base filename of the primary output file.</p>
+  
+  
+  <p>This parameter specifies the base filename of the primary output file, without the filename extension. This is used by <code style="xslt-template" xref="html.output">html.output</code> to determine the output filename, and may be used by format-specific linking code. By default, it uses the value of an <code>id</code> or <code>xml:id</code> attribute, if present. Otherwise, it uses the static string <code>index</code>.</p>
+</page>

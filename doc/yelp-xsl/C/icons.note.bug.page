@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="icons.note.bug" type="topic" style="xslt-param"><info><link type="guide" xref="icons" group="parameters"/><link type="guide" xref="parameters" group="icons"/><revision version="1.0" date="2010-05-03" status="final"/><desc>The URL for the bug note icon.</desc></info><title>icons.note.bug</title><p>The URL for the bug note icon.</p>
+  
+  
+  <p>This parameter specifies the URL for the icon used for bug notes.</p>
+</page>

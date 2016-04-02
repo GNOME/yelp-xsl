@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.facetlinks" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.0" date="2010-12-16" status="final"/><desc>Output the facet links for a facets page or section.</desc></info><title>mal.link.facetlinks</title><p>Output the facet links for a facets page or section.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>page</code> or <code>section</code> element to generate links for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs all the facet links for facets page or section. Links are output for each page or section that matches all <code>facet:match</code> elements from <code style="xslt-param">node</code>, excluding those which will be included in descendant facets nodes. It outputs each of the links as a <code>link</code> element within the Mallard namespace. Each <code>link</code> element has an <code>xref</code> attribute pointing to the target page or section.</p>
+  <p>Each <code>link</code> element contains a <code>title</code> with <code>type="sort"</code> providing the sort title of the target page or section.  The results are not sorted when returned from this template.  Use <code>xsl:sort</code> on the sort titles to sort the results.</p>
+  <p>Each <code>link</code> element contains a copy of all the <code>facet:tag</code> elements from the <code>info</code> element of the target page or section.</p>
+  <p>The output is a result tree fragment.  To use these results, call <code>exsl:node-set</code> on them.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.linkid"/></p></item><item><p><link xref="mal.link.sorttitle"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.facet.all.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

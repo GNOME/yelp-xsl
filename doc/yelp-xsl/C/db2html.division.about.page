@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.division.about" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-division" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Output the copyrights, credits, and license information at the bottom of a page.</desc></info><title>db2html.division.about</title><p>Output the copyrights, credits, and license information at the bottom of a page.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A division-level element a page is being created for.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>The info child element of <code style="xslt-param">node</code></p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs copyright information, credits, and license information for the division. By default it is called by the <code style="xslt-mode" xref="html.footer.mode">html.footer.mode</code> implementation.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db.copyright"/></p></item></list></page>

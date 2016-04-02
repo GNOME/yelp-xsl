@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.series.next" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="1.0" date="2011-06-15" status="final"/><desc>Output following links to pages in a series.</desc></info><title>mal2html.links.series.next</title><p>Output following links to pages in a series.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The current <code>page</code> element.</p>
+    </item>
+    <item>
+      <title><code>links</code></title>
+      <p>The series <code>links</code> element.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by <code style="xslt-template" xref="mal2html.links.series">mal2html.links.series</code> to output the pages after the starting page in the series. This template finds the next page for the page <code style="xslt-param">node</code>. It outputs a link to that page, then calls itself recursively on that page.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.linkid"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal.link.content"/></p></item><item><p><link xref="mal2html.links.series.next"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

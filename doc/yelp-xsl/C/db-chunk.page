@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="db-chunk" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-defines-template" xref="db.chunk.depth-in-chunk"/><link type="xslt-defines-template" xref="db.chunk.depth-of-chunk"/><link type="xslt-defines-template" xref="db.chunk.chunk-id"/><link type="xslt-defines-template" xref="db.chunk.chunk-id.axis"/><link type="xslt-defines-param" xref="db.chunk.max_depth"/><link type="xslt-defines-param" xref="db.chunk.basename"/><link type="xslt-defines-param" xref="db.chunk.extension"/></info><title>DocBook Chunking</title>
+  
+  
+  <comment><p>Describe this module</p></comment>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="db.chunk.basename"/></p></item><item><p><link xref="db.chunk.max_depth"/></p></item></list></page>

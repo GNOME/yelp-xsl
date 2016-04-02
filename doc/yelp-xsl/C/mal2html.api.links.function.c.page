@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.api.links.function.c" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-api" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Output links as a synopsis of C functions.</desc></info><title>mal2html.api.links.function.c</title><p>Output links as a synopsis of C functions.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> element to link from.</p>
+    </item>
+    <item>
+      <title><code>links</code></title>
+      <p>A list of topic links already filtered by group.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs links as a synopsis of C functions. It is called by <code style="xslt-template" xref="mal2html.api.links.function">mal2html.api.links.function</code> when the <code>api:mime</code> attribute of <code style="xslt-param">node</code> is <code>text/x-csrc</code> or <code>text/x-chdr</code>. The target nodes of <code style="xslt-param">links</code> are expected to have at least an <code>api:name</code> element. Any links whose target does not have an <code>api:name</code> element will be passed to <code style="xslt-template" xref="mal2html.links.ul">mal2html.links.ul</code> after the synopsis.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="utils.repeat_string"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal2html.links.ul"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.inline.mode"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

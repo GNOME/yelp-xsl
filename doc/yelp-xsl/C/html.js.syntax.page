@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2011-04-16" status="final"/><desc>Output JavaScript for syntax highlighting</desc></info><title>html.js.syntax</title><p>Output JavaScript for syntax highlighting</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create JavaScript for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs JavaScript that does syntax highlighting. JavaScript <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>. Note that this content just initializes the syntax highlighting. The real work is done by <code>jquery.syntax.js</code>, which is included by <code style="xslt-template" xref="html.js.syntax">html.js.syntax</code>.</p>
+<list style="compact"><title>Calls Parameters</title><item><p><link xref="html.js.root"/></p></item><item><p><link xref="html.syntax.highlight"/></p></item></list></page>

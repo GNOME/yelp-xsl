@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.inline.content.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal2html-inline" group="modes"/><link type="guide" xref="modes" group="mal2html"/><revision version="1.0" date="2010-06-03" status="final"/><desc>Output the contents of an inline element.</desc></info><title>mal2html.inline.content.mode</title><p>Output the contents of an inline element.</p>
+  
+  
+  <p>This template outputs the contents of the inline element it matches. It is usually called by <code style="xslt-template" xref="mal2html.span">mal2html.span</code> to allow elements like <code>guiseq</code>, <code>keyseq</code>, and <code>link</code> output special inner contents while still using the generic wrapper template.</p>
+</page>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.extension" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The filename extension for all output files.</desc></info><title>html.extension</title><p>The filename extension for all output files.</p>
+  
+  
+  <p>This parameter specifies a filename extension for all HTML output files. It should include the leading dot. By default, <code>.xhtml</code> will be used if <code style="xslt-param" xref="html.xhtml">html.xhtml</code> is true; otherwise, <code>.html</code> will be used.</p>
+</page>

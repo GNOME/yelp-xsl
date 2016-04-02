@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.anchor" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-xref" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates an anchor point for an element</desc></info><title>db2html.anchor</title><p>Generates an anchor point for an element</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to generate an anchor for</p>
+    </item>
+    <item>
+      <title><code>name</code></title>
+      <p>The text to use for the <code>name</code> attribute</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Describe this template</p></comment>
+</page>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="db2html-table" type="guide" style="xslt-stylesheet"><?xslt-private db2html.spanstr.decrement?><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-requires" xref="db2html-block"/><link type="xslt-requires" xref="db2html-inline"/><link type="xslt-requires" xref="db2html-xref"/><link type="xslt-requires" xref="l10n"/><link type="xslt-defines-template" xref="db2html.row"/><link type="xslt-defines-template" xref="db2html.entry"/><link type="xslt-defines-template" xref="db2html.entry.implicit"/><link type="xslt-defines-template" xref="db2html.entry.colnum"/><link type="xslt-defines-template" xref="db2html.colspec.colnum"/><link type="xslt-defines-template" xref="db2html.entry.colspan"/><link type="xslt-defines-template" xref="db2html.spanstr"/><link type="xslt-defines-template" xref="db2html.spanstr.pop"/><link type="xslt-defines-template" xref="db2html.table.table"/></info><title>DocBook to HTML - Tables</title>
+  
+  
+  <comment><p>This needs lots of talk about CALS</p></comment>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="db2html-block"/></p></item><item><p><link xref="db2html-inline"/></p></item><item><p><link xref="db2html-xref"/></p></item><item><p><link xref="l10n"/></p></item></list><list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="html.lang.attrs"/></p></item><item><p><link xref="utils.repeat_string"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>entrytbl | db:entrytbl</code></p></td></tr><tr><td><p/></td><td><p><code>table | informaltable | db:table | db:informaltable</code></p></td></tr><tr><td><p/></td><td><p><code>tgroup | db:tgroup</code></p></td></tr><tr><td><p/></td><td><p><code>tbody | tfoot | thead | db:tbody | db:tfoot | db:thead</code></p></td></tr><tr><td><p/></td><td><p><code>tr | db:tr</code></p></td></tr><tr><td><p/></td><td><p><code>td | th | db:td | db:th</code></p></td></tr></tbody></table></page>

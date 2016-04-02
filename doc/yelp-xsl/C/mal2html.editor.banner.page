@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.editor.banner" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-page" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Output a banner with the revision status of a page.</desc></info><title>mal2html.editor.banner</title><p>Output a banner with the revision status of a page.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The top-level <code>page</code> element.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by the <code style="xslt-mode" xref="html.body.mode">html.body.mode</code> implementation for <code>page</code> elements. It outputs a banner providing information about the revision status of <code style="xslt-param">node</code>. It only outputs a banner if <code style="xslt-param" xref="mal2html.editor_mode">mal2html.editor_mode</code> is <code>true</code>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal2html.editor_mode"/></p></item></list></page>

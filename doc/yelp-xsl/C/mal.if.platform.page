@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.if.platform" type="topic" style="xslt-param"><info><link type="guide" xref="mal-if" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><desc>The list of supported platform tokens.</desc></info><title>mal.if.platform</title><p>The list of supported platform tokens.</p>
+  
+  
+  <p>This parameter takes a space-separated list of tokens to enable for conditional processing. It is used by the template <code style="xslt-template" xref="mal.if.test">mal.if.test</code>. This parameter is meant to hold tokens starting with <code>platform:</code>. It should usually be set by hand or by a customization stylesheet.</p>
+</page>

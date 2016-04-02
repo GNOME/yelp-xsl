@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.block.title" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-block" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-12" status="final"/><desc>Output a formal title for a block-level element.</desc></info><title>db2html.block.title</title><p>Output a formal title for a block-level element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The block-level element being processed.</p>
+    </item>
+    <item>
+      <title><code>title</code></title>
+      <p>The element containing the title.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template formats the contents of <code style="xslt-param">title</code> as a title for a block-level element.  It is called by <code style="xslt-template" xref="db2html.block.formal">db2html.block.formal</code>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-in-chunk"/></p></item><item><p><link xref="html.class.attr"/></p></item></list></page>

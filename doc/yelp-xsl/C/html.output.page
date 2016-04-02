@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.output" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Create an HTML output file.</desc></info><title>html.output</title><p>Create an HTML output file.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create an output file for.</p>
+    </item>
+    <item>
+      <title><code>href</code></title>
+      <p>The output filename.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates an HTML output file for the source element <code style="xslt-param">node</code>. It uses <code>exsl:document</code> to output the file, and calls <code style="xslt-template" xref="html.page">html.page</code> with the <code style="xslt-param">node</code> parameter to output the actual HTML contents.</p>
+  <p>If <code style="xslt-param">href</code> is not provided, this template will attempt to generate a base filename and append <code style="xslt-param" xref="html.extension">html.extension</code> to it. The base filename is generated as follows: If an <code>xml:id</code> attribute is present, it is used; otherwise, if an <code>id</code> attribute is present, it is uses; otherwise, if <code style="xslt-param">node</code> is the root element, <code style="xslt-param" xref="html.basename">html.basename</code> is used; otherwise, <code>generate-id()</code> is called.</p>
+  <p>After calling <code>exsl:document</code>, this template calls the <code style="xslt-mode" xref="html.output.after.mode">html.output.after.mode</code> mode on <code style="xslt-param">node</code>. Importing stylesheets that create multiple output files can use this to process output files without blocking earlier output.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.page"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.output.after.mode"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.basename"/></p></item><item><p><link xref="html.extension"/></p></item><item><p><link xref="html.xhtml"/></p></item></list></page>

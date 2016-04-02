@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.footnote.footer" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-footnote" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-10" status="final"/><desc>Output all footnotes for a page.</desc></info><title>db2html.footnote.footer</title><p>Output all footnotes for a page.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The division-level element containing footnotes</p>
+    </item>
+    <item>
+      <title><code>depth_of_chunk</code></title>
+      <p>The depth of the containing chunk in the document.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template collects all <code>footnote</code> elements under <code style="xslt-param">node</code> and outputs them with <code style="xslt-template" xref="db2html.footnote.note">db2html.footnote.note</code>. It checks if each footnote would be displayed on a separate page by a child division-level element, and if so, it doesn't output that footnote.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-of-chunk"/></p></item><item><p><link xref="db2html.footnote.note"/></p></item></list></page>

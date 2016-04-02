@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="mal2html-page" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-template" xref="mal2html.page.about"/><link type="xslt-defines-template" xref="mal2html.page.linktrails"/><link type="xslt-defines-template" xref="mal2html.page.linktrails.empty"/><link type="xslt-defines-template" xref="mal2html.page.linktrails.trail"/><link type="xslt-defines-template" xref="mal2html.page.linktrails.trail.prefix"/><link type="xslt-defines-template" xref="mal2html.page.linktrails.link"/><link type="xslt-defines-template" xref="mal2html.editor.badge"/><link type="xslt-defines-template" xref="mal2html.editor.banner"/><link type="xslt-defines-template" xref="mal2html.section"/><link type="xslt-implements-mode" xref="l10n.format.mode"/><link type="xslt-implements-mode" xref="html.title.mode"/><link type="xslt-implements-mode" xref="html.header.mode"/><link type="xslt-implements-mode" xref="html.footer.mode"/><link type="xslt-implements-mode" xref="html.body.mode"/><link type="xslt-implements-mode" xref="mal2html.title.mode"/><link type="xslt-implements-mode" xref="html.css.mode"/><link type="xslt-implements-mode" xref="html.js.mode"/><link type="xslt-defines-param" xref="mal2html.editor_mode"/></info><title>Mallard to HTML - Pages</title><p>Handle pages, sections, and top-level data.</p>
+  
+  
+  <p>This stylesheet contains templates to process Mallard <code>page</code> and <code>section</code> elements, including implementations of the interfaces provided by the common <file xref="html">html</file> stylesheet.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="mal.link.linktrails"/></p></item><item><p><link xref="html.linktrails.empty"/></p></item><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal.link.content"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="mal2html.links.topic"/></p></item><item><p><link xref="mal2html.links.guide"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item><item><p><link xref="mal2html.inline.mode"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="color.background"/></p></item><item><p><link xref="color.blue_background"/></p></item><item><p><link xref="color.blue_border"/></p></item><item><p><link xref="color.gray_background"/></p></item><item><p><link xref="color.gray_border"/></p></item><item><p><link xref="color.link"/></p></item><item><p><link xref="color.red_background"/></p></item><item><p><link xref="color.red_border"/></p></item><item><p><link xref="color.text"/></p></item><item><p><link xref="color.text_light"/></p></item><item><p><link xref="color.yellow_background"/></p></item><item><p><link xref="color.yellow_border"/></p></item><item><p><link xref="mal2html.editor_mode"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>mal:page | mal:section</code></p></td></tr><tr><td><p><link xref="html.body.mode">html.body.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="html.css.mode">html.css.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="html.footer.mode">html.footer.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="html.header.mode">html.header.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="html.js.mode">html.js.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="html.title.mode">html.title.mode</link></p></td><td><p><code>mal:page</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:copyright.years</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:copyright.name</code></p></td></tr><tr><td><p><link xref="mal2html.title.mode">mal2html.title.mode</link></p></td><td><p><code>mal:title | mal:subtitle</code></p></td></tr></tbody></table></page>

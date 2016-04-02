@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.link" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The color of links.</desc></info><title>color.link</title><p>The color of links.</p>
+  
+  
+  <p>This parameter specifies the color for unvisited links.  It should be legible on all background colors.</p>
+</page>

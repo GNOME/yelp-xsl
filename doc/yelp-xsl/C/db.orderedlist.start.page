@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.orderedlist.start" type="topic" style="xslt-template"><info><link type="guide" xref="db-common" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.10" date="2013-08-12" status="final"/><desc>Determine the number to use for the first <code>listitem</code> in an <code>orderedlist</code>.</desc></info><title>db.orderedlist.start</title><p>Determine the number to use for the first <code>listitem</code> in an <code>orderedlist</code>.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>orderedlist</code> element to use.</p>
+    </item>
+    <item>
+      <title><code>continuation</code></title>
+      <p>The value of the <code>continuation</code> attribute.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template determines the starting number for an <code>orderedlist</code> element using the <code>continuation</code> attribute.  The template finds the first preceding <code>orderedlist</code> element and counts its list items.  If that element also uses the <code>continuation</code> attribute, this template calls itself recursively to add that element's starting line number to its list item count.</p>
+  <p>This template uses conditional processing when looking at preceding ordered lists and their child list items.</p>
+  <p>The <code style="xslt-param">continuation</code> parameter is automatically set based on the <code>continuation</code> attribute of <code style="xslt-param">node</code>. It exists as a parameter to allow this template to force continuation when it calls itself recursively for conditional processing.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="db.orderedlist.start"/></p></item></list></page>

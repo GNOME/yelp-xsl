@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.personname" type="topic" style="xslt-template"><info><link type="guide" xref="db-common" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Outputs the name of a person</desc></info><title>db.personname</title><p>Outputs the name of a person</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element containing tags such as <code>firstname</code> and <code>surname</code></p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the name of a person as modelled by the <code>personname</code> element.  The <code>personname</code> element allows authors to mark up components of a person's name, such as the person's first name and surname.  This template assembles those into a string.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.personname"/></p></item></list></page>

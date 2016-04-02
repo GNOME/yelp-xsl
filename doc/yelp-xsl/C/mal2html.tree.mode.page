@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.tree.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal2html-list" group="modes"/><link type="guide" xref="modes" group="mal2html"/><revision version="1.0" date="2010-06-04" status="final"/><desc>Process an <code>item</code> element inside a <code>tree</code>.</desc></info><title>mal2html.tree.mode</title><p>Process an <code>item</code> element inside a <code>tree</code>.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>lines</code></title>
+      <p>Whether to draw lines indicating hierarchy.</p>
+    </item>
+    <item>
+      <title><code>prefix</code></title>
+      <p>The line markers used by the parent <code>item</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This mode is used for processing <code>item</code> elements in <code>tree</code> elements. It is applied by the template for <code>tree</code> and recursively calls itself. If the parent <code>tree</code> has the style hint <code>"lines"</code>, the <code style="xslt-param">lines</code> parameter will be <code>true</code>. In this case, this template calculates a prefix based on its position and neighboring <code>item</code> elements, and passes that prefix to child elements.</p>
+</page>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.page" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Create an HTML document.</desc></info><title>html.page</title><p>Create an HTML document.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create HTML for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates the actual HTML output for <code style="xslt-param">node</code>. It outputs top-level elements and container divs, and calls various templates and modes to output the inner content. Importing stylesheets should implement at least <code style="xslt-mode" xref="html.title.mode">html.title.mode</code> and <code style="xslt-mode" xref="html.body.mode">html.body.mode</code> for any elements that could be passed as <code style="xslt-param">node</code> to this template.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.css"/></p></item><item><p><link xref="html.header.custom"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.body.attr.mode"/></p></item><item><p><link xref="html.body.mode"/></p></item><item><p><link xref="html.footer.mode"/></p></item><item><p><link xref="html.header.mode"/></p></item><item><p><link xref="html.title.mode"/></p></item></list></page>

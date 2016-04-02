@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="color" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><link type="xslt-defines-param" xref="color.background"/><link type="xslt-defines-param" xref="color.link"/><link type="xslt-defines-param" xref="color.link_visited"/><link type="xslt-defines-param" xref="color.text"/><link type="xslt-defines-param" xref="color.text_light"/><link type="xslt-defines-param" xref="color.text_error"/><link type="xslt-defines-param" xref="color.blue_background"/><link type="xslt-defines-param" xref="color.blue_border"/><link type="xslt-defines-param" xref="color.gray_background"/><link type="xslt-defines-param" xref="color.dark_background"/><link type="xslt-defines-param" xref="color.gray_border"/><link type="xslt-defines-param" xref="color.red_background"/><link type="xslt-defines-param" xref="color.red_border"/><link type="xslt-defines-param" xref="color.yellow_background"/><link type="xslt-defines-param" xref="color.yellow_border"/></info><title>Colors</title><p>Specify common named colors to style output.</p>
+  
+  
+  <p>This stylesheet provides a common interface to specify custom colors for transformations to presentation-oreinted formats.  This allows similar output for different types of input documents.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links></page>

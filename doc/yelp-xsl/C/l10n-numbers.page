@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="l10n-numbers" type="guide" style="xslt-stylesheet"><?xslt-private l10n.number.cjk-ideographic.private?><?xslt-private l10n.number.ionic.private?><info><link type="guide" xref="stylesheets" group="l10n"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-defines-template" xref="l10n.number"/><link type="xslt-defines-template" xref="l10n.number.alphabetic"/><link type="xslt-defines-template" xref="l10n.number.numeric"/><link type="xslt-defines-template" xref="l10n.number.cjk-ideographic"/><link type="xslt-defines-template" xref="l10n.number.ionic"/></info><title>Localized Numbers</title>
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links></page>

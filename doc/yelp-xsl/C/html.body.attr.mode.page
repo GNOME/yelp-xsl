@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.body.attr.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="1.0" date="2010-06-08" status="final"/><desc>Output attributes for the HTML <code>body</code> element.</desc></info><title>html.body.attr.mode</title><p>Output attributes for the HTML <code>body</code> element.</p>
+  
+  
+  <p>This mode is called by <code style="xslt-template" xref="html.page">html.page</code> to output attributes on the HTML <code>body</code> element. No attributes are output by default. Importing stylesheets may implement this node to add attributes for styling, data, or other purposes.</p>
+</page>

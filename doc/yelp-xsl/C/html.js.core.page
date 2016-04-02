@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.core" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.4" date="2011-11-04" status="final"/><desc>Output JavaScript for core features.</desc></info><title>html.js.core</title><p>Output JavaScript for core features.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create JavaScript for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs JavaScript to support basic features used by all documents. Currently, it outputs code to highlight a section when <code>location.hash</code> is set.</p>
+<list style="compact"><title>Calls Parameters</title><item><p><link xref="color.yellow_background"/></p></item></list></page>

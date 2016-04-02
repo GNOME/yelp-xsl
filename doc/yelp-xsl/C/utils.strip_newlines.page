@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="utils.strip_newlines" type="topic" style="xslt-template"><info><link type="guide" xref="utils" group="templates"/><link type="guide" xref="templates" group="utils"/><revision version="1.0" date="2010-05-25" status="final"/><desc>Strip leading or trailing newlines from a string.</desc></info><title>utils.strip_newlines</title><p>Strip leading or trailing newlines from a string.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>string</code></title>
+      <p>The string to strip newlines from.</p>
+    </item>
+    <item>
+      <title><code>leading</code></title>
+      <p>Whether to strip leading newlines.</p>
+    </item>
+    <item>
+      <title><code>trailing</code></title>
+      <p>Whether to strip trailing newlines.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template strips at most one leading and one trailing newline from <code style="xslt-param">string</code>.  This is useful for preformatted block elements where leading and trailing newlines are ignored to make source formatting easier for authors.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="utils.strip_newlines"/></p></item></list></page>

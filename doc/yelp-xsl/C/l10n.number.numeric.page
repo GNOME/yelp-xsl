@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="l10n.number.numeric" type="topic" style="xslt-template"><info><link type="guide" xref="l10n-numbers" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Formats a number using a numeric numbering system with any radix</desc></info><title>l10n.number.numeric</title><p>Formats a number using a numeric numbering system with any radix</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>value</code></title>
+      <p>The numeric value of the number to format</p>
+    </item>
+    <item>
+      <title><code>digits</code></title>
+      <p>A string containing the digits to use, starting with zero</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Talk about numeric numbering systems</p></comment>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.number.numeric"/></p></item></list></page>

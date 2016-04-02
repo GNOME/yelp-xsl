@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.prevnext" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="1.0" date="2011-06-15" status="final"/><desc>Output links to the previous and next pages.</desc></info><title>mal2html.links.prevnext</title><p>Output links to the previous and next pages.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> or <code>page</code> element to link from.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs links to the previous and next page in a Mallard series, if they exist. The block containing the links is end-floated by default. The links use the text "Previous" and "Next", although the actual page titles are used for tooltips.</p>
+  <p>If the <code>links</code> element has the style hint <code>top</code>, it will be inserted before the page title, instead of in its position on the page. This is handled by the calling functions in <file xref="mal2html-page">mal2html-page</file>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.linkid"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.link.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

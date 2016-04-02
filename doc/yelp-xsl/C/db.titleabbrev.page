@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.titleabbrev" type="topic" style="xslt-template"><info><link type="guide" xref="db-title" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.4" date="2011-11-10" status="final"/><desc>Output an abbreviated title for an element.</desc></info><title>db.titleabbrev</title><p>Output an abbreviated title for an element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to output the abbreviated title of.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>The info child element of <code style="xslt-param">node</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the abbreviated title of the element <code style="xslt-param">node</code>, which is sometimes used for link text. If no explicit <code>titleabbrev</code> element is found, this template just calls <code style="xslt-template" xref="db.title">db.title</code>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.title"/></p></item></list></page>

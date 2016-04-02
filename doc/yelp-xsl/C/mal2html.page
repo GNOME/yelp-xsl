@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="mal2html" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-param" xref="html.xhtml"/><link type="xslt-defines-param" xref="mal.if.target"/></info><title>Mallard to HTML</title><p>Transform Mallard to HTML.</p>
+  
+  
+  <p>This top-level stylesheet includes all the necessary stylesheets to transform Mallard documents into HTML. It imports <file xref="mal2xhtml">mal2xhtml</file>, overrides parameters, and sets a namespace alias to output non-XML HTML. In particular, this stylesheet sets <code style="xslt-param" xref="html.xhtml">html.xhtml</code> to <code>false</code> and <code style="xslt-param" xref="mal.if.target">mal.if.target</code> to <code>'target:html'</code>.</p>
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links></page>

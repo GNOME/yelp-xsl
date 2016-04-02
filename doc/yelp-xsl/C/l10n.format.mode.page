@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="l10n.format.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="l10n" group="modes"/><link type="guide" xref="modes" group="l10n"/><revision version="3.18" date="2015-08-13" status="final"/><desc>Process format strings from <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code>.</desc></info><title>l10n.format.mode</title><p>Process format strings from <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code>.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node being processed in the original document.</p>
+    </item>
+    <item>
+      <title><code>string</code></title>
+      <p>String content to use for certain message format nodes.</p>
+    </item>
+  </terms></synopsis>
+  <p>This mode is called by <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code> when its <code>format</code> parameter is set to true. It is applied to the elements and text children of the translated message that <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code> finds. This allows you to insert content in format strings, rather than concatenating multiple translations to create a translated message.</p>
+  <p>By default, this stylesheet provides matching templates in this mode for the elements <code>node</code> and <code>string</code>. The template for <code>node</code> applies templates with no mode to the <code style="xslt-param">node</code> parameters passed to <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code>. The template for <code>string</code> copies the text in the <code style="xslt-param">string</code> parameter passed to <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code>. Both parameters are passed to templates in this mode. Templates matching this mode should pass those parameters to child content if they process child content in <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code>.</p>
+  <p>To use format strings in your own translations, use elements with names of your choosing in your message. You can use the <code>node</code> and <code>string</code> elements without further implementation, if they fit your needs. Otherwise, take care to use element names that are unlikely to conflict with other templates using this mode.</p>
+</page>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.editor_mode" type="topic" style="xslt-param"><info><link type="guide" xref="mal2html-page" group="parameters"/><link type="guide" xref="parameters" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Add information that's useful to writers and editors.</desc></info><title>mal2html.editor_mode</title><p>Add information that's useful to writers and editors.</p>
+  
+  
+  <p>When this parameter is set to true, these stylesheets will output editorial comments, status markers, and other information that's useful to writers and editors.</p>
+</page>

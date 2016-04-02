@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-12-31" status="final"/><desc>Output all JavaScript for an HTML output page.</desc></info><title>html.js</title><p>Output all JavaScript for an HTML output page.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create JavaScript for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates the JavaScript for an HTML output page. It calls the template <code style="xslt-template" xref="html.js.jquery">html.js.jquery</code> to output references to jQuery files. It then calls <code style="xslt-template" xref="html.js.custom">html.js.custom</code> to output references to custom JavaScript files. Finally, it outputs an HTML <code>script</code> tag and calls <code style="xslt-template" xref="html.js.content">html.js.content</code> to ouput the contents of that tag.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.js.jquery"/></p></item><item><p><link xref="html.js.content"/></p></item></list></page>

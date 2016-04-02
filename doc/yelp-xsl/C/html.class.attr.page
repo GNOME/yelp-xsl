@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.class.attr" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.10" date="2013-07-10" status="final"/><desc>Output a <code>class</code> attribute for an HTML element.</desc></info><title>html.class.attr</title><p>Output a <code>class</code> attribute for an HTML element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The source node for which an HTML element is being output.</p>
+    </item>
+    <item>
+      <title><code>class</code></title>
+      <p>The value of the <code>class</code> attribute provided by the calling template.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by templates that output an HTML element corresponding to a source element. This template applies <code style="xslt-mode" xref="html.class.attr.mode">html.class.attr.mode</code> to <code style="xslt-param">node</code> to gather a value from extensions stylesheets. It combines this value with the value passed in the <code style="xslt-param">class</code> parameter and, if the result is non-empty, outputs a <code>class</code> attribute.</p>
+<list style="compact"><title>Calls Modes</title><item><p><link xref="html.class.attr.mode"/></p></item></list></page>

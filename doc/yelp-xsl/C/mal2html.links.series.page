@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.series" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="1.0" date="2011-06-15" status="final"/><desc>Output links to pages in a series.</desc></info><title>mal2html.links.series</title><p>Output links to pages in a series.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> or <code>page</code> element to start from.</p>
+    </item>
+  </terms></synopsis>
+  <p>A series in Mallard is a list of page such that each page in the list has a next link to the following page. This template outputs links to each page in a series. The current page is output in its place, althought it is not a link.</p>
+  <p>This template calls <code style="xslt-template" xref="mal2html.links.series.prev">mal2html.links.series.prev</code> and <code style="xslt-template" xref="mal2html.links.series.next">mal2html.links.series.next</code> to find and output the links.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.ui.expander.data"/></p></item><item><p><link xref="mal2html.links.series.prev"/></p></item><item><p><link xref="mal.link.content"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item></list></page>

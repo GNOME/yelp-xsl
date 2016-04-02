@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="l10n.align.end" type="topic" style="xslt-template"><info><link type="guide" xref="l10n" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="3.18" date="2015-07-27" status="final"/><desc>Determine the end alignment.</desc></info><title>l10n.align.end</title><p>Determine the end alignment.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>direction</code></title>
+      <p>The text direction.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template returns the string <code>right</code> for left-to-right languages and the string <code>left</code> for right-to-left languages. The result is suitable for substituting in CSS rules that are direction-dependent. If you do not pass the <code style="xslt-param">direction</code> parameter, it defaults to calling <code style="xslt-template" xref="l10n.direction">l10n.direction</code> using the default locale defined in <code style="xslt-param" xref="l10n.locale">l10n.locale</code>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item></list></page>

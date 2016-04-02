@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.if.test" type="topic" style="xslt-template"><info><link type="guide" xref="mal-if" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Test if a condition is true.</desc></info><title>mal.if.test</title><p>Test if a condition is true.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to check the condition for.</p>
+    </item>
+    <item>
+      <title><code>test</code></title>
+      <p>The test expression.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template evaluates the test expression <code style="xslt-param">test</code>, which is taken automatically from the <code>test</code> or <code>if:test</code> attribute of $node. It splits the expression on commas into subexpressions, then splits each subexpression on spaces into tokens. A token is taken to be true if it's in one of the space-separated lists from <code style="xslt-param" xref="mal.if.target">mal.if.target</code>, <code style="xslt-param" xref="mal.if.platform">mal.if.platform</code>, <code style="xslt-param" xref="mal.if.features">mal.if.features</code>, or <code style="xslt-param" xref="mal.if.custom">mal.if.custom</code>. If the token starts with an exclamation point, the exclamation point is stripped and the resulting truth value is negated.</p>
+  <p>A subexpression is true if all its tokens is true. The full test expression is true if any subexpression is true. If the test expression is true, the literal string <code>'true'</code> is returned. If the test expression is false, the empty string is returned.</p>
+  <p>This template can handle "maybe" values: tokens that may or may not be true, and whose truth values are deferred to post-transform time. A token is maybe if it appears in the space-separated list <code style="xslt-param" xref="mal.if.maybe">mal.if.maybe</code>. If a subexpression contains a maybe value and does not contain any false tokens, its truth value is a special string constructed from the maybe tokens and starting with the string <code>if__</code>. If any subexpressions are maybe and none of the subexpressions are false, the return value is a space-separated list of the maybe strings.</p>
+  <p>Maybe tokens usually must be handled specifically by the importing stylesheet. It's usually not sufficient to just add a token to <code style="xslt-param" xref="mal.if.maybe">mal.if.maybe</code>. This template will handle any maybe token, but it does not handle the actual logic of dynamically showing or hiding content based on those tokens.</p>
+</page>

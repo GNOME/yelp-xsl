@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.class.attr.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.10" date="2013-07-10" status="final"/><desc>Output additional values for an HTML <code>class</code> attribute.</desc></info><title>html.class.attr.mode</title><p>Output additional values for an HTML <code>class</code> attribute.</p>
+  
+  
+  <p>This mode is called by <code style="xslt-template" xref="html.class.attr">html.class.attr</code> on a source element. This mode is intended for extensions to have an easy way to add additional HTML class values for styling.</p>
+  <p>Note that these stylesheets use CSS classes extensively for styling and for certain JavaScript functionality. Extensions should be careful to output class values that do not conflict with those used in these stylesheets.</p>
+</page>

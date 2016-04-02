@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.linkid" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.0" date="2010-01-02" status="final"/><desc>Output the fully qualified link ID for a page or section.</desc></info><title>mal.link.linkid</title><p>Output the fully qualified link ID for a page or section.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>page</code> or <code>section</code> element to generate a link ID for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the fully qualified link ID for a page or section.  For <code>page</code> elements, the link ID is identical to the ID.  For <code>section</code> elements, however, the link ID is the containing page ID and the section ID, joined with the <code>#</code> character.</p>
+  <p>The link ID is used in Mallard cache files to ensure all <code>id</code> attributes are unique.  All of the templates in this stylesheet that use a link ID use this template or <code style="xslt-template" xref="mal.link.xref.linkid">mal.link.xref.linkid</code>.</p>
+</page>

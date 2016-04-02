@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.title" type="topic" style="xslt-template"><info><link type="guide" xref="db-title" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.4" date="2011-11-10" status="final"/><desc>Output a title for an element.</desc></info><title>db.title</title><p>Output a title for an element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to output the title of.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>The info child element of <code style="xslt-param">node</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the title of the element <code style="xslt-param">node</code> as it might be used for a heading or for link text. For certain types of elements, this templates will use a localized automatic title if no explicit title is provided.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.chunk-id"/></p></item><item><p><link xref="db.title"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.syntax.class" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.12" date="2013-11-02" status="final"/><desc>Output HTML class values for syntax highlighting.</desc></info><title>html.syntax.class</title><p>Output HTML class values for syntax highlighting.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The source element whose content will be syntax highlighted.</p>
+    </item>
+    <item>
+      <title><code>mime</code></title>
+      <p>A MIME type identifying the content, as from a Mallard <code>mime</code> attribute.</p>
+    </item>
+    <item>
+      <title><code>language</code></title>
+      <p>A name identifying the content as from a DocBook <code>language</code> attribute.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template looks at <code style="xslt-param">mime</code> and <code style="xslt-param">language</code> and determines if there is a suitable syntax highlighting brush available. If so, it outputs a string that should be placed in the <code>class</code> attribute of a <code>pre</code> element by the calling template.</p>
+</page>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.span" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-inline" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.10" date="2013-07-10" status="final"/><desc>Output an HTML <code>span</code> element.</desc></info><title>mal2html.span</title><p>Output an HTML <code>span</code> element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The source element to output a <code>span</code> for.</p>
+    </item>
+    <item>
+      <title><code>class</code></title>
+      <p>An additional string to prepend to the <code>class</code> attribute.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs an HTML <code>span</code> element for a source element. It creates a <code>class</code> attribute automatically by passing the local name of <code style="xslt-param">node</code> and the <code style="xslt-param">class</code> parameter to <code style="xslt-template" xref="html.class.attr">html.class.attr</code>. To output the contents of <code style="xslt-param">node</code>, it applies the mode <code style="xslt-mode" xref="mal2html.inline.content.mode">mal2html.inline.content.mode</code> to <code style="xslt-param">node</code>.</p>
+  <p>This template automatically handles ubiquitous linking if <code style="xslt-param">node</code> contains an <code>xref</code> or <code>href</code> attribute.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="html.lang.attrs"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.inline.content.mode"/></p></item></list></page>

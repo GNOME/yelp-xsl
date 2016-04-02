@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.division.div.content.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-division" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Renders the block-level content of a division element</desc></info><title>db2html.division.div.content.mode</title><p>Renders the block-level content of a division element</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>depth_in_chunk</code></title>
+      <p>The depth of the context element in the containing chunk</p>
+    </item>
+    <item>
+      <title><code>depth_of_chunk</code></title>
+      <p>The depth of the containing chunk in the document</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Talk about how this works with <code>callback</code></p></comment>
+</page>

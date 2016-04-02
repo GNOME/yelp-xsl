@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.desc" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.18" date="2015-06-06" status="final"/><desc>Output the desc content for a <code>link</code> element.</desc></info><title>mal.link.desc</title><p>Output the desc content for a <code>link</code> element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>link</code> or other element creating the link.</p>
+    </item>
+    <item>
+      <title><code>action</code></title>
+      <p>The <code>action</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>xref</code></title>
+      <p>The <code>xref</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>href</code></title>
+      <p>The <code>href</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>role</code></title>
+      <p>A space-separated list of link roles, used to select the appropriate desc.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>An <code>info</code> element that overrides the info found in a target node.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the secondary desc text content for a link. If <code style="xslt-param">xref</code> points to a valid page or section, the desc from that page or section will be used. The <code style="xslt-mode" xref="mal.link.content.mode">mal.link.content.mode</code> mode is applied to the contents of that desc. Stylesheets using this template should map that mode to inline processing.</p>
+  <p>For inline links, <code style="xslt-param">node</code> should be the <code>link</code> element. For links from a <code>links</code> element, <code style="xslt-param">node</code> should be that <code>links</code> element, or the containing element when the <code>links</code> element is implicit.</p>
+  <p>This template first calls <code style="xslt-template" xref="mal.link.desc.custom">mal.link.desc.custom</code> with the same arguments. If that template returns a non-empty result, it is used as the return value, overriding any other behavior of this template.</p>
+  <p>Normally, this template automatically looks up information from a targret node according to the <code style="xslt-param">xref</code> parameter. However, if the <code style="xslt-param">info</code> parameter is given, information in that node set is used instead. This is useful for external info links, where the target information is provided as child elements to the <code>link</code> element.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.desc.custom"/></p></item><item><p><link xref="mal.link.xref.linkid"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal.link.content.mode"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

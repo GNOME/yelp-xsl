@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.entry" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-table" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Creates a <code>td</code> element for an <code>entry</code> element</desc></info><title>db2html.entry</title><p>Creates a <code>td</code> element for an <code>entry</code> element</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>entry</code></title>
+      <p>The <code>entry</code> element to process</p>
+    </item>
+    <item>
+      <title><code>colspecs</code></title>
+      <p>The <code>colspec</code> elements currently in scope</p>
+    </item>
+    <item>
+      <title><code>spanspecs</code></title>
+      <p>The <code>spanspec</code> elements currently in scope</p>
+    </item>
+    <item>
+      <title><code>colsep</code></title>
+      <p>Whether column separators are currently enabled</p>
+    </item>
+    <item>
+      <title><code>rowsep</code></title>
+      <p>Whether column separators are currently enabled</p>
+    </item>
+    <item>
+      <title><code>colpos</code></title>
+      <p>The output column position currently being considered</p>
+    </item>
+    <item>
+      <title><code>colnum</code></title>
+      <p>The actual column number of <code style="xslt-param">entry</code></p>
+    </item>
+    <item>
+      <title><code>spanstr</code></title>
+      <p>The string representation of the row spans</p>
+    </item>
+  </terms></synopsis>
+  <p>This template processes a single <code>entry</code> element and generates <code>td</code> elements as needed.  It then calls itself on the following <code>entry</code> element, adjusting parameters as necessary.  Under certain conditions, this template may not be able to output a <code>td</code> element immediately.  In these cases, it makes whatever adjustments are needed and calls itself or <code style="xslt-template" xref="db2html.entry.implicit">db2html.entry.implicit</code> (which, in turn, calls this template again when it's finished).</p>
+  <p>Three parameters are used to determine whether a <code>td</code> element can be output. The <code style="xslt-param">spanstr</code> parameter provides infomation about row spans in effect from entries in previous rows; the <code style="xslt-param">colpos</code> parameter specifies which column we would output to if we created a <code>td</code>; and the <code style="xslt-param">colnum</code> parameter specifies which column this <code>entry</code> should be in, according to any relevant <code>colspec</code> or <code>spanspec</code> elemets.</p>
+  <p>There are two conditions that cause this template not to output a <code>td</code> element immediately: if the <code style="xslt-param">spanstr</code> parameter does not start with <code>0:</code>, and if the <code style="xslt-param">colpos</code> parameter is less than the <code style="xslt-param">colnum</code> parameter.</p>
+  <p>The <code style="xslt-param">spanstr</code> parameter specifies the row spans in effect from entries in previous rows.  As this template iterates over the <code>entry</code> elements, it strips off parts of <code style="xslt-param">spanstr</code> so that only the parts relevant to the <code>entry</code> are present.  If <code style="xslt-param">spanstr</code> does not start with <code>0:</code>, then an entry in a previous row occupies this column position.  In this case, that value is removed from <code style="xslt-param">spanstr</code>, the <code style="xslt-param">colpos</code> parameter is incremented, and <code style="xslt-template" xref="db2html.entry">db2html.entry</code> is called again.  Additionally, since <code style="xslt-template" xref="db2html.entry.colnum">db2html.entry.colnum</code> doesn't consider row spans, the <code style="xslt-param">colnum</code> parameter may be incremented as well.</p>
+  <p>If the <code style="xslt-param">colpos</code> parameter is less than the <code style="xslt-param">colnum</code> parameter, then the document has skipped entries by explicitly referencing a column.  This is allowed in CALS tables, but not in HTML.  To fill the blank spaces, we call <code style="xslt-template" xref="db2html.entry.implicit">db2html.entry.implicit</code>, which outputs an empty <code>td</code> element spanning as many columns as necessary to fill in the blanks.  The <code style="xslt-template" xref="db2html.entry.implicit">db2html.entry.implicit</code> template then calls this template again with appropriate parameter values.</p>
+  <p>When this template is finally able to output a <code>td</code> element, it calculates appropriate values for the <code>style</code> and <code>class</code> attribute based on DocBook attributes on the <code>entry</code>, the relevant <code>colspec</code> or <code>spanspec</code>, and any relevant ancestor elements.  It then calls itself on the following <code>entry</code> element to output the next <code>td</code>.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.entry.colnum"/></p></item><item><p><link xref="db2html.entry.colspan"/></p></item><item><p><link xref="db2html.entry"/></p></item><item><p><link xref="db2html.entry.implicit"/></p></item><item><p><link xref="html.lang.attrs"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db2html.spanstr.pop"/></p></item></list></page>

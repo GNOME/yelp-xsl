@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.block" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-block" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.10" date="2013-08-09" status="final"/><desc>Output an HTML <code>div</code> element for a block-level element.</desc></info><title>db2html.block</title><p>Output an HTML <code>div</code> element for a block-level element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The block-level element to render.</p>
+    </item>
+    <item>
+      <title><code>class</code></title>
+      <p>The value of the HTML <code>class</code> attribute.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates an HTML <code>div</code> element for the given DocBook element. It passes the <code style="xslt-param">class</code> parameter to <code style="xslt-template" xref="html.class.attr">html.class.attr</code>. If the <code style="xslt-param">class</code> parameter is not provided, it uses the local name of <code style="xslt-param">node</code>.</p>
+  <p>This template handles conditional processing.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item></list></page>

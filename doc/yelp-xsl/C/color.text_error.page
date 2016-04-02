@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.text_error" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The error text color.</desc></info><title>color.text_error</title><p>The error text color.</p>
+  
+  
+  <p>This parameter specifies the color for error text.  The error text color is used to style error messages from command line sessions. It should be legible on all background colors.</p>
+</page>

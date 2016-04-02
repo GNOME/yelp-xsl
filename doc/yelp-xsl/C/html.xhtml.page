@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.xhtml" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="1.0" date="2010-05-25" status="final"/><desc>Whether to output XHTML.</desc></info><title>html.xhtml</title><p>Whether to output XHTML.</p>
+  
+  
+  <p>If this parameter is set to true, this stylesheet will output XHTML. Otherwise, the output is assumed to be HTML. Note that for HTML output, the importing stylesheet still needs to call <code>xsl:namespace-alias</code> to map the XHTML namespace to <code>#default</code>. The <code style="xslt-param" xref="html.namespace">html.namespace</code> will be set automatically based on this parameter. Stylesheets can use this parameter to check the output type, for example when using <code>xsl:element</code>.</p>
+</page>

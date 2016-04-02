@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.output.after.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Process an element after its content are output.</desc></info><title>html.output.after.mode</title><p>Process an element after its content are output.</p>
+  
+  
+  <p>This mode is called by <code style="xslt-template" xref="html.output">html.output</code> after <code>exsl:document</code> has finished. It can be used to create further output files without blocking the output of parent elements.</p>
+</page>

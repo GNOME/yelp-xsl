@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.links.linktrail" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-links" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.20" date="2015-09-15" status="final"/><desc>Generate links to pages from ancestor elements.</desc></info><title>db2html.links.linktrail</title><p>Generate links to pages from ancestor elements.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to generate links for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs a trail of links for the ancestor pages of <code style="xslt-param">node</code>. If <code style="xslt-param">node</code> has no ancestors, then it calls <code style="xslt-template" xref="html.linktrails.empty">html.linktrails.empty</code> instead. This template calls <code style="xslt-template" xref="html.linktrails.prefix">html.linktrails.prefix</code> before the first link, passing <code style="xslt-param">node</code> as that template's <code>node</code> parameter.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="html.linktrails.prefix"/></p></item><item><p><link xref="db.xref.target"/></p></item><item><p><link xref="db.xref.tooltip"/></p></item><item><p><link xref="db.titleabbrev"/></p></item><item><p><link xref="html.linktrails.empty"/></p></item></list></page>

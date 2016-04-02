@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.funcsynopsis.style" type="topic" style="xslt-param"><info><link type="guide" xref="db2html-funcsynopsis" group="parameters"/><link type="guide" xref="parameters" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>How to render <code>funcsynopsis</code> elements</desc></info><title>db2html.funcsynopsis.style</title><p>How to render <code>funcsynopsis</code> elements</p>
+  
+  
+  <p>This parameter controls the indentation style used to render <code>funcsynopsis</code> elements.  Supported values are <code>'KR'</code> and <code>'ANSI'</code>.  This value can also be set with the <code>db2html.funcsynopsis.style</code> processing instruction at the top of the XML document.  The same processing instruction or inside a <code>funcsynopsis</code> element will override this setting for that synopsis.</p>
+</page>

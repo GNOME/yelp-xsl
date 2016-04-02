@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.spanstr.pop" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-table" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Calculates the remaining spans after an <code>entry</code> element</desc></info><title>db2html.spanstr.pop</title><p>Calculates the remaining spans after an <code>entry</code> element</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>colspecs</code></title>
+      <p>The <code>colspec</code> elements currently in scope</p>
+    </item>
+    <item>
+      <title><code>spanspecs</code></title>
+      <p>The <code>spanspec</code> elements currently in scope</p>
+    </item>
+    <item>
+      <title><code>colspan</code></title>
+      <p>The number of columns to pop</p>
+    </item>
+    <item>
+      <title><code>spanstr</code></title>
+      <p>The string representation of the column spans</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>This template needs to be explained in detail, but I forgot how it works.</p></comment>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.spanstr.pop"/></p></item></list></page>

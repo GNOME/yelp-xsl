@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="ttml.features" type="topic" style="xslt-param"><info><link type="guide" xref="ttml" group="parameters"/><link type="guide" xref="parameters" group="ttml"/><revision version="3.4" date="2012-03-01" status="final"/><desc>The supported features and extensions for TTML documents.</desc></info><title>ttml.features</title><p>The supported features and extensions for TTML documents.</p>
+  
+  
+  <p>This parameter lists the fully-qualified URIs of TTML features and extensions supported by the stylesheets. The values are in the form of a space-separated list, which MUST have both a leading and a trailing space.</p>
+  <p>The default value for this parameter is empty. Importing stylesheets should set this to an appropriate value.</p>
+</page>

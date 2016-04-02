@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="ttml.profile.attr" type="topic" style="xslt-template"><info><link type="guide" xref="ttml" group="templates"/><link type="guide" xref="templates" group="ttml"/><revision version="3.4" date="2012-03-02" status="final"/><desc>Check whether the stylesheets conform to a <code>profile</code> attribute.</desc></info><title>ttml.profile.attr</title><p>Check whether the stylesheets conform to a <code>profile</code> attribute.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>tt:tt</code> element containing a <code>profile</code> attribute.</p>
+    </item>
+    <item>
+      <title><code>profile</code></title>
+      <p>The <code>profile</code> attribute to check.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template checks if the stylesheets comply with a profile as specified by the <code>profile</code> attribute on a <code>tt:tt</code> element. If the profile is one of the pre-defined profiles (<code>dfxp-transformation</code>, <code>dfxp-presentation</code>, and <code>dfxp-full</code>), this template contains built-in rules for quicly checking feature compliance. Otherwise, it downloads the referenced profile and calls <code style="xslt-template" xref="ttml.profile">ttml.profile</code> on it.</p>
+  <p>Like <code style="xslt-template" xref="ttml.profile">ttml.profile</code>, this template returns the string <code>"true"</code> if all required features are supported, <code>"false"</code> otherwise.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="ttml.profile"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="ttml.features"/></p></item></list></page>

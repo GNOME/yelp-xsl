@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.footnote.note" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-footnote" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-10" status="final"/><desc>Output a footnote.</desc></info><title>db2html.footnote.note</title><p>Output a footnote.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>footnote</code> element to process.</p>
+    </item>
+  </terms></synopsis>
+  <p>This templates outputs the actual text of a footnote as a block-level element.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item></list></page>

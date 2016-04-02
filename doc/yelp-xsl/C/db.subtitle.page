@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.subtitle" type="topic" style="xslt-template"><info><link type="guide" xref="db-title" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.4" date="2011-11-10" status="final"/><desc>Output a subtitle for an element.</desc></info><title>db.subtitle</title><p>Output a subtitle for an element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to output the subtitle of.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>The info child element of <code style="xslt-param">node</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs the subtitle of the element <code style="xslt-param">node</code>, which is sometimes used for link text. If no explicit <code>titleabbrev</code> element is found, this template just calls <code style="xslt-template" xref="db.title">db.title</code>. This template is not suitable for determining whehter a subtitle should be placed in a heading, as it will always return the title if a subtitle is not found.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.title"/></p></item></list></page>

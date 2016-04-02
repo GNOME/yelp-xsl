@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.class.cpp.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-classsynopsis" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><desc>Process a C++ synopsis.</desc></info><title>db2html.class.cpp.mode</title><p>Process a C++ synopsis.</p>
+  
+  
+  <p>This mode is applied to child elements for synopsis elements for the C++ programming language. In C++ synopses, the first <code>modifier</code> element for methods is expected to mark the visibility, such as <code>public</code> or <code>private</code>.</p>
+</page>

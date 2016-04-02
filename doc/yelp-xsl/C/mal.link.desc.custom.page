@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.desc.custom" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><link type="guide" xref="stubs" group="mal"/><revision version="3.18" date="2015-06-06" status="final"/><desc>Output the desc content for a custom <code>link</code> element.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>mal.link.desc.custom</title><p>Output the desc content for a custom <code>link</code> element.</p><note><p>This template is a stub. Customizations may override it for
+            additional functionality.</p></note>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>link</code> or other element creating the link.</p>
+    </item>
+    <item>
+      <title><code>action</code></title>
+      <p>The <code>action</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>xref</code></title>
+      <p>The <code>xref</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>href</code></title>
+      <p>The <code>href</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>role</code></title>
+      <p>A space-separated list of link roles, used to select the appropriate title.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>An <code>info</code> element that overrides the info found in a target node.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by <code style="xslt-template" xref="mal.link.desc">mal.link.desc</code> to create content for custom links. Use this template to support the <code>action</code> attribute or extended <code>xref</code> attributes containing slash or colon characters.</p>
+</page>

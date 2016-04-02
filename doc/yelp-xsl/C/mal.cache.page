@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.cache" type="topic" style="xslt-param"><info><link type="guide" xref="mal-link" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.0" date="2010-01-02" status="final"/><desc>The cache document as a node set.</desc></info><title>mal.cache</title><p>The cache document as a node set.</p>
+  
+  
+  <p>This parameter points to the root <code>cache:cache</code> element of a Mallard cache document.  By default, it selects the root element from the file provided in <code style="xslt-param" xref="mal.cache.file">mal.cache.file</code>.</p>
+  <p>Some processing tools may create a Mallard cache document without outputting it to a file.  Those tools can use this parameter directly.</p>
+</page>

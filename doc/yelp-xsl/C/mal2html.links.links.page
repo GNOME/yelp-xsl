@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.links" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.10" date="2013-07-30" status="final"/><desc>Output links in one of a number of formats.</desc></info><title>mal2html.links.links</title><p>Output links in one of a number of formats.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code>, <code>page</code>, or <code>section</code> element to link from.</p>
+    </item>
+    <item>
+      <title><code>depth</code></title>
+      <p>The depth level for the HTML header element.</p>
+    </item>
+    <item>
+      <title><code>links</code></title>
+      <p>A list of links, as from a template in <file xref="mal-link">mal-link</file>.</p>
+    </item>
+    <item>
+      <title><code>role</code></title>
+      <p>A space-separated list of link roles, used to select the appropriate title.</p>
+    </item>
+    <item>
+      <title><code>divs</code></title>
+      <p>Whether to default to divs instead of a list.</p>
+    </item>
+    <item>
+      <title><code>title</code></title>
+      <p>A default title to use if no <code>title</code> element is found.</p>
+    </item>
+  </terms></synopsis>
+  <p>This is a common formatting template used by some <code>links</code> element handlers. It selects an appropriate way to render the links based on style hints and extension attributes on <code style="xslt-param">node</code>. This template (or the templates it calls) will pass through <code>class</code> and <code>data-*</code> attributes found on the <code>link</code> elements to the top-level container element of each output link.</p>
+  <p>This template handles link sorting.</p>
+  <p>If <code style="xslt-param">node</code> is a <code>links</code> element with a <code>title</code> element, that <code>title</code> element will be processed as the title. Otherwise, the optional <code style="xslt-param">title</code> parameter will be used if provided.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="mal2html.ui.expander.data"/></p></item><item><p><link xref="mal2html.api.links.function"/></p></item><item><p><link xref="mal2html.ui.links.tiles"/></p></item><item><p><link xref="mal2html.links.ul"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item></list></page>

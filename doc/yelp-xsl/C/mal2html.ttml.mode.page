@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ttml.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal2html-media" group="modes"/><link type="guide" xref="modes" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Process TTML subtitles in a Mallard <code>media</code> element.</desc></info><title>mal2html.ttml.mode</title><p>Process TTML subtitles in a Mallard <code>media</code> element.</p>
+  
+  
+  <p>This mode is applied to TTML elements inside block audio and video elements. It outputs HTML elements that are hidden by default and shown dynamically as the parent media element is played.</p>
+</page>

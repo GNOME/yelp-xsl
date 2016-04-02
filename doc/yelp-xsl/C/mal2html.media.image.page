@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.media.image" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-media" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Output an <code>img</code> element for an image.</desc></info><title>mal2html.media.image</title><p>Output an <code>img</code> element for an image.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The Mallard <code>media</code> element.</p>
+    </item>
+    <item>
+      <title><code>inline</code></title>
+      <p>Whether <code style="xslt-param">node</code> is inline.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs an HTML <code>img</code> element for a Mallard <code>media</code> element with the <code>type</code> attribute set to <code>"image"</code> (or with no <code>type</code> attribute). If <code style="xslt-param">node</code> has fallback content, it is used for the <code>alt</code> attribute.</p>
+<list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.inline.mode"/></p></item></list></page>

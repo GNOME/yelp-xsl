@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.header.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Output the header content for an element.</desc></info><title>html.header.mode</title><p>Output the header content for an element.</p>
+  
+  
+  <p>This mode is called by <code style="xslt-template" xref="html.page">html.page</code> to output the contents of the header div above the main content. Importing stylesheets may implement this mode for any element that will be passed to <code style="xslt-template" xref="html.page">html.page</code>. If they do not, the header div will be empty.</p>
+</page>

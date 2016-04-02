@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.chunk.extension" type="topic" style="xslt-param"><info><link type="guide" xref="db-chunk" group="parameters"/><link type="guide" xref="parameters" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>The default file extension for new output documents.</desc></info><title>db.chunk.extension</title><p>The default file extension for new output documents.</p>
+  
+  
+  <comment><p>Describe what this does</p></comment>
+</page>

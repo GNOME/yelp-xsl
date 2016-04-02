@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.hover" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.4" date="2012-02-26" status="final"/><desc>Output links with thumbnails shown on hover.</desc></info><title>mal2html.ui.links.hover</title><p>Output links with thumbnails shown on hover.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> element to link from.</p>
+    </item>
+    <item>
+      <title><code>links</code></title>
+      <p>A list of links, as from a template in <file xref="mal-link">mal-link</file>.</p>
+    </item>
+    <item>
+      <title><code>role</code></title>
+      <p>A link role, used to select the appropriate title and thumbnail.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs links alongside thumbnail images, using the UI extension. The thumbnail image for each link is shown when the user hovers over that link. This template calls <code style="xslt-template" xref="mal2html.ui.links.img">mal2html.ui.links.img</code> to find the best-match thumbnail and output the HTML <code>img</code> element for each link.</p>
+  <p>If <code style="xslt-param">node</code> contains a <code>ui:thumb</code> element, that image is used when no links are hovered.</p>
+  <p>This template handles link sorting.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.ui.links.img.attrs"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal2html.ui.links.img"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

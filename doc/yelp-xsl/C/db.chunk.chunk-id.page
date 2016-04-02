@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.chunk.chunk-id" type="topic" style="xslt-template"><info><link type="guide" xref="db-chunk" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Determines the id of the chunk that contains an element.</desc></info><title>db.chunk.chunk-id</title><p>Determines the id of the chunk that contains an element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>id</code></title>
+      <p>The id of the element to determine the chunk id of</p>
+    </item>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to determine the chunk id of</p>
+    </item>
+    <item>
+      <title><code>depth_in_chunk</code></title>
+      <p>The depth of <code style="xslt-param">node</code> in the containing chunk</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Explain how this works</p></comment>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-in-chunk"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="db.chunk.basename"/></p></item></list></page>

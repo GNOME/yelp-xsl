@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.imagedata" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-media" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.10" date="2013-08-11" status="final"/><desc>Output an HTML <code>img</code> element for a <code>imagedata</code> element.</desc></info><title>db2html.imagedata</title><p>Output an HTML <code>img</code> element for a <code>imagedata</code> element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>imagedata</code> or other graphic element.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates an <code>img</code> element in the HTML output.  This template is called not only for <code>imagedata</code> elements, but also for <code>graphic</code> and <code>inlinegraphic</code> elements.  Note that <code>graphic</code> and <code>inlinegraphic</code> are deprecated and should not be used in any newly-written DocBook files.  Use <code>mediaobject</code> instead.</p>
+  <p>This template looks for a <code>textobject</code> with a <code>phrase</code> child in an ancestor <code>mediaobject</code> or <code>inlinemediaobject</code> element. It uses the first available, taking conditional processing into consideration.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item></list></page>

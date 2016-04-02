@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.mathjax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2012-11-13" status="final"/><desc>Output <code>script</code> element to include MathJax.</desc></info><title>html.js.mathjax</title><p>Output <code>script</code> element to include MathJax.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node to create JavaScript for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs an HTML <code>script</code> tag to reference MathJax. It only outputs a <code>script</code> element if <code style="xslt-param">node</code> has MathML descendent content. By default, this template uses <code>cnd.mathjax.org</code>. If you wish to use a local copy, override this template and provide the necessary files.</p>
+</page>

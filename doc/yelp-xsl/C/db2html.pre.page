@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.pre" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-block" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.12" date="2013-11-02" status="final"/><desc>Output an HTML <code>pre</code> element for a block-level element.</desc></info><title>db2html.pre</title><p>Output an HTML <code>pre</code> element for a block-level element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The block-level element to render.</p>
+    </item>
+    <item>
+      <title><code>class</code></title>
+      <p>The value of the HTML <code>class</code> attribute.</p>
+    </item>
+    <item>
+      <title><code>children</code></title>
+      <p>The child elements to process.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates an HTML <code>pre</code> element for the given DocBook element. It passes the <code style="xslt-param">class</code> parameter to <code style="xslt-template" xref="html.class.attr">html.class.attr</code>. If the <code style="xslt-param">class</code> parameter is not provided, it uses the local name of <code style="xslt-param">node</code>.</p>
+  <p>If <code style="xslt-param">node</code> has the <code>linenumbering</code> attribute set to <code>"numbered"</code>, then this template will create line numbers for each line, using the <code style="xslt-template" xref="utils.linenumbering">utils.linenumbering</code> template.</p>
+  <p>By default, this template applies templates to all child nodes. Pass child nodes in the <code style="xslt-param">children</code> parameter to override this behavior.</p>
+  <p>If <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>, this template automatically outputs syntax highlighting support based on the <code>language</code> attribute of <code style="xslt-param">node</code>, using <code style="xslt-template" xref="html.syntax.class">html.syntax.class</code> to determine the correct highlighter.</p>
+  <p>This template handles conditional processing.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db.linenumbering.start"/></p></item><item><p><link xref="utils.linenumbering"/></p></item><item><p><link xref="html.syntax.class"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.syntax.highlight"/></p></item></list></page>

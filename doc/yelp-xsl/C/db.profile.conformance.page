@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.profile.conformance" type="topic" style="xslt-param"><info><link type="guide" xref="db-profile" group="parameters"/><link type="guide" xref="parameters" group="db"/><revision version="3.10" date="2013-08-12" status="final"/><desc>The list of conformance characteristics for conditional processing.</desc></info><title>db.profile.conformance</title><p>The list of conformance characteristics for conditional processing.</p>
+  
+  
+  <p>This parameter takes a semicolon-separated list of values to match against the <code>conformance</code> attribute for conditional processing.</p>
+</page>

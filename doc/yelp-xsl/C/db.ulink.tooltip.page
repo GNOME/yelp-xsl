@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db.ulink.tooltip" type="topic" style="xslt-template"><info><link type="guide" xref="db-xref" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates the tooltip for an external link</desc></info><title>db.ulink.tooltip</title><p>Generates the tooltip for an external link</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element to generate a tooltip for</p>
+    </item>
+    <item>
+      <title><code>url</code></title>
+      <p>The URL of the link, usually from the <code>url</code> attribute</p>
+    </item>
+  </terms></synopsis>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="utils.email_address"/></p></item></list></page>

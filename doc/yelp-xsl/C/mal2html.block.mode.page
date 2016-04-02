@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.block.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal2html-block" group="modes"/><link type="guide" xref="modes" group="mal2html"/><revision version="1.0" date="2010-06-03" status="final"/><desc>Process Mallard elements in block mode.</desc></info><title>mal2html.block.mode</title><p>Process Mallard elements in block mode.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>restricted</code></title>
+      <p>Whether this is restricted block mode.</p>
+    </item>
+  </terms></synopsis>
+  <p>This mode is applied to elements in block context. It should be called by templates for pages, sections, and block container elements. Certain elements may appear in both block an inline mode, and the processing expectations for those elements is different depending on context.</p>
+  <p>Implementations of this mode should generally output a wrapper div and process the child elements, either in <code style="xslt-mode" xref="mal2html.block.mode">mal2html.block.mode</code> or <code style="xslt-mode" xref="mal2html.inline.mode">mal2html.inline.mode</code>, or using special processing for particular content models.</p>
+  <p>When this mode encounters unknown content, templates in the same mode are applied to the children, but the <code style="xslt-param">restricted</code> parameter is set to <code>true</code>. When <code style="xslt-param">restricted</code> is <code>true</code>, unknown block elements are ignored. This is in accordance with the Mallard specification on fallback block content.</p>
+</page>

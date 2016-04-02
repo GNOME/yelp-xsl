@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="icons.note.important" type="topic" style="xslt-param"><info><link type="guide" xref="icons" group="parameters"/><link type="guide" xref="parameters" group="icons"/><revision version="1.0" date="2010-05-03" status="final"/><desc>The URL for the important note icon.</desc></info><title>icons.note.important</title><p>The URL for the important note icon.</p>
+  
+  
+  <p>This parameter specifies the URL for the icon used for important notes.</p>
+</page>

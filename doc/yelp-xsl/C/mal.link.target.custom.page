@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.target.custom" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><link type="guide" xref="stubs" group="mal"/><revision version="3.4" date="2012-01-17" status="final"/><desc>Output the target URL for an element with <code>action</code> or extended <code>xref</code> attributes.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>mal.link.target.custom</title><p>Output the target URL for an element with <code>action</code> or extended <code>xref</code> attributes.</p><note><p>This template is a stub. Customizations may override it for
+            additional functionality.</p></note>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>link</code> or other element creating the link.</p>
+    </item>
+    <item>
+      <title><code>action</code></title>
+      <p>The <code>action</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>xref</code></title>
+      <p>The <code>xref</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>href</code></title>
+      <p>The <code>href</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by <code style="xslt-template" xref="mal.link.target">mal.link.target</code> to create URLs for custom links. Use this template to support the <code>action</code> attribute or extended <code>xref</code> attributes containing slash or colon characters.</p>
+</page>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.default_root" type="topic" style="xslt-param"><info><link type="guide" xref="mal-link" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.4" date="2012-01-17" status="final"/><desc>The default root ID.</desc></info><title>mal.link.default_root</title><p>The default root ID.</p>
+  
+  
+  <p>This parameter provides the default ID for the page that is taken to be the root of the document.  By default, <code>'index'</code> is used.  This should not be changed for normal Mallard documents.  It may be necessary to change it for some Mallard extension formats.</p>
+</page>

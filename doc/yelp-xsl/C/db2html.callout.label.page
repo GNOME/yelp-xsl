@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.callout.label" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-callout" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><desc>Create a callout label for a <code>co</code> element.</desc></info><title>db2html.callout.label</title><p>Create a callout label for a <code>co</code> element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>co</code> element to create a callout label for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates a label for a callout, taking a <code>co</code> element as the <code style="xslt-param">node</code> parameter. The label is numbered according to the position of the <code>co</code> element in the document. To create the corresponding label for a <code>callout</code> element, locate the corresponding <code>co</code> element and call this template on it.</p>
+</page>

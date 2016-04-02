@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="utils" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="utils"/><revision version="1.0" date="2010-05-25" status="final"/><link type="xslt-defines-template" xref="utils.repeat_string"/><link type="xslt-defines-template" xref="utils.strip_newlines"/><link type="xslt-defines-template" xref="utils.linenumbering"/><link type="xslt-defines-template" xref="utils.email_address"/></info><title>Utilities</title><p>Common XSLT Utilities.</p>
+  
+  
+  <p>This stylesheet contains various useful utilities that are used throughout the Yelp stylesheets.</p>
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links></page>

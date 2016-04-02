@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.ul" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.10" date="2013-07-30" status="final"/><desc>Output links in an HTML <code>ul</code> element.</desc></info><title>mal2html.links.ul</title><p>Output links in an HTML <code>ul</code> element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>links</code></title>
+      <p>A list of links, as from a template in <file xref="mal-link">mal-link</file>.</p>
+    </item>
+    <item>
+      <title><code>role</code></title>
+      <p>A space-separated list of link roles, used to select the appropriate title.</p>
+    </item>
+    <item>
+      <title><code>bold</code></title>
+      <p>Whether to bold the link titles.</p>
+    </item>
+    <item>
+      <title><code>nodesc</code></title>
+      <p>Whether to omit descriptions.</p>
+    </item>
+  </terms></synopsis>
+  <p>This is a common formatting template used by some <code>links</code> element handlers. It outputs an HTML <code>ul</code> element and calls <code style="xslt-template" xref="mal2html.links.ul.li">mal2html.links.ul.li</code> on each link to output a list item with a link.</p>
+  <p>This template handles link sorting.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.links.ul.li"/></p></item></list></page>

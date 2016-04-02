@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="ttml" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="ttml"/><revision version="3.4" date="2012-03-01" status="final"/><link type="xslt-defines-template" xref="ttml.time.range"/><link type="xslt-defines-template" xref="ttml.time.seconds"/><link type="xslt-defines-template" xref="ttml.profile"/><link type="xslt-defines-template" xref="ttml.profile.attr"/><link type="xslt-defines-param" xref="ttml.features"/></info><title>TTML Utilities</title><p>Common templates to help with processing TTML documents.</p>
+  
+  
+  <p>This stylesheet contains common utilities for working with TTML documents. It contains templates for checking profiles and processing timing data.</p>
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="ttml.features"/></p></item></list></page>

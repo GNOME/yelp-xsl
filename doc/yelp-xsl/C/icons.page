@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="icons" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="icons"/><revision version="1.0" date="2010-05-25" status="final"/><link type="xslt-requires" xref="l10n"/><link type="xslt-defines-param" xref="icons.base_url"/><link type="xslt-defines-param" xref="icons.size.note"/><link type="xslt-defines-param" xref="icons.note"/><link type="xslt-defines-param" xref="icons.note.bug"/><link type="xslt-defines-param" xref="icons.note.important"/><link type="xslt-defines-param" xref="icons.note.tip"/><link type="xslt-defines-param" xref="icons.note.warning"/><link type="xslt-defines-param" xref="icons.size.quote"/></info><title>Icons</title><p>Specify common named icons to style output.</p>
+  
+  
+  <p>This stylesheet provides a common interface to specify icons for transformations to presentation-oreinted formats. This allows similar output for different types of input documents.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="l10n"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="icons.base_url"/></p></item></list></page>

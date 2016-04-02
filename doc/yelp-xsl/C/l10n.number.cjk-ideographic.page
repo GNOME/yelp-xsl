@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="l10n.number.cjk-ideographic" type="topic" style="xslt-template"><info><link type="guide" xref="l10n-numbers" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Formats a number using a CJK ideographic system</desc></info><title>l10n.number.cjk-ideographic</title><p>Formats a number using a CJK ideographic system</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>value</code></title>
+      <p>The numeric value of the number to format</p>
+    </item>
+    <item>
+      <title><code>format</code></title>
+      <p>Which ideographic system to use</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Talk about CJK ideographic numbering systems.  Valid values of <code style="xslt-param">format</code> are <code>cjk-japanese</code>, <code>cjk-chinese-simp</code>, and <code>cjk-chinese-trad</code>.</p></comment>
+</page>

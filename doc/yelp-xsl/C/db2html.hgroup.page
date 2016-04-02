@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="db2html.hgroup" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-division" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Output the title and subtitle for an element.</desc></info><title>db2html.hgroup</title><p>Output the title and subtitle for an element.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The element containing the title.</p>
+    </item>
+    <item>
+      <title><code>info</code></title>
+      <p>FIXME.</p>
+    </item>
+    <item>
+      <title><code>depth_in_chunk</code></title>
+      <p>The depth of <code style="xslt-param">node</code> in the containing chunk.</p>
+    </item>
+  </terms></synopsis>
+  <comment><p>Talk about the different kinds of title blocks</p></comment>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-in-chunk"/></p></item><item><p><link xref="db2html.anchor"/></p></item><item><p><link xref="db.title"/></p></item></list></page>

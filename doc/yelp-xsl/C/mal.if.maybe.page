@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.if.maybe" type="topic" style="xslt-param"><info><link type="guide" xref="mal-if" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><desc>A list of tokens that may be true.</desc></info><title>mal.if.maybe</title><p>A list of tokens that may be true.</p>
+  
+  
+  <p>This parameter takes a space-separated list of tokens that may be true. The template <code style="xslt-template" xref="mal.if.test">mal.if.test</code> returns special flags when a condition may be true, allowing conditional processing to be deferred (for example, to CSS media selectors). This parameter should usually be set by the primary importing stylesheet.</p>
+</page>

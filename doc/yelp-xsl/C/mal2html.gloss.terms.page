@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.gloss.terms" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-gloss" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Display the glossary terms for a page or section.</desc></info><title>mal2html.gloss.terms</title><p>Display the glossary terms for a page or section.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The glossary <code>page</code> or <code>section</code> to output terms for.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template shows the glossary terms for a page or section. It collects the terms with the <code style="xslt-template" xref="mal.gloss.terms">mal.gloss.terms</code> template, sorts them, and merges terms with the same primary title. Terms that are not defined in the same page as <code style="xslt-param">node</code> include a link to their defining page.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.gloss.terms"/></p></item><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal.link.content"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item><item><p><link xref="mal2html.inline.mode"/></p></item></list></page>
