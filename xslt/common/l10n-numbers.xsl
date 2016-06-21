@@ -298,7 +298,7 @@ See #{http://en.wikipedia.org/wiki/Greek_numerals}.
     <xsl:otherwise>
       <xsl:call-template name="l10n.number.ionic.private">
         <xsl:with-param name="value" select="$value"/>
-        <xsl:with-param name="format" select="'ionic-lower'"/>
+        <xsl:with-param name="format" select="$format"/>
         <xsl:with-param name="level" select="1"/>
       </xsl:call-template>
       <xsl:text>´</xsl:text>
@@ -353,9 +353,6 @@ See #{http://en.wikipedia.org/wiki/Greek_numerals}.
         <xsl:when test="$digit = 0"/>
         <xsl:when test="not($stigma) and $digit = 6 and $level = 1">
           <xsl:text>ΣΤ</xsl:text>
-        </xsl:when>
-        <xsl:when test="not($stigma) and $digit = 6 and $level = 1">
-          <xsl:text>,Σ,Τ</xsl:text>
         </xsl:when>
         <xsl:when test="$level = 1 or $level = 4">
           <xsl:if test="$level = 4">
