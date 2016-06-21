@@ -47,8 +47,8 @@ If ${node} has fallback content, it is used for the #{alt} attribute.
   <xsl:param name="node" select="."/>
   <xsl:param name="inline" select="false()"/>
   <img src="{$node/@src}">
-    <xsl:copy-of select="@height"/>
-    <xsl:copy-of select="@width"/>
+    <xsl:copy-of select="$node/@height"/>
+    <xsl:copy-of select="$node/@width"/>
     <xsl:attribute name="class">
       <xsl:text>media </xsl:text>
       <xsl:choose>
@@ -173,16 +173,6 @@ in the source to the #{audio} element's fallback content. If ${inline} is
           <xsl:text>media-block</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:attribute>
-    <xsl:attribute name="data-play-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Play'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="data-pause-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Pause'"/>
-      </xsl:call-template>
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$inline">
