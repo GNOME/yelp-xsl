@@ -189,7 +189,7 @@ of dynamically showing or hiding content based on those tokens.
             <xsl:otherwise>
               <xsl:variable name="subcond">
                 <xsl:for-each select="str:tokenize($subexpr, ' ')[.!='1']">
-                  <xsl:if test="position != 1">
+                  <xsl:if test="position() != 1">
                     <xsl:text>__</xsl:text>
                   </xsl:if>
                   <xsl:value-of select="."/>
