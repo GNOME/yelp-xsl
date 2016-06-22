@@ -188,6 +188,9 @@ REMARK: Talk about some of the parameters
   </xsl:call-template>
   <div class="region">
     <div class="contents">
+      <xsl:call-template name="html.content.pre">
+        <xsl:with-param name="page" select="$depth_in_chunk = 0"/>
+      </xsl:call-template>
       <xsl:apply-templates mode="db2html.division.div.content.mode" select="$node">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="entries" select="$entries"/>
@@ -202,6 +205,9 @@ REMARK: Talk about some of the parameters
           <xsl:with-param name="divisions" select="$divisions"/>
         </xsl:call-template>
       </xsl:if>
+      <xsl:call-template name="html.content.post">
+        <xsl:with-param name="page" select="$depth_in_chunk = 0"/>
+      </xsl:call-template>
     </div>
     <xsl:for-each select="$divisions">
       <xsl:if test="not($chunk_divisions) or not(self::&db_chunks;)">

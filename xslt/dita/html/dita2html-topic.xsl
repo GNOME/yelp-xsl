@@ -599,10 +599,16 @@ div.dita-object > div.desc {
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'contents'"/>
     </xsl:call-template>
+    <xsl:call-template name="html.content.pre">
+      <xsl:with-param name="page" select="not(../parent::&topic_topic_all;)"/>
+    </xsl:call-template>
     <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
     <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     <xsl:call-template name="dita2html.links.topic">
       <xsl:with-param name="source" select="$topicref"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.content.post">
+      <xsl:with-param name="page" select="not(../parent::&topic_topic_all;)"/>
     </xsl:call-template>
   </div>
 </xsl:template>

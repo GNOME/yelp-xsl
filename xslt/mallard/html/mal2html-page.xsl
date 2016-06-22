@@ -666,6 +666,9 @@ templates that handle #{page} and #{section} elements.
     <xsl:if test="$type = 'facets'">
       <xsl:call-template name="mal2html.facets.controls"/>
     </xsl:if>
+    <xsl:call-template name="html.content.pre">
+      <xsl:with-param name="page" select="boolean(self::mal:page)"/>
+    </xsl:call-template>
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
       <xsl:choose>
@@ -714,6 +717,9 @@ templates that handle #{page} and #{section} elements.
     <xsl:if test="$type = 'facets'">
       <xsl:call-template name="mal2html.facets.links"/>
     </xsl:if>
+    <xsl:call-template name="html.content.post">
+      <xsl:with-param name="page" select="boolean(self::mal:page)"/>
+    </xsl:call-template>
   </div>
   <xsl:for-each select="mal:section">
     <xsl:call-template name="mal2html.section"/>

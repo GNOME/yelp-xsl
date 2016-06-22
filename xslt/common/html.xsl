@@ -575,6 +575,135 @@ values that do not conflict with those used in these stylesheets.
 
 
 <!--**==========================================================================
+html.content.pre
+Output content before the content of a page or section.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is called by importing stylesheets before any content of a page
+or section, but after the title. It calls *{html.content.pre.custom}, then
+applies %{html.content.pre.mode} to ${node}. If the ${page} parameter is true,
+then this template is being called on an output page. Otherwise, it is being
+called on a section within a page.
+-->
+<xsl:template name="html.content.pre">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+  <xsl:call-template name="html.content.pre.custom">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:call-template>
+  <xsl:apply-templates mode="html.content.pre.mode" select="$node">
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.pre.custom
+Stub to output content before the content of a page or section.
+:Stub: true
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is a stub, called by *{html.content.pre.custom}. It is called
+before %{html.content.pre.mode} is applied. Override this template to provide
+site-specific HTML before the content of a page or section. If the ${page}
+parameter is true, then this template is being called on an output page.
+Otherwise, it is being called on a section within a page.
+-->
+<xsl:template name="html.content.pre.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.content.pre.mode
+Output content before the content of a page or section.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$page: Whether the content is for a page.
+
+This mode is applied by *{html.content.pre} after calling
+*{html.content.pre.custom}. Importing stylesheets can use this to add
+additional content for specific types of input elements before the content
+of a page or section. If the ${page} parameter is true, then this template
+is being called on an output page. Otherwise, it is being called on a section
+within a page.
+-->
+<xsl:template mode="html.content.pre.mode" match="*">
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.post
+Output content after the content of a page or section, before subsections.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is called by importing stylesheets after any content of a page
+or section, but before any subsections. It applies %{html.content.post.mode}
+to ${node}, then calls *{html.content.post.custom}. If the ${page} parameter
+is true, then this template is being called on an output page. Otherwise, it
+is being called on a section within a page.
+-->
+<xsl:template name="html.content.post">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+  <xsl:apply-templates mode="html.content.post.mode" select="$node">
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:apply-templates>
+  <xsl:call-template name="html.content.post.custom">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.post.custom
+Stub to output content after the content of a page or section, before subsections.
+:Stub: true
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is a stub, called by *{html.content.post.custom}. It is called
+after %{html.content.pre.mode} is applied. Override this template to provide
+site-specific HTML after the content of a page or section, but before any
+subsections. If the ${page} parameter is true, then this template is being
+called on an output page. Otherwise, it is being called on a section within
+a page.
+-->
+<xsl:template name="html.content.post.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.content.post.mode
+Output content after the content of a page or section, before subsections.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$page: Whether the content is for a page.
+
+This mode is applied by *{html.content.post} before calling
+*{html.content.post.custom}. Importing stylesheets can use this to add
+additional content for specific types of input elements after the content
+of a page or section, but before any subsections. If the ${page} parameter
+is true, then this template is being called on an output page. Otherwise,
+it is being called on a section within a page.
+-->
+<xsl:template mode="html.content.post.mode" match="*">
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--**==========================================================================
 html.css
 Output all CSS for an HTML output page.
 :Revision:version="1.0" date="2010-12-23" status="final"
@@ -2478,6 +2607,7 @@ the #{class} attribute for output elements.
     <xsl:value-of select="$class"/>
   </xsl:if>
 </xsl:template>
+
 
 <!--%%==========================================================================
 html.syntax.class.mode
