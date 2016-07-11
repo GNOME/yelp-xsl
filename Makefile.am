@@ -10,15 +10,7 @@ EXTRA_DIST = 						\
 	$(pkgdata_DATA)					\
 	ChangeLog					\
 	COPYING.GPL					\
-	COPYING.LGPL					\
-	intltool-extract.in  				\
-	intltool-merge.in    				\
-	intltool-update.in
-
-DISTCLEANFILES =					\
-	intltool-extract  				\
-	intltool-merge    				\
-	intltool-update
+	COPYING.LGPL
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-doc
 

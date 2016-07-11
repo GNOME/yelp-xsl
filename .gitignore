@@ -15,9 +15,6 @@ config.status
 config.sub
 configure
 install-sh
-intltool-extract.in
-intltool-merge.in
-intltool-update.in
 missing
 yelp-xsl.pc
 
