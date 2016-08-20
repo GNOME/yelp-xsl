@@ -1,29 +1,25 @@
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Aviary.pl
-# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
-# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
-# gnomepl@aviary.pl
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Polish translation for yelp-xsl.
+# Copyright © 2006-2016 the yelp-xsl authors.
+# This file is distributed under the same license as the yelp-xsl package.
 # Stanisław Małolepszy <smalolepszy@aviary.pl>, 2006.
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2007.
-# Piotr Drąg <piotrdrag@gmail.com>, 2009-2015.
-# Aviary.pl <gnomepl@aviary.pl>, 2006-2015.
+# Piotr Drąg <piotrdrag@gmail.com>, 2009-2016.
+# Aviary.pl <community-poland@mozilla.org>, 2006-2016.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-25 19:18+0200\n"
-"PO-Revision-Date: 2015-08-25 19:19+0200\n"
+"POT-Creation-Date: 2016-08-20 11:04+0200\n"
+"PO-Revision-Date: 2016-08-20 11:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <gnomepl@aviary.pl>\n"
+"Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: Poland\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -59,7 +55,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
-msgstr " i "
+msgstr " i "
 
 #. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
@@ -70,7 +66,7 @@ msgstr " i "
 #: yelp-xsl.xml.in:71
 #, no-wrap
 msgid " and "
-msgstr " i "
+msgstr " i "
 
 #. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -176,7 +172,7 @@ msgstr "Zredagowane przez"
 #.
 #: yelp-xsl.xml.in:173
 msgid "Final"
-msgstr "Ostateczny"
+msgstr "Ostateczne"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
@@ -196,7 +192,7 @@ msgstr "Ważne"
 #.
 #: yelp-xsl.xml.in:191
 msgid "Incomplete"
-msgstr "Nieukończony"
+msgstr "Nieukończone"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
@@ -239,7 +235,7 @@ msgstr "Następna"
 #. Accessible title for a note.
 #: yelp-xsl.xml.in:228
 msgid "Note"
-msgstr "Notatka"
+msgstr "Uwaga"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
@@ -287,7 +283,7 @@ msgstr "Opublikowane przez"
 #.
 #: yelp-xsl.xml.in:272
 msgid "Ready for review"
-msgstr "Gotowy do zrecenzowania"
+msgstr "Gotowe do zrecenzowania"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
@@ -343,7 +339,7 @@ msgstr "Przetłumaczone przez"
 #.
 #: yelp-xsl.xml.in:324
 msgid "View images at normal size"
-msgstr "Wyświetla obrazy w zwykłym rozmiarze"
+msgstr "Wyświetla obrazy w zwykłym rozmiarze"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -438,7 +434,7 @@ msgstr "[<citation.label/>]"
 #.
 #: yelp-xsl.xml.in:419
 msgid "from <comment.name/> on <comment.date/>"
-msgstr "autorstwa <comment.name/> dnia <comment.date/>"
+msgstr "autor: <comment.name/> dnia <comment.date/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name
@@ -466,7 +462,7 @@ msgstr "autorstwa <comment.name/> dnia <comment.date/>"
 #.
 #: yelp-xsl.xml.in:447
 msgid "from <comment.name/>"
-msgstr "autorstwa <comment.name/>"
+msgstr "autor: <comment.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: copyright.format
