@@ -288,14 +288,32 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 $node: The node to create HTML for.
 
 This template creates the actual HTML output for ${node}. It outputs top-level
 elements and container divs, and calls various templates and modes to output
 the inner content. Importing stylesheets should implement at least
 %{html.title.mode} and %{html.body.mode} for any elements that could be passed
-as ${node} to this template.
+as ${node} to this template. Importing stylesheets should also implement
+%{html.header.mode} to output link trails and %{html.footer.mode} to output
+credits and other page information.
+
+This template outputs the HTML #{body} element, which takes it attributes
+from two sources. First, it calls *{html.lang.attrs}, which automatically
+outputs correct #{lang}, #{xml:lang}, and #{dir} attributes. It then calls
+%{html.body.attr.mode} on ${node} for additional attributes.
+
+This template also calls a number of stub templates that can be overridden by
+extension stylesheets. Override the *{html.head.custom} element to put custom
+content in the HTML #{head} element. Override the *{html.top.custom} and
+*{html.bottom.custom} templates to add site-specific content at the top and
+bottom of the page. Override the *{html.header.custom} and *{html.footer.custom}
+templates to provide additional content directoy above and below the main
+content. Override *{html.sidebar.custom} to create sidebars.
+
+This template also calls *{html.css} and *{html.js} to output CSS and JavaScript
+elements. See those templates for further extension points.
 -->
 <xsl:template name="html.page">
   <xsl:param name="node" select="."/>
@@ -324,27 +342,32 @@ as ${node} to this template.
       <xsl:call-template name="html.top.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <div class="page" role="main">
-        <header>
-          <div class="inner">
-          <xsl:call-template name="html.header.custom">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-          <xsl:apply-templates mode="html.header.mode" select="$node"/>
-          </div>
-        </header>
-        <article>
-          <xsl:apply-templates mode="html.body.mode" select="$node"/>
-        </article>
-        <footer>
-          <div class="inner">
-          <xsl:apply-templates mode="html.footer.mode" select="$node"/>
-          <xsl:call-template name="html.footer.custom">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-          </div>
-        </footer>
-      </div>
+      <main>
+        <xsl:call-template name="html.sidebar.custom">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+        <div class="page">
+          <header>
+            <div class="inner">
+              <xsl:call-template name="html.header.custom">
+                <xsl:with-param name="node" select="$node"/>
+              </xsl:call-template>
+              <xsl:apply-templates mode="html.header.mode" select="$node"/>
+            </div>
+          </header>
+          <article>
+            <xsl:apply-templates mode="html.body.mode" select="$node"/>
+          </article>
+          <footer>
+            <div class="inner">
+              <xsl:apply-templates mode="html.footer.mode" select="$node"/>
+              <xsl:call-template name="html.footer.custom">
+                <xsl:with-param name="node" select="$node"/>
+              </xsl:call-template>
+            </div>
+          </footer>
+        </div>
+      </main>
       <xsl:call-template name="html.bottom.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
@@ -382,11 +405,11 @@ implement this node to add attributes for styling, data, or other purposes.
 html.top.custom
 Stub to output HTML at the top of the page.
 :Stub: true
-:Revision: version="1.0" date="2011-11-01" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called before the
-#{div.page} wrapper div. Override this template to provide site-specific HTML
+#{main} element. Override this template to provide site-specific HTML
 at the top of the page.
 -->
 <xsl:template name="html.top.custom">
@@ -398,11 +421,11 @@ at the top of the page.
 html.bottom.custom
 Stub to output HTML at the bottom of the page.
 :Stub: true
-:Revision: version="1.0" date="2011-11-01" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called after the
-#{div.page} wrapper div. Override this template to provide site-specific HTML
+#{main} element. Override this template to provide site-specific HTML
 at the bottom of the page.
 -->
 <xsl:template name="html.bottom.custom">
@@ -411,15 +434,35 @@ at the bottom of the page.
 
 
 <!--**==========================================================================
+html.sidebar.custom
+Stub to output custom sidebar content.
+:Stub: true
+:Revision: version="3.next" date="2016-09-12" status="review"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called inside the #{main}
+element, before the #{div.page} element. The #{main} element uses a horizontal
+flexbox by default. You can override this template to provide sidebar content.
+Note that there is only one extension point for sidebar content, and it is
+always placed before the main content in document order. To create a sidebar
+on the right, output the element here, then adjust the #{order} CSS property
+for that element to display it after the #{main} element.
+-->
+<xsl:template name="html.sidebar.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
 html.header.custom
 Stub to output custom header content.
 :Stub: true
-:Revision: version="1.0" date="2011-10-27" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the header
-div, before %{html.header.mode} is applied to ${node}. You can override this
-template to provide additional content at the top of the page.
+This template is a stub, called by *{html.page}. It is called inside the
+#{header} element, before %{html.header.mode} is applied to ${node}. You can
+override this template to provide additional content above the main content.
 -->
 <xsl:template name="html.header.custom">
   <xsl:param name="node" select="."/>
@@ -429,12 +472,12 @@ template to provide additional content at the top of the page.
 <!--%%==========================================================================
 html.header.mode
 Output the header content for an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 
-This mode is called by *{html.page} to output the contents of the header div
-above the main content. Importing stylesheets may implement this mode for any
-element that will be passed to *{html.page}. If they do not, the header div
-will be empty.
+This mode is called by *{html.page} to output the contents of the #{header}
+element above the main content. Importing stylesheets may implement this mode
+for any element that will be passed to *{html.page}. If they do not, the
+#{header} element will be empty by default.
 -->
 <xsl:template mode="html.header.mode" match="*"/>
 
@@ -443,12 +486,12 @@ will be empty.
 html.footer.custom
 Stub to output custom footer content.
 :Stub: true
-:Revision: version="1.0" date="2011-10-27" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the footer
-div, after %{html.footer.mode} is applied to ${node}. You can override this
-template to provide additional content at the bottom of the page.
+This template is a stub, called by *{html.page}. It is called inside the
+#{footer} element, after %{html.footer.mode} is applied to ${node}. You can
+override this template to provide additional content below the main content.
 -->
 <xsl:template name="html.footer.custom">
   <xsl:param name="node" select="."/>
@@ -458,12 +501,12 @@ template to provide additional content at the bottom of the page.
 <!--%%==========================================================================
 html.footer.mode
 Output the footer content for an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 
-This mode is called by *{html.page} to output the contents of the footer div
-below the main content. Importing stylesheets may implement this mode for any
-element that will be passed to *{html.page}. If they do not, the footer div
-will be empty.
+This mode is called by *{html.page} to output the contents of the #{footer}
+element below the main content. Importing stylesheets may implement this mode
+for any element that will be passed to *{html.page}. If they do not, the
+#{footer} element will be empty by default.
 -->
 <xsl:template mode="html.footer.mode" match="*"/>
 
@@ -499,7 +542,7 @@ to provide additional elements in the HTML #{head} element of output files.
 html.linktrails.empty
 Stub to output something when no link trails are present.
 :Stub: true
-:Revision:version="3.20" date="2015-10-02" status="final"
+:Revision:version="3.next" date="2015-10-02" status="final"
 $node: The source element a page is bring created for.
 
 This template is a stub. It is called by templates that output link trails when
@@ -516,7 +559,7 @@ trails would otherwise be present.
 html.linktrails.prefix
 Stub to output extra content before a link trail.
 :Stub: true
-:Revision:version="3.20" date="2015-10-02" status="final"
+:Revision:version="3.next" date="2015-10-02" status="final"
 $node: A source-specific element providing information about the link trail.
 
 This template is a stub. It is called by templates that output link trails
@@ -886,7 +929,15 @@ article, aside, nav, header, footer, section {
   margin: 0;
   padding: 0;
 }
-div.page {
+main {
+  display: flex;
+  flex-flow: row;
+}
+main > * {
+  flex: 0 0 220px;
+}
+main > div.page {
+  flex-grow: 1;
   margin: 0;
   display: flex;
   flex-flow: column;
@@ -1902,7 +1953,7 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="3.20" date="2016-01-18" status="final"
+:Revision:version="3.next" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
@@ -1980,7 +2031,7 @@ copy, override this template and provide the necessary files.
 <!--**==========================================================================
 html.js.script
 Output a JavaScript #{script} tag containing local content.
-:Revision:version="3.20" date="2016-01-18" status="final"
+:Revision:version="3.next" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js} to output JavaScript content. It outputs
@@ -2002,7 +2053,7 @@ result of *{html.js.content} to that file.
 <!--**==========================================================================
 html.js.content
 Output JavaScript content for an HTML output page.
-:Revision:version="3.20" date="2016-01-18" status="final"
+:Revision:version="3.next" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js.script} to output JavaScript content. It
