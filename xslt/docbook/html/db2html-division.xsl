@@ -187,7 +187,7 @@ REMARK: Talk about some of the parameters
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
   </xsl:call-template>
   <div class="region">
-    <div class="contents">
+    <div class="contents pagewide">
       <xsl:call-template name="html.content.pre">
         <xsl:with-param name="page" select="$depth_in_chunk = 0"/>
       </xsl:call-template>
@@ -309,7 +309,7 @@ REMARK: Talk about the different kinds of title blocks
     </xsl:choose>
   </xsl:variable>
 
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:element name="{$title_h}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
         <xsl:text>title</xsl:text>

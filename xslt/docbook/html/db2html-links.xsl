@@ -135,7 +135,7 @@ and "Next", although the actual page titles are used for tooltips.
   </xsl:variable>
   <xsl:variable name="prev_node" select="key('db.id.key', $prev_id)"/>
   <xsl:variable name="next_node" select="key('db.id.key', $next_id)"/>
-  <nav class="prevnext"><div class="inner">
+  <nav class="prevnext pagewide"><div class="inner">
     <xsl:if test="$prev_id != ''">
       <a>
         <xsl:attribute name="href">

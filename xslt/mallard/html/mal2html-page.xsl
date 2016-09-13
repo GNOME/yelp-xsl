@@ -657,12 +657,12 @@ templates that handle #{page} and #{section} elements.
       </xsl:for-each>
     </xsl:if>
   </xsl:variable>
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
   <div class="region">
-  <div class="contents">
+  <div class="contents pagewide">
     <xsl:if test="$type = 'facets'">
       <xsl:call-template name="mal2html.facets.controls"/>
     </xsl:if>
@@ -743,8 +743,8 @@ templates that handle #{page} and #{section} elements.
                 ">
     <section class="links" role="navigation">
       <div class="inner">
-      <div class="hgroup"/>
-      <div class="contents">
+      <div class="hgroup pagewide"/>
+      <div class="contents pagewide">
         <xsl:for-each select="$postlinks">
           <xsl:choose>
             <xsl:when test="self::mal:links[@type = 'topic']">

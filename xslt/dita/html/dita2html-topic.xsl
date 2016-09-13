@@ -71,7 +71,7 @@ REMARK: Describe this module
   <xsl:variable name="next" select="($node//&map_topicref;[@href][1] |
                                      $node/following::&map_topicref;[@href]
                                     )[1]"/>
-  <nav class="prevnext"><div class="inner">
+  <nav class="prevnext pagewide"><div class="inner">
     <xsl:if test="$prev">
       <a>
         <xsl:attribute name="href">
@@ -570,7 +570,7 @@ div.dita-object > div.desc {
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
         <xsl:text>title</xsl:text>
@@ -597,7 +597,7 @@ div.dita-object > div.desc {
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
-      <xsl:with-param name="class" select="'contents'"/>
+      <xsl:with-param name="class" select="'contents pagewide'"/>
     </xsl:call-template>
     <xsl:call-template name="html.content.pre">
       <xsl:with-param name="page" select="not(../parent::&topic_topic_all;)"/>
@@ -620,8 +620,8 @@ div.dita-object > div.desc {
       <xsl:with-param name="class" select="'links'"/>
     </xsl:call-template>
     <div class="inner">
-    <div class="hgroup"/>
-    <div class="contents">
+    <div class="hgroup pagewide"/>
+    <div class="contents pagewide">
       <div class="links">
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>

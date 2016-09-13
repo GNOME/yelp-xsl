@@ -348,7 +348,7 @@ elements. See those templates for further extension points.
         </xsl:call-template>
         <div class="page">
           <header>
-            <div class="inner">
+            <div class="inner pagewide">
               <xsl:call-template name="html.header.custom">
                 <xsl:with-param name="node" select="$node"/>
               </xsl:call-template>
@@ -359,7 +359,7 @@ elements. See those templates for further extension points.
             <xsl:apply-templates mode="html.body.mode" select="$node"/>
           </article>
           <footer>
-            <div class="inner">
+            <div class="inner pagewide">
               <xsl:apply-templates mode="html.footer.mode" select="$node"/>
               <xsl:call-template name="html.footer.custom">
                 <xsl:with-param name="node" select="$node"/>
@@ -947,26 +947,18 @@ main > div.page {
 }
 div.page > article { flex: 1 0 100%; }
 div.page > header, div.page > footer { flex: 0 1 auto; }
-div.page > header > div.inner, div.page > footer > div.inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0;
-}
-article {
-  padding: 10px 0;
-  min-height: 20em;
-  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
-}
-article > nav,
-article > div.hgroup,
-article > div.region > div.contents,
-article > div.region > nav,
-article > div.region > section > div.inner > * {
+.pagewide {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
+}
+article {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 20em;
+  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
 }
 section {
   margin-top: 2.4em;
@@ -988,7 +980,7 @@ section section {
   to   { transform: translateY(0px); }
 }
 div.trails {
-  margin: 0;
+  margin: 0 -10px 0 -10px;
   padding: 0.2em 10px;
   background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
@@ -1000,19 +992,13 @@ div.trail {
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
-  margin: 0 0 0.5em 0;
+  margin-bottom: 0.5em;
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 section > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
-}
-section section > div.inner > div.hgroup {
-  margin-left: -10px;
-  margin-right: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 section.links > div.inner > div.hgroup {
   border-bottom: solid 2px </xsl:text>

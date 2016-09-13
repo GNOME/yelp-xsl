@@ -431,7 +431,7 @@ calling functions in !{mal2html-page}.
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
     <xsl:if test="$prev or $next">
-      <nav class="prevnext"><div class="inner">
+      <nav class="prevnext pagewide"><div class="inner">
         <xsl:if test="$prev">
           <a>
             <xsl:attribute name="href">
