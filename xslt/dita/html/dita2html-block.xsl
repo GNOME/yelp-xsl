@@ -461,20 +461,33 @@ FIXME
       <xsl:with-param name="conref" select="$conref"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="notetype">
+  <xsl:variable name="notetitle">
     <xsl:choose>
       <xsl:when test="$type = 'attention' or $type = 'important' or
                       $type = 'remember' or $type = 'restriction'">
-        <xsl:text>important</xsl:text>
+        <xsl:text>Important</xsl:text>
       </xsl:when>
-      <xsl:when test="$type = 'caution' or $type = 'danger' or
-                      $type = 'notice' or $type = 'warning'">
-        <xsl:text>warning</xsl:text>
+      <xsl:when test="$type = 'caution' or $type = 'notice'">
+        <xsl:text>Caution</xsl:text>
+      </xsl:when>
+      <xsl:when test="$type = 'danger'">
+        <xsl:text>Danger</xsl:text>
+      </xsl:when>
+      <xsl:when test="$type = 'warning'">
+        <xsl:text>Warning</xsl:text>
       </xsl:when>
       <xsl:when test="$type = 'fastpath' or $type = 'tip'">
-        <xsl:text>tip</xsl:text>
+        <xsl:text>Tip</xsl:text>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>Note</xsl:text>
+      </xsl:otherwise>
     </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="notetype">
+    <xsl:value-of select="translate($notetitle,
+                          'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                          'abcdefghijklmnopqrstuvwxyz')"/>
   </xsl:variable>
   <div>
     <xsl:call-template name="dita.id"/>
@@ -487,6 +500,14 @@ FIXME
           <xsl:value-of select="$notetype"/>
         </xsl:if>
       </xsl:with-param>
+    </xsl:call-template>
+    <xsl:attribute name="title">
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="msgid" select="$notetitle"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    <xsl:call-template name="icons.svg.note">
+      <xsl:with-param name="style" select="$notetype"/>
     </xsl:call-template>
     <div class="inner">
       <div class="region">

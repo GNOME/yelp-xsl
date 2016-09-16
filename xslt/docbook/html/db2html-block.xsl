@@ -80,6 +80,7 @@ $class: The value of the HTML #{class} attribute.
 $title: An element to use for the title.
 $caption: An element to use for the caption.
 $titleattr: An optional value for the HTML #{title} attribute.
+$icon: An icon for the block, as a copyable node set.
 
 This template outputs HTML for a formal DocBook element, one that can have
 a title or caption. It passes the ${class} parameter to *{html.class.attr}.
@@ -98,6 +99,7 @@ This template handles conditional processing.
                                   $node/db:title | $node/db:info/db:title"/>
   <xsl:param name="caption" select="$node/caption | $node/db:caption"/>
   <xsl:param name="titleattr" select="''"/>
+  <xsl:param name="icon"/>
 
   <xsl:variable name="if">
     <xsl:call-template name="db.profile.test">
@@ -121,6 +123,7 @@ This template handles conditional processing.
     <xsl:call-template name="db2html.anchor">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
+    <xsl:copy-of select="$icon"/>
     <div class="inner">
       <xsl:if test="$node/self::figure or $node/self::db:figure">
         <a href="#" class="figure-zoom">
@@ -471,11 +474,40 @@ This template handles conditional processing.
 <!-- = caution = -->
 <xsl:template match="caution | db:caution">
   <xsl:call-template name="db2html.block.formal">
-    <xsl:with-param name="class" select="'note note-warning'"/>
+    <xsl:with-param name="class">
+      <xsl:text>note note-</xsl:text>
+      <xsl:choose>
+        <xsl:when test="@role = 'danger'">
+          <xsl:text>danger</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>caution</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
     <xsl:with-param name="titleattr">
       <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Warning'"/>
+        <xsl:with-param name="msgid">
+          <xsl:choose>
+            <xsl:when test="@role = 'danger'">
+              <xsl:text>Danger</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>Caution</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
       </xsl:call-template>
+    </xsl:with-param>
+    <xsl:with-param name="icon">
+      <xsl:choose>
+        <xsl:when test="@role = 'danger'">
+          <xsl:call-template name="icons.svg.note.danger"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="icons.svg.note.caution"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -527,6 +559,9 @@ This template handles conditional processing.
         <xsl:with-param name="msgid" select="'Important'"/>
       </xsl:call-template>
     </xsl:with-param>
+    <xsl:with-param name="icon">
+      <xsl:call-template name="icons.svg.note.important"/>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -576,6 +611,11 @@ This template handles conditional processing.
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="icon">
+      <xsl:call-template name="icons.svg.note">
+        <xsl:with-param name="style" select="@role"/>
+      </xsl:call-template>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -863,6 +903,9 @@ This template handles conditional processing.
         <xsl:with-param name="msgid" select="'Tip'"/>
       </xsl:call-template>
     </xsl:with-param>
+    <xsl:with-param name="icon">
+      <xsl:call-template name="icons.svg.note.tip"/>
+    </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -877,11 +920,40 @@ This template handles conditional processing.
 <!-- = warning = -->
 <xsl:template match="warning | db:warning">
   <xsl:call-template name="db2html.block.formal">
-    <xsl:with-param name="class" select="'note note-warning'"/>
+    <xsl:with-param name="class">
+      <xsl:text>note note-</xsl:text>
+      <xsl:choose>
+        <xsl:when test="@role = 'danger'">
+          <xsl:text>danger</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>warning</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
     <xsl:with-param name="titleattr">
       <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Warning'"/>
+        <xsl:with-param name="msgid">
+          <xsl:choose>
+            <xsl:when test="@role = 'danger'">
+              <xsl:text>Danger</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>Warning</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
       </xsl:call-template>
+    </xsl:with-param>
+    <xsl:with-param name="icon">
+      <xsl:choose>
+        <xsl:when test="@role = 'danger'">
+          <xsl:call-template name="icons.svg.note.danger"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="icons.svg.note.warning"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>

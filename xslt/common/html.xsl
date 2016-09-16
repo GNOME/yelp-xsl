@@ -1347,34 +1347,33 @@ div.note {
     <xsl:value-of select="$color.bg.dark"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  display: flex;
+  flex-flow: row;
 }
-div.note > div.inner > div.title {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
+div.note > * { margin: 0 6px; padding: 0; min-height: 24px; }
+div.note-warning > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
 }
-div.note > div.inner > div.region > div.contents {
-  margin: 0; padding: 0;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
+div.note-danger {
+  border-color: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
 }
-div.note > div.inner {
-  margin: 0; padding: 0;
-  background-image: url("</xsl:text>
-    <xsl:value-of select="$icons.note"/><xsl:text>");
-  background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
-  background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$icons.size.note"/><xsl:text>px;
+div.note-important > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
-div.note-advanced > div.inner { <!-- background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.advanced"/><xsl:text>"); --> }
-div.note-bug > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.bug"/><xsl:text>"); }
-div.note-important > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.important"/><xsl:text>"); }
-div.note-tip > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.tip"/><xsl:text>"); }
-div.note-warning > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.warning"/><xsl:text>"); }
+div.note-danger > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
+  animation-name: yelp-note-danger;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+@keyframes yelp-note-danger {
+  from { fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text> }
+  50%  { fill: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text> }
+  to   { fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text> }
+}
+
+
 div.note-sidebar {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   max-width: 40%;

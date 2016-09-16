@@ -631,7 +631,7 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = note = -->
 <xsl:template mode="mal2html.block.mode" match="mal:note">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
-  <xsl:variable name="notestyle">
+  <xsl:variable name="notetitle">
     <xsl:choose>
       <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
         <xsl:text>Advanced</xsl:text>
@@ -639,8 +639,17 @@ in accordance with the Mallard specification on fallback block content.
       <xsl:when test="contains(concat(' ', @style, ' '), ' bug ')">
         <xsl:text>Bug</xsl:text>
       </xsl:when>
+      <xsl:when test="contains(concat(' ', @style, ' '), ' caution ')">
+        <xsl:text>Caution</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains(concat(' ', @style, ' '), ' danger ')">
+        <xsl:text>Danger</xsl:text>
+      </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' important ')">
         <xsl:text>Important</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains(concat(' ', @style, ' '), ' package ')">
+        <xsl:text>Package</xsl:text>
       </xsl:when>
       <xsl:when test="contains(concat(' ', @style, ' '), ' plain ')">
         <xsl:text>plain</xsl:text>
@@ -659,13 +668,18 @@ in accordance with the Mallard specification on fallback block content.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="notestyle">
+    <xsl:value-of select="translate($notetitle,
+                          'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                          'abcdefghijklmnopqrstuvwxyz')"/>
+  </xsl:variable>
   <div>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class">
         <xsl:text>note</xsl:text>
-        <xsl:if test="$notestyle != 'Note'">
-          <xsl:value-of select="concat(' note-', translate($notestyle, 'ABISTW', 'abistw'))"/>
+        <xsl:if test="$notestyle != 'note'">
+          <xsl:value-of select="concat(' note-', $notestyle)"/>
         </xsl:if>
         <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
           <xsl:text> ui-expander</xsl:text>
@@ -679,11 +693,16 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:if test="$notestyle != 'plain'">
       <xsl:attribute name="title">
         <xsl:call-template name="l10n.gettext">
-          <xsl:with-param name="msgid" select="$notestyle"/>
+          <xsl:with-param name="msgid" select="$notetitle"/>
         </xsl:call-template>
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="mal2html.ui.expander.data"/>
+    <xsl:if test="$notestyle != 'plain' and $notestyle != 'sidebar'">
+      <xsl:call-template name="icons.svg.note">
+        <xsl:with-param name="style" select="$notestyle"/>
+      </xsl:call-template>
+    </xsl:if>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="mal:title"/>
       <div class="region">
