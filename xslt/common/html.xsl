@@ -212,6 +212,19 @@ time by JavaScript.
 <xsl:param name="html.syntax.highlight" select="true()"/>
 
 
+<!--@@==========================================================================
+html.output.prefix
+An optional path prefix for files output with *{html.output}.
+:Revision:version="3.next" date="2016-10-03" status="review"
+
+This parameter allows you to specify an prefix to place before the output path
+used by *{html.output} when creating files. You can use this to override the
+output directory. Make sure you include a trailing slash, unless you want to
+prefix the base file name itself.
+-->
+<xsl:param name="html.output.prefix" select="''"/>
+
+
 <!--**==========================================================================
 html.output
 Create an HTML output file.
@@ -228,6 +241,10 @@ filename and append @{html.extension} to it. The base filename is generated
 as follows: If an #{xml:id} attribute is present, it is used; otherwise, if
 an #{id} attribute is present, it is uses; otherwise, if ${node} is the root
 element, @{html.basename} is used; otherwise, #{generate-id()} is called.
+
+This template prepends @{html.output.prefix} to the value of ${href} when
+it calls #{exsl:document}, regardless of whether ${href} was passed in or
+generated automatically.
 
 After calling #{exsl:document}, this template calls the %{html.output.after.mode}
 mode on ${node}. Importing stylesheets that create multiple output files can
@@ -253,14 +270,14 @@ use this to process output files without blocking earlier output.
   </xsl:param>
   <xsl:choose>
     <xsl:when test="$html.xhtml">
-      <exsl:document href="{$href}">
+      <exsl:document href="{$html.output.prefix}{$href}">
 	<xsl:call-template name="html.page">
 	  <xsl:with-param name="node" select="$node"/>
 	</xsl:call-template>
       </exsl:document>
     </xsl:when>
     <xsl:otherwise>
-      <exsl:document href="{$href}" method="html"
+      <exsl:document href="{$html.output.prefix}{$href}" method="html"
 		     doctype-system="about:legacy-compat">
 	<xsl:call-template name="html.page">
 	  <xsl:with-param name="node" select="$node"/>
