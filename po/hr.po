@@ -1,538 +1,553 @@
-# Croatian translation for yelp-xsl
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
-# This file is distributed under the same license as the yelp-xsl package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
-#
+# Translation of yelp to Croatiann
+# Copyright (C) Croatiann team
+# Translators: Automatski Prijevod <>,Danijel Studen <dstuden@vuka.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Diana Ćorluka <dina@iskrameco.hr>,Mato Kutlić <mate@iskraemeco.hr>,Nikola Planinac <>,Robert Sedak <robert.sedak@sk.tel.hr>,Vlatko Kosturjak <kost@linux.hr>,
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp-xsl\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-17 15:46+0000\n"
-"PO-Revision-Date: 2012-04-24 15:12+0000\n"
-"Last-Translator: antisa <antisamail@email.t-com.hr>\n"
-"Language-Team: Croatian <hr@li.org>\n"
+"Project-Id-Version: yelp 0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-03 23:01+0200\n"
+"PO-Revision-Date: 2016-10-16 18:43+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
-"X-Generator: Launchpad (build 15890)\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2016-05-03 20:56+0000\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
-#. Translate to default:RTL if your language should be displayed
-#. right-to-left, otherwise translate to default:LTR.  Do *not*
-#. translate it to "predefinito:LTR", if it isn't default:LTR
-#. or default:RTL it will not work.
-#. 
-#: yelp-xsl.xml.in:27(msg/msgstr)
-msgid "default:LTR"
-msgstr "default:LTR"
-
-#. This is used a simple list item seperator in places where simple
-#. inline lists have to be constructed dynamically.  Using the default
-#. string of ", ", a list would look like this: A, B, C, D.  Using the
-#. nonsensical string " - ", a list would look like this: A - B - C - D.
-#. 
-#. Make sure to include leading or trailing spaces if you want them.
-#. 
-#: yelp-xsl.xml.in:40(msg/msgstr)
-#, no-wrap
-msgid ", "
-msgstr ", "
-
-#. This is used as the final separator in an inline list of three or
-#. more elements.  The string ", " will be used to separate all but
-#. the last pair of elements.  Using these two strings, a list of
-#. names would be formatted as "Tom, Dick, and Harry".
-#. 
-#. Make sure to include leading or trailing spaces if you want them.
-#. 
-#: yelp-xsl.xml.in:53(msg/msgstr)
-#, no-wrap
-msgid ", and "
-msgstr ", i "
-
-#. This is used as a list item seperator for inline lists of exactly two
-#. elements.  A list of two names would be formatted as "Tom and Dick".
-#. 
-#. Make sure to include leading or trailing spaces if you want them.
-#. 
-#: yelp-xsl.xml.in:64(msg/msgstr)
-#, no-wrap
-msgid " and "
-msgstr " i "
-
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#. 
-#. This is used as a label before questions in a question-and-answer
-#. set.  Typically, questions are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label questions.
-#. 
-#: yelp-xsl.xml.in:79(msg/msgstr)
-msgid "Q:"
-msgstr "P:"
-
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#. 
-#. This is used as a label before answers in a question-and-answer
-#. set.  Typically, answers are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label answers.
-#. 
-#: yelp-xsl.xml.in:92(msg/msgstr)
-msgid "A:"
-msgstr "O:"
-
-#. Title of the footer containing copyrights, credits, license information,
-#. and other stuff about the page.
-#. 
-#: yelp-xsl.xml.in:102(msg/msgstr)
-msgid "About"
-msgstr "O programu"
-
-#. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:107(msg/msgstr)
-msgid "Advanced"
-msgstr "Napredna"
-
-#. Default title for a bibliography.
-#: yelp-xsl.xml.in:112(msg/msgstr)
-msgid "Bibliography"
-msgstr "Bibliografija"
-
-#. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:117(msg/msgstr)
-msgid "Bug"
-msgstr "Greška"
-
-#. Revision status of a document or page. Content has been written and
-#. reviewed, and it awaiting a final approval.
-#. 
-#: yelp-xsl.xml.in:125(msg/msgstr)
-msgid "Candidate"
-msgstr "Kandidat"
-
-#. Default title for a colophon section.
-#: yelp-xsl.xml.in:130(msg/msgstr)
-msgid "Colophon"
-msgstr "Kolofon"
-
-#. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:135(msg/msgstr)
-msgid "Creative Commons"
-msgstr "Creative Commons"
-
-#. Default title for a dedication section.
-#: yelp-xsl.xml.in:140(msg/msgstr)
-msgid "Dedication"
-msgstr "Posveta"
-
-#. Revision status of a document or page. Most content has been
-#. written, but revisions are still happening.
-#. 
-#: yelp-xsl.xml.in:148(msg/msgstr)
-msgid "Draft"
-msgstr "Nacrt"
-
-#. Title for a list of editors.
-#: yelp-xsl.xml.in:153(msg/msgstr)
-msgid "Edited By"
-msgstr "Uredio/la"
-
-#. Revision status of a document or page. A senior member of the
-#. documentation team has reviewed and approved.
-#. 
-#: yelp-xsl.xml.in:161(msg/msgstr)
-msgid "Final"
-msgstr "Završno"
-
-#. Default title for a glossary.
-#: yelp-xsl.xml.in:166(msg/msgstr)
-msgid "Glossary"
-msgstr "Pojmovnik"
-
-#. Accessible title for an important note.
-#: yelp-xsl.xml.in:171(msg/msgstr)
-msgid "Important"
-msgstr "Važna"
-
-#. Revision status of a document or page. Work has begun, but
-#. not all content has been written.
-#. 
-#: yelp-xsl.xml.in:179(msg/msgstr)
-msgid "Incomplete"
-msgstr "Nepotpuno"
-
-#. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:184(msg/msgstr)
-msgid "Index"
-msgstr "Abecedni popis"
-
-#. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:189(msg/msgstr)
-msgid "Legal"
-msgstr "Pravne stvari"
-
-#. Generic title for license information when it's not a known license.
-#. 
-#: yelp-xsl.xml.in:196(msg/msgstr)
-msgid "License"
-msgstr "Licenca"
-
-#. Title for a list of maintainers.
-#: yelp-xsl.xml.in:201(msg/msgstr)
-msgid "Maintained By"
-msgstr "Održava"
-
-#. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:206(msg/msgstr)
-msgid "More Information"
-msgstr "Više informacija"
-
-#. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:211(msg/msgstr)
-msgid "Next"
-msgstr "Sljedeća"
-
-#. Accessible title for a note.
-#: yelp-xsl.xml.in:216(msg/msgstr)
-msgid "Note"
-msgstr "Bilješka"
-
-#. Title for a list contributors other than authors, editors, translators,
-#. or other types we have specific lists for.
-#. 
-#: yelp-xsl.xml.in:224(msg/msgstr)
-msgid "Other Credits"
-msgstr "Ostale zasluge"
-
-#. Revision status of a document or page. Content was once current,
-#. but needs to be updated to reflect software updates.
-#. 
-#: yelp-xsl.xml.in:232(msg/msgstr)
-msgid "Outdated"
-msgstr "Zastarjelo"
-
-#. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:237(msg/msgstr)
-msgid "Pause"
-msgstr "Stanka"
-
-#. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:242(msg/msgstr)
-msgid "Play"
-msgstr "Pokreni"
-
-#. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:247(msg/msgstr)
-msgid "Previous"
-msgstr "Prethodna"
-
-#. Revision status of a document or page. Content has been written
-#. and should be reviewed by other team members.
-#. 
-#: yelp-xsl.xml.in:255(msg/msgstr)
-msgid "Ready for review"
-msgstr "Spremno za recenziju"
-
-#. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:260(msg/msgstr)
-msgid "See Also"
-msgstr "Pogledajte i"
-
-#. Figures can automatically scale images down to fit the page width.
-#. This is used a tooltip on a link to shrink images back down after
-#. they've been expanded to full size.
-#. 
-#: yelp-xsl.xml.in:269(msg/msgstr)
-msgid "Scale images down"
-msgstr "Prilagodi slike"
-
-#. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:274(msg/msgstr)
-msgid "Sidebar"
-msgstr "Bočna traka"
-
-#. Revision status of a document or page. No content has been written yet.
-#. 
-#: yelp-xsl.xml.in:281(msg/msgstr)
-msgid "Stub"
-msgstr "Nepotpuno"
-
-#. Default title for a refsynopsisdiv element. This is the common section
-#. title found in most UNIX man pages.
-#. 
-#: yelp-xsl.xml.in:289(msg/msgstr)
-msgid "Synopsis"
-msgstr "Sinopsis"
-
-#. Accessible title for a tip.
-#: yelp-xsl.xml.in:294(msg/msgstr)
-msgid "Tip"
-msgstr "Savjet"
-
-#. Title for a list of translators.
-#: yelp-xsl.xml.in:299(msg/msgstr)
-msgid "Translated By"
-msgstr "Preveo/la"
-
-#. Figures can automatically scale images down to fit the page width.
-#. This is used a tooltip on a link to expand images to full size.
-#. 
-#: yelp-xsl.xml.in:307(msg/msgstr)
-msgid "View images at normal size"
-msgstr "Pogledaj slike u normalnoj veličini"
-
-#. Accessible title for a warning.
-#: yelp-xsl.xml.in:312(msg/msgstr)
-msgid "Warning"
-msgstr "Upozorenje"
-
-#. Title for a list of authors.
-#: yelp-xsl.xml.in:317(msg/msgstr)
-msgid "Written By"
-msgstr "Napisao/la"
-
-#. This is an image of the opening quotation character for your language.
-#. The image is used as a watermark on blockquote elements.  There are a
-#. number of different quote characters used by various languages, so the
-#. image name is translatable.  The name of the icon should be of the form
-#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
-#. quote character.  For example, some languages use the double angle quotation
-#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
-#. 
-#. The image, however, is not automatically created.  Do not translate
-#. this to a value if there isn't a corresponding file in yelp-xsl under
-#. the directory icons/hicolor/48x48/status.
-#. 
-#. Languages that use guillemets (angle quotation marks) should use either
-#. 00AB or 00BB, depending on whether the opening quotation is the left
-#. guillemet or the right guillemet.  Languages that use inverted comma
-#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
-#. don't make very nice watermarks, so if you would normally open a quote
-#. with single quotation marks in your language, use the corresponding
-#. double quotation mark for the watermark image.
-#. 
-#: yelp-xsl.xml.in:344(msg/msgstr)
-msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-00AB.png"
-
-#. ID: biblioentry.tooltip
-#. This is a format message used to format tooltips on cross references
-#. to bibliography entries.
-#. 
-#. Special elements in the message will be replaced with the
+#. (itstool) path: msg/msgstr
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
-#. <label/> - The term being defined by the glossary entry
-#. 
-#: yelp-xsl.xml.in:360(msg/msgstr)
-msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Pogledaj bibliografski unos"
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:36
+msgid "Install <string/>"
+msgstr "Instaliraj <string/>"
 
-#. ID: biblioentry.label
-#. This is a format message used to format the labels for entries in
-#. a bibliography.  The content of the label is often an abbreviation
-#. of the authors' names and the year of publication.  In English,
-#. these are generally formatted with [square brackets] surrounding
-#. them.
-#. 
-#. This string is similar to citation.format, but they are used in
-#. different places.  The citation formatter is used when referencing
-#. a bibliography entry in running prose.  This formatter is used for
-#. the actual bibliography entry.  You may use the same formatting for
-#. both, but you don't have to.
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <biblioentry.label/> - The text content of the bibliography label
-#. 
-#: yelp-xsl.xml.in:383(msg/msgstr)
-msgid "[<biblioentry.label/>]"
-msgstr "[<biblioentry.label/>]"
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "Neispravno zapakirani podaci"
 
-#. ID: citation.label
-#. This is a format message used to format inline citations to other
-#. published works.  The content is typically an abbreviation of the
-#. authors' last names.  In English, this abbreviation is usually
-#. written inside [square brackets].
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <citation/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
-#. 
-#: yelp-xsl.xml.in:400(msg/msgstr)
-msgid "[<citation.label/>]"
-msgstr "[<citation.label/>]"
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+msgid "Not enough memory"
+msgstr "Nema dovoljno memorije"
 
-#. ID: comment.name-date
-#. This is a format message used to format the citation of a comment
-#. made by an editor of a document. This appears on a new line after
-#. the title of the comment, if a title is present, or as the first
-#. line if a title is not present.
-#. 
-#. This string is used when both the name and the date are supplied.
-#. In English, a title together with this format string might produce
-#. something like this:
-#. 
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
-#. 
-#. Here is the text of the comment.
-#. 
-#. If only a name is supplied, and no date, then comment.name is used
-#. instead of this string.
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <comment.name/> - The name of the person making the comment
-#. <comment.date/> - The date the comment was made
-#. 
-#: yelp-xsl.xml.in:429(msg/msgstr)
-msgid "from <comment.name/> on <comment.date/>"
-msgstr "iz <comment.name/> dana <comment.date/>"
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:239
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:283
+#, c-format
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Stranica ‘%s’  nije pronađena u dokumentu ‘%s’."
 
-#. ID: comment.name
-#. This is a format message used to format the citation of a comment
-#. made by an editor of a document. This appears on a new line after
-#. the title of the comment, if a title is present, or as the first
-#. line if a title is not present.
-#. 
-#. This string is used when only the name of the commenter is supplied.
-#. In English, a title together with this format string might produce
-#. something like this:
-#. 
-#. Some Comment Title
-#. from Shaun McCance
-#. 
-#. Here is the text of the comment.
-#. 
-#. If a date is also supplied, then comment.name-date is used instead
-#. of this string.
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <comment.name/> - The name of the person making the comment
-#. 
-#: yelp-xsl.xml.in:457(msg/msgstr)
-msgid "from <comment.name/>"
-msgstr "iz <comment.name/>"
+#: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
+#: ../libyelp/yelp-man-document.c:418
+#, c-format
+msgid "The file does not exist."
+msgstr "Datoteka ne postoji."
 
-#. ID: email.tooltip
-#. This is a format message used to format tooltips on mailto: links.
-#. Special elements in the message will be replaced with the appropriate
-#. content, as follows:
-#. 
-#. <string/> - The linked-to email address
-#. 
-#: yelp-xsl.xml.in:469(msg/msgstr)
-msgid "Send email to ‘<string/>’."
-msgstr "Pošalji e-poruku ‘<string/>’."
+#: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
+#: ../libyelp/yelp-man-document.c:428
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Datoteka ‘%s’ ne postoji."
 
-#. ID: glossentry.tooltip
-#. This is a format message used to format tooltips on cross references
-#. to glossary entries. Special elements in the message will be replaced
-#. with the appropriate content, as follows:
-#. 
-#. <glossterm/> - The term being defined by the glossary entry
-#. 
-#: yelp-xsl.xml.in:481(msg/msgstr)
-msgid "Read the definition for ‘<glossterm/>’."
-msgstr "Pročitaj definiciju za ‘<glossterm/>’."
+#: ../libyelp/yelp-docbook-document.c:324
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Datoteku '%s' nije moguće obraditi jer nije ispravno oblikovan XML dokument."
 
-#. ID: glosssee.format
-#. This is a format message used to format glossary cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.  For the formatting of the actual
-#. link, see the message glossentry.xref.
-#. 
-#. One or more glosssee elements are presented as a links to the user
-#. in the glossary, formatted as a single prose sentence.  For example,
-#. if the user is being directed to the entry "foo", the glosssee may
-#. be formatted as "See foo."
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <glosssee/> - The actual link or links of the cross reference
-#. 
-#: yelp-xsl.xml.in:502(msg/msgstr)
-msgid "See <glosssee/>."
-msgstr "Pogledaj <glosssee/>."
+#: ../libyelp/yelp-docbook-document.c:337
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Datoteku '%s' nije moguće obraditi jer jedna ili više uključenih datoteka "
+"nije ispravno oblikovan XML dokument."
 
-#. ID: glossseealso.format
-#. This is a format message used to format glossary cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.  For the formatting of the actual
-#. link, see the message glossentry.xref.
-#. 
-#. One or more glossseealso elements are presented as a links to the
-#. user in the glossary, formatted as a single prose sentence.  For
-#. example, if the user is being directed to the entries "foo", "bar",
-#. and "baz", the glossseealso may be formatted as "See also foo, bar,
-#. baz."
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <glosssee/> - The actual link or links of the cross reference
-#. 
-#: yelp-xsl.xml.in:524(msg/msgstr)
-msgid "See also <glosssee/>."
-msgstr "Pogledaj i <glosssee/>."
+#: ../libyelp/yelp-docbook-document.c:725
+msgid "Unknown"
+msgstr "Napoznato"
 
-#. ID: quote.format
-#. This is a format message used to format inline quotations. Special
-#. elements in the message will be replaced with the appropriate content,
-#. as follows:
-#. 
-#. <node/> - The text content of the quote element
-#. 
-#: yelp-xsl.xml.in:536(msg/msgstr)
-msgid "“<node/>”"
-msgstr "“<node/>”"
+#: ../libyelp/yelp-docbook-document.c:786 ../libyelp/yelp-info-document.c:316
+#: ../libyelp/yelp-man-document.c:360
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "Tražena stranica nije pronađena u dokumentu  ‘%s’."
 
-#. ID: quote.format
-#. This is a format message used to format inline quotations inside
-#. other inline quotations. Special elements in the message will be
-#. replaced with the appropriate content, as follows:
-#. 
-#. <node/> - The text content of the quote element
-#. 
-#: yelp-xsl.xml.in:548(msg/msgstr)
-msgid "‘<node/>’"
-msgstr "‘<node/>’"
+#: ../libyelp/yelp-document.c:268
+msgid "Indexed"
+msgstr "Popisano"
 
-#. ID: seeie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <seeie/> - The actual link or links of the cross reference
-#. 
-#: yelp-xsl.xml.in:563(msg/msgstr)
-msgid "See <seeie/>."
-msgstr "Pogledaj <seeie/>."
+#: ../libyelp/yelp-document.c:269
+msgid "Whether the document content has been indexed"
+msgstr "Treba li sadržaj dokumenta biti popisan"
 
-#. ID: seealsoie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#. 
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#. 
-#. <seeie/> - The actual link or links of the cross reference
-#. 
-#: yelp-xsl.xml.in:578(msg/msgstr)
-msgid "See also <seeie/>."
-msgstr "Pogledaj i <seeie/>."
+#: ../libyelp/yelp-document.c:277
+msgid "Document URI"
+msgstr "URI dokumenta"
+
+#: ../libyelp/yelp-document.c:278
+msgid "The URI which identifies the document"
+msgstr "URI koji identificira dokument"
+
+#: ../libyelp/yelp-document.c:994
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Rezultati pretrage za “%s”"
+
+#: ../libyelp/yelp-document.c:1006
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "Nisu pronađene odgovarajuće stranice pomoći u \"%s\"."
+
+#: ../libyelp/yelp-document.c:1012
+msgid "No matching help pages found."
+msgstr "Nisu pronađene odgovarajuće stranice pomoći."
+
+#: ../libyelp/yelp-error.c:37
+#, c-format
+msgid "An unknown error occurred."
+msgstr "Pojavila se nepoznata greška."
+
+#: ../libyelp/yelp-help-list.c:544 ../libyelp/yelp-help-list.c:553
+msgid "All Help Documents"
+msgstr "Svi dokumenti pomoći"
+
+#: ../libyelp/yelp-info-document.c:398
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Datoteku '%s' nije moguće obraditi jer nije ispravno oblikovana stranica "
+"informacija."
+
+#: ../libyelp/yelp-location-entry.c:336
+msgid "View"
+msgstr "Pogled"
+
+#: ../libyelp/yelp-location-entry.c:337
+msgid "A YelpView instance to control"
+msgstr "Primjerak upravljanja Yelp pogleda"
+
+#: ../libyelp/yelp-location-entry.c:352
+msgid "Bookmarks"
+msgstr "Zabilješke"
+
+#: ../libyelp/yelp-location-entry.c:353
+msgid "A YelpBookmarks implementation instance"
+msgstr "Primjerak implementacije Yelp zabilješka"
+
+#: ../libyelp/yelp-location-entry.c:369
+msgid "Enable Search"
+msgstr "Omogući pretragu"
+
+#: ../libyelp/yelp-location-entry.c:370
+msgid "Whether the location entry can be used as a search field"
+msgstr "Treba li se lokacija upisa koristiti kao polje za pretragu"
+
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+msgid "Search..."
+msgstr "Pretraga..."
+
+#: ../libyelp/yelp-location-entry.c:783
+msgid "Clear the search text"
+msgstr "Ukloni traženi tekst"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
+msgid "Bookmark this page"
+msgstr "Zabilježi ovu stranicu"
+
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
+msgid "Remove bookmark"
+msgstr "Ukloni zabilješku"
+
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Pretraži \"%s\""
+
+#: ../libyelp/yelp-location-entry.c:1458
+msgid "Loading"
+msgstr "Učitavanje"
+
+#: ../libyelp/yelp-mallard-document.c:346
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Direktorij ‘%s’ ne postoji."
+
+#: ../libyelp/yelp-settings.c:156
+msgid "GtkSettings"
+msgstr "GtkPostavke"
+
+#: ../libyelp/yelp-settings.c:157
+msgid "A GtkSettings object to get settings from"
+msgstr "Objekt GtkPostavke iz kojeg se dobivaju postavke"
+
+#: ../libyelp/yelp-settings.c:165
+msgid "GtkIconTheme"
+msgstr "GtkIkon tema"
+
+#: ../libyelp/yelp-settings.c:166
+msgid "A GtkIconTheme object to get icons from"
+msgstr "Objekt GtkIkon tema iz kojeg se dobivaju ikone"
+
+#: ../libyelp/yelp-settings.c:174
+msgid "Font Adjustment"
+msgstr "Prilagodba slova"
+
+#: ../libyelp/yelp-settings.c:175
+msgid "A size adjustment to add to font sizes"
+msgstr "Prilagodba veličine koja se dodaje veličinama slova"
+
+#: ../libyelp/yelp-settings.c:183
+msgid "Show Text Cursor"
+msgstr "Prikaži pokazivač teksta"
+
+#: ../libyelp/yelp-settings.c:184
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "Prikaži pokazivač teksta ili \"^\" za prilagođenu navigaciju"
+
+#: ../libyelp/yelp-settings.c:192
+msgid "Editor Mode"
+msgstr "Način uređivanja"
+
+#: ../libyelp/yelp-settings.c:193
+msgid "Enable features useful to editors"
+msgstr "Omogućuje značajke korisne urediteljima"
+
+#: ../libyelp/yelp-sqlite-storage.c:149
+msgid "Database filename"
+msgstr "Naziv datoteke baze podataka"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "The filename of the sqlite database"
+msgstr "Naziv sqlite baze podataka"
+
+#: ../libyelp/yelp-transform.c:171
+msgid "XSLT Stylesheet"
+msgstr "XSLT stilski predložak"
+
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "Lokacija XSLT stilskog predloška"
+
+#: ../libyelp/yelp-transform.c:380 ../libyelp/yelp-transform.c:395
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "XSLT stilski predložak '%s' nije pronađen ili je neispravan."
+
+#: ../libyelp/yelp-transform.c:529
+msgid "No href attribute found on yelp:document\n"
+msgstr "Nije pronađeno href svojstvo u yelp:document\n"
+
+#: ../libyelp/yelp-transform.c:544
+msgid "Out of memory"
+msgstr "Nedovoljno memorije"
+
+#: ../libyelp/yelp-view.c:131
+msgid "_Print..."
+msgstr "_Ispiši..."
+
+#: ../libyelp/yelp-view.c:136
+msgid "_Back"
+msgstr "_Natrag"
+
+#: ../libyelp/yelp-view.c:141
+msgid "_Forward"
+msgstr "_Naprijed"
+
+#: ../libyelp/yelp-view.c:146
+msgid "_Previous Page"
+msgstr "_Prijašnja stranica"
+
+#: ../libyelp/yelp-view.c:151
+msgid "_Next Page"
+msgstr "_Sljedeća stranica"
+
+#: ../libyelp/yelp-view.c:423
+msgid "Yelp URI"
+msgstr "Yelp URI"
+
+#: ../libyelp/yelp-view.c:424
+msgid "A YelpUri with the current location"
+msgstr "Yelp Uri s trenutnom lokacijom"
+
+#: ../libyelp/yelp-view.c:432
+msgid "Loading State"
+msgstr "Stanje učitavanja"
+
+#: ../libyelp/yelp-view.c:433
+msgid "The loading state of the view"
+msgstr "Stanje učitavanja novog pogleda"
+
+#: ../libyelp/yelp-view.c:442
+msgid "Page ID"
+msgstr "ID stranice"
+
+#: ../libyelp/yelp-view.c:443
+msgid "The ID of the root page of the page being viewed"
+msgstr "ID korijenske stranice od trenutno gledane stranice"
+
+#: ../libyelp/yelp-view.c:451
+msgid "Root Title"
+msgstr "Korijenski naslov"
+
+#: ../libyelp/yelp-view.c:452
+msgid "The title of the root page of the page being viewed"
+msgstr "Naslov korijenske stranice od trenutno gledane stranice"
+
+#: ../libyelp/yelp-view.c:460
+msgid "Page Title"
+msgstr "Naslov stranice"
+
+#: ../libyelp/yelp-view.c:461
+msgid "The title of the page being viewed"
+msgstr "Naslov stranice koja se pregledava"
+
+#: ../libyelp/yelp-view.c:469
+msgid "Page Description"
+msgstr "Opis stranice"
+
+#: ../libyelp/yelp-view.c:470
+msgid "The description of the page being viewed"
+msgstr "Opis trenutno gledane stranice"
+
+#: ../libyelp/yelp-view.c:478
+msgid "Page Icon"
+msgstr "Ikona stranice"
+
+#: ../libyelp/yelp-view.c:479
+msgid "The icon of the page being viewed"
+msgstr "Ikona stranice koja se pregledava"
+
+#: ../libyelp/yelp-view.c:720
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "Nemate PackageKit. Paket instalira poveznicu potrebnu za PackageKit."
+
+#: ../libyelp/yelp-view.c:1014
+msgid "Save Image"
+msgstr "Spremi sliku"
+
+#: ../libyelp/yelp-view.c:1109
+msgid "Save Code"
+msgstr "Spremi kôd"
+
+#: ../libyelp/yelp-view.c:1272
+#, c-format
+msgid "Send email to %s"
+msgstr "Pošalji e-poštu na %s"
+
+#: ../libyelp/yelp-view.c:1287
+msgid "_Install Packages"
+msgstr "_Instaliraj pakete"
+
+#: ../libyelp/yelp-view.c:1295
+msgid "_Open Link"
+msgstr "_Otvori poveznicu"
+
+#: ../libyelp/yelp-view.c:1302
+msgid "_Copy Link Location"
+msgstr "_Kopiraj lokaciju poveznice"
+
+#: ../libyelp/yelp-view.c:1308
+msgid "Open Link in New _Window"
+msgstr "Otvori poveznicu u novom _prozoru"
+
+#: ../libyelp/yelp-view.c:1360
+msgid "_Save Image As..."
+msgstr "_Spremi sliku kao..."
+
+#: ../libyelp/yelp-view.c:1362
+msgid "_Save Video As..."
+msgstr "_Spremi snimku kao..."
+
+#: ../libyelp/yelp-view.c:1369
+msgid "S_end Image To..."
+msgstr "P_ošalji sliku na..."
+
+#: ../libyelp/yelp-view.c:1371
+msgid "S_end Video To..."
+msgstr "P_ošalji snimku na..."
+
+#: ../libyelp/yelp-view.c:1382
+msgid "_Copy Text"
+msgstr "_Kopiraj tekst"
+
+#: ../libyelp/yelp-view.c:1395
+msgid "C_opy Code Block"
+msgstr "K_opiraj blok kôda"
+
+#: ../libyelp/yelp-view.c:1400
+msgid "Save Code _Block As..."
+msgstr "Spremi _blok kôda kao..."
+
+#: ../libyelp/yelp-view.c:1507
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Pregledajte sve rezultate pretrage za \"%s\""
+
+#: ../libyelp/yelp-view.c:1628
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Nemoguće učitatavanje dokumenta za ‘%s’"
+
+#: ../libyelp/yelp-view.c:1634
+#, c-format
+msgid "Could not load a document"
+msgstr "Nemoguće učitavanje dokumenta"
+
+#: ../libyelp/yelp-view.c:1709
+msgid "Document Not Found"
+msgstr "Dokument nije pronađen"
+
+#: ../libyelp/yelp-view.c:1711
+msgid "Page Not Found"
+msgstr "Stranica nije pronađena"
+
+#: ../libyelp/yelp-view.c:1714
+msgid "Cannot Read"
+msgstr "Nemoguće čitatanje"
+
+#: ../libyelp/yelp-view.c:1720
+msgid "Unknown Error"
+msgstr "Nepoznata greška"
+
+#: ../libyelp/yelp-view.c:1888
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI '%s' se ne usmjerava na ispravnu stranicu."
+
+#: ../libyelp/yelp-view.c:1894
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI se ne usmjerava na ispravnu stranicu."
+
+#: ../libyelp/yelp-view.c:1900
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "URI '%s' se ne može obraditi."
+
+#: ../src/yelp-application.c:65
+msgid "Turn on editor mode"
+msgstr "Uključi način uređivanja"
+
+#: ../src/yelp-application.c:128
+msgid "_Larger Text"
+msgstr "_Veći tekst"
+
+#: ../src/yelp-application.c:130
+msgid "Increase the size of the text"
+msgstr "Povećaj veličinu teksta"
+
+#: ../src/yelp-application.c:133
+msgid "_Smaller Text"
+msgstr "_Manji tekst"
+
+#: ../src/yelp-application.c:135
+msgid "Decrease the size of the text"
+msgstr "Smanji veličinu teksta"
+
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+msgid "Help"
+msgstr "Pomoć"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Prikaži _pokazivača teksta"
+
+#: ../src/yelp-window.c:236
+msgid "_Page"
+msgstr "_Stranica"
+
+#: ../src/yelp-window.c:237
+msgid "_View"
+msgstr "_Pogled"
+
+#: ../src/yelp-window.c:238
+msgid "_Go"
+msgstr "_Idi"
+
+#: ../src/yelp-window.c:239
+msgid "_Bookmarks"
+msgstr "_Zabilješke"
+
+#: ../src/yelp-window.c:242
+msgid "_New Window"
+msgstr "_Novi prozor"
+
+#: ../src/yelp-window.c:247
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../src/yelp-window.c:252
+msgid "_All Documents"
+msgstr "_Svi dokumenti"
+
+#: ../src/yelp-window.c:256
+msgid "_Add Bookmark"
+msgstr "_Dodaj zabilješku"
+
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_Ukloni zabilješku"
+
+#: ../src/yelp-window.c:265
+msgid "Find in Page..."
+msgstr "Pretraži na stranici..."
+
+#: ../src/yelp-window.c:275
+msgid "Open Location"
+msgstr "Otvori lokaciju"
+
+#: ../src/yelp-window.c:301
+msgid "Application"
+msgstr "Aplikacija"
+
+#: ../src/yelp-window.c:302
+msgid "A YelpApplication instance that controls this window"
+msgstr "Primjerak Yelp aplikacije koji upravlja ovim prozorom"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Pročitaj poveznicu _kasnije"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Pretraži:"
+
+#: ../src/yelp-window.c:548
+msgid "Read Later"
+msgstr "Pročitaj kasnije"
+
+#: ../src/yelp-window.c:1180
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i pronađen"
+msgstr[1] "%i pronađena"
+msgstr[2] "%i pronađenih"
+
+#: ../src/yelp-window.c:1189
+msgid "No matches"
+msgstr "Bez rezultata"
+
+#: ../yelp.desktop.in.in.h:1
+msgid "documentation;information;manual;"
+msgstr "dokumentacija;informacija;priručnik;"
+
+#~ msgid "Get help with Unity"
+#~ msgstr "Nabavite pomoći za Unity"
