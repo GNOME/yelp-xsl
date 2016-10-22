@@ -126,12 +126,10 @@ div.simplelist td {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
 }
-<!--
-div.simplelist td.td-first {
+div.simplelist td:first-child {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
 }
--->
 
 span.accel { text-decoration: underline; }
 span.email { font-family: monospace; }
@@ -159,6 +157,7 @@ dt.question {
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 dd + dt.question { margin-top: 1em; }
 dd.answer {
@@ -167,10 +166,11 @@ dd.answer {
   margin-right: 2em;
 }
 div.qanda-label {
-  line-height: 1.72em;
+  line-height: 1.44em;
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
   font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
 

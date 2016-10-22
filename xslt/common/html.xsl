@@ -1489,7 +1489,6 @@ div.screen {
     <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps, ul.steps {
-  margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
     <xsl:value-of select="$color.yellow"/><xsl:text>;
