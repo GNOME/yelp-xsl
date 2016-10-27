@@ -23,11 +23,13 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
                 exclude-result-prefixes="db msg str set"
                 version="1.0">
 
+
 <!--!!==========================================================================
 DocBook to HTML - Lists
-:Requires: db-common db2html-inline db2html-xref l10n html
+:Revision:version="3.next" date="2016-10-27" status="review"
 
-REMARK: Describe this module
+This stylesheet handles most list-like elements in DocBook, turning them into
+appropriate HTML tags.
 -->
 
 
@@ -310,6 +312,7 @@ REMARK: Describe this module
     <xsl:variable name="title" select="title | blockinfo/title |
                                        db:title | db:info/db:title"/>
     <xsl:variable name="steps" select="step | db:step"/>
+    <xsl:variable name="result" select="db:result"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'steps'"/>
     </xsl:call-template>
@@ -318,7 +321,7 @@ REMARK: Describe this module
     <div class="inner">
     <xsl:apply-templates select="$title[1]"/>
     <div class="region"><div class="contents">
-    <xsl:apply-templates select="*[not(set:has-same-node(., $title | $steps))]"/>
+    <xsl:apply-templates select="*[not(set:has-same-node(., $title | $steps | $result))]"/>
     <xsl:choose>
       <xsl:when test="count($steps) = 1">
         <ul class="steps">
@@ -331,6 +334,7 @@ REMARK: Describe this module
         </ol>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:apply-templates select="$result"/>
     </div></div></div>
   </div>
   </xsl:if>
@@ -571,6 +575,21 @@ REMARK: Describe this module
   </xsl:if>
 </xsl:template>
 
+<!-- = result = -->
+<xsl:template match="result | db:result">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <div>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'result'"/>
+      </xsl:call-template>
+      <xsl:call-template name="html.lang.attrs"/>
+      <xsl:call-template name="db2html.anchor"/>
+      <xsl:apply-templates/>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step | db:step">
@@ -583,6 +602,24 @@ REMARK: Describe this module
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
   </li>
+  </xsl:if>
+</xsl:template>
+
+<!-- FIXME: Do something with @performance -->
+<!-- = stepalternatives = -->
+<xsl:template match="stepalternatives | db:stepalternatives">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <div>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'steps stepalternatives'"/>
+      </xsl:call-template>
+      <xsl:call-template name="html.lang.attrs"/>
+      <xsl:call-template name="db2html.anchor"/>
+      <ul class="steps stepalternatives">
+        <xsl:apply-templates/>
+      </ul>
+    </div>
   </xsl:if>
 </xsl:template>
 
