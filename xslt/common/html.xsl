@@ -1533,7 +1533,7 @@ tr.shade td.shade {
 
 span.app { font-style: italic; }
 span.cmd {
-  font-family: monospace;
+  font-family: monospace,monospace; font-size: 0.83em;
   background-color: </xsl:text>
     <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   padding: 0 0.2em 0 0.2em;
@@ -1541,7 +1541,7 @@ span.cmd {
 span.cmd span.cmd { background-color: none; padding: 0; }
 pre span.cmd { background-color: none; padding: 0; }
 span.code {
-  font-family: monospace;
+  font-family: monospace,monospace; font-size: 0.83em;
   border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 span.code span.code { border: none; }
@@ -1554,10 +1554,10 @@ span.em-bold {
 pre span.error {
   color: </xsl:text><xsl:value-of select="$color.fg.red"/><xsl:text>;
 }
-span.file { font-family: monospace; }
+span.file { font-family: monospace,monospace; font-size: 0.83em; }
 span.gui, span.guiseq { color: </xsl:text>
   <xsl:value-of select="$color.fg.dark"/><xsl:text>; }
-span.input { font-family: monospace; }
+span.input { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.input {
   font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
@@ -1597,14 +1597,14 @@ span.keyseq {
     <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   white-space: nowrap
 }
-span.output { font-family: monospace; }
+span.output { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.output {
   color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
 pre span.prompt {
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
-span.sys { font-family: monospace; }
+span.sys { font-family: monospace,monospace; font-size: 0.83em; }
 span.var { font-style: italic; }
 
 .ui-tile-img .media-controls { display: none; }

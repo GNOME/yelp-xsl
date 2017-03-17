@@ -132,7 +132,7 @@ div.simplelist td:first-child {
 }
 
 span.accel { text-decoration: underline; }
-span.email { font-family: monospace; }
+span.email { font-family: monospace,monospace; font-size: 0.83em; }
 span.firstterm { font-style: italic; }
 span.foreignphrase { font-style: italic; }
 
@@ -149,7 +149,7 @@ span.lineannotation { font-style: italic; }
 span.medialabel { font-style: italic; }
 .methodparam span.parameter { font-style: italic; }
 span.paramdef span.parameter { font-style: italic; }
-span.prompt { font-family: monospace; }
+span.prompt { font-family: monospace,monospace; font-size: 0.83em; }
 span.wordasword { font-style: italic; }
 <!-- FIXME below -->
 
