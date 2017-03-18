@@ -112,6 +112,36 @@ a.footnote:hover, div.footnote > a.footnote:hover {
     <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 
+<!-- == indexes == -->
+dt.ixprimary {
+  font-weight: bold;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+}
+dt.ixprimary * { font-style: normal; }
+dt.ixprimary + dt.ixprimary { margin-top: 1em; }
+dd.ixsecondary {
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+}
+dt.ixsecondary, dt.ixtertiary { margin-top: 0.2em; }
+dd.ixlink, dd.ixsee, dd.ixseealso {
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+}
+dd.ixlink + dd, dd.ixsee + dd, dd.ixseealso + dd {
+  margin-top: 0.2em;
+}
+dt.ixsecondary:before, dt.ixtertiary:before {
+  content: "⏺";
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+}
+dd.ixlink:before {
+  content: "⏺";
+  color: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+}
+dd.ixsee:before, dd.ixseealso:before {
+  content: "⏺";
+  color: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
+}
+
 <!-- == unsorted == -->
 dl.index dt { margin-top: 0; }
 dl.index dd { margin-top: 0; margin-bottom: 0; }
