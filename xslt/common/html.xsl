@@ -959,7 +959,7 @@ main > div.page {
   display: flex;
   flex-flow: column;
   align-items: stretch;
-  justify-content: flext-start;
+  justify-content: flex-start;
   min-height: 100vh;
 }
 div.page > article { flex: 1 0 100%; }
@@ -1498,7 +1498,7 @@ ol.steps, ul.steps {
 ol.steps .steps {
   padding: 0;
   border: none;
-  background-color: none;
+  background-color: unset;
   box-shadow: none;
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
@@ -1515,7 +1515,7 @@ div.synopsis > div.contents, div.synopsis > pre.contents {
 }
 div.synopsis > div.inner > div.region > div.desc { font-style: italic; }
 div.synopsis div.code {
-  background: none;
+  background: unset;
   border: none;
   padding: 0;
 }
@@ -1538,8 +1538,8 @@ span.cmd {
     <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   padding: 0 0.2em 0 0.2em;
 }
-span.cmd span.cmd { background-color: none; padding: 0; }
-pre span.cmd { background-color: none; padding: 0; }
+span.cmd span.cmd { background-color: unset; padding: 0; }
+pre span.cmd { background-color: unset; padding: 0; }
 span.code {
   font-family: monospace,monospace; font-size: 0.83em;
   border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
@@ -1571,8 +1571,6 @@ kbd {
     <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   box-shadow: 1px 1px 2px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;

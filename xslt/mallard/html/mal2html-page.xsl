@@ -1005,9 +1005,7 @@ a.ui-overlay-close {
   border: none;
   border-radius: 50%;
   background-color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
-  background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
-  background-image: radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
-  background-image: -webkit-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
+  background-image: radial-gradient(circle farthest-corner at 50% 30%, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
   border: 3px solid </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>; 
   color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
   box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
@@ -1345,7 +1343,6 @@ dd.gloss-def {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 a.gloss-term {
-  tabindex: 0;
   border-bottom: dashed 1px </xsl:text>
     <xsl:value-of select="$color.blue"/><xsl:text>;
 }
