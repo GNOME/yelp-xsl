@@ -193,8 +193,8 @@ This template handles link sorting.
 </xsl:template>
 
 
-<!--**==========================================================================
-mal2html.ui.links.hover
+<!--DEPRECATED==================================================================
+_mal2html.ui.links.hover
 Output links with thumbnails shown on hover.
 :Revision:version="3.4" date="2012-02-26" status="final"
 $node: A #{links} element to link from.
@@ -211,7 +211,8 @@ are hovered.
 
 This template handles link sorting.
 -->
-<xsl:template name="mal2html.ui.links.hover">
+<!--#* _mal2html.ui.links.hover -->
+<xsl:template name="_mal2html.ui.links.hover">
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
@@ -235,7 +236,11 @@ This template handles link sorting.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="links-ui-hover" style="width: {$width}px; height: {$height}px;">
+  <xsl:message>
+    <xsl:text>DEPRECATION WARNING: The uix:thumbs attribute on the links element is deprecated.</xsl:text>
+  </xsl:message>
+  <div class="links-uix-hover">
+  <div class="links-uix-hover-img" style="width: {$width}px; height: {$height}px;">
     <xsl:for-each select="$node/uix:thumb[1]">
       <img>
         <xsl:copy-of select="@src"/>
@@ -248,7 +253,7 @@ This template handles link sorting.
       </img>
     </xsl:for-each>
   </div>
-  <ul class="links-ui-hover">
+  <ul class="links-uix-hover">
     <xsl:for-each select="$links">
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -279,7 +284,7 @@ This template handles link sorting.
                 <xsl:with-param name="info" select="$link[@href]/mal:info"/>
               </xsl:call-template>
             </xsl:attribute>
-            <span class="links-ui-hover-img" style="width: {$width}px; height: {$height}px;">
+            <span class="links-uix-hover-img" style="width: {$width}px; height: {$height}px;">
               <xsl:call-template name="mal2html.ui.links.img">
                 <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="thumbs" select="$thumbs"/>
@@ -302,7 +307,7 @@ This template handles link sorting.
       </xsl:for-each>
     </xsl:for-each>
   </ul>
-  <div class="clear"/>
+  </div>
 </xsl:template>
 
 

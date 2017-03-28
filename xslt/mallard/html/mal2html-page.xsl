@@ -926,37 +926,45 @@ ul.links-heading > li { margin: 2em 0 2em 0; padding: 0; }
 div.links-heading > a { font-size: 1.72em; font-weight: bold; }
 ul.links-heading > li > div.desc { margin-top: 0.5em; }
 
-<!-- FIXME -->
-div.mouseovers {
-  width: 250px;
-  height: 200px;
-  text-align: center;
-  margin: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+div.links-uix-hover {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
 }
-ul.mouseovers li { margin: 0; }
-ul.mouseovers a {
-  display: inline-block;
-  padding: 4px 1.2em 4px 1.2em;
+ul.links-uix-hover { flex-grow: 1; }
+ul.links-uix-hover li { margin: 0; padding: 0; }
+ul.links-uix-hover a {
+  display: block;
+  padding: 8px 1.2em;
   border-bottom: none;
 }
-ul.mouseovers a:hover {
-  text-decoration: none;
+ul.links-uix-hover a:hover {
   background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
-ul.mouseovers a img {
-  display: none;
+ul.links-uix-hover img {
+  display: block;
   position: absolute;
-  margin: 0; padding: 0;
+  top: 0; </xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  visibility: hidden;
+  opacity: 0.0;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+ul.links-uix-hover a:hover img {
+  visibility: visible;
+  opacity: 1.0;
+  transition: opacity 0.2s, visibility 0.2s;
 }
 @media only screen and (max-width: 480px) {
-  ul.mouseovers a {
-    display: block;
-    padding: 12px;
-    margin-left: -12px;
-    margin-right: -12px;
+  div.links-uix-hover-img { display: none; }
+  ul.links-uix-hover img { display: none; }
+  ul.links-uix-hover li {
+    margin-left: -10px; margin-right: -10px;
   }
-  div.mouseovers { display: none; }
+  ul.links-uix-hover li a {
+    padding: 10px;
+  }
 }
 
 <!-- uix:overlay -->
@@ -1060,42 +1068,6 @@ div.links-tile > a > span.links-tile-text > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-}
-
-<!-- FIXME -->
-div.links-ui-hover {
-  text-align: center;
-  margin: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1.2em;
-  overflow: hidden;
-}
-ul.links-ui-hover li { margin: 0; }
-ul.links-ui-hover a {
-  display: block;
-  padding: 4px 1.2em 4px 1.2em;
-  border-bottom: none;
-}
-ul.links-ui-hover a:hover {
-  text-decoration: none;
-  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
-}
-span.links-ui-hover-img {
-  display: none;
-  position: absolute;
-  margin: 0; padding: 0;
-  overflow: hidden;
-  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
-  text-align: center;
-}
-@media only screen and (max-width: 480px) {
-  ul.links-ui-hover a {
-    display: block;
-    padding: 12px;
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  div.links-ui-hover { display: none; }
 }
 
 <!-- links/@style = 'grid' -->
@@ -1422,50 +1394,6 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
   <xsl:call-template name="mal2html.gloss.js"/>
 <xsl:text><![CDATA[
 $(document).ready(function () {
-  $('div.mouseovers').each(function () {
-    var contdiv = $(this);
-    var width = 0;
-    var height = 0;
-    contdiv.find('img').each(function () {
-      if ($(this).attr('data-yelp-match') == '')
-        $(this).show();
-    });
-    contdiv.next('ul').find('a').each(function () {
-      var mlink = $(this);
-      mlink.hover(
-        function () {
-          if (contdiv.is(':visible')) {
-            var offset = contdiv.offset();
-            mlink.find('img').css({left: offset.left, top: offset.top, zIndex: 10});
-            mlink.find('img').fadeIn('fast');
-          }
-        },
-        function () {
-          mlink.find('img').fadeOut('fast');
-        }
-      );
-    });
-  });
-  $('div.links-ui-hover').each(function () {
-    var contdiv = $(this);
-    var width = 0;
-    var height = 0;
-    contdiv.next('ul').find('a').each(function () {
-      var mlink = $(this);
-      mlink.hover(
-        function () {
-          if (contdiv.is(':visible')) {
-            var offset = contdiv.offset();
-            mlink.find('img').parent('span').css({left: offset.left, top: offset.top, zIndex: 10});
-            mlink.find('img').parent('span').show();
-          }
-        },
-        function () {
-          mlink.find('img').parent('span').hide();
-        }
-      );
-    });
-  });
   $('a.ui-overlay').each(function () {
     $(this).click(function () {
       var overlay = $(this).parent('div').children('div.ui-overlay');

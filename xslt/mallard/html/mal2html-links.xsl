@@ -153,7 +153,7 @@ parameter will be used if provided.
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$uithumbs = 'hover'">
-            <xsl:call-template name="mal2html.ui.links.hover">
+            <xsl:call-template name="_mal2html.ui.links.hover">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
@@ -872,14 +872,18 @@ when determining which links to output.
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:variable name="role" select="$node/self::mal:links/@role"/>
-  <div class="mouseovers">
+  <xsl:message>
+    <xsl:text>DEPRECATION WARNING: The mouseovers style on the links element is deprecated.</xsl:text>
+  </xsl:message>
+  <div class="links-uix-hover">
+  <div class="links-uix-hover-img">
     <xsl:for-each select="$node/e:mouseover[not(@match)]">
       <img>
         <xsl:copy-of select="@src | @width | @height"/>
       </img>
     </xsl:for-each>
   </div>
-  <ul class="mouseovers">
+  <ul class="links-uix-hover">
     <xsl:for-each select="$links">
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -904,9 +908,11 @@ when determining which links to output.
               </xsl:call-template>
             </xsl:attribute>
             <xsl:for-each select="$node/e:mouseover[@match = $xref]">
-              <img>
-                <xsl:copy-of select="@src | @width | @height"/>
-              </img>
+              <span class="links-uix-hover-img">
+                <img>
+                  <xsl:copy-of select="@src | @width | @height"/>
+                </img>
+              </span>
             </xsl:for-each>
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="."/>
@@ -920,7 +926,7 @@ when determining which links to output.
       </xsl:for-each>
     </xsl:for-each>
   </ul>
-  <div class="clear"/>
+  </div>
 </xsl:template>
 
 
