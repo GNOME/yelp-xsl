@@ -940,7 +940,7 @@ ul.links-uix-hover a {
   padding: 8px 1.2em;
   border-bottom: none;
 }
-ul.links-uix-hover a:hover {
+ul.links-uix-hover a:hover, ul.links-uix-hover a:focus {
   background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 ul.links-uix-hover img {
@@ -951,7 +951,7 @@ ul.links-uix-hover img {
   opacity: 0.0;
   transition: opacity 0.6s, visibility 0.6s;
 }
-ul.links-uix-hover a:hover img {
+ul.links-uix-hover a:hover img, ul.links-uix-hover a:focus img {
   visibility: visible;
   opacity: 1.0;
   transition: opacity 0.2s, visibility 0.2s;
@@ -1294,7 +1294,7 @@ div.facet input {
   margin: 0;
 }
 
-<!-- FIXME -->
+<!-- experimental/gloss -->
 dt.gloss-term {
   margin-top: 1.2em;
   font-weight: bold;
@@ -1315,6 +1315,7 @@ dd.gloss-def {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 a.gloss-term {
+  position: relative;
   border-bottom: dashed 1px </xsl:text>
     <xsl:value-of select="$color.blue"/><xsl:text>;
 }
@@ -1325,9 +1326,14 @@ a.gloss-term:hover {
 span.gloss-desc {
   display: none;
   position: absolute;
+  z-index: 100;
   margin: 0;
+  </xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  top: 1.2em;
   padding: 0.2em 0.5em 0.2em 0.5em;
+  min-width: 12em;
   max-width: 24em;
+  overflow: hidden;
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   background-color: </xsl:text>
     <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
@@ -1335,6 +1341,16 @@ span.gloss-desc {
     <xsl:value-of select="$color.yellow"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
+}
+a.gloss-term:hover span.gloss-desc, a.gloss-term:focus span.gloss-desc {
+  display: inline-block;
+  animation-name: yelp-gloss-fade;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-gloss-fade {
+  from { opacity: 0.0; }
+  to   { opacity: 1.0; }
 }
 
 <!-- conditional processing -->
@@ -1391,7 +1407,6 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
   <xsl:call-template name="mal2html.facets.js"/>
-  <xsl:call-template name="mal2html.gloss.js"/>
 <xsl:text><![CDATA[
 $(document).ready(function () {
   $('a.ui-overlay').each(function () {
