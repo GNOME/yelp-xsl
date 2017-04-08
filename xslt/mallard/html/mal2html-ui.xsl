@@ -474,38 +474,38 @@ ${node} element.
   <!-- only process first, and handle consecutive overlays so we
        can put them in a wrapper div for flexbox -->
   <xsl:if test="not(preceding-sibling::*[1][self::uix:overlay])">
-    <xsl:variable name="media" select="mal:media[1]"/>
-    <xsl:variable name="width">
-      <xsl:choose>
-        <xsl:when test="@width">
-          <xsl:value-of select="@width"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>280</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="height">
-      <xsl:choose>
-        <xsl:when test="@height">
-          <xsl:value-of select="@height"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>280</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
     <div class="links-tiles">
       <xsl:variable name="count" select="count(following-sibling::*[not(self::uix:overlay)])"/>
       <xsl:for-each select="self::* |
                             following-sibling::uix:overlay
                             [count(following-sibling::*[not(self::uix:overlay)]) = $count]">
+        <xsl:variable name="media" select="mal:media[1]"/>
+        <xsl:variable name="width">
+          <xsl:choose>
+            <xsl:when test="@width">
+              <xsl:value-of select="@width"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>280</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="height">
+          <xsl:choose>
+            <xsl:when test="@height">
+              <xsl:value-of select="@height"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>280</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
         <div class="links-tile">
           <a href="{$media/@src}" class="ui-overlay">
             <span class="links-tile-img">
               <xsl:choose>
                 <xsl:when test="$media/uix:thumb">
-                  <img src="{$media/uix:thumb[1]/@src}"/>
+                  <img src="{$media/uix:thumb[1]/@src}" width="{$width}"/>
                 </xsl:when>
                 <!-- FIXME: audio/video with image child -->
                 <!--
@@ -514,10 +514,10 @@ ${node} element.
                     </xsl:when>
                 -->
                 <xsl:when test="$media/@type = 'video'">
-                  <video src="{$media/@src}"/>
+                  <video src="{$media/@src}" width="{$width}"/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <img src="{$media/@src}"/>
+                  <img src="{$media/@src}" width="{$width}"/>
                 </xsl:otherwise>
               </xsl:choose>
             </span>

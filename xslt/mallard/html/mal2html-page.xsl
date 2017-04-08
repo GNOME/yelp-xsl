@@ -969,22 +969,36 @@ ul.links-uix-hover a:hover img, ul.links-uix-hover a:focus img {
 
 <!-- uix:overlay -->
 div.ui-overlay-screen {
-  display: none;
   position: fixed;
   margin: 0;
   left: 0; top: 0;
   width: 100%; height: 100%;
   background: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-  opacity: 0.6;
+  animation-name: yelp-overlay-screen;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-overlay-screen {
+  from { opacity: 0.0; }
+  to   { opacity: 0.6; }
 }
 div.ui-overlay {
   display: none;
   position: fixed;
   text-align: center;
-  left: 0;
   top: 20px;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
+}
+div.ui-overlay-show {
+  animation-name: yelp-overlay-slide;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-overlay-slide {
+  from { transform: translateY(-400px) translateX(-50%); }
+  to   { transform: translateY(0) translateX(-50%); }
 }
 div.ui-overlay > div.inner {
   display: inline-block;
@@ -1408,56 +1422,58 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
 <xsl:template mode="html.js.mode" match="mal:page">
   <xsl:call-template name="mal2html.facets.js"/>
 <xsl:text><![CDATA[
-$(document).ready(function () {
-  $('a.ui-overlay').each(function () {
-    $(this).click(function () {
-      var overlay = $(this).parent('div').children('div.ui-overlay');
-      var inner = overlay.children('div.inner');
-      var close = inner.children('a.ui-overlay-close');
-      var media = inner.find('audio, video');
-      var screen = $('div.ui-overlay-screen');
-      if (screen.length == 0) {
-        screen = $('<div class="ui-overlay-screen"></div>');
-        $('body').append(screen);
-      }
-      var hideoverlay = function () {
-        if (media.length > 0)
-          media[0].pause();
-        $(document).unbind('keydown.yelp-ui-overlay');
-        close.unbind('click');
-        screen.unbind('click');
-        screen.fadeOut('slow');
-        overlay.unbind('click');
-        overlay.slideUp('fast');
-        return false;
-      };
-      screen.click(hideoverlay);
-      close.click(hideoverlay);
-      $(document).bind('keydown.yelp-ui-overlay', function (event) {
-        if (event.which == 27) {
-          hideoverlay();
+document.addEventListener('DOMContentLoaded', function() {
+  var overlays = document.querySelectorAll('a.ui-overlay');
+  for (var i = 0; i < overlays.length; i++) {
+    (function (ovlink) {
+      var overlay = ovlink.parentNode.querySelector('div.ui-overlay');
+      var ui_overlay_show = function (ev) {
+        overlay.style.display = 'block';
+        overlay.classList.add('ui-overlay-show');
+        var screen = document.querySelector('div.ui-overlay-screen');
+        if (screen == null) {
+          screen = document.createElement('div');
+          screen.className = 'ui-overlay-screen';
+          document.body.appendChild(screen);
         }
-      });
-      overlay.click(function (event) {
-        var target = event.target;
-        do {
-          if (target == inner[0]) {
-            break;
+        var inner = overlay.querySelector('div.inner');
+        var close = inner.querySelector('a.ui-overlay-close');
+        var media = inner.querySelectorAll('audio, video');
+
+        var overlay_play_func = function () {
+          for (var j = 0; j < media.length; j++) {
+            media[j].play();
           }
-        } while (target = target.parentNode);
-        if (target != inner[0]) {
-          hideoverlay();
-          return false;
-        }
-      });
-      screen.fadeIn('slow');
-      overlay.slideDown('fast', function () {
-        if (media.length > 0)
-          media[0].play();
-      });
-      return false;
-    });
-  });
+        };
+        var overlay_play_timeout = window.setTimeout(overlay_play_func, 1000);
+
+        var ui_overlay_funcs = {};
+        ui_overlay_funcs['hide'] = function () {
+          overlay.style.display = 'none';
+          document.body.removeChild(screen);
+          document.removeEventListener('keydown', ui_overlay_funcs['keydown'], false);
+          for (var j = 0; j < media.length; j++) {
+            media[j].pause();
+          }
+          window.clearTimeout(overlay_play_timeout);
+        };
+        ui_overlay_funcs['hideclick'] = function (uiev) {
+          ui_overlay_funcs['hide']();
+          uiev.preventDefault();
+        };
+        ui_overlay_funcs['keydown'] = function (uiev) {
+          if (uiev.keyCode == 27) {
+            ui_overlay_funcs['hide']();
+          }
+        };
+        screen.addEventListener('click', ui_overlay_funcs['hideclick'], false);
+        close.addEventListener('click', ui_overlay_funcs['hideclick'], false);
+        document.addEventListener('keydown', ui_overlay_funcs['keydown'], false);
+        ev.preventDefault();
+      };
+      ovlink.addEventListener('click', ui_overlay_show, false);
+    })(overlays[i]);
+  }
 });
 ]]></xsl:text>
 </xsl:template>

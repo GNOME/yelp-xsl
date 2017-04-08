@@ -2364,6 +2364,10 @@ window.addEventListener('load', function() {
 }, false);
 function yelp_media_init (media) {
   media.removeAttribute('controls');
+  if (media.parentNode.classList.contains('links-tile-img')) {
+    return;
+  }
+
   media.addEventListener('click', function () {
     if (media.paused)
       media.play();
