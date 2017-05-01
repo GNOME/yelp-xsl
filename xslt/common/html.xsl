@@ -2490,7 +2490,7 @@ on all #{code} elements with #{"syntax"} in the class value.
 <xsl:template name="html.js.syntax">
   <xsl:param name="node" select="."/>
   <xsl:if test="$html.syntax.highlight">
-  <script type="text/javascript" src="highlight.pack.js"></script>
+  <script type="text/javascript" src="{$html.js.root}highlight.pack.js"></script>
   <script><![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
   var matches = document.querySelectorAll('code.syntax')
