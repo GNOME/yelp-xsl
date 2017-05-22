@@ -663,9 +663,6 @@ templates that handle #{page} and #{section} elements.
   </div>
   <div class="region">
   <div class="contents pagewide">
-    <xsl:if test="$type = 'facets'">
-      <xsl:call-template name="mal2html.facets.controls"/>
-    </xsl:if>
     <xsl:call-template name="html.content.pre">
       <xsl:with-param name="page" select="boolean(self::mal:page)"/>
     </xsl:call-template>
@@ -713,9 +710,6 @@ templates that handle #{page} and #{section} elements.
     </xsl:if>
     <xsl:if test="$type = 'gloss:glossary'">
       <xsl:call-template name="mal2html.gloss.terms"/>
-    </xsl:if>
-    <xsl:if test="$type = 'facets'">
-      <xsl:call-template name="mal2html.facets.links"/>
     </xsl:if>
     <xsl:call-template name="html.content.post">
       <xsl:with-param name="page" select="boolean(self::mal:page)"/>
@@ -1282,32 +1276,6 @@ span.hi {
     <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 
-<!-- FIXME -->
-div.facets {
-  display: inline-block;
-  padding: 6px;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue"/><xsl:text>;
-} 
-div.facet {
- vertical-align: top;
-  display: inline-block;
-  margin-top: 0;
-  margin-bottom: 1em;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
-}
-div.facet div.title { margin: 0; }
-div.facet li {
-  margin: 0; padding: 0;
-  list-style-type: none;
-}
-div.facet input {
-  vertical-align: middle;
-  margin: 0;
-}
-
 <!-- experimental/gloss -->
 dt.gloss-term {
   margin-top: 1.2em;
@@ -1420,7 +1388,6 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
 
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
-  <xsl:call-template name="mal2html.facets.js"/>
 <xsl:text><![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
   var overlays = document.querySelectorAll('a.ui-overlay');

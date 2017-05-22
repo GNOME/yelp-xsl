@@ -41,7 +41,7 @@ endif
 .PHONY: xsldoc-clean
 clean-local: xsldoc-clean
 xsldoc-clean:
-	rm -f $(xsldoc_pages) C/*.*.page C/index.cache
+	rm -f $(xsldoc_pages) C/*.*.page C/*-*.page C/index.cache
 
 EXTRA_DIST = 			\
 	mal2cache		\
