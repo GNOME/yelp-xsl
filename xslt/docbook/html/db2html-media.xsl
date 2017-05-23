@@ -50,7 +50,7 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
                                       $node/ancestor::db:mediaobject[1] |
                                       $node/ancestor::db:inlinemediaobject[1]
                                      )[last()]"/>
-  <audio preload="auto" controls="controls">
+  <audio preload="auto">
     <xsl:attribute name="src">
       <xsl:choose>
         <xsl:when test="$node/@fileref">
@@ -61,20 +61,13 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
         </xsl:when>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:attribute name="data-play-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Play'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="data-pause-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Pause'"/>
-      </xsl:call-template>
-    </xsl:attribute>
     <xsl:call-template name="db2html.mediaobject.fallback">
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
   </audio>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'audio'"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -160,7 +153,7 @@ attribute on the HTML #{video} element. This template calls
                                       $node/ancestor::db:mediaobject[1] |
                                       $node/ancestor::db:inlinemediaobject[1]
                                      )[last()]"/>
-  <video preload="auto" controls="controls">
+  <video preload="auto">
     <xsl:attribute name="src">
       <xsl:choose>
         <xsl:when test="$node/@fileref">
@@ -196,20 +189,13 @@ attribute on the HTML #{video} element. This template calls
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:attribute name="data-play-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Play'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="data-pause-label">
-      <xsl:call-template name="l10n.gettext">
-        <xsl:with-param name="msgid" select="'Pause'"/>
-      </xsl:call-template>
-    </xsl:attribute>
     <xsl:call-template name="db2html.mediaobject.fallback">
       <xsl:with-param name="node" select="$media"/>
     </xsl:call-template>
   </video>
+  <xsl:call-template name="html.media.controls">
+    <xsl:with-param name="type" select="'video'"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -372,7 +358,14 @@ elements.
       <xsl:apply-templates select="mml:math"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="db2html.imagedata"/>
+      <div>
+        <xsl:call-template name="html.class.attr">
+          <xsl:with-param name="class" select="'media media-image'"/>
+        </xsl:call-template>
+        <div class="inner">
+          <xsl:call-template name="db2html.imagedata"/>
+        </div>
+      </div>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

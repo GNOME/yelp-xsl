@@ -56,14 +56,6 @@ fi
 AC_CONFIG_FILES([
 Makefile
 yelp-xsl.pc
-icons/Makefile
-icons/hicolor/Makefile
-icons/hicolor/24x24/Makefile
-icons/hicolor/24x24/status/Makefile
-icons/hicolor/48x48/Makefile
-icons/hicolor/48x48/status/Makefile
-icons/hicolor/scalable/Makefile
-icons/hicolor/scalable/status/Makefile
 js/Makefile
 doc/Makefile
 doc/yelp-xsl/Makefile
@@ -71,6 +63,7 @@ po/Makefile.in
 xslt/Makefile
 xslt/common/Makefile
 xslt/common/domains/Makefile
+xslt/common/icons/Makefile
 xslt/docbook/Makefile
 xslt/docbook/common/Makefile
 xslt/docbook/html/Makefile

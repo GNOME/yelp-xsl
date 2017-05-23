@@ -51,3 +51,24 @@ local-name(.) = 'setindex' or
 local-name(.) = 'simplesect' or
 local-name(.) = 'toc'
 ]">
+<!ENTITY db_infos "*[
+self::db:info or
+self::appendixinfo or
+self::articleinfo or
+self::bibliographyinfo or
+self::bookinfo or
+self::chapterinfo or
+self::glossaryinfo or
+self::indexinfo or
+self::partinfo or
+self::prefaceinfo or
+self::refentryinfo or
+self::referenceinfo or
+self::sect1info or
+self::sect2info or
+self::sect3info or
+self::sect4info or
+self::sect5info or
+self::sectioninfo or
+self::setindexinfo
+]">

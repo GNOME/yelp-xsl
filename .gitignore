@@ -3,6 +3,9 @@
 ChangeLog
 INSTALL
 Makefile
+!/test/**/Makefile
+/test/colors/*.html
+/test/syntax/*.html
 Makefile.in
 aclocal.m4
 autom4te.cache

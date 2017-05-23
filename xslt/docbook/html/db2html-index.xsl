@@ -13,6 +13,28 @@ details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY % selectors SYSTEM "../common/db-selectors.mod">
+%selectors;
+<!ENTITY primarykey "normalize-space(concat(
+  primary/@sortas | db:primary/@sortas, ' ',
+  primary | db:primary))">
+<!ENTITY secondarykey "normalize-space(concat(
+  primary/@sortas | db:primary/@sortas, ' ',
+  primary | db:primary, ' ',
+  secondary/@sortas | db:secondary/@sortas, ' ',
+  secondary | db:secondary))">
+<!ENTITY tertiarykey "normalize-space(concat(
+  primary/@sortas | db:primary/@sortas, ' ',
+  primary | db:primary, ' ',
+  secondary/@sortas | db:secondary/@sortas, ' ',
+  secondary | db:secondary, ' ',
+  tertiary/@sortas | db:tertiary/@sortas, ' ',
+  tertiary | db:tertiary))">
+<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
+<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+]>
+<!-- FIXME: upper/lower for langs? -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
@@ -36,6 +58,22 @@ seealsoie
 indexterm (autoidx)
 -->
 
+<xsl:key name="db.index.all.key"
+         match="indexterm | db:indexterm"
+         use="''"/>
+
+<xsl:key name="db.index.primary.key"
+         match="indexterm | db:indexterm"
+         use="&primarykey;"/>
+
+<xsl:key name="db.index.secondary.key"
+         match="indexterm[secondary] | db:indexterm[db:secondary]"
+         use="&secondarykey;"/>
+
+<xsl:key name="db.index.tertiary.key"
+         match="indexterm[tertiary] | db:indexterm[db:tertiary]"
+         use="&tertiarykey;"/>
+
 <!-- == Matched Templates == -->
 
 <!-- = suppress = -->
@@ -47,7 +85,7 @@ indexterm (autoidx)
 <xsl:template match="indexentry | db:indexentry">
   <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
   <xsl:if test="$if != ''">
-  <dt class="primaryie">
+  <dt class="ixprimary">
     <xsl:apply-templates select="primaryie/node() | db:primaryie/node()"/>
   </dt>
   <xsl:variable name="pri_see"
@@ -57,7 +95,7 @@ indexterm (autoidx)
                 select="seealsoie[not(preceding-sibling::secondaryie)] |
                         db:seealsoie[not(preceding-sibling::db:secondaryie)]"/>
   <xsl:if test="$pri_see">
-    <dd class="see">
+    <dd class="ixsee">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'seeie.format'"/>
         <xsl:with-param name="node" select="$pri_see"/>
@@ -66,7 +104,7 @@ indexterm (autoidx)
     </dd>
   </xsl:if>
   <xsl:if test="$pri_seealso">
-    <dd class="seealso">
+    <dd class="ixseealso">
       <xsl:call-template name="l10n.gettext">
         <xsl:with-param name="msgid" select="'seealsoie.format'"/>
         <xsl:with-param name="node" select="$pri_seealso"/>
@@ -75,9 +113,9 @@ indexterm (autoidx)
     </dd>
   </xsl:if>
   <xsl:for-each select="secondaryie | db:secondaryie">
-    <dd class="secondary">
-      <dl class="secondary">
-        <dt class="secondaryie">
+    <dd class="ixsecondary">
+      <dl class="ixsecondary">
+        <dt class="ixsecondary">
           <xsl:apply-templates/>
         </dt>
         <xsl:variable name="sec_see"
@@ -96,7 +134,7 @@ indexterm (autoidx)
                               following-sibling::db:tertiaryie
                                 [set:has-same-node(preceding-sibling::db:secondaryie[1], current())]"/>
         <xsl:if test="$sec_see">
-          <dd class="see">
+          <dd class="ixsee">
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="'seeie.format'"/>
               <xsl:with-param name="node" select="$sec_see"/>
@@ -105,7 +143,7 @@ indexterm (autoidx)
           </dd>
         </xsl:if>
         <xsl:if test="$sec_seealso">
-          <dd class="seealso">
+          <dd class="ixseealso">
             <xsl:call-template name="l10n.gettext">
               <xsl:with-param name="msgid" select="'seealsoie.format'"/>
               <xsl:with-param name="node" select="$sec_seealso"/>
@@ -214,6 +252,177 @@ indexterm (autoidx)
     </xsl:choose>
 -->
   </xsl:for-each>
+</xsl:template>
+
+<!-- = index % db2html.division.div.content.mode = -->
+<!-- Auto-generated indexes -->
+<xsl:template mode="db2html.division.div.content.mode"
+              match="index[count(indexentry | indexdiv) = 0] |
+                     db:index[count(db:indexentry | db:indexdiv) = 0]">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="info" select="indexinfo | db:info"/>
+  <xsl:param name="depth_in_chunk">
+    <xsl:call-template name="db.chunk.depth-in-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:variable name="nots" select="title | db:title | titleabbrev | db:titleabbrev | subtitle | db:subtitle"/>
+  <xsl:apply-templates select="set:difference(*, $nots)">
+    <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk + 1"/>
+    <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
+  </xsl:apply-templates>
+
+  <xsl:variable name="allterms" select="key('db.index.all.key', '')"/>
+  <xsl:variable name="prifirstterms"
+                select="$allterms[count(. | key('db.index.primary.key', &primarykey;)[1]) = 1]"/>
+  <dl>
+    <xsl:for-each select="$prifirstterms">
+      <xsl:sort select="translate(&primarykey;, &uppercase;, &lowercase;)"/>
+      <xsl:variable name="term" select="."/>
+      <xsl:if test="true()">
+        <dt class="ixprimary">
+          <xsl:apply-templates select="primary/node() | db:primary/node()"/>
+        </dt>
+        <xsl:variable name="prikey" select="&primarykey;"/>
+        <xsl:variable name="priterms" select="key('db.index.primary.key', $prikey)"/>
+        <xsl:variable name="prilinks"
+                      select="$priterms[not(secondary | db:secondary | see | db:see)]"/>
+        <xsl:for-each select="$prilinks">
+          <dd class="ixlink">
+            <xsl:call-template name="db2html.xref">
+              <xsl:with-param name="target" select="."/>
+            </xsl:call-template>
+          </dd>
+        </xsl:for-each>
+        <xsl:variable name="prisee"
+                      select="$priterms[not(secondary)]/see | $priterms[not(db:secondary)]/db:see"/>
+        <xsl:for-each select="$prisee">
+          <dd class="ixsee">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'seeie.format'"/>
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="format" select="true()"/>
+            </xsl:call-template>
+          </dd>
+        </xsl:for-each>
+        <xsl:variable name="priseealso"
+                      select="$priterms[not(secondary)]/seealso | $priterms[not(db:secondary)]/db:seealso"/>
+        <xsl:for-each select="$priseealso">
+          <dd class="ixseealso">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'seealsoie.format'"/>
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="format" select="true()"/>
+            </xsl:call-template>
+          </dd>
+        </xsl:for-each>
+        <xsl:if test="$priterms/secondary or $priterms/db:secondary">
+          <dd class="ixsecondary">
+            <dl class="ixsecondary">
+              <xsl:variable name="secfirstterms"
+                            select="$priterms[count(. | key('db.index.secondary.key',
+                                                            &secondarykey;)[1]) = 1]"/>
+              <xsl:for-each select="$secfirstterms">
+                <xsl:sort select="translate(&secondarykey;, &uppercase;, &lowercase;)"/>
+                <xsl:if test="secondary | db:secondary">
+                  <dt class="ixsecondary">
+                    <xsl:value-of select="secondary | db:secondary"/>
+                  </dt>
+                  <xsl:variable name="seckey" select="&secondarykey;"/>
+                  <xsl:variable name="secterms" select="key('db.index.secondary.key', $seckey)"/>
+                  <xsl:variable name="seclinks"
+                                select="$secterms[not(tertiary | db:tertiary | see | db:see)]"/>
+                  <xsl:for-each select="$seclinks">
+                    <dd class="ixlink">
+                      <xsl:call-template name="db2html.xref">
+                        <xsl:with-param name="target" select="."/>
+                      </xsl:call-template>
+                    </dd>
+                  </xsl:for-each>
+                  <xsl:variable name="secsee"
+                                select="$secterms[not(tertiary)]/see | $secterms[not(db:tertiary)]/db:see"/>
+                  <xsl:for-each select="$secsee">
+                    <dd class="ixsee">
+                      <xsl:call-template name="l10n.gettext">
+                        <xsl:with-param name="msgid" select="'seeie.format'"/>
+                        <xsl:with-param name="node" select="."/>
+                        <xsl:with-param name="format" select="true()"/>
+                      </xsl:call-template>
+                    </dd>
+                  </xsl:for-each>
+                  <xsl:variable name="secseealso"
+                                select="$secterms[not(tertiary)]/seealso | $secterms[not(db:tertiary)]/db:seealso"/>
+                  <xsl:for-each select="$secseealso">
+                    <dd class="ixseealso">
+                      <xsl:call-template name="l10n.gettext">
+                        <xsl:with-param name="msgid" select="'seealsoie.format'"/>
+                        <xsl:with-param name="node" select="."/>
+                        <xsl:with-param name="format" select="true()"/>
+                      </xsl:call-template>
+                    </dd>
+                  </xsl:for-each>
+                  <xsl:if test="$secterms/tertiary or $secterms/db:tertiary">
+                    <dd class="ixtertiary">
+                      <dl class="ixtertiary">
+                        <xsl:variable name="terfirstterms"
+                            select="$secterms[count(. | key('db.index.tertiary.key',
+                                                            &tertiarykey;)[1]) = 1]"/>
+                        <xsl:for-each select="$terfirstterms">
+                          <xsl:sort select="translate(&tertiarykey;, &uppercase;, &lowercase;)"/>
+                          <xsl:if test="tertiary | db:tertiary">
+                            <dt class="ixtertiary">
+                              <xsl:value-of select="tertiary | db:tertiary"/>
+                            </dt>
+                            <xsl:variable name="terkey" select="&tertiarykey;"/>
+                            <xsl:variable name="terterms" select="key('db.index.tertiary.key', $terkey)"/>
+                            <xsl:variable name="terlinks" select="$terterms[not(see | db:see)]"/>
+                            <xsl:for-each select="$terlinks">
+                              <dd class="ixlink">
+                                <xsl:call-template name="db2html.xref">
+                                  <xsl:with-param name="target" select="."/>
+                                </xsl:call-template>
+                              </dd>
+                            </xsl:for-each>
+                            <xsl:variable name="tersee"
+                                          select="$terterms/see | $terterms/db:see"/>
+                            <xsl:for-each select="$tersee">
+                              <dd class="ixsee">
+                                <xsl:call-template name="l10n.gettext">
+                                  <xsl:with-param name="msgid" select="'seeie.format'"/>
+                                  <xsl:with-param name="node" select="."/>
+                                  <xsl:with-param name="format" select="true()"/>
+                                </xsl:call-template>
+                              </dd>
+                            </xsl:for-each>
+                            <xsl:variable name="terseealso"
+                                          select="$terterms/seealso | $terterms/db:seealso"/>
+                            <xsl:for-each select="$terseealso">
+                              <dd class="ixseealso">
+                                <xsl:call-template name="l10n.gettext">
+                                  <xsl:with-param name="msgid" select="'seealsoie.format'"/>
+                                  <xsl:with-param name="node" select="."/>
+                                  <xsl:with-param name="format" select="true()"/>
+                                </xsl:call-template>
+                              </dd>
+                            </xsl:for-each>
+                          </xsl:if>
+                        </xsl:for-each>
+                      </dl>
+                    </dd>
+                  </xsl:if>
+                </xsl:if>
+              </xsl:for-each>
+            </dl>
+          </dd>
+        </xsl:if>
+      </xsl:if>
+    </xsl:for-each>
+  </dl>
 </xsl:template>
 
 </xsl:stylesheet>

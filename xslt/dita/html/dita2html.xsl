@@ -16,7 +16,9 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:html="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html mml"
+                xmlns:mml="http://www.w3.org/1998/Math/MathML"
+                xmlns:svg="http://www.w3.org/2000/svg"
+                exclude-result-prefixes="html mml svg"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -30,5 +32,7 @@ REMARK: Describe this module
 <xsl:param name="html.xhtml" select="false()"/>
 
 <xsl:namespace-alias stylesheet-prefix="html" result-prefix="#default"/>
+<xsl:namespace-alias stylesheet-prefix="mml" result-prefix="#default"/>
+<xsl:namespace-alias stylesheet-prefix="svg" result-prefix="#default"/>
 
 </xsl:stylesheet>

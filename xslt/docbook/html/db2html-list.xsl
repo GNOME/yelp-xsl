@@ -18,15 +18,18 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 xmlns:str="http://exslt.org/strings"
+                xmlns:set="http://exslt.org/sets"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db msg str"
+                exclude-result-prefixes="db msg str set"
                 version="1.0">
+
 
 <!--!!==========================================================================
 DocBook to HTML - Lists
-:Requires: db-common db2html-inline db2html-xref l10n html
+:Revision:version="3.next" date="2016-10-27" status="review"
 
-REMARK: Describe this module
+This stylesheet handles most list-like elements in DocBook, turning them into
+appropriate HTML tags.
 -->
 
 
@@ -37,12 +40,14 @@ REMARK: Describe this module
   <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
   <xsl:if test="$if != ''">
   <div>
+    <xsl:variable name="title" select="title | blockinfo/title |
+                                       db:title | db:info/db:title"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list glosslist'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="title | db:title | db:info/db:title"/>
+    <xsl:apply-templates select="$title[1]"/>
     <dl class="glosslist">
       <xsl:apply-templates select="glossentry | db:glossentry"/>
     </dl>
@@ -152,14 +157,19 @@ REMARK: Describe this module
   <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
   <xsl:if test="$if != ''">
   <div>
+    <xsl:variable name="title" select="title | blockinfo/title |
+                                       db:title | db:info/db:title"/>
+    <xsl:variable name="items" select="listitem | db:listitem"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list itemizedlist'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="db:info/db:title"/>
-    <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
-    <ul>
+    <div class="inner">
+      <xsl:apply-templates select="$title[1]"/>
+      <div class="region"><div class="contents">
+      <xsl:apply-templates select="*[not(set:has-same-node(., $title | $items))]"/>
+      <ul>
       <xsl:attribute name="class">
         <xsl:text>list itemizedlist</xsl:text>
         <xsl:if test="@spacing = 'compact'">
@@ -176,8 +186,10 @@ REMARK: Describe this module
           </xsl:choose>
         </xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates select="listitem | db:listitem"/>
-    </ul>
+      <xsl:apply-templates select="$items"/>
+      </ul>
+      </div></div>
+    </div>
   </div>
   </xsl:if>
 </xsl:template>
@@ -227,14 +239,19 @@ REMARK: Describe this module
   </xsl:variable>
   <!-- FIXME: auto-numeration for nested lists -->
   <div>
+    <xsl:variable name="title" select="title | blockinfo/title |
+                                       db:title | db:info/db:title"/>
+    <xsl:variable name="items" select="listitem | db:listitem"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'list orderedlist'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="db:info/db:title"/>
-    <xsl:apply-templates select="*[not(self::listitem) and not(self::db:listitem)]"/>
-    <ol>
+    <div class="inner">
+      <xsl:apply-templates select="$title[1]"/>
+      <div class="region"><div class="contents">
+      <xsl:apply-templates select="*[not(set:has-same-node(., $title | $items))]"/>
+      <ol>
       <xsl:attribute name="class">
         <xsl:text>list orderedlist</xsl:text>
         <xsl:if test="@spacing = 'compact'">
@@ -260,7 +277,9 @@ REMARK: Describe this module
       </xsl:if>
       <!-- FIXME: @inheritnum -->
       <xsl:apply-templates select="listitem | db:listitem"/>
-    </ol>
+      </ol>
+      </div></div>
+    </div>
   </div>
   </xsl:if>
 </xsl:template>
@@ -290,27 +309,33 @@ REMARK: Describe this module
   <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
   <xsl:if test="$if != ''">
   <div>
+    <xsl:variable name="title" select="title | blockinfo/title |
+                                       db:title | db:info/db:title"/>
+    <xsl:variable name="steps" select="step | db:step"/>
+    <xsl:variable name="result" select="db:result"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'steps'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
     <div class="inner">
-    <xsl:apply-templates select="db:info/db:title"/>
-    <xsl:apply-templates select="*[not(self::step) and not(self::db:step)]"/>
+    <xsl:apply-templates select="$title[1]"/>
+    <div class="region"><div class="contents">
+    <xsl:apply-templates select="*[not(set:has-same-node(., $title | $steps | $result))]"/>
     <xsl:choose>
-      <xsl:when test="(count(step) + count(db:step)) = 1">
+      <xsl:when test="count($steps) = 1">
         <ul class="steps">
-          <xsl:apply-templates select="step | db:step"/>
+          <xsl:apply-templates select="$steps"/>
         </ul>
       </xsl:when>
       <xsl:otherwise>
         <ol class="steps">
-          <xsl:apply-templates select="step | db:step"/>
+          <xsl:apply-templates select="$steps"/>
         </ol>
       </xsl:otherwise>
     </xsl:choose>
-    </div>
+    <xsl:apply-templates select="$result"/>
+    </div></div></div>
   </div>
   </xsl:if>
 </xsl:template>
@@ -550,6 +575,21 @@ REMARK: Describe this module
   </xsl:if>
 </xsl:template>
 
+<!-- = result = -->
+<xsl:template match="result | db:result">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <div>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'result'"/>
+      </xsl:call-template>
+      <xsl:call-template name="html.lang.attrs"/>
+      <xsl:call-template name="db2html.anchor"/>
+      <xsl:apply-templates/>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 <!-- FIXME: Do something with @performance -->
 <!-- = step = -->
 <xsl:template match="step | db:step">
@@ -562,6 +602,24 @@ REMARK: Describe this module
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:apply-templates/>
   </li>
+  </xsl:if>
+</xsl:template>
+
+<!-- FIXME: Do something with @performance -->
+<!-- = stepalternatives = -->
+<xsl:template match="stepalternatives | db:stepalternatives">
+  <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
+  <xsl:if test="$if != ''">
+    <div>
+      <xsl:call-template name="html.class.attr">
+        <xsl:with-param name="class" select="'steps stepalternatives'"/>
+      </xsl:call-template>
+      <xsl:call-template name="html.lang.attrs"/>
+      <xsl:call-template name="db2html.anchor"/>
+      <ul class="steps stepalternatives">
+        <xsl:apply-templates/>
+      </ul>
+    </div>
   </xsl:if>
 </xsl:template>
 
@@ -617,17 +675,23 @@ REMARK: Describe this module
   <xsl:variable name="if"><xsl:call-template name="db.profile.test"/></xsl:variable>
   <xsl:if test="$if != ''">
   <div>
+    <xsl:variable name="title" select="title | blockinfo/title |
+                                       db:title | db:info/db:title"/>
+    <xsl:variable name="items" select="varlistentry | db:varlistentry"/>
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="class" select="'terms variablelist'"/>
     </xsl:call-template>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="db2html.anchor"/>
-    <xsl:apply-templates select="db:info/db:title"/>
-    <xsl:apply-templates select="*[not(self::varlistentry) and
-                                   not(self::db:varlistentry)]"/>
-    <dl class="terms variablelist">
-      <xsl:apply-templates select="varlistentry |db:varlistentry"/>
-    </dl>
+    <div class="inner">
+      <xsl:apply-templates select="$title[1]"/>
+      <div class="region"><div class="contents">
+        <xsl:apply-templates select="*[not(set:has-same-node(., $title | $items))]"/>
+        <dl class="terms variablelist">
+          <xsl:apply-templates select="$items"/>
+        </dl>
+      </div></div>
+    </div>
   </div>
   </xsl:if>
 </xsl:template>

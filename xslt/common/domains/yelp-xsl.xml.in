@@ -132,6 +132,11 @@ reviewed, and it awaiting a final approval.
 <msgstr>Candidate</msgstr>
 </msg>
 
+<msg id="Caution">
+<its:locNote>Accessible title for a caution note.</its:locNote>
+<msgstr>Caution</msgstr>
+</msg>
+
 <msg id="Close">
 <its:locNote>Accessible title for an close button.</its:locNote>
 <msgstr>Close</msgstr>
@@ -145,6 +150,11 @@ reviewed, and it awaiting a final approval.
 <msg id="Creative Commons">
 <its:locNote>Title for license information when it's a CC license.</its:locNote>
 <msgstr>Creative Commons</msgstr>
+</msg>
+
+<msg id="Danger">
+<its:locNote>Accessible title for a danger note.</its:locNote>
+<msgstr>Danger</msgstr>
 </msg>
 
 <msg id="Dedication">
@@ -242,6 +252,11 @@ Revision status of a document or page. Content was once current,
 but needs to be updated to reflect software updates.
 </its:locNote>
 <msgstr>Outdated</msgstr>
+</msg>
+
+<msg id="Package">
+<its:locNote>Accessible title for a package note.</its:locNote>
+<msgstr>Package</msgstr>
 </msg>
 
 <msg id="Pause">

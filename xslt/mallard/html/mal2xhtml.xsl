@@ -63,7 +63,6 @@ mallard:1.0
 
 <xsl:include href="mal2html-api.xsl"/>
 <xsl:include href="mal2html-block.xsl"/>
-<xsl:include href="mal2html-facets.xsl"/>
 <xsl:include href="mal2html-gloss.xsl"/>
 <xsl:include href="mal2html-inline.xsl"/>
 <xsl:include href="mal2html-links.xsl"/>

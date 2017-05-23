@@ -153,7 +153,7 @@ parameter will be used if provided.
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$uithumbs = 'hover'">
-            <xsl:call-template name="mal2html.ui.links.hover">
+            <xsl:call-template name="_mal2html.ui.links.hover">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
@@ -214,8 +214,6 @@ parameter will be used if provided.
                 <xsl:with-param name="nodesc" select="$nodesc"/>
                 <xsl:with-param name="max" select="$coltot"/>
               </xsl:call-template>
-            </div>
-            <div class="links-twocolumn">
               <xsl:call-template name="_mal2html.links.divs">
                 <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="links" select="$links"/>
@@ -433,10 +431,9 @@ calling functions in !{mal2html-page}.
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
     <xsl:if test="$prev or $next">
-      <!-- FIXME: Get prev/next links in constant position -->
-      <div class="links nextlinks">
+      <nav class="prevnext pagewide"><div class="inner">
         <xsl:if test="$prev">
-          <a class="nextlinks-prev">
+          <a>
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
                 <xsl:with-param name="node" select="$prev"/>
@@ -456,8 +453,9 @@ calling functions in !{mal2html-page}.
             </xsl:for-each>
           </a>
         </xsl:if>
-        <xsl:if test="$next">
-          <a class="nextlinks-next">
+        <xsl:choose>
+        <xsl:when test="$next">
+          <a>
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
                 <xsl:with-param name="node" select="$next"/>
@@ -476,8 +474,18 @@ calling functions in !{mal2html-page}.
               </xsl:call-template>
             </xsl:for-each>
           </a>
-        </xsl:if>
-      </div>
+        </xsl:when>
+        <xsl:otherwise>
+          <span>
+            <xsl:for-each select="$page">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Next'"/>
+              </xsl:call-template>
+            </xsl:for-each>
+          </span>
+        </xsl:otherwise>
+        </xsl:choose>
+      </div></nav>
     </xsl:if>
   </xsl:for-each>
 </xsl:template>
@@ -864,14 +872,18 @@ when determining which links to output.
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:variable name="role" select="$node/self::mal:links/@role"/>
-  <div class="mouseovers">
+  <xsl:message>
+    <xsl:text>DEPRECATION WARNING: The mouseovers style on the links element is deprecated.</xsl:text>
+  </xsl:message>
+  <div class="links-uix-hover">
+  <div class="links-uix-hover-img">
     <xsl:for-each select="$node/e:mouseover[not(@match)]">
       <img>
         <xsl:copy-of select="@src | @width | @height"/>
       </img>
     </xsl:for-each>
   </div>
-  <ul class="mouseovers">
+  <ul class="links-uix-hover">
     <xsl:for-each select="$links">
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -896,9 +908,11 @@ when determining which links to output.
               </xsl:call-template>
             </xsl:attribute>
             <xsl:for-each select="$node/e:mouseover[@match = $xref]">
-              <img>
-                <xsl:copy-of select="@src | @width | @height"/>
-              </img>
+              <span class="links-uix-hover-img">
+                <img>
+                  <xsl:copy-of select="@src | @width | @height"/>
+                </img>
+              </span>
             </xsl:for-each>
             <xsl:call-template name="mal.link.content">
               <xsl:with-param name="node" select="."/>
@@ -912,7 +926,7 @@ when determining which links to output.
       </xsl:for-each>
     </xsl:for-each>
   </ul>
-  <div class="clear"/>
+  </div>
 </xsl:template>
 
 
@@ -921,6 +935,7 @@ when determining which links to output.
   <xsl:param name="node"/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
+  <div class="links-grid-container">
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -976,6 +991,10 @@ when determining which links to output.
       </xsl:for-each>
     </div>
   </xsl:for-each>
+  <!-- blank divs for homogeneous sizing -->
+  <div class="links-grid"></div>
+  <div class="links-grid"></div>
+  </div>
 </xsl:template>
 
 <!--#* _mal2html.links.norwich -->
@@ -1112,6 +1131,7 @@ when determining which links to output.
   <xsl:param name="nodesc" select="false()"/>
   <xsl:param name="min" select="-1"/>
   <xsl:param name="max" select="-1"/>
+  <div class="links-divs">
   <xsl:for-each select="$links">
     <xsl:sort data-type="number" select="@groupsort"/>
     <xsl:sort select="mal:title[@type = 'sort']"/>
@@ -1182,6 +1202,7 @@ when determining which links to output.
       </xsl:for-each>
     </xsl:if>
   </xsl:for-each>
+  </div>
 </xsl:template>
 
 <!--#% _mal2html.links.divs.nolink.mode -->

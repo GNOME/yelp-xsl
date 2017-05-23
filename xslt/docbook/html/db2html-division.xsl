@@ -120,28 +120,31 @@ REMARK: Talk about some of the parameters
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
   </xsl:param>
-  <!-- FIXME: these two parameters don't make much sense now -->
   <xsl:param name="chunk_divisions"
              select="($depth_in_chunk = 0) and
                      ($depth_of_chunk &lt; $db.chunk.max_depth)"/>
   <xsl:choose>
     <xsl:when test="$depth_in_chunk != 0">
-      <div>
+      <section>
+        <xsl:choose>
+          <xsl:when test="$node/@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="$node/@xml:id"/>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test="$node/@id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="$node/@id"/>
+            </xsl:attribute>
+          </xsl:when>
+        </xsl:choose>
         <xsl:call-template name="html.lang.attrs">
           <xsl:with-param name="node" select="$node"/>
         </xsl:call-template>
         <xsl:call-template name="html.class.attr">
           <xsl:with-param name="node" select="$node"/>
-          <xsl:with-param name="class">
-            <xsl:value-of select="local-name($node)"/>
-            <xsl:text> sect</xsl:text>
-          </xsl:with-param>
+          <xsl:with-param name="class" select="local-name($node)"/>
         </xsl:call-template>
-        <xsl:if test="$node/@id">
-          <xsl:attribute name="id">
-            <xsl:value-of select="$node/@id"/>
-          </xsl:attribute>
-        </xsl:if>
         <div class="inner">
           <xsl:call-template name="_db2html.division.div.inner">
             <xsl:with-param name="node" select="$node"/>
@@ -153,7 +156,7 @@ REMARK: Talk about some of the parameters
             <xsl:with-param name="chunk_divisions" select="$chunk_divisions"/>
           </xsl:call-template>
         </div>
-      </div>
+      </section>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="_db2html.division.div.inner">
@@ -184,7 +187,10 @@ REMARK: Talk about some of the parameters
     <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
   </xsl:call-template>
   <div class="region">
-    <div class="contents">
+    <div class="contents pagewide">
+      <xsl:call-template name="html.content.pre">
+        <xsl:with-param name="page" select="$depth_in_chunk = 0"/>
+      </xsl:call-template>
       <xsl:apply-templates mode="db2html.division.div.content.mode" select="$node">
         <xsl:with-param name="info" select="$info"/>
         <xsl:with-param name="entries" select="$entries"/>
@@ -192,14 +198,17 @@ REMARK: Talk about some of the parameters
         <xsl:with-param name="depth_in_chunk" select="$depth_in_chunk"/>
         <xsl:with-param name="depth_of_chunk" select="$depth_of_chunk"/>
       </xsl:apply-templates>
-    </div>
-    <xsl:if test="$depth_in_chunk = 0 and
-                  not($node/processing-instruction('db2html.no_sectionlinks'))">
-      <xsl:call-template name="db2html.links.section">
-        <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="divisions" select="$divisions"/>
+      <xsl:if test="$depth_in_chunk = 0 and
+                    not($node/processing-instruction('db2html.no_sectionlinks'))">
+        <xsl:call-template name="db2html.links.section">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="divisions" select="$divisions"/>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:call-template name="html.content.post">
+        <xsl:with-param name="page" select="$depth_in_chunk = 0"/>
       </xsl:call-template>
-    </xsl:if>
+    </div>
     <xsl:for-each select="$divisions">
       <xsl:if test="not($chunk_divisions) or not(self::&db_chunks;)">
         <xsl:apply-templates select=".">
@@ -300,7 +309,7 @@ REMARK: Talk about the different kinds of title blocks
     </xsl:choose>
   </xsl:variable>
 
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:element name="{$title_h}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
         <xsl:text>title</xsl:text>
@@ -345,13 +354,7 @@ the division. By default it is called by the %{html.footer.mode} implementation.
 -->
 <xsl:template name="db2html.division.about">
   <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="
-    $node/appendixinfo | $node/articleinfo  | $node/bibliographyinfo | $node/bookinfo |
-    $node/chapterinfo  | $node/glossaryinfo | $node/indexinfo        | $node/partinfo |
-    $node/prefaceinfo  | $node/refentryinfo | $node/referenceinfo    | $node/refsect1info |
-    $node/refsect2info | $node/refsect3info | $node/refsectioninfo   | $node/sect1info |
-    $node/sect2info    | $node/sect3info    | $node/sect4info        | $node/sect5info |
-    $node/sectioninfo  | $node/setindexinfo | $node/db:info "/>
+  <xsl:param name="info" select="$node/ancestor-or-self::*/&db_infos;"/>
   <xsl:variable name="copyrights" select="$info/copyright | $info/db:copyright"/>
   <xsl:variable name="authors" select="
     $info/author     | $info/authorgroup/author       |
@@ -375,8 +378,9 @@ the division. By default it is called by the %{html.footer.mode} implementation.
     $info/db:othercredit | $info/db:authorgroup/db:othercredit,
     ($authors | $editors | $translators))"/>
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
-  <xsl:if test="$copyrights or $authors or $editors or $translators or $publishers or $othercredits or $legal">
-    <div class="sect about ui-expander" role="contentinfo">
+  <xsl:if test="$copyrights or $authors or $editors or $translators or
+                $publishers or $othercredits or $legal">
+    <footer class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
       <div class="hgroup">
@@ -399,98 +403,37 @@ the division. By default it is called by the %{html.footer.mode} implementation.
               </xsl:for-each>
             </div>
           </xsl:if>
-          <xsl:if test="$authors">
-            <div class="aboutblurb authors">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Written By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$authors">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$editors">
-            <div class="aboutblurb editors">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Edited By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$editors">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$translators">
-            <div class="aboutblurb translators">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Translated By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$translators">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$publishers">
-            <div class="aboutblurb publishers">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Published By'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$publishers">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:if test="$othercredits">
-            <div class="aboutblurb othercredits">
-              <div class="title">
-                <span class="title">
-                  <xsl:call-template name="l10n.gettext">
-                    <xsl:with-param name="msgid" select="'Other Credits'"/>
-                  </xsl:call-template>
-                </span>
-              </div>
-              <ul class="credits">
-                <xsl:for-each select="$othercredits">
-                  <li>
-                    <xsl:apply-templates select="."/>
-                  </li>
-                </xsl:for-each>
-              </ul>
+          <xsl:if test="$authors or $editors or $translators or $publishers or $othercredits">
+            <div class="credits">
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-authors'"/>
+                <xsl:with-param name="title" select="'Written By'"/>
+                <xsl:with-param name="credits" select="$authors"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-editors'"/>
+                <xsl:with-param name="title" select="'Edited By'"/>
+                <xsl:with-param name="credits" select="$editors"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-translators'"/>
+                <xsl:with-param name="title" select="'Translated By'"/>
+                <xsl:with-param name="credits" select="$translators"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-publishers'"/>
+                <xsl:with-param name="title" select="'Published By'"/>
+                <xsl:with-param name="credits" select="$publishers"/>
+              </xsl:call-template>
+              <xsl:call-template name="_db2html.division.about.credits">
+                <xsl:with-param name="class" select="'credits-others'"/>
+                <xsl:with-param name="title" select="'Other Credits'"/>
+                <xsl:with-param name="credits" select="$othercredits"/>
+              </xsl:call-template>
             </div>
           </xsl:if>
           <xsl:for-each select="$legal">
-            <div class="aboutblurb license">
+            <div class="license">
               <div class="title">
                 <span class="title">
                   <xsl:choose>
@@ -514,9 +457,35 @@ the division. By default it is called by the %{html.footer.mode} implementation.
         </div>
       </div>
       </div>
+    </footer>
+  </xsl:if>
+</xsl:template>
+
+<!--#* _db2html.division.about.credits -->
+<xsl:template name="_db2html.division.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates select="."/>
+          </li>
+        </xsl:for-each>
+      </ul>
     </div>
   </xsl:if>
 </xsl:template>
+
 
 
 <!-- == Matched Templates == -->

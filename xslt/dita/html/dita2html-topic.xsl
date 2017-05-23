@@ -44,6 +44,13 @@ REMARK: Describe this module
         </xsl:call-template>
       </xsl:for-each>
     </xsl:when>
+    <xsl:when test="&topic_topic;">
+      <!-- Don't call the stylesheets this way for publishing, but
+           sometimes it's useful for one-off simple topic tests. -->
+      <xsl:call-template name="html.output">
+        <xsl:with-param name="node" select="&topic_topic;"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:message>
         <xsl:text>Unmatched root element: </xsl:text>
@@ -64,9 +71,9 @@ REMARK: Describe this module
   <xsl:variable name="next" select="($node//&map_topicref;[@href][1] |
                                      $node/following::&map_topicref;[@href]
                                     )[1]"/>
-  <div class="links nextlinks">
+  <nav class="prevnext pagewide"><div class="inner">
     <xsl:if test="$prev">
-      <a class="nextlinks-prev">
+      <a>
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
             <xsl:if test="position() != last()">
@@ -96,8 +103,9 @@ REMARK: Describe this module
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$next">
-      <a class="nextlinks-next">
+    <xsl:choose>
+    <xsl:when test="$next">
+      <a>
         <xsl:attribute name="href">
           <xsl:for-each select="str:split($node/@href, '/')">
             <xsl:if test="position() != last()">
@@ -117,8 +125,16 @@ REMARK: Describe this module
           <xsl:with-param name="msgid" select="'Next'"/>
         </xsl:call-template>
       </a>
-    </xsl:if>
-  </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <span>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </span>
+    </xsl:otherwise>
+    </xsl:choose>
+  </div></nav>
 </xsl:template>
 
 
@@ -189,7 +205,7 @@ REMARK: Describe this module
   <xsl:variable name="publishers" select="$info/&topic_publisher;"/>
   <xsl:variable name="others" select="$info/&topic_author;[not(@type = 'creator' or @type = 'translator')]"/>
   <xsl:if test="$copyrights or $authors or $translators or $publishers or $others">
-    <div class="sect about ui-expander" role="contentinfo">
+    <footer class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
         <div class="hgroup">
@@ -216,84 +232,62 @@ REMARK: Describe this module
                 </xsl:for-each>
               </div>
             </xsl:if>
-            <xsl:if test="$authors">
-              <div class="aboutblurb authors">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Written By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$authors">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$translators">
-              <div class="aboutblurb translators">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Translated By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$translators">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$publishers">
-              <div class="aboutblurb publishers">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Published By'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$publishers">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
-              </div>
-            </xsl:if>
-            <xsl:if test="$others">
-              <div class="aboutblurb othercredits">
-                <div class="title">
-                  <span class="title">
-                    <xsl:call-template name="l10n.gettext">
-                      <xsl:with-param name="msgid" select="'Other Credits'"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-                <ul class="credits">
-                  <xsl:for-each select="$others">
-                    <li>
-                      <xsl:apply-templates mode="dita2html.topic.mode"/>
-                    </li>
-                  </xsl:for-each>
-                </ul>
+            <xsl:if test="$authors or $translators or $publishers or $others">
+              <div class="credits">
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-authors'"/>
+                  <xsl:with-param name="title" select="'Written By'"/>
+                  <xsl:with-param name="credits" select="$authors"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-translators'"/>
+                  <xsl:with-param name="title" select="'Translated By'"/>
+                  <xsl:with-param name="credits" select="$translators"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-publishers'"/>
+                  <xsl:with-param name="title" select="'Published By'"/>
+                  <xsl:with-param name="credits" select="$publishers"/>
+                </xsl:call-template>
+                <xsl:call-template name="_dita2html.topic.about.credits">
+                  <xsl:with-param name="class" select="'credits-others'"/>
+                  <xsl:with-param name="title" select="'Other Credits'"/>
+                  <xsl:with-param name="credits" select="$others"/>
+                </xsl:call-template>
               </div>
             </xsl:if>
           </div>
         </div>
       </div>
+    </footer>
+  </xsl:if>
+</xsl:template>
+
+<!--#* _dita2html.topic.about.credits -->
+<xsl:template name="_dita2html.topic.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates mode="dita2html.topic.mode"/>
+          </li>
+        </xsl:for-each>
+      </ul>
     </div>
   </xsl:if>
 </xsl:template>
+
 
 <xsl:template mode="l10n.format.mode" match="msg:copyright.years">
   <xsl:param name="node"/>
@@ -326,7 +320,7 @@ REMARK: Describe this module
 </xsl:template>
 
 
-<!-- == map == -->
+<!-- == map & html.*.mode == -->
 
 <!-- = map % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_map;">
@@ -365,16 +359,18 @@ REMARK: Describe this module
   <div class="region">
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
-    <xsl:call-template name="dita2html.links.topic">
-      <xsl:with-param name="source" select="."/>
-    </xsl:call-template>
+    <div class="contents">
+      <xsl:call-template name="dita2html.links.topic">
+        <xsl:with-param name="source" select="."/>
+      </xsl:call-template>
+    </div>
   </div>
   <xsl:call-template name="dita2html.links.prevnext"/>
   <div class="clear"/>
 </xsl:template>
 
 
-<!-- == topicref == -->
+<!-- == topicref % html.*.mode == -->
 
 <!-- = topicref % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_topicref;">
@@ -462,6 +458,31 @@ REMARK: Describe this module
 </xsl:template>
 
 
+<!-- == topic % html.*.mode == -->
+<!-- These only get called when using a topic as a top-level, instead
+of a map. You shouldn't generally use these stylesheets that way, but
+it's occasionally useful for testing simple topics. -->
+
+<!-- = topic % html.title.mode = -->
+<xsl:template mode="html.title.mode" match="&topic_topic;">
+  <xsl:value-of select="&topic_title_all;"/>
+</xsl:template>
+
+<!-- = topic % html.header.mode = -->
+<xsl:template mode="html.header.mode" match="&topic_topic;">
+</xsl:template>
+
+<!-- = topic % html.footer.mode = -->
+<xsl:template mode="html.footer.mode" match="&topic_topic;">
+  <xsl:call-template name="dita2html.topic.about"/>
+</xsl:template>
+
+<!-- = topic % html.body.mode = -->
+<xsl:template mode="html.body.mode" match="&topic_topic;">
+  <xsl:apply-templates mode="dita2html.topic.mode" select="."/>
+</xsl:template>
+
+
 <!-- == CSS == -->
 
 <xsl:template mode="html.css.mode" match="*">
@@ -515,16 +536,16 @@ div.dita-object > div.desc {
   <xsl:param name="topicref" select="/false"/>
   <xsl:choose>
     <xsl:when test="parent::&topic_topic_all;">
-      <div>
+      <section>
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
         <xsl:call-template name="html.class.attr">
-          <xsl:with-param name="class" select="'sect'"/>
+          <xsl:with-param name="class" select="local-name(.)"/>
         </xsl:call-template>
         <div class="inner">
           <xsl:call-template name="_dita2html.topic.inner"/>
         </div>
-      </div>
+      </section>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="_dita2html.topic.inner">
@@ -549,7 +570,7 @@ div.dita-object > div.desc {
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:element name="{concat('h', $depth_)}" namespace="{$html.namespace}">
       <xsl:attribute name="class">
         <xsl:text>title</xsl:text>
@@ -559,11 +580,13 @@ div.dita-object > div.desc {
       </span>
     </xsl:element>
   </div>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;">
-    <xsl:with-param name="topicref" select="$topicref"/>
-  </xsl:apply-templates>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic_all;"/>
-  <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
+  <div class="region">
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_body;">
+      <xsl:with-param name="topicref" select="$topicref"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_topic_all;"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/&topic_related-links;"/>
+  </div>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_body;">
@@ -574,26 +597,31 @@ div.dita-object > div.desc {
     <xsl:call-template name="dita.id"/>
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
-      <xsl:with-param name="class" select="'region'"/>
+      <xsl:with-param name="class" select="'contents pagewide'"/>
     </xsl:call-template>
-    <div class="contents">
-      <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
-      <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
-    </div>
+    <xsl:call-template name="html.content.pre">
+      <xsl:with-param name="page" select="not(../parent::&topic_topic_all;)"/>
+    </xsl:call-template>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="../&topic_shortdesc;"/>
+    <xsl:apply-templates mode="dita2html.topic.mode" select="$conref/node()"/>
     <xsl:call-template name="dita2html.links.topic">
       <xsl:with-param name="source" select="$topicref"/>
+    </xsl:call-template>
+    <xsl:call-template name="html.content.post">
+      <xsl:with-param name="page" select="not(../parent::&topic_topic_all;)"/>
     </xsl:call-template>
   </div>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_related-links;">
-  <div role="navigation">
+  <section role="navigation">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr">
-      <xsl:with-param name="class" select="'sect sect-links'"/>
+      <xsl:with-param name="class" select="'links'"/>
     </xsl:call-template>
-    <div class="hgroup"/>
-    <div class="contents">
+    <div class="inner">
+    <div class="hgroup pagewide"/>
+    <div class="contents pagewide">
       <div class="links">
         <xsl:call-template name="dita.id"/>
         <xsl:call-template name="html.lang.attrs"/>
@@ -606,7 +634,8 @@ div.dita-object > div.desc {
         </div>
       </div>
     </div>
-  </div>
+    </div>
+  </section>
 </xsl:template>
 
 <xsl:template mode="dita2html.topic.mode" match="&topic_link;">

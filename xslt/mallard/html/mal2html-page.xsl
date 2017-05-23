@@ -62,7 +62,7 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
-  <div class="sect about ui-expander" role="contentinfo">
+  <footer class="about ui-expander" role="contentinfo">
     <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
     <div class="inner">
     <div class="hgroup">
@@ -76,8 +76,10 @@ the #{page} element. Information is extracted from the #{info} element of ${node
     </div>
     <div class="region">
       <div class="contents">
+        <xsl:variable name="credits" select="$node/mal:info/mal:credit"/>
         <xsl:variable name="copyrights"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' copyright ')][mal:years]"/>
+                      select="$credits[contains(concat(' ', @type, ' '), ' copyright ')]
+                              [mal:years]"/>
         <xsl:if test="$copyrights">
           <div class="copyrights">
             <xsl:for-each  select="$copyrights">
@@ -92,128 +94,59 @@ the #{page} element. Information is extracted from the #{info} element of ${node
           </div>
         </xsl:if>
         <xsl:variable name="authors"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' author ')]"/>
-        <xsl:if test="$authors">
-          <div class="aboutblurb authors">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Written By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$authors">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' author ')]"/>
         <xsl:variable name="editors"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' editor ')]"/>
-        <xsl:if test="$editors">
-          <div class="aboutblurb editors">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Edited By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$editors">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' editor ')]"/>
         <xsl:variable name="maintainers"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' maintainer ')]"/>
-        <xsl:if test="$maintainers">
-          <div class="aboutblurb maintainers">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Maintained By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$maintainers">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' maintainer ')]"/>
         <xsl:variable name="translators"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' translator ')]"/>
-        <xsl:if test="$translators">
-          <div class="aboutblurb translators">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Translated By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$translators">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' translator ')]"/>
         <xsl:variable name="publishers"
-                      select="$node/mal:info/mal:credit[contains(concat(' ', @type, ' '), ' publisher ')]"/>
-        <xsl:if test="$publishers">
-          <div class="aboutblurb publishers">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Published By'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$publishers">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
-          </div>
-        </xsl:if>
+                      select="$credits[contains(concat(' ', @type, ' '), ' publisher ')]"/>
+        <!-- others doesn't exclude all copyrights, just credits that are only copyrights -->
         <xsl:variable name="others"
-                      select="set:difference($node/mal:info/mal:credit,
-                              $copyrights | $authors | $editors | $maintainers | $translators | $publishers)"/>
-        <xsl:if test="$others">
-          <div class="aboutblurb othercredits">
-            <div class="title">
-              <span class="title">
-                <xsl:call-template name="l10n.gettext">
-                  <xsl:with-param name="msgid" select="'Other Credits'"/>
-                </xsl:call-template>
-              </span>
-            </div>
-            <ul class="credits">
-              <xsl:for-each select="$others">
-                <li>
-                  <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
-                </li>
-              </xsl:for-each>
-            </ul>
+                      select="set:difference($credits,
+                              $authors | $editors | $maintainers | $translators | $publishers)
+                              [not(@type = 'copyright' and mal:years)]"/>
+        <xsl:if test="$authors or $editors or $maintainers or
+                      $translators or publishers or $others">
+          <div class="credits">
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-authors'"/>
+              <xsl:with-param name="title" select="'Written By'"/>
+              <xsl:with-param name="credits" select="$authors"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-editors'"/>
+              <xsl:with-param name="title" select="'Edited By'"/>
+              <xsl:with-param name="credits" select="$editors"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-maintainers'"/>
+              <xsl:with-param name="title" select="'Maintained By'"/>
+              <xsl:with-param name="credits" select="$maintainers"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-translators'"/>
+              <xsl:with-param name="title" select="'Translated By'"/>
+              <xsl:with-param name="credits" select="$translators"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-publishers'"/>
+              <xsl:with-param name="title" select="'Published By'"/>
+              <xsl:with-param name="credits" select="$publishers"/>
+            </xsl:call-template>
+            <xsl:call-template name="_mal2html.page.about.credits">
+              <xsl:with-param name="class" select="'credits-other'"/>
+              <xsl:with-param name="title" select="'Other Credits'"/>
+              <xsl:with-param name="credits" select="$others"/>
+            </xsl:call-template>
+            <div class="credits-blank"></div>
+            <div class="credits-blank"></div>
           </div>
         </xsl:if>
         <xsl:for-each select="$node/mal:info/mal:license">
-          <div class="aboutblurb license">
+          <div class="license">
             <div class="title">
               <span class="title">
                 <xsl:choose>
@@ -238,7 +171,32 @@ the #{page} element. Information is extracted from the #{info} element of ${node
       </div>
     </div>
     </div>
-  </div>
+  </footer>
+  </xsl:if>
+</xsl:template>
+
+<!--#* _mal2html.page.about.credits -->
+<xsl:template name="_mal2html.page.about.credits">
+  <xsl:param name="class"/>
+  <xsl:param name="title"/>
+  <xsl:param name="credits"/>
+  <xsl:if test="$credits">
+    <div class="{$class}">
+      <div class="title">
+        <span class="title">
+          <xsl:call-template name="l10n.gettext">
+            <xsl:with-param name="msgid" select="$title"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <ul class="credits">
+        <xsl:for-each select="$credits">
+          <li>
+            <xsl:apply-templates mode="mal2html.inline.mode" select="mal:name/node()"/>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
   </xsl:if>
 </xsl:template>
 
@@ -646,13 +604,12 @@ templates that handle #{page} and #{section} elements.
 -->
 <xsl:template name="mal2html.section">
   <xsl:param name="node" select="."/>
-  <div id="{$node/@id}">
+  <section id="{$node/@id}">
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="class">
-        <xsl:text>sect</xsl:text>
         <xsl:if test="@ui:expanded or @uix:expanded">
-          <xsl:text> ui-expander</xsl:text>
+          <xsl:text>ui-expander</xsl:text>
         </xsl:if>
       </xsl:with-param>
     </xsl:call-template>
@@ -662,7 +619,7 @@ templates that handle #{page} and #{section} elements.
     <div class="inner">
       <xsl:apply-templates select="$node"/>
     </div>
-  </div>
+  </section>
 </xsl:template>
 
 
@@ -700,15 +657,15 @@ templates that handle #{page} and #{section} elements.
       </xsl:for-each>
     </xsl:if>
   </xsl:variable>
-  <div class="hgroup">
+  <div class="hgroup pagewide">
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:title"/>
     <xsl:apply-templates mode="mal2html.title.mode" select="mal:subtitle"/>
   </div>
   <div class="region">
-  <div class="contents">
-    <xsl:if test="$type = 'facets'">
-      <xsl:call-template name="mal2html.facets.controls"/>
-    </xsl:if>
+  <div class="contents pagewide">
+    <xsl:call-template name="html.content.pre">
+      <xsl:with-param name="page" select="boolean(self::mal:page)"/>
+    </xsl:call-template>
     <xsl:for-each
         select="*[not(self::mal:section or self::mal:title or self::mal:subtitle)]">
       <xsl:choose>
@@ -754,9 +711,9 @@ templates that handle #{page} and #{section} elements.
     <xsl:if test="$type = 'gloss:glossary'">
       <xsl:call-template name="mal2html.gloss.terms"/>
     </xsl:if>
-    <xsl:if test="$type = 'facets'">
-      <xsl:call-template name="mal2html.facets.links"/>
-    </xsl:if>
+    <xsl:call-template name="html.content.post">
+      <xsl:with-param name="page" select="boolean(self::mal:page)"/>
+    </xsl:call-template>
   </div>
   <xsl:for-each select="mal:section">
     <xsl:call-template name="mal2html.section"/>
@@ -778,9 +735,10 @@ templates that handle #{page} and #{section} elements.
                   ($postlinks[self::mal:links[@type = 'seealso']] or
                     (mal:section and not(mal:links[@type = 'seealso']))))
                 ">
-    <div class="sect sect-links" role="navigation">
-      <div class="hgroup"/>
-      <div class="contents">
+    <section class="links" role="navigation">
+      <div class="inner">
+      <div class="hgroup pagewide"/>
+      <div class="contents pagewide">
         <xsl:for-each select="$postlinks">
           <xsl:choose>
             <xsl:when test="self::mal:links[@type = 'topic']">
@@ -831,7 +789,8 @@ templates that handle #{page} and #{section} elements.
           </xsl:call-template>
         </xsl:if>
       </div>
-    </div>
+      </div>
+    </section>
   </xsl:if>
   </div>
 </xsl:template>
@@ -887,6 +846,16 @@ are processed in %{mal2html.block.mode}.
     </xsl:call-template>
   </xsl:param>
 <xsl:text>
+<!-- links -->
+div.links .desc a {
+  color: inherit;
+}
+div.links .desc a:hover {
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
+}
+a.bold { font-weight: bold; }
+
+<!-- link/@style = 'button' -->
 div.link-button {
   font-size: 1.2em;
   font-weight: bold;
@@ -894,36 +863,36 @@ div.link-button {
 .link-button a {
   display: inline-block;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   text-shadow: </xsl:text>
-    <xsl:value-of select="$color.link"/><xsl:text> 1px 1px 0px;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text> 1px 1px 0px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.link"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 .link-button a:visited {
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
 }
 .link-button a:hover {
   text-decoration: none;
   color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   box-shadow: 1px 1px 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 div.link-button a .desc {
   display: block;
   font-weight: normal;
   font-size: 0.83em;
   color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
+
+<!-- @style = 'float*' -->
 div.floatleft {
   float: left;
   margin-right: 1em;
@@ -941,6 +910,7 @@ div.floatend {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 
+<!-- FIXME -->
 div.title-heading h1, div.title-heading h2, div.title-heading h3,
 div.title-heading h4, div.title-heading h5, div.title-heading h6 {
   font-size: 1.72em;
@@ -950,66 +920,92 @@ ul.links-heading > li { margin: 2em 0 2em 0; padding: 0; }
 div.links-heading > a { font-size: 1.72em; font-weight: bold; }
 ul.links-heading > li > div.desc { margin-top: 0.5em; }
 
-div.mouseovers {
-  width: 250px;
-  height: 200px;
-  text-align: center;
-  margin: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+div.links-uix-hover {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
 }
-ul.mouseovers li { margin: 0; }
-ul.mouseovers a {
-  display: inline-block;
-  padding: 4px 1.2em 4px 1.2em;
+ul.links-uix-hover { flex-grow: 1; }
+ul.links-uix-hover li { margin: 0; padding: 0; }
+ul.links-uix-hover a {
+  display: block;
+  padding: 8px 1.2em;
   border-bottom: none;
 }
-ul.mouseovers a:hover {
-  text-decoration: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+ul.links-uix-hover a:hover, ul.links-uix-hover a:focus {
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
-ul.mouseovers a img {
-  display: none;
+ul.links-uix-hover img {
+  display: block;
   position: absolute;
-  margin: 0; padding: 0;
+  top: 0; </xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  visibility: hidden;
+  opacity: 0.0;
+  transition: opacity 0.6s, visibility 0.6s;
 }
-@media only screen and (max-width: 400px) {
-  ul.mouseovers a {
-    display: block;
-    padding: 12px;
-    margin-left: -12px;
-    margin-right: -12px;
+ul.links-uix-hover a:hover img, ul.links-uix-hover a:focus img {
+  visibility: visible;
+  opacity: 1.0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+@media only screen and (max-width: 480px) {
+  div.links-uix-hover-img { display: none; }
+  ul.links-uix-hover img { display: none; }
+  ul.links-uix-hover li {
+    margin-left: -10px; margin-right: -10px;
   }
-  div.mouseovers { display: none; }
+  ul.links-uix-hover li a {
+    padding: 10px;
+  }
 }
 
-div.ui-screen {
-  display: none;
+<!-- uix:overlay -->
+div.ui-overlay-screen {
   position: fixed;
   margin: 0;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  opacity: 0.6;
+  background: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  animation-name: yelp-overlay-screen;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-overlay-screen {
+  from { opacity: 0.0; }
+  to   { opacity: 0.6; }
 }
 div.ui-overlay {
   display: none;
   position: fixed;
   text-align: center;
-  left: 0;
   top: 20px;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
+}
+div.ui-overlay-show {
+  animation-name: yelp-overlay-slide;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-overlay-slide {
+  from { transform: translateY(-400px) translateX(-50%); }
+  to   { transform: translateY(0) translateX(-50%); }
 }
 div.ui-overlay > div.inner {
   display: inline-block;
   padding: 8px;
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border-radius: 6px;
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
+}
+div.ui-overlay img, div.ui-overlay video {
+  max-height: 80vh;
+  max-width: 90vw;
 }
 div.ui-overlay > div.inner > div.title { margin-top: -4px; }
 a.ui-overlay-close {
@@ -1023,126 +1019,89 @@ a.ui-overlay-close {
   padding: 1px 2px 3px 2px;
   text-align: center;
   border: none;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
-  background-color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  background-image: -moz-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  background-image: radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  background-image: -webkit-radial-gradient(50% 30%, circle farthest-corner, </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>, </xsl:text><xsl:value-of select="$color.text"/><xsl:text>);
-  border: 3px solid </xsl:text><xsl:value-of select="$color.background"/><xsl:text>; 
-  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
-  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-}
-a.ui-overlay-close:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  background-image: radial-gradient(circle farthest-corner at 50% 30%, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
+  border: 3px solid </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>; 
+  color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
 
-div.ui-tile {
-  display: inline-block;
+<!-- links/@uix:thumbs = 'tiles' -->
+div.links-tiles {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: stretch;
   vertical-align: top;
-  clear: both
+  clear: both;
+  margin: 0 -10px;
 }
-div.region > div.ui-tile {
-  margin-top: 0;
-  margin-bottom: 1em;
-}
-div.ui-tile:first-child { margin-top: 1em; }
-div.ui-tile > a {
-  display: inline-block;
+div.links-tile {
+  flex: 1 0 300px;
   vertical-align: top;
   margin: 0;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
-  padding: 1em;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  padding: 10px;
 }
-div.ui-tile > a {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
-}
-div.ui-tile > a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
-}
-div.ui-tile > a > * { display: block; }
-div.ui-tile-side > a > * {
-  display: inline-block;
-  vertical-align: top;
-}
-div.ui-tile-side > a > span.ui-tile-text {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
-}
-div.ui-tile > a > span.ui-tile-text > span.title {
+div.links-tile:empty { padding: 0 10px; height: 0; }
+div.links-tile > a {
   display: block;
-  margin-top: 0.5em;
+  vertical-align: top;
+  padding: 9px;
+  border-radius: 6px;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+}
+div.links-tile > a:hover {
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
+  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+}
+div.links-tile > a > span.links-tile-img {
+  display: block;
+  text-align: center;
+  max-width: 360px;
+}
+div.links-tile > a > span.links-tile-img > img {
+  width: 100%;
+  border-radius: 3px;
+}
+div.links-tile > a > span.links-tile-text > span.title {
+  display: block;
   font-weight: bold;
 }
-div.ui-tile-side > a > span.ui-tile-text > span.title { margin-top: 0; }
-div.ui-tile > a > span.ui-tile-text > span.desc {
+div.links-tile > a > span.links-tile-text > * + span.title {
+  margin-top: 0.5em;
+}
+div.links-tile > a > span.links-tile-text > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-}
-span.ui-tile-img { text-align: center; }
-
-div.links-ui-hover {
-  text-align: center;
-  margin: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1.2em;
-  overflow: hidden;
-}
-ul.links-ui-hover li { margin: 0; }
-ul.links-ui-hover a {
-  display: block;
-  padding: 4px 1.2em 4px 1.2em;
-  border-bottom: none;
-}
-ul.links-ui-hover a:hover {
-  text-decoration: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-}
-span.links-ui-hover-img {
-  display: none;
-  position: absolute;
-  margin: 0; padding: 0;
-  overflow: hidden;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
-  text-align: center;
-}
-@media only screen and (max-width: 400px) {
-  ul.links-ui-hover a {
-    display: block;
-    padding: 12px;
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  div.links-ui-hover { display: none; }
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
-div.links-grid {
-  display: inline-block;
-  clear: both
-  margin-top: 1em;
-  width: 30%;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 2%;
+<!-- links/@style = 'grid' -->
+div.links-grid-container {
+  margin-left: -10px;
+  margin-right: -10px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
   vertical-align: top;
+  clear: both
 }
-div.links-grid-link {
-  margin: 0;
-  font-weight: bold;
+div.links-grid {
+  flex: 1 0 300px;
+  padding: 10px;
 }
+div.links-grid:empty { padding: 0 10px; height: 0; }
+div.links-grid-link { font-weight: bold; }
 div.links-grid > div.desc {
-  margin: 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-}
-@media only screen and (max-width: 400px) {
-  div.links-grid {
-    width: 47%;
-  }
+  margin: 0.2em 0 0 0;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
+<!-- FIXME -->
+<!-- links/@style = 'norwich' -->
 div.links-norwich {
   width: 900px;
 }
@@ -1154,17 +1113,17 @@ div.links-norwich-primary {
 div.links-norwich-big {
   vertical-align: top;
   display: inline-block;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
   background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>, </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>);
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.blue"/><xsl:text>);
   margin: 0 20px 20px 0;
 }
 div.links-norwich-big + div.links-norwich-big {
-  background: </xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   background: radial-gradient(ellipse 800px 1200px at 100% 20px, </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>, </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>);
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>, </xsl:text>
+    <xsl:value-of select="$color.yellow"/><xsl:text>);
 }
 div.links-norwich-big a {
   display: block;
@@ -1173,21 +1132,21 @@ div.links-norwich-big a {
   height: 320px;
   padding: 9px;
   font-size: 1.2em;
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
   background-repeat: no-repeat;
   background-position: right -80px bottom -80px;
 }
 div.links-norwich-big a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
-  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
 div.links-norwich-big a span.title {
   font-size: 1.2em;
   font-weight: bold;
 }
 div.links-norwich-big a .desc {
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
   font-weight: normal;
 }
 div.links-norwich-secondary {
@@ -1197,7 +1156,7 @@ div.links-norwich-secondary {
 div.links-norwich-small {
   display: inline-block;
   vertical-align: top;
-  background: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   margin: 0 20px 20px 0;
 }
 div.links-norwich-small a {
@@ -1206,14 +1165,14 @@ div.links-norwich-small a {
   height: 140px;
   padding: 9px;
   font-weight: bold;
-  color:  </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
+  color:  </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   background-repeat: no-repeat;
   background-position: right 4px bottom 4px;
 }
 div.links-norwich-small a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.gray_border"/><xsl:text>;
-  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
+  box-shadow: 2px 2px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
 @media only screen and (max-width: 900px) {
   div.links-norwich {
@@ -1238,38 +1197,21 @@ div.links-norwich-small a:hover {
   }
 }
 
-div.links-twocolumn {
-  display: inline-block;
-  width: 48%;
-  margin-top: 0;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1%;
-  vertical-align: top;
+<!-- links/@type = 'topic' and @style = '2column' -->
+div.links-divs {
+  margin-left: -10px;
+  margin-right: -10px;
 }
-@media only screen and (max-width: 400px) {
-  div.links-twocolumn {
-    width: 100%;
-    margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0;
-  }
-}
-
-div.links .desc a {
-  color: inherit;
-}
-div.links .desc a:hover {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
-}
-a.bold { font-weight: bold; }
-div.linkdiv { margin: 0; padding: 0; }
 a.linkdiv {
   display: block;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px;
   border-bottom: none;
 }
 a.linkdiv:hover {
   text-decoration: none;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 a.linkdiv > span.title {
   display: block;
@@ -1281,26 +1223,31 @@ a.linkdiv > span.title {
 a.linkdiv > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 span.linkdiv-dash { display: none; }
-@media only screen and (max-width: 400px) {
-  div.linkdiv {
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  div.linkdiv a {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+div.links-twocolumn {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  vertical-align: top;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+div.links-twocolumn > div.links-divs {
+  flex: 1 0 320px;
+  vertical-align: top;
+  margin: 0;
 }
 
+<!-- FIXME -->
 div.comment {
   padding: 0.5em;
   border: solid 2px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.red_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.red"/><xsl:text>;
 }
 div.comment div.comment {
   margin: 1em 1em 0 1em;
@@ -1310,6 +1257,7 @@ div.comment div.cite {
   font-style: italic;
 }
 
+<!-- FIXME -->
 div.tree > div.inner > div.title { margin-bottom: 0.5em; }
 ul.tree {
   margin: 0; padding: 0;
@@ -1322,58 +1270,36 @@ ul.tree ul.tree {
 }
 div.tree-lines ul.tree { margin-left: 0; }
 
+<!-- FIXME -->
 span.hi {
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 
-div.facets {
-  display: inline-block;
-  padding: 6px;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
-} 
-div.facet {
- vertical-align: top;
-  display: inline-block;
-  margin-top: 0;
-  margin-bottom: 1em;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 1em;
-}
-div.facet div.title { margin: 0; }
-div.facet li {
-  margin: 0; padding: 0;
-  list-style-type: none;
-}
-div.facet input {
-  vertical-align: middle;
-  margin: 0;
-}
+<!-- experimental/gloss -->
 dt.gloss-term {
   margin-top: 1.2em;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 dt.gloss-term:first-child, dt.gloss-term + dt.gloss-term { margin-top: 0; }
 dt.gloss-term + dd { margin-top: 0.2em; }
 dd.gloss-link {
   margin: 0 0.2em 0 0.2em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 dd.gloss-def {
   margin: 0 0.2em 1em 0.2em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 a.gloss-term {
-  tabindex: 0;
+  position: relative;
   border-bottom: dashed 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.blue"/><xsl:text>;
 }
 a.gloss-term:hover {
   text-decoration: none;
@@ -1382,22 +1308,34 @@ a.gloss-term:hover {
 span.gloss-desc {
   display: none;
   position: absolute;
+  z-index: 100;
   margin: 0;
+  </xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  top: 1.2em;
   padding: 0.2em 0.5em 0.2em 0.5em;
+  min-width: 12em;
   max-width: 24em;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  overflow: hidden;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
-  -moz-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.yellow"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
+}
+a.gloss-term:hover span.gloss-desc, a.gloss-term:focus span.gloss-desc {
+  display: inline-block;
+  animation-name: yelp-gloss-fade;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-gloss-fade {
+  from { opacity: 0.0; }
+  to   { opacity: 1.0; }
 }
 
+<!-- conditional processing -->
 .if-if { display: none; }
 .if-choose, .if-when, .if-else { margin: 0; padding: 0; }
 .if-choose > .if-when { display: none; }
@@ -1405,7 +1343,7 @@ span.gloss-desc {
 .if-if.if__not-target-mobile { display: block; }
 .if-choose.if__not-target-mobile > .if-when { display: block; }
 .if-choose.if__not-target-mobile > .if-else { display: none; }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
   .if-if.if__target-mobile { display: block; }
   .if-if.if__not-target-mobile { display: none; }
   .if-choose.if__target-mobile > .if-when { display: block; }
@@ -1424,9 +1362,9 @@ div.version {
   padding: 0.5em 1em 0.5em 1em;
   max-width: 24em;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 div.version:hover { opacity: 0.8; }
 div.version p.version { margin-top: 0.2em; }
@@ -1436,117 +1374,73 @@ span.status {
   padding-left: 0.2em;
   padding-right: 0.2em;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.red_border"/><xsl:text>;
+    <xsl:value-of select="$color.red"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 span.status-stub, span.status-draft, span.status-incomplete, span.status-outdated { background-color: </xsl:text>
-  <xsl:value-of select="$color.red_background"/><xsl:text>; }
+  <xsl:value-of select="$color.bg.red"/><xsl:text>; }
 </xsl:text>
 </xsl:if>
 </xsl:template>
 
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
-  <xsl:call-template name="mal2html.facets.js"/>
-  <xsl:call-template name="mal2html.gloss.js"/>
 <xsl:text><![CDATA[
-$(document).ready(function () {
-  $('div.mouseovers').each(function () {
-    var contdiv = $(this);
-    var width = 0;
-    var height = 0;
-    contdiv.find('img').each(function () {
-      if ($(this).attr('data-yelp-match') == '')
-        $(this).show();
-    });
-    contdiv.next('ul').find('a').each(function () {
-      var mlink = $(this);
-      mlink.hover(
-        function () {
-          if (contdiv.is(':visible')) {
-            var offset = contdiv.offset();
-            mlink.find('img').css({left: offset.left, top: offset.top, zIndex: 10});
-            mlink.find('img').fadeIn('fast');
-          }
-        },
-        function () {
-          mlink.find('img').fadeOut('fast');
+document.addEventListener('DOMContentLoaded', function() {
+  var overlays = document.querySelectorAll('a.ui-overlay');
+  for (var i = 0; i < overlays.length; i++) {
+    (function (ovlink) {
+      var overlay = ovlink.parentNode.querySelector('div.ui-overlay');
+      var ui_overlay_show = function (ev) {
+        overlay.style.display = 'block';
+        overlay.classList.add('ui-overlay-show');
+        var screen = document.querySelector('div.ui-overlay-screen');
+        if (screen == null) {
+          screen = document.createElement('div');
+          screen.className = 'ui-overlay-screen';
+          document.body.appendChild(screen);
         }
-      );
-    });
-  });
-  $('div.links-ui-hover').each(function () {
-    var contdiv = $(this);
-    var width = 0;
-    var height = 0;
-    contdiv.next('ul').find('a').each(function () {
-      var mlink = $(this);
-      mlink.hover(
-        function () {
-          if (contdiv.is(':visible')) {
-            var offset = contdiv.offset();
-            mlink.find('img').parent('span').css({left: offset.left, top: offset.top, zIndex: 10});
-            mlink.find('img').parent('span').show();
+        var inner = overlay.querySelector('div.inner');
+        var close = inner.querySelector('a.ui-overlay-close');
+        var media = inner.querySelectorAll('audio, video');
+
+        var overlay_play_func = function () {
+          for (var j = 0; j < media.length; j++) {
+            media[j].play();
           }
-        },
-        function () {
-          mlink.find('img').parent('span').hide();
-        }
-      );
-    });
-  });
-  $('a.ui-overlay').each(function () {
-    $(this).click(function () {
-      var overlay = $(this).parent('div').children('div.ui-overlay');
-      var inner = overlay.children('div.inner');
-      var close = inner.children('a.ui-overlay-close');
-      var media = inner.find('audio, video');
-      var screen = $('div.ui-screen');
-      if (screen.length == 0) {
-        screen = $('<div class="ui-screen"></div>');
-        $('body').append(screen);
-      }
-      var hideoverlay = function () {
-        if (media.length > 0)
-          media[0].pause();
-        $(document).unbind('keydown.yelp-ui-overlay');
-        close.unbind('click');
-        screen.unbind('click');
-        screen.fadeOut('slow');
-        overlay.unbind('click');
-        overlay.slideUp('fast');
-        return false;
+        };
+        var overlay_play_timeout = window.setTimeout(overlay_play_func, 1000);
+
+        var ui_overlay_funcs = {};
+        ui_overlay_funcs['hide'] = function () {
+          overlay.style.display = 'none';
+          document.body.removeChild(screen);
+          document.removeEventListener('keydown', ui_overlay_funcs['keydown'], false);
+          for (var j = 0; j < media.length; j++) {
+            media[j].pause();
+          }
+          window.clearTimeout(overlay_play_timeout);
+        };
+        ui_overlay_funcs['hideclick'] = function (uiev) {
+          ui_overlay_funcs['hide']();
+          uiev.preventDefault();
+        };
+        ui_overlay_funcs['keydown'] = function (uiev) {
+          if (uiev.keyCode == 27) {
+            ui_overlay_funcs['hide']();
+          }
+        };
+        screen.addEventListener('click', ui_overlay_funcs['hideclick'], false);
+        close.addEventListener('click', ui_overlay_funcs['hideclick'], false);
+        document.addEventListener('keydown', ui_overlay_funcs['keydown'], false);
+        ev.preventDefault();
       };
-      screen.click(hideoverlay);
-      close.click(hideoverlay);
-      $(document).bind('keydown.yelp-ui-overlay', function (event) {
-        if (event.which == 27) {
-          hideoverlay();
-        }
-      });
-      overlay.click(function (event) {
-        var target = event.target;
-        do {
-          if (target == inner[0]) {
-            break;
-          }
-        } while (target = target.parentNode);
-        if (target != inner[0]) {
-          hideoverlay();
-          return false;
-        }
-      });
-      screen.fadeIn('slow');
-      overlay.slideDown('fast', function () {
-        if (media.length > 0)
-          media[0].play();
-      });
-      return false;
-    });
-  });
+      ovlink.addEventListener('click', ui_overlay_show, false);
+    })(overlays[i]);
+  }
 });
 ]]></xsl:text>
 </xsl:template>

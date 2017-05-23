@@ -134,42 +134,4 @@ include a link to their defining page.
   </a>
 </xsl:template>
 
-
-<!--**==========================================================================
-mal2html.gloss.js
-
-REMARK: FIXME
--->
-<xsl:template name="mal2html.gloss.js">
-<xsl:text><![CDATA[
-$(document).ready(function () {
-  $('a.gloss-term').each(function () {
-    if ($(this).attr('href') == '#') {
-      $(this).click(function () { return false; });
-    }
-    var showtip = function () {
-      var desc = $(this).children('span.gloss-desc');
-      if (desc.is(':visible'))
-        return;
-      var top = $(this).offset().top + $(this).height() + 1;
-      var left = $(this).offset().left;
-      var cnt = $(this).closest('div.contents');
-      var diff = cnt.offset().left + cnt.width() - desc.width() - 4;
-      if (left > diff)
-        left = diff;
-      desc.css({'top': top + 'px', 'left': left + 'px'}).fadeIn('slow');
-    };
-    var hidetip = function () {
-      if ($(this).is(':focus'))
-        return;
-      $(this).children('span.gloss-desc').fadeOut('fast');
-    };
-    $(this).hover(showtip, hidetip);
-    $(this).focus(showtip);
-    $(this).blur(hidetip);
-  });
-});
-]]></xsl:text>
-</xsl:template>
-
 </xsl:stylesheet>

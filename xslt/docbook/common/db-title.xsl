@@ -13,10 +13,14 @@ details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY % selectors SYSTEM "db-selectors.mod">
+%selectors;
+]>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
-								xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+                xmlns:msg="http://projects.gnome.org/yelp/gettext/"
                 exclude-result-prefixes="db msg"
                 version="1.0">
 
@@ -34,24 +38,20 @@ elements with optional titles.
 <!--**==========================================================================
 db.title
 Output a title for an element.
-:Revision:version="3.4" date="2011-11-10" status="final"
+:Revision:version="3.next" date="2017-03-18" status="final"
 $node: The element to output the title of.
 $info: The info child element of ${node}.
 
 This template outputs the title of the element ${node} as it might be used for
 a heading or for link text. For certain types of elements, this templates will
 use a localized automatic title if no explicit title is provided.
+
+When ${node} is an element for which this template cannot construct a title,
+it calls itself recursively passing the parent element of ${node}.
 -->
 <xsl:template name="db.title">
   <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="
-    $node/appendixinfo   | $node/articleinfo        | $node/bibliographyinfo | $node/blockinfo    |
-    $node/bookinfo       | $node/chapterinfo        | $node/glossaryinfo     | $node/indexinfo    |
-    $node/objectinfo     | $node/partinfo           | $node/prefaceinfo      | $node/refentryinfo |
-    $node/referenceinfo  | $node/refsect1info       | $node/refsect2info     | $node/refsect3info |
-    $node/refsectioninfo | $node/refsynopsisdivinfo | $node/sect1info        | $node/sect2info    |
-    $node/sect3infof     | $node/sect4info          | $node/sect5info        | $node/sectioninfo  |
-    $node/setindexinfo   | $node/db:info "/>
+  <xsl:param name="info" select="$node/&db_infos;"/>
   <xsl:choose>
     <xsl:when test="$node/self::anchor or $node/self::db:anchor">
       <xsl:variable name="target_chunk_id">
@@ -124,6 +124,11 @@ use a localized automatic title if no explicit title is provided.
         <xsl:with-param name="msgid" select="'Synopsis'"/>
       </xsl:call-template>
     </xsl:when>
+    <xsl:when test="$node/..">
+      <xsl:call-template name="db.title">
+        <xsl:with-param name="node" select="$node/.."/>
+      </xsl:call-template>
+    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
@@ -141,14 +146,7 @@ this template just calls *{db.title}.
 -->
 <xsl:template name="db.titleabbrev">
   <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="
-    $node/appendixinfo   | $node/articleinfo        | $node/bibliographyinfo | $node/blockinfo    |
-    $node/bookinfo       | $node/chapterinfo        | $node/glossaryinfo     | $node/indexinfo    |
-    $node/objectinfo     | $node/partinfo           | $node/prefaceinfo      | $node/refentryinfo |
-    $node/referenceinfo  | $node/refsect1info       | $node/refsect2info     | $node/refsect3info |
-    $node/refsectioninfo | $node/refsynopsisdivinfo | $node/sect1info        | $node/sect2info    |
-    $node/sect3infof     | $node/sect4info          | $node/sect5info        | $node/sectioninfo  |
-    $node/setindexinfo   | $node/db:info "/>
+  <xsl:param name="info" select="$node/&db_infos;"/>
   <xsl:variable name="titleabbrev" select="
     $node/titleabbrev | $node/db:titleabbrev | $info/titleabbrev | $info/db:titleabbrev"/>
   <xsl:choose>
@@ -180,14 +178,7 @@ a subtitle is not found.
 -->
 <xsl:template name="db.subtitle">
   <xsl:param name="node" select="."/>
-  <xsl:param name="info" select="
-    $node/appendixinfo   | $node/articleinfo        | $node/bibliographyinfo | $node/blockinfo    |
-    $node/bookinfo       | $node/chapterinfo        | $node/glossaryinfo     | $node/indexinfo    |
-    $node/objectinfo     | $node/partinfo           | $node/prefaceinfo      | $node/refentryinfo |
-    $node/referenceinfo  | $node/refsect1info       | $node/refsect2info     | $node/refsect3info |
-    $node/refsectioninfo | $node/refsynopsisdivinfo | $node/sect1info        | $node/sect2info    |
-    $node/sect3infof     | $node/sect4info          | $node/sect5info        | $node/sectioninfo  |
-    $node/setindexinfo   | $node/db:info "/>
+  <xsl:param name="info" select="$node/&db_infos;"/>
   <xsl:variable name="subtitle" select="
     $node/subtitle | $node/db:subtitle | $info/subtitle | $info/db:subtitle"/>
   <xsl:choose>

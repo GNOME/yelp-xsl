@@ -212,6 +212,19 @@ time by JavaScript.
 <xsl:param name="html.syntax.highlight" select="true()"/>
 
 
+<!--@@==========================================================================
+html.output.prefix
+An optional path prefix for files output with *{html.output}.
+:Revision:version="3.next" date="2016-10-03" status="review"
+
+This parameter allows you to specify an prefix to place before the output path
+used by *{html.output} when creating files. You can use this to override the
+output directory. Make sure you include a trailing slash, unless you want to
+prefix the base file name itself.
+-->
+<xsl:param name="html.output.prefix" select="''"/>
+
+
 <!--**==========================================================================
 html.output
 Create an HTML output file.
@@ -228,6 +241,10 @@ filename and append @{html.extension} to it. The base filename is generated
 as follows: If an #{xml:id} attribute is present, it is used; otherwise, if
 an #{id} attribute is present, it is uses; otherwise, if ${node} is the root
 element, @{html.basename} is used; otherwise, #{generate-id()} is called.
+
+This template prepends @{html.output.prefix} to the value of ${href} when
+it calls #{exsl:document}, regardless of whether ${href} was passed in or
+generated automatically.
 
 After calling #{exsl:document}, this template calls the %{html.output.after.mode}
 mode on ${node}. Importing stylesheets that create multiple output files can
@@ -253,14 +270,14 @@ use this to process output files without blocking earlier output.
   </xsl:param>
   <xsl:choose>
     <xsl:when test="$html.xhtml">
-      <exsl:document href="{$href}">
+      <exsl:document href="{$html.output.prefix}{$href}">
 	<xsl:call-template name="html.page">
 	  <xsl:with-param name="node" select="$node"/>
 	</xsl:call-template>
       </exsl:document>
     </xsl:when>
     <xsl:otherwise>
-      <exsl:document href="{$href}" method="html"
+      <exsl:document href="{$html.output.prefix}{$href}" method="html"
 		     doctype-system="about:legacy-compat">
 	<xsl:call-template name="html.page">
 	  <xsl:with-param name="node" select="$node"/>
@@ -288,14 +305,32 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 $node: The node to create HTML for.
 
 This template creates the actual HTML output for ${node}. It outputs top-level
 elements and container divs, and calls various templates and modes to output
 the inner content. Importing stylesheets should implement at least
 %{html.title.mode} and %{html.body.mode} for any elements that could be passed
-as ${node} to this template.
+as ${node} to this template. Importing stylesheets should also implement
+%{html.header.mode} to output link trails and %{html.footer.mode} to output
+credits and other page information.
+
+This template outputs the HTML #{body} element, which takes it attributes
+from two sources. First, it calls *{html.lang.attrs}, which automatically
+outputs correct #{lang}, #{xml:lang}, and #{dir} attributes. It then calls
+%{html.body.attr.mode} on ${node} for additional attributes.
+
+This template also calls a number of stub templates that can be overridden by
+extension stylesheets. Override the *{html.head.custom} element to put custom
+content in the HTML #{head} element. Override the *{html.top.custom} and
+*{html.bottom.custom} templates to add site-specific content at the top and
+bottom of the page. Override the *{html.header.custom} and *{html.footer.custom}
+templates to provide additional content directoy above and below the main
+content. Override *{html.sidebar.custom} to create sidebars.
+
+This template also calls *{html.css} and *{html.js} to output CSS and JavaScript
+elements. See those templates for further extension points.
 -->
 <xsl:template name="html.page">
   <xsl:param name="node" select="."/>
@@ -324,23 +359,32 @@ as ${node} to this template.
       <xsl:call-template name="html.top.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <div class="page" role="main">
-        <div class="header"> 
-          <xsl:call-template name="html.header.custom">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-          <xsl:apply-templates mode="html.header.mode" select="$node"/>
+      <main>
+        <xsl:call-template name="html.sidebar.custom">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+        <div class="page">
+          <header>
+            <div class="inner pagewide">
+              <xsl:call-template name="html.header.custom">
+                <xsl:with-param name="node" select="$node"/>
+              </xsl:call-template>
+              <xsl:apply-templates mode="html.header.mode" select="$node"/>
+            </div>
+          </header>
+          <article>
+            <xsl:apply-templates mode="html.body.mode" select="$node"/>
+          </article>
+          <footer>
+            <div class="inner pagewide">
+              <xsl:apply-templates mode="html.footer.mode" select="$node"/>
+              <xsl:call-template name="html.footer.custom">
+                <xsl:with-param name="node" select="$node"/>
+              </xsl:call-template>
+            </div>
+          </footer>
         </div>
-        <div class="body">
-          <xsl:apply-templates mode="html.body.mode" select="$node"/>
-        </div>
-        <div class="footer">
-          <xsl:apply-templates mode="html.footer.mode" select="$node"/>
-          <xsl:call-template name="html.footer.custom">
-            <xsl:with-param name="node" select="$node"/>
-          </xsl:call-template>
-        </div>
-      </div>
+      </main>
       <xsl:call-template name="html.bottom.custom">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
@@ -378,11 +422,11 @@ implement this node to add attributes for styling, data, or other purposes.
 html.top.custom
 Stub to output HTML at the top of the page.
 :Stub: true
-:Revision: version="1.0" date="2011-11-01" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called before the
-#{div.page} wrapper div. Override this template to provide site-specific HTML
+#{main} element. Override this template to provide site-specific HTML
 at the top of the page.
 -->
 <xsl:template name="html.top.custom">
@@ -394,11 +438,11 @@ at the top of the page.
 html.bottom.custom
 Stub to output HTML at the bottom of the page.
 :Stub: true
-:Revision: version="1.0" date="2011-11-01" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called after the
-#{div.page} wrapper div. Override this template to provide site-specific HTML
+#{main} element. Override this template to provide site-specific HTML
 at the bottom of the page.
 -->
 <xsl:template name="html.bottom.custom">
@@ -407,15 +451,35 @@ at the bottom of the page.
 
 
 <!--**==========================================================================
+html.sidebar.custom
+Stub to output custom sidebar content.
+:Stub: true
+:Revision: version="3.next" date="2016-09-12" status="review"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. It is called inside the #{main}
+element, before the #{div.page} element. The #{main} element uses a horizontal
+flexbox by default. You can override this template to provide sidebar content.
+Note that there is only one extension point for sidebar content, and it is
+always placed before the main content in document order. To create a sidebar
+on the right, output the element here, then adjust the #{order} CSS property
+for that element to display it after the #{main} element.
+-->
+<xsl:template name="html.sidebar.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
 html.header.custom
 Stub to output custom header content.
 :Stub: true
-:Revision: version="1.0" date="2011-10-27" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the header
-div, before %{html.header.mode} is applied to ${node}. You can override this
-template to provide additional content at the top of the page.
+This template is a stub, called by *{html.page}. It is called inside the
+#{header} element, before %{html.header.mode} is applied to ${node}. You can
+override this template to provide additional content above the main content.
 -->
 <xsl:template name="html.header.custom">
   <xsl:param name="node" select="."/>
@@ -425,12 +489,12 @@ template to provide additional content at the top of the page.
 <!--%%==========================================================================
 html.header.mode
 Output the header content for an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 
-This mode is called by *{html.page} to output the contents of the header div
-above the main content. Importing stylesheets may implement this mode for any
-element that will be passed to *{html.page}. If they do not, the header div
-will be empty.
+This mode is called by *{html.page} to output the contents of the #{header}
+element above the main content. Importing stylesheets may implement this mode
+for any element that will be passed to *{html.page}. If they do not, the
+#{header} element will be empty by default.
 -->
 <xsl:template mode="html.header.mode" match="*"/>
 
@@ -439,12 +503,12 @@ will be empty.
 html.footer.custom
 Stub to output custom footer content.
 :Stub: true
-:Revision: version="1.0" date="2011-10-27" status="final"
+:Revision: version="3.next" date="2016-09-12" status="review"
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the footer
-div, after %{html.footer.mode} is applied to ${node}. You can override this
-template to provide additional content at the bottom of the page.
+This template is a stub, called by *{html.page}. It is called inside the
+#{footer} element, after %{html.footer.mode} is applied to ${node}. You can
+override this template to provide additional content below the main content.
 -->
 <xsl:template name="html.footer.custom">
   <xsl:param name="node" select="."/>
@@ -454,12 +518,12 @@ template to provide additional content at the bottom of the page.
 <!--%%==========================================================================
 html.footer.mode
 Output the footer content for an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+:Revision:version="3.next" date="2016-09-12" status="review"
 
-This mode is called by *{html.page} to output the contents of the footer div
-below the main content. Importing stylesheets may implement this mode for any
-element that will be passed to *{html.page}. If they do not, the footer div
-will be empty.
+This mode is called by *{html.page} to output the contents of the #{footer}
+element below the main content. Importing stylesheets may implement this mode
+for any element that will be passed to *{html.page}. If they do not, the
+#{footer} element will be empty by default.
 -->
 <xsl:template mode="html.footer.mode" match="*"/>
 
@@ -495,7 +559,7 @@ to provide additional elements in the HTML #{head} element of output files.
 html.linktrails.empty
 Stub to output something when no link trails are present.
 :Stub: true
-:Revision:version="3.20" date="2015-10-02" status="final"
+:Revision:version="3.next" date="2015-10-02" status="final"
 $node: The source element a page is bring created for.
 
 This template is a stub. It is called by templates that output link trails when
@@ -512,7 +576,7 @@ trails would otherwise be present.
 html.linktrails.prefix
 Stub to output extra content before a link trail.
 :Stub: true
-:Revision:version="3.20" date="2015-10-02" status="final"
+:Revision:version="3.next" date="2015-10-02" status="final"
 $node: A source-specific element providing information about the link trail.
 
 This template is a stub. It is called by templates that output link trails
@@ -568,6 +632,135 @@ certain JavaScript functionality. Extensions should be careful to output class
 values that do not conflict with those used in these stylesheets.
 -->
 <xsl:template mode="html.class.attr.mode" match="*"/>
+
+
+<!--**==========================================================================
+html.content.pre
+Output content before the content of a page or section.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is called by importing stylesheets before any content of a page
+or section, but after the title. It calls *{html.content.pre.custom}, then
+applies %{html.content.pre.mode} to ${node}. If the ${page} parameter is true,
+then this template is being called on an output page. Otherwise, it is being
+called on a section within a page.
+-->
+<xsl:template name="html.content.pre">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+  <xsl:call-template name="html.content.pre.custom">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:call-template>
+  <xsl:apply-templates mode="html.content.pre.mode" select="$node">
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.pre.custom
+Stub to output content before the content of a page or section.
+:Stub: true
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is a stub, called by *{html.content.pre.custom}. It is called
+before %{html.content.pre.mode} is applied. Override this template to provide
+site-specific HTML before the content of a page or section. If the ${page}
+parameter is true, then this template is being called on an output page.
+Otherwise, it is being called on a section within a page.
+-->
+<xsl:template name="html.content.pre.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.content.pre.mode
+Output content before the content of a page or section.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$page: Whether the content is for a page.
+
+This mode is applied by *{html.content.pre} after calling
+*{html.content.pre.custom}. Importing stylesheets can use this to add
+additional content for specific types of input elements before the content
+of a page or section. If the ${page} parameter is true, then this template
+is being called on an output page. Otherwise, it is being called on a section
+within a page.
+-->
+<xsl:template mode="html.content.pre.mode" match="*">
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.post
+Output content after the content of a page or section, before subsections.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is called by importing stylesheets after any content of a page
+or section, but before any subsections. It applies %{html.content.post.mode}
+to ${node}, then calls *{html.content.post.custom}. If the ${page} parameter
+is true, then this template is being called on an output page. Otherwise, it
+is being called on a section within a page.
+-->
+<xsl:template name="html.content.post">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+  <xsl:apply-templates mode="html.content.post.mode" select="$node">
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:apply-templates>
+  <xsl:call-template name="html.content.post.custom">
+    <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="page" select="$page"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.content.post.custom
+Stub to output content after the content of a page or section, before subsections.
+:Stub: true
+:Revision: version="3.22" date="2016-06-21" status="final"
+$node: The node a page or section is being created for.
+$page: Whether the content is for a page.
+
+This template is a stub, called by *{html.content.post.custom}. It is called
+after %{html.content.pre.mode} is applied. Override this template to provide
+site-specific HTML after the content of a page or section, but before any
+subsections. If the ${page} parameter is true, then this template is being
+called on an output page. Otherwise, it is being called on a section within
+a page.
+-->
+<xsl:template name="html.content.post.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.content.post.mode
+Output content after the content of a page or section, before subsections.
+:Revision: version="3.22" date="2016-06-21" status="final"
+$page: Whether the content is for a page.
+
+This mode is applied by *{html.content.post} before calling
+*{html.content.post.custom}. Importing stylesheets can use this to add
+additional content for specific types of input elements after the content
+of a page or section, but before any subsections. If the ${page} parameter
+is true, then this template is being called on an output page. Otherwise,
+it is being called on a section within a page.
+-->
+<xsl:template mode="html.content.post.mode" match="*">
+  <xsl:param name="page" select="true()"/>
+</xsl:template>
 
 
 <!--**==========================================================================
@@ -743,83 +936,109 @@ body {
   font-family: sans-serif;
   margin: 0; padding: 0;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
   color: </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;
+    <xsl:value-of select="$color.fg"/><xsl:text>;
   direction: </xsl:text><xsl:value-of select="$direction"/><xsl:text>;
 }
-div.page {
-  margin: 1em auto 1em auto;
-  max-width: 60em;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-}
-div.body {
+article, aside, nav, header, footer, section {
+  display: block;
   margin: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 1em;
-  min-height: 20em;
-  background-color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
+  padding: 0;
 }
-div.header { margin: 0; }
-div.footer { margin: 0; }
-div.sect {
+main {
+  display: flex;
+  flex-flow: row;
+}
+main > * {
+  flex: 0 0 220px;
+}
+main > div.page {
+  flex-grow: 1;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+div.page > article { flex: 1 0 100%; }
+div.page > header, div.page > footer { flex: 0 1 auto; }
+.pagewide {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+article {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 20em;
+  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+}
+section {
   margin-top: 2.4em;
   clear: both;
 }
-div.sect div.sect {
+section section {
   margin-top: 1.44em;
 }
+.yelp-hash-highlight {
+  animation-name: yelp-hash-highlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-hash-highlight {
+  from { transform: translateY(0px) }
+  25%  { transform: translateY(20px); }
+  50%  { transform: translateY(0); }
+  75%  { transform: translateY(10px); }
+  to   { transform: translateY(0px); }
+}
 div.trails {
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  margin: 0 -10px 0 -10px;
+  padding: 0.2em 10px;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.trail {
-  margin: 0.2em 0 0 0;
+  margin: 0.2em 0;
   padding: 0 1em 0 1em;
   text-indent: -1em;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 a.trail { white-space: nowrap; }
 div.hgroup {
-  margin: 1em 0 0.5em 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  margin-bottom: 0.5em;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
-div.sect div.hgroup {
+section > div.inner > div.hgroup {
   margin-top: 0;
   border-bottom: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
-div.sect-links div.hgroup {
+section.links > div.inner > div.hgroup {
   border-bottom: solid 2px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
-div.sect div.sect-links {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
-}
-div.sect div.sect-links div.hgroup {
+section section.links > div.inner > div.hgroup {
   border: none;
 }
 h1, h2, h3, h4, h5, h6, h7 {
   margin: 0; padding: 0;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   font-weight: bold;
 }
 h1 { font-size: 2em; }
 h2 { font-size: 1.44em; }
 h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
 h3, h4, h5, h6, h7 { font-size: 1em; }
-
-p { line-height: 1.72em; }
-div, pre, p { margin: 1em 0 0 0; padding: 0; }
-div.contents > *:first-child,
-th > *:first-child, td > *:first-child,
-dt > *:first-child, dd > *:first-child,
-li > *:first-child { margin-top: 0; }
-div.inner, div.region, div.contents, pre.contents { margin-top: 0; }
-pre.contents div { margin-top: 0 !important; }
+p { line-height: 1.44em; }
+div, pre, p { margin: 0; padding: 0; }
+div.contents > * + *,
+th > * + *, td > * + *,
+dt > * + *, dd > * + *,
+li > * + * { margin-top: 1em; }
 p img { vertical-align: middle; }
 p.lead { font-size: 1.2em; }
 div.clear {
@@ -829,35 +1048,46 @@ div.clear {
 }
 .center { text-align: center; }
 
-div.about {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+footer.about {
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+  margin: 0;
+  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
 }
-div.about > div.inner > div.hgroup {
+footer.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
   text-align: center;
   border: none;
 }
-div.about > div.inner > div.hgroup > h2 {
+footer.about > div.inner > div.hgroup > h2 {
   margin: 0; padding: 0.2em;
   font-size: inherit;
 }
-div.about.ui-expander > div.inner > div.hgroup span.title:before {
+footer.about.ui-expander > div.inner > div.hgroup span.title:before {
   content: "";
 }
 div.copyrights {
-  margin: 1em;
+  max-width: 700px;
   text-align: center;
+  padding: 10px;
+  margin: 0 auto;
 }
-div.copyright {
-  margin: 0;
+div.copyright { margin: 0; }
+div.credits {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 720px;
+  margin: 0 auto;
 }
-div.aboutblurb {
-  display: inline-block;
+div.credits > * {
   vertical-align: top;
   text-align: left;
-  max-width: 18em;
-  margin: 0 1em 1em 1em;
+  flex: 1 0 220px;
+  margin: 0;
+  padding: 10px;
 }
+div.credits > *:empty { padding: 0 10px; height: 0; }
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
   list-style-type: none;
@@ -866,27 +1096,32 @@ ul.credits li {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   text-indent: -1em;
 }
+div.license {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+}
 
 table {
   border-collapse: collapse;
-  border-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   border-width: 1px;
 }
 td, th {
   padding: 0.5em;
   vertical-align: top;
-  border-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
   border-width: 1px;
 }
 thead td, thead th, tfoot td, tfoot th {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 th {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 
 ul, ol, dl { margin: 0; padding: 0; }
@@ -896,6 +1131,11 @@ li {
   padding: 0;
 }
 li:first-child { margin-top: 0; }
+@media (max-width: 480px) {
+  li {
+    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
+  }
+}
 dt { margin-top: 1em; }
 dt:first-child { margin-top: 0; }
 dt + dt { margin-top: 0; }
@@ -914,46 +1154,19 @@ dl.compact dt + dt { margin-top: 0; }
 
 a {
   text-decoration: none;
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 a:visited { color: </xsl:text>
-  <xsl:value-of select="$color.link_visited"/><xsl:text>; }
+  <xsl:value-of select="$color.fg.purple"/><xsl:text>; }
 a:hover {
   border-bottom: dotted 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 p a {
   border-bottom: dotted 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 a img { border: none; }
-@media only screen and (max-width: 400px) {
-  div.page {
-    margin: 0;
-    border: none;
-  }
-  div.body {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  div.body > div.hgroup,
-  div.body > div.region > div.contents > *,
-  div.body > div.region > div.sect > div.inner > div.hgroup > *,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > * {
-    margin-left: 12px;
-    margin-right: 12px;
-  }
-  div.body > div.region > div.sect-links {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  div.trails {
-    padding: 12px;
-  }
-  li {
-    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
-  }
-}
 </xsl:text>
 </xsl:template>
 
@@ -991,10 +1204,16 @@ All parameters can be automatically computed if not provided.
     </xsl:call-template>
   </xsl:param>
   <xsl:text>
+.yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+}
+.yelp-svg-stroke {
+  stroke: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+}
 div.title {
   margin: 0 0 0.2em 0;
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 div.title h1, div.title h2, div.title h3, div.title h4, div.title h5, div.title h6 {
   margin: 0;
@@ -1008,7 +1227,7 @@ pre.contents {
   padding: 0.5em 1em 0.5em 1em;
 }
 div.links-center { text-align: center; }
-div.links .desc { color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>; }
+div.links .desc { color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>; }
 div.links > div.inner > div.region > div.desc { font-style: italic; }
 div.links ul { margin: 0; padding: 0; }
 div.links ul ul {
@@ -1017,16 +1236,15 @@ div.links ul ul {
 li.links {
   margin: 0.5em 0 0.5em 0;
   padding: 0;
-  padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
   list-style-type: none;
 }
 div.sectionlinks {
   display: inline-block;
   padding: 0 1em 0 1em;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 div.sectionlinks ul { margin: 0; }
 div.sectionlinks li { padding: 0; }
@@ -1040,60 +1258,37 @@ div.sectionlinks div.sectionlinks {
 div.sectionlinks div.sectionlinks li {
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em;
 }
-div.nextlinks {
-  font-size: 1.2em;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.2em;
-  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  clear: both;
-}
-div.nextlinks a {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+nav.prevnext { clear: both; }
+div.region > nav.prevnext, div.region + nav.prevnext { margin-top: 1em; }
+nav.prevnext > div.inner { float: </xsl:text><xsl:value-of select="$right"/><xsl:text>; }
+nav.prevnext > div.inner > * {
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   display: inline-block;
   position: relative;
   height: 1.44em;
-  padding: 0.2em 0.83em;
+  padding: 0.2em 0.83em 0 0.83em;
   margin-bottom: 1em;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
 }
-a.nextlinks-prev { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0.72em; }
-a.nextlinks-next { margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.72em; }
-a.nextlinks-prev:after, a.nextlinks-next:after {
-  border: solid transparent;
-  content: " ";
-  position: absolute;
-  height: 0; width: 0;
-  border-width: 0.92em;
-  top: 50%;
-  margin-top: -0.92em;
+nav.prevnext > div.inner > span { visibility: hidden; }
+nav.prevnext > div.inner > a + a {
+  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: none;
 }
-a.nextlinks-prev:after {
-  </xsl:text><xsl:value-of select="$right"/><xsl:text>: 100%;
-  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+nav.prevnext > div.inner > a:first-child {
+  border-top-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
+  border-bottom-</xsl:text><xsl:value-of select="$left"/><xsl:text>-radius: 2px;
 }
-a.nextlinks-next:after {
-  </xsl:text><xsl:value-of select="$left"/><xsl:text>: 100%;
-  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
-}
-div.nextlinks a:hover {
-border: none;
-  background: </xsl:text><xsl:value-of select="$color.blue_background"/><xsl:text>
-}
-a.nextlinks-prev:hover:after {
-  border-</xsl:text><xsl:value-of select="$right"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>
-}
-a.nextlinks-next:hover:after {
-  border-</xsl:text><xsl:value-of select="$left"/><xsl:text>-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>
+nav.prevnext > div.inner > a:last-of-type {
+  border-top-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
+  border-bottom-</xsl:text><xsl:value-of select="$right"/><xsl:text>-radius: 2px;
 }
 div.serieslinks {
   display: inline-block;
   padding: 0 1em 0 1em;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.blue_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 div.serieslinks ul { margin: 0; }
 div.serieslinks li { padding: 0; }
@@ -1104,44 +1299,61 @@ pre.numbered {
   float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 0.5em;
   text-align: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
 div.code {
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.example {
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1em;
 }
 div.example > div.inner > div.region > div.desc { font-style: italic; }
 div.figure {
+  display: inline-block;
+  max-width: 100%;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.72em;
+}
+div.figure > div.inner {
   padding: 4px;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
-div.figure > div.inner > a.zoom {
+@media (max-width: 960px) {
+  div.figure {
+    margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 0;
+  }
+}
+a.figure-zoom {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
 }
+a.figure-zoom:hover { border-bottom: none; }
+a.figure-zoom:hover .yelp-svg-fill { fill: </xsl:text>
+  <xsl:value-of select="$color.blue"/><xsl:text>; }
+a.figure-zoom:hover .yelp-svg-stroke { stroke: </xsl:text>
+  <xsl:value-of select="$color.blue"/><xsl:text>; }
+a.figure-zoom .figure-zoom-out { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-in { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-out { display: inline-block; }
 div.figure > div.inner > div.region > div.contents {
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   clear: both;
   text-align: center;
   color: </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;
+    <xsl:value-of select="$color.fg"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.background"/><xsl:text>;
+    <xsl:value-of select="$color.bg"/><xsl:text>;
 }
 div.list > div.inner > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
@@ -1149,37 +1361,36 @@ div.listing > div.inner > div.region > div.desc { font-style: italic; }
 div.note {
   padding: 6px;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  display: flex;
+  flex-flow: row;
 }
-div.note > div.inner > div.title {
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
+div.note > * { margin: 0 6px; padding: 0; min-height: 24px; }
+div.note-warning > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
 }
-div.note > div.inner > div.region > div.contents {
-  margin: 0; padding: 0;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
-    <xsl:value-of select="$icons.size.note + 6"/><xsl:text>px;
+div.note-danger {
+  border-color: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
 }
-div.note > div.inner {
-  margin: 0; padding: 0;
-  background-image: url("</xsl:text>
-    <xsl:value-of select="$icons.note"/><xsl:text>");
-  background-position: </xsl:text><xsl:value-of select="$left"/><xsl:text> top;
-  background-repeat: no-repeat;
-  min-height: </xsl:text><xsl:value-of select="$icons.size.note"/><xsl:text>px;
+div.note-important > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
 }
-div.note-advanced > div.inner { <!-- background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.advanced"/><xsl:text>"); --> }
-div.note-bug > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.bug"/><xsl:text>"); }
-div.note-important > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.important"/><xsl:text>"); }
-div.note-tip > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.tip"/><xsl:text>"); }
-div.note-warning > div.inner { background-image: url("</xsl:text>
-  <xsl:value-of select="$icons.note.warning"/><xsl:text>"); }
+div.note-danger > svg .yelp-svg-fill {
+  fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
+  animation-name: yelp-note-danger;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+@keyframes yelp-note-danger {
+  from { fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text> }
+  50%  { fill: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text> }
+  to   { fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text> }
+}
+
+
 div.note-sidebar {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
   max-width: 40%;
@@ -1247,7 +1458,7 @@ div.quote > div.inner:before {
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
   text-align: center;
   color: </xsl:text>
-    <xsl:value-of select="$color.dark_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 div.quote > div.inner > div.title {
   margin: 0;
@@ -1264,37 +1475,30 @@ div.quote > div.inner > div.region > div.cite {
   margin-top: 0.5em;
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: </xsl:text>
     <xsl:value-of select="$icons.size.quote"/><xsl:text>px;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
 }
 div.quote > div.inner > div.region > div.cite::before {
   <!-- FIXME: i18n -->
   content: '&#x2015; ';
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
 }
 div.screen {
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps, ul.steps {
-  margin: 0;
   padding: 0.5em 1em 0.5em 1em;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
-  -moz-box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.yellow"/><xsl:text>;
   box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps .steps {
   padding: 0;
   border: none;
-  background-color: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
+  background-color: unset;
   box-shadow: none;
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
@@ -1305,13 +1509,13 @@ div.synopsis > div.contents, div.synopsis > pre.contents {
   border-top: solid 1px;
   border-bottom: solid 1px;
   border-color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 div.synopsis > div.inner > div.region > div.desc { font-style: italic; }
 div.synopsis div.code {
-  background: none;
+  background: unset;
   border: none;
   padding: 0;
 }
@@ -1319,153 +1523,184 @@ div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
 div.unknown > div.inner > div.region > div.desc { font-style: italic; }
 div.table > div.desc { font-style: italic; }
 tr.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 td.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
 }
 tr.shade td.shade {
-  background-color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 
 span.app { font-style: italic; }
 span.cmd {
-  font-family: monospace;
+  font-family: monospace,monospace; font-size: 0.83em;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   padding: 0 0.2em 0 0.2em;
 }
-span.cmd span.cmd { background-color: none; padding: 0; }
-pre span.cmd { background-color: none; padding: 0; }
+span.cmd span.cmd { background-color: unset; padding: 0; }
+pre span.cmd { background-color: unset; padding: 0; }
 span.code {
-  font-family: monospace;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  font-family: monospace,monospace; font-size: 0.83em;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
 }
 span.code span.code { border: none; }
 pre span.code { border: none; }
 span.em { font-style: italic; }
 span.em-bold {
   font-style: normal; font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 pre span.error {
-  color: </xsl:text><xsl:value-of select="$color.text_error"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.red"/><xsl:text>;
 }
-span.file { font-family: monospace; }
+span.file { font-family: monospace,monospace; font-size: 0.83em; }
 span.gui, span.guiseq { color: </xsl:text>
-  <xsl:value-of select="$color.text_light"/><xsl:text>; }
-span.input { font-family: monospace; }
+  <xsl:value-of select="$color.fg.dark"/><xsl:text>; }
+span.input { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.input {
   font-weight: bold;
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
 kbd {
   font-family: inherit;
   font-size: inherit;
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.gray_background"/><xsl:text>;
+    <xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   border-radius: 2px;
-  -moz-box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
   box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
   margin: 0 0.2em 0 0.2em;
-  padding: 0 0.5em 0 0.5em;
+  padding: 0.2em 0.5em 0 0.5em;
   white-space: nowrap;
 }
 kbd.key-Fn {
   font-weight: bold;
   color: </xsl:text>
-    <xsl:value-of select="$color.blue_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 span.key a {
   border-bottom: none;
 }
 a > kbd {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
-  border-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
+  border-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
 span.keyseq {
   color: </xsl:text>
-    <xsl:value-of select="$color.text_light"/><xsl:text>;
+    <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   white-space: nowrap
 }
-span.output { font-family: monospace; }
+span.output { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.output {
-  color: </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
 pre span.prompt {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
-span.sys { font-family: monospace; }
+span.sys { font-family: monospace,monospace; font-size: 0.83em; }
 span.var { font-style: italic; }
 
 .ui-tile-img .media-controls { display: none; }
 span.media-audio, span.media-video { display: inline-block; }
 audio, video { display: block; margin: 0; }
 div.media > div.inner { display: inline-block; text-align: center; }
-div.media-controls {
+.media-controls {
   min-width: 24em;
   height: 24px;
   margin: 0; padding: 0;
-  border-left: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  border-right: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
-  color: </xsl:text><xsl:value-of select="$color.background"/><xsl:text>;
-  -moz-border-bottom-left-radius: 4px;
-  -moz-border-bottom-right-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -webkit-border-bottom-right-radius: 4px;
+  border-left: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-right: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  display: flex;
+  align-items: center;
 }
-div.media-controls-audio {
-  border-top: solid 1px </xsl:text><xsl:value-of select="$color.text"/><xsl:text>;;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+.media-audio .media-controls {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.media-controls > * {
+  flex: 0 1 auto;
+}
+.media-controls > input.media-range {
+  flex: 1 0 auto;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  margin: 0 10px;
+  -webkit-appearance: none;
+}
+input.media-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+  border-radius: 2px;
+}
+input.media-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  margin-top: -6px;
+}
+input.media-range::-webkit-slider-thumb:hover,
+input.media-range::-webkit-slider-thumb:focus {
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+}
+input.media-range::-moz-range-track {
+  height: 4px;
+  background: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+  border-radius: 2px;
+}
+input.media-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
+  margin-top: -6px;
+}
+.media-controls-audio {
+  border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
   border-radius: 4px;
 }
 button.media-play {
   height: 24px;
   padding: 0 2px 0 2px; line-height: 0;
-  float: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
-  background-color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: none;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
-    <xsl:value-of select="$color.text"/><xsl:text>;;
+    <xsl:value-of select="$color.fg"/><xsl:text>;;
 }
 button.media-play:hover, button.media-play:focus {
-  background-color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+  background-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
-button.media-play canvas { margin: 0; }
-div.media-range {
-  display: inline-block;
-  margin: 2px 8px 0 8px;
-  padding: 0;
-  height: 20px;
-}
-div.media-time {
-  float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
+button.media-play .yelp-svg-fill { fill: </xsl:text>
+  <xsl:value-of select="$color.bg.gray"/><xsl:text>; }
+button.media-play .media-pause { display: none; }
+button.media-play-playing .media-play { display: none; }
+button.media-play-playing .media-pause { display: inline; }
+.media-time {
   margin: 0;
   font-size: 16px;
   height: 24px;
   line-height: 24px;
 }
-div.media-time > span {
+.media-time > span {
   padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 8px;
 }
-span.media-duration {
+.media-duration {
   font-size: 12px;
-  color: </xsl:text><xsl:value-of select="$color.dark_background"/><xsl:text>;
+  color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
   opacity: 0.8;
 }
 div.media-ttml { margin: 0; padding: 0; }
@@ -1483,67 +1718,87 @@ div.media-ttml-p {
   padding: 6px;
   max-width: 24em;
   border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.yellow_border"/><xsl:text>;
+    <xsl:value-of select="$color.fg.yellow"/><xsl:text>;
   background-color: </xsl:text>
-    <xsl:value-of select="$color.yellow_background"/><xsl:text>;
-  -moz-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
-  -webkit-box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
   box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray_border"/><xsl:text>;
+    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.yelp-data { display: none; }
-div.ui-expander > div.inner > div.title span.title,
-div.ui-expander > div.inner > div.hgroup span.title {
+.ui-expander > div.inner > div.title span.title,
+.ui-expander > div.inner > div.hgroup span.title {
   cursor: default;
 }
-div.ui-expander > div.inner > div.title span.title:before,
-div.ui-expander > div.inner > div.hgroup span.title:before {
-  font-size: 2em;
-  font-weight: normal;
+.ui-expander > div.inner > div.title span.title:before,
+.ui-expander > div.inner > div.hgroup span.title:before {
+  font-weight: bold;
   content: "⌃";
   display: inline-block;
-  line-height: 0.2em;
-  vertical-align: bottom;
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
+  margin: 0;
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
+  transform: translateY(0.2em) rotate(0deg);
+  -webkit-transform: translateY(0.2em) rotate(0deg);
+  transition: transform 0.2s linear;
+  transform-origin: 50% 30%;
+  -webkit-transform-origin: 50% 30%;
+  -webkit-transition: -webkit-transform 0.2s linear;
+  margin: 0 0.2em;
 }
-div.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
-div.ui-expander-e > div.inner > div.title span.title:before,
-div.ui-expander-e > div.inner > div.hgroup span.title:before {
-  content: "⌄";
-  vertical-align: top;
+.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
+.ui-expander-e > div.inner > div.title span.title:before,
+.ui-expander-e > div.inner > div.hgroup span.title:before {</xsl:text>
+<xsl:choose>
+<xsl:when test="$direction = 'rtl'">
+  transform: translateY(0.2em) rotate(-180deg);
+  -webkit-transform: translateY(0.2em) rotate(-180deg);
+</xsl:when>
+<xsl:otherwise>
+  transform: translateY(0.2em) rotate(180deg);
+  -webkit-transform: translateY(0.2em) rotate(180deg);
+</xsl:otherwise>
+</xsl:choose><xsl:text>}
+.ui-expander > div.inner > div.title:hover,
+.ui-expander > div.inner > div.hgroup:hover * {
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
-div.ui-expander > div.inner > div.title:hover,
-div.ui-expander > div.inner > div.hgroup:hover * {
-  color: </xsl:text><xsl:value-of select="$color.link"/><xsl:text>;
-}
-div.ui-expander > div.inner > div.hgroup > .subtitle {
+.ui-expander > div.inner > div.hgroup > .subtitle {
   margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2em;
 }
-@media only screen and (max-width: 400px) {
-  div.links {
-    margin-left: 12px;
-    margin-right: 12px;
-  } 
-  li.links { padding: 0; }
-  div.body > div.region > div.contents > div.example,
-  div.body > div.region > div.contents > div.steps,
-  div.body > div.region > div.contents > div.note,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.example,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.steps,
-  div.body > div.region > div.sect > div.inner > div.region > div.contents > div.note {
-    margin-left: 0;
-    margin-right: 0;
+.ui-expander-c > div.inner > div.region {
+  display: none;
+}
+.ui-expander-e > div.inner > div.region {
+  animation-name: yelp-ui-expander-e;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  transform-origin: 0 0;
+}
+@keyframes yelp-ui-expander-e {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@media only screen and (max-width: 480px) {
+  article > div.region > div.contents > div.example,
+  article > div.region > section > div.inner > div.region > div.contents > div.example {
+    margin-left: -10px;
+    margin-right: -10px;
   }
-  div.steps > div.inner > div.title {
-    margin-left: 18px;
-    margin-right: 18px;
+  div.example {
+    padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+    padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 10px;
   }
-  ol.steps, ul.steps {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
+    border-left: none;
+    border-right: none;
   }
   div.note-sidebar {
     float: none;
@@ -1555,8 +1810,23 @@ div.ui-expander > div.inner > div.hgroup > .subtitle {
   }
   div.note-sidebar > div.inner > div.title,
   div.note-sidebar > div.inner > div.region > div.contents {
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  article > div.region > div.contents > div.steps,
+  article > div.region > section > div.inner > div.region > div.contents > div.steps {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  div.steps > div.inner > div.title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  ol.steps, ul.steps {
+    box-shadow: none;
+    padding: 0;
+    padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+    padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 10px;
   }
 }
 </xsl:text>
@@ -1596,15 +1866,56 @@ All parameters can be automatically computed if not provided.
     </xsl:call-template>
   </xsl:param>
   <xsl:if test="$html.syntax.highlight">
-  <xsl:text>
-pre.syntax span.function, pre.syntax span.keyword, pre.syntax span.tag {
-  color: </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
+.hljs a {
+  color: inherit;
+  border-bottom: dotted 1px <xsl:value-of select="$color.fg.blue"/>;
 }
-pre.syntax span.string, pre.syntax span.operator {
-  color: </xsl:text><xsl:value-of select="$color.text_light"/><xsl:text>;
+.hljs a:hover, .hljs a:hover * { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-addition {
+  color: <xsl:value-of select="$color.fg.green"/>;
+  background-color: <xsl:value-of select="$color.bg.green"/>;
 }
-</xsl:text>
-  </xsl:if>
+.hljs-deletion {
+  color: <xsl:value-of select="$color.fg.red"/>;
+  background-color: <xsl:value-of select="$color.bg.red"/>;
+}
+.hljs-emphasis  { font-style: italic; }
+.hljs-strong    { font-weight: bold; }
+.hljs-attr      { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-attribute { color: <xsl:value-of select="$color.fg.yellow"/>; }
+.hljs-built_in  { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-bullet    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-class     { }
+.hljs-code      { }
+.hljs-comment   { color: <xsl:value-of select="$color.fg.gray"/>; }
+.hljs-doctag    { }
+.hljs-formula   { color: <xsl:value-of select="$color.fg.dark"/>; }
+.hljs-function  { }
+.hljs-keyword   { color: <xsl:value-of select="$color.fg.purple"/>; }
+.hljs-link      { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-literal   { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-meta      { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-name      { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-number    { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-params    { color: <xsl:value-of select="$color.fg.orange"/>; }
+.hljs-quote     { color: <xsl:value-of select="$color.fg.gray"/>; }
+.hljs-regexp    { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-rest_arg  { }
+.hljs-section   { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-string    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-subst     { }
+.hljs-symbol    { color: <xsl:value-of select="$color.fg.green"/>; }
+.hljs-tag       { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-title     { color: <xsl:value-of select="$color.fg.blue"/>; }
+.hljs-type      { }
+.hljs-variable  { }
+.hljs-selector-attr  { }
+.hljs-selector-class { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-selector-id    { color: <xsl:value-of select="$color.fg.red"/>; }
+.hljs-selector-tag   { color: <xsl:value-of select="$color.fg.purple"/>; }
+.hljs-template-tag      { }
+.hljs-template-variable { }
+</xsl:if>
 </xsl:template>
 
 
@@ -1642,18 +1953,21 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="1.0" date="2010-12-31" status="final"
+:Revision:version="3.next" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
-template *{html.js.jquery} to output references to jQuery files. It then
-calls *{html.js.custom} to output references to custom JavaScript files.
-Finally, it outputs an HTML #{script} tag and calls *{html.js.content} to
-ouput the contents of that tag.
+templates *{html.js.jquery}, *{html.js.syntax}, and *{html.js.mathjax} to
+output references to external libraries. It then calls *{html.js.custom} to
+output references to custom JavaScript files. Finally, it calls
+*{html.js.script} to output local JavaScript created by *{html.js.content}.
 -->
 <xsl:template name="html.js">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="html.js.jquery">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="html.js.syntax">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
   <xsl:call-template name="html.js.mathjax">
@@ -1662,11 +1976,9 @@ ouput the contents of that tag.
   <xsl:call-template name="html.js.custom">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
-  <script type="text/javascript">
-    <xsl:call-template name="html.js.content">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-  </script>
+  <xsl:call-template name="html.js.script">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -1690,14 +2002,6 @@ output relative to @{html.js.root}.
       <xsl:text>jquery.js</xsl:text>
     </xsl:attribute>
   </script>
-  <xsl:if test="$html.syntax.highlight">
-    <script type="text/javascript">
-      <xsl:attribute name="src">
-        <xsl:value-of select="$html.js.root"/>
-        <xsl:text>jquery.syntax.js</xsl:text>
-      </xsl:attribute>
-    </script>
-  </xsl:if>
 </xsl:template>
 
 
@@ -1725,17 +2029,39 @@ copy, override this template and provide the necessary files.
 
 
 <!--**==========================================================================
-html.js.content
-Output JavaScript content for an HTML output page.
-:Revision:version="3.4" date="2011-11-04" status="final"
+html.js.script
+Output a JavaScript #{script} tag containing local content.
+:Revision:version="3.next" date="2016-01-18" status="final"
 $node: The node to create JavaScript for.
 
-This template is called by *{html.js} to output JavaScript content. It does not
-output an HTML #{script} tag. The JavaScript output by this template or templates
-it calls may depend on the jQuery code referenced by *{html.js.jquery}. This
-template calls the templates *{html.js.core}, *{html.js.ui}, *{html.js.media},
-and *{html.js.syntax}. It then calls the mode
-%{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
+This template is called by *{html.js} to output JavaScript content. It outputs
+a #{script} tag and calls *{html.js.content} to output the contents. To force
+all JavaScript into external files, override this template to output a #{script}
+tag referencing an external file with the #{src} attribute, then output the
+result of *{html.js.content} to that file.
+-->
+<xsl:template name="html.js.script">
+  <xsl:param name="node" select="."/>
+  <script type="text/javascript">
+    <xsl:call-template name="html.js.content">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </script>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.js.content
+Output JavaScript content for an HTML output page.
+:Revision:version="3.next" date="2016-01-18" status="final"
+$node: The node to create JavaScript for.
+
+This template is called by *{html.js.script} to output JavaScript content. It
+does not output an HTML #{script} tag. The JavaScript output by this template
+or templates it calls may depend on the jQuery code referenced by
+*{html.js.jquery}. This template calls the templates *{html.js.core},
+*{html.js.ui}, and *{html.js.media}. It then calls the mode %{html.js.mode}
+on ${node} and calls the template *{html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
@@ -1746,9 +2072,6 @@ and *{html.js.syntax}. It then calls the mode
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
   <xsl:call-template name="html.js.media">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
-  <xsl:call-template name="html.js.syntax">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
   <xsl:apply-templates mode="html.js.mode" select="$node"/>
@@ -1770,32 +2093,21 @@ Currently, it outputs code to highlight a section when #{location.hash} is set.
 <xsl:template name="html.js.core">
   <xsl:param name="node" select="."/>
 <xsl:text>
-var __yelp_generate_id_counter__ = 0;
-function yelp_generate_id () {
-  var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
-  if ($('#' + ret).length != 0)
-    return yelp_generate_id();
-  else
-    return ret;
-};
-$(document).ready (function () {
-  var highlight_hash = function () {
+document.addEventListener('DOMContentLoaded', function() {
+  var yelp_hash_highlight = function () {
     if (location.hash != '') {
-      var sect = $(location.hash);
-      sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
-      window.setTimeout(function () {
-        sect.css({
-          '-webkit-transition': 'background-color 2s linear',
-          '-moz-transition': 'background-color 2s linear',
-          'transition': 'background-color 2s linear',
-          'background-color': 'rgba(1, 1, 1, 0)'
-        });
-      }, 200);
+      var sect = document.querySelector(location.hash);
+      if (sect != null) {
+        sect.classList.add('yelp-hash-highlight');
+        window.setTimeout(function () {
+          sect.classList.remove('yelp-hash-highlight');
+        }, 500);
+      }
     }
-  };
-  $(window).bind('hashchange', highlight_hash);
-  highlight_hash();
-});
+  }
+  window.addEventListener('hashchange', yelp_hash_highlight, false);
+  yelp_hash_highlight();
+}, false);
 </xsl:text>
 </xsl:template>
 
@@ -1812,89 +2124,131 @@ such as expandable blocks and sections.
 <xsl:template name="html.js.ui">
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
-$.fn.yelp_ui_expander_toggle = function (onlyopen, callback) {
-  var expander = $(this);
-  var region = expander.children('.inner').children('.region');
-  var yelpdata = expander.children('div.yelp-data-ui-expander');
-  var compfunc = function () {
-    if (expander.is('div.figure')) { expander.yelp_auto_resize(); }
-    if (callback) { callback(); }
-    return true;
-  };
-  var title = expander.children('.inner').children('.title');
-  if (title.length == 0)
-    title = expander.children('.inner').children('.hgroup');
-  var title = title.find('span.title:first');
-  if (expander.is('.ui-expander-e')) {
-    if (!onlyopen) {
-      expander.removeClass('ui-expander-e').addClass('ui-expander-c');
-      region.attr('aria-expanded', 'false').slideUp('fast', compfunc);
-      title.html(yelpdata.children('div.yelp-title-collapsed').html());
+var __yelp_generate_id_counter__ = 0;
+function yelp_generate_id () {
+  var ret = 'yelp--' + (++__yelp_generate_id_counter__).toString();
+  if (document.getElementById(ret) != null)
+    return yelp_generate_id();
+  else
+    return ret;
+};
+function yelp_ui_expander_init (expander) {
+  var yelpdata = null;
+  var innerdiv = null;
+  var region = null;
+  var title = null;
+  var title_e = null;
+  var title_c = null;
+  var titlespan = null;
+  var issect = false;
+  for (var i = 0; i < expander.children.length; i++) {
+    var child = expander.children[i];
+    if (child.classList.contains('yelp-data-ui-expander')) {
+      yelpdata = child;
+    }
+    else if (child.classList.contains('inner')) {
+      innerdiv = child;
     }
   }
-  else {
-    expander.removeClass('ui-expander-c').addClass('ui-expander-e');
-    region.attr('aria-expanded', 'true').slideDown('fast', compfunc);
-    title.html(yelpdata.children('div.yelp-title-expanded').html());
+  if (innerdiv == null) {
+    return;
   }
-};
-$(document).ready(function () {
-  $('.ui-expander').each(function () {
-    var expander = $(this);
-    var yelpdata = expander.children('div.yelp-data-ui-expander');
-    var region = expander.children('.inner').children('.region');
-    var title = expander.children('.inner').children('.title');
-    var issect = false;
-    if (title.length == 0) {
-      title = expander.children('.inner').children('.hgroup');
+  for (var i = 0; i < innerdiv.children.length; i++) {
+    var child = innerdiv.children[i];
+    if (child.classList.contains('region')) {
+      region = child;
+    }
+    else if (child.classList.contains('title')) {
+      title = child;
+    }
+    else if (child.classList.contains('hgroup')) {
+      title = child;
       issect = true;
     }
-    if (title.length == 0) {
-      return;
+  }
+  if (region == null || title == null) {
+    return;
+  }
+  if (!region.hasAttribute('id')) {
+    region.setAttribute('id', yelp_generate_id());
+  }
+  title.setAttribute('aria-controls', region.getAttribute('id'));
+
+  if (yelpdata != null) {
+    for (var i = 0; i < yelpdata.children.length; i++) {
+      var child = yelpdata.children[i];
+      if (child.classList.contains('yelp-title-expanded')) {
+        title_e = child;
+      }
+      else if (child.classList.contains('yelp-title-collapsed')) {
+        title_c = child;
+      }
     }
-    if (region.attr('id') == '')
-      region.attr('id', yelp_generate_id());
-    title.attr('aria-controls', region.attr('id'));
-    var titlespan = title.find('span.title:first');
-    var title_e = yelpdata.children('div.yelp-title-expanded');
-    var title_c = yelpdata.children('div.yelp-title-collapsed');
-    if (title_e.length == 0)
-      yelpdata.append($('<div class="yelp-title-expanded"></div>').html(titlespan.html()));
-    if (title_c.length == 0)
-      yelpdata.append($('<div class="yelp-title-collapsed"></div>').html(titlespan.html()));
-    if (yelpdata.attr('data-yelp-expanded') == 'false') {
-      expander.addClass('ui-expander-c');
-      region.attr('aria-expanded', 'false').hide();
-      if (title_c.length != 0)
-        titlespan.html(title_c.html());
-    } else {
-      expander.addClass('ui-expander-e');
-      region.attr('aria-expanded', 'true');
-      if (title_e.length != 0)
-        titlespan.html(title_e.html());
+  }
+  titlespan = title.querySelector('span.title');
+  if (titlespan == null) {
+    return;
+  }
+  if (title_e == null) {
+    var node = document.createElement('div');
+    node.className = 'yelp-title-expanded';
+    node.innerHTML = titlespan.innerHTML;
+    yelpdata.appendChild(node);
+    title_e = node;
+  }
+  if (title_c == null) {
+    var node = document.createElement('div');
+    node.className = 'yelp-title-collapsed';
+    node.innerHTML = titlespan.innerHTML;
+    yelpdata.appendChild(node);
+    title_c = node;
+  }
+
+  var ui_expander_toggle = function () {
+    if (yelpdata.getAttribute('data-yelp-expanded') == 'false') {
+      yelpdata.setAttribute('data-yelp-expanded', 'true');
+      expander.classList.remove('ui-expander-e');
+      expander.classList.add('ui-expander-c');
+      region.setAttribute('aria-expanded', 'false');
+      if (title_c != null)
+        titlespan.innerHTML = title_c.innerHTML;
     }
-    title.click(function () {
-      expander.yelp_ui_expander_toggle(false);
-    });
-  });
-});
-$(document).ready(function () {
-  var expand_hash = function () {
-    if (location.hash != '') {
-      var target = $(location.hash);
-      var parents = target.parents('div.ui-expander');
-      if (target.is('div.ui-expander'))
-        parents = parents.andSelf();
-      parents.each(function () {
-        $(this).yelp_ui_expander_toggle(true, function () {
-          window.scrollTo(0, $(target).offset().top);
-        });
-      });
+    else {
+      yelpdata.setAttribute('data-yelp-expanded', 'false');
+      expander.classList.remove('ui-expander-c');
+      expander.classList.add('ui-expander-e');
+      region.setAttribute('aria-expanded', 'true');
+      if (title_e != null)
+        titlespan.innerHTML = title_e.innerHTML;
     }
   };
-  $(window).bind('hashchange', expand_hash);
-  expand_hash();
-});
+  expander.yelp_ui_expander_toggle = ui_expander_toggle;
+  title.addEventListener('click', ui_expander_toggle, false);
+  ui_expander_toggle();
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('.ui-expander');
+  for (var i = 0; i < matches.length; i++) {
+    yelp_ui_expander_init(matches[i]);
+  }
+  var yelp_hash_ui_expand = function () {
+    if (location.hash != '') {
+      var sect = document.querySelector(location.hash);
+      if (sect != null) {
+        for (var cur = sect; cur instanceof Element; cur = cur.parentNode) {
+          if (cur.classList.contains('ui-expander')) {
+            if (cur.classList.contains('ui-expander-c')) {
+              cur.yelp_ui_expander_toggle();
+            }
+          }
+        }
+        sect.scrollIntoView();
+      }
+    }
+  };
+  window.addEventListener('hashchange', yelp_hash_ui_expand, false);
+  yelp_hash_ui_expand();
+}, false);
 ]]></xsl:text>
 </xsl:template>
 
@@ -1912,269 +2266,239 @@ control for audio and video elements as well as support for captions.
   <xsl:param name="node" select="."/>
 <xsl:text><![CDATA[
 yelp_color_text_light = ']]></xsl:text>
-<xsl:value-of select="$color.text_light"/><xsl:text><![CDATA[';
+<xsl:value-of select="$color.fg.dark"/><xsl:text><![CDATA[';
 yelp_color_gray_background = ']]></xsl:text>
-<xsl:value-of select="$color.gray_background"/><xsl:text><![CDATA[';
+<xsl:value-of select="$color.bg.gray"/><xsl:text><![CDATA[';
 yelp_color_gray_border = ']]></xsl:text>
-<xsl:value-of select="$color.gray_border"/><xsl:text><![CDATA[';
-yelp_paint_zoom = function (zoom, zoomed) {
-  var ctxt = zoom.children('canvas')[0].getContext('2d');
-  ctxt.strokeStyle = ctxt.fillStyle = yelp_color_text_light;
-  ctxt.clearRect(0, 0, 10, 10);
-  ctxt.strokeRect(0.5, 0.5, 9, 9);
-  if (zoomed) {
-    ctxt.fillRect(1, 1, 9, 4);
-    ctxt.fillRect(5, 5, 4, 4);
-    zoom.attr('title', zoom.attr('data-zoom-out-title'));
-  }
-  else {
-    ctxt.fillRect(1, 5, 4, 4);
-    zoom.attr('title', zoom.attr('data-zoom-in-title'));
-  }
-}
-$.fn.yelp_auto_resize = function () {
-  var fig = $(this);
-  if (fig.is('img'))
-    fig = fig.parents('div.figure').eq(0);
-  if (fig.data('yelp-zoom-timeout') != undefined) {
-    clearInterval(fig.data('yelp-zoom-timeout'));
-    fig.removeData('yelp-zoom-timeout');
-  }
-  var imgs = fig.find('img');
-  for (var i = 0; i < imgs.length; i++) {
-    var img = $(imgs[i]);
-    if (img.data('yelp-load-bound') == true)
-      img.unbind('load', fig.yelp_auto_resize);
-    if (!imgs[i].complete) {
-      img.data('yelp-load-bound', true);
-      img.bind('load', fig.yelp_auto_resize);
-      return false;
-    }
-  }
-  $(window).unbind('resize', yelp_resize_imgs);
-  var zoom = fig.children('div.inner').children('a.zoom');
-  if (fig.find('div.contents:first').is(':hidden')) {
-    zoom.hide();
-    return;
-  }
-  for (var i = 0; i < imgs.length; i++) {
-    var img = $(imgs[i]);
-    if (img.data('yelp-original-width') == undefined) {
-      var iwidth = parseInt(img.attr('width'));
-      if (!iwidth)
-        iwidth = img[0].width;
-      img.data('yelp-original-width', iwidth);
-      var iheight = parseInt(img.attr('height'));
-      if (!iheight)
-        iheight = img[0].height * (iwidth / img[0].width);
-      img.data('yelp-original-height', iheight);
-    }
-    if (img.data('yelp-original-width') > img.parent().width()) {
-      if (img.data('yelp-zoomed') != true) {
-        img[0].width = img.parent().width();
-        img[0].height = (parseInt(img.data('yelp-original-height')) *
-                         img.width() / parseInt(img.data('yelp-original-width')));
-      }
-      zoom.show();
-    }
-    else {
-      img[0].width = img.data('yelp-original-width');
-      img[0].height = img.data('yelp-original-height');
-      zoom.hide();
-    }
-  }
-  /* The image scaling above can cause the window to resize if it causes
-   * scrollbars to disappear or reapper. Unbind the resize handler before
-   * scaling the image. Don't rebind immediately, because we'll still get
-   * that resize event in an idle. Rebind on the callback instead.
-   */
-  var reresize = function () {
-    $(window).unbind('resize', reresize);
-    $(window).bind('resize', yelp_resize_imgs);
-  }
-  $(window).bind('resize', reresize);
-  return false;
-};
-yelp_resize_imgs = function () {
-  $('div.figure img').parents('div.figure').each(function () {
-    var div = $(this);
-    if (div.data('yelp-zoom-timeout') == undefined)
-      div.data('yelp-zoom-timeout', setTimeout(function () { div.yelp_auto_resize() }, 1));
-  });
-  return false;
-};
-$(document).ready(function () {
-  $('div.figure img').parents('div.figure').each(function () {
-    var fig = $(this);
-    var zoom = fig.children('div.inner').children('a.zoom');
-    zoom.append($('<canvas width="10" height="10"/>'));
-    yelp_paint_zoom(zoom, false);
-    zoom.data('yelp-zoomed', false);
-    zoom.click(function () {
-      var zoomed = !zoom.data('yelp-zoomed');
-      zoom.data('yelp-zoomed', zoomed);
-      zoom.parent().find('img').each(function () {
-        var zimg = $(this);
-        zimg.data('yelp-zoomed', zoomed);
-        if (zoomed) {
-          zimg[0].width = zimg.data('yelp-original-width');
-          zimg[0].height = zimg.data('yelp-original-height');
-        } else {
-          zimg[0].width = zimg.parent().width();
-          zimg[0].height = (parseInt(zimg.data('yelp-original-height')) *
-                            zimg.width() / parseInt(zimg.data('yelp-original-width')));
+<xsl:value-of select="$color.gray"/><xsl:text><![CDATA[';
+function yelp_figure_init (figure) {
+  var zoom = figure.querySelector('a.figure-zoom');
+
+  var figure_resize = function () {
+    var zoomed = zoom.classList.contains('figure-zoomed');
+    var imgs = figure.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      var mediaDiv = null;
+      for (var cur = img; cur instanceof Element; cur = cur.parentNode) {
+        if ((cur.nodeName == 'div' || cur.nodeName == 'DIV') &&
+            cur.classList.contains('media')) {
+          mediaDiv = cur;
+          break;
         }
-        yelp_paint_zoom(zoom, zoomed);
-      });
-      return false;
-    });
-  });
-  yelp_resize_imgs();
-  $(window).bind('resize', yelp_resize_imgs);
-});
-function yelp_init_video (element) {
-  var video = $(element);
-  video.removeAttr('controls');
-
-  var controls = $('<div class="media-controls media-controls-' + element.nodeName + '"></div>');
-  var playControl = $('<button class="media-play"></button>').attr({
-    'data-play-label': video.attr('data-play-label'),
-    'data-pause-label': video.attr('data-pause-label'),
-    'value': video.attr('data-play-label')
-  });
-  var playCanvas = $('<canvas width="20" height="20"></canvas>');
-  playControl.append(playCanvas);
-  var rangeCanvas = $('<canvas width="104" height="20"></canvas>');
-  var rangeCanvasCtxt = rangeCanvas[0].getContext('2d');
-  rangeCanvasCtxt.strokeStyle = yelp_color_gray_border;
-  rangeCanvasCtxt.strokeWidth = 1;
-  rangeCanvasCtxt.strokeRect(0.5, 0.5, 103, 19);
-  var currentSpan = $('<span class="media-current">0:00</span>');
-  var durationSpan = $('<span class="media-duration">-:--</span>');
-  controls.append(playControl,
-                  $('<div class="media-range"></div>').append(rangeCanvas),
-                  $('<div class="media-time"></div>').append(currentSpan, durationSpan));
-  video.after(controls);
-
-  var playCanvasCtxt = playCanvas[0].getContext('2d');
-  var paintPlayButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_gray_background;
-    playCanvasCtxt.clearRect(0, 0, 20, 20);
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(15, 10); playCanvasCtxt.lineTo(5, 5);
-    playCanvasCtxt.fill();
-  }
-  var paintPauseButton = function () {
-    playCanvasCtxt.fillStyle = yelp_color_gray_background;
-    playCanvasCtxt.clearRect(0, 0, 20, 20);
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(5, 5);   playCanvasCtxt.lineTo(9, 5);
-    playCanvasCtxt.lineTo(9, 15);  playCanvasCtxt.lineTo(5, 15);
-    playCanvasCtxt.lineTo(5, 5);   playCanvasCtxt.fill();
-    playCanvasCtxt.beginPath();
-    playCanvasCtxt.moveTo(11, 5);  playCanvasCtxt.lineTo(15, 5);
-    playCanvasCtxt.lineTo(15, 15); playCanvasCtxt.lineTo(11, 15);
-    playCanvasCtxt.lineTo(11, 5);  playCanvasCtxt.fill();
-  }
-  paintPlayButton();
-
-  var video_el = video[0];
-  var mediaChange = function () {
-    if (video_el.ended)
-      video_el.pause()
-    if (video_el.paused) {
-      playControl.attr('value', playControl.attr('data-play-label'));
-      paintPlayButton();
-    }
-    else {
-      playControl.attr('value', playControl.attr('data-pause-label'));
-      paintPauseButton();
-    }
-  }
-  video_el.addEventListener('play', mediaChange, false);
-  video_el.addEventListener('pause', mediaChange, false);
-  video_el.addEventListener('ended', mediaChange, false);
-
-  var playClick = function () {
-    if (video_el.paused || video_el.ended)
-      video_el.play();
-    else
-      video_el.pause();
-  };
-  playControl.click(playClick);
-
-  var ttmlDiv = video.parent().children('div.media-ttml');
-  var ttmlNodes = ttmlDiv.find('.media-ttml-node');
-
-  var timeUpdate = function () {
-    var pct = (element.currentTime / element.duration) * 100;
-    rangeCanvasCtxt.fillStyle = yelp_color_gray_border;
-    rangeCanvasCtxt.clearRect(2, 2, 100, 16);
-    rangeCanvasCtxt.fillRect(2, 2, pct, 16);
-    var mins = parseInt(element.currentTime / 60);
-    var secs = parseInt(element.currentTime - (60 * mins))
-    currentSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
-    ttmlNodes.each(function () {
-      var ttml = this;
-      if (element.currentTime >= parseFloat(ttml.getAttribute('data-ttml-begin')) &&
-          (!ttml.hasAttribute('data-ttml-end') ||
-           element.currentTime < parseFloat(ttml.getAttribute('data-ttml-end')) )) {
-        if (ttml.tagName == 'span' || ttml.tagName == 'SPAN')
-          ttml.style.display = 'inline';
+      }
+      if (mediaDiv == null)
+        continue;
+      if (!img.hasAttribute('data-yelp-original-width')) {
+        var iwidth = null;
+        if (img.hasAttribute('width'))
+          iwidth = parseInt(img.getAttribute('width'));
         else
-          ttml.style.display = 'block';
+          iwidth = img.width;
+        img.setAttribute('data-yelp-original-width', iwidth);
+        var iheight = null;
+        if (img.hasAttribute('height'))
+          iheight = parseInt(img.getAttribute('height'));
+        else
+          iheight = img.height * (iwidth / img.width);
+        img.setAttribute('data-yelp-original-height', iheight);
+      }
+      var owidth = img.width;
+      var oheight = img.height;
+      img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+      img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+      var mediaw = mediaDiv.offsetWidth;
+      img.width = owidth;
+      img.height = oheight;
+      if (parseInt(img.getAttribute('data-yelp-original-width')) <= mediaw) {
+        img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+        img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+        zoom.style.display = 'none';
+      }
+      else if (zoomed) {
+        img.width = parseInt(img.getAttribute('data-yelp-original-width'));
+        img.height = parseInt(img.getAttribute('data-yelp-original-height'));
+        zoom.style.display = 'block';
       }
       else {
-        ttml.style.display = 'none';
+        img.width = mediaw;
+        img.height = (parseInt(img.getAttribute('data-yelp-original-height')) *
+                      img.width /
+                      parseInt(img.getAttribute('data-yelp-original-width')));
+        zoom.style.display = 'block';
       }
-    });
-  };
-  element.addEventListener('timeupdate', timeUpdate, false);
-  var durationUpdate = function () {
-    if (!isNaN(element.duration)) {
-      mins = parseInt(element.duration / 60);
-      secs = parseInt(element.duration - (60 * mins));
-      durationSpan.text(mins + (secs < 10 ? ':0' : ':') + secs);
     }
-  };
-  element.addEventListener('durationchange', durationUpdate, false);
+  }
+  figure.yelp_figure_resize = figure_resize;
+  figure.yelp_figure_resize();
 
-  rangeCanvas.click(function (event) {
-    var pct = event.clientX - Math.floor(rangeCanvas.offset().left);
+  zoom.onclick = function (e) {
+    var zoomed = zoom.classList.contains('figure-zoomed');
+    if (zoomed)
+      zoom.classList.remove('figure-zoomed');
+    else
+      zoom.classList.add('figure-zoomed');
+    figure.yelp_figure_resize();
+    return false;
+  };
+}
+window.addEventListener('load', function() {
+  var figures = document.querySelectorAll('div.figure');
+  for (var i = 0; i < figures.length; i++) {
+    if (figures[i].querySelector('img') != null)
+      yelp_figure_init(figures[i]);
+  }
+  var timeout = null;
+  var yelp_figures_resize = function () {
+    if (timeout != null)
+      return;
+    timeout = window.setTimeout(function () {
+      for (var i = 0; i < figures.length; i++) {
+        if (figures[i].querySelector('img') != null)
+          figures[i].yelp_figure_resize();
+      }
+      window.clearTimeout(timeout);
+      timeout = null;
+    }, 100);
+  };
+  window.addEventListener('resize', yelp_figures_resize, false);
+}, false);
+function yelp_media_init (media) {
+  media.removeAttribute('controls');
+  if (media.parentNode.classList.contains('links-tile-img')) {
+    return;
+  }
+
+  media.addEventListener('click', function () {
+    if (media.paused)
+      media.play();
+    else
+      media.pause();
+  }, false);
+
+  var controls = null;
+  for (var cur = media.nextSibling; cur instanceof Element; cur = cur.nextSibling) {
+    if (cur.classList.contains('media-controls')) {
+      controls = cur;
+      break;
+    }
+  }
+  if (controls == null) {
+    media.setAttribute('controls', 'controls');
+    return;
+  }
+  var playbutton = controls.querySelector('button.media-play');
+  playbutton.addEventListener('click', function () {
+    if (media.paused || media.ended)
+      media.play();
+    else
+      media.pause();
+  }, false);
+
+  var mediachange = function () {
+    if (media.ended)
+      media.pause()
+    if (media.paused) {
+      playbutton.setAttribute('value', playbutton.getAttribute('data-play-label'));
+      playbutton.classList.remove('media-play-playing');
+    }
+    else {
+      playbutton.setAttribute('value', playbutton.getAttribute('data-pause-label'));
+      playbutton.classList.add('media-play-playing');
+    }
+  }
+  media.addEventListener('play', mediachange, false);
+  media.addEventListener('pause', mediachange, false);
+  media.addEventListener('ended', mediachange, false);
+
+  var mediarange = controls.querySelector('input.media-range');
+  mediarange.addEventListener('input', function () {
+    var pct = this.value;
     if (pct < 0)
       pct = 0;
     if (pct > 100)
       pct = 100;
-    element.currentTime = (pct / 100.0) * element.duration;
-  });
+    media.currentTime = (pct / 100.0) * media.duration;
+  }, false);
+  var curspan = controls.querySelector('span.media-current');
+  var durspan = controls.querySelector('span.media-duration');
+  var durationUpdate = function () {
+    if (!isNaN(media.duration)) {
+      mins = parseInt(media.duration / 60);
+      secs = parseInt(media.duration - (60 * mins));
+      durspan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    }
+  };
+  media.addEventListener('durationchange', durationUpdate, false);
+
+  var ttmlDiv = null;
+  var ttmlNodes = null;
+  for (var i = 0; i < media.parentNode.children.length; i++) {
+    var child = media.parentNode.children[i];
+    if (child.classList.contains('media-ttml'))
+      ttmlDiv = child;
+  }
+  if (ttmlDiv != null) {
+    ttmlNodes = ttmlDiv.querySelectorAll('.media-ttml-node');
+  }
+
+  var timeUpdate = function () {
+    var pct = (media.currentTime / media.duration) * 100;
+    mediarange.value = pct;
+    var mins = parseInt(media.currentTime / 60);
+    var secs = parseInt(media.currentTime - (60 * mins))
+    curspan.textContent = (mins + (secs < 10 ? ':0' : ':') + secs);
+    if (ttmlNodes != null) {
+      for (var i = 0; i < ttmlNodes.length; i++) {
+        var ttml = ttmlNodes[i];
+        if (media.currentTime >= parseFloat(ttml.getAttribute('data-ttml-begin')) &&
+            (!ttml.hasAttribute('data-ttml-end') ||
+             media.currentTime < parseFloat(ttml.getAttribute('data-ttml-end')) )) {
+          if (ttml.tagName == 'span' || ttml.tagName == 'SPAN')
+            ttml.style.display = 'inline';
+          else
+            ttml.style.display = 'block';
+        }
+        else {
+          ttml.style.display = 'none';
+        }
+      }
+    }
+  };
+  media.addEventListener('timeupdate', timeUpdate, false);
 };
-$(document).ready(function () {
-  $('video, audio').each(function () { yelp_init_video(this) });;
-});
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('video, audio');
+  for (var i = 0; i < matches.length; i++) {
+    yelp_media_init(matches[i]);
+  }
+}, false);
 ]]></xsl:text>
 </xsl:template>
 
 
 <!--**==========================================================================
 html.js.syntax
-Output JavaScript for syntax highlighting
-:Revision: version="1.0" date="2011-04-16" status="final"
+Output #{script} elements for syntax highlighting.
+:Revision: version="3.22" date="2016-01-03" status="final"
 $node: The node to create JavaScript for.
 
-This template outputs JavaScript that does syntax highlighting. JavaScript
-@{html.syntax.highlight} is #{true}. Note that this content just initializes
-the syntax highlighting. The real work is done by #{jquery.syntax.js}, which
-is included by *{html.js.syntax}.
+This template outputs HTML #{script} elements to enable syntax highlighting.
+It only outputs if @{html.syntax.highlight} is #{true}. It outputs one #{script}
+element to load in #{highlight.js}, and another to initialize #{highlight.js}
+on all #{code} elements with #{"syntax"} in the class value.
 -->
 <xsl:template name="html.js.syntax">
   <xsl:param name="node" select="."/>
   <xsl:if test="$html.syntax.highlight">
-<xsl:text><![CDATA[
-$(document).ready( function () { jQuery.syntax({root: ']]></xsl:text>
-<xsl:value-of select="$html.js.root"/><xsl:text><![CDATA[', blockLayout: 'yelp',
-theme: false, linkify: false}); });
-]]></xsl:text>
+  <script type="text/javascript" src="{$html.js.root}highlight.pack.js"></script>
+  <script><![CDATA[
+document.addEventListener('DOMContentLoaded', function() {
+  var matches = document.querySelectorAll('code.syntax')
+  for (var i = 0; i < matches.length; i++) {
+    hljs.highlightBlock(matches[i]);
+  }
+}, false);]]></script>
   </xsl:if>
 </xsl:template>
 
@@ -2316,79 +2640,79 @@ if ${dir} is non-empty.
 <!--**==========================================================================
 html.syntax.class
 Output HTML class values for syntax highlighting.
-:Revision:version="3.12" date="2013-11-02" status="final"
+:Revision:version="3.22" date="2016-01-03" status="final"
 $node: The source element whose content will be syntax highlighted.
-$mime: A MIME type identifying the content, as from a Mallard #{mime} attribute.
-$language: A name identifying the content as from a DocBook #{language} attribute.
 
-This template looks at ${mime} and ${language} and determines if there is a
-suitable syntax highlighting brush available. If so, it outputs a string that
-should be placed in the #{class} attribute of a #{pre} element by the calling
-template.
+This template calls %{html.syntax.class.mode} on ${node}. If the result of that
+mode is a suitable language identifier, it outputs appropriate CSS class names
+to enable syntax highlighting. The output should be placed in the #{class}
+attribute of a #{pre} or similar output element by the calling template.
+
+Importing stylesheets should implement %{html.syntax.class.mode} for any source
+elements that may be syntax highlighted, then call this template when building
+the #{class} attribute for output elements.
 -->
 <xsl:template name="html.syntax.class">
   <xsl:param name="node" select="."/>
-  <xsl:param name="mime" select="$node/@mime"/>
-  <xsl:param name="language" select="$node/@language"/>
-  <xsl:choose>
-    <xsl:when test="$mime = 'application/x-shellscript' or $language = 'bash'">
-      <xsl:text>syntax brush-bash-script</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-csrc' or $mime = 'text/x-chdr' or
-                    $mime = 'text/x-c++hdr' or $mime = 'text/x-c++src' or
-                    $mime = 'text/x-objcsrc' or $language = 'c' or
-                    $language = 'cpp' or $language = 'objc'">
-      <xsl:text>syntax brush-clang</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-csharp' or $language = 'csharp'">
-      <xsl:text>syntax brush-csharp</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/css' or $language = 'css'">
-      <xsl:text>syntax brush-css</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-patch' or $language = 'diff'">
-      <xsl:text>syntax brush-diff</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/html' or $mime = 'application/xml' or
-                    substring($mime, string-length($mime) - 3) = '+xml' or
-                    $language = 'html' or $language = 'xml'">
-      <xsl:text>syntax brush-html</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-java' or $language = 'java'">
-      <xsl:text>syntax brush-java</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/javascript' or $language = 'javascript'">
-      <xsl:text>syntax brush-javascript</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-scheme' or $mime = 'text/x-emacs-lisp' or
-                    $language = 'lisp'">
-      <xsl:text>syntax brush-lisp</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-lua' or $language = 'lua'">
-      <xsl:text>syntax brush-lua</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-pascal' or $language = 'pascal'">
-      <xsl:text>syntax brush-pascal</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-perl' or $language = 'perl'">
-      <xsl:text>syntax brush-perl5</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-php' or $language = 'php'">
-      <xsl:text>syntax brush-php-script</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-python' or $language = 'python'">
-      <xsl:text>syntax brush-python</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-ruby' or $language = 'ruby'">
-      <xsl:text>syntax brush-ruby</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'text/x-sql' or $language = 'sql'">
-      <xsl:text>syntax brush-sql</xsl:text>
-    </xsl:when>
-    <xsl:when test="$mime = 'application/x-yaml' or $language = 'yaml'">
-      <xsl:text>syntax brush-yaml</xsl:text>
-    </xsl:when>
-  </xsl:choose>
+  <xsl:variable name="class">
+    <xsl:apply-templates mode="html.syntax.class.mode" select="$node"/>
+  </xsl:variable>
+  <xsl:if test="normalize-space($class) != ''">
+    <xsl:text>syntax language-</xsl:text>
+    <xsl:value-of select="$class"/>
+  </xsl:if>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.syntax.class.mode
+Get the syntax highlighting language for a source-specific element.
+:Revision:version="3.22" date="2016-01-03" status="final"
+
+This mode is called by *{html.syntax.class} on source elements that may have
+syntax highlighted. This template should be implemented by importing stylesheets.
+It should return a simple language identifier.
+-->
+<xsl:template mode="html.syntax.class.mode" match="*"/>
+
+
+<!--**==========================================================================
+html.media.controls
+Output media controls for a video or audio object.
+:Revision:version="3.22" date="2016-02-12" status="final"
+
+This template outputs HTML containing controls for a media play for audio or
+video HTML elements. To work with the built-in JavaScript binding code, it
+should be placed immediately after the #{audio} or #{video} element.
+-->
+<xsl:template name="html.media.controls">
+  <xsl:param name="type" select="'video'"/>
+  <span class="media-controls media-controls-{$type}">
+    <button class="media-play">
+      <xsl:attribute name="data-play-label">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Play'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="data-pause-label">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Pause'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:attribute name="value">
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Play'"/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:call-template name="icons.svg.media.play"/>
+      <xsl:call-template name="icons.svg.media.pause"/>
+    </button>
+    <input type="range" class="media-range" value="0"/>
+    <span class="media-time">
+      <span class="media-current">0:00</span>
+      <span class="media-duration">-:--</span>
+    </span>
+  </span>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -1,4 +1,4 @@
-SUBDIRS = domains
+SUBDIRS = domains icons
 
 xsldir=$(datadir)/yelp-xsl/xslt/common
 

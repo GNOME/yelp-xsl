@@ -135,9 +135,9 @@ and "Next", although the actual page titles are used for tooltips.
   </xsl:variable>
   <xsl:variable name="prev_node" select="key('db.id.key', $prev_id)"/>
   <xsl:variable name="next_node" select="key('db.id.key', $next_id)"/>
-  <div class="links nextlinks">
+  <nav class="prevnext pagewide"><div class="inner">
     <xsl:if test="$prev_id != ''">
-      <a class="nextlinks-prev">
+      <a>
         <xsl:attribute name="href">
           <xsl:call-template name="db.xref.target">
             <xsl:with-param name="linkend" select="$prev_id"/>
@@ -156,8 +156,9 @@ and "Next", although the actual page titles are used for tooltips.
         </xsl:call-template>
       </a>
     </xsl:if>
-    <xsl:if test="$next_id != ''">
-      <a class="nextlinks-next">
+    <xsl:choose>
+    <xsl:when test="$next_id != ''">
+      <a>
         <xsl:attribute name="href">
           <xsl:call-template name="db.xref.target">
             <xsl:with-param name="linkend" select="$next_id"/>
@@ -174,8 +175,16 @@ and "Next", although the actual page titles are used for tooltips.
           <xsl:with-param name="msgid" select="'Next'"/>
         </xsl:call-template>
       </a>
-    </xsl:if>
-  </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <span>
+        <xsl:call-template name="l10n.gettext">
+          <xsl:with-param name="msgid" select="'Next'"/>
+        </xsl:call-template>
+      </span>
+    </xsl:otherwise>
+    </xsl:choose>
+  </div></nav>
 </xsl:template>
 
 
