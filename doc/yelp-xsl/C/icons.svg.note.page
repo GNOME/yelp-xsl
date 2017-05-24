@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.note" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.26" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a note icon.</desc></info><title>icons.svg.note</title><p>Output an <code>svg</code> element for a note icon.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>style</code></title>
+      <p>The style of the note.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template outputs an SVG <code>svg</code> element with an icon suitable for notes and other types of admonitions. It takes a <code style="xslt-param">style</code> parameter specifying a note style. The default style is <code>"note"</code>. This template uses the <code style="xslt-param">style</code> parameter to determine which specific template to call to output the SVG content.</p>
+  <p>SVG icons can use CSS class names to pick up colors from the <file xref="colors">colors</file> module.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="icons.svg.note.advanced"/></p></item></list></page>

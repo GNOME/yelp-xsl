@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.note.caution" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.26" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a caution note icon.</desc></info><title>icons.svg.note.caution</title><p>Output an <code>svg</code> element for a caution note icon.</p>
+  
+  
+  <p>This template outputs an SVG <code>svg</code> element with an icon suitable for notes with cautionary information.</p>
+  <p>SVG icons can use CSS class names to pick up colors from the <file xref="colors">colors</file> module. By default, this icon uses the <code>yelp-svg-fill</code> class name.</p>
+<list style="compact"><title>Calls Modes</title><item><p><link xref="icons.svg.mode"/></p></item></list></page>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.hex2dec" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Convert a hexidecimal number to decimal.</desc></info><title>color.hex2dec</title><p>Convert a hexidecimal number to decimal.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>hex</code></title>
+      <p>The hexidecimal number to convert to decimal.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template converts a hexidecimal number to decimal. It's useful for getting the numeric values of color components in a hexidecimal color code.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="color.hex2dec"/></p></item></list></page>

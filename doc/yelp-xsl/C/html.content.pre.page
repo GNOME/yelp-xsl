@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.content.pre" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.26" date="2016-06-21" status="final"/><desc>Output content before the content of a page or section.</desc></info><title>html.content.pre</title><p>Output content before the content of a page or section.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node a page or section is being created for.</p>
+    </item>
+    <item>
+      <title><code>page</code></title>
+      <p>Whether the content is for a page.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by importing stylesheets before any content of a page or section, but after the title. It calls <code style="xslt-template" xref="html.content.pre.custom">html.content.pre.custom</code>, then applies <code style="xslt-mode" xref="html.content.pre.mode">html.content.pre.mode</code> to <code style="xslt-param">node</code>. If the <code style="xslt-param">page</code> parameter is true, then this template is being called on an output page. Otherwise, it is being called on a section within a page.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.content.pre.custom"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.content.pre.mode"/></p></item></list></page>

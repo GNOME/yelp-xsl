@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.media.controls" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.26" date="2016-02-12" status="final"/><desc>Output media controls for a video or audio object.</desc></info><title>html.media.controls</title><p>Output media controls for a video or audio object.</p>
+  
+  
+  <p>This template outputs HTML containing controls for a media play for audio or video HTML elements. To work with the built-in JavaScript binding code, it should be placed immediately after the <code>audio</code> or <code>video</code> element.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="icons.svg.media.play"/></p></item></list></page>

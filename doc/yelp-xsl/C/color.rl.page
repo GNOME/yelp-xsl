@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.rl" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Get the relative luminance of a color.</desc></info><title>color.rl</title><p>Get the relative luminance of a color.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>color</code></title>
+      <p>A color specified in hexidecimal, <code>rgb()</code>, or <code>rgba()</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template calculates the relative luminance of a color, returning a number between 0.0 and 1.0. The relative luminance is used when calculating color contrast. The relative luminance algorithm is defined by the WCAG:</p>
+  <p>http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef</p>
+  <p>This template accepts six-digit and three-digit hexidecimal color codes, colors specified with <code>rgb()</code>, and colors specified with <code>rgba()</code>. It does not accept HSL or named HTML colors.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="color.r"/></p></item></list></page>

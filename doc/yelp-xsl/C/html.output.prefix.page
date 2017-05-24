@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.output.prefix" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="3.26" date="2017-05-24" status="final"/><desc>An optional path prefix for files output with <code style="xslt-template" xref="html.output">html.output</code>.</desc></info><title>html.output.prefix</title><p>An optional path prefix for files output with <code style="xslt-template" xref="html.output">html.output</code>.</p>
+  
+  
+  <p>This parameter allows you to specify an prefix to place before the output path used by <code style="xslt-template" xref="html.output">html.output</code> when creating files. You can use this to override the output directory. Make sure you include a trailing slash, unless you want to prefix the base file name itself.</p>
+</page>

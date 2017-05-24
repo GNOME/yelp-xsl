@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.red" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>A red accent color.</desc></info><title>color.red</title><p>A red accent color.</p>
+  
+  
+  <p>This parameter specifies a shade of red that is suitable for borders and other accents. It should have some contrast against background colors, but it does not need as high of a contrast as text colors.</p>
+</page>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.fg" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>The primary text color.</desc></info><title>color.fg</title><p>The primary text color.</p>
+  
+  
+  <p>This parameters specifies the normal color of text. It should have a high color contrast against <code style="xslt-param" xref="color.bg">color.bg</code>. Other text colors can be automatically computed based on this color.</p>
+</page>

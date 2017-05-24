@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="color.contrast" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Get the contrast between two colors.</desc></info><title>color.contrast</title><p>Get the contrast between two colors.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>bg</code></title>
+      <p>A color specified in hexidecimal, <code>rgb()</code>, or <code>rgba()</code>.</p>
+    </item>
+    <item>
+      <title><code>fg</code></title>
+      <p>A color specified in hexidecimal, <code>rgb()</code>, or <code>rgba()</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template calculates the contrast ratio between colors. The contrast ratio is a number between 1 and 21. The algorithm is defined by the WCAG:</p>
+  <p>http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef</p>
+  <p>This template calls <code style="xslt-template" xref="color.rl">color.rl</code> to get the relative luminance of <code style="xslt-param">bg</code> and <code style="xslt-param">fg</code>. It accepts six-digit and three-digit hexidecimal color codes, colors specified with <code>rgb()</code>, and colors specified with <code>rgba()</code>. It does not accept HSL or named HTML colors. Note that it does not take the alpha value into account when calculating the contrast ratio. Semi-transparent colors will have a lower actual contrast ratio than what is reported by this template.</p>
+  <p>The WCAG recommends a contrast ratio of at least 4.5 for normal text, and a ratio of at least 3.0 for large-scale text.</p>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="color.rl"/></p></item></list></page>
