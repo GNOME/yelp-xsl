@@ -9,4 +9,4 @@
     </item>
   </terms></synopsis>
   <p>This template outputs JavaScript to support basic features used by all documents. Currently, it outputs code to highlight a section when <code>location.hash</code> is set.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="color.yellow_background"/></p></item></list></page>
+</page>

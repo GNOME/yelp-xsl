@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.text_light" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The light text color.</desc></info><title>color.text_light</title><p>The light text color.</p>
-  
-  
-  <p>This parameter specifies the color for light text.  The light text color is used to make bold headings and certain parenthetical text less intense.  It should be legible on all background colors.</p>
-</page>

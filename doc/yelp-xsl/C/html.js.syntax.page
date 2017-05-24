@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2011-04-16" status="final"/><desc>Output JavaScript for syntax highlighting</desc></info><title>html.js.syntax</title><p>Output JavaScript for syntax highlighting</p>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Output <code>script</code> elements for syntax highlighting.</desc></info><title>html.js.syntax</title><p>Output <code>script</code> elements for syntax highlighting.</p>
   
   
   <synopsis><title>Parameters</title><terms>
@@ -8,5 +8,5 @@
       <p>The node to create JavaScript for.</p>
     </item>
   </terms></synopsis>
-  <p>This template outputs JavaScript that does syntax highlighting. JavaScript <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>. Note that this content just initializes the syntax highlighting. The real work is done by <code>jquery.syntax.js</code>, which is included by <code style="xslt-template" xref="html.js.syntax">html.js.syntax</code>.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="html.js.root"/></p></item><item><p><link xref="html.syntax.highlight"/></p></item></list></page>
+  <p>This template outputs HTML <code>script</code> elements to enable syntax highlighting. It only outputs if <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>. It outputs one <code>script</code> element to load in <code>highlight.js</code>, and another to initialize <code>highlight.js</code> on all <code>code</code> elements with <code>"syntax"</code> in the class value.</p>
+<list style="compact"><title>Calls Parameters</title><item><p><link xref="html.syntax.highlight"/></p></item></list></page>

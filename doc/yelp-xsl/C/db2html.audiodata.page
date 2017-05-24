@@ -9,4 +9,4 @@
     </item>
   </terms></synopsis>
   <p>This template creates an <code>audio</code> element in the HTML output. This template calls <code style="xslt-template" xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code> for the contents of the <code>audio</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.mediaobject.fallback"/></p></item></list></page>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.mediaobject.fallback"/></p></item><item><p><link xref="html.media.controls"/></p></item></list></page>

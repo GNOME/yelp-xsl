@@ -1,12 +1,2 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="mal-gloss" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="mal"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-defines-template" xref="mal.gloss.match"/><link type="xslt-defines-template" xref="mal.gloss.terms"/></info><title>Mallard Glossaries</title><p>Common templates for the Mallard Glossary extension.</p>
-  
-  
-  <p>This stylesheet contains utility templates for locating and linking to terms with the Mallard Glossary extension.</p>
-
-
-
-
-
-
-<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>
+<page xmlns="http://projectmallard.org/1.0/" id="mal-gloss" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="mal"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-defines-template" xref="mal.gloss.match"/><link type="xslt-defines-template" xref="mal.gloss.terms"/></info><title>Mallard Glossaries</title><p>Common templates for the Mallard Glossary extension.</p><p>This stylesheet contains utility templates for locating and linking to terms with the Mallard Glossary extension.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>

@@ -1,25 +1,2 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="l10n" type="guide" style="xslt-stylesheet"><?xslt-private l10n.gettext.msg?><?xslt-private l10n.gettext.msgstr?><info><link type="guide" xref="stylesheets" group="l10n"/><revision version="3.18" date="2015-07-24" status="final"/><link type="xslt-defines-template" xref="l10n.gettext"/><link type="xslt-defines-template" xref="l10n.plural.form"/><link type="xslt-defines-template" xref="l10n.direction"/><link type="xslt-defines-template" xref="l10n.align.start"/><link type="xslt-defines-template" xref="l10n.align.end"/><link type="xslt-implements-mode" xref="l10n.format.mode"/><link type="xslt-defines-param" xref="l10n.locale"/></info><title>Localized Strings</title><p>Templates for translated strings, with format strings and plural forms.</p>
-  
-  
-  <p>This stylesheet contains templates for getting localized strings, including format strings and plural forms. Format strings are important for proper localization, as constructing sentences from concatenation often produces poor results in many languages.</p>
-  <p>By default, the templates in this stylesheet work on the translations shipped with yelp-xsl, but the templates can be reused by yelp-xsl extensions (or even entirely separate stylesheets) by installing XML files with the translations under the domains subdirectory of the directory holding this file. The format of the file is designed to work well with itstool's join mode.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Keys</title><item><p><link xref="l10n.msgstr.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="l10n.locale"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:node</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:string</code></p></td></tr></tbody></table></page>
+<page xmlns="http://projectmallard.org/1.0/" id="l10n" type="guide" style="xslt-stylesheet"><?xslt-private l10n.gettext.msg?><?xslt-private l10n.gettext.msgstr?><info><link type="guide" xref="stylesheets" group="l10n"/><revision version="3.18" date="2015-07-24" status="final"/><link type="xslt-defines-template" xref="l10n.gettext"/><link type="xslt-defines-template" xref="l10n.plural.form"/><link type="xslt-defines-template" xref="l10n.direction"/><link type="xslt-defines-template" xref="l10n.align.start"/><link type="xslt-defines-template" xref="l10n.align.end"/><link type="xslt-implements-mode" xref="l10n.format.mode"/><link type="xslt-defines-param" xref="l10n.locale"/></info><title>Localized Strings</title><p>Templates for translated strings, with format strings and plural forms.</p><p>This stylesheet contains templates for getting localized strings, including format strings and plural forms. Format strings are important for proper localization, as constructing sentences from concatenation often produces poor results in many languages.</p><p>By default, the templates in this stylesheet work on the translations shipped with yelp-xsl, but the templates can be reused by yelp-xsl extensions (or even entirely separate stylesheets) by installing XML files with the translations under the domains subdirectory of the directory holding this file. The format of the file is designed to work well with itstool's join mode.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Keys</title><item><p><link xref="l10n.msgstr.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="l10n.locale"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:node</code></p></td></tr><tr><td><p><link xref="l10n.format.mode">l10n.format.mode</link></p></td><td><p><code>msg:string</code></p></td></tr></tbody></table></page>

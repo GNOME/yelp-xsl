@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.blue_background" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The blue background color.</desc></info><title>color.blue_background</title><p>The blue background color.</p>
-  
-  
-  <p>This parameter specifies the blue background color.  The blue background color may be used by certain types of block elements. Foreground colors should be legible on this color.</p>
-</page>

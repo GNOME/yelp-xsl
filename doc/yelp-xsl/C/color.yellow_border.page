@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.yellow_border" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The yellow border color.</desc></info><title>color.yellow_border</title><p>The yellow border color.</p>
-  
-  
-  <p>This parameter specifies the yellow border color.  The yellow border color may be used by certain types of block elements.</p>
-</page>

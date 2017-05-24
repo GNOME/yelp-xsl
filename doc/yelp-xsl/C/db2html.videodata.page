@@ -9,4 +9,4 @@
     </item>
   </terms></synopsis>
   <p>This template creates a <code>video</code> element in the HTML output. If the containing <code>mediaobject</code> or <code>inlinemediaobject</code> element has an <code>imageobject</code> with the <code>role</code> attribute set to <code>"poster"</code>, that image will be used for the <code>poster</code> attribute on the HTML <code>video</code> element. This template calls <code style="xslt-template" xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code> for the contents of the <code>video</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.mediaobject.fallback"/></p></item></list></page>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.mediaobject.fallback"/></p></item><item><p><link xref="html.media.controls"/></p></item></list></page>

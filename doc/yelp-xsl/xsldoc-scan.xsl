@@ -44,7 +44,7 @@ free software.
                 xmlns:xsldoc="http://projects.gnome.org/yelp/xsldoc/"
                 xmlns="http://projectmallard.org/1.0/"
                 extension-element-prefixes="exsl"
-                exclude-result-prefixes="mal set xsldoc"
+                exclude-result-prefixes="mal set xsldoc str"
                 version="1.0">
 
 <xsl:param name="xsldoc.id"/>
@@ -330,7 +330,7 @@ free software.
         <xsl:copy-of select="mal:info/mal:desc/node()"/>
       </p>
     </xsl:if>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="*"/>
     <links type="topic" groups="stylesheets" style="linklist">
       <title>Stylesheets</title>
     </links>

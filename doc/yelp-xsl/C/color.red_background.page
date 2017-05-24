@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.red_background" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="1.0" date="2010-05-25" status="final"/><desc>The red background color.</desc></info><title>color.red_background</title><p>The red background color.</p>
-  
-  
-  <p>This parameter specifies the red background color.  The red background color may be used by certain types of block elements. Foreground colors should be legible on this color.</p>
-</page>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.header.custom" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><link type="guide" xref="stubs" group="html"/><revision version="1.0" date="2011-10-27" status="final"/><desc>Stub to output custom header content.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>html.header.custom</title><p>Stub to output custom header content.</p><note><p>This template is a stub. Customizations may override it for
+<page xmlns="http://projectmallard.org/1.0/" id="html.header.custom" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><link type="guide" xref="stubs" group="html"/><revision version="3.26" date="2017-05-24" status="final"/><desc>Stub to output custom header content.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>html.header.custom</title><p>Stub to output custom header content.</p><note><p>This template is a stub. Customizations may override it for
             additional functionality.</p></note>
   
   
@@ -9,5 +9,5 @@
       <p>The node a page is being created for.</p>
     </item>
   </terms></synopsis>
-  <p>This template is a stub, called by <code style="xslt-template" xref="html.page">html.page</code>. It is called inside the header div, before <code style="xslt-mode" xref="html.header.mode">html.header.mode</code> is applied to <code style="xslt-param">node</code>. You can override this template to provide additional content at the top of the page.</p>
+  <p>This template is a stub, called by <code style="xslt-template" xref="html.page">html.page</code>. It is called inside the <code>header</code> element, before <code style="xslt-mode" xref="html.header.mode">html.header.mode</code> is applied to <code style="xslt-param">node</code>. You can override this template to provide additional content above the main content.</p>
 </page>

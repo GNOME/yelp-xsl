@@ -23,7 +23,11 @@
       <title><code>titleattr</code></title>
       <p>An optional value for the HTML <code>title</code> attribute.</p>
     </item>
+    <item>
+      <title><code>icon</code></title>
+      <p>An icon for the block, as a copyable node set.</p>
+    </item>
   </terms></synopsis>
   <p>This template outputs HTML for a formal DocBook element, one that can have a title or caption. It passes the <code style="xslt-param">class</code> parameter to <code style="xslt-template" xref="html.class.attr">html.class.attr</code>. If the <code style="xslt-param">class</code> parameter is not provided, it uses the local name of <code style="xslt-param">node</code>. Even if <code style="xslt-param">title</code> and <code style="xslt-param">caption</code> are both empty, this template still outputs the extra wrapper elements for formal elements. If <code style="xslt-param">titleattr</code> is provided, it is used for the value of the HTML <code>title</code> attribute on the outermost <code>div</code> element.</p>
   <p>This template handles conditional processing.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.block.title"/></p></item></list></page>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="icons.svg.figure.zoom.in"/></p></item><item><p><link xref="db2html.block.title"/></p></item></list></page>

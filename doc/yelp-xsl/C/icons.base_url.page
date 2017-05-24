@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.base_url" type="topic" style="xslt-param"><info><link type="guide" xref="icons" group="parameters"/><link type="guide" xref="parameters" group="icons"/><revision version="1.0" date="2010-01-26" status="final"/><desc>The default URL prefix for all icons.</desc></info><title>icons.base_url</title><p>The default URL prefix for all icons.</p>
-  
-  
-  <p>This parameter provides a default URL prefix. All icon locations in this stylesheet reference files directly under this URL prefix by default. If you override the individual icon parameters in this stylesheet, this parameter has no effect. This parameter should end with a trailing slash.</p>
-</page>

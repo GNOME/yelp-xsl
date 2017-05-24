@@ -1,20 +1,2 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:str="http://exslt.org/strings" id="mal-if" type="guide" style="xslt-stylesheet"><?xslt-private _mal.if.test.check_token?><?xslt-private _mal.if.test.flatten_token?><info><link type="guide" xref="stylesheets" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-template" xref="mal.if.test"/><link type="xslt-defines-param" xref="mal.if.target"/><link type="xslt-defines-param" xref="mal.if.platform"/><link type="xslt-defines-param" xref="mal.if.features"/><link type="xslt-defines-param" xref="mal.if.custom"/><link type="xslt-defines-param" xref="mal.if.maybe"/></info><title>Mallard Conditionals</title><p>Support for run-time conditional processing.</p>
-  
-  
-  <p>This stylesheet contains utilities for handling conditional processing in Mallard documents.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.if.custom"/></p></item><item><p><link xref="mal.if.features"/></p></item><item><p><link xref="mal.if.maybe"/></p></item><item><p><link xref="mal.if.platform"/></p></item><item><p><link xref="mal.if.target"/></p></item></list></page>
+<page xmlns="http://projectmallard.org/1.0/" id="mal-if" type="guide" style="xslt-stylesheet"><?xslt-private _mal.if.test.check_token?><?xslt-private _mal.if.test.flatten_token?><info><link type="guide" xref="stylesheets" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-template" xref="mal.if.test"/><link type="xslt-defines-param" xref="mal.if.target"/><link type="xslt-defines-param" xref="mal.if.platform"/><link type="xslt-defines-param" xref="mal.if.features"/><link type="xslt-defines-param" xref="mal.if.custom"/><link type="xslt-defines-param" xref="mal.if.maybe"/></info><title>Mallard Conditionals</title><p>Support for run-time conditional processing.</p><p>This stylesheet contains utilities for handling conditional processing in Mallard documents.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.if.custom"/></p></item><item><p><link xref="mal.if.features"/></p></item><item><p><link xref="mal.if.maybe"/></p></item><item><p><link xref="mal.if.platform"/></p></item><item><p><link xref="mal.if.target"/></p></item></list></page>

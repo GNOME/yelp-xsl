@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.size.note" type="topic" style="xslt-param"><info><link type="guide" xref="icons" group="parameters"/><link type="guide" xref="parameters" group="icons"/><revision version="1.0" date="2010-03-05" status="final"/><desc>The size of the note icons.</desc></info><title>icons.size.note</title><p>The size of the note icons.</p>
-  
-  
-  <p>This parameter specifies the size of the note icons. Use an integer giving the width of the image files in pixels. Icons are assumed to be square, and all note icons are assumed to have the same size.</p>
-</page>

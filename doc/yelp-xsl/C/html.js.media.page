@@ -9,4 +9,4 @@
     </item>
   </terms></synopsis>
   <p>This template outputs JavaScript that controls media elements. It provides control for audio and video elements as well as support for captions.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="color.gray_background"/></p></item><item><p><link xref="color.gray_border"/></p></item><item><p><link xref="color.text_light"/></p></item></list></page>
+<list style="compact"><title>Calls Parameters</title><item><p><link xref="color.bg.gray"/></p></item><item><p><link xref="color.fg.dark"/></p></item><item><p><link xref="color.gray"/></p></item></list></page>

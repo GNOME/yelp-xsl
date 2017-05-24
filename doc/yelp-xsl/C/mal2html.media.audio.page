@@ -13,4 +13,4 @@
     </item>
   </terms></synopsis>
   <p>This template outputs an HTML <code>audio</code> element for a Mallard <code>media</code> element with the <code>type</code> attribute set to <code>"audio"</code>. It converts any fallback content in the source to the <code>audio</code> element's fallback content. If <code style="xslt-param">inline</code> is <code>false</code>, this template will process TTML child content.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item><item><p><link xref="mal2html.inline.mode"/></p></item><item><p><link xref="mal2html.ttml.mode"/></p></item></list></page>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="html.media.controls"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item><item><p><link xref="mal2html.inline.mode"/></p></item><item><p><link xref="mal2html.ttml.mode"/></p></item></list></page>
