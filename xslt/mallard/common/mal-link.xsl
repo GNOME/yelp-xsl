@@ -17,10 +17,9 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:cache="http://projectmallard.org/cache/1.0/"
-                xmlns:facet="http://projectmallard.org/facet/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:str="http://exslt.org/strings"
-                exclude-result-prefixes="mal cache facet exsl str"
+                exclude-result-prefixes="mal cache exsl str"
                 version="1.0">
 
 <!--!!==========================================================================
@@ -92,19 +91,6 @@ The context node must be in the document @{mal.cache} when this key is called.
 <xsl:key name="mal.cache.link.key"
          match="mal:info/mal:link[@type][@xref]"
          use="concat(@type, ':', @xref)"/>
-
-
-<!--++==========================================================================
-mal.facet.all.key
-Get all #{page} and #{section} elements with #{facet:tag} elements.
-
-This key returns all #{page} and #{section} elements that have at least one
-#{facet:tag} element in their #{info} element. Pass the emptry string as the
-key argument.
--->
-<xsl:key name="mal.facet.all.key"
-         match="mal:page[mal:info/facet:tag] | mal:section[mal:info/facet:tag]"
-         use="''"/>
 
 
 <!--@@==========================================================================
@@ -1183,93 +1169,6 @@ FIXME:
       </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
-
-
-<!--**==========================================================================
-mal.link.facetlinks
-Output the facet links for a facets page or section.
-:Revision:version="3.0" date="2010-12-16" status="final"
-$node: The #{page} or #{section} element to generate links for.
-
-This template outputs all the facet links for facets page or section. Links are
-output for each page or section that matches all #{facet:match} elements from
-${node}, excluding those which will be included in descendant facets nodes. It
-outputs each of the links as a #{link} element within the Mallard namespace.
-Each #{link} element has an #{xref} attribute pointing to the target page
-or section.
-
-Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section.  The results are not sorted when
-returned from this template.  Use #{xsl:sort} on the sort titles to sort
-the results.
-
-Each #{link} element contains a copy of all the #{facet:tag} elements from
-the #{info} element of the target page or section.
-
-The output is a result tree fragment.  To use these results, call
-#{exsl:node-set} on them.
--->
-<xsl:template name="mal.link.facetlinks">
-  <xsl:param name="node" select="."/>
-  <xsl:if test="$node/mal:info/facet:match">
-    <xsl:for-each select="$mal.cache">
-      <xsl:for-each select="key('mal.facet.all.key', '')">
-        <xsl:variable name="fnode" select="."/>
-        <xsl:variable name="linkid">
-          <xsl:call-template name="mal.link.linkid">
-            <xsl:with-param name="node" select="$fnode"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:variable name="include">
-          <xsl:for-each select="$node/ancestor-or-self::*/mal:info/facet:match">
-            <xsl:variable name="match" select="."/>
-            <xsl:choose>
-              <xsl:when test="@values">
-                <xsl:if test="not(str:split($fnode/mal:info/facet:tag[@key = $match/@key]/@values)
-                              = str:split($match/@values))">
-                  <xsl:text>x</xsl:text>
-                </xsl:if>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:if test="not($fnode/mal:info/facet:tag[@key = $match/@key])">
-                  <xsl:text>x</xsl:text>
-                </xsl:if>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="exclude">
-          <xsl:for-each select="$node//mal:section/mal:info/facet:match">
-            <xsl:variable name="match" select="."/>
-            <xsl:choose>
-              <xsl:when test="@values">
-                <xsl:if test="str:split($fnode/mal:info/facet:tag[@key = $match/@key]/@values)
-                              = str:split($match/@values)">
-                  <xsl:text>x</xsl:text>
-                </xsl:if>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:if test="$fnode/mal:info/facet:tag[@key = $match/@key]">
-                  <xsl:text>x</xsl:text>
-                </xsl:if>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:variable>
-        <xsl:if test="not(contains($include, 'x')) and not(contains($exclude, 'x'))">
-          <mal:link xref="{$linkid}">
-            <mal:title type="sort">
-              <xsl:call-template name="mal.link.sorttitle">
-                <xsl:with-param name="node" select="$fnode"/>
-              </xsl:call-template>
-            </mal:title>
-            <xsl:copy-of select="mal:info/facet:tag"/>
-          </mal:link>
-        </xsl:if>
-      </xsl:for-each>
-    </xsl:for-each>
-  </xsl:if>
 </xsl:template>
 
 
