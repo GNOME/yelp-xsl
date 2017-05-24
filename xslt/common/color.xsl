@@ -332,7 +332,7 @@ that specifying 1.0 for ${mix} will result in a color that is the result
 of overlaying ${fg} on top of ${bg}. In effect, ${mix} acts as a multiplier
 on the alpha channels of the colors.
 
-This template calls *{color.r}, ${color.g}, ${color.b}, and ${color.a} to get
+This template calls *{color.r}, *{color.g}, *{color.b}, and *{color.a} to get
 the components of ${bg} and ${fg}. It accepts six-digit and three-digit
 hexidecimal color codes, colors specified with #{rgb()}, and colors specified
 with #{rgba()}. It does not accept HSL or named HTML colors.
