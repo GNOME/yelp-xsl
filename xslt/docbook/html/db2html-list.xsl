@@ -26,7 +26,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Lists
-:Revision:version="3.next" date="2016-10-27" status="review"
+:Revision:version="3.26" date="2016-10-27" status="review"
 
 This stylesheet handles most list-like elements in DocBook, turning them into
 appropriate HTML tags.

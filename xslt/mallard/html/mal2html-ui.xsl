@@ -98,7 +98,7 @@ http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
 <!--**==========================================================================
 mal2html.ui.links.tiles
 Output links as thumbnail tiles.
-:Revision:version="3.22" date="2015-10-22" status="volatile"
+:Revision:version="3.26" date="2015-10-22" status="volatile"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A link role, used to select the appropriate title and thumbnail.
