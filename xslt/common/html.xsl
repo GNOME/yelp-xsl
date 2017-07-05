@@ -1953,20 +1953,17 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.26" date="2017-07-05" status="final"
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
-templates *{html.js.jquery}, *{html.js.syntax}, and *{html.js.mathjax} to
+templates *{html.js.syntax} and *{html.js.mathjax} to
 output references to external libraries. It then calls *{html.js.custom} to
 output references to custom JavaScript files. Finally, it calls
 *{html.js.script} to output local JavaScript created by *{html.js.content}.
 -->
 <xsl:template name="html.js">
   <xsl:param name="node" select="."/>
-  <xsl:call-template name="html.js.jquery">
-    <xsl:with-param name="node" select="$node"/>
-  </xsl:call-template>
   <xsl:call-template name="html.js.syntax">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
@@ -1979,29 +1976,6 @@ output references to custom JavaScript files. Finally, it calls
   <xsl:call-template name="html.js.script">
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
-</xsl:template>
-
-
-<!--**==========================================================================
-html.js.jquery
-Output references to jQuery JavaScript files.
-:Revision: version="1.0" date="2010-12-31" status="final"
-$node: The node to create JavaScript for.
-
-This template outputs HTML #{script} tags to reference any necessary jQuery files.
-It always includes a reference to #{jquery.js}. If @{html.syntax.highlight} is
-#{true}, it will also include a reference to #{jquery.syntax.js} along with an
-additional #{script} tag to initialize syntax highlighting. All references are
-output relative to @{html.js.root}.
--->
-<xsl:template name="html.js.jquery">
-  <xsl:param name="node" select="."/>
-  <script type="text/javascript">
-    <xsl:attribute name="src">
-      <xsl:value-of select="$html.js.root"/>
-      <xsl:text>jquery.js</xsl:text>
-    </xsl:attribute>
-  </script>
 </xsl:template>
 
 
@@ -2053,15 +2027,13 @@ result of *{html.js.content} to that file.
 <!--**==========================================================================
 html.js.content
 Output JavaScript content for an HTML output page.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.26" date="2017-07-05" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js.script} to output JavaScript content. It
-does not output an HTML #{script} tag. The JavaScript output by this template
-or templates it calls may depend on the jQuery code referenced by
-*{html.js.jquery}. This template calls the templates *{html.js.core},
-*{html.js.ui}, and *{html.js.media}. It then calls the mode %{html.js.mode}
-on ${node} and calls the template *{html.js.content.custom}.
+does not output an HTML #{script} tag. This template calls the templates
+*{html.js.core}, *{html.js.ui}, and *{html.js.media}. It then calls the mode
+%{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
