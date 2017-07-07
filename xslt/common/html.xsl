@@ -1987,7 +1987,7 @@ $node: The node to create JavaScript for.
 
 This template outputs an HTML #{script} tag to reference MathJax. It only
 outputs a #{script} element if ${node} has MathML descendent content. By
-default, this template uses #{cnd.mathjax.org}. If you wish to use a local
+default, this template uses #{cdn.mathjax.org}. If you wish to use a local
 copy, override this template and provide the necessary files.
 -->
 <xsl:template name="html.js.mathjax">
