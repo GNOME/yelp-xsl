@@ -9,9 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-20 11:04+0200\n"
-"PO-Revision-Date: 2016-08-20 11:05+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-05-23 15:05+0000\n"
+"PO-Revision-Date: 2017-07-25 20:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -79,7 +80,7 @@ msgstr " i "
 #.
 #: yelp-xsl.xml.in:86
 msgid "Q:"
-msgstr "Pytanie:"
+msgstr "Pyt.:"
 
 #. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -92,7 +93,7 @@ msgstr "Pytanie:"
 #.
 #: yelp-xsl.xml.in:99
 msgid "A:"
-msgstr "Odpowiedź:"
+msgstr "Odp.:"
 
 #. (itstool) path: msg/msgstr
 #. Title of the footer containing copyrights, credits, license information,
@@ -289,7 +290,7 @@ msgstr "Gotowe do zrecenzowania"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:277
 msgid "See Also"
-msgstr "Proszę zobaczyć także"
+msgstr "Patrz także"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -388,7 +389,7 @@ msgstr "Wpis bibliograficzny <biblioentry.label/>."
 #.
 #: yelp-xsl.xml.in:373
 msgid "[<biblioentry.label/>]"
-msgstr "[<biblioentry.label/>]"
+msgstr "(<biblioentry.label/>)"
 
 #. (itstool) path: msg/msgstr
 #. ID: citation.label
@@ -405,7 +406,7 @@ msgstr "[<biblioentry.label/>]"
 #.
 #: yelp-xsl.xml.in:390
 msgid "[<citation.label/>]"
-msgstr "[<citation.label/>]"
+msgstr "(<citation.label/>)"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name-date
@@ -434,7 +435,7 @@ msgstr "[<citation.label/>]"
 #.
 #: yelp-xsl.xml.in:419
 msgid "from <comment.name/> on <comment.date/>"
-msgstr "autor: <comment.name/> dnia <comment.date/>"
+msgstr "Autor: <comment.name/> (<comment.date/>)"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name
@@ -462,7 +463,7 @@ msgstr "autor: <comment.name/> dnia <comment.date/>"
 #.
 #: yelp-xsl.xml.in:447
 msgid "from <comment.name/>"
-msgstr "autor: <comment.name/>"
+msgstr "Autor: <comment.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: copyright.format
@@ -520,7 +521,7 @@ msgstr "Definicja dla „<glossterm/>”."
 #.
 #: yelp-xsl.xml.in:505
 msgid "See <glosssee/>."
-msgstr "Proszę zobaczyć <glosssee/>."
+msgstr "Patrz <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
@@ -542,7 +543,7 @@ msgstr "Proszę zobaczyć <glosssee/>."
 #.
 #: yelp-xsl.xml.in:527
 msgid "See also <glosssee/>."
-msgstr "Proszę zobaczyć także <glosssee/>."
+msgstr "Patrz także <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -566,7 +567,7 @@ msgstr "„<node/>”"
 #.
 #: yelp-xsl.xml.in:551
 msgid "‘<node/>’"
-msgstr "«<node/>»"
+msgstr "»<node/>«"
 
 #. (itstool) path: msg/msgstr
 #. ID: seeie.format
@@ -581,7 +582,7 @@ msgstr "«<node/>»"
 #.
 #: yelp-xsl.xml.in:566
 msgid "See <seeie/>."
-msgstr "Proszę zobaczyć <seeie/>."
+msgstr "Patrz <seeie/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
@@ -596,4 +597,4 @@ msgstr "Proszę zobaczyć <seeie/>."
 #.
 #: yelp-xsl.xml.in:581
 msgid "See also <seeie/>."
-msgstr "Proszę zobaczyć także <seeie/>."
+msgstr "Patrz także <seeie/>."
