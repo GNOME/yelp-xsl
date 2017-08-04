@@ -305,7 +305,7 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.26" date="2017-08-04" status="final"
 $node: The node to create HTML for.
 
 This template creates the actual HTML output for ${node}. It outputs top-level
@@ -321,9 +321,11 @@ from two sources. First, it calls *{html.lang.attrs}, which automatically
 outputs correct #{lang}, #{xml:lang}, and #{dir} attributes. It then calls
 %{html.body.attr.mode} on ${node} for additional attributes.
 
-This template also calls a number of stub templates that can be overridden by
-extension stylesheets. Override the *{html.head.custom} element to put custom
-content in the HTML #{head} element. Override the *{html.top.custom} and
+This template also calls a number of stub templates that can be overridden
+by extension stylesheets. Override the *{html.head.custom} template to put
+custom content at the end of the HTML #{head} element. Override the
+*{html.head.top.custom} template to put custom content at the beginning of
+the HTML #{head} element. Override the *{html.top.custom} and
 *{html.bottom.custom} templates to add site-specific content at the top and
 bottom of the page. Override the *{html.header.custom} and *{html.footer.custom}
 templates to provide additional content directoy above and below the main
@@ -336,6 +338,9 @@ elements. See those templates for further extension points.
   <xsl:param name="node" select="."/>
   <html>
     <head>
+      <xsl:call-template name="html.head.top.custom">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
       <meta name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
       <title>
@@ -541,14 +546,31 @@ content, and sections should be output in this mode.
 
 
 <!--**==========================================================================
-html.head.custom
-Stub to output custom content for the HTML #{head} element.
+html.head.top.custom
+Stub to output custom content at the beginning of the HTML #{head} element.
 :Stub: true
-:Revision: version="1.0" date="2010-05-25" status="final"
+:Revision: version="3.26" date="2017-08-04" status="final"
+$node: The node a page is being created for.
+
+This template is a stub, called by *{html.page}. You can override this template
+to provide additional elements at the beginning of the HTML #{head} element of
+output files. This template is called before all other head content.
+-->
+<xsl:template name="html.head.top.custom">
+  <xsl:param name="node" select="."/>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.head.custom
+Stub to output custom content at the end of the HTML #{head} element.
+:Stub: true
+:Revision: version="3.26" date="2017-08-04" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. You can override this template
 to provide additional elements in the HTML #{head} element of output files.
+This template is called after all other head content.
 -->
 <xsl:template name="html.head.custom">
   <xsl:param name="node" select="."/>
