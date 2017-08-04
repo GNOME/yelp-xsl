@@ -182,6 +182,7 @@ parameter will be used if provided.
           <xsl:when test="contains($style, ' linklist ')">
             <xsl:variable name="bold" select="contains($style, ' bold ')"/>
             <xsl:call-template name="mal2html.links.ul">
+              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="bold" select="$bold"/>
@@ -234,6 +235,7 @@ parameter will be used if provided.
           <xsl:otherwise>
             <xsl:variable name="bold" select="contains($style, ' bold ')"/>
             <xsl:call-template name="mal2html.links.ul">
+              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
               <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="bold" select="$bold"/>
@@ -250,7 +252,8 @@ parameter will be used if provided.
 <!--**==========================================================================
 mal2html.links.ul
 Output links in an HTML #{ul} element.
-:Revision:version="3.10" date="2013-07-30" status="final"
+:Revision:version="3.26" date="2017-08-04" status="final"
+$node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A space-separated list of link roles, used to select the appropriate title.
 $bold: Whether to bold the link titles.
@@ -263,6 +266,7 @@ link to output a list item with a link.
 This template handles link sorting.
 -->
 <xsl:template name="mal2html.links.ul">
+  <xsl:param name="node" select="."/>
   <xsl:param name="links" select="/false"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="bold" select="false()"/>
@@ -272,6 +276,7 @@ This template handles link sorting.
       <xsl:sort data-type="number" select="@groupsort"/>
       <xsl:sort select="mal:title[@type = 'sort']"/>
       <xsl:call-template name="mal2html.links.ul.li">
+        <xsl:with-param name="node" select="$node"/>
         <xsl:with-param name="link" select="."/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="bold" select="$bold"/>
@@ -286,6 +291,7 @@ This template handles link sorting.
 mal2html.links.ul.li
 Output a list item with a link.
 :Revision:version="3.10" date="2013-07-30" status="final"
+$node: A #{links} element to link from.
 $link: The #{link} element from a list of links.
 $xref: An #{xref} string pointing to the target node.
 $role: A space-separated list of link roles, used to select the appropriate title.
@@ -296,6 +302,7 @@ This template is called by *{mal2html.links.ul} to output a list item with
 a link for each target.
 -->
 <xsl:template name="mal2html.links.ul.li">
+  <xsl:param name="node" select="."/>
   <xsl:param name="link" select="/false"/>
   <xsl:param name="xref" select="@xref"/>
   <xsl:param name="role" select="''"/>
@@ -317,12 +324,14 @@ a link for each target.
         </xsl:if>
         <xsl:attribute name="href">
           <xsl:call-template name="mal.link.target">
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="xref" select="$xref"/>
             <xsl:with-param name="href" select="$link/@href"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:attribute name="title">
           <xsl:call-template name="mal.link.tooltip">
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="xref" select="$xref"/>
             <xsl:with-param name="href" select="$link/@href"/>
             <xsl:with-param name="role" select="$role"/>
@@ -330,7 +339,7 @@ a link for each target.
           </xsl:call-template>
         </xsl:attribute>
         <xsl:call-template name="mal.link.content">
-          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="node" select="$node"/>
           <xsl:with-param name="xref" select="$xref"/>
           <xsl:with-param name="href" select="$link/@href"/>
           <xsl:with-param name="role" select="$role"/>
@@ -343,7 +352,7 @@ a link for each target.
       <xsl:if test="not($nodesc)">
         <xsl:variable name="desc">
           <xsl:call-template name="mal.link.desc">
-            <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="xref" select="$xref"/>
             <xsl:with-param name="href" select="$link/@href"/>
             <xsl:with-param name="role" select="$role"/>
@@ -559,12 +568,13 @@ element containing ${node}.
 
 <!--#* _mal2html.links.section.ul -->
 <xsl:template name="_mal2html.links.section.ul">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="depth"/>
   <xsl:param name="role"/>
   <ul>
     <xsl:for-each select="$node/mal:section">
       <xsl:call-template name="mal2html.links.ul.li">
+        <xsl:with-param name="node" select="$node"/>
         <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
         <xsl:with-param name="role" select="concat($role, ' section')"/>
       </xsl:call-template>
@@ -702,7 +712,7 @@ page ${node}. It then calls itself recursively on that page, and outputs a link
 to it.
 -->
 <xsl:template name="mal2html.links.series.prev">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links" select="/false"/>
   <xsl:variable name="role" select="$links/self::mal:links/@role"/>
   <xsl:variable name="linkid">
@@ -757,7 +767,7 @@ ${node}. It outputs a link to that page, then calls itself recursively on that
 page.
 -->
 <xsl:template name="mal2html.links.series.next">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links" select="/false"/>
   <xsl:variable name="role" select="$links/self::mal:links/@role"/>
   <xsl:variable name="linkid">
@@ -869,7 +879,7 @@ when determining which links to output.
 
 <!--#* _mal2html.links.mouseovers -->
 <xsl:template name="_mal2html.links.mouseovers">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <xsl:message>
@@ -895,12 +905,14 @@ when determining which links to output.
           <a class="bold">
             <xsl:attribute name="href">
               <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$xref"/>
                 <xsl:with-param name="href" select="$link/@href"/>
               </xsl:call-template>
             </xsl:attribute>
             <xsl:attribute name="title">
               <xsl:call-template name="mal.link.tooltip">
+                <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$xref"/>
                 <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="concat($role, ' topic')"/>
@@ -915,7 +927,7 @@ when determining which links to output.
               </span>
             </xsl:for-each>
             <xsl:call-template name="mal.link.content">
-              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$xref"/>
               <xsl:with-param name="href" select="$link/@href"/>
               <xsl:with-param name="role" select="concat($role, ' topic')"/>
@@ -932,7 +944,7 @@ when determining which links to output.
 
 <!--#* _mal2html.links.grid -->
 <xsl:template name="_mal2html.links.grid">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
   <div class="links-grid-container">
@@ -952,12 +964,14 @@ when determining which links to output.
         <div class="links-grid-link"><a>
           <xsl:attribute name="href">
             <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$xref"/>
               <xsl:with-param name="href" select="$link/@href"/>
             </xsl:call-template>
           </xsl:attribute>
           <xsl:attribute name="title">
             <xsl:call-template name="mal.link.tooltip">
+              <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="xref" select="$xref"/>
               <xsl:with-param name="href" select="$link/@href"/>
               <xsl:with-param name="role" select="$role"/>
@@ -965,7 +979,7 @@ when determining which links to output.
             </xsl:call-template>
           </xsl:attribute>
           <xsl:call-template name="mal.link.content">
-            <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="xref" select="$xref"/>
             <xsl:with-param name="href" select="$link/@href"/>
             <xsl:with-param name="role" select="$role"/>
@@ -974,7 +988,7 @@ when determining which links to output.
         </a></div>
         <xsl:variable name="desc">
           <xsl:call-template name="mal.link.desc">
-            <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="xref" select="$xref"/>
             <xsl:with-param name="href" select="$link/@href"/>
             <xsl:with-param name="role" select="$role"/>
@@ -999,7 +1013,7 @@ when determining which links to output.
 
 <!--#* _mal2html.links.norwich -->
 <xsl:template name="_mal2html.links.norwich">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:param name="role"/>
   <div class="links-norwich">
@@ -1016,12 +1030,14 @@ when determining which links to output.
               <a>
                 <xsl:attribute name="href">
                   <xsl:call-template name="mal.link.target">
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:attribute name="title">
                   <xsl:call-template name="mal.link.tooltip">
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                     <xsl:with-param name="role" select="$role"/>
@@ -1038,7 +1054,7 @@ when determining which links to output.
                 </xsl:if>
                 <span class="title">
                   <xsl:call-template name="mal.link.content">
-                    <xsl:with-param name="node" select="."/>
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                     <xsl:with-param name="role" select="$role"/>
@@ -1047,7 +1063,7 @@ when determining which links to output.
                 </span>
                 <xsl:variable name="desc">
                   <xsl:call-template name="mal.link.desc">
-                    <xsl:with-param name="node" select="."/>
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                     <xsl:with-param name="role" select="$role"/>
@@ -1083,12 +1099,14 @@ when determining which links to output.
               <a>
                 <xsl:attribute name="href">
                   <xsl:call-template name="mal.link.target">
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                   </xsl:call-template>
                 </xsl:attribute>
                 <xsl:attribute name="title">
                   <xsl:call-template name="mal.link.tooltip">
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/>
                     <xsl:with-param name="role" select="$role"/>
@@ -1105,7 +1123,7 @@ when determining which links to output.
                 </xsl:if>
                 <span class="title">
                   <xsl:call-template name="mal.link.content">
-                    <xsl:with-param name="node" select="."/>
+                    <xsl:with-param name="node" select="$node"/>
                     <xsl:with-param name="xref" select="$xref"/>
                     <xsl:with-param name="href" select="$link/@href"/> 
                     <xsl:with-param name="role" select="$role"/>
@@ -1125,7 +1143,7 @@ when determining which links to output.
 
 <!--#* _mal2html.links.divs -->
 <xsl:template name="_mal2html.links.divs">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="nodesc" select="false()"/>
@@ -1179,7 +1197,7 @@ when determining which links to output.
             <xsl:if test="not($nodesc)">
               <xsl:variable name="desc">
                 <xsl:call-template name="mal.link.desc">
-                  <xsl:with-param name="node" select="."/>
+                  <xsl:with-param name="node" select="$node"/>
                   <xsl:with-param name="xref" select="$xref"/>
                   <xsl:with-param name="href" select="$link/@href"/>
                   <xsl:with-param name="role" select="$role"/>
@@ -1220,7 +1238,7 @@ when determining which links to output.
 
 <!--#* _mal2html.links.button -->
 <xsl:template name="_mal2html.links.button">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="nodesc" select="false()"/>
@@ -1269,7 +1287,7 @@ when determining which links to output.
           <xsl:if test="not($nodesc)">
             <xsl:variable name="desc">
               <xsl:call-template name="mal.link.desc">
-                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$xref"/>
                 <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>
@@ -1318,12 +1336,14 @@ when determining which links to output.
             <a>
               <xsl:attribute name="href">
                 <xsl:call-template name="mal.link.target">
+                  <xsl:with-param name="node" select="$node"/>
                   <xsl:with-param name="xref" select="$xref"/>
                   <xsl:with-param name="href" select="$link/@href"/>
                 </xsl:call-template>
               </xsl:attribute>
               <xsl:attribute name="title">
                 <xsl:call-template name="mal.link.tooltip">
+                  <xsl:with-param name="node" select="$node"/>
                   <xsl:with-param name="xref" select="$xref"/>
                   <xsl:with-param name="href" select="$link/@href"/>
                   <xsl:with-param name="role" select="$role"/>
@@ -1331,7 +1351,7 @@ when determining which links to output.
                 </xsl:call-template>
               </xsl:attribute>
               <xsl:call-template name="mal.link.content">
-                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$xref"/>
                 <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>
@@ -1345,7 +1365,7 @@ when determining which links to output.
           <xsl:if test="not($nodesc)">
             <xsl:variable name="desc">
               <xsl:call-template name="mal.link.desc">
-                <xsl:with-param name="node" select="."/>
+                <xsl:with-param name="node" select="$node"/>
                 <xsl:with-param name="xref" select="$xref"/>
                 <xsl:with-param name="href" select="$link/@href"/>
                 <xsl:with-param name="role" select="$role"/>

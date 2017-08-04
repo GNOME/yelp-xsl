@@ -50,7 +50,7 @@ elements. It should be called by an appropriate template that handles the
 #{links} element.
 -->
 <xsl:template name="mal2html.api.links.function">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:choose>
     <xsl:when test="$node/@api:mime = 'text/x-csrc' or $node/@api:mime = 'text/x-chdr'">
@@ -83,7 +83,7 @@ have an #{api:name} element will be passed to *{mal2html.links.ul} after
 the synopsis.
 -->
 <xsl:template name="mal2html.api.links.function.c">
-  <xsl:param name="node"/>
+  <xsl:param name="node" select="."/>
   <xsl:param name="links"/>
   <xsl:variable name="out_">
     <xsl:for-each select="$links">
