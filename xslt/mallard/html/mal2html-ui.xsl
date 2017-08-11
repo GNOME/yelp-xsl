@@ -243,7 +243,10 @@ This template handles link sorting.
   <div class="links-uix-hover-img" style="width: {$width}px; height: {$height}px;">
     <xsl:for-each select="$node/uix:thumb[1]">
       <img>
-        <xsl:copy-of select="@src"/>
+        <xsl:call-template name="mal2html.ui.links.img.src">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="thumb" select="."/>
+        </xsl:call-template>
         <xsl:call-template name="mal2html.ui.links.img.attrs">
           <xsl:with-param name="node" select="$node"/>
           <xsl:with-param name="thumb" select="."/>
@@ -314,7 +317,7 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.ui.links.img
 Output an image for a link using UI thumbnails.
-:Revision:version="3.8" date="2012-10-27" status="final"
+:Revision:version="3.26" date="2017-08-11" status="final"
 $node: A #{links} element to link from.
 $thumbs: A list of candidate #{uix:thumb} elements.
 $role: A link role, used to select the appropriate thumbnail.
@@ -323,9 +326,9 @@ $height: The height to fit thumbnails into.
 
 This template selects the best-fit thumbnail from ${thumbs}, based on how well
 the aspect ratio and dimensions of each image matches the ${width} and ${height}
-parameters. It outputs an HTML #{img} element for the best-fit thumbnail and
-calls ${mal2html.ui.links.img.attrs} to output #{width} and #{height}
-attributes.
+parameters. It outputs an HTML #{img} element for the best-fit thumbnail. It
+calls ${mal2thml.ui.links.img.src} to output the #{src} attribute, and calls
+${mal2html.ui.links.img.attrs} to output #{width} and #{height} attributes.
 
 Before checking for a best-fit thumbnail on dimensions, this template first
 looks for #{uix:thumb} elements with the #{type} attribute set to #{"links"}.
@@ -358,9 +361,10 @@ ${node} element.
         <xsl:sort data-type="number" select="math:abs($width - @width)"/>
         <xsl:sort data-type="number" select="math:abs($height - @height)"/>
         <xsl:if test="position() = 1">
-          <xsl:attribute name="src">
-            <xsl:value-of select="@src"/>
-          </xsl:attribute>
+          <xsl:call-template name="mal2html.ui.links.img.src">
+            <xsl:with-param name="node" select="$node"/>
+            <xsl:with-param name="thumb" select="."/>
+          </xsl:call-template>
           <xsl:call-template name="mal2html.ui.links.img.attrs">
             <xsl:with-param name="node" select="$node"/>
             <xsl:with-param name="thumb" select="."/>
@@ -373,15 +377,16 @@ ${node} element.
   </xsl:when>
   <xsl:when test="$node/uix:thumb">
     <img>
-      <xsl:attribute name="src">
-        <xsl:value-of select="$node/uix:thumb/@src"/>
-      </xsl:attribute>
-          <xsl:call-template name="mal2html.ui.links.img.attrs">
-            <xsl:with-param name="node" select="$node"/>
-            <xsl:with-param name="thumb" select="$node/uix:thumb"/>
-            <xsl:with-param name="width" select="$width"/>
-            <xsl:with-param name="height" select="$height"/>
-          </xsl:call-template>
+      <xsl:call-template name="mal2html.ui.links.img.src">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="thumb" select="$node/uix:thumb"/>
+      </xsl:call-template>
+      <xsl:call-template name="mal2html.ui.links.img.attrs">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="thumb" select="$node/uix:thumb"/>
+        <xsl:with-param name="width" select="$width"/>
+        <xsl:with-param name="height" select="$height"/>
+      </xsl:call-template>
     </img>
   </xsl:when>
   </xsl:choose>
@@ -389,11 +394,33 @@ ${node} element.
 
 
 <!--**==========================================================================
+mal2html.ui.links.img.src
+Output the #{src} attribute for a thumbnail image.
+:Revision:version="3.26" date="2017-08-11" status="final"
+$node: A #{links} element to link from.
+$thumb: A #{uix:thumb} element.
+$width: The width to fit thumbnails into.
+$height: The height to fit thumbnails into.
+
+This template outputs #{src} attribute for the HTML #{img} element created
+from ${thumb}. By default, it just copies the #{src} attribute of ${thumb}.
+Override this template if you need to support multi-directory output.
+-->
+<xsl:template name="mal2html.ui.links.img.src">
+  <xsl:param name="node"/>
+  <xsl:param name="thumb"/>
+  <xsl:attribute name="src">
+    <xsl:value-of select="$thumb/@src"/>
+  </xsl:attribute>
+</xsl:template>
+
+
+<!--**==========================================================================
 mal2html.ui.links.img.attrs
 Output the #{width} and #{height} attributes for a thumbnail image.
-:Revision:version="3.4" date="2012-02-25" status="final"
+:Revision:version="3.26" date="2017-08-11" status="final"
 $node: A #{links} element to link from.
-$thumbs: A list of candidate #{uix:thumb} elements.
+$thumb: A #{uix:thumb} element.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
