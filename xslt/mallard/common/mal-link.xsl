@@ -569,7 +569,7 @@ attributes containing slash or colon characters.
 <!--**==========================================================================
 mal.link.target
 Output the target URL for a #{link} or other linking element.
-:Revision:version="3.4" date="2012-01-17" status="final"
+:Revision:version="3.26" date="2017-08-11" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
@@ -587,6 +587,10 @@ element when the #{links} element is implicit.
 This template first calls *{mal.link.target.custom} with the same arguments.
 If that template returns a non-empty string, it is used as the return value,
 overriding any other behavior of this template.
+
+If ${xref} contains a #{/} or #{:} character, this template calls
+*{mal.link.target.extended}, which by default just uses ${href} instead.
+Override that template to provide extended xref behavior.
 -->
 <xsl:template name="mal.link.target">
   <xsl:param name="node" select="."/>
@@ -605,11 +609,41 @@ overriding any other behavior of this template.
     <xsl:when test="$custom != ''">
       <xsl:value-of select="$custom"/>
     </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="_mal.link.target.default">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="action" select="$action"/>
+        <xsl:with-param name="xref" select="$xref"/>
+        <xsl:with-param name="href" select="$href"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+
+<!--#* _mal.link.target.default -->
+<!--
+Note sure yet if I want to make this public API. If so, we should
+do it to all the mal.link.* templates. This allows you, if you
+really want, to override mal.link.target completely, but still
+fallback to the built-in behavior.
+-->
+<xsl:template name="_mal.link.target.default">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:choose>
     <xsl:when test="string($xref) = ''">
       <xsl:value-of select="$href"/>
     </xsl:when>
     <xsl:when test="contains($xref, '/') or contains($xref, ':')">
-      <xsl:value-of select="$href"/>
+      <xsl:call-template name="mal.link.target.extended">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="action" select="$action"/>
+        <xsl:with-param name="xref" select="$xref"/>
+        <xsl:with-param name="href" select="$href"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:when test="contains($xref, '#')">
       <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
@@ -623,6 +657,30 @@ overriding any other behavior of this template.
       <xsl:value-of select="concat($mal.link.prefix, $xref, $mal.link.extension)"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal.link.target.extended
+Output the target URL for an element with an extended #{xref} attribute.
+:Stub: true
+:Revision:version="3.26" date="2017-08-11" status="final"
+$node: The #{link} or other element creating the link.
+$action: The #{action} attribute of ${node}.
+$xref: The #{xref} attribute of ${node}.
+$href: The #{href} attribute of ${node}.
+
+This template is called by *{mal.link.target} to create URLs for links with
+a #{/} or #{:} in the #{xref} attribute. By default, it just outputs the
+value of ${href}. Override this template to provide behavior for extended
+#{xref} attributes.
+-->
+<xsl:template name="mal.link.target.extended">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:param name="href" select="$node/@href"/>
+  <xsl:value-of select="$href"/>
 </xsl:template>
 
 
