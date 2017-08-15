@@ -73,7 +73,7 @@ hash character.
 
 The context node must be in the document @{mal.cache} when this key is called.
 -->
-<xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
+<xsl:key name="mal.cache.key" match="cache:cache//*" use="@id"/>
 
 
 <!--++==========================================================================
