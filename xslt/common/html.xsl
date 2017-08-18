@@ -984,7 +984,7 @@ main > div.page {
   justify-content: flex-start;
   min-height: 100vh;
 }
-div.page > article { flex: 1 0 100%; }
+div.page > article { flex: 1 0 auto; }
 div.page > header, div.page > footer { flex: 0 1 auto; }
 .pagewide {
   max-width: 940px;
