@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-05-23 15:05+0000\n"
-"PO-Revision-Date: 2017-07-25 19:45+0200\n"
+"POT-Creation-Date: 2017-07-25 17:46+0000\n"
+"PO-Revision-Date: 2017-08-23 17:23+0200\n"
 "Last-Translator: antisa <antisamail@email.t-com.hr>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.3\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -473,7 +473,7 @@ msgstr "iz <comment.name/>"
 #.
 #: yelp-xsl.xml.in:460
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: email.tooltip
