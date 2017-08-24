@@ -1411,24 +1411,12 @@ div.note-danger > svg .yelp-svg-fill {
   50%  { fill: </xsl:text><xsl:value-of select="$color.gray"/><xsl:text> }
   to   { fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text> }
 }
-
-
 div.note-sidebar {
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  max-width: 40%;
-  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
+  max-width: 206px;
+  margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 20px;
   padding: 6px;
 }
-div.note-sidebar > div.inner { background-image: none; }
-div.note-sidebar > div.inner > div.title { margin-</xsl:text>
-  <xsl:value-of select="$left"/><xsl:text>: 0px; }
-div.note-sidebar > div.inner > div.region > div.contents { margin-</xsl:text>
-  <xsl:value-of select="$left"/><xsl:text>: 0px; }
-div.note-plain > div.inner { background-image: none; }
-div.note-plain > div.inner > div.title { margin-</xsl:text>
-  <xsl:value-of select="$left"/><xsl:text>: 0px; }
-div.note-plain > div.inner > div.region > div.contents { margin-</xsl:text>
-  <xsl:value-of select="$left"/><xsl:text>: 0px; }
 div.quote {
   padding: 0;
   min-height: </xsl:text>
