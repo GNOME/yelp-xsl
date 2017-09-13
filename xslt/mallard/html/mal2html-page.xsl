@@ -483,7 +483,7 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
                   select="$node/mal:info/mal:revision
                           [@date = $date or (not(@date) and $date = '')][last()]"/>
     <xsl:if test="$revision/@status != ''">
-      <div class="version">
+      <div class="note note-version pagewide"><div class="inner">
         <!-- FIXME: i18n -->
         <div class="title">
           <xsl:choose>
@@ -524,6 +524,7 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
             </xsl:when>
           </xsl:choose>
         </div>
+        <div class="region"><div class="contents">
         <xsl:variable name="version">
           <xsl:choose>
             <xsl:when test="$revision/@version">
@@ -548,7 +549,8 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
           </p>
         </xsl:if>
         <xsl:apply-templates mode="mal2html.block.mode" select="$revision/*"/>
-      </div>
+        </div></div>
+      </div></div>
     </xsl:if>
   </xsl:if>
 </xsl:template>
@@ -1354,20 +1356,12 @@ a.gloss-term:hover span.gloss-desc, a.gloss-term:focus span.gloss-desc {
 </xsl:text>
 <xsl:if test="$mal2html.editor_mode">
 <xsl:text>
-div.version {
-  position: absolute;
-  </xsl:text><xsl:value-of select="$right"/><xsl:text>: 12px;
-  opacity: 0.2;
-  margin-top: -1em;
-  padding: 0.5em 1em 0.5em 1em;
-  max-width: 24em;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.gray"/><xsl:text>;
+div.note-version {
   background-color: </xsl:text>
     <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
-div.version:hover { opacity: 0.8; }
-div.version p.version { margin-top: 0.2em; }
 span.status {
   font-size: 0.83em;
   font-weight: normal;
