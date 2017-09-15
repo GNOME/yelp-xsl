@@ -234,7 +234,7 @@ of dynamically showing or hiding content based on those tokens.
   <xsl:choose>
     <xsl:when test="$token = 'lang:C' or $token = 'lang:c'">
       <xsl:choose>
-        <xsl:when test="not(ancestor-or-self::*/@xml:lang)">
+        <xsl:when test="not($node/ancestor-or-self::*/@xml:lang)">
           <xsl:text>1</xsl:text>
         </xsl:when>
         <xsl:otherwise>
