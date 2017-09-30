@@ -1389,7 +1389,7 @@ div.note {
   display: flex;
   flex-flow: row;
 }
-div.note > * { margin: 0 6px; padding: 0; min-height: 24px; }
+div.note > * { margin: 0 6px; padding: 0; min-height: 24px; min-width: 24px; }
 div.note-warning > svg .yelp-svg-fill {
   fill: </xsl:text><xsl:value-of select="$color.red"/><xsl:text>;
 }
