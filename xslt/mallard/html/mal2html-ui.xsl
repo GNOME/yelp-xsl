@@ -498,14 +498,6 @@ ${node} element.
 
 <!-- = ui:overlay = -->
 <xsl:template mode="mal2html.block.mode" match="uix:overlay">
-  <!-- only process first, and handle consecutive overlays so we
-       can put them in a wrapper div for flexbox -->
-  <xsl:if test="not(preceding-sibling::*[1][self::uix:overlay])">
-    <div class="links-tiles">
-      <xsl:variable name="count" select="count(following-sibling::*[not(self::uix:overlay)])"/>
-      <xsl:for-each select="self::* |
-                            following-sibling::uix:overlay
-                            [count(following-sibling::*[not(self::uix:overlay)]) = $count]">
         <xsl:variable name="media" select="mal:media[1]"/>
         <xsl:variable name="width">
           <xsl:choose>
@@ -595,12 +587,6 @@ ${node} element.
             </div>
           </div>
         </div>
-      </xsl:for-each>
-      <!-- blank tiles for homogeneous sizing -->
-      <div class="links-tile"></div>
-      <div class="links-tile"></div>
-    </div>
-  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

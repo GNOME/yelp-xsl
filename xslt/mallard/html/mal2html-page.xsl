@@ -1041,11 +1041,13 @@ div.links-tiles {
   margin: 0 -10px;
 }
 div.links-tile {
+  max-width: 300px;
   flex: 1 0 300px;
   vertical-align: top;
   margin: 0;
   padding: 10px;
 }
+div.links-tiles > div.links-tile { max-width: none; }
 div.links-tile:empty { padding: 0 10px; height: 0; }
 div.links-tile > a {
   display: block;
@@ -1061,7 +1063,6 @@ div.links-tile > a:hover {
 div.links-tile > a > span.links-tile-img {
   display: block;
   text-align: center;
-  max-width: 360px;
 }
 div.links-tile > a > span.links-tile-img > img {
   width: 100%;
@@ -1383,6 +1384,33 @@ span.status-stub, span.status-draft, span.status-incomplete, span.status-outdate
 <!--%# html.js.mode -->
 <xsl:template mode="html.js.mode" match="mal:page">
 <xsl:text><![CDATA[
+document.addEventListener('DOMContentLoaded', function() {
+  var tiles = document.querySelectorAll('div.links-tile');
+  for (var i = 0; i < tiles.length; i++) {
+    (function (tile) {
+      if (!tile.parentNode.classList.contains('links-tiles') &&
+          (tile.nextElementSibling &&
+           tile.nextElementSibling.classList.contains('links-tile')) &&
+          !(tile.previousElementSibling &&
+            tile.previousElementSibling.classList.contains('links-tile'))) {
+        var tilesdiv = document.createElement('div');
+        tilesdiv.className = 'links-tiles';
+        tile.parentNode.insertBefore(tilesdiv, tile);
+        var cur = tile;
+        while (cur && cur.classList.contains('links-tile')) {
+          var curcur = cur;
+          cur = cur.nextElementSibling;
+          tilesdiv.appendChild(curcur);
+        }
+        for (j = 0; j < 2; j++) {
+          var paddiv = document.createElement('div');
+          paddiv.className = 'links-tile';
+          tilesdiv.appendChild(paddiv);
+        }
+      }
+    })(tiles[i]);
+  }
+});
 document.addEventListener('DOMContentLoaded', function() {
   var overlays = document.querySelectorAll('a.ui-overlay');
   for (var i = 0; i < overlays.length; i++) {
