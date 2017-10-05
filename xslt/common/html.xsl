@@ -1070,11 +1070,7 @@ div.clear {
 }
 .center { text-align: center; }
 
-footer.about {
-  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
-  margin: 0;
-  background-color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
-}
+footer.about { margin: 0; }
 footer.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
   text-align: center;
