@@ -6,10 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl gnome-3-20\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-10-16 17:45+0000\n"
-"PO-Revision-Date: 2017-04-08 18:43+0200\n"
+"POT-Creation-Date: 2017-10-05 11:17+0000\n"
+"PO-Revision-Date: 2017-10-06 14:07+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -27,7 +27,6 @@ msgstr ""
 #. or default:RTL it will not work.
 #.
 #: yelp-xsl.xml.in:34
-#, fuzzy
 msgid "default:LTR"
 msgstr "default:LTR"
 
