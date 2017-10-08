@@ -1090,7 +1090,7 @@ div.links-grid-container {
   align-items: stretch;
   justify-content: flex-start;
   vertical-align: top;
-  clear: both
+  clear: both;
 }
 div.links-grid {
   flex: 1 0 300px;

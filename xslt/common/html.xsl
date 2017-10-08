@@ -1620,9 +1620,9 @@ div.media > div.inner { display: inline-block; text-align: center; }
   min-width: 24em;
   height: 24px;
   margin: 0; padding: 0;
-  border-left: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
-  border-right: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
-  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-left: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border-right: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
   border-bottom-left-radius: 4px;
@@ -1676,7 +1676,7 @@ input.media-range::-moz-range-thumb {
   margin-top: -6px;
 }
 .media-controls-audio {
-  border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;;
+  border-top: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
   border-radius: 4px;
 }
 button.media-play {
@@ -1685,7 +1685,7 @@ button.media-play {
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: none;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
-    <xsl:value-of select="$color.fg"/><xsl:text>;;
+    <xsl:value-of select="$color.fg"/><xsl:text>;
 }
 button.media-play:hover, button.media-play:focus {
   background-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
