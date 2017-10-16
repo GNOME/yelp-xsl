@@ -1,3 +1,37 @@
+3.27.1
+======
+* Massive backwards incompatible updates to stylesheets
+* Changed color parameters and added color computations
+* Used more HTML5 elements like article, header, footer
+* Switched to flexbox for large parts of the layout
+* Implemented more granular content centering
+* Added stub for sidebars
+* Dropped external icons in favor of recolorable inline SVGs
+* Removed jQuery
+* Switched syntax highlighter to highlight.js
+* Dropped experimental Mallard facet support
+* Added default colorings for syntax highlighting
+* Added a number of new modes and stub templates for customizations
+* Updated the section highlighting for location.hash
+* Fixed lang:C Mallard test token
+* Added support for generic Mallard div element, MEP-0005
+* Began adding support for DocBook automatic indexes
+* Added support for DocBook stepalternatives and result
+* Updated translations:
+  ca@valencia.po  (Xavi Ivars)
+  da              (Ask Hjorth Larsen)
+  en_GB           (Chris Leonard)
+  fur             (Fabio Tomat)
+  gd              (GunChleoc)
+  hr              (gogo)
+  kk              (Baurzhan Muftakhidinov)
+  ne              (Pawan Chitrakar)
+  nl              (hanniedu)
+  oc              (Cédric Valmary)
+  pl              (Piotr Drąg)
+  pl              (Piotr Drąg)
+  sl              (Matej Urbančič)
+
 3.17.90
 =======
 * Updated localization templates, removing unused code
