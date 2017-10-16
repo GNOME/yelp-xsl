@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.tiles" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.26" date="2015-10-22" status="volatile"/><desc>Output links as thumbnail tiles.</desc></info><title>mal2html.ui.links.tiles</title><p>Output links as thumbnail tiles.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.tiles" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.28" date="2015-10-22" status="volatile"/><desc>Output links as thumbnail tiles.</desc></info><title>mal2html.ui.links.tiles</title><p>Output links as thumbnail tiles.</p>
   
   
   <synopsis><title>Parameters</title><terms>

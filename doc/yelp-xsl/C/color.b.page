@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.b" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Extract the blue component of a color.</desc></info><title>color.b</title><p>Extract the blue component of a color.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="color.b" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Extract the blue component of a color.</desc></info><title>color.b</title><p>Extract the blue component of a color.</p>
   
   
   <synopsis><title>Parameters</title><terms>

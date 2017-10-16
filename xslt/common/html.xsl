@@ -215,7 +215,7 @@ time by JavaScript.
 <!--@@==========================================================================
 html.output.prefix
 An optional path prefix for files output with *{html.output}.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This parameter allows you to specify an prefix to place before the output path
 used by *{html.output} when creating files. You can use this to override the
@@ -305,7 +305,7 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-:Revision:version="3.26" date="2017-08-04" status="final"
+:Revision:version="3.28" date="2017-08-04" status="final"
 $node: The node to create HTML for.
 
 This template creates the actual HTML output for ${node}. It outputs top-level
@@ -427,7 +427,7 @@ implement this node to add attributes for styling, data, or other purposes.
 html.top.custom
 Stub to output HTML at the top of the page.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called before the
@@ -443,7 +443,7 @@ at the top of the page.
 html.bottom.custom
 Stub to output HTML at the bottom of the page.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called after the
@@ -459,7 +459,7 @@ at the bottom of the page.
 html.sidebar.custom
 Stub to output custom sidebar content.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called inside the #{main}
@@ -479,7 +479,7 @@ for that element to display it after the #{main} element.
 html.header.custom
 Stub to output custom header content.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called inside the
@@ -494,7 +494,7 @@ override this template to provide additional content above the main content.
 <!--%%==========================================================================
 html.header.mode
 Output the header content for an element.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This mode is called by *{html.page} to output the contents of the #{header}
 element above the main content. Importing stylesheets may implement this mode
@@ -508,7 +508,7 @@ for any element that will be passed to *{html.page}. If they do not, the
 html.footer.custom
 Stub to output custom footer content.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. It is called inside the
@@ -523,7 +523,7 @@ override this template to provide additional content below the main content.
 <!--%%==========================================================================
 html.footer.mode
 Output the footer content for an element.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This mode is called by *{html.page} to output the contents of the #{footer}
 element below the main content. Importing stylesheets may implement this mode
@@ -549,7 +549,7 @@ content, and sections should be output in this mode.
 html.head.top.custom
 Stub to output custom content at the beginning of the HTML #{head} element.
 :Stub: true
-:Revision: version="3.26" date="2017-08-04" status="final"
+:Revision: version="3.28" date="2017-08-04" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. You can override this template
@@ -565,7 +565,7 @@ output files. This template is called before all other head content.
 html.head.custom
 Stub to output custom content at the end of the HTML #{head} element.
 :Stub: true
-:Revision: version="3.26" date="2017-08-04" status="final"
+:Revision: version="3.28" date="2017-08-04" status="final"
 $node: The node a page is being created for.
 
 This template is a stub, called by *{html.page}. You can override this template
@@ -581,7 +581,7 @@ This template is called after all other head content.
 html.linktrails.empty
 Stub to output something when no link trails are present.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The source element a page is bring created for.
 
 This template is a stub. It is called by templates that output link trails when
@@ -598,7 +598,7 @@ trails would otherwise be present.
 html.linktrails.prefix
 Stub to output extra content before a link trail.
 :Stub: true
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: A source-specific element providing information about the link trail.
 
 This template is a stub. It is called by templates that output link trails
@@ -659,7 +659,7 @@ values that do not conflict with those used in these stylesheets.
 <!--**==========================================================================
 html.content.pre
 Output content before the content of a page or section.
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
@@ -686,7 +686,7 @@ called on a section within a page.
 html.content.pre.custom
 Stub to output content before the content of a page or section.
 :Stub: true
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
@@ -705,7 +705,7 @@ Otherwise, it is being called on a section within a page.
 <!--%%==========================================================================
 html.content.pre.mode
 Output content before the content of a page or section.
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $page: Whether the content is for a page.
 
 This mode is applied by *{html.content.pre} after calling
@@ -723,7 +723,7 @@ within a page.
 <!--**==========================================================================
 html.content.post
 Output content after the content of a page or section, before subsections.
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
@@ -750,7 +750,7 @@ is being called on a section within a page.
 html.content.post.custom
 Stub to output content after the content of a page or section, before subsections.
 :Stub: true
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
@@ -770,7 +770,7 @@ a page.
 <!--%%==========================================================================
 html.content.post.mode
 Output content after the content of a page or section, before subsections.
-:Revision: version="3.26" date="2016-06-21" status="final"
+:Revision: version="3.28" date="2016-06-21" status="final"
 $page: Whether the content is for a page.
 
 This mode is applied by *{html.content.post} before calling
@@ -1959,7 +1959,7 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="3.26" date="2017-07-05" status="final"
+:Revision:version="3.28" date="2017-07-05" status="final"
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
@@ -2011,7 +2011,7 @@ copy, override this template and provide the necessary files.
 <!--**==========================================================================
 html.js.script
 Output a JavaScript #{script} tag containing local content.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js} to output JavaScript content. It outputs
@@ -2033,7 +2033,7 @@ result of *{html.js.content} to that file.
 <!--**==========================================================================
 html.js.content
 Output JavaScript content for an HTML output page.
-:Revision:version="3.26" date="2017-07-05" status="final"
+:Revision:version="3.28" date="2017-07-05" status="final"
 $node: The node to create JavaScript for.
 
 This template is called by *{html.js.script} to output JavaScript content. It
@@ -2458,7 +2458,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--**==========================================================================
 html.js.syntax
 Output #{script} elements for syntax highlighting.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $node: The node to create JavaScript for.
 
 This template outputs HTML #{script} elements to enable syntax highlighting.
@@ -2618,7 +2618,7 @@ if ${dir} is non-empty.
 <!--**==========================================================================
 html.syntax.class
 Output HTML class values for syntax highlighting.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 $node: The source element whose content will be syntax highlighted.
 
 This template calls %{html.syntax.class.mode} on ${node}. If the result of that
@@ -2645,7 +2645,7 @@ the #{class} attribute for output elements.
 <!--%%==========================================================================
 html.syntax.class.mode
 Get the syntax highlighting language for a source-specific element.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This mode is called by *{html.syntax.class} on source elements that may have
 syntax highlighted. This template should be implemented by importing stylesheets.
@@ -2657,7 +2657,7 @@ It should return a simple language identifier.
 <!--**==========================================================================
 html.media.controls
 Output media controls for a video or audio object.
-:Revision:version="3.26" date="2016-02-12" status="final"
+:Revision:version="3.28" date="2016-02-12" status="final"
 
 This template outputs HTML containing controls for a media play for audio or
 video HTML elements. To work with the built-in JavaScript binding code, it

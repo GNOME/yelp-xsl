@@ -569,7 +569,7 @@ attributes containing slash or colon characters.
 <!--**==========================================================================
 mal.link.target
 Output the target URL for a #{link} or other linking element.
-:Revision:version="3.26" date="2017-08-11" status="final"
+:Revision:version="3.28" date="2017-08-11" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.
@@ -664,7 +664,7 @@ fallback to the built-in behavior.
 mal.link.target.extended
 Output the target URL for an element with an extended #{xref} attribute.
 :Stub: true
-:Revision:version="3.26" date="2017-08-11" status="final"
+:Revision:version="3.28" date="2017-08-11" status="final"
 $node: The #{link} or other element creating the link.
 $action: The #{action} attribute of ${node}.
 $xref: The #{xref} attribute of ${node}.

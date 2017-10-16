@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.contrast" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Get the contrast between two colors.</desc></info><title>color.contrast</title><p>Get the contrast between two colors.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="color.contrast" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Get the contrast between two colors.</desc></info><title>color.contrast</title><p>Get the contrast between two colors.</p>
   
   
   <synopsis><title>Parameters</title><terms>

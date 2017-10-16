@@ -22,7 +22,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Colors
 Common named colors and color utilities for output styling.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This stylesheet provides a common interface to specify custom colors for
 transformations to presentation-oreinted formats.  This allows similar
@@ -36,7 +36,7 @@ and extracting information about colors.
 <!--**==========================================================================
 color.hex2dec
 Convert a hexidecimal number to decimal.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $hex: The hexidecimal number to convert to decimal.
 
 This template converts a hexidecimal number to decimal. It's useful for getting
@@ -75,7 +75,7 @@ the numeric values of color components in a hexidecimal color code.
 <!--**==========================================================================
 color.r
 Extract the red component of a color.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
 This template extracts the red portion of a color, returning a number between
@@ -106,7 +106,7 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.g
 Extract the green component of a color.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
 This template extracts the green portion of a color, returning a number between
@@ -137,7 +137,7 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.b
 Extract the blue component of a color.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
 This template extracts the blue portion of a color, returning a number between
@@ -175,7 +175,7 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.a
 Extract the alpha value of a color.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
 This template extracts the alpha, or opacity level, of a color. It returns a
@@ -201,7 +201,7 @@ with anything other than #{rgba()}, it always returns 1.0.
 <!--**==========================================================================
 color.rl
 Get the relative luminance of a color.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
 This template calculates the relative luminance of a color, returning a number
@@ -271,7 +271,7 @@ HSL or named HTML colors.
 <!--**==========================================================================
 color.contrast
 Get the contrast between two colors.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $bg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 $fg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 
@@ -317,7 +317,7 @@ ratio of at least 3.0 for large-scale text.
 <!--**==========================================================================
 color.blend
 Blend two colors together at a specified mix level.
-:Revision: version="3.26" date="2016-01-03" status="final"
+:Revision: version="3.28" date="2016-01-03" status="final"
 $bg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 $fg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
 $mix: The mix level, between 0.0 and 1.0.
@@ -537,7 +537,7 @@ the #{rgb()} scheme. Otherwise, it uses the #{rgba()} scheme.
 <!--@@==========================================================================
 color.fg
 The primary text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameters specifies the normal color of text. It should have a high color
 contrast against @{color.bg}. Other text colors can be automatically computed
@@ -549,7 +549,7 @@ based on this color.
 <!--@@==========================================================================
 color.bg
 The normal background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameters specifies the background color. It should have a high color
 contrast against @{color.fg}. Other background colors can be automatically
@@ -561,7 +561,7 @@ computed based on this color.
 <!--@@==========================================================================
 color.red
 A red accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of red that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -573,7 +573,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.red
 A red text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of red that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -589,7 +589,7 @@ automatically computed based on @{color.red} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.red
 A red background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of red that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -605,7 +605,7 @@ it can be automatically computed based on @{color.red} and @{color.bg}.
 <!--@@==========================================================================
 color.orange
 An orange accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of orange that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -617,7 +617,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.orange
 An orange text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of orange that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -633,7 +633,7 @@ automatically computed based on @{color.orange} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.orange
 An orange background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of orange that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -649,7 +649,7 @@ it can be automatically computed based on @{color.orange} and @{color.bg}.
 <!--@@==========================================================================
 color.yellow
 A yellow accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of yellow that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -661,7 +661,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.yellow
 A yellow text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of yellow that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -678,7 +678,7 @@ automatically computed based on @{color.yellow} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.yellow
 A yellow background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of yellow that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -695,7 +695,7 @@ it can be automatically computed based on @{color.yellow} and @{color.bg}.
 <!--@@==========================================================================
 color.green
 A green accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of green that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -707,7 +707,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.green
 A green text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of green that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -723,7 +723,7 @@ automatically computed based on @{color.green} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.green
 A green background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of green that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -739,7 +739,7 @@ it can be automatically computed based on @{color.green} and @{color.bg}.
 <!--@@==========================================================================
 color.blue
 A blue accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of blue that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -751,7 +751,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.blue
 A blue text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of blue that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -766,7 +766,7 @@ automatically computed based on @{color.blue} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.blue
 A blue background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of blue that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -782,7 +782,7 @@ it can be automatically computed based on @{color.blue} and @{color.bg}.
 <!--@@==========================================================================
 color.purple
 A purple accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of purple that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -794,7 +794,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.purple
 A purple text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of purple that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -810,7 +810,7 @@ automatically computed based on @{color.purple} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.purple
 A purple background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of purple that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -826,7 +826,7 @@ it can be automatically computed based on @{color.purple} and @{color.bg}.
 <!--@@==========================================================================
 color.gray
 A gray accent color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of gray that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -838,7 +838,7 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.gray
 A gray text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of gray that is suitable for text. It should
 have a high color contrast against @{color.bg}. If not specified, it can be
@@ -854,7 +854,7 @@ automatically computed based on @{color.gray} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.gray
 A gray background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of gray that is suitable for backgrounds.
 It should have a high color contrast against @{color.fg}. If not specified,
@@ -870,7 +870,7 @@ it can be automatically computed based on @{color.gray} and @{color.bg}.
 <!--@@==========================================================================
 color.fg.dark
 A dark gray text color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a dark shade of gray that is suitable for text. It
 should have a very high color contrast against @{color.bg}. It is typically
@@ -889,7 +889,7 @@ specified, it can be automatically computed based on @{color.gray} and
 <!--@@==========================================================================
 color.bg.dark
 A dark gray background color.
-:Revision:version="3.26" date="2016-01-03" status="final"
+:Revision:version="3.28" date="2016-01-03" status="final"
 
 This parameter specifies a shade of gray that is suitable for backgrounds,
 and is darker than @{color.bg.gray}. It should have a high color contrast

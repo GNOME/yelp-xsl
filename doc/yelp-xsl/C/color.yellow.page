@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.yellow" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>A yellow accent color.</desc></info><title>color.yellow</title><p>A yellow accent color.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="color.yellow" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>A yellow accent color.</desc></info><title>color.yellow</title><p>A yellow accent color.</p>
   
   
   <p>This parameter specifies a shade of yellow that is suitable for borders and other accents. It should have some contrast against background colors, but it does not need as high of a contrast as text colors.</p>

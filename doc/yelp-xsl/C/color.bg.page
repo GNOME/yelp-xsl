@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.bg" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.26" date="2016-01-03" status="final"/><desc>The normal background color.</desc></info><title>color.bg</title><p>The normal background color.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="color.bg" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>The normal background color.</desc></info><title>color.bg</title><p>The normal background color.</p>
   
   
   <p>This parameters specifies the background color. It should have a high color contrast against <code style="xslt-param" xref="color.fg">color.fg</code>. Other background colors can be automatically computed based on this color.</p>

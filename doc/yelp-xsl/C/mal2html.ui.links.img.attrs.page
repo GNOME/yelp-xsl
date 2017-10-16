@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.img.attrs" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.4" date="2012-02-25" status="final"/><desc>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</desc></info><title>mal2html.ui.links.img.attrs</title><p>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.img.attrs" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.28" date="2017-08-11" status="final"/><desc>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</desc></info><title>mal2html.ui.links.img.attrs</title><p>Output the <code>width</code> and <code>height</code> attributes for a thumbnail image.</p>
   
   
   <synopsis><title>Parameters</title><terms>
@@ -8,8 +8,8 @@
       <p>A <code>links</code> element to link from.</p>
     </item>
     <item>
-      <title><code>thumbs</code></title>
-      <p>A list of candidate <code>uix:thumb</code> elements.</p>
+      <title><code>thumb</code></title>
+      <p>A <code>uix:thumb</code> element.</p>
     </item>
     <item>
       <title><code>width</code></title>

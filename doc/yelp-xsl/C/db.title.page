@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.title" type="topic" style="xslt-template"><info><link type="guide" xref="db-title" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.26" date="2017-03-18" status="final"/><desc>Output a title for an element.</desc></info><title>db.title</title><p>Output a title for an element.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="db.title" type="topic" style="xslt-template"><info><link type="guide" xref="db-title" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="3.28" date="2017-03-18" status="final"/><desc>Output a title for an element.</desc></info><title>db.title</title><p>Output a title for an element.</p>
   
   
   <synopsis><title>Parameters</title><terms>

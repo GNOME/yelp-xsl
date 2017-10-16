@@ -38,7 +38,7 @@ elements with optional titles.
 <!--**==========================================================================
 db.title
 Output a title for an element.
-:Revision:version="3.26" date="2017-03-18" status="final"
+:Revision:version="3.28" date="2017-03-18" status="final"
 $node: The element to output the title of.
 $info: The info child element of ${node}.
 

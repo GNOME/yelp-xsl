@@ -98,7 +98,7 @@ http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
 <!--**==========================================================================
 mal2html.ui.links.tiles
 Output links as thumbnail tiles.
-:Revision:version="3.26" date="2015-10-22" status="volatile"
+:Revision:version="3.28" date="2015-10-22" status="volatile"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A link role, used to select the appropriate title and thumbnail.
@@ -317,7 +317,7 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.ui.links.img
 Output an image for a link using UI thumbnails.
-:Revision:version="3.26" date="2017-08-11" status="final"
+:Revision:version="3.28" date="2017-08-11" status="final"
 $node: A #{links} element to link from.
 $thumbs: A list of candidate #{uix:thumb} elements.
 $role: A link role, used to select the appropriate thumbnail.
@@ -396,7 +396,7 @@ ${node} element.
 <!--**==========================================================================
 mal2html.ui.links.img.src
 Output the #{src} attribute for a thumbnail image.
-:Revision:version="3.26" date="2017-08-11" status="final"
+:Revision:version="3.28" date="2017-08-11" status="final"
 $node: A #{links} element to link from.
 $thumb: A #{uix:thumb} element.
 $width: The width to fit thumbnails into.
@@ -418,7 +418,7 @@ Override this template if you need to support multi-directory output.
 <!--**==========================================================================
 mal2html.ui.links.img.attrs
 Output the #{width} and #{height} attributes for a thumbnail image.
-:Revision:version="3.26" date="2017-08-11" status="final"
+:Revision:version="3.28" date="2017-08-11" status="final"
 $node: A #{links} element to link from.
 $thumb: A #{uix:thumb} element.
 $width: The width to fit thumbnails into.

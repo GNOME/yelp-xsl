@@ -252,7 +252,7 @@ parameter will be used if provided.
 <!--**==========================================================================
 mal2html.links.ul
 Output links in an HTML #{ul} element.
-:Revision:version="3.26" date="2017-08-04" status="final"
+:Revision:version="3.28" date="2017-08-04" status="final"
 $node: A #{links} element to link from.
 $links: A list of links, as from a template in !{mal-link}.
 $role: A space-separated list of link roles, used to select the appropriate title.

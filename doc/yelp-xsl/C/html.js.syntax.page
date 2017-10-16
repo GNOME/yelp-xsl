@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Output <code>script</code> elements for syntax highlighting.</desc></info><title>html.js.syntax</title><p>Output <code>script</code> elements for syntax highlighting.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Output <code>script</code> elements for syntax highlighting.</desc></info><title>html.js.syntax</title><p>Output <code>script</code> elements for syntax highlighting.</p>
   
   
   <synopsis><title>Parameters</title><terms>

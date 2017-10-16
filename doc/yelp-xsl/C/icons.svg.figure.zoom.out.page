@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.figure.zoom.out" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.26" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a figure zoom-out icon.</desc></info><title>icons.svg.figure.zoom.out</title><p>Output an <code>svg</code> element for a figure zoom-out icon.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.figure.zoom.out" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a figure zoom-out icon.</desc></info><title>icons.svg.figure.zoom.out</title><p>Output an <code>svg</code> element for a figure zoom-out icon.</p>
   
   
   <p>This template outputs an SVG <code>svg</code> element with the zoom-in icon for figures. Figures automatically scale images down. This icon scales them back down after they have been zoomed.</p>

@@ -21,7 +21,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Icons
 Specify common named icons to style output.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This stylesheet provides a common interface to specify icons for transformations
 to presentation-oreinted formats. This allows similar output for different
@@ -41,7 +41,7 @@ for proper presentation.
 <!--%%==========================================================================
 icons.svg.mode
 Reduce SVG icons to elements needed for presentation.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This mode matches SVG elements and outputs only the SVG needed for presentation.
 It strips out metadata and other elements and attributes used primarily by
@@ -75,7 +75,7 @@ output of these stylesheets.
 <!--**==========================================================================
 icons.svg.note
 Output an #{svg} element for a note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 $style: The style of the note.
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
@@ -123,7 +123,7 @@ SVG icons can use CSS class names to pick up colors from the !{colors} module.
 <!--**==========================================================================
 icons.svg.note.advanced
 Output an #{svg} element for an advanced note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with advanced information.
@@ -140,7 +140,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.bug
 Output an #{svg} element for a bug note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 about known bugs.
@@ -157,7 +157,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.caution
 Output an #{svg} element for a caution note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with cautionary information.
@@ -174,7 +174,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.danger
 Output an #{svg} element for a danger note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 about dangerous situations.
@@ -191,7 +191,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.important
 Output an #{svg} element for an important note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with important information.
@@ -208,7 +208,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.note
 Output an #{svg} element for a note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with general information.
@@ -225,7 +225,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.package
 Output an #{svg} element for a package note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 about packages the user may need to install.
@@ -242,7 +242,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.tip
 Output an #{svg} element for a tip note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with tips.
@@ -259,7 +259,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.note.warning
 Output an #{svg} element for a warning note icon.
-:Revision:version="3.26" date="2017-05-24" status="final"
+:Revision:version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with an icon suitable for notes
 with warnings.
@@ -294,7 +294,7 @@ This parameters still affects the size of that character.
 <!--**==========================================================================
 icons.svg.figure.zoom.in
 Output an #{svg} element for a figure zoom-in icon.
-:Revision: version="3.26" date="2017-05-24" status="final"
+:Revision: version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon shows them at their original
@@ -317,7 +317,7 @@ names.
 <!--**==========================================================================
 icons.svg.figure.zoom.out
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.26" date="2017-05-24" status="final"
+:Revision: version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon scales them back down after
@@ -340,7 +340,7 @@ names.
 <!--**==========================================================================
 icons.svg.media.play
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.26" date="2017-05-24" status="final"
+:Revision: version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with a play icon for media controls.
 
@@ -357,7 +357,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--**==========================================================================
 icons.svg.media.pause
 Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.26" date="2017-05-24" status="final"
+:Revision: version="3.28" date="2017-05-24" status="final"
 
 This template outputs an SVG #{svg} element with a pause icon for media controls.
 

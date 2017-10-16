@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.js.content" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.26" date="2017-05-24" status="final"/><desc>Output JavaScript content for an HTML output page.</desc></info><title>html.js.content</title><p>Output JavaScript content for an HTML output page.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="html.js.content" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.28" date="2017-07-05" status="final"/><desc>Output JavaScript content for an HTML output page.</desc></info><title>html.js.content</title><p>Output JavaScript content for an HTML output page.</p>
   
   
   <synopsis><title>Parameters</title><terms>
@@ -8,5 +8,5 @@
       <p>The node to create JavaScript for.</p>
     </item>
   </terms></synopsis>
-  <p>This template is called by <code style="xslt-template" xref="html.js.script">html.js.script</code> to output JavaScript content. It does not output an HTML <code>script</code> tag. The JavaScript output by this template or templates it calls may depend on the jQuery code referenced by <code style="xslt-template" xref="html.js.jquery">html.js.jquery</code>. This template calls the templates <code style="xslt-template" xref="html.js.core">html.js.core</code>, <code style="xslt-template" xref="html.js.ui">html.js.ui</code>, and <code style="xslt-template" xref="html.js.media">html.js.media</code>. It then calls the mode <code style="xslt-mode" xref="html.js.mode">html.js.mode</code> on <code style="xslt-param">node</code> and calls the template <code style="xslt-template" xref="html.js.content.custom">html.js.content.custom</code>.</p>
+  <p>This template is called by <code style="xslt-template" xref="html.js.script">html.js.script</code> to output JavaScript content. It does not output an HTML <code>script</code> tag. This template calls the templates <code style="xslt-template" xref="html.js.core">html.js.core</code>, <code style="xslt-template" xref="html.js.ui">html.js.ui</code>, and <code style="xslt-template" xref="html.js.media">html.js.media</code>. It then calls the mode <code style="xslt-mode" xref="html.js.mode">html.js.mode</code> on <code style="xslt-param">node</code> and calls the template <code style="xslt-template" xref="html.js.content.custom">html.js.content.custom</code>.</p>
 <list style="compact"><title>Calls Templates</title><item><p><link xref="html.js.core"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.js.mode"/></p></item></list></page>

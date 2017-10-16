@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.syntax.class.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.26" date="2016-01-03" status="final"/><desc>Get the syntax highlighting language for a source-specific element.</desc></info><title>html.syntax.class.mode</title><p>Get the syntax highlighting language for a source-specific element.</p>
+<page xmlns="http://projectmallard.org/1.0/" id="html.syntax.class.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Get the syntax highlighting language for a source-specific element.</desc></info><title>html.syntax.class.mode</title><p>Get the syntax highlighting language for a source-specific element.</p>
   
   
   <p>This mode is called by <code style="xslt-template" xref="html.syntax.class">html.syntax.class</code> on source elements that may have syntax highlighted. This template should be implemented by importing stylesheets. It should return a simple language identifier.</p>

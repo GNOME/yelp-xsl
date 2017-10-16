@@ -4,6 +4,10 @@
   
   <synopsis><title>Parameters</title><terms>
     <item>
+      <title><code>node</code></title>
+      <p>A <code>links</code> element to link from.</p>
+    </item>
+    <item>
       <title><code>link</code></title>
       <p>The <code>link</code> element from a list of links.</p>
     </item>
@@ -25,4 +29,4 @@
     </item>
   </terms></synopsis>
   <p>This template is called by <code style="xslt-template" xref="mal2html.links.ul">mal2html.links.ul</code> to output a list item with a link for each target.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal.link.content"/></p></item><item><p><link xref="mal2html.editor.badge"/></p></item><item><p><link xref="mal.link.desc"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>
+<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.target"/></p></item><item><p><link xref="mal.link.tooltip"/></p></item><item><p><link xref="mal.link.content"/></p></item><item><p><link xref="mal2html.editor.badge"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>
