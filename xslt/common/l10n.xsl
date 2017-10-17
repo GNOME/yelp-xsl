@@ -149,19 +149,19 @@ stylesheet for their language.
 Some translations aren't simple strings, but are instead format strings where
 certain values are inserted. This template can handle format strings with XML
 marker elements to signal where values should be substituted. These values
-cat be the result of applying templates.
+can be the result of applying templates.
 
-To enable format strings, pass set the ${format} parameter to #{true()}.
-Instead of just returning the translated string, this template will instead
+To enable format strings, set the ${format} parameter to #{true()}.
+Instead of just returning the translated string, this template will
 apply templates in the mode %{l10n.format.mode} to the fragment contained in
 the #{msgstr} element.
 
 The ${node} and ${string} parameters are passed to templates in
 %{l10n.format.mode}. This stylesheet contains matches in %{l10n.format.mode}
-for the marker elements #{<string/>} and #{<node/>}. The element #{<string/>}
-will be replaced by the string value of ${string}. The element #{<node/>} will
-apply templates without a mode to ${node}. Text nodes are copied to the result
-in %{l10n.format.mode}.
+for the marker elements #{&lt;string/>} and #{&lt;node/>}. The element
+#{&lt;string/>} will be replaced by the string value of ${string}. The
+element #{&lt;node/>} will apply templates without a mode to ${node}.
+Text nodes are copied to the result in %{l10n.format.mode}.
 
 If you need any other behavior, add elements with any name of your choosing to
 the format string, then match on those elements in %{l10n.format.mode}. You will
