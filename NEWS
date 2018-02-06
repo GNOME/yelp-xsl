@@ -1,3 +1,9 @@
+3.27.90
+=======
+* Typo fixes in docs
+* Updated translations:
+  eo    (Kristjan SCHMIDT)
+
 3.27.1
 ======
 * Massive backwards incompatible updates to stylesheets
