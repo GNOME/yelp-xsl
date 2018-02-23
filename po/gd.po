@@ -1,14 +1,14 @@
 # Scottish Gaelic translation for yelp-xsl.
 # Copyright (C) 2017 yelp-xsl's COPYRIGHT HOLDER
 # This file is distributed under the same license as the yelp-xsl package.
-# GunChleoc <fios@foramnagaidhlig.net>, 2017.
+# GunChleoc <fios@foramnagaidhlig.net>, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-10-16 17:46+0000\n"
-"PO-Revision-Date: 2017-03-07 13:30+0100\n"
+"POT-Creation-Date: 2017-04-09 13:36+0000\n"
+"PO-Revision-Date: 2018-02-23 17:37+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "Language: gd\n"
@@ -216,7 +216,7 @@ msgstr "Ceadachas"
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:213
 msgid "Maintained By"
-msgstr "'Ga ghlèidheadh le"
+msgstr "’Ga ghlèidheadh le"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
@@ -256,7 +256,7 @@ msgstr "Ro shean"
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:249
 msgid "Pause"
-msgstr "Cuir 'na stad"
+msgstr "Cuir ’na stad"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
@@ -364,7 +364,7 @@ msgstr "Sgrìobhte le"
 #.
 #: yelp-xsl.xml.in:350
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Seall nì <biblioentry.label/> a' chlàir-leabhraichean."
+msgstr "Seall nì <biblioentry.label/> a’ chlàir-leabhraichean."
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
