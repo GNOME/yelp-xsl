@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: yelp-xsl gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
 "xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-10-05 11:17+0000\n"
-"PO-Revision-Date: 2017-10-06 14:07+0200\n"
+"POT-Creation-Date: 2018-02-23 17:39+0000\n"
+"PO-Revision-Date: 2018-02-28 01:14+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -137,13 +137,13 @@ msgstr "Zatvori"
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:142
 msgid "Colophon"
-msgstr "Kolofon"
+msgstr "Impresum"
 
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
 #: yelp-xsl.xml.in:147
 msgid "Creative Commons"
-msgstr ""
+msgstr "Creative Commons"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
@@ -242,7 +242,7 @@ msgstr "Napomena"
 #.
 #: yelp-xsl.xml.in:236
 msgid "Other Credits"
-msgstr "Druge zasluge"
+msgstr "Ostale zasluge"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
@@ -324,7 +324,7 @@ msgstr "Sažetak"
 #. Accessible title for a tip.
 #: yelp-xsl.xml.in:311
 msgid "Tip"
-msgstr "Vrsta"
+msgstr "Savjet"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
@@ -387,7 +387,7 @@ msgstr "Pogledaj bibliografski upis <biblioentry.label/>."
 #.
 #: yelp-xsl.xml.in:373
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. (itstool) path: msg/msgstr
 #. ID: citation.label
@@ -404,7 +404,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:390
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "[<citation.label/>]"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name-date
@@ -474,7 +474,7 @@ msgstr "od <comment.name/>"
 #.
 #: yelp-xsl.xml.in:460
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: email.tooltip
@@ -553,7 +553,7 @@ msgstr "Još pogledajte <glosssee/>."
 #.
 #: yelp-xsl.xml.in:539
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>”"
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -565,7 +565,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:551
 msgid "‘<node/>’"
-msgstr ""
+msgstr "‘<node/>’"
 
 #. (itstool) path: msg/msgstr
 #. ID: seeie.format
