@@ -525,6 +525,11 @@ REMARK: Describe this module
         <xsl:value-of select="@rowspan"/>
       </xsl:attribute>
     </xsl:if>
+    <xsl:if test="self::mal:th/@scope">
+      <xsl:attribute name="scope">
+        <xsl:value-of select="@scope"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates mode="mal2html.block.mode"/>
   </xsl:element>
 </xsl:template>

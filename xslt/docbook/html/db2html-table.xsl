@@ -1209,7 +1209,7 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
   <xsl:element name="{local-name(.)}" namespace="{$html.namespace}">
     <xsl:call-template name="html.lang.attrs"/>
     <xsl:call-template name="html.class.attr"/>
-    <xsl:copy-of select="@valign | @rowspan | @colspan"/>
+    <xsl:copy-of select="@valign | @rowspan | @colspan | @scope"/>
     <xsl:choose>
       <xsl:when test="@align = 'left' or @align = 'center' or 
                       @align = 'right' or @align = 'justify' ">
