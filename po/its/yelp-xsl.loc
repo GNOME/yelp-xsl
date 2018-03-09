@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<locatingRules>
+  <locatingRule name="yelp xsl" pattern="*xsl.xml" target="yelp-xsl.its"/>
+</locatingRules>
