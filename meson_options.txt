@@ -1,0 +1,13 @@
+option('dita',
+       type: 'boolean', value: false,
+       description: 'Install DITA stylesheets')
+option('docbook',
+       type: 'boolean', value: true,
+       description: 'Install DocBook stylesheets')
+option('mallard',
+       type: 'boolean', value: true,
+       description: 'Install Mallard stylesheets')
+
+option('yelp_manual',
+       type: 'boolean', value: false,
+       description: 'Build user manual (requires awk)')
