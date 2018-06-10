@@ -147,6 +147,11 @@ reviewed, and it awaiting a final approval.
 <msgstr>Colophon</msgstr>
 </msg>
 
+<msg id="Contents">
+<its:locNote>Title for a table of contents for the entire document.</its:locNote>
+<msgstr>Contents</msgstr>
+</msg>
+
 <msg id="Creative Commons">
 <its:locNote>Title for license information when it's a CC license.</its:locNote>
 <msgstr>Creative Commons</msgstr>
@@ -236,6 +241,11 @@ Generic title for license information when it's not a known license.
 <msg id="Note">
 <its:locNote>Accessible title for a note.</its:locNote>
 <msgstr>Note</msgstr>
+</msg>
+
+<msg id="On This Page">
+<its:locNote>Title for a list of links to sections on the current page.</its:locNote>
+<msgstr>On This Page</msgstr>
 </msg>
 
 <msg id="Other Credits">

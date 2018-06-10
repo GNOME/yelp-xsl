@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>Output a sidebar compenent for a token.</desc></info><title>html.sidebar.mode</title><p>Output a sidebar compenent for a token.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node a sidebar is being created for.</p>
+    </item>
+    <item>
+      <title><code>side</code></title>
+      <p>Which sidebar, either <code>left</code> or <code>right</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This mode is called by <code style="xslt-template" xref="html.sidebar">html.sidebar</code> for each sidebar compenent in each of <code style="xslt-param" xref="html.sidebar.left">html.sidebar.left</code> and <code style="xslt-param" xref="html.sidebar.right">html.sidebar.right</code>. See <code style="xslt-template" xref="html.sidebar">html.sidebar</code> for full details.</p>
+</page>

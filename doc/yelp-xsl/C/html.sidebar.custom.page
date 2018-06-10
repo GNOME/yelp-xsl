@@ -10,4 +10,5 @@
     </item>
   </terms></synopsis>
   <p>This template is a stub, called by <code style="xslt-template" xref="html.page">html.page</code>. It is called inside the <code>main</code> element, before the <code>div.page</code> element. The <code>main</code> element uses a horizontal flexbox by default. You can override this template to provide sidebar content. Note that there is only one extension point for sidebar content, and it is always placed before the main content in document order. To create a sidebar on the right, output the element here, then adjust the <code>order</code> CSS property for that element to display it after the <code>main</code> element.</p>
+  <p>This template is intended for completely custom sidebars. You can also use <code style="xslt-template" xref="html.sidebar">html.sidebar</code> to output sidebars with stock components.</p>
 </page>

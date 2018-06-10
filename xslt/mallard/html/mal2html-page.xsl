@@ -558,6 +558,7 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
 
 <!-- == Matched Templates == -->
 
+<!--%# html.title.mode -->
 <xsl:template mode="html.title.mode" match="mal:page">
   <xsl:variable name="title" select="mal:info/mal:title[@type = 'text'][1]"/>
   <xsl:choose>
@@ -570,14 +571,140 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
   </xsl:choose>
 </xsl:template>
 
+<!--%# html.header.mode -->
 <xsl:template mode="html.header.mode" match="mal:page">
   <xsl:call-template name="mal2html.page.linktrails"/>
 </xsl:template>
 
+<!--%# html.footer.mode -->
 <xsl:template mode="html.footer.mode" match="mal:page">
   <xsl:call-template name="mal2html.page.about"/>
 </xsl:template>
 
+<!--%# html.sidebar.contents.mode -->
+<xsl:template mode="html.sidebar.contents.mode" match="mal:page">
+  <xsl:param name="side"/>
+  <xsl:variable name="page" select="."/>
+  <div class="sidebar-contents">
+    <div class="inner">
+      <div class="title">
+        <h2>
+          <span class="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Contents'"/>
+            </xsl:call-template>
+          </span>
+        </h2>
+      </div>
+      <div class="region">
+        <div class="contents">
+          <xsl:for-each select="$mal.cache">
+            <xsl:for-each select="key('mal.cache.key', $mal.link.default_root)">
+              <xsl:call-template name="_html.sidebar.contents.ul"/>
+            </xsl:for-each>
+          </xsl:for-each>
+        </div>
+      </div>
+    </div>
+  </div>
+</xsl:template>
+
+<xsl:template name="_html.sidebar.contents.ul">
+  <xsl:param name="node" select="."/>
+  <ul>
+    <xsl:if test="$node/self::mal:page">
+      <li class="links">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="xref" select="$node/@id"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip">
+              <xsl:with-param name="xref" select="$node/@id"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content">
+            <xsl:with-param name="xref" select="$node/@id"/>
+          </xsl:call-template>
+        </a>
+      </li>
+    </xsl:if>
+    <xsl:if test="$node/self::mal:section">
+      <li class="links links-head">
+        <xsl:choose>
+          <xsl:when test="$node/mal:info/mal:title[@type = 'link'][not(@role)]">
+            <xsl:apply-templates mode="mal2html.inline.mode"
+                                 select="$node/mal:info/mal:title[@type = 'link'][not(@role)][1]/node()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="mal2html.inline.mode" select="$node/mal:title/node()"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </li>
+    </xsl:if>
+    <!-- FIXME: Ideally we'd group and sort based on links elements, but those
+         aren't in the cache file, so that's harder.
+    -->
+    <xsl:variable name="links_">
+      <xsl:call-template name="mal.link.topiclinks">
+        <xsl:with-param name="node" select="."/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="links" select="exsl:node-set($links_)/*"/>
+    <xsl:for-each select="$links">
+      <xsl:sort data-type="number" select="@groupsort"/>
+      <xsl:sort select="mal:title[@type = 'sort']"/>
+      <li class="links">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target"/>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip"/>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content"/>
+        </a>
+      </li>
+    </xsl:for-each>
+    <xsl:for-each select="$node/mal:section">
+      <li class="links">
+        <xsl:call-template name="_html.sidebar.contents.ul"/>
+      </li>
+    </xsl:for-each>
+  </ul>
+</xsl:template>
+
+<!--%# html.sidebar.sections.mode -->
+<xsl:template mode="html.sidebar.sections.mode" match="mal:page">
+  <xsl:param name="side"/>
+  <xsl:if test="mal:section">
+    <div class="sidebar-sections">
+      <div class="inner">
+        <div class="title">
+          <h2>
+            <span class="title">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'On This Page'"/>
+              </xsl:call-template>
+            </span>
+          </h2>
+        </div>
+        <div class="region">
+          <div class="contents">
+            <xsl:call-template name="_mal2html.links.section.ul">
+              <xsl:with-param name="node" select="."/>
+              <xsl:with-param name="nodesc" select="true()"/>
+            </xsl:call-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<!--%# html.body.mode -->
 <xsl:template mode="html.body.mode" match="mal:page">
   <xsl:call-template name="mal2html.editor.banner"/>
   <xsl:choose>

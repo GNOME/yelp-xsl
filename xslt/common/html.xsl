@@ -19,9 +19,10 @@ along with this program; see the file COPYING.LGPL. If not, see <http://www.gnu.
                 xmlns:mml="http://www.w3.org/1998/Math/MathML"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:str="http://exslt.org/strings"
                 xmlns:its="http://www.w3.org/2005/11/its"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="html mml set its"
+                exclude-result-prefixes="html mml set str its"
                 extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -225,6 +226,32 @@ prefix the base file name itself.
 <xsl:param name="html.output.prefix" select="''"/>
 
 
+<!--@@==========================================================================
+html.sidebar.left
+List of components to add to the left sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+
+This parameter takes a space-separated list of tokens that specify which
+components to add to the stock left sidebar. These stylesheets recognize
+certain tokens, and you can add your own with %{html.sidebar.mode}. See
+*{html.sidebar} for further details.
+-->
+<xsl:param name="html.sidebar.left" select="''"/>
+
+
+<!--@@==========================================================================
+html.sidebar.right
+List of components to add to the right sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+
+This parameter takes a space-separated list of tokens that specify which
+components to add to the stock right sidebar. These stylesheets recognize
+certain tokens, and you can add your own with %{html.sidebar.mode}. See
+*{html.sidebar} for further details.
+-->
+<xsl:param name="html.sidebar.right" select="''"/>
+
+
 <!--**==========================================================================
 html.output
 Create an HTML output file.
@@ -329,7 +356,9 @@ the HTML #{head} element. Override the *{html.top.custom} and
 *{html.bottom.custom} templates to add site-specific content at the top and
 bottom of the page. Override the *{html.header.custom} and *{html.footer.custom}
 templates to provide additional content directoy above and below the main
-content. Override *{html.sidebar.custom} to create sidebars.
+content. Use the @{html.sidebar.left} and @{html.sidebar.right} parameters
+to create stock sidebars, or override *{html.sidebar.custom} to create
+your own.
 
 This template also calls *{html.css} and *{html.js} to output CSS and JavaScript
 elements. See those templates for further extension points.
@@ -365,6 +394,9 @@ elements. See those templates for further extension points.
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
       <main>
+        <xsl:call-template name="html.sidebar">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
         <xsl:call-template name="html.sidebar.custom">
           <xsl:with-param name="node" select="$node"/>
         </xsl:call-template>
@@ -456,6 +488,187 @@ at the bottom of the page.
 
 
 <!--**==========================================================================
+html.sidebar
+Output stock sidebars.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$node: The node a sidebar is being created for.
+
+This templates outputs left and right sidebars according to the components
+listed in @{html.sidebar.left} and @{html.sidebar.right}. It only outputs each
+sidebar if the corresponding parameters is not empty or the string #{none}.
+
+This template is called inside the #{main} element, before the #{div.page}
+element, and before *{html.sidebar.custom}. Note that even the right sidebar
+is placed before the #{div.page} element. It is placed on the right using
+flexbox item reordering.
+
+To actually output the sidebar components, this template splits each parameter
+on whitespace using the EXSTL #{str:split} function. It then applies the mode
+%{html.sidebar.mode} to each token, passing ${node} and the sidebar side as
+parameters. Extension stylesheets can add their own sidebar components by
+implementing that mode and matching a pattern like
+#{token[. = 'name-of-token']}. You will then be able to use #{name-of-token}
+in @{html.sidebar.left} or @{html.sidebar.right}.
+
+This stylesheet recognizes four tokens: #{contents} and #{sections}, and the
+special tokens #{none} and #{blank}. The #{contents} token provides a table
+of contents for the entire document. It is handled by the *{html.sidebar.contents}
+template, which uses the %{html.sidebar.contents.mode} mode to allow different
+input formats to implement it. The #{sections} token lists sections on the
+current page. It is handled by the *{html.sidebar.section} template, which
+uses the %{html.sidebar.sections.mode} mode to allow different input formats
+to implement it.
+
+You can use the #{none} token on its own, instead of the empty string, to
+completely turn off either sidebar. Use the #{blank} token to output a sidebar
+without adding any components to it. This is useful, for example, to keep
+consistent margins. If an empty sidebar is output from the #{blank} token,
+it will also have the CSS class #{sidebar-blank} so you can style it
+differently.
+-->
+<xsl:template name="html.sidebar">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$html.sidebar.left != '' and $html.sidebar.left != 'none'">
+    <xsl:call-template name="_html.sidebar.sidebar">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="side" select="'left'"/>
+      <xsl:with-param name="bars" select="$html.sidebar.left"/>
+    </xsl:call-template>
+  </xsl:if>
+  <xsl:if test="$html.sidebar.right != '' and $html.sidebar.right != 'none'">
+    <xsl:call-template name="_html.sidebar.sidebar">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="side" select="'right'"/>
+      <xsl:with-param name="bars" select="$html.sidebar.right"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="_html.sidebar.sidebar">
+  <xsl:param name="node"/>
+  <xsl:param name="side"/>
+  <xsl:param name="bars"/>
+  <xsl:variable name="class">
+    <xsl:text>sidebar sidebar-</xsl:text>
+    <xsl:value-of select="$side"/>
+    <xsl:if test="$bars = 'blank'">
+      <xsl:text> sidebar-blank</xsl:text>
+    </xsl:if>
+  </xsl:variable>
+  <aside class="{$class}">
+    <xsl:apply-templates mode="html.sidebar.mode" select="str:split($bars)">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="side" select="$side"/>
+    </xsl:apply-templates>
+  </aside>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.sidebar.mode
+Output a sidebar compenent for a token.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$node: The node a sidebar is being created for.
+$side: Which sidebar, either #{left} or #{right}.
+
+This mode is called by *{html.sidebar} for each sidebar compenent in each of
+@{html.sidebar.left} and @{html.sidebar.right}. See *{html.sidebar} for full
+details.
+-->
+<xsl:template mode="html.sidebar.mode" match="token[. = 'blank']"/>
+<xsl:template mode="html.sidebar.mode" match="*">
+  <xsl:message>
+    <xsl:text>Unmatched sidebar: </xsl:text>
+    <xsl:value-of select="."/>
+  </xsl:message>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.sidebar.contents
+Output a table of contents for a sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$node: The node a sidebar is being created for.
+$side: Which sidebar, either #{left} or #{right}.
+
+This template creates a table of contents for a sidebar. It applies
+%{html.sidebar.contents.mode} to ${node}, passing ${side} as a parameter, to
+allow individual input formats to implement tables of contents.
+
+This named template also implements %{html.sidebar.mode} on the #{contents}
+token. See *{html.sidebar} for more information on how sidebars are created.
+-->
+<xsl:template name="html.sidebar.contents"
+              mode="html.sidebar.mode" match="token[. = 'contents']">
+  <xsl:param name="node"/>
+  <xsl:param name="side"/>
+  <xsl:apply-templates mode="html.sidebar.contents.mode" select="$node">
+    <xsl:with-param name="side" select="$side"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.sidebar.contents.mode
+Output a table of contents for a sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$side: Which sidebar, either #{left} or #{right}.
+
+This mode is called by %{html.sidebar.contents} to allow different input
+formats to implement a table of contents for a sidebar.
+-->
+<xsl:template mode="html.sidebar.contents.mode" match="*">
+  <xsl:param name="side"/>
+  <xsl:message>
+    <xsl:text>Unmatched contents sidebar: </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+  </xsl:message>
+</xsl:template>
+
+
+<!--**==========================================================================
+html.sidebar.sections
+Output a list of sections for a sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$node: The node a sidebar is being created for.
+$side: Which sidebar, either #{left} or #{right}.
+
+This template creates a list of sections on the current page for a sidebar.
+It applies %{html.sidebar.sections.mode} to ${node}, passing ${side} as a
+parameter, to allow individual input formats to implement sections lists.
+
+This named template also implements %{html.sidebar.mode} on the #{sections}
+token. See *{html.sidebar} for more information on how sidebars are created.
+-->
+<xsl:template name="html.sidebar.sections"
+              mode="html.sidebar.mode" match="token[. = 'sections']">
+  <xsl:param name="node"/>
+  <xsl:param name="side"/>
+  <xsl:apply-templates mode="html.sidebar.sections.mode" select="$node">
+    <xsl:with-param name="side" select="$side"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+
+<!--%%==========================================================================
+html.sidebar.sections.mode
+Output a list of sections for a sidebar.
+:Revision:version="3.30" date="2018-06-10" status="candidate"
+$side: Which sidebar, either #{left} or #{right}.
+
+This mode is called by %{html.sidebar.sections} to allow different input
+formats to implement a sections list for a sidebar.
+-->
+<xsl:template mode="html.sidebar.sections.mode" match="*">
+  <xsl:param name="side"/>
+  <xsl:message>
+    <xsl:text>Unmatched sections sidebar: </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+  </xsl:message>
+</xsl:template>
+
+
+<!--**==========================================================================
 html.sidebar.custom
 Stub to output custom sidebar content.
 :Stub: true
@@ -469,6 +682,9 @@ Note that there is only one extension point for sidebar content, and it is
 always placed before the main content in document order. To create a sidebar
 on the right, output the element here, then adjust the #{order} CSS property
 for that element to display it after the #{main} element.
+
+This template is intended for completely custom sidebars. You can also use
+*{html.sidebar} to output sidebars with stock components.
 -->
 <xsl:template name="html.sidebar.custom">
   <xsl:param name="node" select="."/>
@@ -993,6 +1209,21 @@ div.page > header, div.page > footer { flex: 0 1 auto; }
   padding-left: 10px;
   padding-right: 10px;
 }
+aside.sidebar {
+  width: 300px;
+  padding: 20px 10px;
+  background: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>
+}
+aside.sidebar-right { order: 3; }
+aside.sidebar section { margin-top: 0; }
+aside.sidebar * { margin-bottom: 20px; }
+aside.sidebar section > div.inner > div.hgroup {
+  border-bottom: none;
+}
+aside.sidebar section h2 {
+  font-size: 1em;
+  margin-bottom: 0;
+}
 article {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1255,6 +1486,11 @@ li.links {
   margin: 0.5em 0 0.5em 0;
   padding: 0;
   list-style-type: none;
+}
+li.links-head {
+  margin-top: 1em;
+  color: </xsl:text><xsl:value-of select="$color.fg.gray"/><xsl:text>;
+  border-bottom: solid 1px </xsl:text><xsl:value-of select="$color.gray"/><xsl:text>;
 }
 div.sectionlinks {
   display: inline-block;

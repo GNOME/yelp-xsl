@@ -322,6 +322,12 @@ REMARK: Describe this module
 
 <!-- == map & html.*.mode == -->
 
+<!--
+FIXME
+html.sidebar.contents.mode
+html.sidebar.sections.mode
+-->
+
 <!-- = map % html.title.mode = -->
 <xsl:template mode="html.title.mode" match="&map_map;">
   <xsl:choose>

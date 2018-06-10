@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="mal.link.target.extended" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><link type="guide" xref="stubs" group="mal"/><revision version="3.28" date="2017-08-11" status="final"/><desc>Output the target URL for an element with an extended <code>xref</code> attribute.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>mal.link.target.extended</title><p>Output the target URL for an element with an extended <code>xref</code> attribute.</p><note><p>This template is a stub. Customizations may override it for
+            additional functionality.</p></note>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The <code>link</code> or other element creating the link.</p>
+    </item>
+    <item>
+      <title><code>action</code></title>
+      <p>The <code>action</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>xref</code></title>
+      <p>The <code>xref</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+    <item>
+      <title><code>href</code></title>
+      <p>The <code>href</code> attribute of <code style="xslt-param">node</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template is called by <code style="xslt-template" xref="mal.link.target">mal.link.target</code> to create URLs for links with a <code>/</code> or <code>:</code> in the <code>xref</code> attribute. By default, it just outputs the value of <code style="xslt-param">href</code>. Override this template to provide behavior for extended <code>xref</code> attributes.</p>
+</page>

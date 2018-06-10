@@ -56,6 +56,78 @@ common !{html} stylesheet.
   <xsl:call-template name="db2html.division.about"/>
 </xsl:template>
 
+<!--%# html.sidebar.contents.mode -->
+<xsl:template mode="html.sidebar.contents.mode" match="*">
+  <xsl:param name="side"/>
+  <xsl:param name="side"/>
+  <div class="sidebar-contents">
+    <div class="inner">
+      <div class="title">
+        <h2>
+          <span class="title">
+            <xsl:call-template name="l10n.gettext">
+              <xsl:with-param name="msgid" select="'Contents'"/>
+            </xsl:call-template>
+          </span>
+        </h2>
+      </div>
+      <div class="region">
+        <div class="contents">
+          <ul>
+            <xsl:for-each select="/* | /*/&db_chunks;">
+              <li class="links">
+                <xsl:call-template name="db2html.xref">
+                  <xsl:with-param name="linkend" select="@id | @xml:id"/>
+                  <xsl:with-param name="target" select="."/>
+                  <xsl:with-param name="xrefstyle" select="'role:titleabbrev'"/>
+                </xsl:call-template>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</xsl:template>
+
+<!--%# html.sidebar.sections.mode -->
+<xsl:template mode="html.sidebar.sections.mode" match="*">
+  <xsl:param name="side"/>
+  <xsl:variable name="depth_of_chunk">
+    <xsl:call-template name="db.chunk.depth-of-chunk"/>
+  </xsl:variable>
+  <xsl:if test="count(ancestor::*) >= $db.chunk.max_depth and &db_chunks;">
+    <div class="sidebar-sections">
+      <div class="inner">
+        <div class="title">
+          <h2>
+            <span class="title">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'On This Page'"/>
+              </xsl:call-template>
+            </span>
+          </h2>
+        </div>
+        <div class="region">
+          <div class="contents">
+            <ul>
+              <xsl:for-each select="&db_chunks;">
+                <li class="links">
+                  <xsl:call-template name="db2html.xref">
+                    <xsl:with-param name="linkend" select="@id | @xml:id"/>
+                    <xsl:with-param name="target" select="."/>
+                    <xsl:with-param name="xrefstyle" select="'role:titleabbrev'"/>
+                  </xsl:call-template>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </xsl:if>
+</xsl:template>
+
 <!--%# html.body.mode -->
 <xsl:template mode="html.body.mode" match="*">
   <xsl:call-template name="db2html.links.next"/>
@@ -72,18 +144,7 @@ common !{html} stylesheet.
     <xsl:call-template name="db.chunk.depth-of-chunk"/>
   </xsl:param>
   <xsl:if test="count(ancestor::*) &lt; $db.chunk.max_depth">
-    <xsl:for-each select="appendix     | db:appendix     | article    | db:article    |
-                          bibliography | db:bibliography | bibliodiv  | db:bibliodiv  |
-                          book         | db:book         | chapter    | db:chapter    |
-                          colophon     | db:colophon     | dedication | db:dedication |
-                          glossary     | db:glossary     | glossdiv   | db:glossdiv   |
-                          index        | db:index        | lot        | db:lot        |
-                          part         | db:part         | preface    | db:preface    |
-                          refentry     | db:refentry     | reference  | db:reference  |
-                          sect1    | sect2    | sect3    | sect4    | sect5    | section    |
-                          db:sect1 | db:sect2 | db:sect3 | db:sect4 | db:sect5 | db:section |
-                          setindex     | db:setindex     | simplesect | db:simplesect |
-                          toc          | db:toc          ">
+    <xsl:for-each select="&db_chunks;">
       <xsl:call-template name="html.output">
         <xsl:with-param name="node" select="."/>
       </xsl:call-template>

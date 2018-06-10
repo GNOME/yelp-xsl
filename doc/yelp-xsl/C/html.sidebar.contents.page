@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar.contents" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>Output a table of contents for a sidebar.</desc></info><title>html.sidebar.contents</title><p>Output a table of contents for a sidebar.</p>
+  
+  
+  <synopsis><title>Parameters</title><terms>
+    <item>
+      <title><code>node</code></title>
+      <p>The node a sidebar is being created for.</p>
+    </item>
+    <item>
+      <title><code>side</code></title>
+      <p>Which sidebar, either <code>left</code> or <code>right</code>.</p>
+    </item>
+  </terms></synopsis>
+  <p>This template creates a table of contents for a sidebar. It applies <code style="xslt-mode" xref="html.sidebar.contents.mode">html.sidebar.contents.mode</code> to <code style="xslt-param">node</code>, passing <code style="xslt-param">side</code> as a parameter, to allow individual input formats to implement tables of contents.</p>
+  <p>This named template also implements <code style="xslt-mode" xref="html.sidebar.mode">html.sidebar.mode</code> on the <code>contents</code> token. See <code style="xslt-template" xref="html.sidebar">html.sidebar</code> for more information on how sidebars are created.</p>
+<list style="compact"><title>Calls Modes</title><item><p><link xref="html.sidebar.contents.mode"/></p></item></list></page>
