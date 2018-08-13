@@ -11,18 +11,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-12-05 19:00+0000\n"
-"PO-Revision-Date: 2012-12-29 19:58+0300\n"
-"Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2018-06-10 17:31+0000\n"
+"PO-Revision-Date: 2018-08-14 01:41+0300\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.0.9\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: msg/msgstr
@@ -133,26 +132,44 @@ msgid "Candidate"
 msgstr "Υποψήφιος:"
 
 #. (itstool) path: msg/msgstr
-#. Accessible title for an close button.
+#. Accessible title for a caution note.
 #: yelp-xsl.xml.in:137
+msgid "Caution"
+msgstr "Προσοχή"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:142
 msgid "Close"
 msgstr "Κλείσιμο"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:142
+#: yelp-xsl.xml.in:147
 msgid "Colophon"
 msgstr "Κολοφώνας"
 
 #. (itstool) path: msg/msgstr
+#. Title for a table of contents for the entire document.
+#: yelp-xsl.xml.in:152
+msgid "Contents"
+msgstr "Περιεχόμενα"
+
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:147
+#: yelp-xsl.xml.in:157
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
 #. (itstool) path: msg/msgstr
+#. Accessible title for a danger note.
+#: yelp-xsl.xml.in:162
+msgid "Danger"
+msgstr "Κίνδυνος"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:152
+#: yelp-xsl.xml.in:167
 msgid "Dedication"
 msgstr "Αφιέρωση"
 
@@ -160,13 +177,13 @@ msgstr "Αφιέρωση"
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:160
+#: yelp-xsl.xml.in:175
 msgid "Draft"
 msgstr "Προσχέδιο"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:165
+#: yelp-xsl.xml.in:180
 msgid "Edited By"
 msgstr "Επεξεργάστηκε από"
 
@@ -174,19 +191,19 @@ msgstr "Επεξεργάστηκε από"
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:173
+#: yelp-xsl.xml.in:188
 msgid "Final"
 msgstr "Τελικό"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:178
+#: yelp-xsl.xml.in:193
 msgid "Glossary"
 msgstr "Γλωσσάρι"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:183
+#: yelp-xsl.xml.in:198
 msgid "Important"
 msgstr "Σημαντικό"
 
@@ -194,58 +211,64 @@ msgstr "Σημαντικό"
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:191
+#: yelp-xsl.xml.in:206
 msgid "Incomplete"
 msgstr "Ελλιπής"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:196
+#: yelp-xsl.xml.in:211
 msgid "Index"
 msgstr "Ευρετήριο"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:201
+#: yelp-xsl.xml.in:216
 msgid "Legal"
 msgstr "Νομική σημείωση"
 
 #. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:208
+#: yelp-xsl.xml.in:223
 msgid "License"
 msgstr "Άδεια χρήσης"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:213
+#: yelp-xsl.xml.in:228
 msgid "Maintained By"
 msgstr "Συντηρείται από"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:218
+#: yelp-xsl.xml.in:233
 msgid "More Information"
 msgstr "Περισσότερες πληροφορίες"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:223
+#: yelp-xsl.xml.in:238
 msgid "Next"
 msgstr "Επόμενο"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:228
+#: yelp-xsl.xml.in:243
 msgid "Note"
 msgstr "Σημείωση"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of links to sections on the current page.
+#: yelp-xsl.xml.in:248
+msgid "On This Page"
+msgstr "Σε αυτή τη σελίδα"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:236
+#: yelp-xsl.xml.in:256
 msgid "Other Credits"
 msgstr "Άλλοι συντελεστές"
 
@@ -253,31 +276,37 @@ msgstr "Άλλοι συντελεστές"
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:244
+#: yelp-xsl.xml.in:264
 msgid "Outdated"
 msgstr "Παρωχημένο"
 
 #. (itstool) path: msg/msgstr
+#. Accessible title for a package note.
+#: yelp-xsl.xml.in:269
+msgid "Package"
+msgstr "Πακέτο"
+
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:249
+#: yelp-xsl.xml.in:274
 msgid "Pause"
 msgstr "Παύση"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:254
+#: yelp-xsl.xml.in:279
 msgid "Play"
 msgstr "Αναπαραγωγή"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:259
+#: yelp-xsl.xml.in:284
 msgid "Previous"
 msgstr "Προηγούμενο"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of publishers.
-#: yelp-xsl.xml.in:264
+#: yelp-xsl.xml.in:289
 msgid "Published By"
 msgstr "Εκδόθηκε από"
 
@@ -285,13 +314,13 @@ msgstr "Εκδόθηκε από"
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:272
+#: yelp-xsl.xml.in:297
 msgid "Ready for review"
 msgstr "Έτοιμο για αναθεώρηση"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:277
+#: yelp-xsl.xml.in:302
 msgid "See Also"
 msgstr "Δείτε επίσης"
 
@@ -300,20 +329,20 @@ msgstr "Δείτε επίσης"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:286
+#: yelp-xsl.xml.in:311
 msgid "Scale images down"
 msgstr "Σμίκρυνση εικόνων"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:291
+#: yelp-xsl.xml.in:316
 msgid "Sidebar"
 msgstr "Πλευρική στήλη"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:298
+#: yelp-xsl.xml.in:323
 msgid "Stub"
 msgstr "Άρθρο προς επέκταση"
 
@@ -321,19 +350,19 @@ msgstr "Άρθρο προς επέκταση"
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:306
+#: yelp-xsl.xml.in:331
 msgid "Synopsis"
 msgstr "Σύνοψη"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:311
+#: yelp-xsl.xml.in:336
 msgid "Tip"
 msgstr "Συμβουλή"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:316
+#: yelp-xsl.xml.in:341
 msgid "Translated By"
 msgstr "Μετάφραση από"
 
@@ -341,19 +370,19 @@ msgstr "Μετάφραση από"
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:324
+#: yelp-xsl.xml.in:349
 msgid "View images at normal size"
 msgstr "Προβολή εικόνων στο κανονικό μέγεθος"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:329
+#: yelp-xsl.xml.in:354
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:334
+#: yelp-xsl.xml.in:359
 msgid "Written By"
 msgstr "Συντάχθηκε από"
 
@@ -367,7 +396,7 @@ msgstr "Συντάχθηκε από"
 #.
 #. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:350
+#: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Δείτε την καταχώρηση βιβλιογραφίας <biblioentry.label/>."
 
@@ -390,7 +419,7 @@ msgstr "Δείτε την καταχώρηση βιβλιογραφίας <bibli
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:373
+#: yelp-xsl.xml.in:398
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -405,9 +434,9 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#.                     as a link to an entry in the bibliography
+#. as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:390
+#: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -422,10 +451,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -436,7 +465,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:419
+#: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "από <comment.name/> <comment.date/>"
 
@@ -451,10 +480,10 @@ msgstr "από <comment.name/> <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -464,7 +493,7 @@ msgstr "από <comment.name/> <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:447
+#: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
 msgstr "από <comment.name/>"
 
@@ -477,7 +506,7 @@ msgstr "από <comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:460
+#: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
@@ -489,7 +518,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:472
+#: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
 msgstr "Αποστολή μηνύματος στη διεύθυνση ‘<string/>’."
 
@@ -501,7 +530,7 @@ msgstr "Αποστολή μηνύματος στη διεύθυνση ‘<string
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:484
+#: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Διαβάστε τον ορισμό για  ‘<glossterm/>’."
 
@@ -522,7 +551,7 @@ msgstr "Διαβάστε τον ορισμό για  ‘<glossterm/>’."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:505
+#: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
 msgstr "Δείτε <glosssee/>."
 
@@ -544,7 +573,7 @@ msgstr "Δείτε <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:527
+#: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
 msgstr "Δείτε επίσης <glosssee/>."
 
@@ -556,7 +585,7 @@ msgstr "Δείτε επίσης <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:539
+#: yelp-xsl.xml.in:564
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -568,39 +597,15 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:551
+#: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
-#. (itstool) path: msg/msgstr
-#. ID: seeie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:566
-msgid "See <seeie/>."
-msgstr "Δείτε <seeie/>."
+#~ msgid "See <seeie/>."
+#~ msgstr "Δείτε <seeie/>."
 
-#. (itstool) path: msg/msgstr
-#. ID: seealsoie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:581
-msgid "See also <seeie/>."
-msgstr "Δείτε επίσης <seeie/>."
+#~ msgid "See also <seeie/>."
+#~ msgstr "Δείτε επίσης <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201C.png"
@@ -611,31 +616,17 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 #~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Παράρτημα "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix <number/></msgstr>"
+#~ msgstr "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Παράρτημα <number/></msgstr>"
 
 #~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Παράρτημα <number/> ― <title/></"
-#~ "msgstr>"
+#~ msgid "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>appendix.xref</msgid> <msgstr>Παράρτημα <number/> ― <title/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Δείτε τη καταχώριση "
-#~ "βιβλιογραφίας <label/>.</msgstr>"
+#~ msgid "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry <label/>.</msgstr>"
+#~ msgstr "<msgid>biblioentry.tooltip</msgid> <msgstr>Δείτε τη καταχώριση βιβλιογραφίας <label/>.</msgstr>"
 
 #~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
 #~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
@@ -652,50 +643,29 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> "
-#~ "<msgstr>Κεφάλαιο<number/></msgstr>"
+#~ msgid "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter <number/></msgstr>"
+#~ msgstr "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Κεφάλαιο<number/></msgstr>"
 
 #~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Κεφάλαιο <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>chapter.xref</msgid> <msgstr>Κεφάλαιο <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 #~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgid "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
+#~ msgstr "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Αποστολή ηλ. αλληλογραφίας σε "
-#~ "‘<string/>’.</msgstr>"
+#~ msgid "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgstr "<msgid>email.tooltip</msgid> <msgstr>Αποστολή ηλ. αλληλογραφίας σε ‘<string/>’.</msgstr>"
 
 #~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Παράδειγμα <number/"
-#~ "></i>&#x2003;</msgstr> <msgstr role='li'>Παράδειγμα <number/>&#x2002;</"
-#~ "msgstr> <msgstr>Παράδειγμα <number/></msgstr>"
+#~ msgid "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> <msgstr>Example <number/></msgstr>"
+#~ msgstr "<msgid>example.label</msgid> <msgstr role='header'><i>Παράδειγμα <number/></i>&#x2003;</msgstr> <msgstr role='li'>Παράδειγμα <number/>&#x2002;</msgstr> <msgstr>Παράδειγμα <number/></msgstr>"
 
 #~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -706,14 +676,8 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Φιγούρα <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Φιγούρα <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Φιγούρα <number/></msgstr>"
+#~ msgid "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>"
+#~ msgstr "<msgid>figure.label</msgid> <msgstr role='header'><i>Φιγούρα <number/></i>&#x2003;</msgstr> <msgstr role='li'>Φιγούρα <number/>&#x2002;</msgstr> <msgstr>Φιγούρα <number/></msgstr>"
 
 #~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -727,20 +691,14 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgid "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 
 #~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
 #~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Βλ. <glosssee/>.</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Βλ. ακόμα <glosssee/>.</msgstr>"
+#~ msgid "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glossseealso.format</msgid> <msgstr>Βλ. ακόμα <glosssee/>.</msgstr>"
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
@@ -748,18 +706,11 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
 #~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Μέρος "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
+#~ msgstr "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Μέρος <number/></msgstr>"
 
 #~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.xref</msgid> <msgstr>Μέρος <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>part.xref</msgid> <msgstr>Μέρος <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
 #~ msgstr "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
@@ -767,24 +718,14 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> "
-#~ "<msgstr>Ερώτηση<number/></msgstr>"
+#~ msgid "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Ερώτηση<number/></msgstr>"
 
 #~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
 #~ msgstr "<msgid>question.xref</msgid> <msgstr>Ερώτηση <number/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgid "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
+#~ msgstr "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
 
 #~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
 #~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
@@ -792,45 +733,26 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Ενότητα "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
+#~ msgstr "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Ενότητα <number/></msgstr>"
 
 #~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Ενότητα <number/> ― <title/></"
-#~ "msgstr>"
+#~ msgid "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>refsection.xref</msgid> <msgstr>Ενότητα <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Ενότητα "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
+#~ msgstr "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Ενότητα <number/></msgstr>"
 
 #~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.xref</msgid> <msgstr>Ενότητα <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>section.xref</msgid> <msgstr>Ενότητα <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
 #~ msgstr "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
@@ -847,14 +769,8 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Πίνακας <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Πίνακας <number/></msgstr>"
+#~ msgid "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> <msgstr>Table <number/></msgstr>"
+#~ msgstr "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></i>&#x2003;</msgstr> <msgstr role='li'>Πίνακας <number/>&#x2002;</msgstr> <msgstr>Πίνακας <number/></msgstr>"
 
 #~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -863,41 +779,25 @@ msgstr "Δείτε επίσης <seeie/>."
 #~ msgstr "<msgid>table.xref</msgid> <msgstr>Πίνακας <number/></msgstr>"
 
 #~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Συγγραφέας</msgstr> <msgstr form='1'>Συγγραφείς</msgstr>"
+#~ msgstr "<msgstr form='0'>Συγγραφέας</msgstr> <msgstr form='1'>Συγγραφείς</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Συνεργάτης</msgstr> <msgstr form='1'>Συνεργάτες</msgstr>"
+#~ msgid "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</msgstr>"
+#~ msgstr "<msgstr form='0'>Συνεργάτης</msgstr> <msgstr form='1'>Συνεργάτες</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Πνευματικά δικαιώματα</msgstr> <msgstr "
-#~ "form='1'>Πνευματικά δικαιώματα</msgstr>"
+#~ msgid "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr "<msgstr form='0'>Πνευματικά δικαιώματα</msgstr> <msgstr form='1'>Πνευματικά δικαιώματα</msgstr>"
 
 #~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Συντάκτης</msgstr> <msgstr form='1'>Συντάκτες</msgstr>"
+#~ msgstr "<msgstr form='0'>Συντάκτης</msgstr> <msgstr form='1'>Συντάκτες</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Άλλος συντελεστής</msgstr> <msgstr form='1'>Άλλοι "
-#~ "συντελεστές</msgstr>"
+#~ msgid "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other Contributors</msgstr>"
+#~ msgstr "<msgstr form='0'>Άλλος συντελεστής</msgstr> <msgstr form='1'>Άλλοι συντελεστές</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgid "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
 #~ msgstr "<msgstr form='0'>Εκδότης</msgstr> <msgstr form='1'>Εκδότες</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Μεταφραστής</msgstr> <msgstr form='1'>Μεταφραστές</"
-#~ "msgstr>"
+#~ msgid "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr "<msgstr form='0'>Μεταφραστής</msgstr> <msgstr form='1'>Μεταφραστές</msgstr>"
 
 #~ msgid "A:&#x2003;"
 #~ msgstr "Α:&#x2003;"
@@ -907,12 +807,6 @@ msgstr "Δείτε επίσης <seeie/>."
 
 #~ msgid "Affiliation"
 #~ msgstr "Συνεργασία"
-
-#~ msgid "Caution"
-#~ msgstr "Προσοχή"
-
-#~ msgid "Contents"
-#~ msgstr "Περιεχόμενα"
 
 #~ msgid "Email"
 #~ msgstr "Ηλ. διεύθυνση"
