@@ -7,18 +7,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-12-05 19:00+0000\n"
-"PO-Revision-Date: 2013-03-15 11:48+0100\n"
-"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2018-06-10 17:31+0000\n"
+"PO-Revision-Date: 2018-08-31 13:58+0200\n"
+"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -128,26 +127,44 @@ msgid "Candidate"
 msgstr "Jelölt"
 
 #. (itstool) path: msg/msgstr
-#. Accessible title for an close button.
+#. Accessible title for a caution note.
 #: yelp-xsl.xml.in:137
+msgid "Caution"
+msgstr "Figyelem"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:142
 msgid "Close"
 msgstr "Bezárás"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:142
+#: yelp-xsl.xml.in:147
 msgid "Colophon"
 msgstr "Kolofon"
 
 #. (itstool) path: msg/msgstr
+#. Title for a table of contents for the entire document.
+#: yelp-xsl.xml.in:152
+msgid "Contents"
+msgstr "Tartalomjegyzék"
+
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:147
+#: yelp-xsl.xml.in:157
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
 #. (itstool) path: msg/msgstr
+#. Accessible title for a danger note.
+#: yelp-xsl.xml.in:162
+msgid "Danger"
+msgstr "Veszély"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:152
+#: yelp-xsl.xml.in:167
 msgid "Dedication"
 msgstr "Dedikáció"
 
@@ -155,13 +172,13 @@ msgstr "Dedikáció"
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:160
+#: yelp-xsl.xml.in:175
 msgid "Draft"
 msgstr "Vázlat"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:165
+#: yelp-xsl.xml.in:180
 msgid "Edited By"
 msgstr "Szerkesztette"
 
@@ -169,19 +186,19 @@ msgstr "Szerkesztette"
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:173
+#: yelp-xsl.xml.in:188
 msgid "Final"
 msgstr "Végleges"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:178
+#: yelp-xsl.xml.in:193
 msgid "Glossary"
 msgstr "Szójegyzék"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:183
+#: yelp-xsl.xml.in:198
 msgid "Important"
 msgstr "Fontos"
 
@@ -189,58 +206,64 @@ msgstr "Fontos"
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:191
+#: yelp-xsl.xml.in:206
 msgid "Incomplete"
 msgstr "Befejezetlen"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:196
+#: yelp-xsl.xml.in:211
 msgid "Index"
 msgstr "Tárgymutató"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:201
+#: yelp-xsl.xml.in:216
 msgid "Legal"
 msgstr "Jogi nyilatkozat"
 
 #. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:208
+#: yelp-xsl.xml.in:223
 msgid "License"
 msgstr "Licenc"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:213
+#: yelp-xsl.xml.in:228
 msgid "Maintained By"
 msgstr "Karbantartja"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:218
+#: yelp-xsl.xml.in:233
 msgid "More Information"
 msgstr "További információk"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:223
+#: yelp-xsl.xml.in:238
 msgid "Next"
 msgstr "Következő"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:228
+#: yelp-xsl.xml.in:243
 msgid "Note"
 msgstr "Megjegyzés"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of links to sections on the current page.
+#: yelp-xsl.xml.in:248
+msgid "On This Page"
+msgstr "Ezen az oldalon"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:236
+#: yelp-xsl.xml.in:256
 msgid "Other Credits"
 msgstr "További köszönet"
 
@@ -248,31 +271,37 @@ msgstr "További köszönet"
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:244
+#: yelp-xsl.xml.in:264
 msgid "Outdated"
 msgstr "Elavult"
 
 #. (itstool) path: msg/msgstr
+#. Accessible title for a package note.
+#: yelp-xsl.xml.in:269
+msgid "Package"
+msgstr "Csomag"
+
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:249
+#: yelp-xsl.xml.in:274
 msgid "Pause"
 msgstr "Szünet"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:254
+#: yelp-xsl.xml.in:279
 msgid "Play"
 msgstr "Lejátszás"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:259
+#: yelp-xsl.xml.in:284
 msgid "Previous"
 msgstr "Előző"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of publishers.
-#: yelp-xsl.xml.in:264
+#: yelp-xsl.xml.in:289
 msgid "Published By"
 msgstr "Közzétette:"
 
@@ -280,13 +309,13 @@ msgstr "Közzétette:"
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:272
+#: yelp-xsl.xml.in:297
 msgid "Ready for review"
 msgstr "Átnézésre kész"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:277
+#: yelp-xsl.xml.in:302
 msgid "See Also"
 msgstr "Lásd még"
 
@@ -295,20 +324,20 @@ msgstr "Lásd még"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:286
+#: yelp-xsl.xml.in:311
 msgid "Scale images down"
 msgstr "Képek zsugorítása"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:291
+#: yelp-xsl.xml.in:316
 msgid "Sidebar"
 msgstr "Oldalsáv"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:298
+#: yelp-xsl.xml.in:323
 msgid "Stub"
 msgstr "Csonk"
 
@@ -316,19 +345,19 @@ msgstr "Csonk"
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:306
+#: yelp-xsl.xml.in:331
 msgid "Synopsis"
 msgstr "Szinopszis"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:311
+#: yelp-xsl.xml.in:336
 msgid "Tip"
 msgstr "Tipp"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:316
+#: yelp-xsl.xml.in:341
 msgid "Translated By"
 msgstr "Fordította"
 
@@ -336,19 +365,19 @@ msgstr "Fordította"
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:324
+#: yelp-xsl.xml.in:349
 msgid "View images at normal size"
 msgstr "Képek megjelenítése normál méretben"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:329
+#: yelp-xsl.xml.in:354
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:334
+#: yelp-xsl.xml.in:359
 msgid "Written By"
 msgstr "Írta"
 
@@ -362,7 +391,7 @@ msgstr "Írta"
 #.
 #. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:350
+#: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Ezen irodalomjegyzék-bejegyzés megjelenítése: <biblioentry.label/>."
 
@@ -385,7 +414,7 @@ msgstr "Ezen irodalomjegyzék-bejegyzés megjelenítése: <biblioentry.label/>."
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:373
+#: yelp-xsl.xml.in:398
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -400,9 +429,9 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#.                     as a link to an entry in the bibliography
+#. as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:390
+#: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -417,10 +446,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -431,7 +460,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:419
+#: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "tőle: <comment.name/> ekkor: <comment.date/>"
 
@@ -446,10 +475,10 @@ msgstr "tőle: <comment.name/> ekkor: <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -459,7 +488,7 @@ msgstr "tőle: <comment.name/> ekkor: <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:447
+#: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
 msgstr "tőle: <comment.name/>"
 
@@ -472,7 +501,7 @@ msgstr "tőle: <comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:460
+#: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
@@ -484,7 +513,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:472
+#: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
 msgstr "E-mail küldése ide: „<string/>”."
 
@@ -496,7 +525,7 @@ msgstr "E-mail küldése ide: „<string/>”."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:484
+#: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "„<glossterm/>” definíciójának elolvasása."
 
@@ -517,7 +546,7 @@ msgstr "„<glossterm/>” definíciójának elolvasása."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:505
+#: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
 msgstr "Lásd: <glosssee/>."
 
@@ -539,7 +568,7 @@ msgstr "Lásd: <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:527
+#: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
 msgstr "Lásd még: <glosssee/>."
 
@@ -551,7 +580,7 @@ msgstr "Lásd még: <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:539
+#: yelp-xsl.xml.in:564
 msgid "“<node/>”"
 msgstr "„<node/>”"
 
@@ -563,45 +592,18 @@ msgstr "„<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:551
+#: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr "»<node/>«"
 
-#. (itstool) path: msg/msgstr
-#. ID: seeie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:566
-msgid "See <seeie/>."
-msgstr "Lásd: <seeie/>."
+#~ msgid "See <seeie/>."
+#~ msgstr "Lásd: <seeie/>."
 
-#. (itstool) path: msg/msgstr
-#. ID: seealsoie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:581
-msgid "See also <seeie/>."
-msgstr "Lásd még: <seeie/>."
+#~ msgid "See also <seeie/>."
+#~ msgstr "Lásd még: <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201E.png"
-
-#~ msgid "Contents"
-#~ msgstr "Tartalomjegyzék"
 
 #~ msgid "Further Reading"
 #~ msgstr "További olvasnivaló"
@@ -615,12 +617,8 @@ msgstr "Lásd még: <seeie/>."
 #~ msgid " — "
 #~ msgstr " — "
 
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Az irodalomjegyzék-bejegyzés "
-#~ "megjelenítése<label/>.</msgstr>"
+#~ msgid "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry <label/>.</msgstr>"
+#~ msgstr "<msgid>glossentry.tooltip</msgid> <msgstr>Az irodalomjegyzék-bejegyzés megjelenítése<label/>.</msgstr>"
 
 #~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 #~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
@@ -628,50 +626,29 @@ msgstr "Lásd még: <seeie/>."
 #~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 #~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>„<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgid "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
+#~ msgstr "<msgid>citetitle.format</msgid> <msgstr role='article'>„<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> "
-#~ "on <comment.date/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name-date.format</msgid> <msgstr><comment.name/> "
-#~ "által ekkor:<comment.date/></msgstr>"
+#~ msgid "<msgid>comment.cite.name-date.format</msgid> <msgstr>from <comment.name/> on <comment.date/></msgstr>"
+#~ msgstr "<msgid>comment.cite.name-date.format</msgid> <msgstr><comment.name/> által ekkor:<comment.date/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>comment.cite.name.format</msgid> <msgstr><comment.name/> által</"
-#~ "msgstr>"
+#~ msgid "<msgid>comment.cite.name.format</msgid> <msgstr>from <comment.name/></msgstr>"
+#~ msgstr "<msgid>comment.cite.name.format</msgid> <msgstr><comment.name/> által</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>E-mail küldése „<string/>” részére.</"
-#~ "msgstr>"
+#~ msgid "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgstr "<msgid>email.tooltip</msgid> <msgstr>E-mail küldése „<string/>” részére.</msgstr>"
 
 #~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>„<glossterm/>”</msgstr>"
+#~ msgid "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>„<glossterm/>”</msgstr>"
 
 #~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
 #~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Lásd: <glosssee/>.</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Lásd még: <glosssee/>.</msgstr>"
+#~ msgid "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glossseealso.format</msgid> <msgstr>Lásd még: <glosssee/>.</msgstr>"
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
@@ -679,24 +656,14 @@ msgstr "Lásd még: <seeie/>."
 #~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Kérdés: "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Kérdés: <number/></msgstr>"
 
 #~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
 #~ msgstr "<msgid>question.xref</msgid> <msgstr><number/>. kérdés</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>»<node/>«</msgstr> "
-#~ "<msgstr>„<node/>”</msgstr>"
+#~ msgid "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
+#~ msgstr "<msgid>quote.format</msgid> <msgstr role='inner'>»<node/>«</msgstr> <msgstr>„<node/>”</msgstr>"
 
 #~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
 #~ msgstr "<msgid>seealsoie.format</msgid> <msgstr>Lásd még <seeie/>.</msgstr>"
@@ -713,36 +680,23 @@ msgstr "Lásd még: <seeie/>."
 #~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
 #~ msgstr "<msgstr form='0'>Szerző</msgstr> <msgstr form='1'>Szerzők</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Munkatárs</msgstr> <msgstr form='1'>Munkatársak</msgstr>"
+#~ msgid "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</msgstr>"
+#~ msgstr "<msgstr form='0'>Munkatárs</msgstr> <msgstr form='1'>Munkatársak</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgid "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
 
 #~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Szerkesztő</msgstr> <msgstr form='1'>Szerkesztők</msgstr>"
+#~ msgstr "<msgstr form='0'>Szerkesztő</msgstr> <msgstr form='1'>Szerkesztők</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>További közreműködő</msgstr> <msgstr form='1'>További "
-#~ "közreműködők</msgstr>"
+#~ msgid "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other Contributors</msgstr>"
+#~ msgstr "<msgstr form='0'>További közreműködő</msgstr> <msgstr form='1'>További közreműködők</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgid "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
 #~ msgstr "<msgstr form='0'>Kiadó</msgstr> <msgstr form='1'>Kiadók</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Fordító</msgstr> <msgstr form='1'>Fordítók</msgstr>"
+#~ msgid "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr "<msgstr form='0'>Fordító</msgstr> <msgstr form='1'>Fordítók</msgstr>"
 
 #~ msgid "A:&#x2003;"
 #~ msgstr "V:&#x2003;"
@@ -752,9 +706,6 @@ msgstr "Lásd még: <seeie/>."
 
 #~ msgid "Affiliation"
 #~ msgstr "Kapcsolat"
-
-#~ msgid "Caution"
-#~ msgstr "Figyelem"
 
 #~ msgid "Email"
 #~ msgstr "E-mail"
