@@ -1,3 +1,33 @@
+3.30.0
+======
+* Added stock sidebar support
+* Added mallard:if/1.0 to supported feature tokens  
+* Updated translations:
+  af    (Pieter Schalk Schoeman)
+  cs    (Marek Cernocky)
+  da    (Ask Hjorth Larsen)
+  de    (Mario Blättermann)
+  el    (Efstathios Iosifidis)
+  es    (Daniel Mustieles)
+  fi    (Jiri Grönroos)
+  fr    (Charles Monzat)
+  fur   (Fabio Tomat)
+  gl    (Fran Dieguez)
+  hr    (gogo)
+  hu    (Balázs Meskó)
+  id    (Kukuh Syafaat)
+  it    (Milo Casagrande)
+  ko    (Changwoo Ryu)
+  lt    (Aurimas Černius)
+  lv    (Rūdolfs Mazurs)
+  pl    (Piotr Drąg)
+  pt_BR (Enrico Nicoletto)
+  ro    (Daniel Șerbănescu)
+  sl    (Matej Urbančič)
+  sv    (Anders Jonsson)
+  tr    (Emin Tufan Çetin)
+  zh_TW (Yi-Jyun Pan)
+
 3.28.0
 ======
 * Implemented th/@scope attribute

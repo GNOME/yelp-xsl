@@ -1,5 +1,5 @@
 # Do not split AC_INIT across multiple lines without making localbuild.sh smarter
-AC_INIT([yelp-xsl],[3.28.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl])
+AC_INIT([yelp-xsl],[3.30.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-xsl])
 
 AC_CONFIG_MACRO_DIR([m4])
 
