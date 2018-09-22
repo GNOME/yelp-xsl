@@ -1,12 +1,80 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.page.linktrails.trail" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-page" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.20" date="2015-09-19" status="final"/><desc>Output one trail of guide links.</desc></info><title>mal2html.page.linktrails.trail</title><p>Output one trail of guide links.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>A <code>link</code> element from <code style="xslt-template" xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs an HTML <code>div</code> element containing all the links in a single link trail. It calls <code style="xslt-template" xref="html.linktrails.prefix">html.linktrails.prefix</code> (by way of  <code style="xslt-template" xref="mal2html.page.linktrails.trail.prefix">mal2html.page.linktrails.trail.prefix</code>) to output a custom boilerplate prefix, then calls <code style="xslt-template" xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code> to output the actual links.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.page.linktrails.trail.prefix"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.page.linktrails.trail">
+ <info>
+  <link type="guide" xref="mal2html-page" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output one trail of guide links.</desc>
+  <revision version="3.20" date="2015-09-19" status="final"/>
+ </info>
+ <title>mal2html.page.linktrails.trail</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>A <sys>link</sys> element from <code xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs an HTML <sys>div</sys> element containing all the links in a
+ single link trail. It calls <code xref="html.linktrails.prefix">html.linktrails.prefix</code> (by way of 
+ <code xref="mal2html.page.linktrails.trail.prefix">mal2html.page.linktrails.trail.prefix</code>) to output a custom boilerplate prefix,
+ then calls <code xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code> to output the actual links.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.editor_mode"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal2html.page.linktrails.link"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.page.linktrails.trail.prefix"/></p>
+  </item>
+ </list>
+</page>

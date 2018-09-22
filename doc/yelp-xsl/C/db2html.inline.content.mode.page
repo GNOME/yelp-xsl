@@ -1,6 +1,10 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.inline.content.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-inline" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>FIXME</desc></info><title>db2html.inline.content.mode</title><p>FIXME</p>
-  
-  
-  <p>FIXME</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="db2html.inline.content.mode">
+ <info>
+  <link type="guide" xref="db2html-inline" group="modes"/>
+  <link type="guide" xref="modes" group="db2html"/>
+  <desc>FIXME</desc>
+ </info>
+ <title>db2html.inline.content.mode</title>
+ <p>FIXME</p>
 </page>

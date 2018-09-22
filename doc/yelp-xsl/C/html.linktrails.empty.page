@@ -1,13 +1,108 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.linktrails.empty" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><link type="guide" xref="stubs" group="html"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Stub to output something when no link trails are present.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>html.linktrails.empty</title><p>Stub to output something when no link trails are present.</p><note><p>This template is a stub. Customizations may override it for
-            additional functionality.</p></note>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The source element a page is bring created for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template is a stub. It is called by templates that output link trails when there are no link trails to output. Some customizations prepend extra site links to link trails. This template allows them to output those links even when no link trails would otherwise be present.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.linktrails.empty">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Stub to output something when no link trails are present.</desc>
+  <link type="guide" xref="stubs" group="html"/>
+  <revision version="3.28" date="2017-05-24" status="final"/>
+ </info>
+ <title>html.linktrails.empty</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The source element a page is bring created for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template is a stub. It is called by templates that output link trails when
+ there are no link trails to output. Some customizations prepend extra site links
+ to link trails. This template allows them to output those links even when no link
+ trails would otherwise be present.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
 </page>

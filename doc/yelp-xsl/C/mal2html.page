@@ -1,2 +1,61 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-param" xref="html.xhtml"/><link type="xslt-defines-param" xref="mal.if.target"/></info><title>Mallard to HTML</title><p>Transform Mallard to HTML.</p><p>This top-level stylesheet includes all the necessary stylesheets to transform Mallard documents into HTML. It imports <file xref="mal2xhtml">mal2xhtml</file>, overrides parameters, and sets a namespace alias to output non-XML HTML. In particular, this stylesheet sets <code style="xslt-param" xref="html.xhtml">html.xhtml</code> to <code>false</code> and <code style="xslt-param" xref="mal.if.target">mal.if.target</code> to <code>'target:html'</code>.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="mal2html">
+ <info>
+  <link type="guide" xref="stylesheets" group="mal2html"/>
+  <link type="topic" xref="l10n" group="imports"/>
+  <link type="topic" xref="color" group="imports"/>
+  <link type="topic" xref="icons" group="imports"/>
+  <link type="topic" xref="html" group="imports"/>
+  <link type="topic" xref="ttml" group="imports"/>
+  <link type="topic" xref="utils" group="imports"/>
+  <link type="topic" xref="mal-gloss" group="imports"/>
+  <link type="topic" xref="mal-if" group="imports"/>
+  <link type="topic" xref="mal-link" group="imports"/>
+  <link type="topic" xref="mal2html-api" group="includes"/>
+  <link type="topic" xref="mal2html-block" group="includes"/>
+  <link type="topic" xref="mal2html-gloss" group="includes"/>
+  <link type="topic" xref="mal2html-inline" group="includes"/>
+  <link type="topic" xref="mal2html-links" group="includes"/>
+  <link type="topic" xref="mal2html-list" group="includes"/>
+  <link type="topic" xref="mal2html-math" group="includes"/>
+  <link type="topic" xref="mal2html-media" group="includes"/>
+  <link type="topic" xref="mal2html-page" group="includes"/>
+  <link type="topic" xref="mal2html-svg" group="includes"/>
+  <link type="topic" xref="mal2html-table" group="includes"/>
+  <link type="topic" xref="mal2html-ui" group="includes"/>
+  <desc>Transform Mallard to HTML.</desc>
+  <revision version="3.8" date="2012-11-05" status="final"/>
+ </info>
+ <title>Mallard to HTML</title>
+ <p>This top-level stylesheet includes all the necessary stylesheets to transform
+ Mallard documents into HTML. It imports <code xref="mal2xhtml">mal2xhtml</code>, overrides parameters, and
+ sets a namespace alias to output non-XML HTML. In particular, this stylesheet
+ sets <code xref="html.xhtml">html.xhtml</code> to <sys>false</sys> and <code xref="mal.if.target">mal.if.target</code> to <sys>'target:html'</sys>.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="ttml.features"/></p>
+  </item>
+ </list>
+</page>

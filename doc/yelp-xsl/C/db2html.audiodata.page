@@ -1,12 +1,30 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.audiodata" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-media" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.8" date="2012-11-12" status="final"/><desc>Output an HTML <code>audio</code> element for a <code>audiodata</code> element.</desc></info><title>db2html.audiodata</title><p>Output an HTML <code>audio</code> element for a <code>audiodata</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>audiodata</code> element.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates an <code>audio</code> element in the HTML output. This template calls <code style="xslt-template" xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code> for the contents of the <code>audio</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.mediaobject.fallback"/></p></item><item><p><link xref="html.media.controls"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.audiodata">
+ <info>
+  <link type="guide" xref="db2html-media" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output an HTML <sys>audio</sys> element for a <sys>audiodata</sys> element.</desc>
+  <revision version="3.8" date="2012-11-12" status="final"/>
+ </info>
+ <title>db2html.audiodata</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>audiodata</sys> element.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates an <sys>audio</sys> element in the HTML output. This template
+ calls <code xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code> for the contents of the <sys>audio</sys> element.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db2html.mediaobject.fallback"/></p>
+  </item>
+  <item>
+   <p><link xref="html.media.controls"/></p>
+  </item>
+ </list>
+</page>

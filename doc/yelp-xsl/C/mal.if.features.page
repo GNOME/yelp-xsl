@@ -1,6 +1,22 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.if.features" type="topic" style="xslt-param"><info><link type="guide" xref="mal-if" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><desc>The list of supported feature tokens.</desc></info><title>mal.if.features</title><p>The list of supported feature tokens.</p>
-  
-  
-  <p>This parameter takes a space-separated list of tokens to enable for conditional processing. It is used by the template <code style="xslt-template" xref="mal.if.test">mal.if.test</code>. This parameter is meant to hold tokens that specify the capabilities of these stylesheets. It should usually be set by the primary importing stylesheet.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="mal.if.features">
+ <info>
+  <link type="guide" xref="mal-if" group="params"/>
+  <link type="guide" xref="params" group="mal"/>
+  <desc>The list of supported feature tokens.</desc>
+  <revision version="3.8" date="2012-11-05" status="final"/>
+ </info>
+ <title>mal.if.features</title>
+ <p>This parameter takes a space-separated list of tokens to enable for conditional
+ processing. It is used by the template <code xref="mal.if.test">mal.if.test</code>. This parameter is meant
+ to hold tokens that specify the capabilities of these stylesheets. It should
+ usually be set by the primary importing stylesheet.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>mal.if.features</code></title>
+    <p><code>' mallard:1.0 '</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

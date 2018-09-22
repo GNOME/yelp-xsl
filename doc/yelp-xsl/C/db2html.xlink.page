@@ -1,24 +1,40 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.xlink" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-xref" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates a hyperlink from a DocBook 5 <code>link</code> element</desc></info><title>db2html.xlink</title><p>Generates a hyperlink from a DocBook 5 <code>link</code> element</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node in question</p>
-    </item>
-    <item>
-      <title><code>linkend</code></title>
-      <p>The ID of the element to link to</p>
-    </item>
-    <item>
-      <title><code>url</code></title>
-      <p>The URL to link to</p>
-    </item>
-    <item>
-      <title><code>content</code></title>
-      <p>Optional content to use for the text of the link</p>
-    </item>
-  </terms></synopsis>
-  <p>Note that this template is also called for inline elements that use DocBook 5's ubiquitous linking.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.ulink"/></p></item><item><p><link xref="db2html.link"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.xlink">
+ <info>
+  <link type="guide" xref="db2html-xref" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Generates a hyperlink from a DocBook 5 <sys>link</sys> element</desc>
+ </info>
+ <title>db2html.xlink</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node in question</p>
+   </item>
+   <item>
+    <title><code>$linkend</code></title>
+    <p>The ID of the element to link to</p>
+   </item>
+   <item>
+    <title><code>$url</code></title>
+    <p>The URL to link to</p>
+   </item>
+   <item>
+    <title><code>$content</code></title>
+    <p>Optional content to use for the text of the link</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>Note that this template is also called for inline elements that use DocBook 5's ubiquitous linking.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db2html.link"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.ulink"/></p>
+  </item>
+ </list>
+</page>

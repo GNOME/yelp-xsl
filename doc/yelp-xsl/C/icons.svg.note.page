@@ -1,13 +1,55 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.note" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a note icon.</desc></info><title>icons.svg.note</title><p>Output an <code>svg</code> element for a note icon.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>style</code></title>
-      <p>The style of the note.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs an SVG <code>svg</code> element with an icon suitable for notes and other types of admonitions. It takes a <code style="xslt-param">style</code> parameter specifying a note style. The default style is <code>"note"</code>. This template uses the <code style="xslt-param">style</code> parameter to determine which specific template to call to output the SVG content.</p>
-  <p>SVG icons can use CSS class names to pick up colors from the <file xref="colors">colors</file> module.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="icons.svg.note.advanced"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="icons.svg.note">
+ <info>
+  <link type="guide" xref="icons" group="templates"/>
+  <link type="guide" xref="templates" group="icons"/>
+  <desc>Output an <sys>svg</sys> element for a note icon.</desc>
+  <revision version="3.28" date="2017-05-24" status="final"/>
+ </info>
+ <title>icons.svg.note</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$style</code></title>
+    <p>The style of the note.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs an SVG <sys>svg</sys> element with an icon suitable for notes
+ and other types of admonitions. It takes a <code>$style</code> parameter specifying a
+ note style. The default style is <sys>"note"</sys>. This template uses the <code>$style</code>
+ parameter to determine which specific template to call to output the SVG
+ content.</p>
+ <p>SVG icons can use CSS class names to pick up colors from the <code xref="colors">colors</code> module.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="icons.svg.note.advanced"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.bug"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.caution"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.danger"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.important"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.note"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.package"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.tip"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.note.warning"/></p>
+  </item>
+ </list>
+</page>

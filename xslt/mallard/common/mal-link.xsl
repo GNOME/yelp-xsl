@@ -25,7 +25,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard Links
 Common linking utilities for Mallard documents.
-:Revision:version="3.4" date="2012-01-17" status="final"
+@revision[version=3.4 date=2012-01-17 status=final]
 
 This stylesheet contains various utilities for handling links in Mallard
 documents.  The templates in this stylesheet make it easier to handle the
@@ -37,7 +37,7 @@ linking systems.
 <!--@@==========================================================================
 mal.cache.file
 The location of the cache file.
-:Revision:version="3.0" date="2010-01-02" status="final"
+@revision[version=3.0 date=2010-01-02 status=final]
 
 In order to locate and process links between pages, this stylesheet requires
 a Mallard cache file.  Use this parameter to pass the path to a valid cache
@@ -49,11 +49,11 @@ file.
 <!--@@==========================================================================
 mal.cache
 The cache document as a node set.
-:Revision:version="3.0" date="2010-01-02" status="final"
+@revision[version=3.0 date=2010-01-02 status=final]
 
-This parameter points to the root #{cache:cache} element of a Mallard cache
+This parameter points to the root `cache:cache` element of a Mallard cache
 document.  By default, it selects the root element from the file provided in
-@{mal.cache.file}.
+{mal.cache.file}.
 
 Some processing tools may create a Mallard cache document without outputting
 it to a file.  Those tools can use this parameter directly.
@@ -63,30 +63,30 @@ it to a file.  Those tools can use this parameter directly.
 
 <!--++==========================================================================
 mal.cache.key
-Get a page or section from the #{id} attribute.
-:Revision:version="3.4" date="2012-01-25" status="final"
+Get a page or section from the `id` attribute.
+@revision[version=3.4 date=2012-01-25 status=final]
 
-This key returns a #{page} or #{section} element from a Mallard cache file from
-the #{id} attribute. In cache files, the #{id} attribute of #{section} elements
+This key returns a `page` or `section` element from a Mallard cache file from
+the `id` attribute. In cache files, the `id` attribute of `section` elements
 is set to a qualified ID by prefixing it with the containing page ID and the
 hash character.
 
-The context node must be in the document @{mal.cache} when this key is called.
+The context node must be in the document {mal.cache} when this key is called.
 -->
 <xsl:key name="mal.cache.key" match="cache:cache//*" use="@id"/>
 
 
 <!--++==========================================================================
 mal.cache.link.key
-Get #{link} elements from a link type and #{xref} attribute.
-:Revision:version="3.4" date="2012-01-25" status="final"
+Get `link` elements from a link type and `xref` attribute.
+@revision[version=3.4 date=2012-01-25 status=final]
 
-This key returns all #{link} elements from a Mallard cache file from the #{type}
-and #{xref} attributes. They key is the concatenation of the #{type} attribute,
-the colon character, and the #{xref} attribute. Only #{link} elements with both
-a #{type} and #{xref} attribute are supported.
+This key returns all `link` elements from a Mallard cache file from the `type`
+and `xref` attributes. They key is the concatenation of the `type` attribute,
+the colon character, and the `xref` attribute. Only `link` elements with both
+a `type` and `xref` attribute are supported.
 
-The context node must be in the document @{mal.cache} when this key is called.
+The context node must be in the document {mal.cache} when this key is called.
 -->
 <xsl:key name="mal.cache.link.key"
          match="mal:info/mal:link[@type][@xref]"
@@ -96,9 +96,9 @@ The context node must be in the document @{mal.cache} when this key is called.
 <!--@@==========================================================================
 mal.link.prefix
 A prefix for link targets.
-:Revision:version="3.4" date="2012-01-17" status="final"
+@revision[version=3.4 date=2012-01-17 status=final]
 
-When link targets are constructed by *{mal.link.target} from #{xref} attributes,
+When link targets are constructed by {mal.link.target} from `xref` attributes,
 this string is prepended. This can be used, for example, to specify absolute
 directories or URLs.
 -->
@@ -108,9 +108,9 @@ directories or URLs.
 <!--@@==========================================================================
 mal.link.extension
 The filename extension for output files.
-:Revision:version="3.4" date="2012-01-17" status="final"
+@revision[version=3.4 date=2012-01-17 status=final]
 
-When link targets are constructed by *{mal.link.target} from #{xref} attributes,
+When link targets are constructed by {mal.link.target} from `xref` attributes,
 this string is appended. This is used to specify the file extension when creating
 output files from Mallard pages.
 -->
@@ -120,10 +120,10 @@ output files from Mallard pages.
 <!--@@==========================================================================
 mal.link.default_root
 The default root ID.
-:Revision:version="3.4" date="2012-01-17" status="final"
+@revision[version=3.4 date=2012-01-17 status=final]
 
 This parameter provides the default ID for the page that is taken to be the
-root of the document.  By default, #{'index'} is used.  This should not be
+root of the document.  By default, `'index'` is used.  This should not be
 changed for normal Mallard documents.  It may be necessary to change it for
 some Mallard extension formats.
 -->
@@ -133,17 +133,19 @@ some Mallard extension formats.
 <!--**==========================================================================
 mal.link.linkid
 Output the fully qualified link ID for a page or section.
-:Revision:version="3.0" date="2010-01-02" status="final"
-$node: The #{page} or #{section} element to generate a link ID for.
+@revision[version=3.0 date=2010-01-02 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to generate a link ID for.
 
 This template outputs the fully qualified link ID for a page or section.  For
-#{page} elements, the link ID is identical to the ID.  For #{section} elements,
+`page` elements, the link ID is identical to the ID.  For `section` elements,
 however, the link ID is the containing page ID and the section ID, joined with
-the #{#} character.
+the `#` character.
 
-The link ID is used in Mallard cache files to ensure all #{id} attributes are
+The link ID is used in Mallard cache files to ensure all `id` attributes are
 unique.  All of the templates in this stylesheet that use a link ID use this
-template or *{mal.link.xref.linkid}.
+template or {mal.link.xref.linkid}.
 -->
 <xsl:template name="mal.link.linkid">
   <xsl:param name="node" select="."/>
@@ -163,16 +165,18 @@ template or *{mal.link.xref.linkid}.
 
 <!--**==========================================================================
 mal.link.xref.linkid
-Output the fully qualified link ID for an #{xref} attribute.
-:Revision:version="3.0" date="2010-01-02" status="final"
-$node: The element containing an #{xref} attribute.
-$xref: The #{xref} value to generate a link ID from.
+Output the fully qualified link ID for an `xref` attribute.
+@revision[version=3.0 date=2010-01-02 status=final]
 
-This template outputs the fully qualified link ID for an #{xref} attribute.
-This may simply be ${xref}, but if ${xref} starts with the #{#} character, it
-is prefixed with the ID of the page that contains ${node}.
+[xsl:params]
+$node: The element containing an `xref` attribute.
+$xref: The `xref` value to generate a link ID from.
 
-See *{mal.link.linkid} for more on link IDs.
+This template outputs the fully qualified link ID for an `xref` attribute.
+This may simply be $xref, but if $xref starts with the `#` character, it
+is prefixed with the ID of the page that contains $node.
+
+See {mal.link.linkid} for more on link IDs.
 -->
 <xsl:template name="mal.link.xref.linkid">
   <xsl:param name="node" select="."/>
@@ -186,39 +190,41 @@ See *{mal.link.linkid} for more on link IDs.
 
 <!--**==========================================================================
 mal.link.content
-Output the content for a #{link} element.
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
+Output the content for a `link` element.
+@revision[version=3.18 date=2015-06-06 status=final]
+
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
 $role: A space-separated list of link roles, used to select the appropriate title.
-$info: An #{info} element that overrides the info found in a target node.
+$info: An `info` element that overrides the info found in a target node.
 
 This template outputs the automatic text content for a link.  It should only
-be used for links that do not have specified content.  If ${xref} points to a
+be used for links that do not have specified content.  If $xref points to a
 valid page or section, the appropriate link title from that page or section
-will be selected, based on the list of roles in ${role}. The first role for
+will be selected, based on the list of roles in $role. The first role for
 which a matching link title is found will be used. Otherwise, the link title
-without a role is used, or the primary title. The %{mal.link.content.mode}
+without a role is used, or the primary title. The {mal.link.content.mode}
 mode is applied to the contents of that title.  Stylesheets using this template
 should map that mode to inline processing.
 
-For inline links, ${node} should be the #{link} element. For links from a
-#{links} element, ${node} should be that #{links} element, or the containing
-element when the #{links} element is implicit.
+For inline links, $node should be the `link` element. For links from a
+`links` element, $node should be that `links` element, or the containing
+element when the `links` element is implicit.
 
-This template first calls *{mal.link.content.custom} with the same arguments.
+This template first calls {mal.link.content.custom} with the same arguments.
 If that template returns a non-empty result, it is used as the return value,
 overriding any other behavior of this template.
 
-If only ${href} is provided, that URL is used as the text content.  If a target
-page or section cannot be found, ${xref} is used as the text content.
+If only $href is provided, that URL is used as the text content.  If a target
+page or section cannot be found, $xref is used as the text content.
 
 Normally, this template automatically looks up information from a targret node
-according to the ${xref} parameter. However, if the ${info} parameter is given,
+according to the $xref parameter. However, if the $info parameter is given,
 information in that node set is used instead. This is useful for external info
-links, where the target information is provided as child elements to the #{link}
+links, where the target information is provided as child elements to the `link`
 element.
 -->
 <xsl:template name="mal.link.content">
@@ -304,18 +310,20 @@ element.
 
 <!--**==========================================================================
 mal.link.content.custom
-Output the content for a custom #{link} element.
+Output the content for a custom `link` element.
 :Stub: true
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-$role: A space-separated list of link roles, used to select the appropriate title.
-$info: An #{info} element that overrides the info found in a target node.
+@revision[version=3.18 date=2015-06-06 status=final]
 
-This template is called by *{mal.link.content} to create content for custom
-links. Use this template to support the #{action} attribute or extended #{xref}
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+$role: A space-separated list of link roles, used to select the appropriate title.
+$info: An `info` element that overrides the info found in a target node.
+
+This template is called by {mal.link.content} to create content for custom
+links. Use this template to support the `action` attribute or extended `xref`
 attributes containing slash or colon characters.
 -->
 <xsl:template name="mal.link.content.custom">
@@ -330,12 +338,12 @@ attributes containing slash or colon characters.
 
 <!--%%==========================================================================
 mal.link.content.mode
-Output the content for a link from the contents of a #{title} element.
-:Revision:version="3.0" date="2010-01-02" status="final"
+Output the content for a link from the contents of a `title` element.
+@revision[version=3.0 date=2010-01-02 status=final]
 
-This mode is applied to the contents of a #{title} element by *{mal.link.content}.
+This mode is applied to the contents of a `title` element by {mal.link.content}.
 By default, it returns the string value of its input.  Stylesheets that use
-*{mal.link.content} should map this mode to inline processing.
+{mal.link.content} should map this mode to inline processing.
 -->
 <xsl:template mode="mal.link.content.mode" match="* | text()">
   <xsl:value-of select="."/>
@@ -344,32 +352,34 @@ By default, it returns the string value of its input.  Stylesheets that use
 
 <!--**==========================================================================
 mal.link.desc
-Output the desc content for a #{link} element.
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-$role: A space-separated list of link roles, used to select the appropriate desc.
-$info: An #{info} element that overrides the info found in a target node.
+Output the desc content for a `link` element.
+@revision[version=3.18 date=2015-06-06 status=final]
 
-This template outputs the secondary desc text content for a link. If ${xref}
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+$role: A space-separated list of link roles, used to select the appropriate desc.
+$info: An `info` element that overrides the info found in a target node.
+
+This template outputs the secondary desc text content for a link. If $xref
 points to a valid page or section, the desc from that page or section will be
-used. The %{mal.link.content.mode} mode is applied to the contents of that
+used. The {mal.link.content.mode} mode is applied to the contents of that
 desc. Stylesheets using this template should map that mode to inline processing.
 
-For inline links, ${node} should be the #{link} element. For links from a
-#{links} element, ${node} should be that #{links} element, or the containing
-element when the #{links} element is implicit.
+For inline links, $node should be the `link` element. For links from a
+`links` element, $node should be that `links` element, or the containing
+element when the `links` element is implicit.
 
-This template first calls *{mal.link.desc.custom} with the same arguments.
+This template first calls {mal.link.desc.custom} with the same arguments.
 If that template returns a non-empty result, it is used as the return value,
 overriding any other behavior of this template.
 
 Normally, this template automatically looks up information from a targret node
-according to the ${xref} parameter. However, if the ${info} parameter is given,
+according to the $xref parameter. However, if the $info parameter is given,
 information in that node set is used instead. This is useful for external info
-links, where the target information is provided as child elements to the #{link}
+links, where the target information is provided as child elements to the `link`
 element.
 -->
 <xsl:template name="mal.link.desc">
@@ -418,18 +428,20 @@ element.
 
 <!--**==========================================================================
 mal.link.desc.custom
-Output the desc content for a custom #{link} element.
+Output the desc content for a custom `link` element.
 :Stub: true
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-$role: A space-separated list of link roles, used to select the appropriate title.
-$info: An #{info} element that overrides the info found in a target node.
+@revision[version=3.18 date=2015-06-06 status=final]
 
-This template is called by *{mal.link.desc} to create content for custom links.
-Use this template to support the #{action} attribute or extended #{xref}
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+$role: A space-separated list of link roles, used to select the appropriate title.
+$info: An `info` element that overrides the info found in a target node.
+
+This template is called by {mal.link.desc} to create content for custom links.
+Use this template to support the `action` attribute or extended `xref`
 attributes containing slash or colon characters.
 -->
 <xsl:template name="mal.link.desc.custom">
@@ -444,35 +456,37 @@ attributes containing slash or colon characters.
 
 <!--**==========================================================================
 mal.link.tooltip
-Output a tooltip for a #{link} element.
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-$role: A space-separated list of link roles, used to select the appropriate title.
-$info: An #{info} element that overrides the info found in a target node.
+Output a tooltip for a `link` element.
+@revision[version=3.18 date=2015-06-06 status=final]
 
-This template outputs a text-only tooltip for a link. If ${xref} points to a
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+$role: A space-separated list of link roles, used to select the appropriate title.
+$info: An `info` element that overrides the info found in a target node.
+
+This template outputs a text-only tooltip for a link. If $xref points to a
 valid page or section, the text title from that page or section will be used.
 If the target does not specify a text title, the primary title is used.
 
-For inline links, ${node} should be the #{link} element. For links from a
-#{links} element, ${node} should be that #{links} element, or the containing
-element when the #{links} element is implicit.
+For inline links, $node should be the `link` element. For links from a
+`links` element, $node should be that `links` element, or the containing
+element when the `links` element is implicit.
 
-This template first calls *{mal.link.tooltip.custom} with the same arguments.
+This template first calls {mal.link.tooltip.custom} with the same arguments.
 If that template returns a non-empty string, it is used as the return value,
 overriding any other behavior of this template.
 
-If only ${href} is provided, that URL is used as the tooltip. If a target
-page or section cannot be found, ${xref} is used as the text content. Special
+If only $href is provided, that URL is used as the tooltip. If a target
+page or section cannot be found, $xref is used as the text content. Special
 tooltips may be provided for certain URI schemes.
 
 Normally, this template automatically looks up information from a targret node
-according to the ${xref} parameter. However, if the ${info} parameter is given,
+according to the $xref parameter. However, if the $info parameter is given,
 information in that node set is used instead. This is useful for external info
-links, where the target information is provided as child elements to the #{link}
+links, where the target information is provided as child elements to the `link`
 element.
 -->
 <xsl:template name="mal.link.tooltip">
@@ -542,18 +556,20 @@ element.
 
 <!--**==========================================================================
 mal.link.tooltip.custom
-Output a tooltip for a custom #{link} element.
+Output a tooltip for a custom `link` element.
 :Stub: true
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
-$role: A space-separated list of link roles, used to select the appropriate title.
-$info: An #{info} element that overrides the info found in a target node.
+@revision[version=3.18 date=2015-06-06 status=final]
 
-This template is called by *{mal.link.tooltip} to create tooltips for custom
-links. Use this template to support the #{action} attribute or extended #{xref}
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+$role: A space-separated list of link roles, used to select the appropriate title.
+$info: An `info` element that overrides the info found in a target node.
+
+This template is called by {mal.link.tooltip} to create tooltips for custom
+links. Use this template to support the `action` attribute or extended `xref`
 attributes containing slash or colon characters.
 -->
 <xsl:template name="mal.link.tooltip.custom">
@@ -568,28 +584,30 @@ attributes containing slash or colon characters.
 
 <!--**==========================================================================
 mal.link.target
-Output the target URL for a #{link} or other linking element.
-:Revision:version="3.28" date="2017-08-11" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
+Output the target URL for a `link` or other linking element.
+@revision[version=3.28 date=2017-08-11 status=final]
 
-This template outputs a URL for a #{link} element or another element using
-linking attributes.  If ${xref} points to a valid page or section, it uses
-a file name based on the ID of the target page plus @{mal.link.extension}.
-Otherwise, the link will point to ${href}.
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
 
-For inline links, ${node} should be the #{link} element. For links from a
-#{links} element, ${node} should be that #{links} element, or the containing
-element when the #{links} element is implicit.
+This template outputs a URL for a `link` element or another element using
+linking attributes.  If $xref points to a valid page or section, it uses
+a file name based on the ID of the target page plus {mal.link.extension}.
+Otherwise, the link will point to $href.
 
-This template first calls *{mal.link.target.custom} with the same arguments.
+For inline links, $node should be the `link` element. For links from a
+`links` element, $node should be that `links` element, or the containing
+element when the `links` element is implicit.
+
+This template first calls {mal.link.target.custom} with the same arguments.
 If that template returns a non-empty string, it is used as the return value,
 overriding any other behavior of this template.
 
-If ${xref} contains a #{/} or #{:} character, this template calls
-*{mal.link.target.extended}, which by default just uses ${href} instead.
+If $xref contains a `/` or `:` character, this template calls
+{mal.link.target.extended}, which by default just uses $href instead.
 Override that template to provide extended xref behavior.
 -->
 <xsl:template name="mal.link.target">
@@ -662,18 +680,20 @@ fallback to the built-in behavior.
 
 <!--**==========================================================================
 mal.link.target.extended
-Output the target URL for an element with an extended #{xref} attribute.
+Output the target URL for an element with an extended `xref` attribute.
 :Stub: true
-:Revision:version="3.28" date="2017-08-11" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
+@revision[version=3.28 date=2017-08-11 status=final]
 
-This template is called by *{mal.link.target} to create URLs for links with
-a #{/} or #{:} in the #{xref} attribute. By default, it just outputs the
-value of ${href}. Override this template to provide behavior for extended
-#{xref} attributes.
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+
+This template is called by {mal.link.target} to create URLs for links with
+a `/` or `:` in the `xref` attribute. By default, it just outputs the
+value of $href. Override this template to provide behavior for extended
+`xref` attributes.
 -->
 <xsl:template name="mal.link.target.extended">
   <xsl:param name="node" select="."/>
@@ -686,16 +706,18 @@ value of ${href}. Override this template to provide behavior for extended
 
 <!--**==========================================================================
 mal.link.target.custom
-Output the target URL for an element with #{action} or extended #{xref} attributes.
+Output the target URL for an element with `action` or extended `xref` attributes.
 :Stub: true
-:Revision:version="3.4" date="2012-01-17" status="final"
-$node: The #{link} or other element creating the link.
-$action: The #{action} attribute of ${node}.
-$xref: The #{xref} attribute of ${node}.
-$href: The #{href} attribute of ${node}.
+@revision[version=3.4 date=2012-01-17 status=final]
 
-This template is called by *{mal.link.target} to create URLs for custom links.
-Use this template to support the #{action} attribute or extended #{xref}
+[xsl:params]
+$node: The `link` or other element creating the link.
+$action: The `action` attribute of $node.
+$xref: The `xref` attribute of $node.
+$href: The `href` attribute of $node.
+
+This template is called by {mal.link.target} to create URLs for custom links.
+Use this template to support the `action` attribute or extended `xref`
 attributes containing slash or colon characters.
 -->
 <xsl:template name="mal.link.target.custom">
@@ -709,31 +731,33 @@ attributes containing slash or colon characters.
 <!--**==========================================================================
 mal.link.guidelinks
 Output the guide links for a page or section.
-:Revision:version="3.18" date="2015-06-07" status="final"
-$node: The #{page} or #{section} element to generate links for.
-$role: A space-separated list of link roles, used to select the appropriate title, default #{"guide"}.
+@revision[version=3.18 date=2015-06-07 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to generate links for.
+$role: A space-separated list of link roles, used to select the appropriate title, default `"guide"`.
 
 This template outputs all the guide links for a page or section, whether
 declared as guide links in the page or section or as topic links from another
-guide page.  It outputs each of the links as a #{link} element within the
-Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
-to the target page or section. Or, in the case of external links, the #{link}
-element has an #{href} attribute pointing to the external resource.
+guide page.  It outputs each of the links as a `link` element within the
+Mallard namespace.  Each `link` element has an `xref` attribute pointing
+to the target page or section. Or, in the case of external links, the `link`
+element has an `href` attribute pointing to the external resource.
 
-Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section. The ${role} attribute is used to
+Each `link` element contains a `title` with `type="sort"` providing the
+sort title of the target page or section. The $role attribute is used to
 select a link title to sort on when a sort title is not present. The results
-are not sorted when returned from this template. Use #{xsl:sort} on the sort
+are not sorted when returned from this template. Use `xsl:sort` on the sort
 titles to sort the results.
 
-When a link comes from a guide link on ${node} that has an #{href}
-attribute but not an #{xref} attribute, it is taken to be an external
-link. In that case, the output link has an #{href} attribute instead of
-an #{xref} attribute, and it has an #{info} child element. This element
-has a copy of all the child elements of the source #{link} element.
+When a link comes from a guide link on $node that has an `href`
+attribute but not an `xref` attribute, it is taken to be an external
+link. In that case, the output link has an `href` attribute instead of
+an `xref` attribute, and it has an `info` child element. This element
+has a copy of all the child elements of the source `link` element.
 
 The output is a result tree fragment.  To use these results, call
-#{exsl:node-set} on them.
+`exsl:node-set` on them.
 -->
 <xsl:template name="mal.link.guidelinks">
   <xsl:param name="node" select="."/>
@@ -810,40 +834,42 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.topiclinks
 Output the topic links for a page or section.
-:Revision:version="3.18" date="2015-06-06" status="final"
-$node: The #{page} or #{section} element to generate links for.
-$groups: The list of all valid link groups for ${node}.
-$role: A space-separated list of link roles, used to select the appropriate title, default #{"topic"}.
+@revision[version=3.18 date=2015-06-06 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to generate links for.
+$groups: The list of all valid link groups for $node.
+$role: A space-separated list of link roles, used to select the appropriate title, default `"topic"`.
 
 This template outputs all the topic links for a guide page or section, whether
 declared as topic links in the page or section or as guide links from another
-page or section.  It outputs each of the links as a #{link} element within the
-Mallard namespace.  Each #{link} element has an #{xref} attribute pointing
-to the target page or section. Or, in the case of external links, the #{link}
-element has an #{href} attribute pointing to the external resource.
+page or section.  It outputs each of the links as a `link` element within the
+Mallard namespace.  Each `link` element has an `xref` attribute pointing
+to the target page or section. Or, in the case of external links, the `link`
+element has an `href` attribute pointing to the external resource.
 
-Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section. The ${role} attribute is used to
+Each `link` element contains a `title` with `type="sort"` providing the
+sort title of the target page or section. The $role attribute is used to
 select a link title to sort on when a sort title is not present. The results
-are not sorted when returned from this template. Use #{xsl:sort} on the sort
+are not sorted when returned from this template. Use `xsl:sort` on the sort
 titles to sort the results.
 
-Each #{link} element also contains a #{group} attribute.  The #{group}
+Each `link` element also contains a `group` attribute.  The `group`
 attribute is normalized.  It will either point to a link group declared
-in ${groups}, or it will be set to #{#default}.  Each #{link} element also
-contains a #{groupsort} attribute giving the numerical position of the
-#{group} attribute in the normalized group list for ${node}.
+in $groups, or it will be set to `#default`.  Each `link` element also
+contains a `groupsort` attribute giving the numerical position of the
+`group` attribute in the normalized group list for $node.
 
-The ${groups} parameter can be calculated automatically from ${node}.
+The $groups parameter can be calculated automatically from $node.
 
-When a link comes from a topic link on ${node} that has an #{href}
-attribute but not an #{xref} attribute, it is taken to be an external
-link. In that case, the output link has an #{href} attribute instead of
-an #{xref} attribute, and it has an #{info} child element. This element
-has a copy of all the child elements of the source #{link} element.
+When a link comes from a topic link on $node that has an `href`
+attribute but not an `xref` attribute, it is taken to be an external
+link. In that case, the output link has an `href` attribute instead of
+an `xref` attribute, and it has an `info` child element. This element
+has a copy of all the child elements of the source `link` element.
 
 The output is a result tree fragment.  To use these results, call
-#{exsl:node-set} on them.
+`exsl:node-set` on them.
 -->
 <xsl:template name="mal.link.topiclinks">
   <xsl:param name="node" select="."/>
@@ -1023,31 +1049,33 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.seealsolinks
 Output the see-also links for a page or section.
-:Revision:version="3.18" date="2015-06-07" status="final"
-$node: The #{page} or #{section} element to generate links for.
-$role: A space-separated list of link roles, used to select the appropriate title, default #{"seealso"}.
+@revision[version=3.18 date=2015-06-07 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to generate links for.
+$role: A space-separated list of link roles, used to select the appropriate title, default `"seealso"`.
 
 This template outputs all the see-also links for a page or section, whether
 declared in the page or section or in another page or section.  It outputs
-each of the links as a #{link} element within the Mallard namespace.  Each
-#{link} element has an #{xref} attribute pointing to the target page or section.
-Or, in the case of external links, the #{link} element has an #{href} attribute
+each of the links as a `link` element within the Mallard namespace.  Each
+`link` element has an `xref` attribute pointing to the target page or section.
+Or, in the case of external links, the `link` element has an `href` attribute
 pointing to the external resource.
 
-Each #{link} element contains a #{title} with #{type="sort"} providing the
-sort title of the target page or section. The ${role} attribute is used to
+Each `link` element contains a `title` with `type="sort"` providing the
+sort title of the target page or section. The $role attribute is used to
 select a link title to sort on when a sort title is not present. The results
-are not sorted when returned from this template. Use #{xsl:sort} on the sort
+are not sorted when returned from this template. Use `xsl:sort` on the sort
 titles to sort the results.
 
-When a link comes from a topic link on ${node} that has an #{href}
-attribute but not an #{xref} attribute, it is taken to be an external
-link. In that case, the output link has an #{href} attribute instead of
-an #{xref} attribute, and it has an #{info} child element. This element
-has a copy of all the child elements of the source #{link} element.
+When a link comes from a topic link on $node that has an `href`
+attribute but not an `xref` attribute, it is taken to be an external
+link. In that case, the output link has an `href` attribute instead of
+an `xref` attribute, and it has an `info` child element. This element
+has a copy of all the child elements of the source `link` element.
 
 The output is a result tree fragment.  To use these results, call
-#{exsl:node-set} on them.
+`exsl:node-set` on them.
 -->
 <xsl:template name="mal.link.seealsolinks">
   <xsl:param name="node" select="."/>
@@ -1124,36 +1152,38 @@ The output is a result tree fragment.  To use these results, call
 <!--**==========================================================================
 mal.link.linktrails
 Output link trails for a page or section.
-:Revision:version="3.4" date="2012-01-18" status="final"
-$node: The #{page} or #{section} element to generate links for.
-$trail: The link trail leading to ${node}.
+@revision[version=3.4 date=2012-01-18 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to generate links for.
+$trail: The link trail leading to $node.
 $root: The ID of the root page.
 
 This template outputs lists of links, where each list is a path of topic links
-that leads to ${node}.  Each link list is output as a #{link} element in the
-Mallard namespace with an #{xref} attribute pointing to the target page or
-section.  Each #{link} has a #{title} element with #{type="sort"} providing
+that leads to $node.  Each link list is output as a `link` element in the
+Mallard namespace with an `xref` attribute pointing to the target page or
+section.  Each `link` has a `title` element with `type="sort"` providing
 the sort title of the target page or section.
 
-Each #{link} element may also contain another #{link} element providing the
+Each `link` element may also contain another `link` element providing the
 next link in the trail.  Each of these links also contains a sort titles and
 may also contain another link.
 
-The results are not sorted when returned from this template.  Use #{xsl:sort}
+The results are not sorted when returned from this template.  Use `xsl:sort`
 on the nested sort titles to sort the results.  The output is a result tree
-fragment.  To use these results, call #{exsl:node-set} on them.
+fragment.  To use these results, call `exsl:node-set` on them.
 
-This template calls itself recursively.  It finds the guide links for ${node}
-using *{mal.link.guidelinks}.  It then calls *{mal.link.linktrails} on each
-guide, wrapping ${trail} with a link to the guide as the new ${trail} parameter.
+This template calls itself recursively.  It finds the guide links for $node
+using {mal.link.guidelinks}.  It then calls {mal.link.linktrails} on each
+guide, wrapping $trail with a link to the guide as the new $trail parameter.
 
-If there are no guide links for ${node} and ${node} is a #{section} element,
-this template calls itself on the containing page, wrapping ${trails} with a
-link to that page.  This #{link} element has the attribute #{child="section"}
+If there are no guide links for $node and $node is a `section` element,
+this template calls itself on the containing page, wrapping $trails with a
+link to that page.  This `link` element has the attribute `child="section"`
 to indicate the link from it to its child is not a topic link.
 
-Recursion stops when the ID of ${node} is ${root}.  Link trails are only
-output if they reach ${root}, which is @{mal.link.default_root} by default.
+Recursion stops when the ID of $node is $root.  Link trails are only
+output if they reach $root, which is {mal.link.default_root} by default.
 -->
 <!--
 FIXME:
@@ -1233,14 +1263,16 @@ FIXME:
 <!--**==========================================================================
 mal.link.sorttitle
 Output the sort title for a page or section.
-:Revision:version="3.10" date="2013-07-30" status="final"
-$node: The #{page} or #{section} element to output a sort title for.
+@revision[version=3.10 date=2013-07-30 status=final]
+
+[xsl:params]
+$node: The `page` or `section` element to output a sort title for.
 $role: A space-separated list of link roles, used to select the appropriate title.
 
 This template returns a sort title for a page or section as a normalized string.
-If ${node} defines a sort title in its #{info} element, the value of that title
-is always used first. Otherwise, if ${role} is defined and ${node} has a link
-title with a matching role, that title is used. Otherwise, if ${node} has a link
+If $node defines a sort title in its `info` element, the value of that title
+is always used first. Otherwise, if $role is defined and $node has a link
+title with a matching role, that title is used. Otherwise, if $node has a link
 title with no role, that title is used. Otherwise, the primary title is used.
 -->
 <xsl:template name="mal.link.sorttitle">

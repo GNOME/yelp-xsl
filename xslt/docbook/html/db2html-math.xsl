@@ -25,23 +25,25 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook to HTML - MathML
 Handle MathML in DocBook documents.
-:Revision: version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
-This stylesheet matches embedded MathML and processes it in %{db2html.math.mode}.
-The matched templates for the #{mml:math} element automatically set the #{display}
+This stylesheet matches embedded MathML and processes it in {db2html.math.mode}.
+The matched templates for the `mml:math` element automatically set the `display`
 attribute based on whether the element is in block or inline context.
 -->
 
 
 <!--**==========================================================================
 db2html.math.div
-Output an HTML #{div} element and block-level MathML.
-:Revision:version="3.8" date="2012-11-13" status="final"
-$node: The #{mml:math} element to render.
+Output an HTML `div` element and block-level MathML.
+@revision[version=3.8 date=2012-11-13 status=final]
 
-This template creates an HTML #{div} element for a MathML #{mml:math} element,
-then outputs MathML content. It sets the #{display} attribute on the output to
-#{"block"} and applies %{db2html.math.mode} to the child content.
+[xsl:params]
+$node: The `mml:math` element to render.
+
+This template creates an HTML `div` element for a MathML `mml:math` element,
+then outputs MathML content. It sets the `display` attribute on the output to
+`"block"` and applies {db2html.math.mode} to the child content.
 -->
 <xsl:template name="db2html.math.div">
   <xsl:param name="node" select="."/>
@@ -68,13 +70,15 @@ then outputs MathML content. It sets the #{display} attribute on the output to
 
 <!--**==========================================================================
 db2html.math.span
-Output an HTML #{span} element and inline MathML.
-:Revision:version="3.8" date="2012-11-13" status="final"
-$node: The #{mml:math} element to render.
+Output an HTML `span` element and inline MathML.
+@revision[version=3.8 date=2012-11-13 status=final]
 
-This template creates an HTML #{span} element for a MathML #{mml:math} element,
-then outputs MathML content. It sets the #{display} attribute on the output to
-#{"inline"} and applies %{db2html.math.mode} to the child content.
+[xsl:params]
+$node: The `mml:math` element to render.
+
+This template creates an HTML `span` element for a MathML `mml:math` element,
+then outputs MathML content. It sets the `display` attribute on the output to
+`"inline"` and applies {db2html.math.mode} to the child content.
 -->
 <xsl:template name="db2html.math.span">
   <xsl:param name="node" select="."/>
@@ -98,12 +102,12 @@ then outputs MathML content. It sets the #{display} attribute on the output to
 <!--%%==========================================================================
 db2html.math.mode
 Output MathML and handle Mallard extension.
-:Revision: version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
 This mode is used for processing MathML embedded into DocBook documents. For
 most types of MathML content, it simply copies the input directly, except it
 outputs the MathML in a way that allows the namespace to stripped for non-XML
-output. It converts #{xlink:href} attributes from MathML 2 to #{href} attributes
+output. It converts `xlink:href` attributes from MathML 2 to `href` attributes
 for MathML 3.
 -->
 <xsl:template mode="db2html.math.mode" match="mml:*">

@@ -36,17 +36,19 @@ extension.
 <!--**==========================================================================
 mal2html.ui.expander.data
 Output data for an expander.
-:Revision:version="3.4" date="2012-02-25" status="final"
-$node: The source element to output data for.
-$expander: Whether ${node} is actually an expander.
+@revision[version=3.4 date=2012-02-25 status=final]
 
-This template outputs an HTML #{div} element with the #{class} attribute set to
-#{"yelp-data yelp-data-ui-expander"}. All #{yelp-data} elements are hidden by
+[xsl:params]
+$node: The source element to output data for.
+$expander: Whether $node is actually an expander.
+
+This template outputs an HTML `div` element with the `class` attribute set to
+`"yelp-data yelp-data-ui-expander"`. All `yelp-data` elements are hidden by
 the CSS. The div contains information about text directionality, the default
 expanded state, and optionally additional titles for the expanded and collapsed
 states.
 
-The expander information is only output if the ${expander} parameter is #{true}.
+The expander information is only output if the $expander parameter is `true`.
 This parameter can be calculated automatically, but it will give false negatives
 for blocks that produce automatic titles.
 -->
@@ -98,15 +100,17 @@ http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
 <!--**==========================================================================
 mal2html.ui.links.tiles
 Output links as thumbnail tiles.
-:Revision:version="3.28" date="2015-10-22" status="volatile"
-$node: A #{links} element to link from.
-$links: A list of links, as from a template in !{mal-link}.
+@revision[version=3.28 date=2015-10-22 status=volatile]
+
+[xsl:params]
+$node: A `links` element to link from.
+$links: A list of links, as from a template in {mal-link}.
 $role: A link role, used to select the appropriate title and thumbnail.
 
 This template outputs links as thumbnail tiles. For each link, it outputs
-a #{div} element with a thumbnail, title, and desc (unless the #{nodesc}
-style hint is used). This template calls *{mal2html.ui.links.img} to find
-the best-match thumbnail and output the HTML #{img} element for each link.
+a `div` element with a thumbnail, title, and desc (unless the `nodesc`
+style hint is used). This template calls {mal2html.ui.links.img} to find
+the best-match thumbnail and output the HTML `img` element for each link.
 
 This template handles link sorting.
 -->
@@ -196,17 +200,19 @@ This template handles link sorting.
 <!--DEPRECATED==================================================================
 _mal2html.ui.links.hover
 Output links with thumbnails shown on hover.
-:Revision:version="3.4" date="2012-02-26" status="final"
-$node: A #{links} element to link from.
-$links: A list of links, as from a template in !{mal-link}.
+@revision[version=3.4 date=2012-02-26 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$links: A list of links, as from a template in {mal-link}.
 $role: A link role, used to select the appropriate title and thumbnail.
 
 This template outputs links alongside thumbnail images, using the UI extension.
 The thumbnail image for each link is shown when the user hovers over that link.
-This template calls *{mal2html.ui.links.img} to find the best-match thumbnail
-and output the HTML #{img} element for each link.
+This template calls {mal2html.ui.links.img} to find the best-match thumbnail
+and output the HTML `img` element for each link.
 
-If ${node} contains a #{ui:thumb} element, that image is used when no links
+If $node contains a `ui:thumb` element, that image is used when no links
 are hovered.
 
 This template handles link sorting.
@@ -317,30 +323,32 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.ui.links.img
 Output an image for a link using UI thumbnails.
-:Revision:version="3.28" date="2017-08-11" status="final"
-$node: A #{links} element to link from.
-$thumbs: A list of candidate #{uix:thumb} elements.
+@revision[version=3.28 date=2017-08-11 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$thumbs: A list of candidate `uix:thumb` elements.
 $role: A link role, used to select the appropriate thumbnail.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
-This template selects the best-fit thumbnail from ${thumbs}, based on how well
-the aspect ratio and dimensions of each image matches the ${width} and ${height}
-parameters. It outputs an HTML #{img} element for the best-fit thumbnail. It
-calls ${mal2thml.ui.links.img.src} to output the #{src} attribute, and calls
-${mal2html.ui.links.img.attrs} to output #{width} and #{height} attributes.
+This template selects the best-fit thumbnail from $thumbs, based on how well
+the aspect ratio and dimensions of each image matches the $width and $height
+parameters. It outputs an HTML `img` element for the best-fit thumbnail. It
+calls $mal2thml.ui.links.img.src to output the `src` attribute, and calls
+$mal2html.ui.links.img.attrs to output `width` and `height` attributes.
 
 Before checking for a best-fit thumbnail on dimensions, this template first
-looks for #{uix:thumb} elements with the #{type} attribute set to #{"links"}.
-Within those, it looks for #{uix:thumb} elements whose #{role} attribute
-matches the ${role} parameter. This is similar to how link titles are
+looks for `uix:thumb` elements with the `type` attribute set to `"links"`.
+Within those, it looks for `uix:thumb` elements whose `role` attribute
+matches the $role parameter. This is similar to how link titles are
 selected.
 
-If the ${thumbs} parameter is empty, this template attempts to use a default
-thumbnail provided by a #{uix:thumb} child element of ${node}.
+If the $thumbs parameter is empty, this template attempts to use a default
+thumbnail provided by a `uix:thumb` child element of $node.
 
-The ${width} and ${height} parameters can be computed automatically from the
-${node} element.
+The $width and $height parameters can be computed automatically from the
+$node element.
 -->
 <xsl:template name="mal2html.ui.links.img">
   <xsl:param name="node"/>
@@ -395,15 +403,17 @@ ${node} element.
 
 <!--**==========================================================================
 mal2html.ui.links.img.src
-Output the #{src} attribute for a thumbnail image.
-:Revision:version="3.28" date="2017-08-11" status="final"
-$node: A #{links} element to link from.
-$thumb: A #{uix:thumb} element.
+Output the `src` attribute for a thumbnail image.
+@revision[version=3.28 date=2017-08-11 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$thumb: A `uix:thumb` element.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
-This template outputs #{src} attribute for the HTML #{img} element created
-from ${thumb}. By default, it just copies the #{src} attribute of ${thumb}.
+This template outputs `src` attribute for the HTML `img` element created
+from $thumb. By default, it just copies the `src` attribute of $thumb.
 Override this template if you need to support multi-directory output.
 -->
 <xsl:template name="mal2html.ui.links.img.src">
@@ -417,17 +427,19 @@ Override this template if you need to support multi-directory output.
 
 <!--**==========================================================================
 mal2html.ui.links.img.attrs
-Output the #{width} and #{height} attributes for a thumbnail image.
-:Revision:version="3.28" date="2017-08-11" status="final"
-$node: A #{links} element to link from.
-$thumb: A #{uix:thumb} element.
+Output the `width` and `height` attributes for a thumbnail image.
+@revision[version=3.28 date=2017-08-11 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$thumb: A `uix:thumb` element.
 $width: The width to fit thumbnails into.
 $height: The height to fit thumbnails into.
 
-This template outputs #{width} and #{height} attributes for the HTML #{img}
-element created from ${thumb}, based on the #{uix:overflow} attribute on ${node}.
-The ${width} and ${height} parameters can be computed automatically from the
-${node} element.
+This template outputs `width` and `height` attributes for the HTML `img`
+element created from $thumb, based on the `uix:overflow` attribute on $node.
+The $width and $height parameters can be computed automatically from the
+$node element.
 -->
 <xsl:template name="mal2html.ui.links.img.attrs">
   <xsl:param name="node"/>

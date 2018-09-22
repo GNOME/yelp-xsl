@@ -1,2 +1,88 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-css" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-requires" xref="color"/><link type="xslt-requires" xref="html"/><link type="xslt-requires" xref="l10n"/><link type="xslt-implements-mode" xref="html.css.mode"/></info><title>DocBook to HTML - CSS</title><comment><p>Describe this module</p></comment><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="color"/></p></item><item><p><link xref="html"/></p></item><item><p><link xref="l10n"/></p></item></list><list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="l10n.align.start"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="color.bg.blue"/></p></item><item><p><link xref="color.bg.gray"/></p></item><item><p><link xref="color.bg.yellow"/></p></item><item><p><link xref="color.blue"/></p></item><item><p><link xref="color.fg.dark"/></p></item><item><p><link xref="color.fg.gray"/></p></item><item><p><link xref="color.gray"/></p></item><item><p><link xref="color.yellow"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p><link xref="html.css.mode">html.css.mode</link></p></td><td><p><code>*</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-css">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+ </info>
+ <title>DocBook to HTML - CSS</title>
+ <p>REMARK: Describe this module</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>
+     <p><code xref="html.css.mode">html.css.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

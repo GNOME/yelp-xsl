@@ -24,15 +24,16 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook Links
-:Requires: db-chunk db-title l10n
 -->
 
 
 <!--**==========================================================================
 db.ulink.tooltip
 Generates the tooltip for an external link
+
+[xsl:params]
 $node: The element to generate a tooltip for
-$url: The URL of the link, usually from the #{url} attribute
+$url: The URL of the link, usually from the `url` attribute
 -->
 <xsl:template name="db.ulink.tooltip">
   <xsl:param name="node" select="."/>
@@ -59,9 +60,11 @@ $url: The URL of the link, usually from the #{url} attribute
 <!--**==========================================================================
 db.xref.content
 Generates the content of a cross reference
-$linkend: The id of the linked-to element, usually from the #{linkend} attribute
+
+[xsl:params]
+$linkend: The id of the linked-to element, usually from the `linkend` attribute
 $target: The linked-to element
-$xrefstyle: The cross reference style, usually from the #{xrefstyle} attribute
+$xrefstyle: The cross reference style, usually from the `xrefstyle` attribute
 
 REMARK: The xrefstyle/role stuff needs to be documented
 -->
@@ -101,9 +104,11 @@ REMARK: The xrefstyle/role stuff needs to be documented
 <!--**==========================================================================
 db.xref.target
 Generates the target identifier of a cross reference
-$linkend: The id of the linked-to element, usually from the #{linkend} attribute
+
+[xsl:params]
+$linkend: The id of the linked-to element, usually from the `linkend` attribute
 $target: The linked-to element
-$is_chunk: Whether ${target} is known to be a chunked element
+$is_chunk: Whether $target is known to be a chunked element
 
 REMARK: Talk about how this works with chunking
 -->
@@ -136,7 +141,9 @@ REMARK: Talk about how this works with chunking
 <!--**==========================================================================
 db.xref.tooltip
 Generates the tooltip for a cross reference
-$linkend: The id of the linked-to element, usually from the #{linkend} attribute
+
+[xsl:params]
+$linkend: The id of the linked-to element, usually from the `linkend` attribute
 $target: The linked-to element
 
 REMARK: Document this

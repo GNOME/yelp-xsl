@@ -1,15 +1,46 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.gloss.terms" type="topic" style="xslt-template"><info><link type="guide" xref="mal-gloss" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Output the glossary terms for a page or section.</desc></info><title>mal.gloss.terms</title><p>Output the glossary terms for a page or section.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The glossary <code>page</code> or <code>section</code> to output terms for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs the terms that should be displayed for <code style="xslt-param">node</code>.This output is a result tree fragment. To use these results, call <code>exsl:node-set</code> on them. This template locates all terms throughout all pages and filters them based on any <code>gloss:match</code> elements in the <code>info</code> child of <code style="xslt-param">node</code>, and also excludes terms that are matched by child sections of <code style="xslt-param">node</code>.</p>
-  <p>The filtered terms are then grouped by matching ID. For each unique ID, this template outputs a <code>gloss:term</code> element with the corresponding <code>id</code> attribute. Each of these elements contains <code>title</code> elements reflecting the titles in the actual term definitions. These titles have duplicates removed, compared by the space-normalized string value, and are sorted.</p>
-  <p>These <code>gloss:term</code> elements then contain further <code>gloss:term</code> elements, which are copies of the actual terms with the same ID. These elements have an <code>xref</code> attribute added containing the ID of the containing page.</p>
-  <p>The top-level <code>gloss:term</code> elements and the <code>gloss:term</code> elements they contain are not sorted. Only the <code>title</code> elements in the top-level <code>gloss:term</code> elements are sorted.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.gloss.match"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal.gloss.terms">
+ <info>
+  <link type="guide" xref="mal-gloss" group="templates"/>
+  <link type="guide" xref="templates" group="mal"/>
+  <desc>Output the glossary terms for a page or section.</desc>
+ </info>
+ <title>mal.gloss.terms</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The glossary <sys>page</sys> or <sys>section</sys> to output terms for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs the terms that should be displayed for <code>$node.This</code> output
+ is a result tree fragment. To use these results, call <sys>exsl:node-set</sys> on them.
+ This template locates all terms throughout all pages and filters them based on
+ any <sys>gloss:match</sys> elements in the <sys>info</sys> child of <code>$node</code>, and also excludes
+ terms that are matched by child sections of <code>$node</code>.</p>
+ <p>The filtered terms are then grouped by matching ID. For each unique ID, this
+ template outputs a <sys>gloss:term</sys> element with the corresponding <sys>id</sys> attribute.
+ Each of these elements contains <sys>title</sys> elements reflecting the titles in the
+ actual term definitions. These titles have duplicates removed, compared by the
+ space-normalized string value, and are sorted.</p>
+ <p>These <sys>gloss:term</sys> elements then contain further <sys>gloss:term</sys> elements, which
+ are copies of the actual terms with the same ID. These elements have an <sys>xref</sys>
+ attribute added containing the ID of the containing page.</p>
+ <p>The top-level <sys>gloss:term</sys> elements and the <sys>gloss:term</sys> elements they contain
+ are not sorted. Only the <sys>title</sys> elements in the top-level <sys>gloss:term</sys>
+ elements are sorted.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal.gloss.match"/></p>
+  </item>
+ </list>
+</page>

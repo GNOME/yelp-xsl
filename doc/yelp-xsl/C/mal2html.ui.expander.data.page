@@ -1,17 +1,49 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.expander.data" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.4" date="2012-02-25" status="final"/><desc>Output data for an expander.</desc></info><title>mal2html.ui.expander.data</title><p>Output data for an expander.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The source element to output data for.</p>
-    </item>
-    <item>
-      <title><code>expander</code></title>
-      <p>Whether <code style="xslt-param">node</code> is actually an expander.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs an HTML <code>div</code> element with the <code>class</code> attribute set to <code>"yelp-data yelp-data-ui-expander"</code>. All <code>yelp-data</code> elements are hidden by the CSS. The div contains information about text directionality, the default expanded state, and optionally additional titles for the expanded and collapsed states.</p>
-  <p>The expander information is only output if the <code style="xslt-param">expander</code> parameter is <code>true</code>. This parameter can be calculated automatically, but it will give false negatives for blocks that produce automatic titles.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.inline.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.ui.expander.data">
+ <info>
+  <link type="guide" xref="mal2html-ui" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output data for an expander.</desc>
+  <revision version="3.4" date="2012-02-25" status="final"/>
+ </info>
+ <title>mal2html.ui.expander.data</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The source element to output data for.</p>
+   </item>
+   <item>
+    <title><code>$expander</code></title>
+    <p>Whether <code>$node</code> is actually an expander.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs an HTML <sys>div</sys> element with the <sys>class</sys> attribute set to
+ <sys>"yelp-data yelp-data-ui-expander"</sys>. All <sys>yelp-data</sys> elements are hidden by
+ the CSS. The div contains information about text directionality, the default
+ expanded state, and optionally additional titles for the expanded and collapsed
+ states.</p>
+ <p>The expander information is only output if the <code>$expander</code> parameter is <sys>true</sys>.
+ This parameter can be calculated automatically, but it will give false negatives
+ for blocks that produce automatic titles.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="mal2html.inline.mode"/></p>
+  </item>
+ </list>
+</page>

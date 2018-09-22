@@ -1,17 +1,118 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar.sections" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>Output a list of sections for a sidebar.</desc></info><title>html.sidebar.sections</title><p>Output a list of sections for a sidebar.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node a sidebar is being created for.</p>
-    </item>
-    <item>
-      <title><code>side</code></title>
-      <p>Which sidebar, either <code>left</code> or <code>right</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates a list of sections on the current page for a sidebar. It applies <code style="xslt-mode" xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code> to <code style="xslt-param">node</code>, passing <code style="xslt-param">side</code> as a parameter, to allow individual input formats to implement sections lists.</p>
-  <p>This named template also implements <code style="xslt-mode" xref="html.sidebar.mode">html.sidebar.mode</code> on the <code>sections</code> token. See <code style="xslt-template" xref="html.sidebar">html.sidebar</code> for more information on how sidebars are created.</p>
-<list style="compact"><title>Calls Modes</title><item><p><link xref="html.sidebar.sections.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.sidebar.sections">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output a list of sections for a sidebar.</desc>
+  <revision version="3.30" date="2018-06-10" status="candidate"/>
+ </info>
+ <title>html.sidebar.sections</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node a sidebar is being created for.</p>
+   </item>
+   <item>
+    <title><code>$side</code></title>
+    <p>Which sidebar, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates a list of sections on the current page for a sidebar.
+ It applies <code xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code> to <code>$node</code>, passing <code>$side</code> as a
+ parameter, to allow individual input formats to implement sections lists.</p>
+ <p>This named template also implements <code xref="html.sidebar.mode">html.sidebar.mode</code> on the <sys>sections</sys>
+ token. See <code xref="html.sidebar">html.sidebar</code> for more information on how sidebars are created.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="html.sidebar.sections.mode"/></p>
+  </item>
+ </list>
+</page>

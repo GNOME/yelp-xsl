@@ -21,6 +21,7 @@ intltool-update.in
 missing
 yelp-xsl.pc
 
+/doc/yelp-xsl/ducks/*.duck
 /xslt/theme/test-theme.html
 /xslt/common/domains/yelp-xsl.xml
 /test/testdocs/html

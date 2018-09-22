@@ -24,7 +24,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Bibliographies
-:Revision:version="3.4" date="2011-11-14" status="final"
+@revision[version=3.4 date=2011-11-14 status=final]
 
 This module provides templates to process DocBook bibliograpies.
 -->
@@ -33,11 +33,13 @@ This module provides templates to process DocBook bibliograpies.
 <!--**==========================================================================
 db2html.biblioentry.data
 Output structured data for a bibliography entry.
-:Revision:version="3.4" date="2011-11-14" status="final"
-$node: The #{biblioentry} or #{biblioset} element to output data for.
+@revision[version=3.4 date=2011-11-14 status=final]
+
+[xsl:params]
+$node: The `biblioentry` or `biblioset` element to output data for.
 
 This template outputs a bibliography entry, or part of a bibliography entry,
-based on structured data found in a #{biblioentry} or #{biblioset} element.
+based on structured data found in a `biblioentry` or `biblioset` element.
 -->
 <xsl:template name="db2html.biblioentry.data">
   <xsl:param name="node" select="."/>
@@ -109,15 +111,17 @@ based on structured data found in a #{biblioentry} or #{biblioset} element.
 <!--**==========================================================================
 db2html.biblioentry.label
 Output the label for a bibliography entry.
-:Revision:version="3.4" date="2011-11-14" status="final"
-$node: The #{biblioentry} or #{bibliomixed} element to generate a label for.
+@revision[version=3.4 date=2011-11-14 status=final]
+
+[xsl:params]
+$node: The `biblioentry` or `bibliomixed` element to generate a label for.
 
 This template outputs a label to be placed inline at the beginning of a bibliography
-entry. Labels are created for both #{biblioentry} and #{bibliomixed} elements.
+entry. Labels are created for both `biblioentry` and `bibliomixed` elements.
 The label is typically an abbreviation of the authors' names and the year of
-publication. In DocBook, it is usually provided with a leading #{abbrev}
-element. Without a leading #{abbrev} element, this template will instead
-use the #{xreflabel} or #{id} attribute.
+publication. In DocBook, it is usually provided with a leading `abbrev`
+element. Without a leading `abbrev` element, this template will instead
+use the `xreflabel` or `id` attribute.
 -->
 <xsl:template name="db2html.biblioentry.label">
   <xsl:param name="node" select="."/>
@@ -159,11 +163,11 @@ use the #{xreflabel} or #{id} attribute.
 
 <!--%%==========================================================================
 db2html.biblioentry.mode
-Format elements inside a #{biblioentry} or #{bibliomixed} element.
-:Revision:version="3.4" date="2011-11-14" status="final"
+Format elements inside a `biblioentry` or `bibliomixed` element.
+@revision[version=3.4 date=2011-11-14 status=final]
 
-This mode is used when processing the child elements of a #{biblioentry} or a
-#{bibliomixed} element. Some elements are treated differently when they appear
+This mode is used when processing the child elements of a `biblioentry` or a
+`bibliomixed` element. Some elements are treated differently when they appear
 inside a bibliography entry.
 -->
 <xsl:template mode="db2html.biblioentry.mode" match="*">

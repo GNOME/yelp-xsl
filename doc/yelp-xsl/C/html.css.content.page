@@ -1,24 +1,149 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.css.content" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-12-23" status="final"/><desc>Output actual CSS content for an HTML output page.</desc></info><title>html.css.content</title><p>Output actual CSS content for an HTML output page.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node to create CSS for.</p>
-    </item>
-    <item>
-      <title><code>direction</code></title>
-      <p>The directionality of the text, either <code>ltr</code> or <code>rtl</code>.</p>
-    </item>
-    <item>
-      <title><code>left</code></title>
-      <p>The starting alignment, either <code>left</code> or <code>right</code>.</p>
-    </item>
-    <item>
-      <title><code>right</code></title>
-      <p>The ending alignment, either <code>left</code> or <code>right</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates the CSS content for an HTML output page. It is called by <code style="xslt-template" xref="html.css">html.css</code>. It calls the templates <code style="xslt-template" xref="html.css.core">html.css.core</code>, <code style="xslt-template" xref="html.css.elements">html.css.elements</code>, and <code style="xslt-template" xref="html.css.syntax">html.css.syntax</code>. It then calls the mode <code style="xslt-mode" xref="html.css.mode">html.css.mode</code> on <code style="xslt-param">node</code> and calls the template <code style="xslt-template" xref="html.css.custom">html.css.custom</code>.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="l10n.align.start"/></p></item><item><p><link xref="html.css.core"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.css.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.css.content">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output actual CSS content for an HTML output page.</desc>
+  <revision version="1.0" date="2010-12-23" status="final"/>
+ </info>
+ <title>html.css.content</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create CSS for.</p>
+   </item>
+   <item>
+    <title><code>$direction</code></title>
+    <p>The directionality of the text, either <sys>ltr</sys> or <sys>rtl</sys>.</p>
+   </item>
+   <item>
+    <title><code>$left</code></title>
+    <p>The starting alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+   <item>
+    <title><code>$right</code></title>
+    <p>The ending alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates the CSS content for an HTML output page. It is called by
+ <code xref="html.css">html.css</code>. It calls the templates <code xref="html.css.core">html.css.core</code>, <code xref="html.css.elements">html.css.elements</code>, and
+ <code xref="html.css.syntax">html.css.syntax</code>. It then calls the mode <code xref="html.css.mode">html.css.mode</code> on <code>$node</code> and
+ calls the template <code xref="html.css.custom">html.css.custom</code>.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.css.core"/></p>
+  </item>
+  <item>
+   <p><link xref="html.css.custom"/></p>
+  </item>
+  <item>
+   <p><link xref="html.css.elements"/></p>
+  </item>
+  <item>
+   <p><link xref="html.css.syntax"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="html.css.mode"/></p>
+  </item>
+ </list>
+</page>

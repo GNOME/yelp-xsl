@@ -24,15 +24,15 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook to HTML
 Transform DocBook to HTML.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This top-level stylesheet includes all the necessary stylesheets to transform
-DocBook documents into HTML. It imports !{db2xhtml}, overrides parameters, and
+DocBook documents into HTML. It imports {db2xhtml}, overrides parameters, and
 sets a namespace alias to output non-XML HTML. This stylesheet sets
-@{html.xhtml} to #{false}.
+{html.xhtml} to `false`.
 -->
 
-<xsl:import href="db2xhtml.xsl"><?pass?></xsl:import>
+<xsl:import href="db2xhtml.xsl"><?xsldoc.passthrough?></xsl:import>
 
 <xsl:param name="html.xhtml" select="false()"/>
 <xsl:param name="db.profile.outputformat" select="'html'"/>

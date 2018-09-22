@@ -43,24 +43,26 @@ Mallard links element and implicitly.
 <!--**==========================================================================
 mal2html.links.links
 Output links in one of a number of formats.
-:Revision:version="3.10" date="2013-07-30" status="final"
-$node: A #{links}, #{page}, or #{section} element to link from.
+@revision[version=3.10 date=2013-07-30 status=final]
+
+[xsl:params]
+$node: A `links`, `page`, or `section` element to link from.
 $depth: The depth level for the HTML header element.
-$links: A list of links, as from a template in !{mal-link}.
+$links: A list of links, as from a template in {mal-link}.
 $role: A space-separated list of link roles, used to select the appropriate title.
 $divs: Whether to default to divs instead of a list.
-$title: A default title to use if no #{title} element is found.
+$title: A default title to use if no `title` element is found.
 
-This is a common formatting template used by some #{links} element handlers.
+This is a common formatting template used by some `links` element handlers.
 It selects an appropriate way to render the links based on style hints and
-extension attributes on ${node}. This template (or the templates it calls)
-will pass through #{class} and #{data-*} attributes found on the #{link}
+extension attributes on $node. This template (or the templates it calls)
+will pass through `class` and `data-*` attributes found on the `link`
 elements to the top-level container element of each output link.
 
 This template handles link sorting.
 
-If ${node} is a #{links} element with a #{title} element, that #{title}
-element will be processed as the title. Otherwise, the optional ${title}
+If $node is a `links` element with a `title` element, that `title`
+element will be processed as the title. Otherwise, the optional $title
 parameter will be used if provided.
 -->
 <xsl:template name="mal2html.links.links">
@@ -251,16 +253,18 @@ parameter will be used if provided.
 
 <!--**==========================================================================
 mal2html.links.ul
-Output links in an HTML #{ul} element.
-:Revision:version="3.28" date="2017-08-04" status="final"
-$node: A #{links} element to link from.
-$links: A list of links, as from a template in !{mal-link}.
+Output links in an HTML `ul` element.
+@revision[version=3.28 date=2017-08-04 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$links: A list of links, as from a template in {mal-link}.
 $role: A space-separated list of link roles, used to select the appropriate title.
 $bold: Whether to bold the link titles.
 $nodesc: Whether to omit descriptions.
 
-This is a common formatting template used by some #{links} element handlers.
-It outputs an HTML #{ul} element and calls *{mal2html.links.ul.li} on each
+This is a common formatting template used by some `links` element handlers.
+It outputs an HTML `ul` element and calls {mal2html.links.ul.li} on each
 link to output a list item with a link.
 
 This template handles link sorting.
@@ -290,15 +294,17 @@ This template handles link sorting.
 <!--**==========================================================================
 mal2html.links.ul.li
 Output a list item with a link.
-:Revision:version="3.10" date="2013-07-30" status="final"
-$node: A #{links} element to link from.
-$link: The #{link} element from a list of links.
-$xref: An #{xref} string pointing to the target node.
+@revision[version=3.10 date=2013-07-30 status=final]
+
+[xsl:params]
+$node: A `links` element to link from.
+$link: The `link` element from a list of links.
+$xref: An `xref` string pointing to the target node.
 $role: A space-separated list of link roles, used to select the appropriate title.
 $bold: Whether to bold the link titles.
 $nodesc: Whether to omit descriptions.
 
-This template is called by *{mal2html.links.ul} to output a list item with
+This template is called by {mal2html.links.ul} to output a list item with
 a link for each target.
 -->
 <xsl:template name="mal2html.links.ul.li">
@@ -374,13 +380,15 @@ a link for each target.
 <!--**==========================================================================
 mal2html.links.guide
 Output guide links from a page or section.
-:Revision:version="3.4" date="2012-02-23" status="final"
-$node: A #{links}, #{page}, or #{section} element to link from.
+@revision[version=3.4 date=2012-02-23 status=final]
+
+[xsl:params]
+$node: A `links`, `page`, or `section` element to link from.
 $depth: The depth level for the HTML header element.
-$links: A list of links from *{mal.link.guidelinks}.
+$links: A list of links from {mal.link.guidelinks}.
 
 This template outputs guide links for a page or section. It does not extract
-the links itself. They must be passed in with the ${links} parameter.
+the links itself. They must be passed in with the $links parameter.
 -->
 <xsl:template name="mal2html.links.guide" match="mal:links[@type = 'guide']">
   <xsl:param name="node" select="."/>
@@ -416,17 +424,19 @@ the links itself. They must be passed in with the ${links} parameter.
 <!--**==========================================================================
 mal2html.links.prevnext
 Output links to the previous and next pages.
-:Revision:version="1.0" date="2011-06-15" status="final"
-$node: A #{links} or #{page} element to link from.
+@revision[version=1.0 date=2011-06-15 status=final]
+
+[xsl:params]
+$node: A `links` or `page` element to link from.
 
 This template outputs links to the previous and next page in a Mallard series,
 if they exist. The block containing the links is end-floated by default. The
 links use the text "Previous" and "Next", although the actual page titles are
 used for tooltips.
 
-If the #{links} element has the style hint #{top}, it will be inserted before
+If the `links` element has the style hint `top`, it will be inserted before
 the page title, instead of in its position on the page. This is handled by the
-calling functions in !{mal2html-page}.
+calling functions in {mal2html-page}.
 -->
 <xsl:template name="mal2html.links.prevnext" match="mal:links[@type = 'prevnext']">
   <xsl:param name="node" select="."/>
@@ -503,12 +513,14 @@ calling functions in !{mal2html-page}.
 <!--**==========================================================================
 mal2html.links.section
 Output links to subsections.
-:Revision:version="1.0" date="2011-06-15" status="final"
-$node: The section #{links} element.
+@revision[version=1.0 date=2011-06-15 status=final]
+
+[xsl:params]
+$node: The section `links` element.
 $depth: The depth level for the HTML header element.
 
-This template outputs links to the child sections of the #{page} or #{section}
-element containing ${node}.
+This template outputs links to the child sections of the `page` or `section`
+element containing $node.
 -->
 <xsl:template name="mal2html.links.section" match="mal:links[@type = 'section']">
   <xsl:param name="node" select="."/>
@@ -600,13 +612,15 @@ element containing ${node}.
 <!--**==========================================================================
 mal2html.links.seealso
 Output seealso links from a page or section.
-:Revision:version="3.4" date="2012-02-23" status="final"
-$node: A #{links}, #{page}, or #{section} element to link from.
+@revision[version=3.4 date=2012-02-23 status=final]
+
+[xsl:params]
+$node: A `links`, `page`, or `section` element to link from.
 $depth: The depth level for the HTML header element.
-$links: A list of links from *{mal.link.seealsolinks}.
+$links: A list of links from {mal.link.seealsolinks}.
 
 This template outputs seealso links for a page or section. It does not extract
-the links itself. They must be passed in with the ${links} parameter.
+the links itself. They must be passed in with the $links parameter.
 -->
 <xsl:template name="mal2html.links.seealso" match="mal:links[@type = 'seealso']">
   <xsl:param name="node" select="."/>
@@ -632,15 +646,17 @@ the links itself. They must be passed in with the ${links} parameter.
 <!--**==========================================================================
 mal2html.links.series
 Output links to pages in a series.
-:Revision:version="1.0" date="2011-06-15" status="final"
-$node: A #{links} or #{page} element to start from.
+@revision[version=1.0 date=2011-06-15 status=final]
+
+[xsl:params]
+$node: A `links` or `page` element to start from.
 
 A series in Mallard is a list of page such that each page in the list has a
 next link to the following page. This template outputs links to each page in
 a series. The current page is output in its place, althought it is not a link.
 
-This template calls *{mal2html.links.series.prev} and
-*{mal2html.links.series.next} to find and output the links.
+This template calls {mal2html.links.series.prev} and
+{mal2html.links.series.next} to find and output the links.
 -->
 <xsl:template name="mal2html.links.series" match="mal:links[@type = 'series']">
   <xsl:param name="node" select="."/>
@@ -705,13 +721,15 @@ This template calls *{mal2html.links.series.prev} and
 <!--**==========================================================================
 mal2html.links.series.prev
 Output preceding links to pages in a series.
-:Revision:version="1.0" date="2011-06-15" status="final"
-$node: The current #{page} element.
-$links: The series #{links} element.
+@revision[version=1.0 date=2011-06-15 status=final]
 
-This template is called by *{mal2html.links.series} to output the pages before
+[xsl:params]
+$node: The current `page` element.
+$links: The series `links` element.
+
+This template is called by {mal2html.links.series} to output the pages before
 the starting page in the series. This template finds the previous page for the
-page ${node}. It then calls itself recursively on that page, and outputs a link
+page $node. It then calls itself recursively on that page, and outputs a link
 to it.
 -->
 <xsl:template name="mal2html.links.series.prev">
@@ -760,13 +778,15 @@ to it.
 <!--**==========================================================================
 mal2html.links.series.next
 Output following links to pages in a series.
-:Revision:version="1.0" date="2011-06-15" status="final"
-$node: The current #{page} element.
-$links: The series #{links} element.
+@revision[version=1.0 date=2011-06-15 status=final]
 
-This template is called by *{mal2html.links.series} to output the pages after
+[xsl:params]
+$node: The current `page` element.
+$links: The series `links` element.
+
+This template is called by {mal2html.links.series} to output the pages after
 the starting page in the series. This template finds the next page for the page
-${node}. It outputs a link to that page, then calls itself recursively on that
+$node. It outputs a link to that page, then calls itself recursively on that
 page.
 -->
 <xsl:template name="mal2html.links.series.next">
@@ -815,18 +835,20 @@ page.
 <!--**==========================================================================
 mal2html.links.topic
 Output topic links from a page or section.
-:Revision:version="3.4" date="2012-02-23" status="final"
-$node: A #{links}, #{page}, or #{section} element to link from.
+@revision[version=3.4 date=2012-02-23 status=final]
+
+[xsl:params]
+$node: A `links`, `page`, or `section` element to link from.
 $depth: The depth level for the HTML header element.
-$links: A list of links from *{mal.link.topiclinks}.
-$groups: The list of link groups for this #{links} element.
+$links: A list of links from {mal.link.topiclinks}.
+$groups: The list of link groups for this `links` element.
 $allgroups: The list of all valid groups for the page or section.
 
 This template outputs topic links for a page or section. It does not extract
-the links itself. They must be passed in with the ${links} parameter. This
-template only outputs links which have a group that matches ${groups}. The
-${groups} parameter is not expected to have the implicit groups #{first},
-#{default}, and #{last}. These are added automatically by this template
+the links itself. They must be passed in with the $links parameter. This
+template only outputs links which have a group that matches $groups. The
+$groups parameter is not expected to have the implicit groups `first`,
+`default`, and `last`. These are added automatically by this template
 when determining which links to output.
 -->
 <xsl:template name="mal2html.links.topic" match="mal:links[@type = 'topic']">

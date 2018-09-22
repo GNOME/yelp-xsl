@@ -23,7 +23,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Links and Cross References
-:Requires: db-xref
 
 REMARK: Describe this module
 -->
@@ -32,8 +31,10 @@ REMARK: Describe this module
 <!--**==========================================================================
 db2html.anchor
 Generates an anchor point for an element
+
+[xsl:params]
 $node: The element to generate an anchor for
-$name: The text to use for the #{name} attribute
+$name: The text to use for the `name` attribute
 
 REMARK: Describe this template
 -->
@@ -46,7 +47,9 @@ REMARK: Describe this template
 
 <!--**==========================================================================
 db2html.link
-Generates a hyperlink from a #{link} element
+Generates a hyperlink from a `link` element
+
+[xsl:params]
 $linkend: The id of the element being linked to
 $target: The element being linked to
 
@@ -84,7 +87,9 @@ REMARK: Describe this template
 
 <!--**==========================================================================
 db2html.ulink
-Generates a hyperlink from a #{ulink} element
+Generates a hyperlink from a `ulink` element
+
+[xsl:params]
 $url: The URL to link to
 $content: Optional content to use for the text of the link
 
@@ -122,7 +127,9 @@ REMARK: Describe this template
 
 <!--**==========================================================================
 db2html.xlink
-Generates a hyperlink from a DocBook 5 #{link} element
+Generates a hyperlink from a DocBook 5 `link` element
+
+[xsl:params]
 $node: The node in question
 $linkend: The ID of the element to link to
 $url: The URL to link to
@@ -154,7 +161,9 @@ Note that this template is also called for inline elements that use DocBook 5's 
 
 <!--**==========================================================================
 db2html.xref
-Generates a hyperlink from an #{xref} element
+Generates a hyperlink from an `xref` element
+
+[xsl:params]
 $linkend: The id of the element being linked to
 $target: The element being linked to
 $endterm: The id of an element whose contents will be used for the link text

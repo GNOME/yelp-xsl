@@ -34,9 +34,9 @@ with the Mallard Glossary extension.
 
 <!--++==========================================================================
 mal.gloss.key
-Get a #{gloss:term} element from its #{id} attribute.
+Get a `gloss:term` element from its `id` attribute.
 
-This key returns #{gloss:term} elements based on their #{id} attribute. This
+This key returns `gloss:term` elements based on their `id` attribute. This
 key only applies to elements inside a cache file. Make sure to make the cache
 file the context document before calling this key.
 -->
@@ -48,15 +48,17 @@ file the context document before calling this key.
 <!--**==========================================================================
 mal.gloss.match
 Determine whether a glossary term matches a criterion.
-$match: A #{gloss:match} element containing criteria.
-$term: A #{gloss:term} element to attempt to match.
+
+[xsl:params]
+$match: A `gloss:match` element containing criteria.
+$term: A `gloss:term` element to attempt to match.
 
 This template determines whether a glossary term matches a condition, as given
-by a #{gloss:match} element. If the term matches, an empty string is output.
+by a `gloss:match` element. If the term matches, an empty string is output.
 Otherwise, a non-empty string is output.
 
 To determine if a term matches a set of matches, call this template for each
-#{gloss:match} element, then check if the concatenated result is empty.
+`gloss:match` element, then check if the concatenated result is empty.
 -->
 <xsl:template name="mal.gloss.match">
   <xsl:param name="match"/>
@@ -70,26 +72,28 @@ To determine if a term matches a set of matches, call this template for each
 <!--**==========================================================================
 mal.gloss.terms
 Output the glossary terms for a page or section.
-$node: The glossary #{page} or #{section} to output terms for.
 
-This template outputs the terms that should be displayed for ${node}.This output
-is a result tree fragment. To use these results, call #{exsl:node-set} on them.
+[xsl:params]
+$node: The glossary `page` or `section` to output terms for.
+
+This template outputs the terms that should be displayed for $node.This output
+is a result tree fragment. To use these results, call `exsl:node-set` on them.
 This template locates all terms throughout all pages and filters them based on
-any #{gloss:match} elements in the #{info} child of ${node}, and also excludes
-terms that are matched by child sections of ${node}.
+any `gloss:match` elements in the `info` child of $node, and also excludes
+terms that are matched by child sections of $node.
 
 The filtered terms are then grouped by matching ID. For each unique ID, this
-template outputs a #{gloss:term} element with the corresponding #{id} attribute.
-Each of these elements contains #{title} elements reflecting the titles in the
+template outputs a `gloss:term` element with the corresponding `id` attribute.
+Each of these elements contains `title` elements reflecting the titles in the
 actual term definitions. These titles have duplicates removed, compared by the
 space-normalized string value, and are sorted.
 
-These #{gloss:term} elements then contain further #{gloss:term} elements, which
-are copies of the actual terms with the same ID. These elements have an #{xref}
+These `gloss:term` elements then contain further `gloss:term` elements, which
+are copies of the actual terms with the same ID. These elements have an `xref`
 attribute added containing the ID of the containing page.
 
-The top-level #{gloss:term} elements and the #{gloss:term} elements they contain
-are not sorted. Only the #{title} elements in the top-level #{gloss:term}
+The top-level `gloss:term` elements and the `gloss:term` elements they contain
+are not sorted. Only the `title` elements in the top-level `gloss:term`
 elements are sorted.
 -->
 <xsl:template name="mal.gloss.terms">

@@ -1,12 +1,20 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.linenumbering.start" type="topic" style="xslt-template"><info><link type="guide" xref="db-common" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Determines the starting line number for a verbatim element</desc></info><title>db.linenumbering.start</title><p>Determines the starting line number for a verbatim element</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The verbatim element to determine the starting line number for</p>
-    </item>
-  </terms></synopsis>
-  <p>This template determines the starting line number for a verbatim element using the <code>continuation</code> attribute.  The template finds the first preceding element of the same name, counts its lines, and handles any <code>startinglinenumber</code> or <code>continuation</code> element it finds on that element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.linenumbering.start"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db.linenumbering.start">
+ <info>
+  <link type="guide" xref="db-common" group="templates"/>
+  <link type="guide" xref="templates" group="db"/>
+  <desc>Determines the starting line number for a verbatim element</desc>
+ </info>
+ <title>db.linenumbering.start</title>
+ <p><code>$node</code>: The verbatim element to determine the starting line number for</p>
+ <p>This template determines the starting line number for a verbatim element using
+ the <sys>continuation</sys> attribute.  The template finds the first preceding element
+ of the same name, counts its lines, and handles any <sys>startinglinenumber</sys> or
+ <sys>continuation</sys> element it finds on that element.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.linenumbering.start"/></p>
+  </item>
+ </list>
+</page>

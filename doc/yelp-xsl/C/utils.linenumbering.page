@@ -1,16 +1,32 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="utils.linenumbering" type="topic" style="xslt-template"><info><link type="guide" xref="utils" group="templates"/><link type="guide" xref="templates" group="utils"/><revision version="1.0" date="2010-12-03" status="final"/><desc>Number each line in a verbatim environment.</desc></info><title>utils.linenumbering</title><p>Number each line in a verbatim environment.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The verbatim element to create the line numbering for.</p>
-    </item>
-    <item>
-      <title><code>number</code></title>
-      <p>The starting line number.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs a string with line numbers for each line in a verbatim elements.  Each line number is on its own line, allowing the output string to be placed to the side of the verbatim output.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="utils.linenumbering"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="utils.linenumbering">
+ <info>
+  <link type="guide" xref="utils" group="templates"/>
+  <link type="guide" xref="templates" group="utils"/>
+  <desc>Number each line in a verbatim environment.</desc>
+  <revision version="1.0" date="2010-12-03" status="final"/>
+ </info>
+ <title>utils.linenumbering</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The verbatim element to create the line numbering for.</p>
+   </item>
+   <item>
+    <title><code>$number</code></title>
+    <p>The starting line number.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs a string with line numbers for each line in a verbatim
+ elements.  Each line number is on its own line, allowing the output string to
+ be placed to the side of the verbatim output.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="utils.linenumbering"/></p>
+  </item>
+ </list>
+</page>

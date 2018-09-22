@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="params">
+ <info>
+  <link type="guide" xref="index"/>
+  <title type="link">Parameters</title>
+  <title type="link" role="topic">XSLT Parameters</title>
+ </info>
+ <title>XSLT Parameters</title>
+ <links type="topic" style="linklist" groups="mal2html">
+  <title>Mallard to HTML</title>
+ </links>
+ <links type="topic" style="linklist" groups="mal">
+  <title>Mallard Common</title>
+ </links>
+ <links type="topic" style="linklist" groups="db2html">
+  <title>DocBook to HTML</title>
+ </links>
+ <links type="topic" style="linklist" groups="db">
+  <title>DocBook Common</title>
+ </links>
+ <links type="topic" style="linklist" groups="html">
+  <title>HTML Output</title>
+ </links>
+ <links type="topic" style="linklist" groups="ttml">
+  <title>TTML Utilities</title>
+ </links>
+ <links type="topic" style="linklist" groups="l10n">
+  <title>Localization</title>
+ </links>
+ <links type="topic" style="linklist" groups="color">
+  <title>Colors</title>
+ </links>
+ <links type="topic" style="linklist" groups="icons">
+  <title>Icons</title>
+ </links>
+ <links type="topic" style="linklist" groups="utils">
+  <title>Utilities</title>
+ </links>
+ <links type="topic" style="linklist" groups="#first" id="last">
+  <title>Other</title>
+ </links>
+</page>

@@ -37,17 +37,19 @@ extension.
 <!--**==========================================================================
 mal2html.api.links.function
 Output links as a synopsis of functions.
-$node: A #{links} element to link from.
+
+[xsl:params]
+$node: A `links` element to link from.
 $links: A list of topic links already filtered by group.
 
 This template outputs links as a synopsis according to the programming language
-specified by the #{api:mime} attribute of ${node}. If #{api:mime} is recognized,
+specified by the `api:mime` attribute of $node. If `api:mime` is recognized,
 one of the language-specific templates in this stylesheet is called. Otherwise,
-the links are passed to *{mal2html.links.ul}.
+the links are passed to {mal2html.links.ul}.
 
-This template does not handle titles or other wrapper information for #{links}
+This template does not handle titles or other wrapper information for `links`
 elements. It should be called by an appropriate template that handles the
-#{links} element.
+`links` element.
 -->
 <xsl:template name="mal2html.api.links.function">
   <xsl:param name="node" select="."/>
@@ -72,14 +74,16 @@ elements. It should be called by an appropriate template that handles the
 <!--**==========================================================================
 mal2html.api.links.function.c
 Output links as a synopsis of C functions.
-$node: A #{links} element to link from.
+
+[xsl:params]
+$node: A `links` element to link from.
 $links: A list of topic links already filtered by group.
 
 This template outputs links as a synopsis of C functions. It is called by
-*{mal2html.api.links.function} when the #{api:mime} attribute of ${node} is
-#{text/x-csrc} or #{text/x-chdr}. The target nodes of ${links} are expected
-to have at least an #{api:name} element. Any links whose target does not
-have an #{api:name} element will be passed to *{mal2html.links.ul} after
+{mal2html.api.links.function} when the `api:mime` attribute of $node is
+`text/x-csrc` or `text/x-chdr`. The target nodes of $links are expected
+to have at least an `api:name` element. Any links whose target does not
+have an `api:name` element will be passed to {mal2html.links.ul} after
 the synopsis.
 -->
 <xsl:template name="mal2html.api.links.function.c">

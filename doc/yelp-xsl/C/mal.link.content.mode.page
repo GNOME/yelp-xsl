@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.link.content.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal-link" group="modes"/><link type="guide" xref="modes" group="mal"/><revision version="3.0" date="2010-01-02" status="final"/><desc>Output the content for a link from the contents of a <code>title</code> element.</desc></info><title>mal.link.content.mode</title><p>Output the content for a link from the contents of a <code>title</code> element.</p>
-  
-  
-  <p>This mode is applied to the contents of a <code>title</code> element by <code style="xslt-template" xref="mal.link.content">mal.link.content</code>. By default, it returns the string value of its input.  Stylesheets that use <code style="xslt-template" xref="mal.link.content">mal.link.content</code> should map this mode to inline processing.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="mal.link.content.mode">
+ <info>
+  <link type="guide" xref="mal-link" group="modes"/>
+  <link type="guide" xref="modes" group="mal"/>
+  <desc>Output the content for a link from the contents of a <sys>title</sys> element.</desc>
+  <revision version="3.0" date="2010-01-02" status="final"/>
+ </info>
+ <title>mal.link.content.mode</title>
+ <p>This mode is applied to the contents of a <sys>title</sys> element by <code xref="mal.link.content">mal.link.content</code>.
+ By default, it returns the string value of its input.  Stylesheets that use
+ <code xref="mal.link.content">mal.link.content</code> should map this mode to inline processing.</p>
 </page>

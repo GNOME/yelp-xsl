@@ -1,12 +1,31 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.biblioentry.label" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-bibliography" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-14" status="final"/><desc>Output the label for a bibliography entry.</desc></info><title>db2html.biblioentry.label</title><p>Output the label for a bibliography entry.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>biblioentry</code> or <code>bibliomixed</code> element to generate a label for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs a label to be placed inline at the beginning of a bibliography entry. Labels are created for both <code>biblioentry</code> and <code>bibliomixed</code> elements. The label is typically an abbreviation of the authors' names and the year of publication. In DocBook, it is usually provided with a leading <code>abbrev</code> element. Without a leading <code>abbrev</code> element, this template will instead use the <code>xreflabel</code> or <code>id</code> attribute.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.biblioentry.label">
+ <info>
+  <link type="guide" xref="db2html-bibliography" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output the label for a bibliography entry.</desc>
+  <revision version="3.4" date="2011-11-14" status="final"/>
+ </info>
+ <title>db2html.biblioentry.label</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>biblioentry</sys> or <sys>bibliomixed</sys> element to generate a label for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs a label to be placed inline at the beginning of a bibliography
+ entry. Labels are created for both <sys>biblioentry</sys> and <sys>bibliomixed</sys> elements.
+ The label is typically an abbreviation of the authors' names and the year of
+ publication. In DocBook, it is usually provided with a leading <sys>abbrev</sys>
+ element. Without a leading <sys>abbrev</sys> element, this template will instead
+ use the <sys>xreflabel</sys> or <sys>id</sys> attribute.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

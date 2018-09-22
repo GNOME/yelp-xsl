@@ -1,13 +1,38 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.mediaobject" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-media" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.10" date="2013-08-11" status="final"/><desc>Outputs HTML for a <code>mediaobject</code> element.</desc></info><title>db2html.mediaobject</title><p>Outputs HTML for a <code>mediaobject</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>mediaobject</code> element.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template processes a <code>mediaobject</code> element and outputs the appropriate HTML. DocBook allows multiple objects to be listed in a <code>mediaobject</code> element. Processing tools are expected to choose the earliest suitable object. This template will select the first audio, image, or video object it can handle, filtering out images in non-web formats, and taking conditional processing into consideration. If no suitable non-text objects are found, this template calls <code style="xslt-template" xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code>.</p>
-  <p>This template also detects MathML embedded in a DocBook 5 <code>imagedata</code> element with the <code>format</code> attribute <code>"mathml"</code>, and passes it to the templates in <file xref="db2html-math">db2html-math</file>.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="db2html.mediaobject.fallback"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.mediaobject">
+ <info>
+  <link type="guide" xref="db2html-media" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Outputs HTML for a <sys>mediaobject</sys> element.</desc>
+  <revision version="3.10" date="2013-08-11" status="final"/>
+ </info>
+ <title>db2html.mediaobject</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>mediaobject</sys> element.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template processes a <sys>mediaobject</sys> element and outputs the appropriate
+ HTML. DocBook allows multiple objects to be listed in a <sys>mediaobject</sys> element.
+ Processing tools are expected to choose the earliest suitable object. This
+ template will select the first audio, image, or video object it can handle,
+ filtering out images in non-web formats, and taking conditional processing
+ into consideration. If no suitable non-text objects are found, this template
+ calls <code xref="db2html.mediaobject.fallback">db2html.mediaobject.fallback</code>.</p>
+ <p>This template also detects MathML embedded in a DocBook 5 <sys>imagedata</sys> element
+ with the <sys>format</sys> attribute <sys>"mathml"</sys>, and passes it to the templates in
+ <code xref="db2html-math">db2html-math</code>.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.mediaobject.fallback"/></p>
+  </item>
+ </list>
+</page>

@@ -1,6 +1,15 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.fg.dark" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>A dark gray text color.</desc></info><title>color.fg.dark</title><p>A dark gray text color.</p>
-  
-  
-  <p>This parameter specifies a dark shade of gray that is suitable for text. It should have a very high color contrast against <code style="xslt-param" xref="color.bg">color.bg</code>. It is typically used to slightly reduce the visual weight of headers and bold text. If not specified, it can be automatically computed based on <code style="xslt-param" xref="color.gray">color.gray</code> and <code style="xslt-param" xref="color.fg">color.fg</code>.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="color.fg.dark">
+ <info>
+  <link type="guide" xref="color" group="params"/>
+  <link type="guide" xref="params" group="color"/>
+  <desc>A dark gray text color.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>color.fg.dark</title>
+ <p>This parameter specifies a dark shade of gray that is suitable for text. It
+ should have a very high color contrast against <code xref="color.bg">color.bg</code>. It is typically
+ used to slightly reduce the visual weight of headers and bold text. If not
+ specified, it can be automatically computed based on <code xref="color.gray">color.gray</code> and
+ <code xref="color.fg">color.fg</code>.</p>
 </page>

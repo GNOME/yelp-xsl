@@ -25,8 +25,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard Topological Sort
 Sort a Mallard document.
-:Requires: mal-link
-:Revision:version="1.0" date="2010-07-08"
+@revision[version=1.0 date=2010-07-08]
 
 This stylesheet contains utilities for sorting the pages in a Mallard
 document based on their informational links.
@@ -36,20 +35,22 @@ document based on their informational links.
 <!--**==========================================================================
 mal.sort.tsort
 Sort pages based on topic and next links.
-:Revision:version="1.0" date="2010-07-08"
-$node: The current #{page} in the Mallard cache file.
+@revision[version=1.0 date=2010-07-08]
+
+[xsl:params]
+$node: The current `page` in the Mallard cache file.
 
 This template outputs links to pages sorted according to their topic and
 next links. Pages occur after the first guide that references them, in
 their sort order for that guide. Page series constructed with next links
 always appear in order at the sort position of their first page.
 
-This template outputs #{link} elements with #{xref} attributes pointing to
+This template outputs `link` elements with `xref` attributes pointing to
 the target page. The output is a result tree fragment.  To use these results,
-call #{exsl:node-set} on them.
+call `exsl:node-set` on them.
 
-You can specify a starting node with the ${node} parameter. By default, it
-uses the node pointed to by @{mal.link.default_root}.
+You can specify a starting node with the $node parameter. By default, it
+uses the node pointed to by {mal.link.default_root}.
 
 This template does not include any nodes that are not reachable through
 topic or next links.

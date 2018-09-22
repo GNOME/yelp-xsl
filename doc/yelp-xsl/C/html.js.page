@@ -1,12 +1,123 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.js" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.28" date="2017-07-05" status="final"/><desc>Output all JavaScript for an HTML output page.</desc></info><title>html.js</title><p>Output all JavaScript for an HTML output page.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node to create JavaScript for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates the JavaScript for an HTML output page. It calls the templates <code style="xslt-template" xref="html.js.syntax">html.js.syntax</code> and <code style="xslt-template" xref="html.js.mathjax">html.js.mathjax</code> to output references to external libraries. It then calls <code style="xslt-template" xref="html.js.custom">html.js.custom</code> to output references to custom JavaScript files. Finally, it calls <code style="xslt-template" xref="html.js.script">html.js.script</code> to output local JavaScript created by <code style="xslt-template" xref="html.js.content">html.js.content</code>.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.js.syntax"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.js">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output all JavaScript for an HTML output page.</desc>
+  <revision version="3.28" date="2017-07-05" status="final"/>
+ </info>
+ <title>html.js</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create JavaScript for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates the JavaScript for an HTML output page. It calls the
+ templates <code xref="html.js.syntax">html.js.syntax</code> and <code xref="html.js.mathjax">html.js.mathjax</code> to output references to
+ external libraries. It then calls <code xref="html.js.custom">html.js.custom</code> to output references to
+ custom JavaScript files. Finally, it calls <code xref="html.js.script">html.js.script</code> to output local
+ JavaScript created by <code xref="html.js.content">html.js.content</code>.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.js.custom"/></p>
+  </item>
+  <item>
+   <p><link xref="html.js.mathjax"/></p>
+  </item>
+  <item>
+   <p><link xref="html.js.script"/></p>
+  </item>
+  <item>
+   <p><link xref="html.js.syntax"/></p>
+  </item>
+ </list>
+</page>

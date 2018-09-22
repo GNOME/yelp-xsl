@@ -1,2 +1,66 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-links" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="3.4" date="2011-11-08" status="final"/><link type="xslt-defines-template" xref="db2html.links.linktrail"/><link type="xslt-defines-template" xref="db2html.links.next"/><link type="xslt-defines-template" xref="db2html.links.section"/></info><title>DocBook to HTML - Links</title><p>This stylesheet contains templates to handle implicit automatic links.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="html.linktrails.prefix"/></p></item><item><p><link xref="db.xref.target"/></p></item><item><p><link xref="db.xref.tooltip"/></p></item><item><p><link xref="db.titleabbrev"/></p></item><item><p><link xref="html.linktrails.empty"/></p></item><item><p><link xref="db.chunk.depth-of-chunk"/></p></item><item><p><link xref="db.chunk.chunk-id.axis"/></p></item><item><p><link xref="db2html.xref"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-links">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+  <revision version="3.4" date="2011-11-08" status="final"/>
+ </info>
+ <title>DocBook to HTML - Links</title>
+ <p>This stylesheet contains templates to handle implicit automatic links.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.chunk.chunk-id.axis"/></p>
+  </item>
+  <item>
+   <p><link xref="db.chunk.depth-of-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="db.titleabbrev"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.target"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.tooltip"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.xref"/></p>
+  </item>
+  <item>
+   <p><link xref="html.linktrails.empty"/></p>
+  </item>
+  <item>
+   <p><link xref="html.linktrails.prefix"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

@@ -1,20 +1,36 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.entry.colspan" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-table" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Calculates the <code>colspan</code> for an <code>entry</code> element</desc></info><title>db2html.entry.colspan</title><p>Calculates the <code>colspan</code> for an <code>entry</code> element</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>entry</code></title>
-      <p>The <code>entry</code> element to process</p>
-    </item>
-    <item>
-      <title><code>colspecs</code></title>
-      <p>The <code>colspec</code> elements currently in scope</p>
-    </item>
-    <item>
-      <title><code>spanspecs</code></title>
-      <p>The <code>spanspec</code> elements currently in scope</p>
-    </item>
-  </terms></synopsis>
-  <p>This template calculates how many columns an <code>entry</code> element should span. In CALS tables, column spanning is done by specifying starting and ending <code>colspec</code> elements, or by specifying a <code>spanspec</code> element which specifies starting and ending <code>colspec</code> elements.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.colspec.colnum"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.entry.colspan">
+ <info>
+  <link type="guide" xref="db2html-table" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Calculates the <sys>colspan</sys> for an <sys>entry</sys> element</desc>
+ </info>
+ <title>db2html.entry.colspan</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$entry</code></title>
+    <p>The <sys>entry</sys> element to process</p>
+   </item>
+   <item>
+    <title><code>$colspecs</code></title>
+    <p>The <sys>colspec</sys> elements currently in scope</p>
+   </item>
+   <item>
+    <title><code>$spanspecs</code></title>
+    <p>The <sys>spanspec</sys> elements currently in scope</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template calculates how many columns an <sys>entry</sys> element should span.
+ In CALS tables, column spanning is done by specifying starting and ending
+ <sys>colspec</sys> elements, or by specifying a <sys>spanspec</sys> element which specifies
+ starting and ending <sys>colspec</sys> elements.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db2html.colspec.colnum"/></p>
+  </item>
+ </list>
+</page>

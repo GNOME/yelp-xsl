@@ -1,6 +1,15 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.classsynopsis.language" type="topic" style="xslt-param"><info><link type="guide" xref="db2html-classsynopsis" group="parameters"/><link type="guide" xref="parameters" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><desc>The default programming language used to format <code>classsynopsis</code> elements.</desc></info><title>db2html.classsynopsis.language</title><p>The default programming language used to format <code>classsynopsis</code> elements.</p>
-  
-  
-  <p>This parameter sets the default value for the <code>language</code> attribute of elements like <code>classsynopsis</code>. Templates in this module will always use the <code>language</code> attribute if present. Otherwise, they fall back to this value. This parameter can be set with the <code>db2html.classsynopsis.language</code> processing instruction at the root of a DocBook document.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="db2html.classsynopsis.language">
+ <info>
+  <link type="guide" xref="db2html-classsynopsis" group="params"/>
+  <link type="guide" xref="params" group="db2html"/>
+  <desc>The default programming language used to format <sys>classsynopsis</sys> elements.</desc>
+  <revision version="1.0" date="2011-05-16" status="final"/>
+ </info>
+ <title>db2html.classsynopsis.language</title>
+ <p>This parameter sets the default value for the <sys>language</sys> attribute of elements
+ like <sys>classsynopsis</sys>. Templates in this module will always use the <sys>language</sys>
+ attribute if present. Otherwise, they fall back to this value. This parameter
+ can be set with the <sys>db2html.classsynopsis.language</sys> processing instruction
+ at the root of a DocBook document.</p>
 </page>

@@ -36,11 +36,13 @@ Mallard Glossary extension in HTML.
 <!--**==========================================================================
 mal2html.gloss.terms
 Display the glossary terms for a page or section.
-$node: The glossary #{page} or #{section} to output terms for.
+
+[xsl:params]
+$node: The glossary `page` or `section` to output terms for.
 
 This template shows the glossary terms for a page or section. It collects the
-terms with the *{mal.gloss.terms} template, sorts them, and merges terms with
-the same primary title. Terms that are not defined in the same page as ${node}
+terms with the {mal.gloss.terms} template, sorts them, and merges terms with
+the same primary title. Terms that are not defined in the same page as $node
 include a link to their defining page.
 -->
 <xsl:template name="mal2html.gloss.terms">

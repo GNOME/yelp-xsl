@@ -1,30 +1,60 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="ttml.time.range" type="topic" style="xslt-template"><info><link type="guide" xref="ttml" group="templates"/><link type="guide" xref="templates" group="ttml"/><revision version="3.4" date="2012-03-02" status="final"/><desc>Return the absolute begin and end times for a timed element.</desc></info><title>ttml.time.range</title><p>Return the absolute begin and end times for a timed element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The element containing timing attributes.</p>
-    </item>
-    <item>
-      <title><code>range</code></title>
-      <p>The absolute range for the parent element.</p>
-    </item>
-    <item>
-      <title><code>begin</code></title>
-      <p>The value of the <code>begin</code> attribute.</p>
-    </item>
-    <item>
-      <title><code>end</code></title>
-      <p>The value of the <code>end</code> attribute.</p>
-    </item>
-    <item>
-      <title><code>dur</code></title>
-      <p>The value of the <code>dur</code> attribute.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template returns the start and end time for a TTML element, based on the <code>begin</code>, <code>end</code>, and <code>dur</code> attributes. It returns each of them as numbers of seconds, as returned by <code style="xslt-template" xref="ttml.time.seconds">ttml.time.seconds</code>, separated by a comma. Begin and end times are returned as absolute times, relative to the computed range of the parent element. The parent range may be passed in the <code style="xslt-param">range</code> parameter. If the parameter is empty, the parent range is computed automatically by calling this template on the nearest ancestor of <code style="xslt-param">node</code> with a <code>begin</code> attribute.</p>
-  <p>If both <code style="xslt-param">end</code> and <code style="xslt-param">dur</code> are provided, the end times for each are calculated, and the one that results in the shortest duration is used.</p>
-  <p>If there is no end time for the element, the string <code>∞</code> is used as the end time.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="ttml.time.range"/></p></item><item><p><link xref="ttml.time.seconds"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="ttml.time.range">
+ <info>
+  <link type="guide" xref="ttml" group="templates"/>
+  <link type="guide" xref="templates" group="ttml"/>
+  <desc>Return the absolute begin and end times for a timed element.</desc>
+  <revision version="3.4" date="2012-03-02" status="final"/>
+ </info>
+ <title>ttml.time.range</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The element containing timing attributes.</p>
+   </item>
+   <item>
+    <title><code>$range</code></title>
+    <p>The absolute range for the parent element.</p>
+   </item>
+   <item>
+    <title><code>$begin</code></title>
+    <p>The value of the <sys>begin</sys> attribute.</p>
+   </item>
+   <item>
+    <title><code>$end</code></title>
+    <p>The value of the <sys>end</sys> attribute.</p>
+   </item>
+   <item>
+    <title><code>$dur</code></title>
+    <p>The value of the <sys>dur</sys> attribute.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template returns the start and end time for a TTML element, based on the
+ <sys>begin</sys>, <sys>end</sys>, and <sys>dur</sys> attributes. It returns each of them as numbers
+ of seconds, as returned by <code xref="ttml.time.seconds">ttml.time.seconds</code>, separated by a comma. Begin
+ and end times are returned as absolute times, relative to the computed range
+ of the parent element. The parent range may be passed in the <code>$range</code> parameter.
+ If the parameter is empty, the parent range is computed automatically by calling
+ this template on the nearest ancestor of <code>$node</code> with a <sys>begin</sys> attribute.</p>
+ <p>If both <code>$end</code> and <code>$dur</code> are provided, the end times for each are calculated,
+ and the one that results in the shortest duration is used.</p>
+ <p>If there is no end time for the element, the string <sys>∞</sys> is used as the end time.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="ttml.features"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="ttml.time.range"/></p>
+  </item>
+  <item>
+   <p><link xref="ttml.time.seconds"/></p>
+  </item>
+ </list>
+</page>

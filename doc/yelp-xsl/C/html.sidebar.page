@@ -1,16 +1,143 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>Output stock sidebars.</desc></info><title>html.sidebar</title><p>Output stock sidebars.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node a sidebar is being created for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This templates outputs left and right sidebars according to the components listed in <code style="xslt-param" xref="html.sidebar.left">html.sidebar.left</code> and <code style="xslt-param" xref="html.sidebar.right">html.sidebar.right</code>. It only outputs each sidebar if the corresponding parameters is not empty or the string <code>none</code>.</p>
-  <p>This template is called inside the <code>main</code> element, before the <code>div.page</code> element, and before <code style="xslt-template" xref="html.sidebar.custom">html.sidebar.custom</code>. Note that even the right sidebar is placed before the <code>div.page</code> element. It is placed on the right using flexbox item reordering.</p>
-  <p>To actually output the sidebar components, this template splits each parameter on whitespace using the EXSTL <code>str:split</code> function. It then applies the mode <code style="xslt-mode" xref="html.sidebar.mode">html.sidebar.mode</code> to each token, passing <code style="xslt-param">node</code> and the sidebar side as parameters. Extension stylesheets can add their own sidebar components by implementing that mode and matching a pattern like <code>token[. = 'name-of-token']</code>. You will then be able to use <code>name-of-token</code> in <code style="xslt-param" xref="html.sidebar.left">html.sidebar.left</code> or <code style="xslt-param" xref="html.sidebar.right">html.sidebar.right</code>.</p>
-  <p>This stylesheet recognizes four tokens: <code>contents</code> and <code>sections</code>, and the special tokens <code>none</code> and <code>blank</code>. The <code>contents</code> token provides a table of contents for the entire document. It is handled by the <code style="xslt-template" xref="html.sidebar.contents">html.sidebar.contents</code> template, which uses the <code style="xslt-mode" xref="html.sidebar.contents.mode">html.sidebar.contents.mode</code> mode to allow different input formats to implement it. The <code>sections</code> token lists sections on the current page. It is handled by the <code style="xslt-template" xref="html.sidebar.section">html.sidebar.section</code> template, which uses the <code style="xslt-mode" xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code> mode to allow different input formats to implement it.</p>
-  <p>You can use the <code>none</code> token on its own, instead of the empty string, to completely turn off either sidebar. Use the <code>blank</code> token to output a sidebar without adding any components to it. This is useful, for example, to keep consistent margins. If an empty sidebar is output from the <code>blank</code> token, it will also have the CSS class <code>sidebar-blank</code> so you can style it differently.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="_html.sidebar.sidebar"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.sidebar.left"/></p></item><item><p><link xref="html.sidebar.right"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.sidebar">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output stock sidebars.</desc>
+  <revision version="3.30" date="2018-06-10" status="candidate"/>
+ </info>
+ <title>html.sidebar</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node a sidebar is being created for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This templates outputs left and right sidebars according to the components
+ listed in <code xref="html.sidebar.left">html.sidebar.left</code> and <code xref="html.sidebar.right">html.sidebar.right</code>. It only outputs each
+ sidebar if the corresponding parameters is not empty or the string <sys>none</sys>.</p>
+ <p>This template is called inside the <sys>main</sys> element, before the <sys>div.page</sys>
+ element, and before <code xref="html.sidebar.custom">html.sidebar.custom</code>. Note that even the right sidebar
+ is placed before the <sys>div.page</sys> element. It is placed on the right using
+ flexbox item reordering.</p>
+ <p>To actually output the sidebar components, this template splits each parameter
+ on whitespace using the EXSLT <sys>str:split</sys> function. It then applies the mode
+ <code xref="html.sidebar.mode">html.sidebar.mode</code> to each token, passing <code>$node</code> and the sidebar side as
+ parameters. Extension stylesheets can add their own sidebar components by
+ implementing that mode and matching a pattern like</p>
+ <code>token[. = 'name-of-token']</code>
+ <p>You will then be able to use <sys>name-of-token</sys> in <code xref="html.sidebar.left">html.sidebar.left</code> or
+ <code xref="html.sidebar.right">html.sidebar.right</code>.</p>
+ <p>This stylesheet recognizes four tokens: <sys>contents</sys> and <sys>sections</sys>, and the
+ special tokens <sys>none</sys> and <sys>blank</sys>.</p>
+ <list>
+  <item>
+   <p>The <sys>contents</sys> token provides a table of contents for the entire document.
+   It is handled by the <code xref="html.sidebar.contents">html.sidebar.contents</code> template, which uses the
+   <code xref="html.sidebar.contents.mode">html.sidebar.contents.mode</code> mode to allow different input formats to
+   implement it.</p>
+  </item>
+  <item>
+   <p>The <sys>sections</sys> token lists sections on the current page. It is handled by the
+   html.sidebar.section} template, which uses the <code xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code>
+   mode to allow different input formats to implement it.</p>
+  </item>
+  <item>
+   <p>Use the <sys>none</sys> token on its own, instead of the empty string, to completely
+   turn off either sidebar.</p>
+  </item>
+  <item>
+   <p>Use the <sys>blank</sys> token to output a sidebar without adding any components to
+   it. This is useful, for example, to keep consistent margins. If an empty
+   sidebar is output from the <sys>blank</sys> token, it will also have the CSS class
+   <sys>sidebar-blank</sys> so you can style it differently.</p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+</page>

@@ -27,7 +27,7 @@ DITA to HTML
 REMARK: Describe this module
 -->
 
-<xsl:import href="dita2xhtml.xsl"><?pass?></xsl:import>
+<xsl:import href="dita2xhtml.xsl"><?xsldoc.passthrough?></xsl:import>
 
 <xsl:param name="html.xhtml" select="false()"/>
 

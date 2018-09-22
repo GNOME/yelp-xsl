@@ -1,33 +1,61 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.link.tooltip.custom" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><link type="guide" xref="stubs" group="mal"/><revision version="3.18" date="2015-06-06" status="final"/><desc>Output a tooltip for a custom <code>link</code> element.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>mal.link.tooltip.custom</title><p>Output a tooltip for a custom <code>link</code> element.</p><note><p>This template is a stub. Customizations may override it for
-            additional functionality.</p></note>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>link</code> or other element creating the link.</p>
-    </item>
-    <item>
-      <title><code>action</code></title>
-      <p>The <code>action</code> attribute of <code style="xslt-param">node</code>.</p>
-    </item>
-    <item>
-      <title><code>xref</code></title>
-      <p>The <code>xref</code> attribute of <code style="xslt-param">node</code>.</p>
-    </item>
-    <item>
-      <title><code>href</code></title>
-      <p>The <code>href</code> attribute of <code style="xslt-param">node</code>.</p>
-    </item>
-    <item>
-      <title><code>role</code></title>
-      <p>A space-separated list of link roles, used to select the appropriate title.</p>
-    </item>
-    <item>
-      <title><code>info</code></title>
-      <p>An <code>info</code> element that overrides the info found in a target node.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template is called by <code style="xslt-template" xref="mal.link.tooltip">mal.link.tooltip</code> to create tooltips for custom links. Use this template to support the <code>action</code> attribute or extended <code>xref</code> attributes containing slash or colon characters.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal.link.tooltip.custom">
+ <info>
+  <link type="guide" xref="mal-link" group="templates"/>
+  <link type="guide" xref="templates" group="mal"/>
+  <desc>Output a tooltip for a custom <sys>link</sys> element.</desc>
+ </info>
+ <title>mal.link.tooltip.custom</title>
+ <p>:Stub: true
+ @revision[version=3.18 date=2015-06-06 status=final]</p>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>link</sys> or other element creating the link.</p>
+   </item>
+   <item>
+    <title><code>$action</code></title>
+    <p>The <sys>action</sys> attribute of <code>$node</code>.</p>
+   </item>
+   <item>
+    <title><code>$xref</code></title>
+    <p>The <sys>xref</sys> attribute of <code>$node</code>.</p>
+   </item>
+   <item>
+    <title><code>$href</code></title>
+    <p>The <sys>href</sys> attribute of <code>$node</code>.</p>
+   </item>
+   <item>
+    <title><code>$role</code></title>
+    <p>A space-separated list of link roles, used to select the appropriate title.</p>
+   </item>
+   <item>
+    <title><code>$info</code></title>
+    <p>An <sys>info</sys> element that overrides the info found in a target node.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template is called by <code xref="mal.link.tooltip">mal.link.tooltip</code> to create tooltips for custom
+ links. Use this template to support the <sys>action</sys> attribute or extended <sys>xref</sys>
+ attributes containing slash or colon characters.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.cache.file"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.prefix"/></p>
+  </item>
+ </list>
 </page>

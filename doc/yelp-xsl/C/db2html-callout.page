@@ -1,2 +1,86 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-callout" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><link type="xslt-requires" xref="db2html-block"/><link type="xslt-requires" xref="db2html-xref"/><link type="xslt-requires" xref="html"/><link type="xslt-defines-template" xref="db2html.callout.label"/></info><title>DocBook to HTML - Callouts</title><p>This modules handles simple DocBook callouts using the <code>co</code> and <code>callout</code> elements. Currently, only callouts to <code>co</code> elements are supported. The <code>area</code> element is not supported.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="db2html-block"/></p></item><item><p><link xref="db2html-xref"/></p></item><item><p><link xref="html"/></p></item></list><list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>co | db:co</code></p></td></tr><tr><td><p/></td><td><p><code>calloutlist | db:calloutlist</code></p></td></tr><tr><td><p/></td><td><p><code>callout | db:callout</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-callout">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+  <revision version="1.0" date="2011-05-16" status="final"/>
+ </info>
+ <title>DocBook to HTML - Callouts</title>
+ <p>This modules handles simple DocBook callouts using the <sys>co</sys> and <sys>callout</sys>
+ elements. Currently, only callouts to <sys>co</sys> elements are supported. The
+ <sys>area</sys> element is not supported.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.block.formal"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>co | db:co</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>calloutlist | db:calloutlist</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>callout | db:callout</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

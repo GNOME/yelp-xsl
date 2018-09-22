@@ -25,23 +25,25 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - Media Elements
 Handle Mallard media elements.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This stylesheet contains templates for handling Mallard #{media} elements.
-It also handles TTML inside block audio and video #{media} elements.
+This stylesheet contains templates for handling Mallard `media` elements.
+It also handles TTML inside block audio and video `media` elements.
 -->
 
 
 <!--**==========================================================================
 mal2html.media.image
-Output an #{img} element for an image.
-:Revision:version="3.8" date="2012-11-05" status="final"
-$node: The Mallard #{media} element.
-$inline: Whether ${node} is inline.
+Output an `img` element for an image.
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This template outputs an HTML #{img} element for a Mallard #{media} element
-with the #{type} attribute set to #{"image"} (or with no #{type} attribute).
-If ${node} has fallback content, it is used for the #{alt} attribute.
+[xsl:params]
+$node: The Mallard `media` element.
+$inline: Whether $node is inline.
+
+This template outputs an HTML `img` element for a Mallard `media` element
+with the `type` attribute set to `"image"` (or with no `type` attribute).
+If $node has fallback content, it is used for the `alt` attribute.
 -->
 <xsl:template name="mal2html.media.image">
   <xsl:param name="node" select="."/>
@@ -91,19 +93,21 @@ If ${node} has fallback content, it is used for the #{alt} attribute.
 
 <!--**==========================================================================
 mal2html.media.video
-Output a #{video} element for a video.
-:Revision:version="3.8" date="2012-11-05" status="final"
-$node: The Mallard #{media} element.
-$inline: Whether ${node} is inline.
+Output a `video` element for a video.
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This template outputs an HTML #{video} element for a Mallard #{media} element
-with the #{type} attribute set to #{"video"}. It converts any fallback content
-in the source to the #{video} element's fallback content. If ${inline} is
-#{false}, this template will process TTML child content.
+[xsl:params]
+$node: The Mallard `media` element.
+$inline: Whether $node is inline.
 
-If ${node} has a child image #{media} element with the #{style} attribute set
-to #{"poster"}, that image will be used for the #{poster} attribute on the
-HTML #{video} element.
+This template outputs an HTML `video` element for a Mallard `media` element
+with the `type` attribute set to `"video"`. It converts any fallback content
+in the source to the `video` element's fallback content. If $inline is
+`false`, this template will process TTML child content.
+
+If $node has a child image `media` element with the `style` attribute set
+to `"poster"`, that image will be used for the `poster` attribute on the
+HTML `video` element.
 -->
 <xsl:template name="mal2html.media.video">
   <xsl:param name="node" select="."/>
@@ -149,15 +153,17 @@ HTML #{video} element.
 
 <!--**==========================================================================
 mal2html.media.audio
-Output an #{audio} element for an audio object.
-:Revision:version="3.8" date="2012-11-05" status="final"
-$node: The Mallard #{media} element.
-$inline: Whether ${node} is inline.
+Output an `audio` element for an audio object.
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This template outputs an HTML #{audio} element for a Mallard #{media} element
-with the #{type} attribute set to #{"audio"}. It converts any fallback content
-in the source to the #{audio} element's fallback content. If ${inline} is
-#{false}, this template will process TTML child content.
+[xsl:params]
+$node: The Mallard `media` element.
+$inline: Whether $node is inline.
+
+This template outputs an HTML `audio` element for a Mallard `media` element
+with the `type` attribute set to `"audio"`. It converts any fallback content
+in the source to the `audio` element's fallback content. If $inline is
+`false`, this template will process TTML child content.
 -->
 <xsl:template name="mal2html.media.audio">
   <xsl:param name="node" select="."/>
@@ -198,8 +204,8 @@ in the source to the #{audio} element's fallback content. If ${inline} is
 
 <!--%%==========================================================================
 mal2html.ttml.mode
-Process TTML subtitles in a Mallard #{media} element.
-:Revision:version="3.8" date="2012-11-05" status="final"
+Process TTML subtitles in a Mallard `media` element.
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This mode is applied to TTML elements inside block audio and video elements.
 It outputs HTML elements that are hidden by default and shown dynamically as

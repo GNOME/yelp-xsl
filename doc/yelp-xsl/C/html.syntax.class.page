@@ -1,13 +1,116 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.syntax.class" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Output HTML class values for syntax highlighting.</desc></info><title>html.syntax.class</title><p>Output HTML class values for syntax highlighting.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The source element whose content will be syntax highlighted.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template calls <code style="xslt-mode" xref="html.syntax.class.mode">html.syntax.class.mode</code> on <code style="xslt-param">node</code>. If the result of that mode is a suitable language identifier, it outputs appropriate CSS class names to enable syntax highlighting. The output should be placed in the <code>class</code> attribute of a <code>pre</code> or similar output element by the calling template.</p>
-  <p>Importing stylesheets should implement <code style="xslt-mode" xref="html.syntax.class.mode">html.syntax.class.mode</code> for any source elements that may be syntax highlighted, then call this template when building the <code>class</code> attribute for output elements.</p>
-<list style="compact"><title>Calls Modes</title><item><p><link xref="html.syntax.class.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.syntax.class">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output HTML class values for syntax highlighting.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>html.syntax.class</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The source element whose content will be syntax highlighted.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template calls <code xref="html.syntax.class.mode">html.syntax.class.mode</code> on <code>$node</code>. If the result of that
+ mode is a suitable language identifier, it outputs appropriate CSS class names
+ to enable syntax highlighting. The output should be placed in the <sys>class</sys>
+ attribute of a <sys>pre</sys> or similar output element by the calling template.</p>
+ <p>Importing stylesheets should implement <code xref="html.syntax.class.mode">html.syntax.class.mode</code> for any source
+ elements that may be syntax highlighted, then call this template when building
+ the <sys>class</sys> attribute for output elements.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="html.syntax.class.mode"/></p>
+  </item>
+ </list>
+</page>

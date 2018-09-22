@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
 <!--
-xsldoc-scan.xsl - Put more information in the output from xsldoc-scan.awk
-Copyright (C) 2006-2015 Shaun McCance <shaunm@gnome.org>
+Copyright (C) 2006-2018 Shaun McCance <shaunm@gnome.org>
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -16,452 +15,640 @@ for more details.
 You should have received a copy of the GNU General Public License along
 with this program; if not, see <http://www.gnu.org/licenses/>.
 -->
-<!--
-This program is free software, but that doesn't mean you should use it.
-It's a hackish bit of awk and XSLT to do inline XSLT documentation with
-a simple syntax in comments.  I had originally tried to make a public
-inline documentation system for XSLT using embedded XML, but it just got
-very cumbersome.  XSLT should have been designed from the ground up with
-an inline documentation format.
-
-None of the existing inline documentation tools (gtk-doc, doxygen, etc.)
-really work well for XSLT, so I rolled my own simple comment-based tool.
-This tool is sufficient for producing the documentation I need, but I
-just don't have the time or inclination to make a robust system suitable
-for public use.
-
-You are, of course, free to use any of this.  If you do proliferate this
-hack, it is requested (though not required, that would be non-free) that
-you atone for your actions.  A good atonement would be contributing to
-free software.
--->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mal="http://projectmallard.org/1.0/"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:set="http://exslt.org/sets"
                 xmlns:str="http://exslt.org/strings"
-                xmlns:xsldoc="http://projects.gnome.org/yelp/xsldoc/"
-                xmlns="http://projectmallard.org/1.0/"
                 extension-element-prefixes="exsl"
-                exclude-result-prefixes="mal set xsldoc str"
+                exclude-result-prefixes="set str"
                 version="1.0">
 
-<xsl:param name="xsldoc.id"/>
-<xsl:param name="xsldoc.xslt_file"/>
-<xsl:variable name="xslt_file" select="document($xsldoc.xslt_file)/xsl:stylesheet"/>
+<xsl:output method="text"/>
 
-<xsl:template name="revision">
-  <xsl:param name="info" select="mal:info"/>
+<xsl:param name="xsldoc.id"/>
+
+<xsl:variable name="xsldoc.id.prefix">
   <xsl:choose>
-    <xsl:when test="$info/mal:revision">
-      <xsl:for-each select="$info/mal:revision">
-        <xsl:copy>
-          <xsl:if test="not(@status)">
-            <xsl:attribute name="status">
-              <xsl:text>incomplete</xsl:text>
-            </xsl:attribute>
-          </xsl:if>
-          <xsl:copy-of select="@*"/>
-        </xsl:copy>
-      </xsl:for-each>
+    <xsl:when test="contains($xsldoc.id, '-')">
+      <xsl:value-of select="substring-before($xsldoc.id, '-')"/>
     </xsl:when>
     <xsl:otherwise>
-      <revision version="0.0" date="1970-01-01" status="stub"/>
+      <xsl:value-of select="$xsldoc.id"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
+</xsl:variable>
 
-<xsl:template name="calls_templates">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="page"/>
-  <xsl:param name="xslt_node"/>
-  <xsl:for-each select="$xslt_node">
-    <xsl:variable name="calls_templates">
-      <xsl:for-each select="set:distinct(.//xsl:call-template[
-                            not(@name = $xslt_node//xsl:template/@name) and
-                            not($page/processing-instruction('xslt-private')[string(.) = @name])
-                            ])">
-        <xsl:variable name="name" select="string(@name)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <link xref="{$name}"/>
-        </xsl:if>
-      </xsl:for-each>
+<xsl:template match="/xsl:stylesheet">
+  <xsl:for-each select="comment()">
+    <xsl:variable name="type">
+      <xsl:choose>
+        <xsl:when test="starts-with(., '!!')">
+          <xsl:text>stylesheet</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with(., '**')">
+          <xsl:text>template</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with(., '@@')">
+          <xsl:text>param</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with(., '%%')">
+          <xsl:text>mode</xsl:text>
+        </xsl:when>
+        <xsl:when test="starts-with(., '++')">
+          <xsl:text>key</xsl:text>
+        </xsl:when>
+      </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="calls_templates_nodes" select="exsl:node-set($calls_templates)/*"/>
-    <xsl:if test="count($calls_templates_nodes) > 0">
-      <list style="compact">
-        <title>Calls Templates</title>
-        <xsl:for-each select="$calls_templates_nodes">
-          <xsl:sort select="."/>
-          <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
-            <item><p><xsl:copy-of select="."/></p></item>
+    <xsl:if test="$type != ''">
+      <xsl:variable name="name">
+        <xsl:choose>
+          <xsl:when test="$type = 'stylesheet'">
+            <xsl:value-of select="$xsldoc.id"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="substring-before(substring-after(., '&#x0A;'), '&#x0A;')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <exsl:document href="{$name}.duck" method="text">
+        <xsl:call-template name="xsldoc.body">
+          <xsl:with-param name="mode" select="'title'"/>
+          <xsl:with-param name="type" select="$type"/>
+          <xsl:with-param name="lines" select="substring-after(., '&#x0A;')"/>
+        </xsl:call-template>
+        <xsl:if test="$type = 'stylesheet'">
+          <xsl:text>&#x0A;[links topic groups=imports .linklist]&#x0A;. Imports Stylesheets&#x0A;</xsl:text>
+          <xsl:text>&#x0A;[links topic groups=includes .linklist]&#x0A;. Includes Stylesheets&#x0A;</xsl:text>
+          <xsl:text>&#x0A;[links topic groups=params .linklist]&#x0A;. Defines Parameters&#x0A;</xsl:text>
+          <xsl:text>&#x0A;[links topic groups=keys .linklist]&#x0A;. Defines Keys&#x0A;</xsl:text>
+          <xsl:text>&#x0A;[links topic groups=templates .linklist]&#x0A;. Defines Templates&#x0A;</xsl:text>
+          <xsl:text>&#x0A;[links topic groups=modes .linklist]&#x0A;. Defines Modes&#x0A;</xsl:text>
+          <!--
+              FIXME:
+              get stylesheet imports
+              sets params (not defined here)
+          -->
+          <!--
+              FIXME: make all of these follow passthrough?
+          -->
+          <xsl:call-template name="xsldoc.calls.params">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.keys">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.templates">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.modes">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.implements.templates">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$type = 'template'">
+          <xsl:variable name="template" select="/xsl:stylesheet/xsl:template[@name = $name]"/>
+          <xsl:if test="count($template) = 0">
+            <xsl:message>
+              <xsl:text>Missing template: </xsl:text>
+              <xsl:value-of select="$name"/>
+            </xsl:message>
           </xsl:if>
-        </xsl:for-each>
-      </list>
+          <!--
+              FIXME:
+              calls params
+          -->
+          <xsl:call-template name="xsldoc.calls.params">
+            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.keys">
+            <xsl:with-param name="node" select="$template[1]"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.templates">
+            <xsl:with-param name="node" select="$template[1]"/>
+          </xsl:call-template>
+          <xsl:call-template name="xsldoc.calls.modes">
+            <xsl:with-param name="node" select="$template[1]"/>
+          </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="$type = 'param'">
+          <xsl:variable name="param" select="/xsl:stylesheet/xsl:param[@name = $name]"/>
+          <xsl:if test="count($param) = 0">
+            <xsl:message>
+              <xsl:text>Missing param: </xsl:text>
+              <xsl:value-of select="$name"/>
+            </xsl:message>
+          </xsl:if>
+          <xsl:if test="$param/@select">
+            <xsl:text>&#x0A;[synopsis]&#x0A;</xsl:text>
+            <xsl:text>[terms]&#x0A;</xsl:text>
+            <xsl:text>- $code(</xsl:text>
+            <xsl:value-of select="$name"/>
+            <xsl:text>)&#x0A;</xsl:text>
+            <xsl:text>* $code(</xsl:text>
+            <xsl:value-of select="$param/@select"/>
+            <xsl:text>)&#x0A;</xsl:text>
+          </xsl:if>
+        </xsl:if>
+        <!--
+            FIXME:
+            mode
+            key
+            param (default)
+        -->
+      </exsl:document>
     </xsl:if>
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="calls_modes">
+<xsl:template name="xsldoc.body">
+  <xsl:param name="mode"/>
+  <xsl:param name="type"/>
+  <xsl:param name="lines"/>
+  <xsl:variable name="blank" select="normalize-space(exsl:node-set(str:split($lines, '&#x0A;'))[1]) = ''
+                                     or starts-with($lines, '&#x0A;')"/>
+  <xsl:choose>
+    <xsl:when test="$lines = ''"/>
+    <xsl:when test="$mode = 'title'">
+      <!--
+          <xsl:text>@ducktype/1.0 xsl/1.0&#x0A;&#x0A;</xsl:text>
+      -->
+      <xsl:text>@namespace xsl FIXME&#x0A;&#x0A;</xsl:text>
+
+      <xsl:text>= </xsl:text>
+      <xsl:value-of select="substring-before($lines, '&#x0A;')"/>
+      <xsl:choose>
+        <xsl:when test="$type = 'stylesheet'">
+          <xsl:text>&#x0A;  [guide .xslt-stylesheet]&#x0A;</xsl:text>
+          <xsl:text>@link[guide >stylesheets group=</xsl:text>
+          <xsl:value-of select="$xsldoc.id.prefix"/>
+          <xsl:text>]&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.imports.includes.stylesheets"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>&#x0A;  [.xslt-</xsl:text>
+          <xsl:value-of select="$type"/>
+          <xsl:text>]&#x0A;</xsl:text>
+          <xsl:text>@link[guide ></xsl:text>
+          <xsl:value-of select="$xsldoc.id"/>
+          <xsl:text> group=</xsl:text>
+          <xsl:value-of select="$type"/>
+          <xsl:text>s]&#x0A;</xsl:text>
+          <xsl:text>@link[guide ></xsl:text>
+          <xsl:value-of select="$type"/>
+          <xsl:text>s group=</xsl:text>
+          <xsl:value-of select="$xsldoc.id.prefix"/>
+          <xsl:text>]&#x0A;</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:call-template name="xsldoc.body">
+        <xsl:with-param name="mode" select="'desc'"/>
+        <xsl:with-param name="type" select="$type"/>
+        <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$mode = 'desc'">
+      <xsl:choose>
+        <xsl:when test="$blank or starts-with($lines, '@')">
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'info'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="$lines"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>@desc </xsl:text>
+          <xsl:call-template name="xsldoc.inline">
+            <xsl:with-param name="line" select="substring-before($lines, '&#x0A;')"/>
+          </xsl:call-template>
+          <xsl:text>&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'info'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="$mode = 'info'">
+      <xsl:choose>
+        <xsl:when test="starts-with($lines, '@xsl:stub')">
+          <xsl:text>@link[guide >stubs group=</xsl:text>
+          <xsl:value-of select="$xsldoc.id.prefix"/>
+          <xsl:text>]&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'body'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="starts-with($lines, '@')">
+          <xsl:value-of select="substring-before($lines, '&#x0A;')"/>
+          <xsl:text>&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'body'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'body'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="$lines"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="$mode = 'params'">
+      <xsl:choose>
+        <!-- FIXME: defaults would be nice -->
+        <xsl:when test="starts-with($lines, '$')">
+          <xsl:variable name="line" select="substring-before($lines, '&#x0A;')"/>
+          <xsl:text>- $code(</xsl:text>
+          <xsl:value-of select="normalize-space(substring-before($line, ':'))"/>
+          <xsl:text>)&#x0A;</xsl:text>
+          <xsl:text>* </xsl:text>
+          <xsl:call-template name="xsldoc.inline">
+            <xsl:with-param name="line" select="normalize-space(substring-after($line, ':'))"/>
+          </xsl:call-template>
+          <xsl:text>&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'params'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'body'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="$lines"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:choose>
+        <xsl:when test="starts-with($lines, '[xsl:params]')">
+          <xsl:text>[synopsis]&#x0A;. Parameters&#x0A;[terms]&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'params'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="xsldoc.inline">
+            <xsl:with-param name="line" select="substring-before($lines, '&#x0A;')"/>
+          </xsl:call-template>
+          <xsl:text>&#x0A;</xsl:text>
+          <xsl:call-template name="xsldoc.body">
+            <xsl:with-param name="mode" select="'body'"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lines" select="substring-after($lines, '&#x0A;')"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="xsldoc.inline">
+  <xsl:param name="line" select="''"/>
+  <xsl:variable name="char" select="substring($line, 1, 1)"/>
+  <xsl:variable name="rest" select="substring($line, 2)"/>
+  <xsl:choose>
+    <xsl:when test="$line = ''"/>
+    <xsl:when test="$char = '{'">
+      <xsl:variable name="var" select="substring-before($rest, '}')"/>
+      <xsl:variable name="aft" select="substring-after($rest, '}')"/>
+      <xsl:text>$code[></xsl:text>
+      <xsl:value-of select="$var"/>
+      <xsl:text>](</xsl:text>
+      <xsl:value-of select="$var"/>
+      <xsl:text>)</xsl:text>
+      <xsl:call-template name="xsldoc.inline">
+        <xsl:with-param name="line" select="$aft"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$char = '`'">
+      <xsl:variable name="sys" select="substring-before($rest, '`')"/>
+      <xsl:variable name="aft" select="substring-after($rest, '`')"/>
+      <xsl:text>$sys(</xsl:text>
+      <xsl:value-of select="$sys"/>
+      <xsl:text>)</xsl:text>
+      <xsl:call-template name="xsldoc.inline">
+        <xsl:with-param name="line" select="$aft"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$char = '$'">
+      <xsl:variable name="param">
+        <xsl:call-template name="xsldoc.getword">
+          <xsl:with-param name="string" select="$rest"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="string-length($param) = 0">
+          <xsl:text>$</xsl:text>
+          <xsl:call-template name="xsldoc.inline">
+            <xsl:with-param name="line" select="$rest"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="param_">
+            <xsl:choose>
+              <xsl:when test="substring($param, string-length($param)) = '.'">
+                <xsl:value-of select="substring($param, 1, string-length($param) - 1)"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$param"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:text>$code($</xsl:text>
+          <xsl:value-of select="$param_"/>
+          <xsl:text>)</xsl:text>
+          <xsl:call-template name="xsldoc.inline">
+            <xsl:with-param name="line" select="substring($rest, string-length($param_) + 1)"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$char"/>
+      <xsl:call-template name="xsldoc.inline">
+        <xsl:with-param name="line" select="$rest"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="xsldoc.imports.includes.stylesheets">
+  <!-- FIXME: split this in two, follow import for each -->
+  <xsl:param name="node" select="/*"/>
+  <xsl:for-each select="$node//xsl:import">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:choose>
+      <xsl:when test="processing-instruction('xsldoc.passthrough')">
+        <xsl:call-template name="xsldoc.imports.includes.stylesheets">
+          <xsl:with-param name="node" select="document(@href, $node)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>@link[topic ></xsl:text>
+        <xsl:value-of select="$base"/>
+        <xsl:text> group=imports]&#x0A;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+  <xsl:for-each select="$node//xsl:include">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:text>@link[topic ></xsl:text>
+    <xsl:value-of select="$base"/>
+    <xsl:text> group=includes]&#x0A;</xsl:text>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.templates">
   <xsl:param name="node" select="."/>
-  <xsl:param name="page"/>
-  <xsl:param name="xslt_node"/>
-  <xsl:variable name="calls_modes">
-    <xsl:for-each select="$xslt_node">
-      <xsl:for-each select="set:distinct(.//xsl:apply-templates/@mode)">
-        <xsl:variable name="mode" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
-          <xsl:if test="not($node//mal:section[@style = 'xslt-mode' and mal:title = $mode])">
-            <link xref="{$mode}"/>
-          </xsl:if>
+  <xsl:variable name="templates">
+    <xsl:call-template name="xsldoc.calls.templates.get">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="normalize-space($templates) != ''">
+    <xsl:text>&#x0A;[list .compact]&#x0A;</xsl:text>
+    <xsl:text>. Calls Templates&#x0A;</xsl:text>
+    <xsl:for-each select="set:distinct(str:split($templates))">
+      <xsl:sort select="."/>
+      <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
+        <xsl:text>* $link[></xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>]&#x0A;</xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.templates.get">
+  <xsl:param name="node" select="."/>
+  <xsl:for-each select="$node//xsl:call-template[
+                        not(@name = $node/self::xsl:stylesheet/xsl:template/@name) and
+                        not(starts-with(@name, '_'))
+                        ]">
+    <xsl:value-of select="@name"/>
+    <xsl:text> </xsl:text>
+  </xsl:for-each>
+  <xsl:for-each select="$node/self::xsl:stylesheet/xsl:import">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:if test="processing-instruction('xsldoc.passthrough')">
+      <xsl:call-template name="xsldoc.calls.templates.get">
+        <xsl:with-param name="node" select="document(@href, $node)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.modes">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="modes">
+    <xsl:call-template name="xsldoc.calls.modes.get">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="normalize-space($modes) != ''">
+    <xsl:text>&#x0A;[list .compact]&#x0A;</xsl:text>
+    <xsl:text>. Calls Modes&#x0A;</xsl:text>
+    <xsl:for-each select="set:distinct(str:split($modes))">
+      <xsl:sort select="."/>
+      <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
+        <xsl:text>* $link[></xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>]&#x0A;</xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.modes.get">
+  <xsl:param name="node" select="."/>
+  <xsl:for-each select="$node//xsl:apply-templates[@mode]">
+    <xsl:value-of select="@mode"/>
+    <xsl:text> </xsl:text>
+  </xsl:for-each>
+  <xsl:for-each select="$node/self::xsl:stylesheet/xsl:import">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:if test="processing-instruction('xsldoc.passthrough')">
+      <xsl:call-template name="xsldoc.calls.modes.get">
+        <xsl:with-param name="node" select="document(@href, $node)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.keys">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="keys">
+    <xsl:call-template name="xsldoc.calls.keys.get">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="normalize-space($keys) != ''">
+    <xsl:text>&#x0A;[list .compact]&#x0A;</xsl:text>
+    <xsl:text>. Calls Keys&#x0A;</xsl:text>
+    <xsl:for-each select="set:distinct(str:split($keys))">
+      <xsl:sort select="."/>
+      <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
+        <xsl:text>* $link[></xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>]&#x0A;</xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.keys.get">
+  <xsl:param name="node" select="."/>
+  <xsl:for-each select="$node//xsl:variable/@select   |
+                        $node//xsl:param/@select      |
+                        $node//xsl:with-param/@select |
+                        $node//xsl:for-each/@select   |
+                        $node//xsl:sort/@select       |
+                        $node//xsl:value-of/@select   |
+                        $node//xsl:if/@test           | 
+                        $node//xsl:when/@test         ">
+    <xsl:variable name="xpath_node" select="."/>
+    <xsl:if test="contains($xpath_node, 'key(')">
+      <!-- libxslt doesn't str:split when the string starts with the split arg -->
+      <xsl:for-each select="str:split(concat(' ', $xpath_node), 'key(')[position() > 1]">
+        <xsl:for-each select="str:tokenize(., concat('&quot;', &quot;&apos;&quot;))[1]">
+          <xsl:value-of select="."/>
+          <xsl:text> </xsl:text>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:if>
+  </xsl:for-each>
+  <xsl:for-each select="$node/self::xsl:stylesheet/xsl:import">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:if test="processing-instruction('xsldoc.passthrough')">
+      <xsl:call-template name="xsldoc.calls.keys.get">
+        <xsl:with-param name="node" select="document(@href, $node)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.params">
+  <xsl:param name="node" select="."/>
+  <xsl:variable name="params">
+    <xsl:call-template name="xsldoc.calls.params.get">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:if test="normalize-space($params) != ''">
+    <xsl:text>&#x0A;[list .compact]&#x0A;</xsl:text>
+    <xsl:text>. Calls Parameters&#x0A;</xsl:text>
+    <xsl:for-each select="set:distinct(str:split($params))">
+      <xsl:sort select="."/>
+      <xsl:if test="not(preceding-sibling::*[@xref = current()/@xref])">
+        <xsl:text>* $link[></xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>]&#x0A;</xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="xsldoc.calls.params.get">
+  <xsl:param name="node" select="."/>
+  <xsl:for-each select="$node//xsl:variable/@select   |
+                        $node//xsl:param/@select      |
+                        $node//xsl:with-param/@select |
+                        $node//xsl:for-each/@select   |
+                        $node//xsl:sort/@select       |
+                        $node//xsl:value-of/@select   |
+                        $node//xsl:if/@test           | 
+                        $node//xsl:when/@test         ">
+    <xsl:variable name="xpath_node" select="."/>
+    <xsl:if test="contains($xpath_node, '$')">
+      <!-- libxslt doesn't str:split when the string starts with the split arg -->
+      <xsl:for-each select="str:split(concat(' ', $xpath_node), '$')[position() > 1]">
+        <xsl:variable name="paramname">
+          <xsl:call-template name="xsldoc.getword">
+            <xsl:with-param name="string" select="."/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:if test="not($xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:param
+                      [not(parent::xsl:stylesheet)][@name = $paramname]
+                      or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable
+                      [@name = $paramname]
+                      or $xpath_node/ancestor::xsl:stylesheet/xsl:variable
+                      [@name = $paramname]
+                      )">
+          <xsl:value-of select="$paramname"/>
+          <xsl:text> </xsl:text>
         </xsl:if>
       </xsl:for-each>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="calls_modes_nodes" select="exsl:node-set($calls_modes)/*"/>
-  <xsl:if test="count($calls_modes_nodes) > 0">
-    <list style="compact">
-      <title>Calls Modes</title>
-      <xsl:for-each select="$calls_modes_nodes">
-        <xsl:sort select="@xref"/>
-        <item><p><xsl:copy-of select="."/></p></item>
-      </xsl:for-each>
-    </list>
-  </xsl:if>
+    </xsl:if>
+  </xsl:for-each>
+  <xsl:for-each select="$node/self::xsl:stylesheet/xsl:import">
+    <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
+    <xsl:if test="processing-instruction('xsldoc.passthrough')">
+      <xsl:call-template name="xsldoc.calls.params.get">
+        <xsl:with-param name="node" select="document(@href, $node)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="calls_keys">
+<xsl:template name="xsldoc.implements.templates">
   <xsl:param name="node" select="."/>
-  <xsl:param name="page"/>
-  <xsl:param name="xslt_node"/>
-  <xsl:variable name="calls_keys">
-    <xsl:for-each select="$xslt_node//xsl:variable/@select   |
-                          $xslt_node//xsl:param/@select      |
-                          $xslt_node//xsl:with-param/@select |
-                          $xslt_node//xsl:for-each/@select   |
-                          $xslt_node//xsl:sort/@select       |
-                          $xslt_node//xsl:value-of/@select   |
-                          $xslt_node//xsl:if/@test           | 
-                          $xslt_node//xsl:when/@test         ">
-      <xsl:variable name="xpath_node" select="."/>
-      <xsl:if test="contains($xpath_node, 'key(')">
-        <!-- libxslt doesn't str:split when the string starts with the split arg -->
-        <xsl:for-each select="str:split(concat(' ', $xpath_node), 'key(')[position() > 1]">
-          <xsl:for-each select="str:tokenize(., concat('&quot;', &quot;&apos;&quot;))[1]">
-            <key><xsl:value-of select="."/></key>
-          </xsl:for-each>
-        </xsl:for-each>
-      </xsl:if>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="calls_keys_nodes" select="exsl:node-set($calls_keys)/*"/>
-  <xsl:if test="count($calls_keys_nodes) > 0">
-    <list style="compact">
-      <title>Calls Keys</title>
-      <xsl:for-each select="set:distinct($calls_keys_nodes)">
-        <xsl:sort select="."/>
-        <item><p><link xref="{.}"/></p></item>
-      </xsl:for-each>
-    </list>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="calls_params">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="page"/>
-  <xsl:param name="xslt_node"/>
-  <xsl:variable name="calls_params">
-    <xsl:for-each select="$xslt_node//xsl:variable/@select   |
-                          $xslt_node//xsl:param/@select      |
-                          $xslt_node//xsl:with-param/@select |
-                          $xslt_node//xsl:for-each/@select   |
-                          $xslt_node//xsl:sort/@select       |
-                          $xslt_node//xsl:value-of/@select   |
-                          $xslt_node//xsl:if/@test           | 
-                          $xslt_node//xsl:when/@test         ">
-      <xsl:variable name="xpath_node" select="."/>
-      <xsl:if test="contains($xpath_node, '$')">
-        <!-- libxslt doesn't str:split when the string starts with the split arg -->
-        <xsl:for-each select="str:split(concat(' ', $xpath_node), '$')[position() > 1]">
-          <xsl:variable name="paramname">
-            <xsl:call-template name="read_chars">
-              <xsl:with-param name="string" select="."/>
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:if test="not($xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:param
-                              [not(parent::xsl:stylesheet)][@name = $paramname]
-                         or $xpath_node/../ancestor-or-self::*/preceding-sibling::xsl:variable
-                              [@name = $paramname]
-                         or $xpath_node/ancestor::xsl:stylesheet/xsl:variable
-                              [@name = $paramname]
-                        )">
-            <param><xsl:value-of select="$paramname"/></param>
-          </xsl:if>
-        </xsl:for-each>
-      </xsl:if>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="calls_params_nodes" select="exsl:node-set($calls_params)/*"/>
-  <xsl:if test="count($calls_params_nodes) > 0">
-    <list style="compact">
-      <title>Calls Parameters</title>
-      <xsl:for-each select="set:distinct($calls_params_nodes)">
-        <xsl:sort select="."/>
-        <item><p><link xref="{.}"/></p></item>
-      </xsl:for-each>
-    </list>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="implements_templates">
-  <xsl:param name="node" select="."/>
-  <xsl:param name="page"/>
-  <xsl:param name="xslt_node"/>
   <xsl:variable name="impls">
-    <xsl:for-each select="$xslt_node/xsl:template[@match]">
+    <xsl:for-each select="$node/xsl:template[@match]">
       <xsl:variable name="mode" select="@mode"/>
-      <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
-        <template mode="{$mode}" match="{@match}"/>
-      </xsl:if>
+      <template mode="{$mode}" match="{@match}"/>
     </xsl:for-each>
   </xsl:variable>
   <xsl:variable name="impls_nodes" select="exsl:node-set($impls)/*"/>
   <xsl:if test="count($impls_nodes) != 0">
-    <table>
-      <title>Implements Templates</title>
-      <thead>
-        <tr>
-          <th><p>Mode</p></th>
-          <th><p>Match</p></th>
-        </tr>
-      </thead>
-      <tbody>
-        <xsl:for-each select="$impls_nodes">
-          <xsl:sort select="@mode"/>
-          <tr>
-            <td><p>
-              <xsl:choose>
-                <xsl:when test="@mode != ''">
-                  <link xref="{@mode}">
-                    <xsl:value-of select="@mode"/>
-                  </link>
-                </xsl:when>
-              </xsl:choose>
-            </p></td>
-            <td><p>
-              <code><xsl:value-of select="@match"/></code>
-            </p></td>
-          </tr>
-        </xsl:for-each>
-      </tbody>
-    </table>
+    <xsl:text>&#x0A;[table rules=rows]&#x0A;. Implements Templates&#x0A;</xsl:text>
+    <xsl:text>[thead]&#x0A;[tr]&#x0A;- Mode&#x0a;- Match&#x0A;[tbody]&#x0A;</xsl:text>
+    <xsl:for-each select="$impls_nodes">
+      <xsl:sort select="@mode"/>
+      <xsl:text>[tr]&#x0A;* </xsl:text>
+      <xsl:choose>
+        <xsl:when test="@mode != ''">
+          <xsl:text>$code[></xsl:text>
+          <xsl:value-of select="@mode"/>
+          <xsl:text>](</xsl:text>
+          <xsl:value-of select="@mode"/>
+          <xsl:text>)</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@mode"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>&#x0A;* $code(</xsl:text>
+      <xsl:value-of select="@match"/>
+      <xsl:text>)&#x0A;</xsl:text>
+    </xsl:for-each>
   </xsl:if>
 </xsl:template>
 
-<xsl:template name="read_chars">
+<xsl:template name="xsldoc.getword">
   <xsl:param name="string" select="''"/>
   <xsl:if test="$string != ''">
     <xsl:variable name="char" select="substring($string, 1, 1)"/>
     <xsl:if test="contains('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_', $char)">
       <xsl:value-of select="$char"/>
-      <xsl:call-template name="read_chars">
+      <xsl:call-template name="xsldoc.getword">
         <xsl:with-param name="string" select="substring($string, 2)"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:if>
-</xsl:template>
-
-<xsl:template match="mal:page">
-  <xsl:variable name="page" select="."/>
-  <page id="{$xsldoc.id}" type="guide" style="xslt-stylesheet">
-    <xsl:copy-of select="processing-instruction()"/>
-    <xsl:variable name="prefix" select="str:tokenize($xsldoc.id, '.-_')[1]"/>
-    <info>
-      <link type="guide" xref="stylesheets" group="{$prefix}"/>
-      <xsl:if test="string(mal:desc) != ''">
-        <xsl:copy-of select="mal:desc"/>
-      </xsl:if>
-      <xsl:call-template name="revision"/>
-      <xsl:copy-of select="mal:info/*[not(self::mal:desc) and not(self::mal:revision)]"/>
-      <!-- xslt-includes -->
-      <xsl:for-each select="$xslt_file//xsl:include">
-        <xsl:variable name="base" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
-        <xsl:choose>
-          <xsl:when test="$page/processing-instruction('xslt-private')[string(.) = $base]"/>
-          <xsl:when test="processing-instruction('pass')">
-            <xsl:for-each select="document(@href, /)//xsl:include">
-              <xsl:variable name="subbase" select="substring-before(str:split(@href, '/')[last()], '.xsl')"/>
-              <xsl:if test="not(/xsl:stylesheet/comment()[normalize-space(.) = concat('#! ', $subbase)])">
-                <link type="topic" xref="{$subbase}" group="stylesheets"/>
-              </xsl:if>
-            </xsl:for-each>
-          </xsl:when>
-          <xsl:otherwise>
-            <link type="topic" xref="{$base}" group="stylesheets"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-      <!-- xslt-defines-template -->
-      <xsl:for-each select="$xslt_file/xsl:template/@name">
-        <xsl:variable name="name" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <link type="xslt-defines-template" xref="{$name}"/>
-        </xsl:if>
-      </xsl:for-each>
-      <!-- xslt-implements-mode -->
-      <xsl:for-each select="set:distinct($xslt_file//xsl:template/@mode)">
-        <xsl:variable name="mode" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $mode])">
-          <link type="xslt-implements-mode" xref="{$mode}"/>
-        </xsl:if>
-      </xsl:for-each>
-      <!-- xslt-defines-param -->
-      <xsl:for-each select="$xslt_file/xsl:param/@name">
-        <xsl:variable name="name" select="string(.)"/>
-        <xsl:if test="not($page/processing-instruction('xslt-private')[string(.) = $name])">
-          <link type="xslt-defines-param" xref="{$name}"/>
-        </xsl:if>
-      </xsl:for-each>
-    </info>
-    <xsl:copy-of select="mal:title"/>
-    <xsl:if test="string(mal:info/mal:desc) != ''">
-      <p>
-        <xsl:copy-of select="mal:info/mal:desc/node()"/>
-      </p>
-    </xsl:if>
-    <xsl:apply-templates select="*"/>
-    <links type="topic" groups="stylesheets" style="linklist">
-      <title>Stylesheets</title>
-    </links>
-    <links type="topic" groups="parameters" style="linklist">
-      <title>Parameters</title>
-    </links>
-    <links type="topic" groups="modes" style="linklist">
-      <title>Modes</title>
-    </links>
-    <links type="topic" groups="templates" style="linklist">
-      <title>Templates</title>
-    </links>
-    <links type="topic" groups="keys" style="linklist">
-      <title>Keys</title>
-    </links>
-    <xsl:variable name="requires" select="$page/mal:info/mal:link[@type = 'xslt-requires']"/>
-    <xsl:if test="count($requires) > 0">
-      <list style="compact">
-        <title>Requires Stylesheets</title>
-        <xsl:for-each select="$requires">
-          <xsl:sort select="@xref"/>
-          <item><p><link xref="{@xref}"/></p></item>
-        </xsl:for-each>
-      </list>
-    </xsl:if>
-    <xsl:call-template name="calls_templates">
-      <xsl:with-param name="page" select="$page"/>
-      <xsl:with-param name="xslt_node" select="$xslt_file"/>
-    </xsl:call-template>
-    <xsl:call-template name="calls_modes">
-      <xsl:with-param name="page" select="$page"/>
-      <xsl:with-param name="xslt_node" select="$xslt_file"/>
-    </xsl:call-template>
-    <xsl:call-template name="calls_keys">
-      <xsl:with-param name="page" select="$page"/>
-      <xsl:with-param name="xslt_node" select="$xslt_file"/>
-    </xsl:call-template>
-    <xsl:call-template name="calls_params">
-      <xsl:with-param name="page" select="$page"/>
-      <xsl:with-param name="xslt_node" select="$xslt_file"/>
-    </xsl:call-template>
-    <xsl:call-template name="implements_templates">
-      <xsl:with-param name="page" select="$page"/>
-      <xsl:with-param name="xslt_node" select="$xslt_file"/>
-    </xsl:call-template>
-  </page>
-</xsl:template>
-
-<xsl:template match="mal:info"/>
-
-<xsl:template match="mal:title"/>
-
-<xsl:template match="mal:section">
-  <xsl:variable name="type">
-    <xsl:choose>
-      <xsl:when test="@style = 'xslt-template'">
-        <xsl:text>templates</xsl:text>
-      </xsl:when>
-      <xsl:when test="@style = 'xslt-key'">
-        <xsl:text>keys</xsl:text>
-      </xsl:when>
-      <xsl:when test="@style = 'xslt-mode'">
-        <xsl:text>modes</xsl:text>
-      </xsl:when>
-      <xsl:when test="@style = 'xslt-param'">
-        <xsl:text>parameters</xsl:text>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="id">
-    <xsl:value-of select="mal:title"/>
-  </xsl:variable>
-  <exsl:document href="{$id}.page">
-    <page id="{$id}" type="topic" style="{@style}">
-      <xsl:variable name="prefix" select="str:tokenize(mal:title, '.-_')[1]"/>
-      <info>
-        <link type="guide" xref="{$xsldoc.id}" group="{$type}"/>
-        <link type="guide" xref="{$type}" group="{$prefix}"/>
-        <xsl:if test="count(mal:info/xsldoc:stub) > 0">
-          <link type="guide" xref="stubs" group="{$prefix}"/>
-        </xsl:if>
-        <xsl:call-template name="revision"/>
-        <xsl:copy-of select="mal:info/*[not(self::mal:revision)]"/>
-      </info>
-      <xsl:copy-of select="mal:title"/>
-      <xsl:if test="string(mal:info/mal:desc) != ''">
-        <p>
-          <xsl:copy-of select="mal:info/mal:desc/node()"/>
-        </p>
-      </xsl:if>
-      <xsl:if test="$type = 'templates'">
-        <xsl:if test="count(mal:info/xsldoc:stub) > 0">
-          <note>
-            <p>This template is a stub. Customizations may override it for
-            additional functionality.</p>
-          </note>
-        </xsl:if>
-      </xsl:if>
-      <xsl:apply-templates/>
-      <xsl:if test="$type = 'templates'">
-        <xsl:variable name="title" select="mal:title"/>
-        <xsl:variable name="xslt_node" select="$xslt_file//xsl:template[@name = $title]"/>
-        <xsl:call-template name="calls_templates">
-          <xsl:with-param name="node" select="."/>
-          <xsl:with-param name="page" select="ancestor::mal:page"/>
-          <xsl:with-param name="xslt_node" select="$xslt_node"/>
-        </xsl:call-template>
-        <xsl:call-template name="calls_modes">
-          <xsl:with-param name="node" select="."/>
-          <xsl:with-param name="page" select="ancestor::mal:page"/>
-          <xsl:with-param name="xslt_node" select="$xslt_node"/>
-        </xsl:call-template>
-        <xsl:call-template name="calls_keys">
-          <xsl:with-param name="node" select="."/>
-          <xsl:with-param name="page" select="ancestor::mal:page"/>
-          <xsl:with-param name="xslt_node" select="$xslt_node"/>
-        </xsl:call-template>
-        <xsl:call-template name="calls_params">
-          <xsl:with-param name="node" select="."/>
-          <xsl:with-param name="page" select="ancestor::mal:page"/>
-          <xsl:with-param name="xslt_node" select="$xslt_node"/>
-        </xsl:call-template>
-      </xsl:if>
-    </page>
-  </exsl:document>
-</xsl:template>
-
-<xsl:template match="processing-instruction()"/>
-
-<xsl:template match="*">
-  <xsl:copy-of select="."/>
 </xsl:template>
 
 </xsl:stylesheet>

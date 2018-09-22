@@ -1,7 +1,16 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.figure.zoom.out" type="topic" style="xslt-template"><info><link type="guide" xref="icons" group="templates"/><link type="guide" xref="templates" group="icons"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Output an <code>svg</code> element for a figure zoom-out icon.</desc></info><title>icons.svg.figure.zoom.out</title><p>Output an <code>svg</code> element for a figure zoom-out icon.</p>
-  
-  
-  <p>This template outputs an SVG <code>svg</code> element with the zoom-in icon for figures. Figures automatically scale images down. This icon scales them back down after they have been zoomed.</p>
-  <p>SVG icons can use CSS class names to pick up colors from the <file xref="colors">colors</file> module. By default, this icon uses the <code>yelp-svg-stroke</code> and <code>yelp-svg-fill</code> class names.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="icons.svg.figure.zoom.out">
+ <info>
+  <link type="guide" xref="icons" group="templates"/>
+  <link type="guide" xref="templates" group="icons"/>
+  <desc>Output an <sys>svg</sys> element for a figure zoom-out icon.</desc>
+  <revision version="3.28" date="2017-05-24" status="final"/>
+ </info>
+ <title>icons.svg.figure.zoom.out</title>
+ <p>This template outputs an SVG <sys>svg</sys> element with the zoom-in icon for figures.
+ Figures automatically scale images down. This icon scales them back down after
+ they have been zoomed.</p>
+ <p>SVG icons can use CSS class names to pick up colors from the <code xref="colors">colors</code> module.
+ By default, this icon uses the <sys>yelp-svg-stroke</sys> and <sys>yelp-svg-fill</sys> class
+ names.</p>
 </page>

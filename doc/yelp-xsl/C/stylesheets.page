@@ -1,31 +1,27 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/"
-      type="guide"
-      id="stylesheets">
-  <info>
-    <link type="guide" xref="index"/>
-    <title type="link">Stylesheets</title>
-    <title type="link" role="topic">XSLT Stylesheets</title>
-  </info>
-
-  <title>XSLT Stylesheets</title>
-
-  <links type="topic" style="linklist" groups="mal2html mal2xhtml">
-    <title>Mallard to HTML</title>
-  </links>
-  <links type="topic" style="linklist" groups="mal">
-    <title>Mallard Common</title>
-  </links>
-  <links type="topic" style="linklist" groups="db2html db2xhtml">
-    <title>DocBook to HTML</title>
-  </links>
-  <links type="topic" style="linklist" groups="db">
-    <title>DocBook Common</title>
-  </links>
-  <links type="topic" style="linklist" groups="html ttml l10n color icons utils">
-    <title>Common</title>
-  </links>
-  <links type="topic" style="linklist" groups="#first #default #last">
-    <title>Other</title>
-  </links>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="stylesheets">
+ <info>
+  <link type="guide" xref="index"/>
+  <title type="link">Stylesheets</title>
+  <title type="link" role="topic">XSLT Stylesheets</title>
+ </info>
+ <title>XSLT Stylesheets</title>
+ <links type="topic" style="linklist" groups="mal2html mal2xhtml">
+  <title>Mallard to HTML</title>
+ </links>
+ <links type="topic" style="linklist" groups="mal">
+  <title>Mallard Common</title>
+ </links>
+ <links type="topic" style="linklist" groups="db2html db2xhtml">
+  <title>DocBook to HTML</title>
+ </links>
+ <links type="topic" style="linklist" groups="db">
+  <title>DocBook Common</title>
+ </links>
+ <links type="topic" style="linklist" groups="html ttml l10n color icons utils">
+  <title>Common</title>
+ </links>
+ <links type="topic" style="linklist" groups="#first #default #last">
+  <title>Other</title>
+ </links>
 </page>

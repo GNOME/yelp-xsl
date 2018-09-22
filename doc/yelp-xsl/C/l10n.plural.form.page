@@ -1,17 +1,37 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="l10n.plural.form" type="topic" style="xslt-template"><info><link type="guide" xref="l10n" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="3.18" date="2015-07-29" status="final"/><desc>Extract the plural form index for a given cardinality.</desc></info><title>l10n.plural.form</title><p>Extract the plural form index for a given cardinality.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>number</code></title>
-      <p>The cardinality of the plural form.</p>
-    </item>
-    <item>
-      <title><code>lang</code></title>
-      <p>The locale to use when looking up the translated string.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template returns a numeric index of a plural form for a given language, similarly to how indexes are used in gettext PO files. Different languages have different rules for plurals. Some languages have no plurals at all, while others have as many as six different forms. This plural form index is used by <code style="xslt-template" xref="l10n.gettext">l10n.gettext</code> to determine the correct string to use.</p>
-  <p>The rules in this template are hand-written. They are not taken from the PO files. They are written by referencing the PO files in various GNOME modules, as well as the plural rules in the Unicode CLDR.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="l10n.locale"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="l10n.plural.form">
+ <info>
+  <link type="guide" xref="l10n" group="templates"/>
+  <link type="guide" xref="templates" group="l10n"/>
+  <desc>Extract the plural form index for a given cardinality.</desc>
+  <revision version="3.18" date="2015-07-29" status="final"/>
+ </info>
+ <title>l10n.plural.form</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$number</code></title>
+    <p>The cardinality of the plural form.</p>
+   </item>
+   <item>
+    <title><code>$lang</code></title>
+    <p>The locale to use when looking up the translated string.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template returns a numeric index of a plural form for a given language,
+ similarly to how indexes are used in gettext PO files. Different languages have
+ different rules for plurals. Some languages have no plurals at all, while others
+ have as many as six different forms. This plural form index is used by
+ <code xref="l10n.gettext">l10n.gettext</code> to determine the correct string to use.</p>
+ <p>The rules in this template are hand-written. They are not taken from the PO
+ files. They are written by referencing the PO files in various GNOME modules,
+ as well as the plural rules in the Unicode CLDR.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="l10n.locale"/></p>
+  </item>
+ </list>
+</page>

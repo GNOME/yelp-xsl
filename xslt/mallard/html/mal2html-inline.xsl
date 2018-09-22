@@ -24,10 +24,10 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - Inlines
 Handle simple Mallard inline elements.
-:Revision:version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
 This stylesheet contains templates to handle most Mallard inline elements.
-It also maps %{mal.link.content.mode} to %{mal2html.inline.mode}.
+It also maps {mal.link.content.mode} to {mal2html.inline.mode}.
 -->
 
 <xsl:template mode="mal.link.content.mode" match="*">
@@ -38,7 +38,7 @@ It also maps %{mal.link.content.mode} to %{mal2html.inline.mode}.
 <!--%%==========================================================================
 mal2html.inline.mode
 Process Mallard elements in inline mode.
-:Revision:version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
 This mode is applied to elements in inline context. It is be called by certain
 block elements and inline elements to process child content. Certain elements
@@ -46,9 +46,9 @@ may appear in both block and inline mode, and the processing expectations for
 those elements is different depending on context.
 
 Implementations of this mode should handle ubiquitous linking, text directionality,
-and other common inline features. Note that the *{mal2html.span} template handles
+and other common inline features. Note that the {mal2html.span} template handles
 these things automatically, and is suitable for most inline elements. You can use
-the %{mal2html.inline.content.mode} to output special content for the child
+the {mal2html.inline.content.mode} to output special content for the child
 elements.
 -->
 <xsl:template mode="mal2html.inline.mode" match="*">
@@ -63,11 +63,11 @@ elements.
 <!--%%==========================================================================
 mal2html.inline.content.mode
 Output the contents of an inline element.
-:Revision:version="1.0" date="2010-06-03" status="final"
+@revision[version=1.0 date=2010-06-03 status=final]
 
 This template outputs the contents of the inline element it matches. It is
-usually called by *{mal2html.span} to allow elements like #{guiseq}, #{keyseq},
-and #{link} output special inner contents while still using the generic wrapper
+usually called by {mal2html.span} to allow elements like `guiseq`, `keyseq`,
+and `link` output special inner contents while still using the generic wrapper
 template.
 -->
 <xsl:template mode="mal2html.inline.content.mode" match="node()">
@@ -77,18 +77,20 @@ template.
 
 <!--**==========================================================================
 mal2html.span
-Output an HTML #{span} element.
-:Revision:version="3.10" date="2013-07-10" status="final"
-$node: The source element to output a #{span} for.
-$class: An additional string to prepend to the #{class} attribute.
+Output an HTML `span` element.
+@revision[version=3.10 date=2013-07-10 status=final]
 
-This template outputs an HTML #{span} element for a source element. It creates
-a #{class} attribute automatically by passing the local name of ${node} and the
-${class} parameter to *{html.class.attr}. To output the contents of ${node}, it
-applies the mode %{mal2html.inline.content.mode} to ${node}.
+[xsl:params]
+$node: The source element to output a `span` for.
+$class: An additional string to prepend to the `class` attribute.
 
-This template automatically handles ubiquitous linking if ${node} contains
-an #{xref} or #{href} attribute.
+This template outputs an HTML `span` element for a source element. It creates
+a `class` attribute automatically by passing the local name of $node and the
+$class parameter to {html.class.attr}. To output the contents of $node, it
+applies the mode {mal2html.inline.content.mode} to $node.
+
+This template automatically handles ubiquitous linking if $node contains
+an `xref` or `href` attribute.
 -->
 <xsl:template name="mal2html.span">
   <xsl:param name="node" select="."/>

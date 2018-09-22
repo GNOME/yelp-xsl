@@ -23,7 +23,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook Common
-:Requires: l10n
 
 This stylesheet module provides utility templates for DocBook that are
 independant of the target format.
@@ -32,10 +31,10 @@ independant of the target format.
 
 <!--++==========================================================================
 db.id.key
-Get an element from the #{id} attribute.
-:Revision:version="3.4" date="2012-01-26" status="final"
+Get an element from the `id` attribute.
+@revision[version=3.4 date=2012-01-26 status=final]
 
-This key returns any element based on the #{id} attribute, or the #{xml:id}
+This key returns any element based on the `id` attribute, or the `xml:id`
 attribute in DocBook 5.
 -->
 <xsl:key name="db.id.key" match="*" use="@id | @xml:id"/>
@@ -43,13 +42,13 @@ attribute in DocBook 5.
 
 <!--++==========================================================================
 db.biblio.abbrev.key
-Get a #{biblioentry} or #{bibliomixed} element from its #{abbrev}.
-:Revision:version="3.18" date="2015-07-23" status="final"
+Get a `biblioentry` or `bibliomixed` element from its `abbrev`.
+@revision[version=3.18 date=2015-07-23 status=final]
 
-This key returns #{biblioentry} and #{bibliomixed} elements based on their child
-#{abbrev} elements. The #{abbrev} element must be the first child element of the
-#{biblioentry} or #{bibliomixed} element. This key only returns elements that
-have an #{id} attribute for DocBook 4 or an #{xml:id} attribute for DocBook 5.
+This key returns `biblioentry` and `bibliomixed` elements based on their child
+`abbrev` elements. The `abbrev` element must be the first child element of the
+`biblioentry` or `bibliomixed` element. This key only returns elements that
+have an `id` attribute for DocBook 4 or an `xml:id` attribute for DocBook 5.
 -->
 <xsl:key name="db.biblio.abbrev.key"
          match="biblioentry[@id and *[1]/self::abbrev] |
@@ -61,12 +60,12 @@ have an #{id} attribute for DocBook 4 or an #{xml:id} attribute for DocBook 5.
 
 <!--++==========================================================================
 db.biblio.label.key
-Get a #{biblioentry} or #{bibliomixed} element from its #{xreflabel}.
-:Revision:version="3.18" date="2015-07-23" status="final"
+Get a `biblioentry` or `bibliomixed` element from its `xreflabel`.
+@revision[version=3.18 date=2015-07-23 status=final]
 
-This key returns #{biblioentry} and #{bibliomixed} elements based on their
-#{xreflabel} attributes. It only returns elements that have an #{id} attribute
-for DocBook 4 or an #{xml:id} attribute for DocBook 5.
+This key returns `biblioentry` and `bibliomixed` elements based on their
+`xreflabel` attributes. It only returns elements that have an `id` attribute
+for DocBook 4 or an `xml:id` attribute for DocBook 5.
 -->
 <xsl:key name="db.biblio.label.key"
          match="biblioentry[@id and @xreflabel] |
@@ -78,12 +77,12 @@ for DocBook 4 or an #{xml:id} attribute for DocBook 5.
 
 <!--++==========================================================================
 db.biblio.id.key
-Get a #{biblioentry} or #{bibliomixed} element from its #{id}.
-:Revision:version="3.18" date="2015-07-23" status="final"
+Get a `biblioentry` or `bibliomixed` element from its `id`.
+@revision[version=3.18 date=2015-07-23 status=final]
 
-This key returns #{biblioentry} and #{bibliomixed} elements based on their #{id}
-or #{xml:id} attributes. The {#id} attribute is used for DocBook 4, and the
-#{xml:id} attribute is used for DocBook 5.
+This key returns `biblioentry` and `bibliomixed` elements based on their `id`
+or `xml:id` attributes. The {#id} attribute is used for DocBook 4, and the
+`xml:id` attribute is used for DocBook 5.
 -->
 <xsl:key name="db.biblio.id.key"
          match="biblioentry[@id] | bibliomixed[@id]"
@@ -95,12 +94,12 @@ or #{xml:id} attributes. The {#id} attribute is used for DocBook 4, and the
 
 <!--++==========================================================================
 db.glossentry.key
-Get a #{glossentry} element from its #{glossterm}.
-:Revision:version="3.18" date="2015-07-22" status="final"
+Get a `glossentry` element from its `glossterm`.
+@revision[version=3.18 date=2015-07-22 status=final]
 
-This key returns #{glossentry} elements based on the text in their #{glossterm}
-child elements. It only returns #{glossentry} elements that have an #{id}
-attribute in DocBook 4 or an #{xml:id} attribute in DocBook 5.
+This key returns `glossentry` elements based on the text in their `glossterm`
+child elements. It only returns `glossentry` elements that have an `id`
+attribute in DocBook 4 or an `xml:id` attribute in DocBook 5.
 -->
 <xsl:key name="db.glossentry.key"
          match="glossentry[@id]" use="string(glossterm)"/>
@@ -111,10 +110,10 @@ attribute in DocBook 4 or an #{xml:id} attribute in DocBook 5.
 <!--**==========================================================================
 db.copyright
 Outputs copyright information
-$node: The #{copyright} element to format
+$node: The `copyright` element to format
 
-This template outputs copyright information from a #{copyright} elements.
-It assembles the #{year} and #{holder} elements into a simple copyright
+This template outputs copyright information from a `copyright` elements.
+It assembles the `year` and `holder` elements into a simple copyright
 notice, beginning with the copyright symbol "©".
 -->
 <xsl:template name="db.copyright">
@@ -157,9 +156,9 @@ Determines the starting line number for a verbatim element
 $node: The verbatim element to determine the starting line number for
 
 This template determines the starting line number for a verbatim element using
-the #{continuation} attribute.  The template finds the first preceding element
-of the same name, counts its lines, and handles any #{startinglinenumber} or
-#{continuation} element it finds on that element.
+the `continuation` attribute.  The template finds the first preceding element
+of the same name, counts its lines, and handles any `startinglinenumber` or
+`continuation` element it finds on that element.
 -->
 <xsl:template name="db.linenumbering.start">
   <xsl:param name="node" select="."/>
@@ -191,22 +190,24 @@ of the same name, counts its lines, and handles any #{startinglinenumber} or
 
 <!--**==========================================================================
 db.orderedlist.start
-Determine the number to use for the first #{listitem} in an #{orderedlist}.
-:Revision:version="3.10" date="2013-08-12" status="final"
-$node: The #{orderedlist} element to use.
-$continuation: The value of the #{continuation} attribute.
+Determine the number to use for the first `listitem` in an `orderedlist`.
+@revision[version=3.10 date=2013-08-12 status=final]
 
-This template determines the starting number for an #{orderedlist} element using
-the #{continuation} attribute.  The template finds the first preceding #{orderedlist}
-element and counts its list items.  If that element also uses the #{continuation}
+[xsl:params]
+$node: The `orderedlist` element to use.
+$continuation: The value of the `continuation` attribute.
+
+This template determines the starting number for an `orderedlist` element using
+the `continuation` attribute.  The template finds the first preceding `orderedlist`
+element and counts its list items.  If that element also uses the `continuation`
 attribute, this template calls itself recursively to add that element's starting
 line number to its list item count.
 
 This template uses conditional processing when looking at preceding ordered lists
 and their child list items.
 
-The ${continuation} parameter is automatically set based on the #{continuation}
-attribute of ${node}. It exists as a parameter to allow this template to force
+The $continuation parameter is automatically set based on the `continuation`
+attribute of $node. It exists as a parameter to allow this template to force
 continuation when it calls itself recursively for conditional processing.
 -->
 <xsl:template name="db.orderedlist.start">
@@ -259,10 +260,10 @@ continuation when it calls itself recursively for conditional processing.
 <!--**==========================================================================
 db.personname
 Outputs the name of a person
-$node: The element containing tags such as #{firstname} and #{surname}
+$node: The element containing tags such as `firstname` and `surname`
 
-This template outputs the name of a person as modelled by the #{personname}
-element.  The #{personname} element allows authors to mark up components of
+This template outputs the name of a person as modelled by the `personname`
+element.  The `personname` element allows authors to mark up components of
 a person's name, such as the person's first name and surname.  This template
 assembles those into a string.
 -->
@@ -343,10 +344,10 @@ assembles those into a string.
 <!--**==========================================================================
 db.personname.list
 Outputs a list of people's names
-$nodes: The elements containing tags such as #{firstname} and #{surname}
+$nodes: The elements containing tags such as `firstname` and `surname`
 
-This template outputs a list of names of people as modelled by the #{personname}
-element.  The #{personname} element allows authors to mark up components of a
+This template outputs a list of names of people as modelled by the `personname`
+element.  The `personname` element allows authors to mark up components of a
 person's name, such as the person's first name and surname.
 -->
 <xsl:template name="db.personname.list">

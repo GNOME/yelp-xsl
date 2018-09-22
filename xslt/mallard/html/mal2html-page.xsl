@@ -29,18 +29,18 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - Pages
 Handle pages, sections, and top-level data.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This stylesheet contains templates to process Mallard #{page} and #{section}
+This stylesheet contains templates to process Mallard `page` and `section`
 elements, including implementations of the interfaces provided by the common
-!{html} stylesheet.
+{html} stylesheet.
 -->
 
 
 <!--@@==========================================================================
 mal2html.editor_mode
 Add information that's useful to writers and editors.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 When this parameter is set to true, these stylesheets will output editorial
 comments, status markers, and other information that's useful to writers and
@@ -52,12 +52,14 @@ editors.
 <!--**==========================================================================
 mal2html.page.about
 Output the copyrights, credits, and license information at the bottom of a page.
-:Revision:version="3.8" date="2012-11-05" status="final"
-$node: The top-level #{page} element.
+@revision[version=3.8 date=2012-11-05 status=final]
+
+[xsl:params]
+$node: The top-level `page` element.
 
 This template outputs copyright information, credits, and license information for
-the page. By default it is called by the %{html.footer.mode} implementation for
-the #{page} element. Information is extracted from the #{info} element of ${node}.
+the page. By default it is called by the {html.footer.mode} implementation for
+the `page` element. Information is extracted from the `info` element of $node.
 -->
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
@@ -216,13 +218,15 @@ the #{page} element. Information is extracted from the #{info} element of ${node
 <!--**==========================================================================
 mal2html.page.linktrails
 Ouput trails of guide links for a page.
-:Revision:version="3.4" date="2011-11-19" status="final"
-$node: The top-level #{page} element.
+@revision[version=3.4 date=2011-11-19 status=final]
 
-This template outputs all of the link trails for the page ${node}. It gets the
-trails from ${mal.link.linktrails}. If the result is non-empty, it outputs a
-wrapper #{div}, sorts the trails, and calls *{mal2html.page.linktrails.trail}
-on each one. Otherwise, it calls the stub template *{mal2html.page.linktrails.empty}.
+[xsl:params]
+$node: The top-level `page` element.
+
+This template outputs all of the link trails for the page $node. It gets the
+trails from $mal.link.linktrails. If the result is non-empty, it outputs a
+wrapper `div`, sorts the trails, and calls {mal2html.page.linktrails.trail}
+on each one. Otherwise, it calls the stub template {mal2html.page.linktrails.empty}.
 -->
 <xsl:template name="mal2html.page.linktrails">
   <xsl:param name="node" select="."/>
@@ -258,13 +262,15 @@ on each one. Otherwise, it calls the stub template *{mal2html.page.linktrails.em
 mal2html.page.linktrails.empty
 Deprecated stub to output something when no link trails are present.
 :Stub: true
-:Revision:version="3.20" date="2015-09-17" status="final"
-$node: The top-level #{page} element.
+@revision[version=3.20 date=2015-09-17 status=final]
 
-This template is deprecated. Use *{html.linktrails.empty} instead. By default,
-this template calls *{html.linktrails.empty}, passing the ${node} parameter.
+[xsl:params]
+$node: The top-level `page` element.
 
-This template is a stub. It is called by ${mal2html.page.linktrails} when there
+This template is deprecated. Use {html.linktrails.empty} instead. By default,
+this template calls {html.linktrails.empty}, passing the $node parameter.
+
+This template is a stub. It is called by $mal2html.page.linktrails when there
 are no link trails to output. Some customizations prepend extra site links to
 link trails. This template allows them to output those links even when no link
 trails would otherwise be present.
@@ -280,13 +286,15 @@ trails would otherwise be present.
 <!--**==========================================================================
 mal2html.page.linktrails.trail
 Output one trail of guide links.
-:Revision:version="3.20" date="2015-09-19" status="final"
-$node: A #{link} element from *{mal.link.linktrails}.
+@revision[version=3.20 date=2015-09-19 status=final]
 
-This template outputs an HTML #{div} element containing all the links in a
-single link trail. It calls *{html.linktrails.prefix} (by way of 
-*{mal2html.page.linktrails.trail.prefix}) to output a custom boilerplate prefix,
-then calls *{mal2html.page.linktrails.link} to output the actual links.
+[xsl:params]
+$node: A `link` element from {mal.link.linktrails}.
+
+This template outputs an HTML `div` element containing all the links in a
+single link trail. It calls {html.linktrails.prefix} (by way of 
+{mal2html.page.linktrails.trail.prefix}) to output a custom boilerplate prefix,
+then calls {mal2html.page.linktrails.link} to output the actual links.
 -->
 <xsl:template name="mal2html.page.linktrails.trail">
   <xsl:param name="node" select="."/>
@@ -305,15 +313,17 @@ then calls *{mal2html.page.linktrails.link} to output the actual links.
 mal2html.page.linktrails.trail.prefix
 Deprecated stub to output extra content before a link trail.
 :Stub: true
-:Revision:version="3.20" date="2015-09-17" status="final"
-$node: A #{link} element from *{mal.link.linktrails}.
+@revision[version=3.20 date=2015-09-17 status=final]
 
-This template is deprecated. Use *{html.linktrails.prefix} instead. By default,
-this template calls *{html.linktrails.prefix}, passing the ${node} parameter.
+[xsl:params]
+$node: A `link` element from {mal.link.linktrails}.
 
-This template is a stub. It is called by *{mal2html.page.linktrails.trail} for
+This template is deprecated. Use {html.linktrails.prefix} instead. By default,
+this template calls {html.linktrails.prefix}, passing the $node parameter.
+
+This template is a stub. It is called by {mal2html.page.linktrails.trail} for
 each link trail before the normal links are output with
-*{mal2html.page.linktrails.link}. This template is useful for adding extra site
+{mal2html.page.linktrails.link}. This template is useful for adding extra site
 links at the beginning of each link trail.
 -->
 <xsl:template name="mal2html.page.linktrails.trail.prefix">
@@ -327,17 +337,19 @@ links at the beginning of each link trail.
 <!--**==========================================================================
 mal2html.page.linktrails.link
 Output a link and the following links in a link trail.
-:Revision:version="3.4" date="2011-11-19" status="final"
-$node: A #{link} element from *{mal.link.linktrails}.
+@revision[version=3.4 date=2011-11-19 status=final]
+
+[xsl:params]
+$node: A `link` element from {mal.link.linktrails}.
 $direction: The text directionality.
 
-This template is called by *{mal2html.page.linktrails.trail} to output the links
-in a trail. Link trails returned by *{mal.link.linktrails} are returned as nested
-#{link} elements. This template takes one of those elements, outputs an HTML #{a}
-element, then calls itself recursively on the child #{link} element, if it exists.
+This template is called by {mal2html.page.linktrails.trail} to output the links
+in a trail. Link trails returned by {mal.link.linktrails} are returned as nested
+`link` elements. This template takes one of those elements, outputs an HTML `a`
+element, then calls itself recursively on the child `link` element, if it exists.
 
-The ${direction} parameter specifies the current text directionality. If not
-provided, it is computed automatically with *{l10n.direction}. It determines the
+The $direction parameter specifies the current text directionality. If not
+provided, it is computed automatically with {l10n.direction}. It determines the
 separators used between links.
 -->
 <xsl:template name="mal2html.page.linktrails.link">
@@ -388,12 +400,14 @@ separators used between links.
 <!--**==========================================================================
 mal2html.editor.badge
 Output a badge for a link showing the revision status of the target.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
+
+[xsl:params]
 $target: The page or section being linked to.
 
 This template may be called by link formatters to output a badge showing the
 revision status of the linked-to page or section. It only outputs a badge if
-@{mal2html.editor_mode} is #{true}.
+{mal2html.editor_mode} is `true`.
 -->
 <xsl:template name="mal2html.editor.badge">
   <xsl:param name="target" select="."/>
@@ -461,12 +475,14 @@ revision status of the linked-to page or section. It only outputs a badge if
 <!--**==========================================================================
 mal2html.editor.banner
 Output a banner with the revision status of a page.
-:Revision:version="3.8" date="2012-11-05" status="final"
-$node: The top-level #{page} element.
+@revision[version=3.8 date=2012-11-05 status=final]
 
-This template is called by the %{html.body.mode} implementation for #{page}
+[xsl:params]
+$node: The top-level `page` element.
+
+This template is called by the {html.body.mode} implementation for `page`
 elements. It outputs a banner providing information about the revision status
-of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
+of $node. It only outputs a banner if {mal2html.editor_mode} is `true`.
 -->
 <xsl:template name="mal2html.editor.banner">
   <xsl:param name="node" select="."/>
@@ -724,12 +740,14 @@ of ${node}. It only outputs a banner if @{mal2html.editor_mode} is #{true}.
 
 <!--**==========================================================================
 mal2html.section
-Output HTML for a Mallard #{section} element.
-:Revision:version="3.4" date="2012-01-26" status="final"
-$node: The #{section} element.
+Output HTML for a Mallard `section` element.
+@revision[version=3.4 date=2012-01-26 status=final]
 
-This template outputs HTML for a #{section} element. It it called by the
-templates that handle #{page} and #{section} elements.
+[xsl:params]
+$node: The `section` element.
+
+This template outputs HTML for a `section` element. It it called by the
+templates that handle `page` and `section` elements.
 -->
 <xsl:template name="mal2html.section">
   <xsl:param name="node" select="."/>
@@ -928,11 +946,11 @@ templates that handle #{page} and #{section} elements.
 <!--%%==========================================================================
 mal2html.title.mode
 Output headings for titles and subtitles.
-:Revision:version="3.10" date="2013-07-10" status="final"
+@revision[version=3.10 date=2013-07-10 status=final]
 
-This template is called on #{title} and #{subtitle} elements that appear as
-direct child content of #{page} or #{section} elements. Normal block titles
-are processed in %{mal2html.block.mode}.
+This template is called on `title` and `subtitle` elements that appear as
+direct child content of `page` or `section` elements. Normal block titles
+are processed in {mal2html.block.mode}.
 -->
 <xsl:template mode="mal2html.title.mode" match="mal:title | mal:subtitle">
   <xsl:if test="not(contains(concat(' ', @style, ' '), ' hidden '))">

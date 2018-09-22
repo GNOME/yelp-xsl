@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.cache.file" type="topic" style="xslt-param"><info><link type="guide" xref="mal-link" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.0" date="2010-01-02" status="final"/><desc>The location of the cache file.</desc></info><title>mal.cache.file</title><p>The location of the cache file.</p>
-  
-  
-  <p>In order to locate and process links between pages, this stylesheet requires a Mallard cache file.  Use this parameter to pass the path to a valid cache file.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="mal.cache.file">
+ <info>
+  <link type="guide" xref="mal-link" group="params"/>
+  <link type="guide" xref="params" group="mal"/>
+  <desc>The location of the cache file.</desc>
+  <revision version="3.0" date="2010-01-02" status="final"/>
+ </info>
+ <title>mal.cache.file</title>
+ <p>In order to locate and process links between pages, this stylesheet requires
+ a Mallard cache file.  Use this parameter to pass the path to a valid cache
+ file.</p>
 </page>

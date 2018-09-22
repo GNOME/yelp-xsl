@@ -1,12 +1,37 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.math.div" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-math" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.8" date="2012-11-13" status="final"/><desc>Output an HTML <code>div</code> element and block-level MathML.</desc></info><title>db2html.math.div</title><p>Output an HTML <code>div</code> element and block-level MathML.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>mml:math</code> element to render.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates an HTML <code>div</code> element for a MathML <code>mml:math</code> element, then outputs MathML content. It sets the <code>display</code> attribute on the output to <code>"block"</code> and applies <code style="xslt-mode" xref="db2html.math.mode">db2html.math.mode</code> to the child content.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="html.lang.attrs"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="db2html.math.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.math.div">
+ <info>
+  <link type="guide" xref="db2html-math" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output an HTML <sys>div</sys> element and block-level MathML.</desc>
+  <revision version="3.8" date="2012-11-13" status="final"/>
+ </info>
+ <title>db2html.math.div</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>mml:math</sys> element to render.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates an HTML <sys>div</sys> element for a MathML <sys>mml:math</sys> element,
+ then outputs MathML content. It sets the <sys>display</sys> attribute on the output to
+ <sys>"block"</sys> and applies <code xref="db2html.math.mode">db2html.math.mode</code> to the child content.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="db2html.math.mode"/></p>
+  </item>
+ </list>
+</page>

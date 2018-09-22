@@ -38,10 +38,12 @@ REMARK: Describe this module
 
 <!--**==========================================================================
 dita2html.span
-Output an HTML #{span} element.
-:Revision:version="3.8" date="2012-10-04" status="incomplete"
-$node: The source element to output a #{span} for.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `span` element.
+@revision[version=3.8 date=2012-10-04 status=incomplete]
+
+[xsl:params]
+$node: The source element to output a `span` for.
+$class: The value of the HTML `class` attribute.
 
 FIXME
 -->

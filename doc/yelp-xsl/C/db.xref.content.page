@@ -1,20 +1,54 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.xref.content" type="topic" style="xslt-template"><info><link type="guide" xref="db-xref" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates the content of a cross reference</desc></info><title>db.xref.content</title><p>Generates the content of a cross reference</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>linkend</code></title>
-      <p>The id of the linked-to element, usually from the <code>linkend</code> attribute</p>
-    </item>
-    <item>
-      <title><code>target</code></title>
-      <p>The linked-to element</p>
-    </item>
-    <item>
-      <title><code>xrefstyle</code></title>
-      <p>The cross reference style, usually from the <code>xrefstyle</code> attribute</p>
-    </item>
-  </terms></synopsis>
-  <comment><p>The xrefstyle/role stuff needs to be documented</p></comment>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.title"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db.xref.content">
+ <info>
+  <link type="guide" xref="db-xref" group="templates"/>
+  <link type="guide" xref="templates" group="db"/>
+  <desc>Generates the content of a cross reference</desc>
+ </info>
+ <title>db.xref.content</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$linkend</code></title>
+    <p>The id of the linked-to element, usually from the <sys>linkend</sys> attribute</p>
+   </item>
+   <item>
+    <title><code>$target</code></title>
+    <p>The linked-to element</p>
+   </item>
+   <item>
+    <title><code>$xrefstyle</code></title>
+    <p>The cross reference style, usually from the <sys>xrefstyle</sys> attribute</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: The xrefstyle/role stuff needs to be documented</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="db.chunk.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="db.chunk.extension"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.subtitle"/></p>
+  </item>
+  <item>
+   <p><link xref="db.title"/></p>
+  </item>
+  <item>
+   <p><link xref="db.titleabbrev"/></p>
+  </item>
+ </list>
+</page>

@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="l10n.locale" type="topic" style="xslt-param"><info><link type="guide" xref="l10n" group="parameters"/><link type="guide" xref="parameters" group="l10n"/><revision version="3.18" date="2015-08-13" status="final"/><desc>The top-level locale of the document.</desc></info><title>l10n.locale</title><p>The top-level locale of the document.</p>
-  
-  
-  <p>This parameter provides the top-level locale of the document, taken from either the <code>xml:lang</code> or the <code>lang</code> parameter of the root element. It holds the locale exactly as specified in the document, with no normalization.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="l10n.locale">
+ <info>
+  <link type="guide" xref="l10n" group="params"/>
+  <link type="guide" xref="params" group="l10n"/>
+  <desc>The top-level locale of the document.</desc>
+  <revision version="3.18" date="2015-08-13" status="final"/>
+ </info>
+ <title>l10n.locale</title>
+ <p>This parameter provides the top-level locale of the document, taken from either
+ the <sys>xml:lang</sys> or the <sys>lang</sys> parameter of the root element. It holds the
+ locale exactly as specified in the document, with no normalization.</p>
 </page>

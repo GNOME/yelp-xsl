@@ -1,13 +1,53 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.pre" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-block" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.12" date="2013-11-02" status="final"/><desc>Output an HTML <code>pre</code> element.</desc></info><title>mal2html.pre</title><p>Output an HTML <code>pre</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The source element to output a <code>pre</code> for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs an HTML <code>pre</code> element along with a wrapper <code>div</code> element for CSS styling. It should be called for verbatim block elements. It will automatically strip leading and trailing newlines using <code style="xslt-template" xref="utils.strip_newlines">utils.strip_newlines</code>.</p>
-  <p>If <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>, this template automatically outputs syntax highlighting support based on the <code>mime</code> attribute of <code style="xslt-param">node</code>, using <code style="xslt-template" xref="html.syntax.class">html.syntax.class</code> to determine the correct highlighter.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.if.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="utils.linenumbering"/></p></item><item><p><link xref="html.syntax.class"/></p></item><item><p><link xref="utils.strip_newlines"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.inline.mode"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.syntax.highlight"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.pre">
+ <info>
+  <link type="guide" xref="mal2html-block" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output an HTML <sys>pre</sys> element.</desc>
+  <revision version="3.12" date="2013-11-02" status="final"/>
+ </info>
+ <title>mal2html.pre</title>
+ <p><code>$node</code>: The source element to output a <sys>pre</sys> for.</p>
+ <p>This template outputs an HTML <sys>pre</sys> element along with a wrapper <sys>div</sys> element
+ for CSS styling. It should be called for verbatim block elements. It will
+ automatically strip leading and trailing newlines using <code xref="utils.strip_newlines">utils.strip_newlines</code>.</p>
+ <p>If <code xref="html.syntax.highlight">html.syntax.highlight</code> is <sys>true</sys>, this template automatically outputs
+ syntax highlighting support based on the <sys>mime</sys> attribute of <code>$node</code>, using
+ <code xref="html.syntax.class">html.syntax.class</code> to determine the correct highlighter.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.editor_mode"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.class"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.if.test"/></p>
+  </item>
+  <item>
+   <p><link xref="utils.linenumbering"/></p>
+  </item>
+  <item>
+   <p><link xref="utils.strip_newlines"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="mal2html.inline.mode"/></p>
+  </item>
+ </list>
+</page>

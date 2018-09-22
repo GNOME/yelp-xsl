@@ -1,6 +1,22 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar.left" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>List of components to add to the left sidebar.</desc></info><title>html.sidebar.left</title><p>List of components to add to the left sidebar.</p>
-  
-  
-  <p>This parameter takes a space-separated list of tokens that specify which components to add to the stock left sidebar. These stylesheets recognize certain tokens, and you can add your own with <code style="xslt-mode" xref="html.sidebar.mode">html.sidebar.mode</code>. See <code style="xslt-template" xref="html.sidebar">html.sidebar</code> for further details.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="html.sidebar.left">
+ <info>
+  <link type="guide" xref="html" group="params"/>
+  <link type="guide" xref="params" group="html"/>
+  <desc>List of components to add to the left sidebar.</desc>
+  <revision version="3.30" date="2018-06-10" status="candidate"/>
+ </info>
+ <title>html.sidebar.left</title>
+ <p>This parameter takes a space-separated list of tokens that specify which
+ components to add to the stock left sidebar. These stylesheets recognize
+ certain tokens, and you can add your own with <code xref="html.sidebar.mode">html.sidebar.mode</code>. See
+ <code xref="html.sidebar">html.sidebar</code> for further details.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>html.sidebar.left</code></title>
+    <p><code>''</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

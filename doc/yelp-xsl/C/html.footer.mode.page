@@ -1,6 +1,14 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.footer.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Output the footer content for an element.</desc></info><title>html.footer.mode</title><p>Output the footer content for an element.</p>
-  
-  
-  <p>This mode is called by <code style="xslt-template" xref="html.page">html.page</code> to output the contents of the <code>footer</code> element below the main content. Importing stylesheets may implement this mode for any element that will be passed to <code style="xslt-template" xref="html.page">html.page</code>. If they do not, the <code>footer</code> element will be empty by default.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="html.footer.mode">
+ <info>
+  <link type="guide" xref="html" group="modes"/>
+  <link type="guide" xref="modes" group="html"/>
+  <desc>Output the footer content for an element.</desc>
+  <revision version="3.28" date="2017-05-24" status="final"/>
+ </info>
+ <title>html.footer.mode</title>
+ <p>This mode is called by <code xref="html.page">html.page</code> to output the contents of the <sys>footer</sys>
+ element below the main content. Importing stylesheets may implement this mode
+ for any element that will be passed to <code xref="html.page">html.page</code>. If they do not, the
+ <sys>footer</sys> element will be empty by default.</p>
 </page>

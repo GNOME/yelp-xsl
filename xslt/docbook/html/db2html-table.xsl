@@ -22,7 +22,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Tables
-:Requires: db2html-block db2html-inline db2html-xref l10n
 
 REMARK: This needs lots of talk about CALS
 -->
@@ -30,10 +29,12 @@ REMARK: This needs lots of talk about CALS
 
 <!--**==========================================================================
 db2html.row
-Creates a #{tr} element for a #{row} element
-$row: The #{row} element to process
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Creates a `tr` element for a `row` element
+
+[xsl:params]
+$row: The `row` element to process
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
 $colsep: Whether column separators are currently enabled
 $rowsep: Whether column separators are currently enabled
 $spanstr: The string representation of the row spans
@@ -101,55 +102,57 @@ FIXME
 
 <!--**==========================================================================
 db2html.entry
-Creates a #{td} element for an #{entry} element
-$entry: The #{entry} element to process
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Creates a `td` element for an `entry` element
+
+[xsl:params]
+$entry: The `entry` element to process
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
 $colsep: Whether column separators are currently enabled
 $rowsep: Whether column separators are currently enabled
 $colpos: The output column position currently being considered
-$colnum: The actual column number of ${entry}
+$colnum: The actual column number of $entry
 $spanstr: The string representation of the row spans
 
-This template processes a single #{entry} element and generates #{td} elements
-as needed.  It then calls itself on the following #{entry} element, adjusting
+This template processes a single `entry` element and generates `td` elements
+as needed.  It then calls itself on the following `entry` element, adjusting
 parameters as necessary.  Under certain conditions, this template may not be
-able to output a #{td} element immediately.  In these cases, it makes whatever
-adjustments are needed and calls itself or *{db2html.entry.implicit} (which,
+able to output a `td` element immediately.  In these cases, it makes whatever
+adjustments are needed and calls itself or {db2html.entry.implicit} (which,
 in turn, calls this template again when it's finished).
 
-Three parameters are used to determine whether a #{td} element can be output.
-The ${spanstr} parameter provides infomation about row spans in effect from
-entries in previous rows; the ${colpos} parameter specifies which column we
-would output to if we created a #{td}; and the ${colnum} parameter specifies
-which column this #{entry} should be in, according to any relevant #{colspec}
-or #{spanspec} elemets.
+Three parameters are used to determine whether a `td` element can be output.
+The $spanstr parameter provides infomation about row spans in effect from
+entries in previous rows; the $colpos parameter specifies which column we
+would output to if we created a `td`; and the $colnum parameter specifies
+which column this `entry` should be in, according to any relevant `colspec`
+or `spanspec` elemets.
 
-There are two conditions that cause this template not to output a #{td} element
-immediately: if the ${spanstr} parameter does not start with #{0:}, and if the
-${colpos} parameter is less than the ${colnum} parameter.
+There are two conditions that cause this template not to output a `td` element
+immediately: if the $spanstr parameter does not start with `0:`, and if the
+$colpos parameter is less than the $colnum parameter.
 
-The ${spanstr} parameter specifies the row spans in effect from entries in
-previous rows.  As this template iterates over the #{entry} elements, it strips
-off parts of ${spanstr} so that only the parts relevant to the #{entry} are
-present.  If ${spanstr} does not start with #{0:}, then an entry in a previous
+The $spanstr parameter specifies the row spans in effect from entries in
+previous rows.  As this template iterates over the `entry` elements, it strips
+off parts of $spanstr so that only the parts relevant to the `entry` are
+present.  If $spanstr does not start with `0:`, then an entry in a previous
 row occupies this column position.  In this case, that value is removed from
-${spanstr}, the ${colpos} parameter is incremented, and *{db2html.entry} is
-called again.  Additionally, since *{db2html.entry.colnum} doesn't consider
-row spans, the ${colnum} parameter may be incremented as well.
+$spanstr, the $colpos parameter is incremented, and {db2html.entry} is
+called again.  Additionally, since {db2html.entry.colnum} doesn't consider
+row spans, the $colnum parameter may be incremented as well.
 
-If the ${colpos} parameter is less than the ${colnum} parameter, then the
+If the $colpos parameter is less than the $colnum parameter, then the
 document has skipped entries by explicitly referencing a column.  This is
 allowed in CALS tables, but not in HTML.  To fill the blank spaces, we call
-*{db2html.entry.implicit}, which outputs an empty #{td} element spanning as
-many columns as necessary to fill in the blanks.  The *{db2html.entry.implicit}
+{db2html.entry.implicit}, which outputs an empty `td` element spanning as
+many columns as necessary to fill in the blanks.  The {db2html.entry.implicit}
 template then calls this template again with appropriate parameter values.
 
-When this template is finally able to output a #{td} element, it calculates
-appropriate values for the #{style} and #{class} attribute based on DocBook
-attributes on the #{entry}, the relevant #{colspec} or #{spanspec}, and any
-relevant ancestor elements.  It then calls itself on the following #{entry}
-element to output the next #{td}.
+When this template is finally able to output a `td` element, it calculates
+appropriate values for the `style` and `class` attribute based on DocBook
+attributes on the `entry`, the relevant `colspec` or `spanspec`, and any
+relevant ancestor elements.  It then calls itself on the following `entry`
+element to output the next `td`.
 -->
 <xsl:template name="db2html.entry">
   <xsl:param name="entry" select="."/>
@@ -493,32 +496,34 @@ element to output the next #{td}.
 
 <!--**==========================================================================
 db2html.entry.implicit
-Creates an implicit #{td} element to fill up unoccupied columns
-$entry: The #{entry} element currently being processed
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Creates an implicit `td` element to fill up unoccupied columns
+
+[xsl:params]
+$entry: The `entry` element currently being processed
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
 $colsep: Whether column separators are currently enabled
 $rowsep: Whether column separators are currently enabled
 $colpos: The output column position currently being considered
-$colnum: The actual column number of ${entry}
-$colspan: How many columns the implicit #{td} currently spans
+$colnum: The actual column number of $entry
+$colspan: How many columns the implicit `td` currently spans
 $spanstr: The string representation of the row spans
 
-CALS tables in DocBook don't need to have #{entry} elements for each column
+CALS tables in DocBook don't need to have `entry` elements for each column
 in each row, even when the column is not covered by a row-spanning entry from
-a previous row.  An #{entry} can explicitly specify which column it's in, and
+a previous row.  An `entry` can explicitly specify which column it's in, and
 any previous unfilled columns are considered blank.  Since HTML tables don't
-have this mechanism, we have to insert blank #{td} elements to fill the gaps.
+have this mechanism, we have to insert blank `td` elements to fill the gaps.
 
-When *{db2html.entry} detects a blank entry, it will call this template with
+When {db2html.entry} detects a blank entry, it will call this template with
 the approprite parameters.  This template then calls itself recursively, each
-time adjusting the ${colpos}, ${colspan}, and ${spanstr} parameters, until it
-comes across the last column that needs to be filled.  It then outputs a #{td}
-element with an appropriate #{colspan} attribute.
+time adjusting the $colpos, $colspan, and $spanstr parameters, until it
+comes across the last column that needs to be filled.  It then outputs a `td`
+element with an appropriate `colspan` attribute.
 
-Finally, this template calls *{db2html.entry} again on ${entry}.  With the
-values of ${colpos} and ${spanstr} suitably adjusted, that template is then
-able to output the #{td} for the #{entry} element.
+Finally, this template calls {db2html.entry} again on $entry.  With the
+values of $colpos and $spanstr suitably adjusted, that template is then
+able to output the `td` for the `entry` element.
 -->
 <xsl:template name="db2html.entry.implicit">
   <xsl:param name="entry"/>
@@ -621,11 +626,13 @@ able to output the #{td} for the #{entry} element.
 
 <!--**==========================================================================
 db2html.entry.colnum
-Calculates the actual column number for an #{entry} element
-$entry: The #{entry} element to process
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
-$colpos: The column position, as passed by the preceding #{entry}
+Calculates the actual column number for an `entry` element
+
+[xsl:params]
+$entry: The `entry` element to process
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
+$colpos: The column position, as passed by the preceding `entry`
 
 FIXME
 -->
@@ -673,10 +680,12 @@ FIXME
 
 <!--**==========================================================================
 db2html.colspec.colnum
-Calculates the column number for a #{colspec} element
-$colspec: The #{colspec} element to process
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Calculates the column number for a `colspec` element
+
+[xsl:params]
+$colspec: The `colspec` element to process
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
 
 FIXME
 -->
@@ -708,15 +717,17 @@ FIXME
 
 <!--**==========================================================================
 db2html.entry.colspan
-Calculates the #{colspan} for an #{entry} element
-$entry: The #{entry} element to process
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Calculates the `colspan` for an `entry` element
 
-This template calculates how many columns an #{entry} element should span.
+[xsl:params]
+$entry: The `entry` element to process
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
+
+This template calculates how many columns an `entry` element should span.
 In CALS tables, column spanning is done by specifying starting and ending
-#{colspec} elements, or by specifying a #{spanspec} element which specifies
-starting and ending #{colspec} elements.
+`colspec` elements, or by specifying a `spanspec` element which specifies
+starting and ending `colspec` elements.
 -->
 <xsl:template name="db2html.entry.colspan">
   <xsl:param name="entry" select="."/>
@@ -778,9 +789,11 @@ starting and ending #{colspec} elements.
 <!--**==========================================================================
 db2html.spanstr
 Generates a string specifying the row spans in effect
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
-$spanstr: The ${spanstr} parameter used by the previous row
+
+[xsl:params]
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
+$spanstr: The $spanstr parameter used by the previous row
 
 REMARK: This template needs to be explained in detail, but I forgot how it works.
 -->
@@ -884,9 +897,11 @@ REMARK: This template needs to be explained in detail, but I forgot how it works
 
 <!--**==========================================================================
 db2html.spanstr.pop
-Calculates the remaining spans after an #{entry} element
-$colspecs: The #{colspec} elements currently in scope
-$spanspecs: The #{spanspec} elements currently in scope
+Calculates the remaining spans after an `entry` element
+
+[xsl:params]
+$colspecs: The `colspec` elements currently in scope
+$spanspecs: The `spanspec` elements currently in scope
 $colspan: The number of columns to pop
 $spanstr: The string representation of the column spans
 

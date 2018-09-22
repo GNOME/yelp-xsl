@@ -1,2 +1,65 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db-profile" type="guide" style="xslt-stylesheet"><?xslt-private _db.profile.test.compare?><info><link type="guide" xref="stylesheets" group="db"/><revision version="3.10" date="2013-08-12" status="final"/><link type="xslt-defines-template" xref="db.profile.test"/><link type="xslt-defines-param" xref="db.profile.arch"/><link type="xslt-defines-param" xref="db.profile.audience"/><link type="xslt-defines-param" xref="db.profile.condition"/><link type="xslt-defines-param" xref="db.profile.conformance"/><link type="xslt-defines-param" xref="db.profile.os"/><link type="xslt-defines-param" xref="db.profile.os"/><link type="xslt-defines-param" xref="db.profile.revision"/><link type="xslt-defines-param" xref="db.profile.security"/><link type="xslt-defines-param" xref="db.profile.userlevel"/><link type="xslt-defines-param" xref="db.profile.vendor"/><link type="xslt-defines-param" xref="db.profile.wordsize"/></info><title>DocBook Profiling</title><p>Support for DocBook effectivity attributes</p><p>This stylesheet contains utilities for handling conditional processing in DocBook documents.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Parameters</title><item><p><link xref="db.profile.arch"/></p></item><item><p><link xref="db.profile.audience"/></p></item><item><p><link xref="db.profile.condition"/></p></item><item><p><link xref="db.profile.conformance"/></p></item><item><p><link xref="db.profile.os"/></p></item><item><p><link xref="db.profile.outputformat"/></p></item><item><p><link xref="db.profile.revision"/></p></item><item><p><link xref="db.profile.security"/></p></item><item><p><link xref="db.profile.userlevel"/></p></item><item><p><link xref="db.profile.vendor"/></p></item><item><p><link xref="db.profile.wordsize"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db-profile">
+ <info>
+  <link type="guide" xref="stylesheets" group="db"/>
+  <desc>Support for DocBook effectivity attributes</desc>
+  <revision version="3.10" date="2013-08-12" status="final"/>
+ </info>
+ <title>DocBook Profiling</title>
+ <p>This stylesheet contains utilities for handling conditional processing
+ in DocBook documents.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="db.profile.arch"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.audience"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.condition"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.conformance"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.os"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.outputformat"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.revision"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.security"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.userlevel"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.vendor"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.wordsize"/></p>
+  </item>
+ </list>
+</page>

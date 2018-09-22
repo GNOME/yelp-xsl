@@ -88,6 +88,8 @@ REMARK: Describe what this does
 <!--**==========================================================================
 db.chunk.depth-in-chunk
 Determines the depth of an element in the containing chunk.
+
+[xsl:params]
 $node: The element to determine the depth of
 
 REMARK: Explain how this works
@@ -109,6 +111,8 @@ REMARK: Explain how this works
 <!--**==========================================================================
 db.chunk.depth-of-chunk
 Determines the depth of the containing chunk in the document.
+
+[xsl:params]
 $node: The element to determine the depth of
 
 REMARK: Explain how this works
@@ -130,9 +134,11 @@ REMARK: Explain how this works
 <!--**==========================================================================
 db.chunk.chunk-id
 Determines the id of the chunk that contains an element.
+
+[xsl:params]
 $id: The id of the element to determine the chunk id of
 $node: The element to determine the chunk id of
-$depth_in_chunk: The depth of ${node} in the containing chunk
+$depth_in_chunk: The depth of $node in the containing chunk
 
 REMARK: Explain how this works
 -->
@@ -165,9 +171,11 @@ REMARK: Explain how this works
 <!--**==========================================================================
 db.chunk.chunk-id.axis
 Determines the id of the first chunk along a specified axis.
+
+[xsl:params]
 $node: The base element
 $node: The axis along which to find the first chunk
-$depth_in_chunk: The depth of ${node} in the containing chunk
+$depth_in_chunk: The depth of $node in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
 
 REMARK: Explain how this works, and what the axes are

@@ -24,7 +24,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Inline Elements
-:Requires: db-common db2html-xref l10n
 
 REMARK: Describe this module
 -->
@@ -32,7 +31,9 @@ REMARK: Describe this module
 
 <!--**==========================================================================
 db2html.inline.children
-Renders the children of an inline element.
+Render the children of an inline element.
+
+[xsl:params]
 $node: The element to render
 $children: The child elements to process
 
@@ -55,11 +56,13 @@ REMARK: Document this template
 
 <!--**==========================================================================
 db2html.inline
-Renders an inline element as an HTML #{span} element
+Render an inline element as an HTML `span` element
+
+[xsl:params]
 $node: The element to render
 $children: The child elements to process
-$class: The value of the #{class} attribute on the #{span} tag
-$lang: The locale of the text in ${node}
+$class: The value of the `class` attribute on the `span` tag
+$lang: The locale of the text in $node
 $name-class: The class to use for the name of the element
 
 REMARK: Document this template

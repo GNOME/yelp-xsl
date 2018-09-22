@@ -23,7 +23,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Reference Pages
-:Requires: db-chunk db-title db2html-inline db2html-division db2html-xref l10n
 
 REMARK: Describe this module. Talk about refenty and friends
 -->

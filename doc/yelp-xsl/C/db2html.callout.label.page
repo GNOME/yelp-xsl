@@ -1,12 +1,23 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.callout.label" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-callout" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><desc>Create a callout label for a <code>co</code> element.</desc></info><title>db2html.callout.label</title><p>Create a callout label for a <code>co</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>co</code> element to create a callout label for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates a label for a callout, taking a <code>co</code> element as the <code style="xslt-param">node</code> parameter. The label is numbered according to the position of the <code>co</code> element in the document. To create the corresponding label for a <code>callout</code> element, locate the corresponding <code>co</code> element and call this template on it.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.callout.label">
+ <info>
+  <link type="guide" xref="db2html-callout" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Create a callout label for a <sys>co</sys> element.</desc>
+  <revision version="1.0" date="2011-05-16" status="final"/>
+ </info>
+ <title>db2html.callout.label</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>co</sys> element to create a callout label for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates a label for a callout, taking a <sys>co</sys> element as the
+ <code>$node</code> parameter. The label is numbered according to the position of the <sys>co</sys>
+ element in the document. To create the corresponding label for a <sys>callout</sys>
+ element, locate the corresponding <sys>co</sys> element and call this template on it.</p>
 </page>

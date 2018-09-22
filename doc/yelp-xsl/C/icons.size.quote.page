@@ -1,7 +1,24 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.size.quote" type="topic" style="xslt-param"><info><link type="guide" xref="icons" group="parameters"/><link type="guide" xref="parameters" group="icons"/><revision version="3.8" date="2012-09-29" status="final"/><desc>The size of the quote icons.</desc></info><title>icons.size.quote</title><p>The size of the quote icons.</p>
-  
-  
-  <p>This parameter specifies the size of the block quote icon. Use an integer giving the width of the image files in pixels. Icons are assumed to be square, and all quote icons are assumed to have the same size.</p>
-  <p>As of version 3.8, there is no longer an actual image file for the quote icon. Instead, a language-appropriate quotation character is placed in the margin. This parameters still affects the size of that character.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="icons.size.quote">
+ <info>
+  <link type="guide" xref="icons" group="params"/>
+  <link type="guide" xref="params" group="icons"/>
+  <desc>The size of the quote icons.</desc>
+  <revision version="3.8" date="2012-09-29" status="final"/>
+ </info>
+ <title>icons.size.quote</title>
+ <p>This parameter specifies the size of the block quote icon. Use an integer giving
+ the width of the image files in pixels. Icons are assumed to be square, and all
+ quote icons are assumed to have the same size.</p>
+ <p>As of version 3.8, there is no longer an actual image file for the quote icon.
+ Instead, a language-appropriate quotation character is placed in the margin.
+ This parameters still affects the size of that character.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>icons.size.quote</code></title>
+    <p><code>48</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

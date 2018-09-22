@@ -1,12 +1,30 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.mediaobject.fallback" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-media" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.10" date="2013-08-11" status="final"/><desc>Outputs fallback HTML for a <code>mediaobject</code> element.</desc></info><title>db2html.mediaobject.fallback</title><p>Outputs fallback HTML for a <code>mediaobject</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>mediaobject</code> element.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs HTML for the first suitable <code>textobject</code> child element of <code style="xslt-param">node</code>. If <code style="xslt-param">node</code> is an <code>inlinemediaobject</code>, it looks for a <code>textobject</code> that contains a <code>phrase</code> element. Otherwise, it looks for a <code>textobject</code> with normal block content. It also handles conditional processing on the <code>textobject</code> elements.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.mediaobject.fallback">
+ <info>
+  <link type="guide" xref="db2html-media" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Outputs fallback HTML for a <sys>mediaobject</sys> element.</desc>
+  <revision version="3.10" date="2013-08-11" status="final"/>
+ </info>
+ <title>db2html.mediaobject.fallback</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>mediaobject</sys> element.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs HTML for the first suitable <sys>textobject</sys> child element
+ of <code>$node</code>. If <code>$node</code> is an <sys>inlinemediaobject</sys>, it looks for a <sys>textobject</sys>
+ that contains a <sys>phrase</sys> element. Otherwise, it looks for a <sys>textobject</sys> with
+ normal block content. It also handles conditional processing on the <sys>textobject</sys>
+ elements.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+ </list>
+</page>

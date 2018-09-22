@@ -1,15 +1,45 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.sort.tsort" type="topic" style="xslt-template"><info><link type="guide" xref="mal-sort" group="templates"/><link type="guide" xref="templates" group="mal"/><revision status="incomplete" version="1.0" date="2010-07-08"/><desc>Sort pages based on topic and next links.</desc></info><title>mal.sort.tsort</title><p>Sort pages based on topic and next links.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The current <code>page</code> in the Mallard cache file.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs links to pages sorted according to their topic and next links. Pages occur after the first guide that references them, in their sort order for that guide. Page series constructed with next links always appear in order at the sort position of their first page.</p>
-  <p>This template outputs <code>link</code> elements with <code>xref</code> attributes pointing to the target page. The output is a result tree fragment.  To use these results, call <code>exsl:node-set</code> on them.</p>
-  <p>You can specify a starting node with the <code style="xslt-param">node</code> parameter. By default, it uses the node pointed to by <code style="xslt-param" xref="mal.link.default_root">mal.link.default_root</code>.</p>
-  <p>This template does not include any nodes that are not reachable through topic or next links.</p>
-<list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.link.default_root"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal.sort.tsort">
+ <info>
+  <link type="guide" xref="mal-sort" group="templates"/>
+  <link type="guide" xref="templates" group="mal"/>
+  <desc>Sort pages based on topic and next links.</desc>
+  <revision version="1.0" date="2010-07-08"/>
+ </info>
+ <title>mal.sort.tsort</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The current <sys>page</sys> in the Mallard cache file.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs links to pages sorted according to their topic and
+ next links. Pages occur after the first guide that references them, in
+ their sort order for that guide. Page series constructed with next links
+ always appear in order at the sort position of their first page.</p>
+ <p>This template outputs <sys>link</sys> elements with <sys>xref</sys> attributes pointing to
+ the target page. The output is a result tree fragment.  To use these results,
+ call <sys>exsl:node-set</sys> on them.</p>
+ <p>You can specify a starting node with the <code>$node</code> parameter. By default, it
+ uses the node pointed to by <code xref="mal.link.default_root">mal.link.default_root</code>.</p>
+ <p>This template does not include any nodes that are not reachable through
+ topic or next links.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="mal.cache.key"/></p>
+  </item>
+ </list>
+</page>

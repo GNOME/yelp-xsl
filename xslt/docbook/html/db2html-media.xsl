@@ -25,23 +25,25 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook to HTML - Images and Media
 Handle DocBook media elements.
-:Revision:version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
-This stylesheet contains templates for handling DocBook #{mediaobject} and
-#{inlinemediaobject} elements, as well as the various #{object} and #{data}
+This stylesheet contains templates for handling DocBook `mediaobject` and
+`inlinemediaobject` elements, as well as the various `object` and `data`
 elements found in these elements. This stylesheet also handles the deprecated
-DocBook 4 #{graphic} and #{inlinegraphic} elements.
+DocBook 4 `graphic` and `inlinegraphic` elements.
 -->
 
 
 <!--**==========================================================================
 db2html.audiodata
-Output an HTML #{audio} element for a #{audiodata} element.
-:Revision:version="3.8" date="2012-11-12" status="final"
-$node: The #{audiodata} element.
+Output an HTML `audio` element for a `audiodata` element.
+@revision[version=3.8 date=2012-11-12 status=final]
 
-This template creates an #{audio} element in the HTML output. This template
-calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
+[xsl:params]
+$node: The `audiodata` element.
+
+This template creates an `audio` element in the HTML output. This template
+calls {db2html.mediaobject.fallback} for the contents of the `audio` element.
 -->
 <xsl:template name="db2html.audiodata">
   <xsl:param name="node" select="."/>
@@ -73,18 +75,20 @@ calls *{db2html.mediaobject.fallback} for the contents of the #{audio} element.
 
 <!--**==========================================================================
 db2html.imagedata
-Output an HTML #{img} element for a #{imagedata} element.
-:Revision:version="3.10" date="2013-08-11" status="final"
-$node: The #{imagedata} or other graphic element.
+Output an HTML `img` element for a `imagedata` element.
+@revision[version=3.10 date=2013-08-11 status=final]
 
-This template creates an #{img} element in the HTML output.  This template
-is called not only for #{imagedata} elements, but also for #{graphic} and
-#{inlinegraphic} elements.  Note that #{graphic} and #{inlinegraphic} are
+[xsl:params]
+$node: The `imagedata` or other graphic element.
+
+This template creates an `img` element in the HTML output.  This template
+is called not only for `imagedata` elements, but also for `graphic` and
+`inlinegraphic` elements.  Note that `graphic` and `inlinegraphic` are
 deprecated and should not be used in any newly-written DocBook files.  Use
-#{mediaobject} instead.
+`mediaobject` instead.
 
-This template looks for a #{textobject} with a #{phrase} child in an ancestor
-#{mediaobject} or #{inlinemediaobject} element. It uses the first available,
+This template looks for a `textobject` with a `phrase` child in an ancestor
+`mediaobject` or `inlinemediaobject` element. It uses the first available,
 taking conditional processing into consideration.
 -->
 <xsl:template name="db2html.imagedata">
@@ -136,15 +140,17 @@ taking conditional processing into consideration.
 
 <!--**==========================================================================
 db2html.videodata
-Output an HTML #{video} element for a #{videodata} element.
-:Revision:version="3.8" date="2012-11-12" status="final"
-$node: The #{videodata} element.
+Output an HTML `video` element for a `videodata` element.
+@revision[version=3.8 date=2012-11-12 status=final]
 
-This template creates a #{video} element in the HTML output. If the containing
-#{mediaobject} or #{inlinemediaobject} element has an #{imageobject} with the
-#{role} attribute set to #{"poster"}, that image will be used for the #{poster}
-attribute on the HTML #{video} element. This template calls
-*{db2html.mediaobject.fallback} for the contents of the #{video} element.
+[xsl:params]
+$node: The `videodata` element.
+
+This template creates a `video` element in the HTML output. If the containing
+`mediaobject` or `inlinemediaobject` element has an `imageobject` with the
+`role` attribute set to `"poster"`, that image will be used for the `poster`
+attribute on the HTML `video` element. This template calls
+{db2html.mediaobject.fallback} for the contents of the `video` element.
 -->
 <xsl:template name="db2html.videodata">
   <xsl:param name="node" select="."/>
@@ -201,21 +207,23 @@ attribute on the HTML #{video} element. This template calls
 
 <!--**==========================================================================
 db2html.mediaobject
-Outputs HTML for a #{mediaobject} element.
-:Revision:version="3.10" date="2013-08-11" status="final"
-$node: The #{mediaobject} element.
+Outputs HTML for a `mediaobject` element.
+@revision[version=3.10 date=2013-08-11 status=final]
 
-This template processes a #{mediaobject} element and outputs the appropriate
-HTML. DocBook allows multiple objects to be listed in a #{mediaobject} element.
+[xsl:params]
+$node: The `mediaobject` element.
+
+This template processes a `mediaobject` element and outputs the appropriate
+HTML. DocBook allows multiple objects to be listed in a `mediaobject` element.
 Processing tools are expected to choose the earliest suitable object. This
 template will select the first audio, image, or video object it can handle,
 filtering out images in non-web formats, and taking conditional processing
 into consideration. If no suitable non-text objects are found, this template
-calls *{db2html.mediaobject.fallback}.
+calls {db2html.mediaobject.fallback}.
 
-This template also detects MathML embedded in a DocBook 5 #{imagedata} element
-with the #{format} attribute #{"mathml"}, and passes it to the templates in
-!{db2html-math}.
+This template also detects MathML embedded in a DocBook 5 `imagedata` element
+with the `format` attribute `"mathml"`, and passes it to the templates in
+{db2html-math}.
 -->
 <xsl:template name="db2html.mediaobject">
   <xsl:param name="node" select="."/>
@@ -262,14 +270,16 @@ with the #{format} attribute #{"mathml"}, and passes it to the templates in
 
 <!--**==========================================================================
 db2html.mediaobject.fallback
-Outputs fallback HTML for a #{mediaobject} element.
-:Revision:version="3.10" date="2013-08-11" status="final"
-$node: The #{mediaobject} element.
+Outputs fallback HTML for a `mediaobject` element.
+@revision[version=3.10 date=2013-08-11 status=final]
 
-This template outputs HTML for the first suitable #{textobject} child element
-of ${node}. If ${node} is an #{inlinemediaobject}, it looks for a #{textobject}
-that contains a #{phrase} element. Otherwise, it looks for a #{textobject} with
-normal block content. It also handles conditional processing on the #{textobject}
+[xsl:params]
+$node: The `mediaobject` element.
+
+This template outputs HTML for the first suitable `textobject` child element
+of $node. If $node is an `inlinemediaobject`, it looks for a `textobject`
+that contains a `phrase` element. Otherwise, it looks for a `textobject` with
+normal block content. It also handles conditional processing on the `textobject`
 elements.
 -->
 <xsl:template name="db2html.mediaobject.fallback">

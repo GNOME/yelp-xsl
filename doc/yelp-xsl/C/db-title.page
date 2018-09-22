@@ -1,2 +1,45 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db-title" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db"/><revision version="3.4" date="2011-11-10" status="final"/><link type="xslt-defines-template" xref="db.title"/><link type="xslt-defines-template" xref="db.titleabbrev"/><link type="xslt-defines-template" xref="db.subtitle"/></info><title>DocBook Titles</title><p>Support for DocBook title, titleabbrev, and subtitle elements.</p><p>This stylesheet contains templates for outputting titles based on title, titleabbrev, or subtitle elements. It supports automatic titles for certain elements with optional titles.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.chunk-id"/></p></item><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db-title">
+ <info>
+  <link type="guide" xref="stylesheets" group="db"/>
+  <desc>Support for DocBook title, titleabbrev, and subtitle elements.</desc>
+  <revision version="3.4" date="2011-11-10" status="final"/>
+ </info>
+ <title>DocBook Titles</title>
+ <p>This stylesheet contains templates for outputting titles based on title,
+ titleabbrev, or subtitle elements. It supports automatic titles for certain
+ elements with optional titles.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.chunk.chunk-id"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

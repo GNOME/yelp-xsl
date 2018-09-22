@@ -1,12 +1,21 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.sidebar.contents.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="3.30" date="2018-06-10" status="candidate"/><desc>Output a table of contents for a sidebar.</desc></info><title>html.sidebar.contents.mode</title><p>Output a table of contents for a sidebar.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>side</code></title>
-      <p>Which sidebar, either <code>left</code> or <code>right</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This mode is called by <code style="xslt-mode" xref="html.sidebar.contents">html.sidebar.contents</code> to allow different input formats to implement a table of contents for a sidebar.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="html.sidebar.contents.mode">
+ <info>
+  <link type="guide" xref="html" group="modes"/>
+  <link type="guide" xref="modes" group="html"/>
+  <desc>Output a table of contents for a sidebar.</desc>
+  <revision version="3.30" date="2018-06-10" status="candidate"/>
+ </info>
+ <title>html.sidebar.contents.mode</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$side</code></title>
+    <p>Which sidebar, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This mode is called by <code xref="html.sidebar.contents">html.sidebar.contents</code> to allow different input
+ formats to implement a table of contents for a sidebar.</p>
 </page>

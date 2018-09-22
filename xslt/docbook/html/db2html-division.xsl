@@ -28,11 +28,11 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook to HTML - Divisions
 Handle division-level DocBook elements.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This stylesheet contains templates to process top-level and sectioning elements
 in DocBook. It handles chunking and implements the interfaces provided by the
-common !{html} stylesheet.
+common {html} stylesheet.
 -->
 
 
@@ -156,13 +156,15 @@ common !{html} stylesheet.
 <!--**==========================================================================
 db2html.division.div
 Renders the content of a division element, chunking children if necessary
+
+[xsl:params]
 $node: The element to render the content of
-$info: The info child element of ${node}
+$info: The info child element of $node
 $entries: The entry-style child elements
 $divisions: The division-level child elements
-$depth_in_chunk: The depth of ${node} in the containing chunk
+$depth_in_chunk: The depth of $node in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
-$chunk_divisions: Whether to create new documents for ${divisions}
+$chunk_divisions: Whether to create new documents for $divisions
 
 REMARK: Talk about some of the parameters
 -->
@@ -291,10 +293,12 @@ REMARK: Talk about some of the parameters
 <!--%%==========================================================================
 db2html.division.div.content.mode
 Renders the block-level content of a division element
+
+[xsl:params]
 $depth_in_chunk: The depth of the context element in the containing chunk
 $depth_of_chunk: The depth of the containing chunk in the document
 
-REMARK: Talk about how this works with #{callback}
+REMARK: Talk about how this works with `callback`
 -->
 <xsl:template mode="db2html.division.div.content.mode" match="*">
   <xsl:param name="node" select="."/>
@@ -333,9 +337,11 @@ REMARK: Talk about how this works with #{callback}
 <!--**==========================================================================
 db2html.hgroup
 Output the title and subtitle for an element.
+
+[xsl:params]
 $node: The element containing the title.
 $info: FIXME.
-$depth_in_chunk: The depth of ${node} in the containing chunk.
+$depth_in_chunk: The depth of $node in the containing chunk.
 
 REMARK: Talk about the different kinds of title blocks
 -->
@@ -406,12 +412,14 @@ REMARK: Talk about the different kinds of title blocks
 <!--**==========================================================================
 db2html.division.about
 Output the copyrights, credits, and license information at the bottom of a page.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
+
+[xsl:params]
 $node: A division-level element a page is being created for.
-$info: The info child element of ${node}
+$info: The info child element of $node
 
 This template outputs copyright information, credits, and license information for
-the division. By default it is called by the %{html.footer.mode} implementation.
+the division. By default it is called by the {html.footer.mode} implementation.
 -->
 <xsl:template name="db2html.division.about">
   <xsl:param name="node" select="."/>

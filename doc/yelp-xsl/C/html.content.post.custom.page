@@ -1,17 +1,114 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.content.post.custom" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><link type="guide" xref="stubs" group="html"/><revision version="3.28" date="2016-06-21" status="final"/><desc>Stub to output content after the content of a page or section, before subsections.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>html.content.post.custom</title><p>Stub to output content after the content of a page or section, before subsections.</p><note><p>This template is a stub. Customizations may override it for
-            additional functionality.</p></note>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node a page or section is being created for.</p>
-    </item>
-    <item>
-      <title><code>page</code></title>
-      <p>Whether the content is for a page.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template is a stub, called by <code style="xslt-template" xref="html.content.post.custom">html.content.post.custom</code>. It is called after <code style="xslt-mode" xref="html.content.pre.mode">html.content.pre.mode</code> is applied. Override this template to provide site-specific HTML after the content of a page or section, but before any subsections. If the <code style="xslt-param">page</code> parameter is true, then this template is being called on an output page. Otherwise, it is being called on a section within a page.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.content.post.custom">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Stub to output content after the content of a page or section, before subsections.</desc>
+  <link type="guide" xref="stubs" group="html"/>
+  <revision version="3.28" date="2016-06-21" status="final"/>
+ </info>
+ <title>html.content.post.custom</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node a page or section is being created for.</p>
+   </item>
+   <item>
+    <title><code>$page</code></title>
+    <p>Whether the content is for a page.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template is a stub, called by <code xref="html.content.post.custom">html.content.post.custom</code>. It is called
+ after <code xref="html.content.pre.mode">html.content.pre.mode</code> is applied. Override this template to provide
+ site-specific HTML after the content of a page or section, but before any
+ subsections. If the <code>$page</code> parameter is true, then this template is being
+ called on an output page. Otherwise, it is being called on a section within
+ a page.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
 </page>

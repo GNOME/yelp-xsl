@@ -27,7 +27,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook Titles
 Support for DocBook title, titleabbrev, and subtitle elements.
-:Revision:version="3.4" date="2011-11-10" status="final"
+@revision[version=3.4 date=2011-11-10 status=final]
 
 This stylesheet contains templates for outputting titles based on title,
 titleabbrev, or subtitle elements. It supports automatic titles for certain
@@ -38,16 +38,18 @@ elements with optional titles.
 <!--**==========================================================================
 db.title
 Output a title for an element.
-:Revision:version="3.28" date="2017-03-18" status="final"
-$node: The element to output the title of.
-$info: The info child element of ${node}.
+@revision[version=3.28 date=2017-03-18 status=final]
 
-This template outputs the title of the element ${node} as it might be used for
+[xsl:params]
+$node: The element to output the title of.
+$info: The info child element of $node.
+
+This template outputs the title of the element $node as it might be used for
 a heading or for link text. For certain types of elements, this templates will
 use a localized automatic title if no explicit title is provided.
 
-When ${node} is an element for which this template cannot construct a title,
-it calls itself recursively passing the parent element of ${node}.
+When $node is an element for which this template cannot construct a title,
+it calls itself recursively passing the parent element of $node.
 -->
 <xsl:template name="db.title">
   <xsl:param name="node" select="."/>
@@ -136,13 +138,15 @@ it calls itself recursively passing the parent element of ${node}.
 <!--**==========================================================================
 db.titleabbrev
 Output an abbreviated title for an element.
-:Revision:version="3.4" date="2011-11-10" status="final"
-$node: The element to output the abbreviated title of.
-$info: The info child element of ${node}.
+@revision[version=3.4 date=2011-11-10 status=final]
 
-This template outputs the abbreviated title of the element ${node}, which is
-sometimes used for link text. If no explicit #{titleabbrev} element is found,
-this template just calls *{db.title}.
+[xsl:params]
+$node: The element to output the abbreviated title of.
+$info: The info child element of $node.
+
+This template outputs the abbreviated title of the element $node, which is
+sometimes used for link text. If no explicit `titleabbrev` element is found,
+this template just calls {db.title}.
 -->
 <xsl:template name="db.titleabbrev">
   <xsl:param name="node" select="."/>
@@ -166,13 +170,15 @@ this template just calls *{db.title}.
 <!--**==========================================================================
 db.subtitle
 Output a subtitle for an element.
-:Revision:version="3.4" date="2011-11-10" status="final"
-$node: The element to output the subtitle of.
-$info: The info child element of ${node}.
+@revision[version=3.4 date=2011-11-10 status=final]
 
-This template outputs the subtitle of the element ${node}, which is sometimes
-used for link text. If no explicit #{titleabbrev} element is found, this template
-just calls *{db.title}. This template is not suitable for determining whehter a
+[xsl:params]
+$node: The element to output the subtitle of.
+$info: The info child element of $node.
+
+This template outputs the subtitle of the element $node, which is sometimes
+used for link text. If no explicit `titleabbrev` element is found, this template
+just calls {db.title}. This template is not suitable for determining whehter a
 subtitle should be placed in a heading, as it will always return the title if
 a subtitle is not found.
 -->

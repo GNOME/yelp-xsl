@@ -22,7 +22,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - EBNF Elements
-:Requires: db2html-xref
 
 REMARK: Describe this module
 -->

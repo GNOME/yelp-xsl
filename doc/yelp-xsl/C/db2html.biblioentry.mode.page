@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.biblioentry.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-bibliography" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="3.4" date="2011-11-14" status="final"/><desc>Format elements inside a <code>biblioentry</code> or <code>bibliomixed</code> element.</desc></info><title>db2html.biblioentry.mode</title><p>Format elements inside a <code>biblioentry</code> or <code>bibliomixed</code> element.</p>
-  
-  
-  <p>This mode is used when processing the child elements of a <code>biblioentry</code> or a <code>bibliomixed</code> element. Some elements are treated differently when they appear inside a bibliography entry.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="db2html.biblioentry.mode">
+ <info>
+  <link type="guide" xref="db2html-bibliography" group="modes"/>
+  <link type="guide" xref="modes" group="db2html"/>
+  <desc>Format elements inside a <sys>biblioentry</sys> or <sys>bibliomixed</sys> element.</desc>
+  <revision version="3.4" date="2011-11-14" status="final"/>
+ </info>
+ <title>db2html.biblioentry.mode</title>
+ <p>This mode is used when processing the child elements of a <sys>biblioentry</sys> or a
+ <sys>bibliomixed</sys> element. Some elements are treated differently when they appear
+ inside a bibliography entry.</p>
 </page>

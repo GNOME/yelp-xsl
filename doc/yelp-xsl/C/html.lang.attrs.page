@@ -1,26 +1,134 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.lang.attrs" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-06-10" status="final"/><desc>Output <code>lang</code> and <code>dir</code> attributes.</desc></info><title>html.lang.attrs</title><p>Output <code>lang</code> and <code>dir</code> attributes.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The current element in the input document.</p>
-    </item>
-    <item>
-      <title><code>parent</code></title>
-      <p>A parent node to take <code style="xslt-param">lang</code> and <code style="xslt-param">dir</code> from.</p>
-    </item>
-    <item>
-      <title><code>lang</code></title>
-      <p>The language for <code style="xslt-param">node</code>.</p>
-    </item>
-    <item>
-      <title><code>dir</code></title>
-      <p>The text directionality for <code style="xslt-param">node</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs <code>lang</code>, <code>xml:lang</code>, or <code>dir</code> attributes if necessary. If <code style="xslt-param">lang</code> is not set, it will be taken from the <code>xml:lang</code> or <code>lang</code> attribute of <code style="xslt-param">node</code>. If <code style="xslt-param">dir</code> is not set, it will be taken from the <code>its:dir</code> attribute of <code style="xslt-param">node</code> or computed based on <code style="xslt-param">lang</code>.</p>
-  <p>The <code style="xslt-param">parent</code> parameter defaults to an empty node set. If it is set to a non-empty node set, this template will attempt to get <code style="xslt-param">lang</code> and <code style="xslt-param">dir</code> from <code style="xslt-param">parent</code> if they are not set on <code style="xslt-param">node</code>. This is occasionally useful when a wrapper element in a source language doesn't directly create any output elements.</p>
-  <p>This template outputs either an <code>xml:lang</code> or a <code>lang</code> attribute, depending on whether <code style="xslt-param" xref="html.xhtml">html.xhtml</code> is <code>true</code>. It only outputs an <code>xml:lang</code> or <code>lang</code> attribute if $lang is non-empty. This template also outputs a <code>dir</code> attribute if <code style="xslt-param">dir</code> is non-empty.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.xhtml"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.lang.attrs">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output <sys>lang</sys> and <sys>dir</sys> attributes.</desc>
+  <revision version="1.0" date="2010-06-10" status="final"/>
+ </info>
+ <title>html.lang.attrs</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The current element in the input document.</p>
+   </item>
+   <item>
+    <title><code>$parent</code></title>
+    <p>A parent node to take <code>$lang</code> and <code>$dir</code> from.</p>
+   </item>
+   <item>
+    <title><code>$lang</code></title>
+    <p>The language for <code>$node</code>.</p>
+   </item>
+   <item>
+    <title><code>$dir</code></title>
+    <p>The text directionality for <code>$node</code>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs <sys>lang</sys>, <sys>xml:lang</sys>, or <sys>dir</sys> attributes if necessary.
+ If <code>$lang</code> is not set, it will be taken from the <sys>xml:lang</sys> or <sys>lang</sys>
+ attribute of <code>$node</code>. If <code>$dir</code> is not set, it will be taken from the <sys>its:dir</sys>
+ attribute of <code>$node</code> or computed based on <code>$lang</code>.</p>
+ <p>The <code>$parent</code> parameter defaults to an empty node set. If it is set to a
+ non-empty node set, this template will attempt to get <code>$lang</code> and <code>$dir</code> from
+ <code>$parent</code> if they are not set on <code>$node</code>. This is occasionally useful when a
+ wrapper element in a source language doesn't directly create any output
+ elements.</p>
+ <p>This template outputs either an <sys>xml:lang</sys> or a <sys>lang</sys> attribute, depending
+ on whether <code xref="html.xhtml">html.xhtml</code> is <sys>true</sys>. It only outputs an <sys>xml:lang</sys> or <sys>lang</sys>
+ attribute if <code>$lang</code> is non-empty. This template also outputs a <sys>dir</sys> attribute
+ if <code>$dir</code> is non-empty.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+</page>

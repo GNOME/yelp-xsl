@@ -25,8 +25,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Command Synopses
-:Requires: db2html-xref html
-:Revision:version="1.0" date="2011-05-16" status="final"
+@revision[version=1.0 date=2011-05-16 status=final]
 
 This module contains templates to process DocBook command synopsis elements.
 -->
@@ -326,21 +325,23 @@ This module contains templates to process DocBook command synopsis elements.
 
 <!--%%==========================================================================
 db2html.cmdsynopsis.sbr.padding.mode
-Output padding for elements leading up to an #{sbr} element.
-:Revision:version="1.0" date="2011-05-16" status="final"
-$sbr: The #{sbr} element to pad up to
-$sepchar: The value of the #{sepchar} attribute on the enclosing #{cmdsynopsis}
+Output padding for elements leading up to an `sbr` element.
+@revision[version=1.0 date=2011-05-16 status=final]
+
+[xsl:params]
+$sbr: The `sbr` element to pad up to
+$sepchar: The value of the `sepchar` attribute on the enclosing `cmdsynopsis`
 
 When processed in this mode, elements output whitespace to the length of the
 textual output they would normally produce.  This allows options to be aligned
-when explicit line breaks are inserted with #{sbr} elements.
+when explicit line breaks are inserted with `sbr` elements.
 
-To create the padding for a given #{sbr} element, this mode is called on the
-enclosing #{cmdsynopsis} element, passing the #{sbr} element.  When processed
+To create the padding for a given `sbr` element, this mode is called on the
+enclosing `cmdsynopsis` element, passing the `sbr` element.  When processed
 in this mode, elements should only output padding for content the leads up to
-the #{sbr} element passed in the ${sbr} parameter.  When processing children
-that don't contain the given #{sbr} element, the ${sbr} parameter should be
-set to #{false()} for those children.  This avoids additional descendant
+the `sbr` element passed in the $sbr parameter.  When processing children
+that don't contain the given `sbr` element, the $sbr parameter should be
+set to `false()` for those children.  This avoids additional descendant
 selectors, which are generally expensive to perform.
 -->
 <xsl:template mode="db2html.cmdsynopsis.sbr.padding.mode" match="node()">

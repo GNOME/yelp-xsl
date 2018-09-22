@@ -24,7 +24,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Block Elements
-:Revision:version="3.4" date="2011-11-12" status="final"
+@revision[version=3.4 date=2011-11-12 status=final]
 
 This stylesheet handles most simple block-level elements, turning them into
 the appropriate HTML tags. It does not handle tables, lists, and various other
@@ -34,14 +34,16 @@ complex block-level elements.
 
 <!--**==========================================================================
 db2html.block
-Output an HTML #{div} element for a block-level element.
-:Revision:version="3.10" date="2013-08-09" status="final"
-$node: The block-level element to render.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `div` element for a block-level element.
+@revision[version=3.10 date=2013-08-09 status=final]
 
-This template creates an HTML #{div} element for the given DocBook element.
-It passes the ${class} parameter to *{html.class.attr}.
-If the ${class} parameter is not provided, it uses the local name of ${node}.
+[xsl:params]
+$node: The block-level element to render.
+$class: The value of the HTML `class` attribute.
+
+This template creates an HTML `div` element for the given DocBook element.
+It passes the $class parameter to {html.class.attr}.
+If the $class parameter is not provided, it uses the local name of $node.
 
 This template handles conditional processing.
 -->
@@ -74,21 +76,23 @@ This template handles conditional processing.
 <!--**==========================================================================
 db2html.block.formal
 Output HTML for a block-level element with an optional title and caption.
-:Revision:version="3.10" date="2013-08-09" status="final"
+@revision[version=3.10 date=2013-08-09 status=final]
+
+[xsl:params]
 $node: The block-level element to render.
-$class: The value of the HTML #{class} attribute.
+$class: The value of the HTML `class` attribute.
 $title: An element to use for the title.
 $caption: An element to use for the caption.
-$titleattr: An optional value for the HTML #{title} attribute.
+$titleattr: An optional value for the HTML `title` attribute.
 $icon: An icon for the block, as a copyable node set.
 
 This template outputs HTML for a formal DocBook element, one that can have
-a title or caption. It passes the ${class} parameter to *{html.class.attr}.
-If the ${class} parameter is not provided, it uses the
-local name of ${node}. Even if ${title} and ${caption} are both empty, this
-template still outputs the extra wrapper elements for formal elements. If
-${titleattr} is provided, it is used for the value of the HTML #{title}
-attribute on the outermost #{div} element.
+a title or caption. It passes the $class parameter to {html.class.attr}.
+If the $class parameter is not provided, it uses the local name of $node.
+Even if $title and $caption are both empty, this template still outputs
+the extra wrapper elements for formal elements. If $titleattr is provided,
+it is used for the value of the HTML `title` attribute on the outermost
+`div` element.
 
 This template handles conditional processing.
 -->
@@ -162,12 +166,14 @@ This template handles conditional processing.
 <!--**==========================================================================
 db2html.block.title
 Output a formal title for a block-level element.
-:Revision:version="3.4" date="2011-11-12" status="final"
+@revision[version=3.4 date=2011-11-12 status=final]
+
+[xsl:params]
 $node: The block-level element being processed.
 $title: The element containing the title.
 
-This template formats the contents of ${title} as a title for a block-level
-element.  It is called by *{db2html.block.formal}.
+This template formats the contents of $title as a title for a block-level
+element. It is called by {db2html.block.formal}.
 -->
 <xsl:template name="db2html.block.title">
   <xsl:param name="node" select="."/>
@@ -209,12 +215,14 @@ element.  It is called by *{db2html.block.formal}.
 
 <!--**==========================================================================
 db2html.blockquote
-Output an HTML #{blockquote} element.
-:Revision:version="3.10" date="2013-08-09" status="final"
+Output an HTML `blockquote` element.
+@revision[version=3.10 date=2013-08-09 status=final]
+
+[xsl:params]
 $node: The DocBook element ot render as a quote.
 
-This template creates an HTML #{blockquote} element for the given DocBook
-element. It's used for the DocBook #{blockquote} and #{epigraph} elements.
+This template creates an HTML `blockquote` element for the given DocBook
+element. It's used for the DocBook `blockquote` and `epigraph` elements.
 
 This template handles conditional processing.
 -->
@@ -258,14 +266,16 @@ This template handles conditional processing.
 
 <!--**==========================================================================
 db2html.para
-Output an HTML #{p} element for a block-level element.
-:Revision:version="3.10" date="2013-08-09" status="final"
-$node: The block-level element to render.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `p` element for a block-level element.
+@revision[version=3.10 date=2013-08-09 status=final]
 
-This template creates an HTML #{p} element for the given DocBook element.
-It passes the ${class} parameter to *{html.class.attr}.
-If the ${class} parameter is not provided, it uses the local name of ${node}.
+[xsl:params]
+$node: The block-level element to render.
+$class: The value of the HTML `class` attribute.
+
+This template creates an HTML `p` element for the given DocBook element.
+It passes the $class parameter to {html.class.attr}.
+If the $class parameter is not provided, it uses the local name of $node.
 
 This template handles conditional processing.
 -->
@@ -302,26 +312,28 @@ This template handles conditional processing.
 
 <!--**==========================================================================
 db2html.pre
-Output an HTML #{pre} element for a block-level element.
-:Revision:version="3.12" date="2013-11-02" status="final"
+Output an HTML `pre` element for a block-level element.
+@revision[version=3.12 date=2013-11-02 status=final]
+
+[xsl:params]
 $node: The block-level element to render.
-$class: The value of the HTML #{class} attribute.
+$class: The value of the HTML `class` attribute.
 $children: The child elements to process.
 
-This template creates an HTML #{pre} element for the given DocBook element.
-It passes the ${class} parameter to *{html.class.attr}.
-If the ${class} parameter is not provided, it uses the local name of ${node}.
+This template creates an HTML `pre` element for the given DocBook element.
+It passes the $class parameter to {html.class.attr}.
+If the $class parameter is not provided, it uses the local name of $node.
 
-If ${node} has the #{linenumbering} attribute set to #{"numbered"}, then this
-template will create line numbers for each line, using the *{utils.linenumbering}
+If $node has the `linenumbering` attribute set to `"numbered"`, then this
+template will create line numbers for each line, using the {utils.linenumbering}
 template.
 
 By default, this template applies templates to all child nodes. Pass child
-nodes in the ${children} parameter to override this behavior.
+nodes in the $children parameter to override this behavior.
 
-If @{html.syntax.highlight} is #{true}, this template automatically outputs
-syntax highlighting support based on the #{language} attribute of ${node},
-using *{html.syntax.class} to determine the correct highlighter.
+If {html.syntax.highlight} is `true`, this template automatically outputs
+syntax highlighting support based on the `language` attribute of $node,
+using {html.syntax.class} to determine the correct highlighter.
 
 This template handles conditional processing.
 -->

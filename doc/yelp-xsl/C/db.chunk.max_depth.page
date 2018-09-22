@@ -1,6 +1,10 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.chunk.max_depth" type="topic" style="xslt-param"><info><link type="guide" xref="db-chunk" group="parameters"/><link type="guide" xref="parameters" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>The maximum depth for chunking sections.</desc></info><title>db.chunk.max_depth</title><p>The maximum depth for chunking sections.</p>
-  
-  
-  <comment><p>Describe what this does</p></comment>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="db.chunk.max_depth">
+ <info>
+  <link type="guide" xref="db-chunk" group="params"/>
+  <link type="guide" xref="params" group="db"/>
+  <desc>The maximum depth for chunking sections.</desc>
+ </info>
+ <title>db.chunk.max_depth</title>
+ <p>REMARK: Describe what this does</p>
 </page>

@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.body.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="html" group="modes"/><link type="guide" xref="modes" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Output the main contents for an element.</desc></info><title>html.body.mode</title><p>Output the main contents for an element.</p>
-  
-  
-  <p>This mode is called by <code style="xslt-template" xref="html.page">html.page</code> to output the main contents of an HTML page, below the header content and above the footer content. Titles, block content, and sections should be output in this mode.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="html.body.mode">
+ <info>
+  <link type="guide" xref="html" group="modes"/>
+  <link type="guide" xref="modes" group="html"/>
+  <desc>Output the main contents for an element.</desc>
+  <revision version="1.0" date="2010-05-26" status="final"/>
+ </info>
+ <title>html.body.mode</title>
+ <p>This mode is called by <code xref="html.page">html.page</code> to output the main contents of an HTML
+ page, below the header content and above the footer content. Titles, block
+ content, and sections should be output in this mode.</p>
 </page>

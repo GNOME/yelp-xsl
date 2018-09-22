@@ -22,10 +22,10 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Colors
 Common named colors and color utilities for output styling.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This stylesheet provides a common interface to specify custom colors for
-transformations to presentation-oreinted formats.  This allows similar
+transformations to presentation-oreinted formats. This allows similar
 output for different types of input documents.
 
 This stylesheet also provides a number of templates for manipulating colors
@@ -36,7 +36,9 @@ and extracting information about colors.
 <!--**==========================================================================
 color.hex2dec
 Convert a hexidecimal number to decimal.
-:Revision: version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
 $hex: The hexidecimal number to convert to decimal.
 
 This template converts a hexidecimal number to decimal. It's useful for getting
@@ -75,12 +77,14 @@ the numeric values of color components in a hexidecimal color code.
 <!--**==========================================================================
 color.r
 Extract the red component of a color.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$color: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template extracts the red portion of a color, returning a number between
 0 and 255. It accepts six-digit and three-digit hexidecimal color codes,
-colors specified with #{rgb()}, and colors specified with #{rgba()}. It does
+colors specified with `rgb()`, and colors specified with `rgba()`. It does
 not accept HSL or named HTML colors.
 -->
 <xsl:template name="color.r">
@@ -106,12 +110,14 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.g
 Extract the green component of a color.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$color: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template extracts the green portion of a color, returning a number between
 0 and 255. It accepts six-digit and three-digit hexidecimal color codes,
-colors specified with #{rgb()}, and colors specified with #{rgba()}. It does
+colors specified with `rgb()`, and colors specified with `rgba()`. It does
 not accept HSL or named HTML colors.
 -->
 <xsl:template name="color.g">
@@ -137,12 +143,14 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.b
 Extract the blue component of a color.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$color: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template extracts the blue portion of a color, returning a number between
 0 and 255. It accepts six-digit and three-digit hexidecimal color codes,
-colors specified with #{rgb()}, and colors specified with #{rgba()}. It does
+colors specified with `rgb()`, and colors specified with `rgba()`. It does
 not accept HSL or named HTML colors.
 -->
 <xsl:template name="color.b">
@@ -175,14 +183,16 @@ not accept HSL or named HTML colors.
 <!--**==========================================================================
 color.a
 Extract the alpha value of a color.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$color: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template extracts the alpha, or opacity level, of a color. It returns a
 number between 0.0 and 1.0. It accepts six-digit and three-digit hexidecimal
-color codes, colors specified with #{rgb()}, and colors specified with
-#{rgba()}. It does not accept HSL or named HTML colors. For colors specified
-with anything other than #{rgba()}, it always returns 1.0.
+color codes, colors specified with `rgb()`, and colors specified with
+`rgba()`. It does not accept HSL or named HTML colors. For colors specified
+with anything other than `rgba()`, it always returns 1.0.
 -->
 <xsl:template name="color.a">
   <xsl:param name="color"/>
@@ -201,17 +211,19 @@ with anything other than #{rgba()}, it always returns 1.0.
 <!--**==========================================================================
 color.rl
 Get the relative luminance of a color.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$color: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$color: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template calculates the relative luminance of a color, returning a number
 between 0.0 and 1.0. The relative luminance is used when calculating color
 contrast. The relative luminance algorithm is defined by the WCAG:
 
-http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+$link[>>http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef]
 
 This template accepts six-digit and three-digit hexidecimal color codes, colors
-specified with #{rgb()}, and colors specified with #{rgba()}. It does not accept
+specified with `rgb()`, and colors specified with `rgba()`. It does not accept
 HSL or named HTML colors.
 -->
 <xsl:template name="color.rl">
@@ -271,18 +283,20 @@ HSL or named HTML colors.
 <!--**==========================================================================
 color.contrast
 Get the contrast between two colors.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$bg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
-$fg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$bg: A color specified in hexidecimal, `rgb()`, or `rgba()`.
+$fg: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 
 This template calculates the contrast ratio between colors. The contrast ratio
 is a number between 1 and 21. The algorithm is defined by the WCAG:
 
-http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+$link[>>http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef]
 
-This template calls *{color.rl} to get the relative luminance of ${bg} and ${fg}.
+This template calls {color.rl} to get the relative luminance of $bg and $fg.
 It accepts six-digit and three-digit hexidecimal color codes, colors specified
-with #{rgb()}, and colors specified with #{rgba()}. It does not accept HSL or
+with `rgb()`, and colors specified with `rgba()`. It does not accept HSL or
 named HTML colors. Note that it does not take the alpha value into account when
 calculating the contrast ratio. Semi-transparent colors will have a lower
 actual contrast ratio than what is reported by this template.
@@ -317,28 +331,30 @@ ratio of at least 3.0 for large-scale text.
 <!--**==========================================================================
 color.blend
 Blend two colors together at a specified mix level.
-:Revision: version="3.28" date="2016-01-03" status="final"
-$bg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
-$fg: A color specified in hexidecimal, #{rgb()}, or #{rgba()}.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
+$bg: A color specified in hexidecimal, `rgb()`, or `rgba()`.
+$fg: A color specified in hexidecimal, `rgb()`, or `rgba()`.
 $mix: The mix level, between 0.0 and 1.0.
 
-This template calculates a color by selecting a midpoint between ${bg} and
-${fg}, where the ${mix} parameter specifies how far to move from ${bg} to
-${fg}. For opaque colors, setting ${mix} to 0.0 will result in ${bg}, and
-setting ${mix} to 1.0 will result in ${fg}.
+This template calculates a color by selecting a midpoint between $bg and
+$fg, where the $mix parameter specifies how far to move from $bg to $fg
+For opaque colors, setting $mix to 0.0 will result in $bg, and setting
+$mix to 1.0 will result in $fg.
 
-This template takes the alpha values of ${bg} and ${fg} into account, so
-that specifying 1.0 for ${mix} will result in a color that is the result
-of overlaying ${fg} on top of ${bg}. In effect, ${mix} acts as a multiplier
+This template takes the alpha values of $bg and $fg into account, so
+that specifying 1.0 for $mix will result in a color that is the result
+of overlaying $fg on top of $bg. In effect, $mix acts as a multiplier
 on the alpha channels of the colors.
 
-This template calls *{color.r}, *{color.g}, *{color.b}, and *{color.a} to get
-the components of ${bg} and ${fg}. It accepts six-digit and three-digit
-hexidecimal color codes, colors specified with #{rgb()}, and colors specified
-with #{rgba()}. It does not accept HSL or named HTML colors.
+This template calls {color.r}, {color.g}, {color.b}, and {color.a} to get
+the components of $bg and $fg. It accepts six-digit and three-digit
+hexidecimal color codes, colors specified with `rgb()`, and colors specified
+with `rgba()`. It does not accept HSL or named HTML colors.
 
 If the return color is fully opaque, this template returns the color using
-the #{rgb()} scheme. Otherwise, it uses the #{rgba()} scheme.
+the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
 -->
 <xsl:template name="color.blend">
   <xsl:param name="bg" select="'#ffffff'"/>
@@ -537,10 +553,10 @@ the #{rgb()} scheme. Otherwise, it uses the #{rgba()} scheme.
 <!--@@==========================================================================
 color.fg
 The primary text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameters specifies the normal color of text. It should have a high color
-contrast against @{color.bg}. Other text colors can be automatically computed
+contrast against {color.bg}. Other text colors can be automatically computed
 based on this color.
 -->
 <xsl:param name="color.fg" select="'#000000'"/>
@@ -549,10 +565,10 @@ based on this color.
 <!--@@==========================================================================
 color.bg
 The normal background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameters specifies the background color. It should have a high color
-contrast against @{color.fg}. Other background colors can be automatically
+contrast against {color.fg}. Other background colors can be automatically
 computed based on this color.
 -->
 <xsl:param name="color.bg" select="'#ffffff'"/>
@@ -561,7 +577,7 @@ computed based on this color.
 <!--@@==========================================================================
 color.red
 A red accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of red that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -573,11 +589,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.red
 A red text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of red that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.red} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.red} and {color.fg}.
 -->
 <xsl:param name="color.fg.red">
   <xsl:call-template name="_color.fgify">
@@ -589,11 +605,11 @@ automatically computed based on @{color.red} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.red
 A red background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of red that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.red} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.red} and {color.bg}.
 -->
 <xsl:param name="color.bg.red">
   <xsl:call-template name="_color.bgify">
@@ -605,7 +621,7 @@ it can be automatically computed based on @{color.red} and @{color.bg}.
 <!--@@==========================================================================
 color.orange
 An orange accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of orange that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -617,11 +633,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.orange
 An orange text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of orange that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.orange} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.orange} and {color.fg}.
 -->
 <xsl:param name="color.fg.orange">
   <xsl:call-template name="_color.fgify">
@@ -633,11 +649,11 @@ automatically computed based on @{color.orange} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.orange
 An orange background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of orange that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.orange} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.orange} and {color.bg}.
 -->
 <xsl:param name="color.bg.orange">
   <xsl:call-template name="_color.bgify">
@@ -649,7 +665,7 @@ it can be automatically computed based on @{color.orange} and @{color.bg}.
 <!--@@==========================================================================
 color.yellow
 A yellow accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of yellow that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -661,11 +677,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.yellow
 A yellow text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of yellow that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.yellow} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.yellow} and {color.fg}.
 -->
 <xsl:param name="color.fg.yellow">
   <xsl:call-template name="_color.fgify">
@@ -678,11 +694,11 @@ automatically computed based on @{color.yellow} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.yellow
 A yellow background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of yellow that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.yellow} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.yellow} and {color.bg}.
 -->
 <xsl:param name="color.bg.yellow">
   <xsl:call-template name="_color.bgify">
@@ -695,7 +711,7 @@ it can be automatically computed based on @{color.yellow} and @{color.bg}.
 <!--@@==========================================================================
 color.green
 A green accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of green that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -707,11 +723,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.green
 A green text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of green that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.green} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.green} and {color.fg}.
 -->
 <xsl:param name="color.fg.green">
   <xsl:call-template name="_color.fgify">
@@ -723,11 +739,11 @@ automatically computed based on @{color.green} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.green
 A green background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of green that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.green} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.green} and {color.bg}.
 -->
 <xsl:param name="color.bg.green">
   <xsl:call-template name="_color.bgify">
@@ -739,7 +755,7 @@ it can be automatically computed based on @{color.green} and @{color.bg}.
 <!--@@==========================================================================
 color.blue
 A blue accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of blue that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -751,11 +767,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.blue
 A blue text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of blue that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.blue} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.blue} and {color.fg}.
 -->
 <xsl:param name="color.fg.blue">
   <xsl:call-template name="_color.fgify">
@@ -766,11 +782,11 @@ automatically computed based on @{color.blue} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.blue
 A blue background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of blue that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.blue} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.blue} and {color.bg}.
 -->
 <xsl:param name="color.bg.blue">
   <xsl:call-template name="_color.bgify">
@@ -782,7 +798,7 @@ it can be automatically computed based on @{color.blue} and @{color.bg}.
 <!--@@==========================================================================
 color.purple
 A purple accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of purple that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -794,11 +810,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.purple
 A purple text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of purple that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.purple} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.purple} and {color.fg}.
 -->
 <xsl:param name="color.fg.purple">
   <xsl:call-template name="_color.fgify">
@@ -810,11 +826,11 @@ automatically computed based on @{color.purple} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.purple
 A purple background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of purple that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.purple} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.purple} and {color.bg}.
 -->
 <xsl:param name="color.bg.purple">
   <xsl:call-template name="_color.bgify">
@@ -826,7 +842,7 @@ it can be automatically computed based on @{color.purple} and @{color.bg}.
 <!--@@==========================================================================
 color.gray
 A gray accent color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of gray that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
@@ -838,11 +854,11 @@ does not need as high of a contrast as text colors.
 <!--@@==========================================================================
 color.fg.gray
 A gray text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of gray that is suitable for text. It should
-have a high color contrast against @{color.bg}. If not specified, it can be
-automatically computed based on @{color.gray} and @{color.fg}.
+have a high color contrast against {color.bg}. If not specified, it can be
+automatically computed based on {color.gray} and {color.fg}.
 -->
 <xsl:param name="color.fg.gray">
   <xsl:call-template name="_color.fgify">
@@ -854,11 +870,11 @@ automatically computed based on @{color.gray} and @{color.fg}.
 <!--@@==========================================================================
 color.bg.gray
 A gray background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of gray that is suitable for backgrounds.
-It should have a high color contrast against @{color.fg}. If not specified,
-it can be automatically computed based on @{color.gray} and @{color.bg}.
+It should have a high color contrast against {color.fg}. If not specified,
+it can be automatically computed based on {color.gray} and {color.bg}.
 -->
 <xsl:param name="color.bg.gray">
   <xsl:call-template name="_color.bgify">
@@ -870,13 +886,13 @@ it can be automatically computed based on @{color.gray} and @{color.bg}.
 <!--@@==========================================================================
 color.fg.dark
 A dark gray text color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a dark shade of gray that is suitable for text. It
-should have a very high color contrast against @{color.bg}. It is typically
+should have a very high color contrast against {color.bg}. It is typically
 used to slightly reduce the visual weight of headers and bold text. If not
-specified, it can be automatically computed based on @{color.gray} and
-@{color.fg}.
+specified, it can be automatically computed based on {color.gray} and
+{color.fg}.
 -->
 <xsl:param name="color.fg.dark">
   <xsl:call-template name="_color.fgify">
@@ -889,14 +905,14 @@ specified, it can be automatically computed based on @{color.gray} and
 <!--@@==========================================================================
 color.bg.dark
 A dark gray background color.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
 This parameter specifies a shade of gray that is suitable for backgrounds,
-and is darker than @{color.bg.gray}. It should have a high color contrast
-against @{color.fg}. It is typically used at the intersection of shaded
+and is darker than {color.bg.gray}. It should have a high color contrast
+against {color.fg}. It is typically used at the intersection of shaded
 rows and columns in a table, or as a very light gray accent color. If not
-specified, it can be automatically computed based on @{color.gray} and
-@{color.bg}.
+specified, it can be automatically computed based on {color.gray} and
+{color.bg}.
 -->
 <xsl:param name="color.bg.dark">
   <xsl:call-template name="_color.bgify">

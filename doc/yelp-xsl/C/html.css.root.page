@@ -1,6 +1,21 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.css.root" type="topic" style="xslt-param"><info><link type="guide" xref="html" group="parameters"/><link type="guide" xref="parameters" group="html"/><revision version="1.0" date="2010-12-06" status="final"/><desc>The URI root for external CSS files.</desc></info><title>html.css.root</title><p>The URI root for external CSS files.</p>
-  
-  
-  <p>This parameter provides a root URI for any external CSS files that are referenced from the output HTML file. If non-empty, it must end with a trailing slash character.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="html.css.root">
+ <info>
+  <link type="guide" xref="html" group="params"/>
+  <link type="guide" xref="params" group="html"/>
+  <desc>The URI root for external CSS files.</desc>
+  <revision version="1.0" date="2010-12-06" status="final"/>
+ </info>
+ <title>html.css.root</title>
+ <p>This parameter provides a root URI for any external CSS files that are
+ referenced from the output HTML file. If non-empty, it must end with
+ a trailing slash character.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>html.css.root</code></title>
+    <p><code>''</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

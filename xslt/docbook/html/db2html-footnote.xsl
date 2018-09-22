@@ -30,8 +30,10 @@ FIXME: Describe this module
 <!--**==========================================================================
 db2html.footnote.link
 Output a link to a footnote.
-:Revision:version="3.4" date="2011-11-10" status="final"
-$node: The #{footnote} element to process.
+@revision[version=3.4 date=2011-11-10 status=final]
+
+[xsl:params]
+$node: The `footnote` element to process.
 
 This templates outputs an inline link to the footnote displayed at the bottom
 of the page.
@@ -78,8 +80,10 @@ of the page.
 <!--**==========================================================================
 db2html.footnote.note
 Output a footnote.
-:Revision:version="3.4" date="2011-11-10" status="final"
-$node: The #{footnote} element to process.
+@revision[version=3.4 date=2011-11-10 status=final]
+
+[xsl:params]
+$node: The `footnote` element to process.
 
 This templates outputs the actual text of a footnote as a block-level element.
 -->
@@ -130,12 +134,14 @@ This templates outputs the actual text of a footnote as a block-level element.
 <!--**==========================================================================
 db2html.footnote.footer
 Output all footnotes for a page.
-:Revision:version="3.4" date="2011-11-10" status="final"
+@revision[version=3.4 date=2011-11-10 status=final]
+
+[xsl:params]
 $node: The division-level element containing footnotes
 $depth_of_chunk: The depth of the containing chunk in the document.
 
-This template collects all #{footnote} elements under ${node} and outputs them
-with *{db2html.footnote.note}. It checks if each footnote would be displayed on
+This template collects all `footnote` elements under $node and outputs them
+with {db2html.footnote.note}. It checks if each footnote would be displayed on
 a separate page by a child division-level element, and if so, it doesn't output
 that footnote.
 -->
