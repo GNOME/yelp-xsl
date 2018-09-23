@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.title.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="mal2html-page" group="modes"/><link type="guide" xref="modes" group="mal2html"/><revision version="3.10" date="2013-07-10" status="final"/><desc>Output headings for titles and subtitles.</desc></info><title>mal2html.title.mode</title><p>Output headings for titles and subtitles.</p>
-  
-  
-  <p>This template is called on <code>title</code> and <code>subtitle</code> elements that appear as direct child content of <code>page</code> or <code>section</code> elements. Normal block titles are processed in <code style="xslt-mode" xref="mal2html.block.mode">mal2html.block.mode</code>.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="mal2html.title.mode">
+ <info>
+  <link type="guide" xref="mal2html-page" group="modes"/>
+  <link type="guide" xref="modes" group="mal2html"/>
+  <desc>Output headings for titles and subtitles.</desc>
+  <revision version="3.10" date="2013-07-10" status="final"/>
+ </info>
+ <title>mal2html.title.mode</title>
+ <p>This template is called on <sys>title</sys> and <sys>subtitle</sys> elements that appear as
+ direct child content of <sys>page</sys> or <sys>section</sys> elements. Normal block titles
+ are processed in <code xref="mal2html.block.mode">mal2html.block.mode</code>.</p>
 </page>

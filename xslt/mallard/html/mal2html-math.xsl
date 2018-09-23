@@ -25,12 +25,12 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - MathML
 Handle MathML in Mallard documents.
-:Revision: version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
-This stylesheet matches embedded MathML in %{mal2html.block.mode} and
-%{mal2html.inline.mode} and processes it in %{mal2html.math.mode}. The
-matched templates for the #{mml:math} element automatically set the
-#{display} attribute based on whether the element is in block or inline
+This stylesheet matches embedded MathML in {mal2html.block.mode} and
+{mal2html.inline.mode} and processes it in {mal2html.math.mode}. The
+matched templates for the `mml:math` element automatically set the
+`display` attribute based on whether the element is in block or inline
 context.
 -->
 
@@ -38,14 +38,14 @@ context.
 <!--%%==========================================================================
 mal2html.math.mode
 Output MathML and handle Mallard extensions.
-:Revision: version="3.8" date="2012-11-13" status="final"
+@revision[version=3.8 date=2012-11-13 status=final]
 
 This mode is used for processing MathML embedded into Mallard documents. For
 most types of MathML content, it simply copies the input directly, except it
 outputs the MathML in a way that allows the namespace to stripped for non-XML
-output. It checks for Mallard linking using the #{mal:xref} attribute and
-transforms this to a MathML #{href} attribute. It also converts #{xlink:href}
-attributes from MathML 2 to #{href} attributes for MathML 3.
+output. It checks for Mallard linking using the `mal:xref` attribute and
+transforms this to a MathML `href` attribute. It also converts `xlink:href`
+attributes from MathML 2 to `href` attributes for MathML 3.
 -->
 <xsl:template mode="mal2html.math.mode" match="mml:*">
   <xsl:element name="{local-name(.)}" namespace="{$html.mathml.namespace}">

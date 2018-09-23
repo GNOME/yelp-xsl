@@ -1,12 +1,22 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.personname.list" type="topic" style="xslt-template"><info><link type="guide" xref="db-common" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Outputs a list of people's names</desc></info><title>db.personname.list</title><p>Outputs a list of people's names</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>nodes</code></title>
-      <p>The elements containing tags such as <code>firstname</code> and <code>surname</code></p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs a list of names of people as modelled by the <code>personname</code> element.  The <code>personname</code> element allows authors to mark up components of a person's name, such as the person's first name and surname.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db.personname"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db.personname.list">
+ <info>
+  <link type="guide" xref="db-common" group="templates"/>
+  <link type="guide" xref="templates" group="db"/>
+  <desc>Outputs a list of people's names</desc>
+ </info>
+ <title>db.personname.list</title>
+ <p><code>$nodes</code>: The elements containing tags such as <sys>firstname</sys> and <sys>surname</sys></p>
+ <p>This template outputs a list of names of people as modelled by the <sys>personname</sys>
+ element.  The <sys>personname</sys> element allows authors to mark up components of a
+ person's name, such as the person's first name and surname.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.personname"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

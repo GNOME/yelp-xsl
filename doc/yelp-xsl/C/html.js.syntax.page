@@ -1,12 +1,107 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.js.syntax" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Output <code>script</code> elements for syntax highlighting.</desc></info><title>html.js.syntax</title><p>Output <code>script</code> elements for syntax highlighting.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node to create JavaScript for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs HTML <code>script</code> elements to enable syntax highlighting. It only outputs if <code style="xslt-param" xref="html.syntax.highlight">html.syntax.highlight</code> is <code>true</code>. It outputs one <code>script</code> element to load in <code>highlight.js</code>, and another to initialize <code>highlight.js</code> on all <code>code</code> elements with <code>"syntax"</code> in the class value.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="html.syntax.highlight"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.js.syntax">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output <sys>script</sys> elements for syntax highlighting.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>html.js.syntax</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create JavaScript for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs HTML <sys>script</sys> elements to enable syntax highlighting.
+ It only outputs if <code xref="html.syntax.highlight">html.syntax.highlight</code> is <sys>true</sys>. It outputs one <sys>script</sys>
+ element to load in <sys>highlight.js</sys>, and another to initialize <sys>highlight.js</sys>
+ on all <sys>code</sys> elements with <sys>"syntax"</sys> in the class value.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+</page>

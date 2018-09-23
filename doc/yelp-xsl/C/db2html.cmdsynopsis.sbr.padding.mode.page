@@ -1,17 +1,33 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.cmdsynopsis.sbr.padding.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-cmdsynopsis" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="1.0" date="2011-05-16" status="final"/><desc>Output padding for elements leading up to an <code>sbr</code> element.</desc></info><title>db2html.cmdsynopsis.sbr.padding.mode</title><p>Output padding for elements leading up to an <code>sbr</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>sbr</code></title>
-      <p>The <code>sbr</code> element to pad up to</p>
-    </item>
-    <item>
-      <title><code>sepchar</code></title>
-      <p>The value of the <code>sepchar</code> attribute on the enclosing <code>cmdsynopsis</code></p>
-    </item>
-  </terms></synopsis>
-  <p>When processed in this mode, elements output whitespace to the length of the textual output they would normally produce.  This allows options to be aligned when explicit line breaks are inserted with <code>sbr</code> elements.</p>
-  <p>To create the padding for a given <code>sbr</code> element, this mode is called on the enclosing <code>cmdsynopsis</code> element, passing the <code>sbr</code> element.  When processed in this mode, elements should only output padding for content the leads up to the <code>sbr</code> element passed in the <code style="xslt-param">sbr</code> parameter.  When processing children that don't contain the given <code>sbr</code> element, the <code style="xslt-param">sbr</code> parameter should be set to <code>false()</code> for those children.  This avoids additional descendant selectors, which are generally expensive to perform.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="db2html.cmdsynopsis.sbr.padding.mode">
+ <info>
+  <link type="guide" xref="db2html-cmdsynopsis" group="modes"/>
+  <link type="guide" xref="modes" group="db2html"/>
+  <desc>Output padding for elements leading up to an <sys>sbr</sys> element.</desc>
+  <revision version="1.0" date="2011-05-16" status="final"/>
+ </info>
+ <title>db2html.cmdsynopsis.sbr.padding.mode</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$sbr</code></title>
+    <p>The <sys>sbr</sys> element to pad up to</p>
+   </item>
+   <item>
+    <title><code>$sepchar</code></title>
+    <p>The value of the <sys>sepchar</sys> attribute on the enclosing <sys>cmdsynopsis</sys></p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>When processed in this mode, elements output whitespace to the length of the
+ textual output they would normally produce.  This allows options to be aligned
+ when explicit line breaks are inserted with <sys>sbr</sys> elements.</p>
+ <p>To create the padding for a given <sys>sbr</sys> element, this mode is called on the
+ enclosing <sys>cmdsynopsis</sys> element, passing the <sys>sbr</sys> element.  When processed
+ in this mode, elements should only output padding for content the leads up to
+ the <sys>sbr</sys> element passed in the <code>$sbr</code> parameter.  When processing children
+ that don't contain the given <sys>sbr</sys> element, the <code>$sbr</code> parameter should be
+ set to <sys>false()</sys> for those children.  This avoids additional descendant
+ selectors, which are generally expensive to perform.</p>
 </page>

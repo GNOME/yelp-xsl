@@ -27,7 +27,7 @@ along with this program; see the file COPYING.LGPL. If not, see <http://www.gnu.
 <!--!!==========================================================================
 TTML Utilities
 Common templates to help with processing TTML documents.
-:Revision:version="3.4" date="2012-03-01" status="final"
+@revision[version=3.4 date=2012-03-01 status=final]
 
 This stylesheet contains common utilities for working with TTML documents.
 It contains templates for checking profiles and processing timing data.
@@ -37,7 +37,7 @@ It contains templates for checking profiles and processing timing data.
 <!--@@==========================================================================
 ttml.features
 The supported features and extensions for TTML documents.
-:Revision:version="3.4" date="2012-03-01" status="final"
+@evision[version=3.4 date=2012-03-01 status=final]
 
 This parameter lists the fully-qualified URIs of TTML features and extensions
 supported by the stylesheets. The values are in the form of a space-separated
@@ -52,25 +52,27 @@ set this to an appropriate value.
 <!--**==========================================================================
 ttml.time.range
 Return the absolute begin and end times for a timed element.
-:Revision: version="3.4" date="2012-03-02" status="final"
+@revision[version=3.4 date=2012-03-02 status=final]
+
+[xsl:params]
 $node: The element containing timing attributes.
 $range: The absolute range for the parent element.
-$begin: The value of the #{begin} attribute.
-$end: The value of the #{end} attribute.
-$dur: The value of the #{dur} attribute.
+$begin: The value of the `begin` attribute.
+$end: The value of the `end` attribute.
+$dur: The value of the `dur` attribute.
 
 This template returns the start and end time for a TTML element, based on the
-#{begin}, #{end}, and #{dur} attributes. It returns each of them as numbers
-of seconds, as returned by *{ttml.time.seconds}, separated by a comma. Begin
+`begin`, `end`, and `dur` attributes. It returns each of them as numbers
+of seconds, as returned by {ttml.time.seconds}, separated by a comma. Begin
 and end times are returned as absolute times, relative to the computed range
-of the parent element. The parent range may be passed in the ${range} parameter.
+of the parent element. The parent range may be passed in the $range parameter.
 If the parameter is empty, the parent range is computed automatically by calling
-this template on the nearest ancestor of ${node} with a #{begin} attribute.
+this template on the nearest ancestor of $node with a `begin` attribute.
 
-If both ${end} and ${dur} are provided, the end times for each are calculated,
+If both $end and $dur are provided, the end times for each are calculated,
 and the one that results in the shortest duration is used.
 
-If there is no end time for the element, the string #{∞} is used as the end time.
+If there is no end time for the element, the string `∞` is used as the end time.
 -->
 <xsl:template name="ttml.time.range">
   <xsl:param name="node" select="."/>
@@ -166,16 +168,18 @@ If there is no end time for the element, the string #{∞} is used as the end ti
 <!--**==========================================================================
 ttml.time.seconds
 Return the number of seconds for a time expression.
-:Revision: version="3.4" date="2012-03-02" status="final"
+@revision[version=3.4 date=2012-03-02 status=final]
+
+[xsl:params]
 $time: A TTML time expression.
 
-This template takes a time expression as used by the #{begin}, #{end}, and #{dur}
+This template takes a time expression as used by the `begin`, `end`, and `dur`
 attributes and returns the number of seconds that expression respresents. Time
-expressions may be any number parsable by the XPath #{number} function followed
-by one of the units #{ms} (milliseconds), #{s} (seconds), #{m} (minutes), or #{h}
-(hours). It returns #{0} if the time expression is invalid.
+expressions may be any number parsable by the XPath `number` function followed
+by one of the units `ms` (milliseconds), `s` (seconds), `m` (minutes), or `h`
+(hours). It returns `0` if the time expression is invalid.
 
-This template provides support only for the #{#time-offset} TTML feature. It
+This template provides support only for the `#time-offset` TTML feature. It
 does not support other methods of specifying times.
 -->
 <xsl:template name="ttml.time.seconds">
@@ -206,16 +210,18 @@ does not support other methods of specifying times.
 
 <!--**==========================================================================
 ttml.profile
-Check whether the stylesheets conform to a #{ttp:profile} element.
-:Revision: version="3.4" date="2012-03-01" status="final"
-$node: The #{ttp:profile} element to check.
+Check whether the stylesheets conform to a `ttp:profile` element.
+@revision[version=3.4 date=2012-03-01 status=final]
 
-This template takes a #{ttp:profile} element in the ${node} parameter and
+[xsl:params]
+$node: The `ttp:profile` element to check.
+
+This template takes a `ttp:profile` element in the $node parameter and
 determines whether or not the stylesheets meet all required features and
 extensions, per section 5.2 of the TTML 1.0 recommendation. This template
-uses the @{ttml.features} stylesheet parameter to determine which features
-are supported by the stylesheet. It returns the string #{"true"} if all
-required features are supported, #{"false"} otherwise.
+uses the {ttml.features} stylesheet parameter to determine which features
+are supported by the stylesheet. It returns the string `"true"` if all
+required features are supported, `"false"` otherwise.
 -->
 <xsl:template name="ttml.profile">
   <xsl:param name="node" select="."/>
@@ -297,20 +303,20 @@ required features are supported, #{"false"} otherwise.
 
 <!--**==========================================================================
 ttml.profile.attr
-Check whether the stylesheets conform to a #{profile} attribute.
-:Revision: version="3.4" date="2012-03-02" status="final"
-$node: A #{tt:tt} element containing a #{profile} attribute.
-$profile: The #{profile} attribute to check.
+Check whether the stylesheets conform to a `profile` attribute.
+@revision[version=3.4 date=2012-03-02 status=final]
+$node: A `tt:tt` element containing a `profile` attribute.
+$profile: The `profile` attribute to check.
 
 This template checks if the stylesheets comply with a profile as specified by
-the #{profile} attribute on a #{tt:tt} element. If the profile is one of the
-pre-defined profiles (#{dfxp-transformation}, #{dfxp-presentation}, and
-#{dfxp-full}), this template contains built-in rules for quicly checking
+the `profile` attribute on a `tt:tt` element. If the profile is one of the
+pre-defined profiles (`dfxp-transformation`, `dfxp-presentation`, and
+`dfxp-full`), this template contains built-in rules for quicly checking
 feature compliance. Otherwise, it downloads the referenced profile and calls
-*{ttml.profile} on it.
+`ttml.profile` on it.
 
-Like *{ttml.profile}, this template returns the string #{"true"} if all
-required features are supported, #{"false"} otherwise.
+Like {ttml.profile}, this template returns the string `"true"` if all
+required features are supported, `"false"` otherwise.
 -->
 <xsl:template name="ttml.profile.attr">
   <xsl:param name="node" select="."/>

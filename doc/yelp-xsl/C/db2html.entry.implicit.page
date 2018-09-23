@@ -1,46 +1,75 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.entry.implicit" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-table" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Creates an implicit <code>td</code> element to fill up unoccupied columns</desc></info><title>db2html.entry.implicit</title><p>Creates an implicit <code>td</code> element to fill up unoccupied columns</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>entry</code></title>
-      <p>The <code>entry</code> element currently being processed</p>
-    </item>
-    <item>
-      <title><code>colspecs</code></title>
-      <p>The <code>colspec</code> elements currently in scope</p>
-    </item>
-    <item>
-      <title><code>spanspecs</code></title>
-      <p>The <code>spanspec</code> elements currently in scope</p>
-    </item>
-    <item>
-      <title><code>colsep</code></title>
-      <p>Whether column separators are currently enabled</p>
-    </item>
-    <item>
-      <title><code>rowsep</code></title>
-      <p>Whether column separators are currently enabled</p>
-    </item>
-    <item>
-      <title><code>colpos</code></title>
-      <p>The output column position currently being considered</p>
-    </item>
-    <item>
-      <title><code>colnum</code></title>
-      <p>The actual column number of <code style="xslt-param">entry</code></p>
-    </item>
-    <item>
-      <title><code>colspan</code></title>
-      <p>How many columns the implicit <code>td</code> currently spans</p>
-    </item>
-    <item>
-      <title><code>spanstr</code></title>
-      <p>The string representation of the row spans</p>
-    </item>
-  </terms></synopsis>
-  <p>CALS tables in DocBook don't need to have <code>entry</code> elements for each column in each row, even when the column is not covered by a row-spanning entry from a previous row.  An <code>entry</code> can explicitly specify which column it's in, and any previous unfilled columns are considered blank.  Since HTML tables don't have this mechanism, we have to insert blank <code>td</code> elements to fill the gaps.</p>
-  <p>When <code style="xslt-template" xref="db2html.entry">db2html.entry</code> detects a blank entry, it will call this template with the approprite parameters.  This template then calls itself recursively, each time adjusting the <code style="xslt-param">colpos</code>, <code style="xslt-param">colspan</code>, and <code style="xslt-param">spanstr</code> parameters, until it comes across the last column that needs to be filled.  It then outputs a <code>td</code> element with an appropriate <code>colspan</code> attribute.</p>
-  <p>Finally, this template calls <code style="xslt-template" xref="db2html.entry">db2html.entry</code> again on <code style="xslt-param">entry</code>.  With the values of <code style="xslt-param">colpos</code> and <code style="xslt-param">spanstr</code> suitably adjusted, that template is then able to output the <code>td</code> for the <code>entry</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.entry.colnum"/></p></item><item><p><link xref="db2html.entry"/></p></item><item><p><link xref="db2html.entry.implicit"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.entry.implicit">
+ <info>
+  <link type="guide" xref="db2html-table" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Creates an implicit <sys>td</sys> element to fill up unoccupied columns</desc>
+ </info>
+ <title>db2html.entry.implicit</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$entry</code></title>
+    <p>The <sys>entry</sys> element currently being processed</p>
+   </item>
+   <item>
+    <title><code>$colspecs</code></title>
+    <p>The <sys>colspec</sys> elements currently in scope</p>
+   </item>
+   <item>
+    <title><code>$spanspecs</code></title>
+    <p>The <sys>spanspec</sys> elements currently in scope</p>
+   </item>
+   <item>
+    <title><code>$colsep</code></title>
+    <p>Whether column separators are currently enabled</p>
+   </item>
+   <item>
+    <title><code>$rowsep</code></title>
+    <p>Whether column separators are currently enabled</p>
+   </item>
+   <item>
+    <title><code>$colpos</code></title>
+    <p>The output column position currently being considered</p>
+   </item>
+   <item>
+    <title><code>$colnum</code></title>
+    <p>The actual column number of <code>$entry</code></p>
+   </item>
+   <item>
+    <title><code>$colspan</code></title>
+    <p>How many columns the implicit <sys>td</sys> currently spans</p>
+   </item>
+   <item>
+    <title><code>$spanstr</code></title>
+    <p>The string representation of the row spans</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>CALS tables in DocBook don't need to have <sys>entry</sys> elements for each column
+ in each row, even when the column is not covered by a row-spanning entry from
+ a previous row.  An <sys>entry</sys> can explicitly specify which column it's in, and
+ any previous unfilled columns are considered blank.  Since HTML tables don't
+ have this mechanism, we have to insert blank <sys>td</sys> elements to fill the gaps.</p>
+ <p>When <code xref="db2html.entry">db2html.entry</code> detects a blank entry, it will call this template with
+ the approprite parameters.  This template then calls itself recursively, each
+ time adjusting the <code>$colpos</code>, <code>$colspan</code>, and <code>$spanstr</code> parameters, until it
+ comes across the last column that needs to be filled.  It then outputs a <sys>td</sys>
+ element with an appropriate <sys>colspan</sys> attribute.</p>
+ <p>Finally, this template calls <code xref="db2html.entry">db2html.entry</code> again on <code>$entry</code>.  With the
+ values of <code>$colpos</code> and <code>$spanstr</code> suitably adjusted, that template is then
+ able to output the <sys>td</sys> for the <sys>entry</sys> element.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db2html.entry"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.entry.colnum"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.entry.implicit"/></p>
+  </item>
+ </list>
+</page>

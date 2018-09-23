@@ -1,12 +1,84 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.hex2dec" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Convert a hexidecimal number to decimal.</desc></info><title>color.hex2dec</title><p>Convert a hexidecimal number to decimal.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>hex</code></title>
-      <p>The hexidecimal number to convert to decimal.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template converts a hexidecimal number to decimal. It's useful for getting the numeric values of color components in a hexidecimal color code.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="color.hex2dec"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="color.hex2dec">
+ <info>
+  <link type="guide" xref="color" group="templates"/>
+  <link type="guide" xref="templates" group="color"/>
+  <desc>Convert a hexidecimal number to decimal.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>color.hex2dec</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$hex</code></title>
+    <p>The hexidecimal number to convert to decimal.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template converts a hexidecimal number to decimal. It's useful for getting
+ the numeric values of color components in a hexidecimal color code.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="color.hex2dec"/></p>
+  </item>
+ </list>
+</page>

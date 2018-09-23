@@ -1,12 +1,21 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="utils.email_address" type="topic" style="xslt-template"><info><link type="guide" xref="utils" group="templates"/><link type="guide" xref="templates" group="utils"/><revision version="3.4" date="2012-01-18" status="final"/><desc>Get an email address from a mailto URL.</desc></info><title>utils.email_address</title><p>Get an email address from a mailto URL.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>href</code></title>
-      <p>The mailto URL.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template takes a mailto URL and returns an email address, stripping the URL scheme as well as any query string.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="utils.email_address">
+ <info>
+  <link type="guide" xref="utils" group="templates"/>
+  <link type="guide" xref="templates" group="utils"/>
+  <desc>Get an email address from a mailto URL.</desc>
+  <revision version="3.4" date="2012-01-18" status="final"/>
+ </info>
+ <title>utils.email_address</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$href</code></title>
+    <p>The mailto URL.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template takes a mailto URL and returns an email address, stripping the
+ URL scheme as well as any query string.</p>
 </page>

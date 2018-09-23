@@ -1,2 +1,133 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-media" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="3.8" date="2012-11-13" status="final"/><link type="xslt-defines-template" xref="db2html.audiodata"/><link type="xslt-defines-template" xref="db2html.imagedata"/><link type="xslt-defines-template" xref="db2html.videodata"/><link type="xslt-defines-template" xref="db2html.mediaobject"/><link type="xslt-defines-template" xref="db2html.mediaobject.fallback"/></info><title>DocBook to HTML - Images and Media</title><p>Handle DocBook media elements.</p><p>This stylesheet contains templates for handling DocBook <code>mediaobject</code> and <code>inlinemediaobject</code> elements, as well as the various <code>object</code> and <code>data</code> elements found in these elements. This stylesheet also handles the deprecated DocBook 4 <code>graphic</code> and <code>inlinegraphic</code> elements.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Templates</title><item><p><link xref="html.media.controls"/></p></item><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>mediaobject/audioobject/audiodata |                      db:mediaobject/db:audioobject/db:audiodata</code></p></td></tr><tr><td><p/></td><td><p><code>inlinemediaobject/audioobject/audiodata |                      db:inlinemediaobject/db:audioobject/db:audiodata</code></p></td></tr><tr><td><p/></td><td><p><code>audioobject | db:audioobject</code></p></td></tr><tr><td><p/></td><td><p><code>graphic</code></p></td></tr><tr><td><p/></td><td><p><code>imagedata | db:imagedata</code></p></td></tr><tr><td><p/></td><td><p><code>imageobject | db:imageobject</code></p></td></tr><tr><td><p/></td><td><p><code>inlinegraphic</code></p></td></tr><tr><td><p/></td><td><p><code>inlinemediaobject | db:inlinemediaobject</code></p></td></tr><tr><td><p/></td><td><p><code>mediaobject | db:mediaobject</code></p></td></tr><tr><td><p/></td><td><p><code>mediaobject/videoobject/videodata |                      db:mediaobject/db:videoobject/db:videodata</code></p></td></tr><tr><td><p/></td><td><p><code>inlinemediaobject/videoobject/videodata |                      db:inlinemediaobject/db:videoobject/db:videodata</code></p></td></tr><tr><td><p/></td><td><p><code>videoobject | db:videoobject</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-media">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+  <desc>Handle DocBook media elements.</desc>
+  <revision version="3.8" date="2012-11-13" status="final"/>
+ </info>
+ <title>DocBook to HTML - Images and Media</title>
+ <p>This stylesheet contains templates for handling DocBook <sys>mediaobject</sys> and
+ <sys>inlinemediaobject</sys> elements, as well as the various <sys>object</sys> and <sys>data</sys>
+ elements found in these elements. This stylesheet also handles the deprecated
+ DocBook 4 <sys>graphic</sys> and <sys>inlinegraphic</sys> elements.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.media.controls"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>mediaobject/audioobject/audiodata |                      db:mediaobject/db:audioobject/db:audiodata</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>inlinemediaobject/audioobject/audiodata |                      db:inlinemediaobject/db:audioobject/db:audiodata</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>audioobject | db:audioobject</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>graphic</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>imagedata | db:imagedata</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>imageobject | db:imageobject</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>inlinegraphic</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>inlinemediaobject | db:inlinemediaobject</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>mediaobject | db:mediaobject</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>mediaobject/videoobject/videodata |                      db:mediaobject/db:videoobject/db:videodata</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>inlinemediaobject/videoobject/videodata |                      db:inlinemediaobject/db:videoobject/db:videodata</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>videoobject | db:videoobject</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

@@ -22,10 +22,9 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Class Synopses
-:Requires: db2html-xref html
-:Revision:version="1.0" date="2011-05-16" status="final"
+@revision[version=1.0 date=2011-05-16 status=final]
 
-This module handles the DocBook #{classsynopsis} and related elements. The
+This module handles the DocBook `classsynopsis` and related elements. The
 contents of the class-modeling elements are processed in a mode depending on
 the programming language to format the synopsis correctly.
 -->
@@ -36,13 +35,13 @@ the programming language to format the synopsis correctly.
 
 <!--@@==========================================================================
 db2html.classsynopsis.language
-The default programming language used to format #{classsynopsis} elements.
-:Revision:version="1.0" date="2011-05-16" status="final"
+The default programming language used to format `classsynopsis` elements.
+@revision[version=1.0 date=2011-05-16 status=final]
 
-This parameter sets the default value for the #{language} attribute of elements
-like #{classsynopsis}. Templates in this module will always use the #{language}
+This parameter sets the default value for the `language` attribute of elements
+like `classsynopsis`. Templates in this module will always use the `language`
 attribute if present. Otherwise, they fall back to this value. This parameter
-can be set with the #{db2html.classsynopsis.language} processing instruction
+can be set with the `db2html.classsynopsis.language` processing instruction
 at the root of a DocBook document.
 -->
 <xsl:param name="db2html.classsynopsis.language">
@@ -158,11 +157,11 @@ at the root of a DocBook document.
 <!--%%==========================================================================
 db2html.class.cpp.mode
 Process a C++ synopsis.
-:Revision:version="1.0" date="2011-05-16" status="final"
+@revision[version=1.0 date=2011-05-16 status=final]
 
 This mode is applied to child elements for synopsis elements for the C++
-programming language. In C++ synopses, the first #{modifier} element for
-methods is expected to mark the visibility, such as #{public} or #{private}.
+programming language. In C++ synopses, the first `modifier` element for
+methods is expected to mark the visibility, such as `public` or `private`.
 -->
 <xsl:template mode="db2html.class.cpp.mode" match="*">
   <xsl:apply-templates select="."/>
@@ -395,7 +394,7 @@ methods is expected to mark the visibility, such as #{public} or #{private}.
 <!--%%==========================================================================
 db2html.class.python.mode
 Process a Python synopsis.
-:Revision:version="1.0" date="2011-05-16" status="final"
+@revision[version=1.0 date=2011-05-16 status=final]
 
 This mode is applied to child elements for synopsis elements for the Python
 programming language.

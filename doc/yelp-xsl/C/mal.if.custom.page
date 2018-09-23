@@ -1,6 +1,21 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.if.custom" type="topic" style="xslt-param"><info><link type="guide" xref="mal-if" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.8" date="2012-11-05" status="final"/><desc>A custom list of supported tokens.</desc></info><title>mal.if.custom</title><p>A custom list of supported tokens.</p>
-  
-  
-  <p>This parameter takes a space-separated list of tokens to enable for conditional processing. It is used by the template <code style="xslt-template" xref="mal.if.test">mal.if.test</code>. This parameter is meant to hold extra values enabled by hand or by a customization stylesheet.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="mal.if.custom">
+ <info>
+  <link type="guide" xref="mal-if" group="params"/>
+  <link type="guide" xref="params" group="mal"/>
+  <desc>A custom list of supported tokens.</desc>
+  <revision version="3.8" date="2012-11-05" status="final"/>
+ </info>
+ <title>mal.if.custom</title>
+ <p>This parameter takes a space-separated list of tokens to enable for conditional
+ processing. It is used by the template <code xref="mal.if.test">mal.if.test</code>. This parameter is meant
+ to hold extra values enabled by hand or by a customization stylesheet.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>mal.if.custom</code></title>
+    <p><code>''</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

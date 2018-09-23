@@ -1,19 +1,145 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.output" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><desc>Create an HTML output file.</desc></info><title>html.output</title><p>Create an HTML output file.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node to create an output file for.</p>
-    </item>
-    <item>
-      <title><code>href</code></title>
-      <p>The output filename.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template creates an HTML output file for the source element <code style="xslt-param">node</code>. It uses <code>exsl:document</code> to output the file, and calls <code style="xslt-template" xref="html.page">html.page</code> with the <code style="xslt-param">node</code> parameter to output the actual HTML contents.</p>
-  <p>If <code style="xslt-param">href</code> is not provided, this template will attempt to generate a base filename and append <code style="xslt-param" xref="html.extension">html.extension</code> to it. The base filename is generated as follows: If an <code>xml:id</code> attribute is present, it is used; otherwise, if an <code>id</code> attribute is present, it is uses; otherwise, if <code style="xslt-param">node</code> is the root element, <code style="xslt-param" xref="html.basename">html.basename</code> is used; otherwise, <code>generate-id()</code> is called.</p>
-  <p>This template prepends <code style="xslt-param" xref="html.output.prefix">html.output.prefix</code> to the value of <code style="xslt-param">href</code> when it calls <code>exsl:document</code>, regardless of whether <code style="xslt-param">href</code> was passed in or generated automatically.</p>
-  <p>After calling <code>exsl:document</code>, this template calls the <code style="xslt-mode" xref="html.output.after.mode">html.output.after.mode</code> mode on <code style="xslt-param">node</code>. Importing stylesheets that create multiple output files can use this to process output files without blocking earlier output.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.page"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="html.output.after.mode"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="html.basename"/></p></item><item><p><link xref="html.extension"/></p></item><item><p><link xref="html.xhtml"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.output">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Create an HTML output file.</desc>
+  <revision version="1.0" date="2010-05-26" status="final"/>
+ </info>
+ <title>html.output</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create an output file for.</p>
+   </item>
+   <item>
+    <title><code>$href</code></title>
+    <p>The output filename.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template creates an HTML output file for the source element <code>$node</code>. It
+ uses <sys>exsl:document</sys> to output the file, and calls <code xref="html.page">html.page</code> with the
+ <code>$node</code> parameter to output the actual HTML contents.</p>
+ <p>If <code>$href</code> is not provided, this template will attempt to generate a base
+ filename and append <code xref="html.extension">html.extension</code> to it. The base filename is generated
+ as follows:</p>
+ <list>
+  <item>
+   <p>If an <sys>xml:id</sys> attribute is present, it is used.</p>
+  </item>
+  <item>
+   <p>Otherwise, if an <sys>id</sys> attribute is present, it is used.</p>
+  </item>
+  <item>
+   <p>Otherwise, if <code>$node</code> is the root element, <code xref="html.basename">html.basename</code> is used.</p>
+  </item>
+  <item>
+   <p>Otherwise, <sys>generate-id()</sys> is called.</p>
+  </item>
+ </list>
+ <p>This template prepends <code xref="html.output.prefix">html.output.prefix</code> to the value of <code>$href</code> when
+ it calls <sys>exsl:document</sys>, regardless of whether <code>$href</code> was passed in or
+ generated automatically.</p>
+ <p>After calling <sys>exsl:document</sys>, this template calls the <code xref="html.output.after.mode">html.output.after.mode</code>
+ mode on <code>$node</code>. Importing stylesheets that create multiple output files can
+ use this to process output files without blocking earlier output.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.page"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="html.output.after.mode"/></p>
+  </item>
+ </list>
+</page>

@@ -28,6 +28,8 @@ Localized Numbers
 <!--**==========================================================================
 l10n.number
 Formats a number according to a localized numbering system
+
+[xsl:params]
 $value: The numeric value of the number to format
 $format: The numbering system to use
 
@@ -117,6 +119,8 @@ REMARK: Talk about numbering systems
 <!--**==========================================================================
 l10n.number.alphabetic
 Formats a number using an alphabetic numbering system
+
+[xsl:params]
 $value: The numeric value of the number to format
 $alphabet: A string containing the characters of the alphabet to use
 
@@ -156,6 +160,8 @@ REMARK: Talk about alphabetic numbering systems
 <!--**==========================================================================
 l10n.number.numeric
 Formats a number using a numeric numbering system with any radix
+
+[xsl:params]
 $value: The numeric value of the number to format
 $digits: A string containing the digits to use, starting with zero
 
@@ -191,11 +197,13 @@ REMARK: Talk about numeric numbering systems
 <!--**==========================================================================
 l10n.number.cjk-ideographic
 Formats a number using a CJK ideographic system
+
+[xsl:params]
 $value: The numeric value of the number to format
 $format: Which ideographic system to use
 
-REMARK: Talk about CJK ideographic numbering systems.  Valid values of ${format}
-are #{cjk-japanese}, #{cjk-chinese-simp}, and #{cjk-chinese-trad}.
+REMARK: Talk about CJK ideographic numbering systems.  Valid values of $format
+are `cjk-japanese`, `cjk-chinese-simp`, and `cjk-chinese-trad`.
 -->
 <xsl:template name="l10n.number.cjk-ideographic">
   <xsl:param name="value"/>
@@ -282,11 +290,13 @@ are #{cjk-japanese}, #{cjk-chinese-simp}, and #{cjk-chinese-trad}.
 <!--**==========================================================================
 l10n.number.ionic
 Formats a number using the Ionic numeral system
+
+[xsl:params]
 $value: The numeric value of the number to format
 $format: Which format to use
 
-REMARK: Talk about the Ionic numeral system.  Talk about ${format}
-See #{http://en.wikipedia.org/wiki/Greek_numerals}.
+REMARK: Talk about the Ionic numeral system.  Talk about $format
+See `http://en.wikipedia.org/wiki/Greek_numerals`.
 -->
 <xsl:template name="l10n.number.ionic">
   <xsl:param name="value"/>

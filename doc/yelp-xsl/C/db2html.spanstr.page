@@ -1,20 +1,48 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.spanstr" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-table" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates a string specifying the row spans in effect</desc></info><title>db2html.spanstr</title><p>Generates a string specifying the row spans in effect</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>colspecs</code></title>
-      <p>The <code>colspec</code> elements currently in scope</p>
-    </item>
-    <item>
-      <title><code>spanspecs</code></title>
-      <p>The <code>spanspec</code> elements currently in scope</p>
-    </item>
-    <item>
-      <title><code>spanstr</code></title>
-      <p>The <code style="xslt-param">spanstr</code> parameter used by the previous row</p>
-    </item>
-  </terms></synopsis>
-  <comment><p>This template needs to be explained in detail, but I forgot how it works.</p></comment>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db2html.entry.colnum"/></p></item><item><p><link xref="db2html.entry.colspan"/></p></item><item><p><link xref="db2html.spanstr.pop"/></p></item><item><p><link xref="db2html.spanstr"/></p></item><item><p><link xref="utils.repeat_string"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.spanstr">
+ <info>
+  <link type="guide" xref="db2html-table" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Generates a string specifying the row spans in effect</desc>
+ </info>
+ <title>db2html.spanstr</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$colspecs</code></title>
+    <p>The <sys>colspec</sys> elements currently in scope</p>
+   </item>
+   <item>
+    <title><code>$spanspecs</code></title>
+    <p>The <sys>spanspec</sys> elements currently in scope</p>
+   </item>
+   <item>
+    <title><code>$spanstr</code></title>
+    <p>The <code>$spanstr</code> parameter used by the previous row</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: This template needs to be explained in detail, but I forgot how it works.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db2html.entry.colnum"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.entry.colspan"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.spanstr"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.spanstr.decrement"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.spanstr.pop"/></p>
+  </item>
+  <item>
+   <p><link xref="utils.repeat_string"/></p>
+  </item>
+ </list>
+</page>

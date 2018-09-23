@@ -1,17 +1,45 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.link.xref.linkid" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.0" date="2010-01-02" status="final"/><desc>Output the fully qualified link ID for an <code>xref</code> attribute.</desc></info><title>mal.link.xref.linkid</title><p>Output the fully qualified link ID for an <code>xref</code> attribute.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The element containing an <code>xref</code> attribute.</p>
-    </item>
-    <item>
-      <title><code>xref</code></title>
-      <p>The <code>xref</code> value to generate a link ID from.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs the fully qualified link ID for an <code>xref</code> attribute. This may simply be <code style="xslt-param">xref</code>, but if <code style="xslt-param">xref</code> starts with the <code>#</code> character, it is prefixed with the ID of the page that contains <code style="xslt-param">node</code>.</p>
-  <p>See <code style="xslt-template" xref="mal.link.linkid">mal.link.linkid</code> for more on link IDs.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal.link.xref.linkid">
+ <info>
+  <link type="guide" xref="mal-link" group="templates"/>
+  <link type="guide" xref="templates" group="mal"/>
+  <desc>Output the fully qualified link ID for an <sys>xref</sys> attribute.</desc>
+  <revision version="3.0" date="2010-01-02" status="final"/>
+ </info>
+ <title>mal.link.xref.linkid</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The element containing an <sys>xref</sys> attribute.</p>
+   </item>
+   <item>
+    <title><code>$xref</code></title>
+    <p>The <sys>xref</sys> value to generate a link ID from.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs the fully qualified link ID for an <sys>xref</sys> attribute.
+ This may simply be <code>$xref</code>, but if <code>$xref</code> starts with the <sys>#</sys> character, it
+ is prefixed with the ID of the page that contains <code>$node</code>.</p>
+ <p>See <code xref="mal.link.linkid">mal.link.linkid</code> for more on link IDs.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.cache.file"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.prefix"/></p>
+  </item>
+ </list>
 </page>

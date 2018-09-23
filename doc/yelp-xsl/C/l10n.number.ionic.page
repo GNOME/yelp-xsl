@@ -1,16 +1,30 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="l10n.number.ionic" type="topic" style="xslt-template"><info><link type="guide" xref="l10n-numbers" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Formats a number using the Ionic numeral system</desc></info><title>l10n.number.ionic</title><p>Formats a number using the Ionic numeral system</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>value</code></title>
-      <p>The numeric value of the number to format</p>
-    </item>
-    <item>
-      <title><code>format</code></title>
-      <p>Which format to use</p>
-    </item>
-  </terms></synopsis>
-  <comment><p>Talk about the Ionic numeral system.  Talk about <code style="xslt-param">format</code> See <code>http://en.wikipedia.org/wiki/Greek_numerals</code>.</p></comment>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="l10n.number.ionic">
+ <info>
+  <link type="guide" xref="l10n-numbers" group="templates"/>
+  <link type="guide" xref="templates" group="l10n"/>
+  <desc>Formats a number using the Ionic numeral system</desc>
+ </info>
+ <title>l10n.number.ionic</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$value</code></title>
+    <p>The numeric value of the number to format</p>
+   </item>
+   <item>
+    <title><code>$format</code></title>
+    <p>Which format to use</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: Talk about the Ionic numeral system.  Talk about <code>$format</code>
+ See <sys>http://en.wikipedia.org/wiki/Greek_numerals</sys>.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.number.ionic.private"/></p>
+  </item>
+ </list>
 </page>

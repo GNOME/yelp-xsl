@@ -1,2 +1,352 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html" type="guide" style="xslt-stylesheet"><info><link type="guide" xref="stylesheets" group="html"/><revision version="1.0" date="2010-05-26" status="final"/><link type="xslt-requires" xref="l10n"/><link type="xslt-requires" xref="color"/><link type="xslt-requires" xref="icons"/><link type="xslt-defines-template" xref="html.output"/><link type="xslt-defines-template" xref="html.page"/><link type="xslt-defines-template" xref="html.top.custom"/><link type="xslt-defines-template" xref="html.bottom.custom"/><link type="xslt-defines-template" xref="html.sidebar"/><link type="xslt-defines-template" xref="_html.sidebar.sidebar"/><link type="xslt-defines-template" xref="html.sidebar.contents"/><link type="xslt-defines-template" xref="html.sidebar.sections"/><link type="xslt-defines-template" xref="html.sidebar.custom"/><link type="xslt-defines-template" xref="html.header.custom"/><link type="xslt-defines-template" xref="html.footer.custom"/><link type="xslt-defines-template" xref="html.head.top.custom"/><link type="xslt-defines-template" xref="html.head.custom"/><link type="xslt-defines-template" xref="html.linktrails.empty"/><link type="xslt-defines-template" xref="html.linktrails.prefix"/><link type="xslt-defines-template" xref="html.class.attr"/><link type="xslt-defines-template" xref="html.content.pre"/><link type="xslt-defines-template" xref="html.content.pre.custom"/><link type="xslt-defines-template" xref="html.content.post"/><link type="xslt-defines-template" xref="html.content.post.custom"/><link type="xslt-defines-template" xref="html.css"/><link type="xslt-defines-template" xref="html.css.content"/><link type="xslt-defines-template" xref="html.css.core"/><link type="xslt-defines-template" xref="html.css.elements"/><link type="xslt-defines-template" xref="html.css.syntax"/><link type="xslt-defines-template" xref="html.css.custom"/><link type="xslt-defines-template" xref="html.js"/><link type="xslt-defines-template" xref="html.js.mathjax"/><link type="xslt-defines-template" xref="html.js.script"/><link type="xslt-defines-template" xref="html.js.content"/><link type="xslt-defines-template" xref="html.js.core"/><link type="xslt-defines-template" xref="html.js.ui"/><link type="xslt-defines-template" xref="html.js.media"/><link type="xslt-defines-template" xref="html.js.syntax"/><link type="xslt-defines-template" xref="html.js.custom"/><link type="xslt-defines-template" xref="html.js.content.custom"/><link type="xslt-defines-template" xref="html.lang.attrs"/><link type="xslt-defines-template" xref="html.syntax.class"/><link type="xslt-defines-template" xref="html.media.controls"/><link type="xslt-implements-mode" xref="html.output.after.mode"/><link type="xslt-implements-mode" xref="html.title.mode"/><link type="xslt-implements-mode" xref="html.body.attr.mode"/><link type="xslt-implements-mode" xref="html.sidebar.mode"/><link type="xslt-implements-mode" xref="html.sidebar.contents.mode"/><link type="xslt-implements-mode" xref="html.sidebar.sections.mode"/><link type="xslt-implements-mode" xref="html.header.mode"/><link type="xslt-implements-mode" xref="html.footer.mode"/><link type="xslt-implements-mode" xref="html.body.mode"/><link type="xslt-implements-mode" xref="html.class.attr.mode"/><link type="xslt-implements-mode" xref="html.content.pre.mode"/><link type="xslt-implements-mode" xref="html.content.post.mode"/><link type="xslt-implements-mode" xref="html.css.mode"/><link type="xslt-implements-mode" xref="html.js.mode"/><link type="xslt-implements-mode" xref="html.syntax.class.mode"/><link type="xslt-defines-param" xref="html.basename"/><link type="xslt-defines-param" xref="html.xhtml"/><link type="xslt-defines-param" xref="html.namespace"/><link type="xslt-defines-param" xref="html.extension"/><link type="xslt-defines-param" xref="html.css.root"/><link type="xslt-defines-param" xref="html.js.root"/><link type="xslt-defines-param" xref="html.syntax.highlight"/><link type="xslt-defines-param" xref="html.output.prefix"/><link type="xslt-defines-param" xref="html.sidebar.left"/><link type="xslt-defines-param" xref="html.sidebar.right"/></info><title>HTML Output</title><p>Common utilities and CSS for transformations to HTML.</p><p>This stylesheet contains common templates for creating HTML output. The <code style="xslt-template" xref="html.output">html.output</code> template creates an output file for a node in the source XML document, calling <code style="xslt-template" xref="html.page">html.page</code> to create the actual output. Output files can be either XHTML or HTML, depending on the <code style="xslt-param" xref="html.xhtml">html.xhtml</code> parameter.</p><p>This stylesheet matches <code>/</code> and calls <code style="xslt-template" xref="html.output">html.output</code> on the root XML element. This works for most input formats. If you need to do something different, you should override the match for <code>/</code>.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="color"/></p></item><item><p><link xref="icons"/></p></item><item><p><link xref="l10n"/></p></item></list><list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="l10n.align.start"/></p></item><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="color.bg"/></p></item><item><p><link xref="color.bg.blue"/></p></item><item><p><link xref="color.bg.dark"/></p></item><item><p><link xref="color.bg.gray"/></p></item><item><p><link xref="color.bg.green"/></p></item><item><p><link xref="color.bg.red"/></p></item><item><p><link xref="color.bg.yellow"/></p></item><item><p><link xref="color.blue"/></p></item><item><p><link xref="color.fg"/></p></item><item><p><link xref="color.fg.blue"/></p></item><item><p><link xref="color.fg.dark"/></p></item><item><p><link xref="color.fg.gray"/></p></item><item><p><link xref="color.fg.green"/></p></item><item><p><link xref="color.fg.orange"/></p></item><item><p><link xref="color.fg.purple"/></p></item><item><p><link xref="color.fg.red"/></p></item><item><p><link xref="color.fg.yellow"/></p></item><item><p><link xref="color.gray"/></p></item><item><p><link xref="color.red"/></p></item><item><p><link xref="color.yellow"/></p></item><item><p><link xref="html.basename"/></p></item><item><p><link xref="html.extension"/></p></item><item><p><link xref="html.sidebar.left"/></p></item><item><p><link xref="html.sidebar.right"/></p></item><item><p><link xref="html.syntax.highlight"/></p></item><item><p><link xref="html.xhtml"/></p></item><item><p><link xref="icons.size.quote"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>/</code></p></td></tr><tr><td><p><link xref="html.body.attr.mode">html.body.attr.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.body.mode">html.body.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.class.attr.mode">html.class.attr.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.content.post.mode">html.content.post.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.content.pre.mode">html.content.pre.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.css.mode">html.css.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.footer.mode">html.footer.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.header.mode">html.header.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.js.mode">html.js.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.output.after.mode">html.output.after.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.sidebar.contents.mode">html.sidebar.contents.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.sidebar.mode">html.sidebar.mode</link></p></td><td><p><code>token[. = 'blank']</code></p></td></tr><tr><td><p><link xref="html.sidebar.mode">html.sidebar.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.sidebar.mode">html.sidebar.mode</link></p></td><td><p><code>token[. = 'contents']</code></p></td></tr><tr><td><p><link xref="html.sidebar.mode">html.sidebar.mode</link></p></td><td><p><code>token[. = 'sections']</code></p></td></tr><tr><td><p><link xref="html.sidebar.sections.mode">html.sidebar.sections.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.syntax.class.mode">html.syntax.class.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.title.mode">html.title.mode</link></p></td><td><p><code>*</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="html">
+ <info>
+  <link type="guide" xref="stylesheets" group="html"/>
+  <desc>Common utilities and CSS for transformations to HTML.</desc>
+  <revision version="1.0" date="2010-05-26" status="final"/>
+ </info>
+ <title>HTML Output</title>
+ <p>This stylesheet contains common templates for creating HTML output. The
+ <code xref="html.output">html.output</code> template creates an output file for a node in the source XML
+ document, calling <code xref="html.page">html.page</code> to create the actual output. Output files can
+ be either XHTML or HTML, depending on the <code xref="html.xhtml">html.xhtml</code> parameter.</p>
+ <p>This stylesheet matches <sys>/</sys> and calls <code xref="html.output">html.output</code> on the root XML element.
+ This works for most input formats. If you need to do something different, you
+ should override the match for <sys>/</sys>.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="icons.svg.media.pause"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.media.play"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="html.body.attr.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.body.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.content.post.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.content.pre.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.css.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.footer.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.header.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.js.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.output.after.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.contents.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.sections.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.class.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="html.title.mode"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>/</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.body.attr.mode">html.body.attr.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.body.mode">html.body.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.class.attr.mode">html.class.attr.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.content.post.mode">html.content.post.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.content.pre.mode">html.content.pre.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.css.mode">html.css.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.footer.mode">html.footer.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.header.mode">html.header.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.js.mode">html.js.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.output.after.mode">html.output.after.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.contents.mode">html.sidebar.contents.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.mode">html.sidebar.mode</code></p>
+    </td>
+    <td>
+     <p><code>token[. = 'blank']</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.mode">html.sidebar.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.mode">html.sidebar.mode</code></p>
+    </td>
+    <td>
+     <p><code>token[. = 'contents']</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.mode">html.sidebar.mode</code></p>
+    </td>
+    <td>
+     <p><code>token[. = 'sections']</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.syntax.class.mode">html.syntax.class.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.title.mode">html.title.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

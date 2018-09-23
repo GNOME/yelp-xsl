@@ -1,12 +1,19 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.copyright" type="topic" style="xslt-template"><info><link type="guide" xref="db-common" group="templates"/><link type="guide" xref="templates" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Outputs copyright information</desc></info><title>db.copyright</title><p>Outputs copyright information</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>copyright</code> element to format</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs copyright information from a <code>copyright</code> elements. It assembles the <code>year</code> and <code>holder</code> elements into a simple copyright notice, beginning with the copyright symbol "©".</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.gettext"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db.copyright">
+ <info>
+  <link type="guide" xref="db-common" group="templates"/>
+  <link type="guide" xref="templates" group="db"/>
+  <desc>Outputs copyright information</desc>
+ </info>
+ <title>db.copyright</title>
+ <p><code>$node</code>: The <sys>copyright</sys> element to format</p>
+ <p>This template outputs copyright information from a <sys>copyright</sys> elements.
+ It assembles the <sys>year</sys> and <sys>holder</sys> elements into a simple copyright
+ notice, beginning with the copyright symbol "©".</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

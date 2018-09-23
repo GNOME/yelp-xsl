@@ -1,31 +1,64 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.ui.links.img" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-ui" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.28" date="2017-08-11" status="final"/><desc>Output an image for a link using UI thumbnails.</desc></info><title>mal2html.ui.links.img</title><p>Output an image for a link using UI thumbnails.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>A <code>links</code> element to link from.</p>
-    </item>
-    <item>
-      <title><code>thumbs</code></title>
-      <p>A list of candidate <code>uix:thumb</code> elements.</p>
-    </item>
-    <item>
-      <title><code>role</code></title>
-      <p>A link role, used to select the appropriate thumbnail.</p>
-    </item>
-    <item>
-      <title><code>width</code></title>
-      <p>The width to fit thumbnails into.</p>
-    </item>
-    <item>
-      <title><code>height</code></title>
-      <p>The height to fit thumbnails into.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template selects the best-fit thumbnail from <code style="xslt-param">thumbs</code>, based on how well the aspect ratio and dimensions of each image matches the <code style="xslt-param">width</code> and <code style="xslt-param">height</code> parameters. It outputs an HTML <code>img</code> element for the best-fit thumbnail. It calls <code style="xslt-param">mal2thml.ui.links.img.src</code> to output the <code>src</code> attribute, and calls <code style="xslt-param">mal2html.ui.links.img.attrs</code> to output <code>width</code> and <code>height</code> attributes.</p>
-  <p>Before checking for a best-fit thumbnail on dimensions, this template first looks for <code>uix:thumb</code> elements with the <code>type</code> attribute set to <code>"links"</code>. Within those, it looks for <code>uix:thumb</code> elements whose <code>role</code> attribute matches the <code style="xslt-param">role</code> parameter. This is similar to how link titles are selected.</p>
-  <p>If the <code style="xslt-param">thumbs</code> parameter is empty, this template attempts to use a default thumbnail provided by a <code>uix:thumb</code> child element of <code style="xslt-param">node</code>.</p>
-  <p>The <code style="xslt-param">width</code> and <code style="xslt-param">height</code> parameters can be computed automatically from the <code style="xslt-param">node</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.ui.links.img.src"/></p></item><item><p><link xref="mal2html.ui.links.img.attrs"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.ui.links.img">
+ <info>
+  <link type="guide" xref="mal2html-ui" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output an image for a link using UI thumbnails.</desc>
+  <revision version="3.28" date="2017-08-11" status="final"/>
+ </info>
+ <title>mal2html.ui.links.img</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>A <sys>links</sys> element to link from.</p>
+   </item>
+   <item>
+    <title><code>$thumbs</code></title>
+    <p>A list of candidate <sys>uix:thumb</sys> elements.</p>
+   </item>
+   <item>
+    <title><code>$role</code></title>
+    <p>A link role, used to select the appropriate thumbnail.</p>
+   </item>
+   <item>
+    <title><code>$width</code></title>
+    <p>The width to fit thumbnails into.</p>
+   </item>
+   <item>
+    <title><code>$height</code></title>
+    <p>The height to fit thumbnails into.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template selects the best-fit thumbnail from <code>$thumbs</code>, based on how well
+ the aspect ratio and dimensions of each image matches the <code>$width</code> and <code>$height</code>
+ parameters. It outputs an HTML <sys>img</sys> element for the best-fit thumbnail. It
+ calls <code>$mal2thml.ui.links.img.src</code> to output the <sys>src</sys> attribute, and calls
+ <code>$mal2html.ui.links.img.attrs</code> to output <sys>width</sys> and <sys>height</sys> attributes.</p>
+ <p>Before checking for a best-fit thumbnail on dimensions, this template first
+ looks for <sys>uix:thumb</sys> elements with the <sys>type</sys> attribute set to <sys>"links"</sys>.
+ Within those, it looks for <sys>uix:thumb</sys> elements whose <sys>role</sys> attribute
+ matches the <code>$role</code> parameter. This is similar to how link titles are
+ selected.</p>
+ <p>If the <code>$thumbs</code> parameter is empty, this template attempts to use a default
+ thumbnail provided by a <sys>uix:thumb</sys> child element of <code>$node</code>.</p>
+ <p>The <code>$width</code> and <code>$height</code> parameters can be computed automatically from the
+ <code>$node</code> element.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal2html.ui.links.img.attrs"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.ui.links.img.src"/></p>
+  </item>
+ </list>
+</page>

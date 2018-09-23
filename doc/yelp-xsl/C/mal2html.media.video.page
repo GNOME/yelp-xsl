@@ -1,17 +1,48 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.media.video" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-media" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.8" date="2012-11-05" status="final"/><desc>Output a <code>video</code> element for a video.</desc></info><title>mal2html.media.video</title><p>Output a <code>video</code> element for a video.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The Mallard <code>media</code> element.</p>
-    </item>
-    <item>
-      <title><code>inline</code></title>
-      <p>Whether <code style="xslt-param">node</code> is inline.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs an HTML <code>video</code> element for a Mallard <code>media</code> element with the <code>type</code> attribute set to <code>"video"</code>. It converts any fallback content in the source to the <code>video</code> element's fallback content. If <code style="xslt-param">inline</code> is <code>false</code>, this template will process TTML child content.</p>
-  <p>If <code style="xslt-param">node</code> has a child image <code>media</code> element with the <code>style</code> attribute set to <code>"poster"</code>, that image will be used for the <code>poster</code> attribute on the HTML <code>video</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.media.controls"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="mal2html.block.mode"/></p></item><item><p><link xref="mal2html.inline.mode"/></p></item><item><p><link xref="mal2html.ttml.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.media.video">
+ <info>
+  <link type="guide" xref="mal2html-media" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output a <sys>video</sys> element for a video.</desc>
+  <revision version="3.8" date="2012-11-05" status="final"/>
+ </info>
+ <title>mal2html.media.video</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The Mallard <sys>media</sys> element.</p>
+   </item>
+   <item>
+    <title><code>$inline</code></title>
+    <p>Whether <code>$node</code> is inline.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs an HTML <sys>video</sys> element for a Mallard <sys>media</sys> element
+ with the <sys>type</sys> attribute set to <sys>"video"</sys>. It converts any fallback content
+ in the source to the <sys>video</sys> element's fallback content. If <code>$inline</code> is
+ <sys>false</sys>, this template will process TTML child content.</p>
+ <p>If <code>$node</code> has a child image <sys>media</sys> element with the <sys>style</sys> attribute set
+ to <sys>"poster"</sys>, that image will be used for the <sys>poster</sys> attribute on the
+ HTML <sys>video</sys> element.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.media.controls"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="mal2html.block.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.inline.mode"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.ttml.mode"/></p>
+  </item>
+ </list>
+</page>

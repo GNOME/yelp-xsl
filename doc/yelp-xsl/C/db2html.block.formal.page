@@ -1,33 +1,80 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.block.formal" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-block" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.10" date="2013-08-09" status="final"/><desc>Output HTML for a block-level element with an optional title and caption.</desc></info><title>db2html.block.formal</title><p>Output HTML for a block-level element with an optional title and caption.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The block-level element to render.</p>
-    </item>
-    <item>
-      <title><code>class</code></title>
-      <p>The value of the HTML <code>class</code> attribute.</p>
-    </item>
-    <item>
-      <title><code>title</code></title>
-      <p>An element to use for the title.</p>
-    </item>
-    <item>
-      <title><code>caption</code></title>
-      <p>An element to use for the caption.</p>
-    </item>
-    <item>
-      <title><code>titleattr</code></title>
-      <p>An optional value for the HTML <code>title</code> attribute.</p>
-    </item>
-    <item>
-      <title><code>icon</code></title>
-      <p>An icon for the block, as a copyable node set.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs HTML for a formal DocBook element, one that can have a title or caption. It passes the <code style="xslt-param">class</code> parameter to <code style="xslt-template" xref="html.class.attr">html.class.attr</code>. If the <code style="xslt-param">class</code> parameter is not provided, it uses the local name of <code style="xslt-param">node</code>. Even if <code style="xslt-param">title</code> and <code style="xslt-param">caption</code> are both empty, this template still outputs the extra wrapper elements for formal elements. If <code style="xslt-param">titleattr</code> is provided, it is used for the value of the HTML <code>title</code> attribute on the outermost <code>div</code> element.</p>
-  <p>This template handles conditional processing.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="icons.svg.figure.zoom.in"/></p></item><item><p><link xref="db2html.block.title"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.block.formal">
+ <info>
+  <link type="guide" xref="db2html-block" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output HTML for a block-level element with an optional title and caption.</desc>
+  <revision version="3.10" date="2013-08-09" status="final"/>
+ </info>
+ <title>db2html.block.formal</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The block-level element to render.</p>
+   </item>
+   <item>
+    <title><code>$class</code></title>
+    <p>The value of the HTML <sys>class</sys> attribute.</p>
+   </item>
+   <item>
+    <title><code>$title</code></title>
+    <p>An element to use for the title.</p>
+   </item>
+   <item>
+    <title><code>$caption</code></title>
+    <p>An element to use for the caption.</p>
+   </item>
+   <item>
+    <title><code>$titleattr</code></title>
+    <p>An optional value for the HTML <sys>title</sys> attribute.</p>
+   </item>
+   <item>
+    <title><code>$icon</code></title>
+    <p>An icon for the block, as a copyable node set.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs HTML for a formal DocBook element, one that can have
+ a title or caption. It passes the <code>$class</code> parameter to <code xref="html.class.attr">html.class.attr</code>.
+ If the <code>$class</code> parameter is not provided, it uses the local name of <code>$node</code>.
+ Even if <code>$title</code> and <code>$caption</code> are both empty, this template still outputs
+ the extra wrapper elements for formal elements. If <code>$titleattr</code> is provided,
+ it is used for the value of the HTML <sys>title</sys> attribute on the outermost
+ <sys>div</sys> element.</p>
+ <p>This template handles conditional processing.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.block.title"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.figure.zoom.in"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.svg.figure.zoom.out"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

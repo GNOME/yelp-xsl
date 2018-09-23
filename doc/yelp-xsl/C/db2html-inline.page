@@ -1,2 +1,990 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-inline" type="guide" style="xslt-stylesheet"><?xslt-private l10n.format.mode?><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><link type="xslt-requires" xref="db-common"/><link type="xslt-requires" xref="db2html-xref"/><link type="xslt-requires" xref="l10n"/><link type="xslt-defines-template" xref="db2html.inline.children"/><link type="xslt-defines-template" xref="db2html.inline"/><link type="xslt-implements-mode" xref="db2html.inline.content.mode"/></info><title>DocBook to HTML - Inline Elements</title><comment><p>Describe this module</p></comment><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Requires Stylesheets</title><item><p><link xref="db-common"/></p></item><item><p><link xref="db2html-xref"/></p></item><item><p><link xref="l10n"/></p></item></list><list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db2html.xlink"/></p></item><item><p><link xref="db.personname"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.xref"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.biblio.abbrev.key"/></p></item><item><p><link xref="db.biblio.id.key"/></p></item><item><p><link xref="db.biblio.label.key"/></p></item><item><p><link xref="db.glossentry.key"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>abbrev | db:abbrev</code></p></td></tr><tr><td><p/></td><td><p><code>accel | db:accel</code></p></td></tr><tr><td><p/></td><td><p><code>acronym | db:acronym</code></p></td></tr><tr><td><p/></td><td><p><code>action</code></p></td></tr><tr><td><p/></td><td><p><code>artpagenums | db:artpagenums</code></p></td></tr><tr><td><p/></td><td><p><code>application | db:application</code></p></td></tr><tr><td><p/></td><td><p><code>author | db:author</code></p></td></tr><tr><td><p/></td><td><p><code>authorinitials | db:authorinitials</code></p></td></tr><tr><td><p/></td><td><p><code>db:biblioid</code></p></td></tr><tr><td><p/></td><td><p><code>citation | db:citation</code></p></td></tr><tr><td><p/></td><td><p><code>citetitle | db:citetitle</code></p></td></tr><tr><td><p/></td><td><p><code>city | db:city</code></p></td></tr><tr><td><p/></td><td><p><code>classname | db:classname</code></p></td></tr><tr><td><p/></td><td><p><code>code | db:code</code></p></td></tr><tr><td><p/></td><td><p><code>collab | db:collab</code></p></td></tr><tr><td><p/></td><td><p><code>collabname</code></p></td></tr><tr><td><p/></td><td><p><code>command | db:command</code></p></td></tr><tr><td><p/></td><td><p><code>computeroutput | db:computeroutput</code></p></td></tr><tr><td><p/></td><td><p><code>constant | db:constant</code></p></td></tr><tr><td><p/></td><td><p><code>corpauthor</code></p></td></tr><tr><td><p/></td><td><p><code>corpcredit</code></p></td></tr><tr><td><p/></td><td><p><code>country | db:country</code></p></td></tr><tr><td><p/></td><td><p><code>database | db:database</code></p></td></tr><tr><td><p/></td><td><p><code>date | db:date</code></p></td></tr><tr><td><p/></td><td><p><code>edition | db:edition</code></p></td></tr><tr><td><p/></td><td><p><code>editor | db:editor</code></p></td></tr><tr><td><p/></td><td><p><code>email | db:email</code></p></td></tr><tr><td><p/></td><td><p><code>emphasis | db:emphasis</code></p></td></tr><tr><td><p/></td><td><p><code>envar | db:envar</code></p></td></tr><tr><td><p/></td><td><p><code>errorcode | db:errorcode</code></p></td></tr><tr><td><p/></td><td><p><code>errorname | db:errorname</code></p></td></tr><tr><td><p/></td><td><p><code>errortext | db:errortext</code></p></td></tr><tr><td><p/></td><td><p><code>errortype | db:errortype</code></p></td></tr><tr><td><p/></td><td><p><code>exceptionname | db:exceptionname</code></p></td></tr><tr><td><p/></td><td><p><code>fax | db:fax</code></p></td></tr><tr><td><p/></td><td><p><code>filename | db:filename</code></p></td></tr><tr><td><p/></td><td><p><code>firstname | db:firstname</code></p></td></tr><tr><td><p/></td><td><p><code>firstterm | db:firstterm</code></p></td></tr><tr><td><p/></td><td><p><code>foreignphrase | db:foreignphrase</code></p></td></tr><tr><td><p/></td><td><p><code>function | db:function</code></p></td></tr><tr><td><p/></td><td><p><code>glossterm | db:glossterm</code></p></td></tr><tr><td><p/></td><td><p><code>guibutton | db:guibutton</code></p></td></tr><tr><td><p/></td><td><p><code>guiicon | db:guiicon</code></p></td></tr><tr><td><p/></td><td><p><code>guilabel | db:guilabel</code></p></td></tr><tr><td><p/></td><td><p><code>guimenu | db:guimenu</code></p></td></tr><tr><td><p/></td><td><p><code>guimenuitem | db:guimenuitem</code></p></td></tr><tr><td><p/></td><td><p><code>guisubmenu | db:guisubmenu</code></p></td></tr><tr><td><p/></td><td><p><code>hardware | db:hardware</code></p></td></tr><tr><td><p/></td><td><p><code>holder | db:holder</code></p></td></tr><tr><td><p/></td><td><p><code>honorific | db:honorific</code></p></td></tr><tr><td><p/></td><td><p><code>inlineequation | db:inlineequation</code></p></td></tr><tr><td><p/></td><td><p><code>interface | db:interface</code></p></td></tr><tr><td><p/></td><td><p><code>interfacename | db:interfacename</code></p></td></tr><tr><td><p/></td><td><p><code>isbn | db:biblioid[@class = 'isbn']</code></p></td></tr><tr><td><p/></td><td><p><code>issn | db:biblioid[@class = 'issn']</code></p></td></tr><tr><td><p/></td><td><p><code>issuenum | db:issuenum</code></p></td></tr><tr><td><p/></td><td><p><code>jobtitle | db:jobtitle</code></p></td></tr><tr><td><p/></td><td><p><code>keycap | db:keycap</code></p></td></tr><tr><td><p/></td><td><p><code>keycode | db:keycode</code></p></td></tr><tr><td><p/></td><td><p><code>keycombo | db:keycombo</code></p></td></tr><tr><td><p/></td><td><p><code>keysym | db:keysym</code></p></td></tr><tr><td><p/></td><td><p><code>lineage | db:lineage</code></p></td></tr><tr><td><p/></td><td><p><code>lineannotation | db:lineannotation</code></p></td></tr><tr><td><p/></td><td><p><code>literal | db:literal</code></p></td></tr><tr><td><p/></td><td><p><code>markup | db:markup</code></p></td></tr><tr><td><p/></td><td><p><code>mathphrase | db:mathphrase</code></p></td></tr><tr><td><p/></td><td><p><code>medialabel</code></p></td></tr><tr><td><p/></td><td><p><code>menuchoice | db:menuchoice</code></p></td></tr><tr><td><p/></td><td><p><code>methodname | db:methodname</code></p></td></tr><tr><td><p/></td><td><p><code>mousebutton | db:mousebutton</code></p></td></tr><tr><td><p/></td><td><p><code>option | db:option</code></p></td></tr><tr><td><p/></td><td><p><code>optional | db:optional</code></p></td></tr><tr><td><p/></td><td><p><code>db:org</code></p></td></tr><tr><td><p/></td><td><p><code>orgdiv | db:orgdiv</code></p></td></tr><tr><td><p/></td><td><p><code>orgname | db:orgname</code></p></td></tr><tr><td><p/></td><td><p><code>othercredit | db:othercredit</code></p></td></tr><tr><td><p/></td><td><p><code>othername | db:othername</code></p></td></tr><tr><td><p/></td><td><p><code>package | db:package</code></p></td></tr><tr><td><p/></td><td><p><code>pagenums | db:pagenums</code></p></td></tr><tr><td><p/></td><td><p><code>parameter | db:parameter</code></p></td></tr><tr><td><p/></td><td><p><code>db:person</code></p></td></tr><tr><td><p/></td><td><p><code>personname | db:personname</code></p></td></tr><tr><td><p/></td><td><p><code>phone | db:phone</code></p></td></tr><tr><td><p/></td><td><p><code>phrase | db:phrase</code></p></td></tr><tr><td><p/></td><td><p><code>pob | db:pob</code></p></td></tr><tr><td><p/></td><td><p><code>postcode | db:postcode</code></p></td></tr><tr><td><p/></td><td><p><code>productname | db:productname</code></p></td></tr><tr><td><p/></td><td><p><code>productnumber | db:productnumber</code></p></td></tr><tr><td><p/></td><td><p><code>prompt | db:prompt</code></p></td></tr><tr><td><p/></td><td><p><code>property | db:property</code></p></td></tr><tr><td><p/></td><td><p><code>pubdate | db:pubdate</code></p></td></tr><tr><td><p/></td><td><p><code>publisher | db:publisher</code></p></td></tr><tr><td><p/></td><td><p><code>publishername | db:publishername</code></p></td></tr><tr><td><p/></td><td><p><code>ooclass | db:ooclass</code></p></td></tr><tr><td><p/></td><td><p><code>ooexception | db:ooexception</code></p></td></tr><tr><td><p/></td><td><p><code>oointerface | db:oointerface</code></p></td></tr><tr><td><p/></td><td><p><code>quote | db:quote</code></p></td></tr><tr><td><p/></td><td><p><code>replaceable | db:replaceable</code></p></td></tr><tr><td><p/></td><td><p><code>returnvalue | db:returnvalue</code></p></td></tr><tr><td><p/></td><td><p><code>sgmltag | db:tag</code></p></td></tr><tr><td><p/></td><td><p><code>shortcut | db:shortcut</code></p></td></tr><tr><td><p/></td><td><p><code>state | db:state</code></p></td></tr><tr><td><p/></td><td><p><code>street | db:street</code></p></td></tr><tr><td><p/></td><td><p><code>structfield</code></p></td></tr><tr><td><p/></td><td><p><code>structname</code></p></td></tr><tr><td><p/></td><td><p><code>subscript | db:subscript</code></p></td></tr><tr><td><p/></td><td><p><code>superscript | db:superscript</code></p></td></tr><tr><td><p/></td><td><p><code>surname | db:surname</code></p></td></tr><tr><td><p/></td><td><p><code>symbol | db:symbol</code></p></td></tr><tr><td><p/></td><td><p><code>systemitem | db:systemitem</code></p></td></tr><tr><td><p/></td><td><p><code>token | db:token</code></p></td></tr><tr><td><p/></td><td><p><code>trademark | db:trademark</code></p></td></tr><tr><td><p/></td><td><p><code>type | db:type</code></p></td></tr><tr><td><p/></td><td><p><code>uri | db:uri</code></p></td></tr><tr><td><p/></td><td><p><code>userinput | db:userinput</code></p></td></tr><tr><td><p/></td><td><p><code>varname | db:varname</code></p></td></tr><tr><td><p/></td><td><p><code>volumenum | db:volumenum</code></p></td></tr><tr><td><p/></td><td><p><code>wordasword | db:wordasword</code></p></td></tr><tr><td><p/></td><td><p><code>year | db:year</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>author | db:author</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>citation | db:citation</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>editor | db:editor</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>email | db:email</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>firstterm | db:firstterm</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>glossterm | db:glossterm</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>keycap | db:keycap</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>keycombo | db:keycombo</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>menuchoice | db:menuchoice</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>optional | db:optional</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>othercredit | db:othercredit</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>db:person</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>personname | db:personname</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>productname | db:productname</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>ooclass | db:ooclass</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>ooexception | db:ooexception</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>oointerface | db:oointerface</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>quote | db:quote</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>sgmltag | db:tag</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>shortcut | db:shortcut</code></p></td></tr><tr><td><p><link xref="db2html.inline.content.mode">db2html.inline.content.mode</link></p></td><td><p><code>trademark | db:trademark</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-inline">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+ </info>
+ <title>DocBook to HTML - Inline Elements</title>
+ <p>REMARK: Describe this module</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.biblio.abbrev.key"/></p>
+  </item>
+  <item>
+   <p><link xref="db.biblio.id.key"/></p>
+  </item>
+  <item>
+   <p><link xref="db.biblio.label.key"/></p>
+  </item>
+  <item>
+   <p><link xref="db.glossentry.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.personname"/></p>
+  </item>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.xlink"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.xref"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="db2html.inline.content.mode"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>abbrev | db:abbrev</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>accel | db:accel</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>acronym | db:acronym</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>action</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>artpagenums | db:artpagenums</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>application | db:application</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>author | db:author</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>authorinitials | db:authorinitials</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>db:biblioid</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>citation | db:citation</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>citetitle | db:citetitle</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>city | db:city</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>classname | db:classname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>code | db:code</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>collab | db:collab</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>collabname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>command | db:command</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>computeroutput | db:computeroutput</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>constant | db:constant</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>corpauthor</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>corpcredit</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>country | db:country</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>database | db:database</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>date | db:date</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>edition | db:edition</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>editor | db:editor</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>email | db:email</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>emphasis | db:emphasis</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>envar | db:envar</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>errorcode | db:errorcode</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>errorname | db:errorname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>errortext | db:errortext</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>errortype | db:errortype</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>exceptionname | db:exceptionname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>fax | db:fax</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>filename | db:filename</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>firstname | db:firstname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>firstterm | db:firstterm</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>foreignphrase | db:foreignphrase</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>function | db:function</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>glossterm | db:glossterm</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guibutton | db:guibutton</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guiicon | db:guiicon</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guilabel | db:guilabel</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guimenu | db:guimenu</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guimenuitem | db:guimenuitem</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>guisubmenu | db:guisubmenu</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>hardware | db:hardware</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>holder | db:holder</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>honorific | db:honorific</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>inlineequation | db:inlineequation</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>interface | db:interface</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>interfacename | db:interfacename</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>isbn | db:biblioid[@class = 'isbn']</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>issn | db:biblioid[@class = 'issn']</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>issuenum | db:issuenum</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>jobtitle | db:jobtitle</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>keycap | db:keycap</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>keycode | db:keycode</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>keycombo | db:keycombo</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>keysym | db:keysym</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>lineage | db:lineage</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>lineannotation | db:lineannotation</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>literal | db:literal</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>markup | db:markup</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>mathphrase | db:mathphrase</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>medialabel</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>menuchoice | db:menuchoice</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>methodname | db:methodname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>mousebutton | db:mousebutton</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>option | db:option</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>optional | db:optional</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>db:org</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>orgdiv | db:orgdiv</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>orgname | db:orgname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>othercredit | db:othercredit</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>othername | db:othername</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>package | db:package</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>pagenums | db:pagenums</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>parameter | db:parameter</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>db:person</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>personname | db:personname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>phone | db:phone</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>phrase | db:phrase</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>pob | db:pob</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>postcode | db:postcode</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>productname | db:productname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>productnumber | db:productnumber</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>prompt | db:prompt</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>property | db:property</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>pubdate | db:pubdate</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>publisher | db:publisher</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>publishername | db:publishername</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>ooclass | db:ooclass</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>ooexception | db:ooexception</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>oointerface | db:oointerface</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>quote | db:quote</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>replaceable | db:replaceable</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>returnvalue | db:returnvalue</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sgmltag | db:tag</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>shortcut | db:shortcut</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>state | db:state</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>street | db:street</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>structfield</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>structname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>subscript | db:subscript</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>superscript | db:superscript</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>surname | db:surname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>symbol | db:symbol</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>systemitem | db:systemitem</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>token | db:token</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>trademark | db:trademark</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>type | db:type</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>uri | db:uri</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>userinput | db:userinput</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>varname | db:varname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>volumenum | db:volumenum</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>wordasword | db:wordasword</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>year | db:year</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>author | db:author</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>citation | db:citation</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>editor | db:editor</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>email | db:email</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>firstterm | db:firstterm</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>glossterm | db:glossterm</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>keycap | db:keycap</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>keycombo | db:keycombo</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>menuchoice | db:menuchoice</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>optional | db:optional</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>othercredit | db:othercredit</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>db:person</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>personname | db:personname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>productname | db:productname</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>ooclass | db:ooclass</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>ooexception | db:ooexception</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>oointerface | db:oointerface</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>quote | db:quote</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>sgmltag | db:tag</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>shortcut | db:shortcut</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.inline.content.mode">db2html.inline.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>trademark | db:trademark</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="l10n.format.mode">l10n.format.mode</code></p>
+    </td>
+    <td>
+     <p><code>msg:citation.label</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

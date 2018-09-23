@@ -1,51 +1,138 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="l10n.gettext" type="topic" style="xslt-template"><info><link type="guide" xref="l10n" group="templates"/><link type="guide" xref="templates" group="l10n"/><revision version="3.18" date="2015-07-29" status="final"/><desc>Look up the translation for a string.</desc></info><title>l10n.gettext</title><p>Look up the translation for a string.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>domain</code></title>
-      <p>The domain to look up the string in.</p>
-    </item>
-    <item>
-      <title><code>msgid</code></title>
-      <p>The id of the string to look up, often the string in the C locale.</p>
-    </item>
-    <item>
-      <title><code>lang</code></title>
-      <p>The locale to use when looking up the translated string.</p>
-    </item>
-    <item>
-      <title><code>number</code></title>
-      <p>The cardinality for plural-form lookups.</p>
-    </item>
-    <item>
-      <title><code>form</code></title>
-      <p>The form name for plural-form lookups.</p>
-    </item>
-    <item>
-      <title><code>format</code></title>
-      <p>Whether to treat the result as a format string.</p>
-    </item>
-    <item>
-      <title><code>node</code></title>
-      <p>A context node to pass to <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code>.</p>
-    </item>
-    <item>
-      <title><code>string</code></title>
-      <p>A string to pass to <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code> for <code>msg:string</code> elements.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template extracts a translated version of a source string. In simple cases, the source string is exactly the string in <code style="xslt-param">msgid</code>, though in more complex cases, the <code style="xslt-param">msgid</code> parameter is a separate unique identifier.</p>
-  <p>This template looks up the translation in a message catalog file based on the <code style="xslt-param">domain</code> parameter. The file must be in a <code>domains</code> subdirectory relative to the directory holding this stylesheet and be named the same as <code style="xslt-param">domain</code> with the suffix <code>.xml</code>. This template will fail if no such file is found. By default, the domain is <code>yelp-xsl</code> to reference the translations shipped with these stylesheets. Extensions and third-party stylesheets, however, can use this template by installing a file and passing the <code style="xslt-param">domain</code> parameter.</p>
-  <p>The message catalog file format is designed to work with the XML/PO translation tool <code>itstool</code>, using its join mode to create a single polylingual file. There is no tool to automatically extract messages from XSLT files. You must add messages to the source catalog file when adding translatable strings.</p>
-  <p>The message catalog file contains a set of <code>msg</code> elements, one for each string that needs translation. Each <code>msg</code> element has an <code>id</code> attribute. It is this attribute that is matched against the <code style="xslt-param">msgid</code> parameter. Each <code>msg</code> element then has one or more <code>msgstr</code> elements, each with an <code>xml:lang</code> attribute. This template tries to find a best match language with the <code style="xslt-param">lang</code> parameter, falling back to a <code>msgstr</code> element with no <code>xml:lang</code> attribute.</p>
-  <p>In a source message catalog file, put the string to be translated inside a singleton <code>msgstr</code> element in each <code>msg</code> element, without an <code>xml:lang</code> parameter. Add this element even if it is the same as the <code>id</code> attribute of the <code>msg</code> element. These <code>msgstr</code> elements are what <code>itstool</code> uses to create a PO file, and it provides the fallback string when no language matches.</p>
-  <p>The <code>xml:lang</code> attribute should contain an RFC 3066 language identifier, which is different from the POSIX locale identifiers used by gettext. To accommodate this difference, this stylesheet converts all identifiers to lowercase and replaces the characters <code>_</code>, <code>@</code>, and <code>.</code> with the character <code>-</code>. If it cannot find an exact match, it strips the part after the last <code>-</code> and looks again. It repeats this as long as the identifier contains a <code>-</code> character. If there is still no matching <code>msgstr</code> element, it looks for one with no <code>xml:lang</code> attribute.</p>
-  <p>Sometimes you have to provide different versions of a string for different cardinalities. While English and many other languages have singular and plural, some languages have no plural forms, while others have as many as six. These stylesheets use a numeric index for plural forms, similarly to gettext. To get the string for a plural, pass the cardinality in the <code style="xslt-param">number</code> parameter. This template gets an index for that number by calling <code style="xslt-template" xref="l10n.plural.form">l10n.plural.form</code>. The plural form index is in the <code style="xslt-param">form</code> parameter. You do not have to pass this parameter. It will be computed automatically based on the <code style="xslt-param">number</code> parameter.</p>
-  <p>There is currently no support for editing plural forms using the standard PO syntax. Instead, plurals are defined with an XML snippet. Instead of putting the single translated message in the <code>msgstr</code> element, plural messages have <code>msgstr</code> child elements of the <code>msgstr</code> element with the <code>xml:lang</code> attribute. Each of these child <code>msgstr</code> elements has a <code>form</code> attribute that holds the numeric index returned by <code style="xslt-template" xref="l10n.plural.form">l10n.plural.form</code>. Translators must adapt the XML snippet according to the plural rules and forms defined in this stylesheet for their language.</p>
-  <p>Some translations aren't simple strings, but are instead format strings where certain values are inserted. This template can handle format strings with XML marker elements to signal where values should be substituted. These values can be the result of applying templates.</p>
-  <p>To enable format strings, set the <code style="xslt-param">format</code> parameter to <code>true()</code>. Instead of just returning the translated string, this template will apply templates in the mode <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code> to the fragment contained in the <code>msgstr</code> element.</p>
-  <p>The <code style="xslt-param">node</code> and <code style="xslt-param">string</code> parameters are passed to templates in <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code>. This stylesheet contains matches in <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code> for the marker elements <code>&lt;string/&gt;</code> and <code>&lt;node/&gt;</code>. The element <code>&lt;string/&gt;</code> will be replaced by the string value of <code style="xslt-param">string</code>. The element <code>&lt;node/&gt;</code> will apply templates without a mode to <code style="xslt-param">node</code>. Text nodes are copied to the result in <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code>.</p>
-  <p>If you need any other behavior, add elements with any name of your choosing to the format string, then match on those elements in <code style="xslt-mode" xref="l10n.format.mode">l10n.format.mode</code>. You will be able to use the <code style="xslt-param">node</code> and <code style="xslt-param">string</code> parameters in your template. Try to use a name that is unique.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.plural.form"/></p></item><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="l10n.msgstr.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="l10n.gettext">
+ <info>
+  <link type="guide" xref="l10n" group="templates"/>
+  <link type="guide" xref="templates" group="l10n"/>
+  <desc>Look up the translation for a string.</desc>
+  <revision version="3.18" date="2015-07-29" status="final"/>
+ </info>
+ <title>l10n.gettext</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$domain</code></title>
+    <p>The domain to look up the string in.</p>
+   </item>
+   <item>
+    <title><code>$msgid</code></title>
+    <p>The id of the string to look up, often the string in the C locale.</p>
+   </item>
+   <item>
+    <title><code>$lang</code></title>
+    <p>The locale to use when looking up the translated string.</p>
+   </item>
+   <item>
+    <title><code>$number</code></title>
+    <p>The cardinality for plural-form lookups.</p>
+   </item>
+   <item>
+    <title><code>$form</code></title>
+    <p>The form name for plural-form lookups.</p>
+   </item>
+   <item>
+    <title><code>$format</code></title>
+    <p>Whether to treat the result as a format string.</p>
+   </item>
+   <item>
+    <title><code>$node</code></title>
+    <p>A context node to pass to <code xref="l10n.format.mode">l10n.format.mode</code>.</p>
+   </item>
+   <item>
+    <title><code>$string</code></title>
+    <p>A string to pass to <code xref="l10n.format.mode">l10n.format.mode</code> for <sys>msg:string</sys> elements.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template extracts a translated version of a source string. In simple cases,
+ the source string is exactly the string in <code>$msgid</code>, though in more complex
+ cases, the <code>$msgid</code> parameter is a separate unique identifier.</p>
+ <p>This template looks up the translation in a message catalog file based on the
+ <code>$domain</code> parameter. The file must be in a <sys>domains</sys> subdirectory relative to
+ the directory holding this stylesheet and be named the same as <code>$domain</code> with
+ the suffix <sys>.xml</sys>. This template will fail if no such file is found. By
+ default, the domain is <sys>yelp-xsl</sys> to reference the translations shipped with
+ these stylesheets. Extensions and third-party stylesheets, however, can use
+ this template by installing a file and passing the <code>$domain</code> parameter.</p>
+ <p>The message catalog file format is designed to work with the XML/PO translation
+ tool <sys>itstool</sys>, using its join mode to create a single polylingual file. There
+ is no tool to automatically extract messages from XSLT files. You must add
+ messages to the source catalog file when adding translatable strings.</p>
+ <p>The message catalog file contains a set of <sys>msg</sys> elements, one for each string
+ that needs translation. Each <sys>msg</sys> element has an <sys>id</sys> attribute. It is this
+ attribute that is matched against the <code>$msgid</code> parameter. Each <sys>msg</sys> element
+ then has one or more <sys>msgstr</sys> elements, each with an <sys>xml:lang</sys> attribute.
+ This template tries to find a best match language with the <code>$lang</code> parameter,
+ falling back to a <sys>msgstr</sys> element with no <sys>xml:lang</sys> attribute.</p>
+ <p>In a source message catalog file, put the string to be translated inside a
+ singleton <sys>msgstr</sys> element in each <sys>msg</sys> element, without an <sys>xml:lang</sys>
+ parameter. Add this element even if it is the same as the <sys>id</sys> attribute of
+ the <sys>msg</sys> element. These <sys>msgstr</sys> elements are what <sys>itstool</sys> uses to create
+ a PO file, and it provides the fallback string when no language matches.</p>
+ <p>The <sys>xml:lang</sys> attribute should contain an RFC 3066 language identifier, which
+ is different from the POSIX locale identifiers used by gettext. To accommodate
+ this difference, this stylesheet converts all identifiers to lowercase and
+ replaces the characters <sys>_</sys>, <sys>@</sys>, and <sys>.</sys> with the character <sys>-</sys>. If it
+ cannot find an exact match, it strips the part after the last <sys>-</sys> and looks
+ again. It repeats this as long as the identifier contains a <sys>-</sys> character.
+ If there is still no matching <sys>msgstr</sys> element, it looks for one with no
+ <sys>xml:lang</sys> attribute.</p>
+ <p>Sometimes you have to provide different versions of a string for different
+ cardinalities. While English and many other languages have singular and plural,
+ some languages have no plural forms, while others have as many as six. These
+ stylesheets use a numeric index for plural forms, similarly to gettext. To get
+ the string for a plural, pass the cardinality in the <code>$number</code> parameter. This
+ template gets an index for that number by calling <code xref="l10n.plural.form">l10n.plural.form</code>. The
+ plural form index is in the <code>$form</code> parameter. You do not have to pass this
+ parameter. It will be computed automatically based on the <code>$number</code> parameter.</p>
+ <p>There is currently no support for editing plural forms using the standard PO
+ syntax. Instead, plurals are defined with an XML snippet. Instead of putting
+ the single translated message in the <sys>msgstr</sys> element, plural messages have
+ <sys>msgstr</sys> child elements of the <sys>msgstr</sys> element with the <sys>xml:lang</sys>
+ attribute. Each of these child <sys>msgstr</sys> elements has a <sys>form</sys> attribute that
+ holds the numeric index returned by <code xref="l10n.plural.form">l10n.plural.form</code>. Translators must adapt
+ the XML snippet according to the plural rules and forms defined in this
+ stylesheet for their language.</p>
+ <p>Some translations aren't simple strings, but are instead format strings where
+ certain values are inserted. This template can handle format strings with XML
+ marker elements to signal where values should be substituted. These values
+ can be the result of applying templates.</p>
+ <p>To enable format strings, set the <code>$format</code> parameter to <sys>true()</sys>.
+ Instead of just returning the translated string, this template will
+ apply templates in the mode <code xref="l10n.format.mode">l10n.format.mode</code> to the fragment contained in
+ the <sys>msgstr</sys> element.</p>
+ <p>The <code>$node</code> and <code>$string</code> parameters are passed to templates in
+ <code xref="l10n.format.mode">l10n.format.mode</code>. This stylesheet contains matches in <code xref="l10n.format.mode">l10n.format.mode</code>
+ for the marker elements <sys>&lt;string/></sys> and <sys>&lt;node/></sys>. The element
+ <sys>&lt;string/></sys> will be replaced by the string value of <code>$string</code>. The
+ element <sys>&lt;node/></sys> will apply templates without a mode to <code>$node</code>.
+ Text nodes are copied to the result in <code xref="l10n.format.mode">l10n.format.mode</code>.</p>
+ <p>If you need any other behavior, add elements with any name of your choosing to
+ the format string, then match on those elements in <code xref="l10n.format.mode">l10n.format.mode</code>. You will
+ be able to use the <code>$node</code> and <code>$string</code> parameters in your template. Try to
+ use a name that is unique.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="l10n.locale"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="l10n.msgstr.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext.msg"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.plural.form"/></p>
+  </item>
+ </list>
+</page>

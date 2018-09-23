@@ -1,16 +1,51 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.links.next" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-links" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-08" status="final"/><desc>Output links to the previous and next pages.</desc></info><title>db2html.links.next</title><p>Output links to the previous and next pages.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The element to generate links for.</p>
-    </item>
-    <item>
-      <title><code>depth_of_chunk</code></title>
-      <p>The depth of the containing chunk in the document.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs links to the previous and next pages, if they exist. It calls <code style="xslt-template" xref="db.chunk.chunk-id.axis">db.chunk.chunk-id.axis</code> to find the previous and next pages. The block containing the links is end-floated by default. The links use the text "Previous" and "Next", although the actual page titles are used for tooltips.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-of-chunk"/></p></item><item><p><link xref="db.chunk.chunk-id.axis"/></p></item><item><p><link xref="db.xref.target"/></p></item><item><p><link xref="db.xref.tooltip"/></p></item><item><p><link xref="l10n.gettext"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.links.next">
+ <info>
+  <link type="guide" xref="db2html-links" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output links to the previous and next pages.</desc>
+  <revision version="3.4" date="2011-11-08" status="final"/>
+ </info>
+ <title>db2html.links.next</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The element to generate links for.</p>
+   </item>
+   <item>
+    <title><code>$depth_of_chunk</code></title>
+    <p>The depth of the containing chunk in the document.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs links to the previous and next pages, if they exist. It
+ calls <code xref="db.chunk.chunk-id.axis">db.chunk.chunk-id.axis</code> to find the previous and next pages. The block
+ containing the links is end-floated by default. The links use the text "Previous"
+ and "Next", although the actual page titles are used for tooltips.</p>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.chunk.chunk-id.axis"/></p>
+  </item>
+  <item>
+   <p><link xref="db.chunk.depth-of-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.target"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.tooltip"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+</page>

@@ -1,12 +1,81 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.a" type="topic" style="xslt-template"><info><link type="guide" xref="color" group="templates"/><link type="guide" xref="templates" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>Extract the alpha value of a color.</desc></info><title>color.a</title><p>Extract the alpha value of a color.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>color</code></title>
-      <p>A color specified in hexidecimal, <code>rgb()</code>, or <code>rgba()</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template extracts the alpha, or opacity level, of a color. It returns a number between 0.0 and 1.0. It accepts six-digit and three-digit hexidecimal color codes, colors specified with <code>rgb()</code>, and colors specified with <code>rgba()</code>. It does not accept HSL or named HTML colors. For colors specified with anything other than <code>rgba()</code>, it always returns 1.0.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="color.a">
+ <info>
+  <link type="guide" xref="color" group="templates"/>
+  <link type="guide" xref="templates" group="color"/>
+  <desc>Extract the alpha value of a color.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>color.a</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$color</code></title>
+    <p>A color specified in hexidecimal, <sys>rgb()</sys>, or <sys>rgba()</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template extracts the alpha, or opacity level, of a color. It returns a
+ number between 0.0 and 1.0. It accepts six-digit and three-digit hexidecimal
+ color codes, colors specified with <sys>rgb()</sys>, and colors specified with
+ <sys>rgba()</sys>. It does not accept HSL or named HTML colors. For colors specified
+ with anything other than <sys>rgba()</sys>, it always returns 1.0.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+ </list>
 </page>

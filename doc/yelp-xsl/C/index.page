@@ -1,10 +1,7 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/"
-      type="guide"
-      id="index">
-  <info>
-    <title type="link" role="trail">Yelp XSLT</title>
-  </info>
-
-  <title>Yelp XSLT Stylesheets</title>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="index">
+ <info>
+  <title type="link" role="trail">Yelp XSLT&lt;</title>
+ </info>
+ <title>Yelp XSLT Stylesheets</title>
 </page>

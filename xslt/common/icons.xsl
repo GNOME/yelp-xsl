@@ -21,19 +21,19 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Icons
 Specify common named icons to style output.
-:Revision:version="3.28" date="2017-05-24" status="final"
+@revision[version=3.28 date=2017-05-24 status=final]
 
 This stylesheet provides a common interface to specify icons for transformations
 to presentation-oreinted formats. This allows similar output for different
 types of input documents.
 
 Many of the icons are output as SVG elements that can be embedded directly
-into an HTML document. These icons use class names like #{yelp-svg-fill} and
-#{yelp-svg-stroke}, allowing you to style them with colors from the !{colors}
+into an HTML document. These icons use class names like `yelp-svg-fill` and
+`yelp-svg-stroke`, allowing you to style them with colors from the {colors}
 module.
 
 Some SVG icons are read from separate source SVG files. When this is done, the
-%{icons.svg.mode} mode is applied to reduce the SVG to the minimal form needed
+{icons.svg.mode} mode is applied to reduce the SVG to the minimal form needed
 for proper presentation.
 -->
 
@@ -41,11 +41,11 @@ for proper presentation.
 <!--%%==========================================================================
 icons.svg.mode
 Reduce SVG icons to elements needed for presentation.
-:Revision:version="3.28" date="2017-05-24" status="final"
+@revision[version=3.28 date=2017-05-24 status=final]
 
 This mode matches SVG elements and outputs only the SVG needed for presentation.
 It strips out metadata and other elements and attributes used primarily by
-authoring tools. It also uses the @{html.svg.namespace} parameter to output SVG
+authoring tools. It also uses the {html.svg.namespace} parameter to output SVG
 with or without namespace information, compatible with the dual HTML/XHTML
 output of these stylesheets.
 -->
@@ -74,17 +74,19 @@ output of these stylesheets.
 
 <!--**==========================================================================
 icons.svg.note
-Output an #{svg} element for a note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $style: The style of the note.
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
-and other types of admonitions. It takes a ${style} parameter specifying a
-note style. The default style is #{"note"}. This template uses the ${style}
+This template outputs an SVG `svg` element with an icon suitable for notes
+and other types of admonitions. It takes a $style parameter specifying a
+note style. The default style is `"note"`. This template uses the $style
 parameter to determine which specific template to call to output the SVG
 content.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
 -->
 <xsl:template name="icons.svg.note">
   <xsl:param name="style"/>
@@ -122,14 +124,14 @@ SVG icons can use CSS class names to pick up colors from the !{colors} module.
 
 <!--**==========================================================================
 icons.svg.note.advanced
-Output an #{svg} element for an advanced note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for an advanced note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with advanced information.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.advanced">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -139,14 +141,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.bug
-Output an #{svg} element for a bug note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a bug note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 about known bugs.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.bug">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -156,14 +158,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.caution
-Output an #{svg} element for a caution note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a caution note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with cautionary information.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.caution">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -173,14 +175,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.danger
-Output an #{svg} element for a danger note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a danger note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 about dangerous situations.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.danger">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -190,14 +192,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.important
-Output an #{svg} element for an important note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for an important note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with important information.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.important">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -207,14 +209,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.note
-Output an #{svg} element for a note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with general information.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.note">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -224,14 +226,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.package
-Output an #{svg} element for a package note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a package note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 about packages the user may need to install.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.package">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -241,14 +243,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.tip
-Output an #{svg} element for a tip note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a tip note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with tips.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.tip">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -258,14 +260,14 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.note.warning
-Output an #{svg} element for a warning note icon.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a warning note icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with an icon suitable for notes
+This template outputs an SVG `svg` element with an icon suitable for notes
 with warnings.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.note.warning">
   <xsl:apply-templates mode="icons.svg.mode"
@@ -276,7 +278,7 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 <!--@@==========================================================================
 icons.size.quote
 The size of the quote icons.
-:Revision:version="3.8" date="2012-09-29" status="final"
+@revision[version=3.8 date=2012-09-29 status=final]
 
 This parameter specifies the size of the block quote icon. Use an integer giving
 the width of the image files in pixels. Icons are assumed to be square, and all
@@ -293,15 +295,15 @@ This parameters still affects the size of that character.
 
 <!--**==========================================================================
 icons.svg.figure.zoom.in
-Output an #{svg} element for a figure zoom-in icon.
-:Revision: version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a figure zoom-in icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with the zoom-in icon for figures.
+This template outputs an SVG `svg` element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon shows them at their original
 size.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-stroke} and #{yelp-svg-fill} class
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-stroke` and `yelp-svg-fill` class
 names.
 -->
 <xsl:template name="icons.svg.figure.zoom.in">
@@ -316,15 +318,15 @@ names.
 
 <!--**==========================================================================
 icons.svg.figure.zoom.out
-Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a figure zoom-out icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with the zoom-in icon for figures.
+This template outputs an SVG `svg` element with the zoom-in icon for figures.
 Figures automatically scale images down. This icon scales them back down after
 they have been zoomed.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-stroke} and #{yelp-svg-fill} class
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-stroke` and `yelp-svg-fill` class
 names.
 -->
 <xsl:template name="icons.svg.figure.zoom.out">
@@ -339,13 +341,13 @@ names.
 
 <!--**==========================================================================
 icons.svg.media.play
-Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a figure zoom-out icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with a play icon for media controls.
+This template outputs an SVG `svg` element with a play icon for media controls.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.media.play">
   <svg:svg width="20" height="20" class="media-play">
@@ -356,13 +358,13 @@ By default, this icon uses the #{yelp-svg-fill} class name.
 
 <!--**==========================================================================
 icons.svg.media.pause
-Output an #{svg} element for a figure zoom-out icon.
-:Revision: version="3.28" date="2017-05-24" status="final"
+Output an `svg` element for a figure zoom-out icon.
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This template outputs an SVG #{svg} element with a pause icon for media controls.
+This template outputs an SVG `svg` element with a pause icon for media controls.
 
-SVG icons can use CSS class names to pick up colors from the !{colors} module.
-By default, this icon uses the #{yelp-svg-fill} class name.
+SVG icons can use CSS class names to pick up colors from the {colors} module.
+By default, this icon uses the `yelp-svg-fill` class name.
 -->
 <xsl:template name="icons.svg.media.pause">
   <svg:svg width="20" height="20" class="media-pause">

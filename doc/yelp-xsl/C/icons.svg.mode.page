@@ -1,6 +1,15 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="icons.svg.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="icons" group="modes"/><link type="guide" xref="modes" group="icons"/><revision version="3.28" date="2017-05-24" status="final"/><desc>Reduce SVG icons to elements needed for presentation.</desc></info><title>icons.svg.mode</title><p>Reduce SVG icons to elements needed for presentation.</p>
-  
-  
-  <p>This mode matches SVG elements and outputs only the SVG needed for presentation. It strips out metadata and other elements and attributes used primarily by authoring tools. It also uses the <code style="xslt-param" xref="html.svg.namespace">html.svg.namespace</code> parameter to output SVG with or without namespace information, compatible with the dual HTML/XHTML output of these stylesheets.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="icons.svg.mode">
+ <info>
+  <link type="guide" xref="icons" group="modes"/>
+  <link type="guide" xref="modes" group="icons"/>
+  <desc>Reduce SVG icons to elements needed for presentation.</desc>
+  <revision version="3.28" date="2017-05-24" status="final"/>
+ </info>
+ <title>icons.svg.mode</title>
+ <p>This mode matches SVG elements and outputs only the SVG needed for presentation.
+ It strips out metadata and other elements and attributes used primarily by
+ authoring tools. It also uses the <code xref="html.svg.namespace">html.svg.namespace</code> parameter to output SVG
+ with or without namespace information, compatible with the dual HTML/XHTML
+ output of these stylesheets.</p>
 </page>

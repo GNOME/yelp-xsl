@@ -1,25 +1,80 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.link.linktrails" type="topic" style="xslt-template"><info><link type="guide" xref="mal-link" group="templates"/><link type="guide" xref="templates" group="mal"/><revision version="3.4" date="2012-01-18" status="final"/><desc>Output link trails for a page or section.</desc></info><title>mal.link.linktrails</title><p>Output link trails for a page or section.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>page</code> or <code>section</code> element to generate links for.</p>
-    </item>
-    <item>
-      <title><code>trail</code></title>
-      <p>The link trail leading to <code style="xslt-param">node</code>.</p>
-    </item>
-    <item>
-      <title><code>root</code></title>
-      <p>The ID of the root page.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs lists of links, where each list is a path of topic links that leads to <code style="xslt-param">node</code>.  Each link list is output as a <code>link</code> element in the Mallard namespace with an <code>xref</code> attribute pointing to the target page or section.  Each <code>link</code> has a <code>title</code> element with <code>type="sort"</code> providing the sort title of the target page or section.</p>
-  <p>Each <code>link</code> element may also contain another <code>link</code> element providing the next link in the trail.  Each of these links also contains a sort titles and may also contain another link.</p>
-  <p>The results are not sorted when returned from this template.  Use <code>xsl:sort</code> on the nested sort titles to sort the results.  The output is a result tree fragment.  To use these results, call <code>exsl:node-set</code> on them.</p>
-  <p>This template calls itself recursively.  It finds the guide links for <code style="xslt-param">node</code> using <code style="xslt-template" xref="mal.link.guidelinks">mal.link.guidelinks</code>.  It then calls <code style="xslt-template" xref="mal.link.linktrails">mal.link.linktrails</code> on each guide, wrapping <code style="xslt-param">trail</code> with a link to the guide as the new <code style="xslt-param">trail</code> parameter.</p>
-  <p>If there are no guide links for <code style="xslt-param">node</code> and <code style="xslt-param">node</code> is a <code>section</code> element, this template calls itself on the containing page, wrapping <code style="xslt-param">trails</code> with a link to that page.  This <code>link</code> element has the attribute <code>child="section"</code> to indicate the link from it to its child is not a topic link.</p>
-  <p>Recursion stops when the ID of <code style="xslt-param">node</code> is <code style="xslt-param">root</code>.  Link trails are only output if they reach <code style="xslt-param">root</code>, which is <code style="xslt-param" xref="mal.link.default_root">mal.link.default_root</code> by default.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal.link.guidelinks"/></p></item><item><p><link xref="mal.link.linktrails"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="mal.cache.key"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="mal.cache"/></p></item><item><p><link xref="mal.link.default_root"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal.link.linktrails">
+ <info>
+  <link type="guide" xref="mal-link" group="templates"/>
+  <link type="guide" xref="templates" group="mal"/>
+  <desc>Output link trails for a page or section.</desc>
+  <revision version="3.4" date="2012-01-18" status="final"/>
+ </info>
+ <title>mal.link.linktrails</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>page</sys> or <sys>section</sys> element to generate links for.</p>
+   </item>
+   <item>
+    <title><code>$trail</code></title>
+    <p>The link trail leading to <code>$node</code>.</p>
+   </item>
+   <item>
+    <title><code>$root</code></title>
+    <p>The ID of the root page.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs lists of links, where each list is a path of topic links
+ that leads to <code>$node</code>.  Each link list is output as a <sys>link</sys> element in the
+ Mallard namespace with an <sys>xref</sys> attribute pointing to the target page or
+ section.  Each <sys>link</sys> has a <sys>title</sys> element with <sys>type="sort"</sys> providing
+ the sort title of the target page or section.</p>
+ <p>Each <sys>link</sys> element may also contain another <sys>link</sys> element providing the
+ next link in the trail.  Each of these links also contains a sort titles and
+ may also contain another link.</p>
+ <p>The results are not sorted when returned from this template.  Use <sys>xsl:sort</sys>
+ on the nested sort titles to sort the results.  The output is a result tree
+ fragment.  To use these results, call <sys>exsl:node-set</sys> on them.</p>
+ <p>This template calls itself recursively.  It finds the guide links for <code>$node</code>
+ using <code xref="mal.link.guidelinks">mal.link.guidelinks</code>.  It then calls <code xref="mal.link.linktrails">mal.link.linktrails</code> on each
+ guide, wrapping <code>$trail</code> with a link to the guide as the new <code>$trail</code> parameter.</p>
+ <p>If there are no guide links for <code>$node</code> and <code>$node</code> is a <sys>section</sys> element,
+ this template calls itself on the containing page, wrapping <code>$trails</code> with a
+ link to that page.  This <sys>link</sys> element has the attribute <sys>child="section"</sys>
+ to indicate the link from it to its child is not a topic link.</p>
+ <p>Recursion stops when the ID of <code>$node</code> is <code>$root</code>.  Link trails are only
+ output if they reach <code>$root</code>, which is <code xref="mal.link.default_root">mal.link.default_root</code> by default.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.cache.file"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.prefix"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="mal.cache.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal.link.guidelinks"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.linktrails"/></p>
+  </item>
+ </list>
+</page>

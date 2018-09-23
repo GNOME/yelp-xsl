@@ -1,6 +1,10 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.xref.tooltip.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db-xref" group="modes"/><link type="guide" xref="modes" group="db"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>FIXME</desc></info><title>db.xref.tooltip.mode</title><p>FIXME</p>
-  
-  
-  <comment><p>Document this</p></comment>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="db.xref.tooltip.mode">
+ <info>
+  <link type="guide" xref="db-xref" group="modes"/>
+  <link type="guide" xref="modes" group="db"/>
+  <desc>FIXME</desc>
+ </info>
+ <title>db.xref.tooltip.mode</title>
+ <p>REMARK: Document this</p>
 </page>

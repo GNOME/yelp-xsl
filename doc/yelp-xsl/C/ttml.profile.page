@@ -1,12 +1,31 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="ttml.profile" type="topic" style="xslt-template"><info><link type="guide" xref="ttml" group="templates"/><link type="guide" xref="templates" group="ttml"/><revision version="3.4" date="2012-03-01" status="final"/><desc>Check whether the stylesheets conform to a <code>ttp:profile</code> element.</desc></info><title>ttml.profile</title><p>Check whether the stylesheets conform to a <code>ttp:profile</code> element.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>ttp:profile</code> element to check.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template takes a <code>ttp:profile</code> element in the <code style="xslt-param">node</code> parameter and determines whether or not the stylesheets meet all required features and extensions, per section 5.2 of the TTML 1.0 recommendation. This template uses the <code style="xslt-param" xref="ttml.features">ttml.features</code> stylesheet parameter to determine which features are supported by the stylesheet. It returns the string <code>"true"</code> if all required features are supported, <code>"false"</code> otherwise.</p>
-<list style="compact"><title>Calls Parameters</title><item><p><link xref="ttml.features"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="ttml.profile">
+ <info>
+  <link type="guide" xref="ttml" group="templates"/>
+  <link type="guide" xref="templates" group="ttml"/>
+  <desc>Check whether the stylesheets conform to a <sys>ttp:profile</sys> element.</desc>
+  <revision version="3.4" date="2012-03-01" status="final"/>
+ </info>
+ <title>ttml.profile</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>ttp:profile</sys> element to check.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template takes a <sys>ttp:profile</sys> element in the <code>$node</code> parameter and
+ determines whether or not the stylesheets meet all required features and
+ extensions, per section 5.2 of the TTML 1.0 recommendation. This template
+ uses the <code xref="ttml.features">ttml.features</code> stylesheet parameter to determine which features
+ are supported by the stylesheet. It returns the string <sys>"true"</sys> if all
+ required features are supported, <sys>"false"</sys> otherwise.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="ttml.features"/></p>
+  </item>
+ </list>
+</page>

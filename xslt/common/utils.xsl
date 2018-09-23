@@ -20,7 +20,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Utilities
 Common XSLT Utilities.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
 
 This stylesheet contains various useful utilities that are used throughout
 the Yelp stylesheets.
@@ -30,11 +30,13 @@ the Yelp stylesheets.
 <!--**==========================================================================
 utils.repeat_string
 Repeat a string a given number of times.
-:Revision:version="1.0" date="2011-08-24" status="final"
-$string: The string to repeat.
-$number: The number of times to repeat ${string}.
+@revision[version=1.0 date=2011-08-24 status=final]
 
-This template repeats the ${string} argument ${number} times.
+[xsl:params]
+$string: The string to repeat.
+$number: The number of times to repeat $string.
+
+This template repeats the $string argument $number times.
 -->
 <xsl:template name="utils.repeat_string">
   <xsl:param name="string" select="''"/>
@@ -52,13 +54,15 @@ This template repeats the ${string} argument ${number} times.
 <!--**==========================================================================
 utils.strip_newlines
 Strip leading or trailing newlines from a string.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
+
+[xsl:params]
 $string: The string to strip newlines from.
 $leading: Whether to strip leading newlines.
 $trailing: Whether to strip trailing newlines.
 
 This template strips at most one leading and one trailing newline from
-${string}.  This is useful for preformatted block elements where leading and
+$string.  This is useful for preformatted block elements where leading and
 trailing newlines are ignored to make source formatting easier for authors.
 -->
 <xsl:template name="utils.strip_newlines">
@@ -107,7 +111,9 @@ trailing newlines are ignored to make source formatting easier for authors.
 <!--**==========================================================================
 utils.linenumbering
 Number each line in a verbatim environment.
-:Revision:version="1.0" date="2010-12-03" status="final"
+@revision[version=1.0 date=2010-12-03 status=final]
+
+[xsl:params]
 $node: The verbatim element to create the line numbering for.
 $number: The starting line number.
 
@@ -150,7 +156,9 @@ be placed to the side of the verbatim output.
 <!--**==========================================================================
 utils.email_address
 Get an email address from a mailto URL.
-:Revision:version="3.4" date="2012-01-18" status="final"
+@revision[version=3.4 date=2012-01-18 status=final]
+
+[xsl:params]
 $href: The mailto URL.
 
 This template takes a mailto URL and returns an email address, stripping the

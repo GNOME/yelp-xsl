@@ -1,2 +1,292 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html-division" type="guide" style="xslt-stylesheet"><?xslt-private _db2html.division.div.inner?><?xslt-private _db2html.division.about.credits?><info><link type="guide" xref="stylesheets" group="db2html"/><revision version="3.8" date="2012-11-05" status="final"/><link type="xslt-defines-template" xref="db2html.division.div"/><link type="xslt-defines-template" xref="db2html.hgroup"/><link type="xslt-defines-template" xref="db2html.division.about"/><link type="xslt-implements-mode" xref="html.title.mode"/><link type="xslt-implements-mode" xref="html.header.mode"/><link type="xslt-implements-mode" xref="html.footer.mode"/><link type="xslt-implements-mode" xref="html.sidebar.contents.mode"/><link type="xslt-implements-mode" xref="html.sidebar.sections.mode"/><link type="xslt-implements-mode" xref="html.body.mode"/><link type="xslt-implements-mode" xref="html.output.after.mode"/><link type="xslt-implements-mode" xref="db2html.division.div.content.mode"/></info><title>DocBook to HTML - Divisions</title><p>Handle division-level DocBook elements.</p><p>This stylesheet contains templates to process top-level and sectioning elements in DocBook. It handles chunking and implements the interfaces provided by the common <file xref="html">html</file> stylesheet.</p><links type="topic" groups="stylesheets" style="linklist"><title>Stylesheets</title></links><links type="topic" groups="parameters" style="linklist"><title>Parameters</title></links><links type="topic" groups="modes" style="linklist"><title>Modes</title></links><links type="topic" groups="templates" style="linklist"><title>Templates</title></links><links type="topic" groups="keys" style="linklist"><title>Keys</title></links><list style="compact"><title>Calls Templates</title><item><p><link xref="db.title"/></p></item><item><p><link xref="db2html.links.linktrail"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.xref"/></p></item><item><p><link xref="html.output"/></p></item><item><p><link xref="html.lang.attrs"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db2html.footnote.footer"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="db.chunk.max_depth"/></p></item></list><table><title>Implements Templates</title><thead><tr><th><p>Mode</p></th><th><p>Match</p></th></tr></thead><tbody><tr><td><p/></td><td><p><code>appendix | db:appendix</code></p></td></tr><tr><td><p/></td><td><p><code>article | db:article</code></p></td></tr><tr><td><p/></td><td><p><code>book | db:book</code></p></td></tr><tr><td><p/></td><td><p><code>chapter | db:chapter</code></p></td></tr><tr><td><p/></td><td><p><code>colophon | db:colophon</code></p></td></tr><tr><td><p/></td><td><p><code>dedication | db:dedication</code></p></td></tr><tr><td><p/></td><td><p><code>glossary | db:glossary</code></p></td></tr><tr><td><p/></td><td><p><code>glossdiv | db:glossdiv</code></p></td></tr><tr><td><p/></td><td><p><code>part | db:part</code></p></td></tr><tr><td><p/></td><td><p><code>preface | db:preface</code></p></td></tr><tr><td><p/></td><td><p><code>qandadiv | db:qandadiv</code></p></td></tr><tr><td><p/></td><td><p><code>qandaset | db:qandaset</code></p></td></tr><tr><td><p/></td><td><p><code>reference | db:reference</code></p></td></tr><tr><td><p/></td><td><p><code>sect1 | db:sect1</code></p></td></tr><tr><td><p/></td><td><p><code>sect2 | db:sect2</code></p></td></tr><tr><td><p/></td><td><p><code>sect3 | db:sect3</code></p></td></tr><tr><td><p/></td><td><p><code>sect4 | db:sect4</code></p></td></tr><tr><td><p/></td><td><p><code>sect5 | db:sect5</code></p></td></tr><tr><td><p/></td><td><p><code>section | db:section</code></p></td></tr><tr><td><p/></td><td><p><code>simplesect | db:simplesect</code></p></td></tr><tr><td><p><link xref="db2html.division.div.content.mode">db2html.division.div.content.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.body.mode">html.body.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.footer.mode">html.footer.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.header.mode">html.header.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.output.after.mode">html.output.after.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.sidebar.contents.mode">html.sidebar.contents.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.sidebar.sections.mode">html.sidebar.sections.mode</link></p></td><td><p><code>*</code></p></td></tr><tr><td><p><link xref="html.title.mode">html.title.mode</link></p></td><td><p><code>*</code></p></td></tr></tbody></table></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-division">
+ <info>
+  <link type="guide" xref="stylesheets" group="db2html"/>
+  <desc>Handle division-level DocBook elements.</desc>
+  <revision version="3.8" date="2012-11-05" status="final"/>
+ </info>
+ <title>DocBook to HTML - Divisions</title>
+ <p>This stylesheet contains templates to process top-level and sectioning elements
+ in DocBook. It handles chunking and implements the interfaces provided by the
+ common <code xref="html">html</code> stylesheet.</p>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="db.chunk.max_depth"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.chunk.depth-in-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="db.chunk.depth-of-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="db.copyright"/></p>
+  </item>
+  <item>
+   <p><link xref="db.title"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.footnote.footer"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.links.linktrail"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.links.next"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.links.section"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.xref"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.content.post"/></p>
+  </item>
+  <item>
+   <p><link xref="html.content.pre"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+  <item>
+   <p><link xref="html.output"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="db2html.division.div.content.mode"/></p>
+  </item>
+ </list>
+ <table rules="rows">
+  <title>Implements Templates</title>
+  <thead>
+   <tr>
+    <th>
+     <p>Mode</p>
+    </th>
+    <th>
+     <p>Match</p>
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>appendix | db:appendix</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>article | db:article</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>book | db:book</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>chapter | db:chapter</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>colophon | db:colophon</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>dedication | db:dedication</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>glossary | db:glossary</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>glossdiv | db:glossdiv</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>part | db:part</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>preface | db:preface</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>qandadiv | db:qandadiv</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>qandaset | db:qandaset</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>reference | db:reference</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sect1 | db:sect1</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sect2 | db:sect2</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sect3 | db:sect3</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sect4 | db:sect4</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>sect5 | db:sect5</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>section | db:section</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
+     <p><code>simplesect | db:simplesect</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="db2html.division.div.content.mode">db2html.division.div.content.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.body.mode">html.body.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.footer.mode">html.footer.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.header.mode">html.header.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.output.after.mode">html.output.after.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.contents.mode">html.sidebar.contents.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.sidebar.sections.mode">html.sidebar.sections.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.title.mode">html.title.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</page>

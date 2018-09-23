@@ -1,28 +1,53 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.links.topic" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-links" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="3.4" date="2012-02-23" status="final"/><desc>Output topic links from a page or section.</desc></info><title>mal2html.links.topic</title><p>Output topic links from a page or section.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>A <code>links</code>, <code>page</code>, or <code>section</code> element to link from.</p>
-    </item>
-    <item>
-      <title><code>depth</code></title>
-      <p>The depth level for the HTML header element.</p>
-    </item>
-    <item>
-      <title><code>links</code></title>
-      <p>A list of links from <code style="xslt-template" xref="mal.link.topiclinks">mal.link.topiclinks</code>.</p>
-    </item>
-    <item>
-      <title><code>groups</code></title>
-      <p>The list of link groups for this <code>links</code> element.</p>
-    </item>
-    <item>
-      <title><code>allgroups</code></title>
-      <p>The list of all valid groups for the page or section.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs topic links for a page or section. It does not extract the links itself. They must be passed in with the <code style="xslt-param">links</code> parameter. This template only outputs links which have a group that matches <code style="xslt-param">groups</code>. The <code style="xslt-param">groups</code> parameter is not expected to have the implicit groups <code>first</code>, <code>default</code>, and <code>last</code>. These are added automatically by this template when determining which links to output.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.links.links"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.links.topic">
+ <info>
+  <link type="guide" xref="mal2html-links" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output topic links from a page or section.</desc>
+  <revision version="3.4" date="2012-02-23" status="final"/>
+ </info>
+ <title>mal2html.links.topic</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>A <sys>links</sys>, <sys>page</sys>, or <sys>section</sys> element to link from.</p>
+   </item>
+   <item>
+    <title><code>$depth</code></title>
+    <p>The depth level for the HTML header element.</p>
+   </item>
+   <item>
+    <title><code>$links</code></title>
+    <p>A list of links from <code xref="mal.link.topiclinks">mal.link.topiclinks</code>.</p>
+   </item>
+   <item>
+    <title><code>$groups</code></title>
+    <p>The list of link groups for this <sys>links</sys> element.</p>
+   </item>
+   <item>
+    <title><code>$allgroups</code></title>
+    <p>The list of all valid groups for the page or section.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs topic links for a page or section. It does not extract
+ the links itself. They must be passed in with the <code>$links</code> parameter. This
+ template only outputs links which have a group that matches <code>$groups</code>. The
+ <code>$groups</code> parameter is not expected to have the implicit groups <sys>first</sys>,
+ <sys>default</sys>, and <sys>last</sys>. These are added automatically by this template
+ when determining which links to output.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal2html.links.links"/></p>
+  </item>
+ </list>
+</page>

@@ -22,7 +22,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 DocBook Profiling
 Support for DocBook effectivity attributes
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This stylesheet contains utilities for handling conditional processing
 in DocBook documents.
@@ -32,10 +32,10 @@ in DocBook documents.
 <!--@@==========================================================================
 db.profile.arch
 The list of architectures for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{arch} attribute for conditional processing.
+`arch` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.arch" select="''"/>
 
@@ -43,10 +43,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.audience
 The list of audiences for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{audience} attribute for conditional processing.
+`audience` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.audience" select="''"/>
 
@@ -54,10 +54,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.condition
 The list of application-specific conditions for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{condition} attribute for conditional processing.
+`condition` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.condition" select="''"/>
 
@@ -65,10 +65,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.conformance
 The list of conformance characteristics for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{conformance} attribute for conditional processing.
+`conformance` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.conformance" select="''"/>
 
@@ -76,10 +76,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.os
 The list of operating systems for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{os} attribute for conditional processing.
+`os` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.os" select="''"/>
 
@@ -87,21 +87,21 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.outputformat
 The list of output formats for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{outputformat} attribute for conditional processing.
+`outputformat` attribute for conditional processing.
 -->
-<xsl:param name="db.profile.os" select="''"/>
+<xsl:param name="db.profile.outputformat" select="''"/>
 
 
 <!--@@==========================================================================
 db.profile.revision
 The list of editorial revisions for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{revision} attribute for conditional processing.
+`revision` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.revision" select="''"/>
 
@@ -109,10 +109,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.security
 The list of security levels for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{security} attribute for conditional processing.
+`security` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.security" select="''"/>
 
@@ -120,10 +120,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.userlevel
 The list of user experience levels for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{userlevel} attribute for conditional processing.
+`userlevel` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.userlevel" select="''"/>
 
@@ -131,10 +131,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.vendor
 The list of vendors for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{vendor} attribute for conditional processing.
+`vendor` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.vendor" select="''"/>
 
@@ -142,10 +142,10 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--@@==========================================================================
 db.profile.wordsize
 The list of word sizes for conditional processing.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
 
 This parameter takes a semicolon-separated list of values to match against the
-#{wordsize} attribute for conditional processing.
+`wordsize` attribute for conditional processing.
 -->
 <xsl:param name="db.profile.wordsize" select="''"/>
 
@@ -153,13 +153,15 @@ This parameter takes a semicolon-separated list of values to match against the
 <!--**==========================================================================
 db.profile.test
 Test if an element should be shown based on profiling attributes.
-:Revision:version="3.10" date="2013-08-12" status="final"
+@revision[version=3.10 date=2013-08-12 status=final]
+
+[xsl:params]
 $node: The element to check the condition for.
 
-This template looks at all the profiling attributes of the element ${node}:
-#{arch}, #{audience}, #{condition}, #{conformance}, #{os}, #{outputformat},
-#{revision}, #{security}, #{userlevel}, #{vendor}, and #{wordsize}. It returns
-the string #{"true"} if all attributes present match the corresponding parameter
+This template looks at all the profiling attributes of the element $node:
+`arch`, `audience`, `condition`, `conformance`, `os`, `outputformat`,
+`revision`, `security`, `userlevel`, `vendor`, and `wordsize`. It returns
+the string `"true"` if all attributes present match the corresponding parameter
 in this stylesheet. Attributes and parameters can both be lists, separated by
 semicolons. An attribute matches a parameter if there is at least one value in
 common between the two.

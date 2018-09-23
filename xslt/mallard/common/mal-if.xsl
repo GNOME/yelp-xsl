@@ -24,7 +24,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard Conditionals
 Support for run-time conditional processing.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This stylesheet contains utilities for handling conditional processing
 in Mallard documents.
@@ -34,11 +34,11 @@ in Mallard documents.
 <!--@@==========================================================================
 mal.if.target
 The list of supported target tokens.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This parameter takes a space-separated list of tokens to enable for conditional
-processing. It is used by the template *{mal.if.test}. This parameter is meant
-to hold tokens starting with #{target:}. It should usually be set by the primary
+processing. It is used by the template {mal.if.test}. This parameter is meant
+to hold tokens starting with `target:`. It should usually be set by the primary
 importing stylesheet.
 -->
 <xsl:param name="mal.if.target" select="''"/>
@@ -47,11 +47,11 @@ importing stylesheet.
 <!--@@==========================================================================
 mal.if.platform
 The list of supported platform tokens.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This parameter takes a space-separated list of tokens to enable for conditional
-processing. It is used by the template *{mal.if.test}. This parameter is meant
-to hold tokens starting with #{platform:}. It should usually be set by hand or
+processing. It is used by the template {mal.if.test}. This parameter is meant
+to hold tokens starting with `platform:`. It should usually be set by hand or
 by a customization stylesheet.
 -->
 <xsl:param name="mal.if.platform" select="''"/>
@@ -60,10 +60,10 @@ by a customization stylesheet.
 <!--@@==========================================================================
 mal.if.features
 The list of supported feature tokens.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This parameter takes a space-separated list of tokens to enable for conditional
-processing. It is used by the template *{mal.if.test}. This parameter is meant
+processing. It is used by the template {mal.if.test}. This parameter is meant
 to hold tokens that specify the capabilities of these stylesheets. It should
 usually be set by the primary importing stylesheet.
 -->
@@ -75,10 +75,10 @@ mallard:1.0
 <!--@@==========================================================================
 mal.if.custom
 A custom list of supported tokens.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This parameter takes a space-separated list of tokens to enable for conditional
-processing. It is used by the template *{mal.if.test}. This parameter is meant
+processing. It is used by the template {mal.if.test}. This parameter is meant
 to hold extra values enabled by hand or by a customization stylesheet.
 -->
 <xsl:param name="mal.if.custom" select="''"/>
@@ -87,10 +87,10 @@ to hold extra values enabled by hand or by a customization stylesheet.
 <!--@@==========================================================================
 mal.if.maybe
 A list of tokens that may be true.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This parameter takes a space-separated list of tokens that may be true. The
-template *{mal.if.test} returns special flags when a condition may be true,
+template {mal.if.test} returns special flags when a condition may be true,
 allowing conditional processing to be deferred (for example, to CSS media
 selectors). This parameter should usually be set by the primary importing
 stylesheet.
@@ -109,33 +109,35 @@ stylesheet.
 <!--**==========================================================================
 mal.if.test
 Test if a condition is true.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
+
+[xsl:params]
 $node: The element to check the condition for.
 $test: The test expression.
 
-This template evaluates the test expression ${test}, which is taken automatically
-from the #{test} or #{if:test} attribute of $node. It splits the expression on
+This template evaluates the test expression $test, which is taken automatically
+from the `test` or `if:test` attribute of $node. It splits the expression on
 commas into subexpressions, then splits each subexpression on spaces into tokens.
 A token is taken to be true if it's in one of the space-separated lists from
-@{mal.if.target}, @{mal.if.platform}, @{mal.if.features}, or @{mal.if.custom}.
+{mal.if.target}, {mal.if.platform}, {mal.if.features}, or {mal.if.custom}.
 If the token starts with an exclamation point, the exclamation point is stripped
 and the resulting truth value is negated.
 
 A subexpression is true if all its tokens is true. The full test expression is
 true if any subexpression is true. If the test expression is true, the literal
-string #{'true'} is returned. If the test expression is false, the empty
+string `'true'` is returned. If the test expression is false, the empty
 string is returned.
 
 This template can handle "maybe" values: tokens that may or may not be true,
 and whose truth values are deferred to post-transform time. A token is maybe
-if it appears in the space-separated list @{mal.if.maybe}. If a subexpression
+if it appears in the space-separated list {mal.if.maybe}. If a subexpression
 contains a maybe value and does not contain any false tokens, its truth value
 is a special string constructed from the maybe tokens and starting with the
-string #{if__}. If any subexpressions are maybe and none of the subexpressions
+string `if__`. If any subexpressions are maybe and none of the subexpressions
 are false, the return value is a space-separated list of the maybe strings.
 
 Maybe tokens usually must be handled specifically by the importing stylesheet.
-It's usually not sufficient to just add a token to @{mal.if.maybe}. This
+It's usually not sufficient to just add a token to {mal.if.maybe}. This
 template will handle any maybe token, but it does not handle the actual logic
 of dynamically showing or hiding content based on those tokens.
 -->

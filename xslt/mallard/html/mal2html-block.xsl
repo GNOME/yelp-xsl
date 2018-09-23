@@ -27,7 +27,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - Blocks
 Handle simple Mallard block elements.
-:Revision:version="1.0" date="2010-06-03" status="final"
+@revision[version=1.0 date=2010-06-03 status=final]
 
 This stylesheet contains templates for handling most Mallard block elements,
 except the list and table elements.
@@ -36,17 +36,17 @@ except the list and table elements.
 
 <!--**==========================================================================
 mal2html.pre
-Output an HTML #{pre} element.
-:Revision:version="3.12" date="2013-11-02" status="final"
-$node: The source element to output a #{pre} for.
+Output an HTML `pre` element.
+@revision[version=3.12 date=2013-11-02 status=final]
+$node: The source element to output a `pre` for.
 
-This template outputs an HTML #{pre} element along with a wrapper #{div} element
+This template outputs an HTML `pre` element along with a wrapper `div` element
 for CSS styling. It should be called for verbatim block elements. It will
-automatically strip leading and trailing newlines using *{utils.strip_newlines}.
+automatically strip leading and trailing newlines using {utils.strip_newlines}.
 
-If @{html.syntax.highlight} is #{true}, this template automatically outputs
-syntax highlighting support based on the #{mime} attribute of ${node}, using
-*{html.syntax.class} to determine the correct highlighter.
+If {html.syntax.highlight} is `true`, this template automatically outputs
+syntax highlighting support based on the `mime` attribute of $node, using
+{html.syntax.class} to determine the correct highlighter.
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
@@ -111,7 +111,7 @@ syntax highlighting support based on the #{mime} attribute of ${node}, using
 <!--%%==========================================================================
 mal2html.block.mode
 Process Mallard elements in block mode.
-:Revision:version="1.0" date="2010-06-03" status="final"
+@revision[version=1.0 date=2010-06-03 status=final]
 $restricted: Whether this is restricted block mode.
 
 This mode is applied to elements in block context. It should be called by
@@ -120,12 +120,12 @@ may appear in both block an inline mode, and the processing expectations for
 those elements is different depending on context.
 
 Implementations of this mode should generally output a wrapper div and process
-the child elements, either in %{mal2html.block.mode} or %{mal2html.inline.mode},
+the child elements, either in {mal2html.block.mode} or {mal2html.inline.mode},
 or using special processing for particular content models.
 
 When this mode encounters unknown content, templates in the same mode are
-applied to the children, but the ${restricted} parameter is set to #{true}.
-When ${restricted} is #{true}, unknown block elements are ignored. This is
+applied to the children, but the $restricted parameter is set to `true`.
+When $restricted is `true`, unknown block elements are ignored. This is
 in accordance with the Mallard specification on fallback block content.
 -->
 <xsl:template mode="mal2html.block.mode" match="*">

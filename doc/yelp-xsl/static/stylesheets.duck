@@ -1,0 +1,25 @@
+@ducktype/1.0
+
+= XSLT Stylesheets
+  [guide]
+@link[guide >index]
+@title[link] Stylesheets
+@title[link role=topic] XSLT Stylesheets
+
+[links topic .linklist groups="mal2html mal2xhtml"]
+. Mallard to HTML
+
+[links topic .linklist groups="mal"]
+. Mallard Common
+
+[links topic .linklist groups="db2html db2xhtml"]
+. DocBook to HTML
+
+[links topic .linklist groups="db"]
+. DocBook Common
+
+[links topic .linklist groups="html ttml l10n color icons utils"]
+. Common
+
+[links topic .linklist groups="#first #default #last"]
+. Other

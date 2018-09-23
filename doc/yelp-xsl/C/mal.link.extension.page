@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal.link.extension" type="topic" style="xslt-param"><info><link type="guide" xref="mal-link" group="parameters"/><link type="guide" xref="parameters" group="mal"/><revision version="3.4" date="2012-01-17" status="final"/><desc>The filename extension for output files.</desc></info><title>mal.link.extension</title><p>The filename extension for output files.</p>
-  
-  
-  <p>When link targets are constructed by <code style="xslt-template" xref="mal.link.target">mal.link.target</code> from <code>xref</code> attributes, this string is appended. This is used to specify the file extension when creating output files from Mallard pages.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="mal.link.extension">
+ <info>
+  <link type="guide" xref="mal-link" group="params"/>
+  <link type="guide" xref="params" group="mal"/>
+  <desc>The filename extension for output files.</desc>
+  <revision version="3.4" date="2012-01-17" status="final"/>
+ </info>
+ <title>mal.link.extension</title>
+ <p>When link targets are constructed by <code xref="mal.link.target">mal.link.target</code> from <sys>xref</sys> attributes,
+ this string is appended. This is used to specify the file extension when creating
+ output files from Mallard pages.</p>
 </page>

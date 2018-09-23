@@ -27,22 +27,22 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML - SVG
 Handle embedded SVG.
-:Revision: version="1.0" date="2010-06-04" status="final"
+@revision[version=1.0 date=2010-06-04 status=final]
 
-This stylesheet matches embedded SVG in %{mal2html.block.mode} and processes it
-in %{mal2html.svg.mode}.
+This stylesheet matches embedded SVG in {mal2html.block.mode} and processes it
+in {mal2html.svg.mode}.
 -->
 
 <!--%%==========================================================================
 mal2html.svg.mode
 Output SVG and handle Mallard extensions.
-:Revision: version="3.18" date="2015-05-04" status="final"
+@revision[version=3.18 date=2015-05-04 status=final]
 
 This mode is used for processing SVG embedded into Mallard documents. For most
 types of SVG content, it simply copies the input directly, except it outputs
 the SVG in a way that allows the namespace to stripped for non-XML output. It
-checks for Mallard linking using the #{mal:xref} attribute and transforms this
-to an XLink #{xlink:href} attribute.
+checks for Mallard linking using the `mal:xref` attribute and transforms this
+to an XLink `xlink:href` attribute.
 -->
 <xsl:template mode="mal2html.svg.mode" match="svg:*">
   <xsl:choose>

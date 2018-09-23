@@ -1,12 +1,39 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.biblioentry.data" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-bibliography" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="3.4" date="2011-11-14" status="final"/><desc>Output structured data for a bibliography entry.</desc></info><title>db2html.biblioentry.data</title><p>Output structured data for a bibliography entry.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The <code>biblioentry</code> or <code>biblioset</code> element to output data for.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs a bibliography entry, or part of a bibliography entry, based on structured data found in a <code>biblioentry</code> or <code>biblioset</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.personname.list"/></p></item><item><p><link xref="l10n.gettext"/></p></item><item><p><link xref="db2html.biblioentry.data"/></p></item></list><list style="compact"><title>Calls Modes</title><item><p><link xref="db2html.biblioentry.mode"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.biblioentry.data">
+ <info>
+  <link type="guide" xref="db2html-bibliography" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Output structured data for a bibliography entry.</desc>
+  <revision version="3.4" date="2011-11-14" status="final"/>
+ </info>
+ <title>db2html.biblioentry.data</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The <sys>biblioentry</sys> or <sys>biblioset</sys> element to output data for.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs a bibliography entry, or part of a bibliography entry,
+ based on structured data found in a <sys>biblioentry</sys> or <sys>biblioset</sys> element.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.personname.list"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.biblioentry.data"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.gettext"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Modes</title>
+  <item>
+   <p><link xref="db2html.biblioentry.mode"/></p>
+  </item>
+ </list>
+</page>

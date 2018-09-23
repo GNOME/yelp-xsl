@@ -46,7 +46,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Indexes
-:Requires: db-chunk db2html-division l10n
 
 This module provides templates to process DocBook indexes.
 -->

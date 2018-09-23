@@ -1,13 +1,32 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="ttml.time.seconds" type="topic" style="xslt-template"><info><link type="guide" xref="ttml" group="templates"/><link type="guide" xref="templates" group="ttml"/><revision version="3.4" date="2012-03-02" status="final"/><desc>Return the number of seconds for a time expression.</desc></info><title>ttml.time.seconds</title><p>Return the number of seconds for a time expression.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>time</code></title>
-      <p>A TTML time expression.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template takes a time expression as used by the <code>begin</code>, <code>end</code>, and <code>dur</code> attributes and returns the number of seconds that expression respresents. Time expressions may be any number parsable by the XPath <code>number</code> function followed by one of the units <code>ms</code> (milliseconds), <code>s</code> (seconds), <code>m</code> (minutes), or <code>h</code> (hours). It returns <code>0</code> if the time expression is invalid.</p>
-  <p>This template provides support only for the <code>#time-offset</code> TTML feature. It does not support other methods of specifying times.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="ttml.time.seconds">
+ <info>
+  <link type="guide" xref="ttml" group="templates"/>
+  <link type="guide" xref="templates" group="ttml"/>
+  <desc>Return the number of seconds for a time expression.</desc>
+  <revision version="3.4" date="2012-03-02" status="final"/>
+ </info>
+ <title>ttml.time.seconds</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$time</code></title>
+    <p>A TTML time expression.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template takes a time expression as used by the <sys>begin</sys>, <sys>end</sys>, and <sys>dur</sys>
+ attributes and returns the number of seconds that expression respresents. Time
+ expressions may be any number parsable by the XPath <sys>number</sys> function followed
+ by one of the units <sys>ms</sys> (milliseconds), <sys>s</sys> (seconds), <sys>m</sys> (minutes), or <sys>h</sys>
+ (hours). It returns <sys>0</sys> if the time expression is invalid.</p>
+ <p>This template provides support only for the <sys>#time-offset</sys> TTML feature. It
+ does not support other methods of specifying times.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="ttml.features"/></p>
+  </item>
+ </list>
 </page>

@@ -23,7 +23,7 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Links
-:Revision:version="3.4" date="2011-11-08" status="final"
+@revision[version=3.4 date=2011-11-08 status=final]
 
 This stylesheet contains templates to handle implicit automatic links.
 -->
@@ -32,13 +32,15 @@ This stylesheet contains templates to handle implicit automatic links.
 <!--**==========================================================================
 db2html.links.linktrail
 Generate links to pages from ancestor elements.
-:Revision:version="3.20" date="2015-09-15" status="final"
+@revision[version=3.20 date=2015-09-15 status=final]
+
+[xsl:params]
 $node: The element to generate links for.
 
-This template outputs a trail of links for the ancestor pages of ${node}. If
-${node} has no ancestors, then it calls *{html.linktrails.empty} instead. This
-template calls *{html.linktrails.prefix} before the first link, passing ${node}
-as that template's #{node} parameter.
+This template outputs a trail of links for the ancestor pages of $node. If
+$node has no ancestors, then it calls {html.linktrails.empty} instead. This
+template calls {html.linktrails.prefix} before the first link, passing $node
+as that template's `node` parameter.
 -->
 <xsl:template name="db2html.links.linktrail">
   <xsl:param name="node" select="."/>
@@ -96,12 +98,14 @@ as that template's #{node} parameter.
 <!--**==========================================================================
 db2html.links.next
 Output links to the previous and next pages.
-:Revision:version="3.4" date="2011-11-08" status="final"
+@revision[version=3.4 date=2011-11-08 status=final]
+
+[xsl:params]
 $node: The element to generate links for.
 $depth_of_chunk: The depth of the containing chunk in the document.
 
 This template outputs links to the previous and next pages, if they exist. It
-calls *{db.chunk.chunk-id.axis} to find the previous and next pages. The block
+calls {db.chunk.chunk-id.axis} to find the previous and next pages. The block
 containing the links is end-floated by default. The links use the text "Previous"
 and "Next", although the actual page titles are used for tooltips.
 -->
@@ -191,11 +195,13 @@ and "Next", although the actual page titles are used for tooltips.
 <!--**==========================================================================
 db2html.links.section
 Output links to subsections.
-:Revision:version="3.4" date="2011-11-08" status="final"
-$node: The element to generate links for.
-$divisions: The division-level child elements of ${node} to link to.
+@revision[version=3.4 date=2011-11-08 status=final]
 
-This template outputs links to the child division-level elements of ${node},
+[xsl:params]
+$node: The element to generate links for.
+$divisions: The division-level child elements of $node to link to.
+
+This template outputs links to the child division-level elements of $node,
 whether or not they are chunked.
 -->
 <xsl:template name="db2html.links.section">

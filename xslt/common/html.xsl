@@ -29,17 +29,16 @@ along with this program; see the file COPYING.LGPL. If not, see <http://www.gnu.
 <!--!!==========================================================================
 HTML Output
 Common utilities and CSS for transformations to HTML.
-:Requires: l10n color icons
-:Revision:version="1.0" date="2010-05-26" status="final"
+@revision[version=1.0 date=2010-05-26 status=final]
 
 This stylesheet contains common templates for creating HTML output. The
-*{html.output} template creates an output file for a node in the source XML
-document, calling *{html.page} to create the actual output. Output files can
-be either XHTML or HTML, depending on the @{html.xhtml} parameter.
+{html.output} template creates an output file for a node in the source XML
+document, calling {html.page} to create the actual output. Output files can
+be either XHTML or HTML, depending on the {html.xhtml} parameter.
 
-This stylesheet matches #{/} and calls *{html.output} on the root XML element.
+This stylesheet matches `/` and calls {html.output} on the root XML element.
 This works for most input formats. If you need to do something different, you
-should override the match for #{/}.
+should override the match for `/`.
 -->
 <xsl:template match="/">
   <xsl:call-template name="html.output">
@@ -52,13 +51,13 @@ should override the match for #{/}.
 <!--@@==========================================================================
 html.basename
 The base filename of the primary output file.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
 
 This parameter specifies the base filename of the primary output file, without
-the filename extension. This is used by *{html.output} to determine the output
+the filename extension. This is used by {html.output} to determine the output
 filename, and may be used by format-specific linking code. By default, it uses
-the value of an #{id} or #{xml:id} attribute, if present. Otherwise, it uses
-the static string #{index}.
+the value of an `id` or `xml:id` attribute, if present. Otherwise, it uses
+the static string `index`.
 -->
 <xsl:param name="html.basename">
   <xsl:choose>
@@ -78,14 +77,14 @@ the static string #{index}.
 <!--@@==========================================================================
 html.xhtml
 Whether to output XHTML.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
 
 If this parameter is set to true, this stylesheet will output XHTML. Otherwise,
 the output is assumed to be HTML. Note that for HTML output, the importing
-stylesheet still needs to call #{xsl:namespace-alias} to map the XHTML namespace
-to #{#default}. The @{html.namespace} will be set automatically based on this
-parameter. Stylesheets can use this parameter to check the output type, for
-example when using #{xsl:element}.
+stylesheet still needs to call `xsl:namespace-alias` to map the XHTML namespace
+to `#default`. The {html.namespace} parameter will be set automatically based
+on this parameter. Stylesheets can use this parameter to check the output type,
+for example when using `xsl:element`.
 -->
 <xsl:param name="html.xhtml" select="true()"/>
 
@@ -93,12 +92,12 @@ example when using #{xsl:element}.
 <!--@@==========================================================================
 html.namespace
 The XML namespace for the output document.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
 
 This parameter specifies the XML namespace of all output documents. It will be
-set automatically based on the ${html.xhtml} parameter, either to the XHTML
+set automatically based on the {html.xhtml} parameter, either to the XHTML
 namespace, or to the empty namespace. Stylesheets can use this parameter when
-using #{xsl:element}.
+using `xsl:element`.
 -->
 <xsl:param name="html.namespace">
   <xsl:choose>
@@ -115,14 +114,14 @@ using #{xsl:element}.
 <!--@@==========================================================================
 html.mathml.namespace
 The XML namespace for MathML in the output document.
-:Revision:version="3.18" date="2015-05-04" status="final"
+@revision[version=3.18 date=2015-05-04 status=final]
 
 This parameter specifies the XML namespace for MathML in output documents. It
-will be set automatically based on the ${html.xhtml} parameter, either to the
+will be set automatically based on the {html.xhtml} parameter, either to the
 MathML namespace namespace, or to the empty namespace. Stylesheets can use this
-parameter when using #{xsl:element}.
+parameter when using `xsl:element`.
 -->
-<xsl:variable name="html.mathml.namespace">
+<xsl:param name="html.mathml.namespace">
   <xsl:choose>
     <xsl:when test="$html.xhtml">
       <xsl:value-of select="'http://www.w3.org/1998/Math/MathML'"/>
@@ -131,20 +130,20 @@ parameter when using #{xsl:element}.
       <xsl:text></xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:variable>
+</xsl:param>
 
 
 <!--@@==========================================================================
 html.svg.namespace
 The XML namespace for SVG in the output document.
-:Revision:version="3.18" date="2015-05-04" status="final"
+@revision[version=3.18 date=2015-05-04 status=final]
 
 This parameter specifies the XML namespace for SVG in output documents. It
-will be set automatically based on the ${html.xhtml} parameter, either to the
+will be set automatically based on the {html.xhtml} parameter, either to the
 SVG namespace namespace, or to the empty namespace. Stylesheets can use this
-parameter when using #{xsl:element}.
+parameter when using `xsl:element`.
 -->
-<xsl:variable name="html.svg.namespace">
+<xsl:param name="html.svg.namespace">
   <xsl:choose>
     <xsl:when test="$html.xhtml">
       <xsl:value-of select="'http://www.w3.org/2000/svg'"/>
@@ -153,17 +152,17 @@ parameter when using #{xsl:element}.
       <xsl:text></xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:variable>
+</xsl:param>
 
 
 <!--@@==========================================================================
 html.extension
 The filename extension for all output files.
-:Revision:version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
 
 This parameter specifies a filename extension for all HTML output files. It
-should include the leading dot. By default, #{.xhtml} will be used if
-@{html.xhtml} is true; otherwise, #{.html} will be used.
+should include the leading dot. By default, `.xhtml` will be used if
+{html.xhtml} is true; otherwise, `.html` will be used.
 -->
 <xsl:param name="html.extension">
   <xsl:choose>
@@ -180,7 +179,7 @@ should include the leading dot. By default, #{.xhtml} will be used if
 <!--@@==========================================================================
 html.css.root
 The URI root for external CSS files.
-:Revision:version="1.0" date="2010-12-06" status="final"
+@revision[version=1.0 date=2010-12-06 status=final]
 
 This parameter provides a root URI for any external CSS files that are
 referenced from the output HTML file. If non-empty, it must end with
@@ -192,7 +191,7 @@ a trailing slash character.
 <!--@@==========================================================================
 html.js.root
 The URI root for external JavaScript files.
-:Revision:version="1.0" date="2010-12-06" status="final"
+@revision[version=1.0 date=2010-12-06 status=final]
 
 This parameter provides a root URI for any external JavaScript files that are
 referenced from the output HTML file. If non-empty, it must end with
@@ -204,7 +203,7 @@ a trailing slash character.
 <!--@@==========================================================================
 html.syntax.highlight
 Whether to include syntax highlighting support for code blocks.
-:Revision:version="1.0" date="2010-12-06" status="final"
+@revision[version=1.0 date=2010-12-06 status=final]
 
 This parameter specifies whether syntax highlighting should be enabled for
 code blocks in the output HTML. Syntax highlighting is done at document load
@@ -215,11 +214,11 @@ time by JavaScript.
 
 <!--@@==========================================================================
 html.output.prefix
-An optional path prefix for files output with *{html.output}.
-:Revision:version="3.28" date="2017-05-24" status="final"
+An optional path prefix for files output with {html.output}.
+@revision[version=3.28 date=2017-05-24 status=final]
 
 This parameter allows you to specify an prefix to place before the output path
-used by *{html.output} when creating files. You can use this to override the
+used by {html.output} when creating files. You can use this to override the
 output directory. Make sure you include a trailing slash, unless you want to
 prefix the base file name itself.
 -->
@@ -229,12 +228,12 @@ prefix the base file name itself.
 <!--@@==========================================================================
 html.sidebar.left
 List of components to add to the left sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
+@revision[version=3.30 date=2018-06-10 status=candidate]
 
 This parameter takes a space-separated list of tokens that specify which
 components to add to the stock left sidebar. These stylesheets recognize
-certain tokens, and you can add your own with %{html.sidebar.mode}. See
-*{html.sidebar} for further details.
+certain tokens, and you can add your own with {html.sidebar.mode}. See
+{html.sidebar} for further details.
 -->
 <xsl:param name="html.sidebar.left" select="''"/>
 
@@ -242,12 +241,12 @@ certain tokens, and you can add your own with %{html.sidebar.mode}. See
 <!--@@==========================================================================
 html.sidebar.right
 List of components to add to the right sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
+@revision[version=3.30 date=2018-06-10 status=candidate]
 
 This parameter takes a space-separated list of tokens that specify which
 components to add to the stock right sidebar. These stylesheets recognize
-certain tokens, and you can add your own with %{html.sidebar.mode}. See
-*{html.sidebar} for further details.
+certain tokens, and you can add your own with {html.sidebar.mode}. See
+{html.sidebar} for further details.
 -->
 <xsl:param name="html.sidebar.right" select="''"/>
 
@@ -255,26 +254,31 @@ certain tokens, and you can add your own with %{html.sidebar.mode}. See
 <!--**==========================================================================
 html.output
 Create an HTML output file.
-:Revision:version="1.0" date="2010-05-26" status="final"
+@revision[version=1.0 date=2010-05-26 status=final]
+
+[xsl:params]
 $node: The node to create an output file for.
 $href: The output filename.
 
-This template creates an HTML output file for the source element ${node}. It
-uses #{exsl:document} to output the file, and calls *{html.page} with the
-${node} parameter to output the actual HTML contents.
+This template creates an HTML output file for the source element $node. It
+uses `exsl:document` to output the file, and calls {html.page} with the
+$node parameter to output the actual HTML contents.
 
-If ${href} is not provided, this template will attempt to generate a base
-filename and append @{html.extension} to it. The base filename is generated
-as follows: If an #{xml:id} attribute is present, it is used; otherwise, if
-an #{id} attribute is present, it is uses; otherwise, if ${node} is the root
-element, @{html.basename} is used; otherwise, #{generate-id()} is called.
+If $href is not provided, this template will attempt to generate a base
+filename and append {html.extension} to it. The base filename is generated
+as follows:
 
-This template prepends @{html.output.prefix} to the value of ${href} when
-it calls #{exsl:document}, regardless of whether ${href} was passed in or
+* If an `xml:id` attribute is present, it is used.
+* Otherwise, if an `id` attribute is present, it is used.
+* Otherwise, if $node is the root element, {html.basename} is used.
+* Otherwise, `generate-id()` is called.
+
+This template prepends {html.output.prefix} to the value of $href when
+it calls `exsl:document`, regardless of whether $href was passed in or
 generated automatically.
 
-After calling #{exsl:document}, this template calls the %{html.output.after.mode}
-mode on ${node}. Importing stylesheets that create multiple output files can
+After calling `exsl:document`, this template calls the {html.output.after.mode}
+mode on $node. Importing stylesheets that create multiple output files can
 use this to process output files without blocking earlier output.
 -->
 <xsl:template name="html.output">
@@ -320,9 +324,9 @@ use this to process output files without blocking earlier output.
 <!--%%==========================================================================
 html.output.after.mode
 Process an element after its content are output.
-:Revision:version="1.0" date="2010-05-26" status="final"
+@revision[version=1.0 date=2010-05-26 status=final]
 
-This mode is called by *{html.output} after #{exsl:document} has finished. It
+This mode is called by {html.output} after `exsl:document` has finished. It
 can be used to create further output files without blocking the output of
 parent elements.
 -->
@@ -332,35 +336,43 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-:Revision:version="3.28" date="2017-08-04" status="final"
+@revision[version=3.28 date=2017-08-04 status=final]
+
+[xsl:params]
 $node: The node to create HTML for.
 
-This template creates the actual HTML output for ${node}. It outputs top-level
+This template creates the actual HTML output for $node. It outputs top-level
 elements and container divs, and calls various templates and modes to output
 the inner content. Importing stylesheets should implement at least
-%{html.title.mode} and %{html.body.mode} for any elements that could be passed
-as ${node} to this template. Importing stylesheets should also implement
-%{html.header.mode} to output link trails and %{html.footer.mode} to output
+{html.title.mode} and {html.body.mode} for any elements that could be passed
+as $node to this template. Importing stylesheets should also implement
+{html.header.mode} to output link trails and {html.footer.mode} to output
 credits and other page information.
 
-This template outputs the HTML #{body} element, which takes it attributes
-from two sources. First, it calls *{html.lang.attrs}, which automatically
-outputs correct #{lang}, #{xml:lang}, and #{dir} attributes. It then calls
-%{html.body.attr.mode} on ${node} for additional attributes.
+This template outputs the HTML `body` element, which takes it attributes
+from two sources. First, it calls {html.lang.attrs}, which automatically
+outputs correct `lang`, `xml:lang`, and `dir` attributes. It then calls
+{html.body.attr.mode} on $node for additional attributes.
 
 This template also calls a number of stub templates that can be overridden
-by extension stylesheets. Override the *{html.head.custom} template to put
-custom content at the end of the HTML #{head} element. Override the
-*{html.head.top.custom} template to put custom content at the beginning of
-the HTML #{head} element. Override the *{html.top.custom} and
-*{html.bottom.custom} templates to add site-specific content at the top and
-bottom of the page. Override the *{html.header.custom} and *{html.footer.custom}
-templates to provide additional content directoy above and below the main
-content. Use the @{html.sidebar.left} and @{html.sidebar.right} parameters
-to create stock sidebars, or override *{html.sidebar.custom} to create
-your own.
+by extension stylesheets.
 
-This template also calls *{html.css} and *{html.js} to output CSS and JavaScript
+* Override the {html.head.custom} template to put custom content at the end
+  of the HTML `head` element.
+
+* Override the {html.head.top.custom} template to put custom content at the
+  beginning of the HTML `head` element.
+
+* Override the {html.top.custom} and {html.bottom.custom} templates to add
+  site-specific content at the top and bottom of the page.
+
+* Override the {html.header.custom} and {html.footer.custom} templates to
+  provide additional content directoy above and below the main content.
+
+* Use the {html.sidebar.left} and {html.sidebar.right} parameters to create
+  stock sidebars, or override {html.sidebar.custom} to create your own.
+
+This template also calls {html.css} and {html.js} to output CSS and JavaScript
 elements. See those templates for further extension points.
 -->
 <xsl:template name="html.page">
@@ -433,22 +445,22 @@ elements. See those templates for further extension points.
 <!--%%==========================================================================
 html.title.mode
 Output the title of an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+@revision[version=1.0 date=2010-05-26 status=final]
 
-This mode is called by *{html.page} to output the contents of the HTML #{title}
-element inside the #{head} element. Importing stylesheets should implement this
-mode for any element that will be passed to *{html.page}. Because this is used
-in the #{head}, the output should be text-only.
+This mode is called by {html.page} to output the contents of the HTML `title`
+element inside the `head` element. Importing stylesheets should implement this
+mode for any element that will be passed to {html.page}. Because this is used
+in the `head`, the output should be text-only.
 -->
 <xsl:template mode="html.title.mode" match="*"/>
 
 
 <!--%%==========================================================================
 html.body.attr.mode
-Output attributes for the HTML #{body} element.
-:Revision:version="1.0" date="2010-06-08" status="final"
+Output attributes for the HTML `body` element.
+@revision[version=1.0 date=2010-06-08 status=final]
 
-This mode is called by *{html.page} to output attributes on the HTML #{body}
+This mode is called by {html.page} to output attributes on the HTML `body`
 element. No attributes are output by default. Importing stylesheets may
 implement this node to add attributes for styling, data, or other purposes.
 -->
@@ -458,12 +470,14 @@ implement this node to add attributes for styling, data, or other purposes.
 <!--**==========================================================================
 html.top.custom
 Stub to output HTML at the top of the page.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called before the
-#{main} element. Override this template to provide site-specific HTML
+This template is a stub, called by {html.page}. It is called before the
+`main` element. Override this template to provide site-specific HTML
 at the top of the page.
 -->
 <xsl:template name="html.top.custom">
@@ -474,12 +488,14 @@ at the top of the page.
 <!--**==========================================================================
 html.bottom.custom
 Stub to output HTML at the bottom of the page.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called after the
-#{main} element. Override this template to provide site-specific HTML
+This template is a stub, called by {html.page}. It is called after the
+`main` element. Override this template to provide site-specific HTML
 at the bottom of the page.
 -->
 <xsl:template name="html.bottom.custom">
@@ -490,41 +506,51 @@ at the bottom of the page.
 <!--**==========================================================================
 html.sidebar
 Output stock sidebars.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
+@revision[version=3.30 date=2018-06-10 status=candidate]
+
+[xsl:params]
 $node: The node a sidebar is being created for.
 
 This templates outputs left and right sidebars according to the components
-listed in @{html.sidebar.left} and @{html.sidebar.right}. It only outputs each
-sidebar if the corresponding parameters is not empty or the string #{none}.
+listed in {html.sidebar.left} and {html.sidebar.right}. It only outputs each
+sidebar if the corresponding parameters is not empty or the string `none`.
 
-This template is called inside the #{main} element, before the #{div.page}
-element, and before *{html.sidebar.custom}. Note that even the right sidebar
-is placed before the #{div.page} element. It is placed on the right using
+This template is called inside the `main` element, before the `div.page`
+element, and before {html.sidebar.custom}. Note that even the right sidebar
+is placed before the `div.page` element. It is placed on the right using
 flexbox item reordering.
 
 To actually output the sidebar components, this template splits each parameter
-on whitespace using the EXSTL #{str:split} function. It then applies the mode
-%{html.sidebar.mode} to each token, passing ${node} and the sidebar side as
+on whitespace using the EXSLT `str:split` function. It then applies the mode
+{html.sidebar.mode} to each token, passing $node and the sidebar side as
 parameters. Extension stylesheets can add their own sidebar components by
 implementing that mode and matching a pattern like
-#{token[. = 'name-of-token']}. You will then be able to use #{name-of-token}
-in @{html.sidebar.left} or @{html.sidebar.right}.
 
-This stylesheet recognizes four tokens: #{contents} and #{sections}, and the
-special tokens #{none} and #{blank}. The #{contents} token provides a table
-of contents for the entire document. It is handled by the *{html.sidebar.contents}
-template, which uses the %{html.sidebar.contents.mode} mode to allow different
-input formats to implement it. The #{sections} token lists sections on the
-current page. It is handled by the *{html.sidebar.section} template, which
-uses the %{html.sidebar.sections.mode} mode to allow different input formats
-to implement it.
+[code]
+  token[. = 'name-of-token']
 
-You can use the #{none} token on its own, instead of the empty string, to
-completely turn off either sidebar. Use the #{blank} token to output a sidebar
-without adding any components to it. This is useful, for example, to keep
-consistent margins. If an empty sidebar is output from the #{blank} token,
-it will also have the CSS class #{sidebar-blank} so you can style it
-differently.
+You will then be able to use `name-of-token` in {html.sidebar.left} or
+{html.sidebar.right}.
+
+This stylesheet recognizes four tokens: `contents` and `sections`, and the
+special tokens `none` and `blank`.
+
+* The `contents` token provides a table of contents for the entire document.
+  It is handled by the {html.sidebar.contents} template, which uses the
+  {html.sidebar.contents.mode} mode to allow different input formats to
+  implement it.
+
+* The `sections` token lists sections on the current page. It is handled by the
+  html.sidebar.section} template, which uses the {html.sidebar.sections.mode}
+  mode to allow different input formats to implement it.
+
+* Use the `none` token on its own, instead of the empty string, to completely
+  turn off either sidebar.
+
+* Use the `blank` token to output a sidebar without adding any components to
+  it. This is useful, for example, to keep consistent margins. If an empty
+  sidebar is output from the `blank` token, it will also have the CSS class
+  `sidebar-blank` so you can style it differently.
 -->
 <xsl:template name="html.sidebar">
   <xsl:param name="node" select="."/>
@@ -567,12 +593,14 @@ differently.
 <!--%%==========================================================================
 html.sidebar.mode
 Output a sidebar compenent for a token.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
-$node: The node a sidebar is being created for.
-$side: Which sidebar, either #{left} or #{right}.
+@revision[version=3.30 date=2018-06-10 status=candidate]
 
-This mode is called by *{html.sidebar} for each sidebar compenent in each of
-@{html.sidebar.left} and @{html.sidebar.right}. See *{html.sidebar} for full
+[xsl:params]
+$node: The node a sidebar is being created for.
+$side: Which sidebar, either `left` or `right`.
+
+This mode is called by {html.sidebar} for each sidebar compenent in each of
+{html.sidebar.left} and {html.sidebar.right}. See {html.sidebar} for full
 details.
 -->
 <xsl:template mode="html.sidebar.mode" match="token[. = 'blank']"/>
@@ -587,16 +615,18 @@ details.
 <!--**==========================================================================
 html.sidebar.contents
 Output a table of contents for a sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
+@revision[version=3.30 date=2018-06-10 status=candidate]
+
+[xsl:params]
 $node: The node a sidebar is being created for.
-$side: Which sidebar, either #{left} or #{right}.
+$side: Which sidebar, either `left` or `right`.
 
 This template creates a table of contents for a sidebar. It applies
-%{html.sidebar.contents.mode} to ${node}, passing ${side} as a parameter, to
+{html.sidebar.contents.mode} to $node, passing $side as a parameter, to
 allow individual input formats to implement tables of contents.
 
-This named template also implements %{html.sidebar.mode} on the #{contents}
-token. See *{html.sidebar} for more information on how sidebars are created.
+This named template also implements {html.sidebar.mode} on the `contents`
+token. See {html.sidebar} for more information on how sidebars are created.
 -->
 <xsl:template name="html.sidebar.contents"
               mode="html.sidebar.mode" match="token[. = 'contents']">
@@ -611,10 +641,12 @@ token. See *{html.sidebar} for more information on how sidebars are created.
 <!--%%==========================================================================
 html.sidebar.contents.mode
 Output a table of contents for a sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
-$side: Which sidebar, either #{left} or #{right}.
+@revision[version=3.30 date=2018-06-10 status=candidate]
 
-This mode is called by %{html.sidebar.contents} to allow different input
+[xsl:params]
+$side: Which sidebar, either `left` or `right`.
+
+This mode is called by {html.sidebar.contents} to allow different input
 formats to implement a table of contents for a sidebar.
 -->
 <xsl:template mode="html.sidebar.contents.mode" match="*">
@@ -629,16 +661,18 @@ formats to implement a table of contents for a sidebar.
 <!--**==========================================================================
 html.sidebar.sections
 Output a list of sections for a sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
+@revision[version=3.30 date=2018-06-10 status=candidate]
+
+[xsl:params]
 $node: The node a sidebar is being created for.
-$side: Which sidebar, either #{left} or #{right}.
+$side: Which sidebar, either `left` or `right`.
 
 This template creates a list of sections on the current page for a sidebar.
-It applies %{html.sidebar.sections.mode} to ${node}, passing ${side} as a
+It applies {html.sidebar.sections.mode} to $node, passing $side as a
 parameter, to allow individual input formats to implement sections lists.
 
-This named template also implements %{html.sidebar.mode} on the #{sections}
-token. See *{html.sidebar} for more information on how sidebars are created.
+This named template also implements {html.sidebar.mode} on the `sections`
+token. See {html.sidebar} for more information on how sidebars are created.
 -->
 <xsl:template name="html.sidebar.sections"
               mode="html.sidebar.mode" match="token[. = 'sections']">
@@ -653,10 +687,12 @@ token. See *{html.sidebar} for more information on how sidebars are created.
 <!--%%==========================================================================
 html.sidebar.sections.mode
 Output a list of sections for a sidebar.
-:Revision:version="3.30" date="2018-06-10" status="candidate"
-$side: Which sidebar, either #{left} or #{right}.
+@revision[version=3.30 date=2018-06-10 status=candidate]
 
-This mode is called by %{html.sidebar.sections} to allow different input
+[xsl:params]
+$side: Which sidebar, either `left` or `right`.
+
+This mode is called by {html.sidebar.sections} to allow different input
 formats to implement a sections list for a sidebar.
 -->
 <xsl:template mode="html.sidebar.sections.mode" match="*">
@@ -671,20 +707,22 @@ formats to implement a sections list for a sidebar.
 <!--**==========================================================================
 html.sidebar.custom
 Stub to output custom sidebar content.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the #{main}
-element, before the #{div.page} element. The #{main} element uses a horizontal
+This template is a stub, called by {html.page}. It is called inside the `main`
+element, before the `div.page` element. The `main` element uses a horizontal
 flexbox by default. You can override this template to provide sidebar content.
 Note that there is only one extension point for sidebar content, and it is
 always placed before the main content in document order. To create a sidebar
-on the right, output the element here, then adjust the #{order} CSS property
-for that element to display it after the #{main} element.
+on the right, output the element here, then adjust the `order` CSS property
+for that element to display it after the `main` element.
 
 This template is intended for completely custom sidebars. You can also use
-*{html.sidebar} to output sidebars with stock components.
+{html.sidebar} to output sidebars with stock components.
 -->
 <xsl:template name="html.sidebar.custom">
   <xsl:param name="node" select="."/>
@@ -694,12 +732,14 @@ This template is intended for completely custom sidebars. You can also use
 <!--**==========================================================================
 html.header.custom
 Stub to output custom header content.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the
-#{header} element, before %{html.header.mode} is applied to ${node}. You can
+This template is a stub, called by {html.page}. It is called inside the
+`header` element, before {html.header.mode} is applied to `node`. You can
 override this template to provide additional content above the main content.
 -->
 <xsl:template name="html.header.custom">
@@ -710,12 +750,12 @@ override this template to provide additional content above the main content.
 <!--%%==========================================================================
 html.header.mode
 Output the header content for an element.
-:Revision:version="3.28" date="2017-05-24" status="final"
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This mode is called by *{html.page} to output the contents of the #{header}
+This mode is called by {html.page} to output the contents of the `header`
 element above the main content. Importing stylesheets may implement this mode
-for any element that will be passed to *{html.page}. If they do not, the
-#{header} element will be empty by default.
+for any element that will be passed to {html.page}. If they do not, the
+`header` element will be empty by default.
 -->
 <xsl:template mode="html.header.mode" match="*"/>
 
@@ -723,12 +763,14 @@ for any element that will be passed to *{html.page}. If they do not, the
 <!--**==========================================================================
 html.footer.custom
 Stub to output custom footer content.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. It is called inside the
-#{footer} element, after %{html.footer.mode} is applied to ${node}. You can
+This template is a stub, called by {html.page}. It is called inside the
+`footer` element, after {html.footer.mode} is applied to $node. You can
 override this template to provide additional content below the main content.
 -->
 <xsl:template name="html.footer.custom">
@@ -739,12 +781,12 @@ override this template to provide additional content below the main content.
 <!--%%==========================================================================
 html.footer.mode
 Output the footer content for an element.
-:Revision:version="3.28" date="2017-05-24" status="final"
+@revision[version=3.28 date=2017-05-24 status=final]
 
-This mode is called by *{html.page} to output the contents of the #{footer}
+This mode is called by {html.page} to output the contents of the `footer`
 element below the main content. Importing stylesheets may implement this mode
-for any element that will be passed to *{html.page}. If they do not, the
-#{footer} element will be empty by default.
+for any element that will be passed to {html.page}. If they do not, the
+`footer` element will be empty by default.
 -->
 <xsl:template mode="html.footer.mode" match="*"/>
 
@@ -752,9 +794,9 @@ for any element that will be passed to *{html.page}. If they do not, the
 <!--%%==========================================================================
 html.body.mode
 Output the main contents for an element.
-:Revision:version="1.0" date="2010-05-26" status="final"
+@revision[version=1.0 date=2010-05-26 status=final]
 
-This mode is called by *{html.page} to output the main contents of an HTML
+This mode is called by {html.page} to output the main contents of an HTML
 page, below the header content and above the footer content. Titles, block
 content, and sections should be output in this mode.
 -->
@@ -763,13 +805,15 @@ content, and sections should be output in this mode.
 
 <!--**==========================================================================
 html.head.top.custom
-Stub to output custom content at the beginning of the HTML #{head} element.
-:Stub: true
-:Revision: version="3.28" date="2017-08-04" status="final"
+Stub to output custom content at the beginning of the HTML `head` element.
+@xsl:stub
+@revision[version=3.28 date=2017-08-04 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. You can override this template
-to provide additional elements at the beginning of the HTML #{head} element of
+This template is a stub, called by {html.page}. You can override this template
+to provide additional elements at the beginning of the HTML `head` element of
 output files. This template is called before all other head content.
 -->
 <xsl:template name="html.head.top.custom">
@@ -779,13 +823,15 @@ output files. This template is called before all other head content.
 
 <!--**==========================================================================
 html.head.custom
-Stub to output custom content at the end of the HTML #{head} element.
-:Stub: true
-:Revision: version="3.28" date="2017-08-04" status="final"
+Stub to output custom content at the end of the HTML `head` element.
+@xsl:stub
+@revision[version=3.28 date=2017-08-04 status=final]
+
+[xsl:params]
 $node: The node a page is being created for.
 
-This template is a stub, called by *{html.page}. You can override this template
-to provide additional elements in the HTML #{head} element of output files.
+This template is a stub, called by {html.page}. You can override this template
+to provide additional elements in the HTML `head` element of output files.
 This template is called after all other head content.
 -->
 <xsl:template name="html.head.custom">
@@ -796,8 +842,10 @@ This template is called after all other head content.
 <!--**==========================================================================
 html.linktrails.empty
 Stub to output something when no link trails are present.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The source element a page is bring created for.
 
 This template is a stub. It is called by templates that output link trails when
@@ -813,8 +861,10 @@ trails would otherwise be present.
 <!--**==========================================================================
 html.linktrails.prefix
 Stub to output extra content before a link trail.
-:Stub: true
-:Revision:version="3.28" date="2017-05-24" status="final"
+@xsl:stub
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: A source-specific element providing information about the link trail.
 
 This template is a stub. It is called by templates that output link trails
@@ -828,16 +878,18 @@ site links at the beginning of each link trail.
 
 <!--**==========================================================================
 html.class.attr
-Output a #{class} attribute for an HTML element.
-:Revision: version="3.10" date="2013-07-10" status="final"
+Output a `class` attribute for an HTML element.
+@revision[version=3.10 date=2013-07-10 status=final]
+
+[xsl:params]
 $node: The source node for which an HTML element is being output.
-$class: The value of the #{class} attribute provided by the calling template.
+$class: The value of the `class` attribute provided by the calling template.
 
 This template is called by templates that output an HTML element corresponding
-to a source element. This template applies %{html.class.attr.mode} to ${node}
+to a source element. This template applies {html.class.attr.mode} to $node
 to gather a value from extensions stylesheets. It combines this value with the
-value passed in the ${class} parameter and, if the result is non-empty, outputs
-a #{class} attribute.
+value passed in the $class parameter and, if the result is non-empty, outputs
+a `class` attribute.
 -->
 <xsl:template name="html.class.attr">
   <xsl:param name="node" select="."/>
@@ -858,10 +910,10 @@ a #{class} attribute.
 
 <!--%%==========================================================================
 html.class.attr.mode
-Output additional values for an HTML #{class} attribute.
-:Revision:version="3.10" date="2013-07-10" status="final"
+Output additional values for an HTML `class` attribute.
+@revision[version=3.10 date=2013-07-10 status=final]
 
-This mode is called by *{html.class.attr} on a source element. This mode is
+This mode is called by {html.class.attr} on a source element. This mode is
 intended for extensions to have an easy way to add additional HTML class values
 for styling.
 
@@ -875,13 +927,15 @@ values that do not conflict with those used in these stylesheets.
 <!--**==========================================================================
 html.content.pre
 Output content before the content of a page or section.
-:Revision: version="3.28" date="2016-06-21" status="final"
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
 This template is called by importing stylesheets before any content of a page
-or section, but after the title. It calls *{html.content.pre.custom}, then
-applies %{html.content.pre.mode} to ${node}. If the ${page} parameter is true,
+or section, but after the title. It calls {html.content.pre.custom}, then
+applies {html.content.pre.mode} to $node. If the $page parameter is true,
 then this template is being called on an output page. Otherwise, it is being
 called on a section within a page.
 -->
@@ -901,14 +955,16 @@ called on a section within a page.
 <!--**==========================================================================
 html.content.pre.custom
 Stub to output content before the content of a page or section.
-:Stub: true
-:Revision: version="3.28" date="2016-06-21" status="final"
+@xsl:stub
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
-This template is a stub, called by *{html.content.pre.custom}. It is called
-before %{html.content.pre.mode} is applied. Override this template to provide
-site-specific HTML before the content of a page or section. If the ${page}
+This template is a stub, called by {html.content.pre.custom}. It is called
+before {html.content.pre.mode} is applied. Override this template to provide
+site-specific HTML before the content of a page or section. If the $page
 parameter is true, then this template is being called on an output page.
 Otherwise, it is being called on a section within a page.
 -->
@@ -921,13 +977,15 @@ Otherwise, it is being called on a section within a page.
 <!--%%==========================================================================
 html.content.pre.mode
 Output content before the content of a page or section.
-:Revision: version="3.28" date="2016-06-21" status="final"
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $page: Whether the content is for a page.
 
-This mode is applied by *{html.content.pre} after calling
-*{html.content.pre.custom}. Importing stylesheets can use this to add
+This mode is applied by {html.content.pre} after calling
+{html.content.pre.custom}. Importing stylesheets can use this to add
 additional content for specific types of input elements before the content
-of a page or section. If the ${page} parameter is true, then this template
+of a page or section. If the $page parameter is true, then this template
 is being called on an output page. Otherwise, it is being called on a section
 within a page.
 -->
@@ -939,13 +997,15 @@ within a page.
 <!--**==========================================================================
 html.content.post
 Output content after the content of a page or section, before subsections.
-:Revision: version="3.28" date="2016-06-21" status="final"
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
 This template is called by importing stylesheets after any content of a page
-or section, but before any subsections. It applies %{html.content.post.mode}
-to ${node}, then calls *{html.content.post.custom}. If the ${page} parameter
+or section, but before any subsections. It applies {html.content.post.mode}
+to $node, then calls {html.content.post.custom}. If the $page parameter
 is true, then this template is being called on an output page. Otherwise, it
 is being called on a section within a page.
 -->
@@ -965,15 +1025,17 @@ is being called on a section within a page.
 <!--**==========================================================================
 html.content.post.custom
 Stub to output content after the content of a page or section, before subsections.
-:Stub: true
-:Revision: version="3.28" date="2016-06-21" status="final"
+@xsl:stub
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $node: The node a page or section is being created for.
 $page: Whether the content is for a page.
 
-This template is a stub, called by *{html.content.post.custom}. It is called
-after %{html.content.pre.mode} is applied. Override this template to provide
+This template is a stub, called by {html.content.post.custom}. It is called
+after {html.content.pre.mode} is applied. Override this template to provide
 site-specific HTML after the content of a page or section, but before any
-subsections. If the ${page} parameter is true, then this template is being
+subsections. If the $page parameter is true, then this template is being
 called on an output page. Otherwise, it is being called on a section within
 a page.
 -->
@@ -986,13 +1048,15 @@ a page.
 <!--%%==========================================================================
 html.content.post.mode
 Output content after the content of a page or section, before subsections.
-:Revision: version="3.28" date="2016-06-21" status="final"
+@revision[version=3.28 date=2016-06-21 status=final]
+
+[xsl:params]
 $page: Whether the content is for a page.
 
-This mode is applied by *{html.content.post} before calling
-*{html.content.post.custom}. Importing stylesheets can use this to add
+This mode is applied by {html.content.post} before calling
+{html.content.post.custom}. Importing stylesheets can use this to add
 additional content for specific types of input elements after the content
-of a page or section, but before any subsections. If the ${page} parameter
+of a page or section, but before any subsections. If the $page parameter
 is true, then this template is being called on an output page. Otherwise,
 it is being called on a section within a page.
 -->
@@ -1004,19 +1068,21 @@ it is being called on a section within a page.
 <!--**==========================================================================
 html.css
 Output all CSS for an HTML output page.
-:Revision:version="1.0" date="2010-12-23" status="final"
+@revision[version=1.0 date=2010-12-23 status=final]
+
+[xsl:params]
 $node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
 
 This template creates the CSS for an HTML output page, including the enclosing
-HTML #{style} element. It calls the templates *{html.css.content} to output the
+HTML `style` element. It calls the templates {html.css.content} to output the
 actual CSS contents.
 
-The ${direction} parameter specifies the directionality of the text for the
-language of the document. The ${left} and ${right} parameters are based on
-${direction}, and can be used to set beginning and ending margins or other
+The $direction parameter specifies the directionality of the text for the
+language of the document. The $left and $right parameters are based on
+$direction, and can be used to set beginning and ending margins or other
 dimensions. All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="html.css">
@@ -1048,16 +1114,18 @@ dimensions. All parameters can be automatically computed if not provided.
 <!--**==========================================================================
 html.css.content
 Output actual CSS content for an HTML output page.
-:Revision:version="1.0" date="2010-12-23" status="final"
+@revision[version=1.0 date=2010-12-23 status=final]
+
+[xsl:params]
 $node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
 
 This template creates the CSS content for an HTML output page. It is called by
-*{html.css}. It calls the templates *{html.css.core}, *{html.css.elements}, and
-*{html.css.syntax}. It then calls the mode %{html.css.mode} on ${node} and
-calls the template *{html.css.custom}.
+{html.css}. It calls the templates {html.css.core}, {html.css.elements}, and
+{html.css.syntax}. It then calls the mode {html.css.mode} on $node and
+calls the template {html.css.custom}.
 -->
 <xsl:template name="html.css.content">
   <xsl:param name="node" select="."/>
@@ -1109,14 +1177,16 @@ calls the template *{html.css.custom}.
 <!--%%==========================================================================
 html.css.mode
 Output CSS specific to the input format.
-:Revision:version="1.0" date="2010-05-26" status="final"
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+@revision[version=1.0 date=2010-05-26 status=final]
 
-This template is called by *{html.css.content} to output CSS specific to the
+[xsl:params]
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
+
+This template is called by {html.css.content} to output CSS specific to the
 input format. Importing stylesheets may implement this for any element that
-will be passed to *{html.page}. If they do not, the output HTML will only have
+will be passed to {html.page}. If they do not, the output HTML will only have
 the common CSS.
 -->
 <xsl:template mode="html.css.mode" match="*">
@@ -1139,17 +1209,19 @@ the common CSS.
 <!--**==========================================================================
 html.css.core
 Output CSS that does not reference source elements.
-:Revision: version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
+
+[xsl:params]
 $node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
 
 This template outputs CSS that can be used in any HTML. It does not reference
 elements from DocBook, Mallard, or other source languages. It provides the
-common spacings for block-level elements lik paragraphs and lists, defines
-styles for links, and defines four common wrapper divs: #{header}, #{side},
-#{body}, and #{footer}.
+common spacings for block-level elements like paragraphs and lists, defines
+styles for links, and defines four common wrapper divs: `header`, `side`,
+`body`, and `footer`.
 
 All parameters can be automatically computed if not provided.
 -->
@@ -1423,11 +1495,13 @@ a img { border: none; }
 <!--**==========================================================================
 html.css.elements
 Output CSS for common elements from source formats.
-:Revision: version="1.0" date="2010-05-25" status="final"
+@revision[version=1.0 date=2010-05-25 status=final]
+
+[xsl:params]
 $node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
 
 This template outputs CSS for elements from source languages like DocBook and
 Mallard. It defines them using common class names. The common names are often
@@ -2078,17 +2152,19 @@ div.yelp-data { display: none; }
 <!--**==========================================================================
 html.css.syntax
 Output CSS for syntax highlighting.
-:Revision: version="1.0" date="2010-12-06" status="final"
+@revision[version=1.0 date=2010-12-06 status=final]
+
+[xsl:params]
 $node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
 
 This template outputs CSS to support syntax highlighting of code blocks. Syntax
 highlighting is done at document load time with JavaScript. Text in code blocks
 is broken up into chunks and wrapped in HTML elements with particular classes.
 This template outputs CSS to match those elements and style them with the
-built-in themeable colors from !{color}.
+built-in themeable colors from {color}.
 
 All parameters can be automatically computed if not provided.
 -->
@@ -2164,14 +2240,16 @@ All parameters can be automatically computed if not provided.
 <!--**==========================================================================
 html.css.custom
 Stub to output custom CSS common to all HTML transformations.
-:Stub: true
-:Revision: version="1.0" date="2010-05-25" status="final"
-$node: The node to create CSS for.
-$direction: The directionality of the text, either #{ltr} or #{rtl}.
-$left: The starting alignment, either #{left} or #{right}.
-$right: The ending alignment, either #{left} or #{right}.
+@xsl:stub
+@revision[version=1.0 date=2010-05-25 status=final]
 
-This template is a stub, called by *{html.css.content}. You can override this
+[xsl:params]
+$node: The node to create CSS for.
+$direction: The directionality of the text, either `ltr` or `rtl`.
+$left: The starting alignment, either `left` or `right`.
+$right: The ending alignment, either `left` or `right`.
+
+This template is a stub, called by {html.css.content}. You can override this
 template to provide additional CSS that will be used by all HTML output.
 -->
 <xsl:template name="html.css.custom">
@@ -2195,14 +2273,16 @@ template to provide additional CSS that will be used by all HTML output.
 <!--**==========================================================================
 html.js
 Output all JavaScript for an HTML output page.
-:Revision:version="3.28" date="2017-07-05" status="final"
+@revision[version=3.28 date=2017-07-05 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
 This template creates the JavaScript for an HTML output page. It calls the
-templates *{html.js.syntax} and *{html.js.mathjax} to
-output references to external libraries. It then calls *{html.js.custom} to
-output references to custom JavaScript files. Finally, it calls
-*{html.js.script} to output local JavaScript created by *{html.js.content}.
+templates {html.js.syntax} and {html.js.mathjax} to output references to
+external libraries. It then calls {html.js.custom} to output references to
+custom JavaScript files. Finally, it calls {html.js.script} to output local
+JavaScript created by {html.js.content}.
 -->
 <xsl:template name="html.js">
   <xsl:param name="node" select="."/>
@@ -2223,13 +2303,15 @@ output references to custom JavaScript files. Finally, it calls
 
 <!--**==========================================================================
 html.js.mathjax
-Output #{script} element to include MathJax.
-:Revision: version="1.0" date="2012-11-13" status="final"
+Output a `script` element to include MathJax.
+@revision[version=1.0 date=2012-11-13 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template outputs an HTML #{script} tag to reference MathJax. It only
-outputs a #{script} element if ${node} has MathML descendent content. By
-default, this template uses #{cdn.mathjax.org}. If you wish to use a local
+This template outputs an HTML `script` tag to reference MathJax. It only
+outputs a `script` element if $node has MathML descendent content. By
+default, this template uses `cdn.mathjax.org`. If you wish to use a local
 copy, override this template and provide the necessary files.
 -->
 <xsl:template name="html.js.mathjax">
@@ -2246,15 +2328,17 @@ copy, override this template and provide the necessary files.
 
 <!--**==========================================================================
 html.js.script
-Output a JavaScript #{script} tag containing local content.
-:Revision:version="3.28" date="2017-05-24" status="final"
+Output a JavaScript `script` tag containing local content.
+@revision[version=3.28 date=2017-05-24 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template is called by *{html.js} to output JavaScript content. It outputs
-a #{script} tag and calls *{html.js.content} to output the contents. To force
-all JavaScript into external files, override this template to output a #{script}
-tag referencing an external file with the #{src} attribute, then output the
-result of *{html.js.content} to that file.
+This template is called by {html.js} to output JavaScript content. It outputs
+a `script` tag and calls {html.js.content} to output the contents. To force
+all JavaScript into external files, override this template to output a `script`
+tag referencing an external file with the `src` attribute, then output the
+result of {html.js.content} to that file.
 -->
 <xsl:template name="html.js.script">
   <xsl:param name="node" select="."/>
@@ -2269,13 +2353,15 @@ result of *{html.js.content} to that file.
 <!--**==========================================================================
 html.js.content
 Output JavaScript content for an HTML output page.
-:Revision:version="3.28" date="2017-07-05" status="final"
+@revision[version=3.28 date=2017-07-05 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template is called by *{html.js.script} to output JavaScript content. It
-does not output an HTML #{script} tag. This template calls the templates
-*{html.js.core}, *{html.js.ui}, and *{html.js.media}. It then calls the mode
-%{html.js.mode} on ${node} and calls the template *{html.js.content.custom}.
+This template is called by {html.js.script} to output JavaScript content. It
+does not output an HTML `script` tag. This template calls the templates
+{html.js.core}, {html.js.ui}, and {html.js.media}. It then calls the mode
+{html.js.mode} on $node and calls the template {html.js.content.custom}.
 -->
 <xsl:template name="html.js.content">
   <xsl:param name="node" select="."/>
@@ -2298,11 +2384,13 @@ does not output an HTML #{script} tag. This template calls the templates
 <!--**==========================================================================
 html.js.core
 Output JavaScript for core features.
-:Revision: version="3.4" date="2011-11-04" status="final"
+@revision[version=3.4 date=2011-11-04 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
 This template outputs JavaScript to support basic features used by all documents.
-Currently, it outputs code to highlight a section when #{location.hash} is set.
+Currently, it outputs code to highlight a section when `location.hash` is set.
 -->
 <xsl:template name="html.js.core">
   <xsl:param name="node" select="."/>
@@ -2329,7 +2417,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--**==========================================================================
 html.js.ui
 Output JavaScript for UI extensions.
-:Revision: version="1.0" date="2011-06-17" status="final"
+@revision[version=1.0 date=2011-06-17 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
 This template outputs JavaScript that implements certain common UI extensions,
@@ -2470,7 +2560,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--**==========================================================================
 html.js.media
 Output JavaScript to control media elements.
-:Revision: version="1.0" date="2010-01-01" status="final"
+@revision[version=1.0 date=2010-01-01 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
 This template outputs JavaScript that controls media elements. It provides
@@ -2693,14 +2785,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!--**==========================================================================
 html.js.syntax
-Output #{script} elements for syntax highlighting.
-:Revision: version="3.28" date="2016-01-03" status="final"
+Output `script` elements for syntax highlighting.
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template outputs HTML #{script} elements to enable syntax highlighting.
-It only outputs if @{html.syntax.highlight} is #{true}. It outputs one #{script}
-element to load in #{highlight.js}, and another to initialize #{highlight.js}
-on all #{code} elements with #{"syntax"} in the class value.
+This template outputs HTML `script` elements to enable syntax highlighting.
+It only outputs if {html.syntax.highlight} is `true`. It outputs one `script`
+element to load in `highlight.js`, and another to initialize `highlight.js`
+on all `code` elements with `"syntax"` in the class value.
 -->
 <xsl:template name="html.js.syntax">
   <xsl:param name="node" select="."/>
@@ -2720,11 +2814,11 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--%%==========================================================================
 html.js.mode
 Output JavaScript specific to the input format.
-:Revision:version="1.0" date="2010-01-01" status="final"
+@revision[version=1.0 date=2010-01-01 status=final]
 
-This template is called by *{html.js.content} to output JavaScript specific to
+This mode is called by {html.js.content} to output JavaScript specific to
 the input format. Importing stylesheets may implement this for any element that
-will be passed to *{html.page}. If they do not, the output HTML will only have
+will be passed to {html.page}. If they do not, the output HTML will only have
 the common JavaScript.
 -->
 <xsl:template mode="html.js.mode" match="*">
@@ -2734,13 +2828,15 @@ the common JavaScript.
 <!--**==========================================================================
 html.js.custom
 Stub to reference custom JavaScript common to all HTML transformations.
-:Stub: true
-:Revision: version="1.0" date="2010-04-16" status="final"
+@xsl:stub
+@revision[version=1.0 date=2010-04-16 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template is a stub, called by *{html.js}. You can override this template
+This template is a stub, called by {html.js}. You can override this template
 to reference additional external JavaScript files. If you want to include
-JavaScript into the main #{script} tag instead, use *{html.js.content.custom}.
+JavaScript into the main `script` tag instead, use {html.js.content.custom}.
 -->
 <xsl:template name="html.js.custom">
   <xsl:param name="node" select="."/>
@@ -2750,14 +2846,16 @@ JavaScript into the main #{script} tag instead, use *{html.js.content.custom}.
 <!--**==========================================================================
 html.js.content.custom
 Stub to output custom JavaScript common to all HTML transformations.
-:Stub: true
-:Revision: version="1.0" date="2010-04-16" status="final"
+@xsl:stub
+@revision[version=1.0 date=2010-04-16 status=final]
+
+[xsl:params]
 $node: The node to create JavaScript for.
 
-This template is a stub, called by *{html.js.content}. You can override this
+This template is a stub, called by {html.js.content}. You can override this
 template to provide additional JavaScript that will be used by all HTML output.
-This template is called inside a #{script} tag, and is intended to include
-JavaScript code in the output page. See *{html.js.custom} to include a custom
+This template is called inside a `script` tag, and is intended to include
+JavaScript code in the output page. See {html.js.custom} to include a custom
 reference to an external JavaScript file.
 -->
 <xsl:template name="html.js.content.custom">
@@ -2767,28 +2865,30 @@ reference to an external JavaScript file.
 
 <!--**==========================================================================
 html.lang.attrs
-Output #{lang} and #{dir} attributes.
-:Revision: version="1.0" date="2010-06-10" status="final"
+Output `lang` and `dir` attributes.
+@revision[version=1.0 date=2010-06-10 status=final]
+
+[xsl:params]
 $node: The current element in the input document.
-$parent: A parent node to take ${lang} and ${dir} from.
-$lang: The language for ${node}.
-$dir: The text directionality for ${node}.
+$parent: A parent node to take $lang and $dir from.
+$lang: The language for $node.
+$dir: The text directionality for $node.
 
-This template outputs #{lang}, #{xml:lang}, or #{dir} attributes if necessary.
-If ${lang} is not set, it will be taken from the #{xml:lang} or #{lang}
-attribute of ${node}. If ${dir} is not set, it will be taken from the #{its:dir}
-attribute of ${node} or computed based on ${lang}.
+This template outputs `lang`, `xml:lang`, or `dir` attributes if necessary.
+If $lang is not set, it will be taken from the `xml:lang` or `lang`
+attribute of $node. If $dir is not set, it will be taken from the `its:dir`
+attribute of $node or computed based on $lang.
 
-The ${parent} parameter defaults to an empty node set. If it is set to a
-non-empty node set, this template will attempt to get ${lang} and ${dir} from
-${parent} if they are not set on ${node}. This is occasionally useful when a
+The $parent parameter defaults to an empty node set. If it is set to a
+non-empty node set, this template will attempt to get $lang and $dir from
+$parent if they are not set on $node. This is occasionally useful when a
 wrapper element in a source language doesn't directly create any output
 elements.
 
-This template outputs either an #{xml:lang} or a #{lang} attribute, depending
-on whether @{html.xhtml} is #{true}. It only outputs an #{xml:lang} or #{lang}
-attribute if $lang is non-empty. This template also outputs a #{dir} attribute
-if ${dir} is non-empty.
+This template outputs either an `xml:lang` or a `lang` attribute, depending
+on whether {html.xhtml} is `true`. It only outputs an `xml:lang` or `lang`
+attribute if $lang is non-empty. This template also outputs a `dir` attribute
+if $dir is non-empty.
 -->
 <xsl:template name="html.lang.attrs">
   <xsl:param name="node" select="."/>
@@ -2854,17 +2954,19 @@ if ${dir} is non-empty.
 <!--**==========================================================================
 html.syntax.class
 Output HTML class values for syntax highlighting.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
+
+[xsl:params]
 $node: The source element whose content will be syntax highlighted.
 
-This template calls %{html.syntax.class.mode} on ${node}. If the result of that
+This template calls {html.syntax.class.mode} on $node. If the result of that
 mode is a suitable language identifier, it outputs appropriate CSS class names
-to enable syntax highlighting. The output should be placed in the #{class}
-attribute of a #{pre} or similar output element by the calling template.
+to enable syntax highlighting. The output should be placed in the `class`
+attribute of a `pre` or similar output element by the calling template.
 
-Importing stylesheets should implement %{html.syntax.class.mode} for any source
+Importing stylesheets should implement {html.syntax.class.mode} for any source
 elements that may be syntax highlighted, then call this template when building
-the #{class} attribute for output elements.
+the `class` attribute for output elements.
 -->
 <xsl:template name="html.syntax.class">
   <xsl:param name="node" select="."/>
@@ -2881,9 +2983,9 @@ the #{class} attribute for output elements.
 <!--%%==========================================================================
 html.syntax.class.mode
 Get the syntax highlighting language for a source-specific element.
-:Revision:version="3.28" date="2016-01-03" status="final"
+@revision[version=3.28 date=2016-01-03 status=final]
 
-This mode is called by *{html.syntax.class} on source elements that may have
+This mode is called by {html.syntax.class} on source elements that may have
 syntax highlighted. This template should be implemented by importing stylesheets.
 It should return a simple language identifier.
 -->
@@ -2893,11 +2995,11 @@ It should return a simple language identifier.
 <!--**==========================================================================
 html.media.controls
 Output media controls for a video or audio object.
-:Revision:version="3.28" date="2016-02-12" status="final"
+@revision[version=3.28 date=2016-02-12 status=final]
 
 This template outputs HTML containing controls for a media play for audio or
 video HTML elements. To work with the built-in JavaScript binding code, it
-should be placed immediately after the #{audio} or #{video} element.
+should be placed immediately after the `audio` or `video` element.
 -->
 <xsl:template name="html.media.controls">
   <xsl:param name="type" select="'video'"/>

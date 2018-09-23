@@ -35,9 +35,9 @@ REMARK: Describe this module
 <!--@@==========================================================================
 dita.ref.extension
 The filename extension for output files.
-:Revision:version="3.8" date="2012-10-08" status="final"
+@revision[version=3.8 date=2012-10-08 status=final]
 
-When link targets are constructed by *{dita.ref.href.target.custom} from #{href}
+When link targets are constructed by {dita.ref.href.target.custom} from `href`
 attributes, this string is appended. This is used to specify the file extension
 when creating output files from DITA topics.
 -->

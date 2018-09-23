@@ -1,29 +1,57 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.inline" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-inline" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Renders an inline element as an HTML <code>span</code> element</desc></info><title>db2html.inline</title><p>Renders an inline element as an HTML <code>span</code> element</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The element to render</p>
-    </item>
-    <item>
-      <title><code>children</code></title>
-      <p>The child elements to process</p>
-    </item>
-    <item>
-      <title><code>class</code></title>
-      <p>The value of the <code>class</code> attribute on the <code>span</code> tag</p>
-    </item>
-    <item>
-      <title><code>lang</code></title>
-      <p>The locale of the text in <code style="xslt-param">node</code></p>
-    </item>
-    <item>
-      <title><code>name-class</code></title>
-      <p>The class to use for the name of the element</p>
-    </item>
-  </terms></synopsis>
-  <comment><p>Document this template</p></comment>
-  <p>This template handles conditional processing.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.profile.test"/></p></item><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db2html.xlink"/></p></item><item><p><link xref="db2html.inline.children"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.inline">
+ <info>
+  <link type="guide" xref="db2html-inline" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Render an inline element as an HTML <sys>span</sys> element</desc>
+ </info>
+ <title>db2html.inline</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The element to render</p>
+   </item>
+   <item>
+    <title><code>$children</code></title>
+    <p>The child elements to process</p>
+   </item>
+   <item>
+    <title><code>$class</code></title>
+    <p>The value of the <sys>class</sys> attribute on the <sys>span</sys> tag</p>
+   </item>
+   <item>
+    <title><code>$lang</code></title>
+    <p>The locale of the text in <code>$node</code></p>
+   </item>
+   <item>
+    <title><code>$name-class</code></title>
+    <p>The class to use for the name of the element</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: Document this template</p>
+ <p>This template handles conditional processing.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.profile.test"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.anchor"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.inline.children"/></p>
+  </item>
+  <item>
+   <p><link xref="db2html.xlink"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+ </list>
+</page>

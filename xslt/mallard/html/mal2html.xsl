@@ -24,15 +24,15 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 <!--!!==========================================================================
 Mallard to HTML
 Transform Mallard to HTML.
-:Revision:version="3.8" date="2012-11-05" status="final"
+@revision[version=3.8 date=2012-11-05 status=final]
 
 This top-level stylesheet includes all the necessary stylesheets to transform
-Mallard documents into HTML. It imports !{mal2xhtml}, overrides parameters, and
+Mallard documents into HTML. It imports {mal2xhtml}, overrides parameters, and
 sets a namespace alias to output non-XML HTML. In particular, this stylesheet
-sets @{html.xhtml} to #{false} and @{mal.if.target} to #{'target:html'}.
+sets {html.xhtml} to `false` and {mal.if.target} to `'target:html'`.
 -->
 
-<xsl:import href="mal2xhtml.xsl"><?pass?></xsl:import>
+<xsl:import href="mal2xhtml.xsl"><?xsldoc.passthrough?></xsl:import>
 
 <xsl:param name="html.xhtml" select="false()"/>
 <xsl:param name="mal.if.target" select="'target:html'"/>

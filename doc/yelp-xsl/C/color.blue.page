@@ -1,6 +1,21 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="color.blue" type="topic" style="xslt-param"><info><link type="guide" xref="color" group="parameters"/><link type="guide" xref="parameters" group="color"/><revision version="3.28" date="2016-01-03" status="final"/><desc>A blue accent color.</desc></info><title>color.blue</title><p>A blue accent color.</p>
-  
-  
-  <p>This parameter specifies a shade of blue that is suitable for borders and other accents. It should have some contrast against background colors, but it does not need as high of a contrast as text colors.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="color.blue">
+ <info>
+  <link type="guide" xref="color" group="params"/>
+  <link type="guide" xref="params" group="color"/>
+  <desc>A blue accent color.</desc>
+  <revision version="3.28" date="2016-01-03" status="final"/>
+ </info>
+ <title>color.blue</title>
+ <p>This parameter specifies a shade of blue that is suitable for borders and
+ other accents. It should have some contrast against background colors, but it
+ does not need as high of a contrast as text colors.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>color.blue</code></title>
+    <p><code>'#3465a4'</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

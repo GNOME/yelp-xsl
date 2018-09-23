@@ -33,10 +33,12 @@ REMARK: Describe this module
 
 <!--**==========================================================================
 dita2html.div
-Output an HTML #{div} element.
-:Revision:version="3.8" date="2012-10-04" status="incomplete"
-$node: The source element to output a #{div} for.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `div` element.
+@revision[version=3.8 date=2012-10-04 status=incomplete]
+
+[xsl:params]
+$node: The source element to output a `div` for.
+$class: The value of the HTML `class` attribute.
 
 FIXME
 -->
@@ -64,10 +66,12 @@ FIXME
 
 <!--**==========================================================================
 dita2html.p
-Output an HTML #{p} element.
-:Revision:version="3.8" date="2012-10-04" status="incomplete"
-$node: The source element to output a #{p} for.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `p` element.
+@revision[version=3.8 date=2012-10-04 status=incomplete]
+
+[xsl:params]
+$node: The source element to output a `p` for.
+$class: The value of the HTML `class` attribute.
 
 FIXME
 -->
@@ -92,10 +96,12 @@ FIXME
 
 <!--**==========================================================================
 dita2html.pre
-Output an HTML #{pre} element.
-:Revision:version="3.8" date="2012-10-05" status="incomplete"
-$node: The source element to output a #{pre} for.
-$class: The value of the HTML #{class} attribute.
+Output an HTML `pre` element.
+@revision[version=3.8 date=2012-10-05 status=incomplete]
+
+[xsl:params]
+$node: The source element to output a `pre` for.
+$class: The value of the HTML `class` attribute.
 
 FIXME
 -->

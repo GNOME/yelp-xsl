@@ -1,25 +1,133 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="html.css.core" type="topic" style="xslt-template"><info><link type="guide" xref="html" group="templates"/><link type="guide" xref="templates" group="html"/><revision version="1.0" date="2010-05-25" status="final"/><desc>Output CSS that does not reference source elements.</desc></info><title>html.css.core</title><p>Output CSS that does not reference source elements.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The node to create CSS for.</p>
-    </item>
-    <item>
-      <title><code>direction</code></title>
-      <p>The directionality of the text, either <code>ltr</code> or <code>rtl</code>.</p>
-    </item>
-    <item>
-      <title><code>left</code></title>
-      <p>The starting alignment, either <code>left</code> or <code>right</code>.</p>
-    </item>
-    <item>
-      <title><code>right</code></title>
-      <p>The ending alignment, either <code>left</code> or <code>right</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs CSS that can be used in any HTML. It does not reference elements from DocBook, Mallard, or other source languages. It provides the common spacings for block-level elements lik paragraphs and lists, defines styles for links, and defines four common wrapper divs: <code>header</code>, <code>side</code>, <code>body</code>, and <code>footer</code>.</p>
-  <p>All parameters can be automatically computed if not provided.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="l10n.direction"/></p></item><item><p><link xref="l10n.align.start"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="color.bg"/></p></item><item><p><link xref="color.bg.dark"/></p></item><item><p><link xref="color.bg.gray"/></p></item><item><p><link xref="color.fg"/></p></item><item><p><link xref="color.fg.blue"/></p></item><item><p><link xref="color.fg.dark"/></p></item><item><p><link xref="color.fg.purple"/></p></item><item><p><link xref="color.gray"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="html.css.core">
+ <info>
+  <link type="guide" xref="html" group="templates"/>
+  <link type="guide" xref="templates" group="html"/>
+  <desc>Output CSS that does not reference source elements.</desc>
+  <revision version="1.0" date="2010-05-25" status="final"/>
+ </info>
+ <title>html.css.core</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create CSS for.</p>
+   </item>
+   <item>
+    <title><code>$direction</code></title>
+    <p>The directionality of the text, either <sys>ltr</sys> or <sys>rtl</sys>.</p>
+   </item>
+   <item>
+    <title><code>$left</code></title>
+    <p>The starting alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+   <item>
+    <title><code>$right</code></title>
+    <p>The ending alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs CSS that can be used in any HTML. It does not reference
+ elements from DocBook, Mallard, or other source languages. It provides the
+ common spacings for block-level elements like paragraphs and lists, defines
+ styles for links, and defines four common wrapper divs: <sys>header</sys>, <sys>side</sys>,
+ <sys>body</sys>, and <sys>footer</sys>.</p>
+ <p>All parameters can be automatically computed if not provided.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.purple"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="html.basename"/></p>
+  </item>
+  <item>
+   <p><link xref="html.extension"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.left"/></p>
+  </item>
+  <item>
+   <p><link xref="html.sidebar.right"/></p>
+  </item>
+  <item>
+   <p><link xref="html.syntax.highlight"/></p>
+  </item>
+  <item>
+   <p><link xref="html.xhtml"/></p>
+  </item>
+  <item>
+   <p><link xref="icons.size.quote"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+</page>

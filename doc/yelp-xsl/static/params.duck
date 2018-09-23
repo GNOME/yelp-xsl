@@ -1,0 +1,40 @@
+@ducktype/1.0
+
+= XSLT Parameters
+  [guide]
+@link[guide >index]
+@title[link] Parameters
+@title[link role=topic] XSLT Parameters
+
+[links topic .linklist groups=mal2html]
+. Mallard to HTML
+
+[links topic .linklist groups=mal]
+. Mallard Common
+
+[links topic .linklist groups=db2html]
+. DocBook to HTML
+
+[links topic .linklist groups=db]
+. DocBook Common
+
+[links topic .linklist groups=html]
+. HTML Output
+
+[links topic .linklist groups=ttml]
+. TTML Utilities
+
+[links topic .linklist groups=l10n]
+. Localization
+
+[links topic .linklist groups=color]
+. Colors
+
+[links topic .linklist groups=icons]
+. Icons
+
+[links topic .linklist groups=utils]
+. Utilities
+
+[links topic .linklist groups=#first #default #last]
+. Other

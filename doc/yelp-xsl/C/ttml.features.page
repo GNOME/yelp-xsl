@@ -1,7 +1,23 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="ttml.features" type="topic" style="xslt-param"><info><link type="guide" xref="ttml" group="parameters"/><link type="guide" xref="parameters" group="ttml"/><revision version="3.4" date="2012-03-01" status="final"/><desc>The supported features and extensions for TTML documents.</desc></info><title>ttml.features</title><p>The supported features and extensions for TTML documents.</p>
-  
-  
-  <p>This parameter lists the fully-qualified URIs of TTML features and extensions supported by the stylesheets. The values are in the form of a space-separated list, which MUST have both a leading and a trailing space.</p>
-  <p>The default value for this parameter is empty. Importing stylesheets should set this to an appropriate value.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="ttml.features">
+ <info>
+  <link type="guide" xref="ttml" group="params"/>
+  <link type="guide" xref="params" group="ttml"/>
+  <desc>The supported features and extensions for TTML documents.</desc>
+  <evision version="3.4" date="2012-03-01" status="final"/>
+ </info>
+ <title>ttml.features</title>
+ <p>This parameter lists the fully-qualified URIs of TTML features and extensions
+ supported by the stylesheets. The values are in the form of a space-separated
+ list, which MUST have both a leading and a trailing space.</p>
+ <p>The default value for this parameter is empty. Importing stylesheets should
+ set this to an appropriate value.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>ttml.features</code></title>
+    <p><code>''</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

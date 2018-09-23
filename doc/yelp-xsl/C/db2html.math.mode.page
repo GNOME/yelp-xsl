@@ -1,6 +1,15 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.math.mode" type="topic" style="xslt-mode"><info><link type="guide" xref="db2html-math" group="modes"/><link type="guide" xref="modes" group="db2html"/><revision version="3.8" date="2012-11-13" status="final"/><desc>Output MathML and handle Mallard extension.</desc></info><title>db2html.math.mode</title><p>Output MathML and handle Mallard extension.</p>
-  
-  
-  <p>This mode is used for processing MathML embedded into DocBook documents. For most types of MathML content, it simply copies the input directly, except it outputs the MathML in a way that allows the namespace to stripped for non-XML output. It converts <code>xlink:href</code> attributes from MathML 2 to <code>href</code> attributes for MathML 3.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="db2html.math.mode">
+ <info>
+  <link type="guide" xref="db2html-math" group="modes"/>
+  <link type="guide" xref="modes" group="db2html"/>
+  <desc>Output MathML and handle Mallard extension.</desc>
+  <revision version="3.8" date="2012-11-13" status="final"/>
+ </info>
+ <title>db2html.math.mode</title>
+ <p>This mode is used for processing MathML embedded into DocBook documents. For
+ most types of MathML content, it simply copies the input directly, except it
+ outputs the MathML in a way that allows the namespace to stripped for non-XML
+ output. It converts <sys>xlink:href</sys> attributes from MathML 2 to <sys>href</sys> attributes
+ for MathML 3.</p>
 </page>

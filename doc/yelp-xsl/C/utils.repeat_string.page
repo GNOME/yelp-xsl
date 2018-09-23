@@ -1,16 +1,30 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="utils.repeat_string" type="topic" style="xslt-template"><info><link type="guide" xref="utils" group="templates"/><link type="guide" xref="templates" group="utils"/><revision version="1.0" date="2011-08-24" status="final"/><desc>Repeat a string a given number of times.</desc></info><title>utils.repeat_string</title><p>Repeat a string a given number of times.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>string</code></title>
-      <p>The string to repeat.</p>
-    </item>
-    <item>
-      <title><code>number</code></title>
-      <p>The number of times to repeat <code style="xslt-param">string</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template repeats the <code style="xslt-param">string</code> argument <code style="xslt-param">number</code> times.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="utils.repeat_string"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="utils.repeat_string">
+ <info>
+  <link type="guide" xref="utils" group="templates"/>
+  <link type="guide" xref="templates" group="utils"/>
+  <desc>Repeat a string a given number of times.</desc>
+  <revision version="1.0" date="2011-08-24" status="final"/>
+ </info>
+ <title>utils.repeat_string</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$string</code></title>
+    <p>The string to repeat.</p>
+   </item>
+   <item>
+    <title><code>$number</code></title>
+    <p>The number of times to repeat <code>$string</code>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template repeats the <code>$string</code> argument <code>$number</code> times.</p>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="utils.repeat_string"/></p>
+  </item>
+ </list>
+</page>

@@ -1,6 +1,20 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db.profile.audience" type="topic" style="xslt-param"><info><link type="guide" xref="db-profile" group="parameters"/><link type="guide" xref="parameters" group="db"/><revision version="3.10" date="2013-08-12" status="final"/><desc>The list of audiences for conditional processing.</desc></info><title>db.profile.audience</title><p>The list of audiences for conditional processing.</p>
-  
-  
-  <p>This parameter takes a semicolon-separated list of values to match against the <code>audience</code> attribute for conditional processing.</p>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="db.profile.audience">
+ <info>
+  <link type="guide" xref="db-profile" group="params"/>
+  <link type="guide" xref="params" group="db"/>
+  <desc>The list of audiences for conditional processing.</desc>
+  <revision version="3.10" date="2013-08-12" status="final"/>
+ </info>
+ <title>db.profile.audience</title>
+ <p>This parameter takes a semicolon-separated list of values to match against the
+ <sys>audience</sys> attribute for conditional processing.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>db.profile.audience</code></title>
+    <p><code>''</code></p>
+   </item>
+  </terms>
+ </synopsis>
 </page>

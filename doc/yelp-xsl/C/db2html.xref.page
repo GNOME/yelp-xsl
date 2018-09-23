@@ -1,28 +1,56 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.xref" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-xref" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Generates a hyperlink from an <code>xref</code> element</desc></info><title>db2html.xref</title><p>Generates a hyperlink from an <code>xref</code> element</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>linkend</code></title>
-      <p>The id of the element being linked to</p>
-    </item>
-    <item>
-      <title><code>target</code></title>
-      <p>The element being linked to</p>
-    </item>
-    <item>
-      <title><code>endterm</code></title>
-      <p>The id of an element whose contents will be used for the link text</p>
-    </item>
-    <item>
-      <title><code>xrefstyle</code></title>
-      <p>The style of cross reference text to use</p>
-    </item>
-    <item>
-      <title><code>content</code></title>
-      <p>Optional content to use for the text of the link</p>
-    </item>
-  </terms></synopsis>
-  <comment><p>Describe this template</p></comment>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.class.attr"/></p></item><item><p><link xref="db.xref.target"/></p></item><item><p><link xref="db.xref.content"/></p></item></list><list style="compact"><title>Calls Keys</title><item><p><link xref="db.id.key"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.xref">
+ <info>
+  <link type="guide" xref="db2html-xref" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Generates a hyperlink from an <sys>xref</sys> element</desc>
+ </info>
+ <title>db2html.xref</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$linkend</code></title>
+    <p>The id of the element being linked to</p>
+   </item>
+   <item>
+    <title><code>$target</code></title>
+    <p>The element being linked to</p>
+   </item>
+   <item>
+    <title><code>$endterm</code></title>
+    <p>The id of an element whose contents will be used for the link text</p>
+   </item>
+   <item>
+    <title><code>$xrefstyle</code></title>
+    <p>The style of cross reference text to use</p>
+   </item>
+   <item>
+    <title><code>$content</code></title>
+    <p>Optional content to use for the text of the link</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: Describe this template</p>
+ <list style="compact">
+  <title>Calls Keys</title>
+  <item>
+   <p><link xref="db.id.key"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.xref.content"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.target"/></p>
+  </item>
+  <item>
+   <p><link xref="db.xref.tooltip"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+ </list>
+</page>

@@ -23,7 +23,6 @@ along with this program; see the file COPYING.LGPL.  If not, see <http://www.gnu
 
 <!--!!==========================================================================
 DocBook to HTML - Function Synopses
-:Requires: db2html-block db2html-inline
 
 REMARK: Describe this module
 -->
@@ -31,13 +30,13 @@ REMARK: Describe this module
 
 <!--@@==========================================================================
 db2html.funcsynopsis.style
-How to render #{funcsynopsis} elements
+How to render `funcsynopsis` elements
 
-This parameter controls the indentation style used to render #{funcsynopsis}
-elements.  Supported values are #{'KR'} and #{'ANSI'}.  This value can also
-be set with the #{db2html.funcsynopsis.style} processing instruction at the
+This parameter controls the indentation style used to render `funcsynopsis`
+elements.  Supported values are `'KR'` and `'ANSI'`.  This value can also
+be set with the `db2html.funcsynopsis.style` processing instruction at the
 top of the XML document.  The same processing instruction or inside a
-#{funcsynopsis} element will override this setting for that synopsis.
+`funcsynopsis` element will override this setting for that synopsis.
 -->
 <xsl:param name="db2html.funcsynopsis.style">
   <xsl:choose>

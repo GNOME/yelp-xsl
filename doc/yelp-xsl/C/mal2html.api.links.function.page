@@ -1,17 +1,44 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.api.links.function" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-api" group="templates"/><link type="guide" xref="templates" group="mal2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Output links as a synopsis of functions.</desc></info><title>mal2html.api.links.function</title><p>Output links as a synopsis of functions.</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>A <code>links</code> element to link from.</p>
-    </item>
-    <item>
-      <title><code>links</code></title>
-      <p>A list of topic links already filtered by group.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template outputs links as a synopsis according to the programming language specified by the <code>api:mime</code> attribute of <code style="xslt-param">node</code>. If <code>api:mime</code> is recognized, one of the language-specific templates in this stylesheet is called. Otherwise, the links are passed to <code style="xslt-template" xref="mal2html.links.ul">mal2html.links.ul</code>.</p>
-  <p>This template does not handle titles or other wrapper information for <code>links</code> elements. It should be called by an appropriate template that handles the <code>links</code> element.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="mal2html.api.links.function.c"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.api.links.function">
+ <info>
+  <link type="guide" xref="mal2html-api" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output links as a synopsis of functions.</desc>
+ </info>
+ <title>mal2html.api.links.function</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>A <sys>links</sys> element to link from.</p>
+   </item>
+   <item>
+    <title><code>$links</code></title>
+    <p>A list of topic links already filtered by group.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs links as a synopsis according to the programming language
+ specified by the <sys>api:mime</sys> attribute of <code>$node</code>. If <sys>api:mime</sys> is recognized,
+ one of the language-specific templates in this stylesheet is called. Otherwise,
+ the links are passed to <code xref="mal2html.links.ul">mal2html.links.ul</code>.</p>
+ <p>This template does not handle titles or other wrapper information for <sys>links</sys>
+ elements. It should be called by an appropriate template that handles the
+ <sys>links</sys> element.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="mal2html.api.links.function.c"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.links.ul"/></p>
+  </item>
+ </list>
+</page>

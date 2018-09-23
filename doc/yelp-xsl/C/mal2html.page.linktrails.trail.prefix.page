@@ -1,14 +1,80 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="mal2html.page.linktrails.trail.prefix" type="topic" style="xslt-template"><info><link type="guide" xref="mal2html-page" group="templates"/><link type="guide" xref="templates" group="mal2html"/><link type="guide" xref="stubs" group="mal2html"/><revision version="3.20" date="2015-09-17" status="final"/><desc>Deprecated stub to output extra content before a link trail.</desc><stub xmlns="http://projects.gnome.org/yelp/xsldoc/"/></info><title>mal2html.page.linktrails.trail.prefix</title><p>Deprecated stub to output extra content before a link trail.</p><note><p>This template is a stub. Customizations may override it for
-            additional functionality.</p></note>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>A <code>link</code> element from <code style="xslt-template" xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
-    </item>
-  </terms></synopsis>
-  <p>This template is deprecated. Use <code style="xslt-template" xref="html.linktrails.prefix">html.linktrails.prefix</code> instead. By default, this template calls <code style="xslt-template" xref="html.linktrails.prefix">html.linktrails.prefix</code>, passing the <code style="xslt-param">node</code> parameter.</p>
-  <p>This template is a stub. It is called by <code style="xslt-template" xref="mal2html.page.linktrails.trail">mal2html.page.linktrails.trail</code> for each link trail before the normal links are output with <code style="xslt-template" xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code>. This template is useful for adding extra site links at the beginning of each link trail.</p>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="html.linktrails.prefix"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="mal2html.page.linktrails.trail.prefix">
+ <info>
+  <link type="guide" xref="mal2html-page" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Deprecated stub to output extra content before a link trail.</desc>
+ </info>
+ <title>mal2html.page.linktrails.trail.prefix</title>
+ <p>:Stub: true
+ @revision[version=3.20 date=2015-09-17 status=final]</p>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>A <sys>link</sys> element from <code xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template is deprecated. Use <code xref="html.linktrails.prefix">html.linktrails.prefix</code> instead. By default,
+ this template calls <code xref="html.linktrails.prefix">html.linktrails.prefix</code>, passing the <code>$node</code> parameter.</p>
+ <p>This template is a stub. It is called by <code xref="mal2html.page.linktrails.trail">mal2html.page.linktrails.trail</code> for
+ each link trail before the normal links are output with
+ <code xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code>. This template is useful for adding extra site
+ links at the beginning of each link trail.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="color.bg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="color.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.blue"/></p>
+  </item>
+  <item>
+   <p><link xref="color.fg.dark"/></p>
+  </item>
+  <item>
+   <p><link xref="color.gray"/></p>
+  </item>
+  <item>
+   <p><link xref="color.red"/></p>
+  </item>
+  <item>
+   <p><link xref="color.yellow"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+  <item>
+   <p><link xref="mal.link.default_root"/></p>
+  </item>
+  <item>
+   <p><link xref="mal2html.editor_mode"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="html.linktrails.prefix"/></p>
+  </item>
+ </list>
+</page>

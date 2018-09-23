@@ -1,36 +1,64 @@
-<?xml version="1.0"?>
-<page xmlns="http://projectmallard.org/1.0/" id="db2html.division.div" type="topic" style="xslt-template"><info><link type="guide" xref="db2html-division" group="templates"/><link type="guide" xref="templates" group="db2html"/><revision version="0.0" date="1970-01-01" status="stub"/><desc>Renders the content of a division element, chunking children if necessary</desc></info><title>db2html.division.div</title><p>Renders the content of a division element, chunking children if necessary</p>
-  
-  
-  <synopsis><title>Parameters</title><terms>
-    <item>
-      <title><code>node</code></title>
-      <p>The element to render the content of</p>
-    </item>
-    <item>
-      <title><code>info</code></title>
-      <p>The info child element of <code style="xslt-param">node</code></p>
-    </item>
-    <item>
-      <title><code>entries</code></title>
-      <p>The entry-style child elements</p>
-    </item>
-    <item>
-      <title><code>divisions</code></title>
-      <p>The division-level child elements</p>
-    </item>
-    <item>
-      <title><code>depth_in_chunk</code></title>
-      <p>The depth of <code style="xslt-param">node</code> in the containing chunk</p>
-    </item>
-    <item>
-      <title><code>depth_of_chunk</code></title>
-      <p>The depth of the containing chunk in the document</p>
-    </item>
-    <item>
-      <title><code>chunk_divisions</code></title>
-      <p>Whether to create new documents for <code style="xslt-param">divisions</code></p>
-    </item>
-  </terms></synopsis>
-  <comment><p>Talk about some of the parameters</p></comment>
-<list style="compact"><title>Calls Templates</title><item><p><link xref="db.chunk.depth-in-chunk"/></p></item><item><p><link xref="html.lang.attrs"/></p></item><item><p><link xref="html.class.attr"/></p></item></list><list style="compact"><title>Calls Parameters</title><item><p><link xref="db.chunk.max_depth"/></p></item></list></page>
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db2html.division.div">
+ <info>
+  <link type="guide" xref="db2html-division" group="templates"/>
+  <link type="guide" xref="templates" group="db2html"/>
+  <desc>Renders the content of a division element, chunking children if necessary</desc>
+ </info>
+ <title>db2html.division.div</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The element to render the content of</p>
+   </item>
+   <item>
+    <title><code>$info</code></title>
+    <p>The info child element of <code>$node</code></p>
+   </item>
+   <item>
+    <title><code>$entries</code></title>
+    <p>The entry-style child elements</p>
+   </item>
+   <item>
+    <title><code>$divisions</code></title>
+    <p>The division-level child elements</p>
+   </item>
+   <item>
+    <title><code>$depth_in_chunk</code></title>
+    <p>The depth of <code>$node</code> in the containing chunk</p>
+   </item>
+   <item>
+    <title><code>$depth_of_chunk</code></title>
+    <p>The depth of the containing chunk in the document</p>
+   </item>
+   <item>
+    <title><code>$chunk_divisions</code></title>
+    <p>Whether to create new documents for <code>$divisions</code></p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>REMARK: Talk about some of the parameters</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="db.chunk.max_depth"/></p>
+  </item>
+ </list>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="db.chunk.depth-in-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="db.chunk.depth-of-chunk"/></p>
+  </item>
+  <item>
+   <p><link xref="html.class.attr"/></p>
+  </item>
+  <item>
+   <p><link xref="html.lang.attrs"/></p>
+  </item>
+ </list>
+</page>
