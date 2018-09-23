@@ -4,7 +4,6 @@ xsldoc_dirs = 						\
 	$(ABS_SRCDIR)/../../xslt/common			\
 	$(ABS_SRCDIR)/../../xslt/docbook/common		\
 	$(ABS_SRCDIR)/../../xslt/docbook/html		\
-	$(ABS_SRCDIR)/../../xslt/docbook/omf		\
 	$(ABS_SRCDIR)/../../xslt/mallard/cache		\
 	$(ABS_SRCDIR)/../../xslt/mallard/common		\
 	$(ABS_SRCDIR)/../../xslt/mallard/html
