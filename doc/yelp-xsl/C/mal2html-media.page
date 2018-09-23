@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="mal2html-media">
+<page xmlns="http://projectmallard.org/1.0/" type="guide" style="xslt-stylesheet" id="mal2html-media">
  <info>
   <link type="guide" xref="stylesheets" group="mal2html"/>
   <desc>Handle Mallard media elements.</desc>

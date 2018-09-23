@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-mode" id="mal2html.math.mode">
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-mode" id="mal2html.math.mode">
  <info>
   <link type="guide" xref="mal2html-math" group="modes"/>
   <link type="guide" xref="modes" group="mal2html"/>

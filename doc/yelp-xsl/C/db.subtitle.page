@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-template" id="db.subtitle">
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-template" id="db.subtitle">
  <info>
   <link type="guide" xref="db-title" group="templates"/>
   <link type="guide" xref="templates" group="db"/>

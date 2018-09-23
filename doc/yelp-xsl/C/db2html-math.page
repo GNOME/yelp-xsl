@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="db2html-math">
+<page xmlns="http://projectmallard.org/1.0/" type="guide" style="xslt-stylesheet" id="db2html-math">
  <info>
   <link type="guide" xref="stylesheets" group="db2html"/>
   <desc>Handle MathML in DocBook documents.</desc>

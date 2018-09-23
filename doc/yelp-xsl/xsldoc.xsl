@@ -84,14 +84,7 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
           <xsl:text>&#x0A;[links topic groups=keys .linklist]&#x0A;. Defines Keys&#x0A;</xsl:text>
           <xsl:text>&#x0A;[links topic groups=templates .linklist]&#x0A;. Defines Templates&#x0A;</xsl:text>
           <xsl:text>&#x0A;[links topic groups=modes .linklist]&#x0A;. Defines Modes&#x0A;</xsl:text>
-          <!--
-              FIXME:
-              get stylesheet imports
-              sets params (not defined here)
-          -->
-          <!--
-              FIXME: make all of these follow passthrough?
-          -->
+          <!-- FIXME: list params set here but not defined here for importing stylesheets -->
           <xsl:call-template name="xsldoc.calls.params">
             <xsl:with-param name="node" select="/xsl:stylesheet"/>
           </xsl:call-template>
@@ -116,10 +109,6 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
               <xsl:value-of select="$name"/>
             </xsl:message>
           </xsl:if>
-          <!--
-              FIXME:
-              calls params
-          -->
           <xsl:call-template name="xsldoc.calls.params">
             <xsl:with-param name="node" select="/xsl:stylesheet"/>
           </xsl:call-template>
@@ -152,12 +141,6 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
             <xsl:text>)&#x0A;</xsl:text>
           </xsl:if>
         </xsl:if>
-        <!--
-            FIXME:
-            mode
-            key
-            param (default)
-        -->
       </exsl:document>
     </xsl:if>
   </xsl:for-each>
@@ -172,11 +155,7 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
   <xsl:choose>
     <xsl:when test="$lines = ''"/>
     <xsl:when test="$mode = 'title'">
-      <!--
-          <xsl:text>@ducktype/1.0 xsl/1.0&#x0A;&#x0A;</xsl:text>
-      -->
-      <xsl:text>@namespace xsl FIXME&#x0A;&#x0A;</xsl:text>
-
+      <xsl:text>@ducktype/1.0&#x0A;&#x0A;</xsl:text>
       <xsl:text>= </xsl:text>
       <xsl:value-of select="substring-before($lines, '&#x0A;')"/>
       <xsl:choose>
@@ -604,6 +583,7 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
   </xsl:for-each>
 </xsl:template>
 
+<!-- FIXME: follow imports? -->
 <xsl:template name="xsldoc.implements.templates">
   <xsl:param name="node" select="."/>
   <xsl:variable name="impls">

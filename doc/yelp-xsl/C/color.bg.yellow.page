@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" style="xslt-param" id="color.bg.yellow">
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-param" id="color.bg.yellow">
  <info>
   <link type="guide" xref="color" group="params"/>
   <link type="guide" xref="params" group="color"/>

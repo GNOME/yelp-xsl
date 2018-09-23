@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:xsl="FIXME" type="guide" style="xslt-stylesheet" id="icons">
+<page xmlns="http://projectmallard.org/1.0/" type="guide" style="xslt-stylesheet" id="icons">
  <info>
   <link type="guide" xref="stylesheets" group="icons"/>
   <desc>Specify common named icons to style output.</desc>
