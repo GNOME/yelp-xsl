@@ -21,10 +21,10 @@ xsldoc_pages = $(patsubst %, C/%.page, $(xsldoc_base))
 if ENABLE_DOC
 all: $(xsldoc_pages)
 
-$(xsldoc_ducks): $(xsldoc_xsls) xsldoc-scan.xsl
+$(xsldoc_ducks): $(xsldoc_xsls) xsldoc.xsl
 	xsltproc -o "$@" \
 	--stringparam xsldoc.id "$(basename $(notdir $@))" \
-	"$(srcdir)/xsldoc-scan.xsl" \
+	"$(srcdir)/xsldoc.xsl" \
 	"$(filter %/$(basename $(notdir $@)).xsl,$(xsldoc_xsls))"
 
 $(xsldoc_pages): $(xsldoc_ducks)
@@ -38,4 +38,4 @@ xsldoc-clean:
 	rm -f C/*.page
 
 EXTRA_DIST = 			\
-	xsldoc-scan.xsl
+	xsldoc.xsl
