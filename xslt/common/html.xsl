@@ -47,7 +47,6 @@ should override the match for `/`.
 </xsl:template>
 
 
-
 <!--@@==========================================================================
 html.basename
 The base filename of the primary output file.
@@ -902,7 +901,7 @@ a `class` attribute.
   <xsl:variable name="nclass" select="normalize-space($fclass)"/>
   <xsl:if test="$nclass != ''">
     <xsl:attribute name="class">
-      <xsl:value-of select="$nclass"/>
+      <xsl:value-of select="normalize-space($nclass)"/>
     </xsl:attribute>
   </xsl:if>
 </xsl:template>
@@ -2093,7 +2092,60 @@ div.yelp-data { display: none; }
   from { transform: scaleY(0); }
   to   { transform: scaleY(1); }
 }
-
+div.ui-expander-preview > div.inner > div.region {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear, background-color 0.2s linear;
+  animation-name: none;
+}
+div.ui-expander-preview.ui-expander-c > div.inner {
+  max-height: 100px;
+  overflow: hidden;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region {
+  display: block;
+  transform: scaleY(0.4);
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
+  cursor: zoom-in;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region:hover * {
+  cursor: zoom-in;
+}
+div.ui-expander-preview > div.inner > div.region > * {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region > * {
+  transform: scaleX(0.4);
+}
+section.ui-expander-preview > div.inner > div.region > div.contents{
+  transform-origin: 0 0;
+  transition: transform 0.2s linear, background-color 0.2s linear;
+}
+section.ui-expander-preview.ui-expander-c > div.inner {
+  max-height: 140px;
+  overflow: hidden;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region {
+  display: block;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents {
+  transform: scaleY(0.6);
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+}
+section.ui-expander-preview > div.inner > div.region > div.contents > * {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents > * {
+  transform: scaleX(0.6);
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents:hover {
+  background-color: </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
+  cursor: zoom-in;
+}
 @media only screen and (max-width: 480px) {
   article > div.region > div.contents > div.example,
   article > div.region > section > div.inner > div.region > div.contents > div.example {
@@ -2440,6 +2492,7 @@ function yelp_ui_expander_init (expander) {
   var yelpdata = null;
   var innerdiv = null;
   var region = null;
+  var contents = null;
   var title = null;
   var title_e = null;
   var title_c = null;
@@ -2506,6 +2559,26 @@ function yelp_ui_expander_init (expander) {
     node.innerHTML = titlespan.innerHTML;
     yelpdata.appendChild(node);
     title_c = node;
+  }
+
+  var ui_expander_zoom_region = function (event) {
+    if (yelpdata.getAttribute('data-yelp-expanded') != 'false') {
+      ui_expander_toggle();
+      event.preventDefault();
+    }
+  }
+  if (expander.nodeName == 'section' || expander.nodeName == 'SECTION') {
+    for (var i = 0; i < region.children.length; i++) {
+      var child = region.children[i];
+      if (child.classList.contains('contents')) {
+        contents = child;
+        break;
+      }
+    }
+    contents.addEventListener('click', ui_expander_zoom_region, true);
+  }
+  else {
+    region.addEventListener('click', ui_expander_zoom_region, true);
   }
 
   var ui_expander_toggle = function () {

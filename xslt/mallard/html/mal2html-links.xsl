@@ -78,9 +78,6 @@ parameter will be used if provided.
   <xsl:variable name="style" select="concat(' ', $node[self::mal:links or $lastrole = 'topic']/@style, ' ')"/>
   <xsl:variable name="nodesc" select="contains($style, ' nodesc ')"/>
   <xsl:variable name="maltitle" select="$node/self::mal:links/mal:title"/>
-  <xsl:variable name="expander" select="($maltitle or ($title != '')) and
-                                        ($node/self::mal:links/@ui:expanded or
-                                         $node/self::mal:links/@uix:expanded)"/>
   <xsl:variable name="depth_">
     <xsl:choose>
       <xsl:when test="$depth &lt; 6">
@@ -99,9 +96,10 @@ parameter will be used if provided.
         <xsl:if test="$lastrole != ''">
           <xsl:value-of select="concat($lastrole, 'links')"/>
         </xsl:if>
-        <xsl:if test="$expander">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
+        <xsl:call-template name="mal2html.ui.expander.class">
+          <xsl:with-param name="node" select="$node"/>
+          <xsl:with-param name="hastitle" select="$maltitle or ($title != '')"/>
+        </xsl:call-template>
         <xsl:if test="contains($style, ' center ')">
           <xsl:text> links-center</xsl:text>
         </xsl:if>
@@ -109,7 +107,7 @@ parameter will be used if provided.
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data">
       <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="expander" select="$expander"/>
+      <xsl:with-param name="hastitle" select="$maltitle or ($title != '')"/>
     </xsl:call-template>
     <div class="inner">
       <xsl:choose>
@@ -555,9 +553,9 @@ element containing $node.
             <xsl:text> floatright</xsl:text>
           </xsl:when>
         </xsl:choose>
-        <xsl:if test="mal:title and ($node/@ui:expanded or $node/@uix:expanded)">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
+        <xsl:call-template name="mal2html.ui.expander.class">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
       </xsl:attribute>
       <xsl:call-template name="mal2html.ui.expander.data">
         <xsl:with-param name="node" select="$node"/>
@@ -663,9 +661,6 @@ This template calls {mal2html.links.series.prev} and
   <xsl:variable name="page" select="$node/ancestor-or-self::mal:page[last()]"/>
   <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
-  <xsl:variable name="expander" select="$title and
-                                        ($node/self::mal:links/@ui:expanded or
-                                         $node/self::mal:links/@uix:expanded)"/>
   <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <div>
     <xsl:attribute name="class">
@@ -684,13 +679,14 @@ This template calls {mal2html.links.series.prev} and
           <xsl:text> floatright</xsl:text>
         </xsl:when>
       </xsl:choose>
-      <xsl:if test="$expander">
-        <xsl:text> ui-expander</xsl:text>
-      </xsl:if>
+      <xsl:call-template name="mal2html.ui.expander.class">
+        <xsl:with-param name="node" select="$node"/>
+        <xsl:with-param name="hastitle" select="count($title) > 0"/>
+      </xsl:call-template>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data">
       <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="expander" select="$expander"/>
+      <xsl:with-param name="hastitle" select="count($title) > 0"/>
     </xsl:call-template>
     <div class="inner">
       <xsl:apply-templates mode="mal2html.block.mode" select="$title"/>

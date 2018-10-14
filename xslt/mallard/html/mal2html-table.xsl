@@ -170,9 +170,8 @@ REMARK: Describe this module
         <xsl:for-each select="str:tokenize(@style)">
           <xsl:value-of select="concat(' style-', .)"/>
         </xsl:for-each>
-        <xsl:if test="mal:title and (@ui:expanded or @uix:expanded)">
-          <xsl:text> ui-expander</xsl:text>
-        </xsl:if>
+        <xsl:text> </xsl:text>
+        <xsl:call-template name="mal2html.ui.expander.class"/>
         <xsl:if test="$if != 'true'">
           <xsl:text> if-if </xsl:text>
           <xsl:value-of select="$if"/>

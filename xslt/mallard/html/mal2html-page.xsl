@@ -755,9 +755,9 @@ templates that handle `page` and `section` elements.
     <xsl:call-template name="html.class.attr">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="class">
-        <xsl:if test="@ui:expanded or @uix:expanded">
-          <xsl:text>ui-expander</xsl:text>
-        </xsl:if>
+        <xsl:call-template name="mal2html.ui.expander.class">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
     <xsl:call-template name="mal2html.ui.expander.data">

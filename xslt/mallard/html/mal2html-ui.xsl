@@ -34,13 +34,44 @@ extension.
 
 
 <!--**==========================================================================
-mal2html.ui.expander.data
-Output data for an expander.
-@revision[version=3.4 date=2012-02-25 status=final]
+mal2html.ui.expander.class
+Output HTML class value for an expander.
+@revision[version=3.32 date=2018-10-14 status=final]
 
 [xsl:params]
 $node: The source element to output data for.
-$expander: Whether $node is actually an expander.
+$hastitle: True if $node has a title or a title can be automatically computed.
+
+This template outputs HTML class attribute values for elements that can be
+expanded and collapsed. It outputs the string `ui-expander` only if $node has
+a `ui:expanded` attribute and $hastitle is true. By default, $hastitle is true
+if $node has a `title` element. Set $hastitle explicitly when calling this
+template on elements that have an automatic default title.
+
+This template also outputs `ui-expander-preview` if $node is an expander and
+it has the style hint `ui-expander-preview`. This is an alternative style
+that shows a scaled down preview of collapsed content.
+-->
+<xsl:template name="mal2html.ui.expander.class">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="hastitle" select="$node/mal:title"/>
+  <xsl:if test="$hastitle and ($node/@ui:expanded or $node/@uix:expanded)">
+    <xsl:text> ui-expander </xsl:text>
+    <xsl:if test="contains(concat(' ', $node/@style, ' '), ' ui-expander-preview ')">
+      <xsl:text>ui-expander-preview </xsl:text>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
+
+<!--**==========================================================================
+mal2html.ui.expander.data
+Output data for an expander.
+@revision[version=3.32 date=2018-10-14 status=final]
+
+[xsl:params]
+$node: The source element to output data for.
+$hastitle: True if $node has a title or a title can be automatically computed.
 
 This template outputs an HTML `div` element with the `class` attribute set to
 `"yelp-data yelp-data-ui-expander"`. All `yelp-data` elements are hidden by
@@ -48,12 +79,14 @@ the CSS. The div contains information about text directionality, the default
 expanded state, and optionally additional titles for the expanded and collapsed
 states.
 
-The expander information is only output if the $expander parameter is `true`.
-This parameter can be calculated automatically, but it will give false negatives
-for blocks that produce automatic titles.
+The expander information is only output if $node has a `ui:expanded` attribute
+and $hastitle is true. By default, $hastitle is true if $node has a `title`
+element. Set $hastitle explicitly when calling this template on elements that
+have an automatic default title.
 -->
 <xsl:template name="mal2html.ui.expander.data">
   <xsl:param name="node" select="."/>
+  <xsl:param name="hastitle" select="$node/mal:title"/>
   <xsl:if test="$node/@uix:expanded and not($node/@ui:expanded)">
     <xsl:message>
       <xsl:text>DEPRECATION WARNING: The expanded attribute from the experimental/ui namespace
@@ -62,7 +95,7 @@ Note that the non-experimental attribute takes true/false instead of yes/no.
 http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
     </xsl:message>
   </xsl:if>
-  <xsl:if test="$node/mal:title and ($node/@ui:expanded or $node/@uix:expanded)">
+  <xsl:if test="$hastitle and ($node/@ui:expanded or $node/@uix:expanded)">
     <xsl:variable name="title_e" select="$node/mal:info/mal:title[@type = 'ui:expanded'][1]"/>
     <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
     <div class="yelp-data yelp-data-ui-expander">

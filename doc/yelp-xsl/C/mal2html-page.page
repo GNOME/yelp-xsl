@@ -147,6 +147,9 @@
    <p><link xref="mal2html.links.topic"/></p>
   </item>
   <item>
+   <p><link xref="mal2html.ui.expander.class"/></p>
+  </item>
+  <item>
    <p><link xref="mal2html.ui.expander.data"/></p>
   </item>
  </list>

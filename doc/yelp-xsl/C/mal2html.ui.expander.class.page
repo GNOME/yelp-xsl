@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-template" id="mal2html.ui.expander.class">
+ <info>
+  <link type="guide" xref="mal2html-ui" group="templates"/>
+  <link type="guide" xref="templates" group="mal2html"/>
+  <desc>Output HTML class value for an expander.</desc>
+  <revision version="3.32" date="2018-10-14" status="final"/>
+ </info>
+ <title>mal2html.ui.expander.class</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$node</code></title>
+    <p>The source element to output data for.</p>
+   </item>
+   <item>
+    <title><code>$hastitle</code></title>
+    <p>True if <code>$node</code> has a title or a title can be automatically computed.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template outputs HTML class attribute values for elements that can be
+ expanded and collapsed. It outputs the string <sys>ui-expander</sys> only if <code>$node</code> has
+ a <sys>ui:expanded</sys> attribute and <code>$hastitle</code> is true. By default, <code>$hastitle</code> is true
+ if <code>$node</code> has a <sys>title</sys> element. Set <code>$hastitle</code> explicitly when calling this
+ template on elements that have an automatic default title.</p>
+ <p>This template also outputs <sys>ui-expander-preview</sys> if <code>$node</code> is an expander and
+ it has the style hint <sys>ui-expander-preview</sys>. This is an alternative style
+ that shows a scaled down preview of collapsed content.</p>
+ <list style="compact">
+  <title>Calls Parameters</title>
+  <item>
+   <p><link xref="mal.cache"/></p>
+  </item>
+ </list>
+</page>

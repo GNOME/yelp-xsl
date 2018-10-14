@@ -4,7 +4,7 @@
   <link type="guide" xref="mal2html-ui" group="templates"/>
   <link type="guide" xref="templates" group="mal2html"/>
   <desc>Output data for an expander.</desc>
-  <revision version="3.4" date="2012-02-25" status="final"/>
+  <revision version="3.32" date="2018-10-14" status="final"/>
  </info>
  <title>mal2html.ui.expander.data</title>
  <synopsis>
@@ -15,8 +15,8 @@
     <p>The source element to output data for.</p>
    </item>
    <item>
-    <title><code>$expander</code></title>
-    <p>Whether <code>$node</code> is actually an expander.</p>
+    <title><code>$hastitle</code></title>
+    <p>True if <code>$node</code> has a title or a title can be automatically computed.</p>
    </item>
   </terms>
  </synopsis>
@@ -25,9 +25,10 @@
  the CSS. The div contains information about text directionality, the default
  expanded state, and optionally additional titles for the expanded and collapsed
  states.</p>
- <p>The expander information is only output if the <code>$expander</code> parameter is <sys>true</sys>.
- This parameter can be calculated automatically, but it will give false negatives
- for blocks that produce automatic titles.</p>
+ <p>The expander information is only output if <code>$node</code> has a <sys>ui:expanded</sys> attribute
+ and <code>$hastitle</code> is true. By default, <code>$hastitle</code> is true if <code>$node</code> has a <sys>title</sys>
+ element. Set <code>$hastitle</code> explicitly when calling this template on elements that
+ have an automatic default title.</p>
  <list style="compact">
   <title>Calls Parameters</title>
   <item>
