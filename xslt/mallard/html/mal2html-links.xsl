@@ -422,7 +422,7 @@ the links itself. They must be passed in with the $links parameter.
 <!--**==========================================================================
 mal2html.links.prevnext
 Output links to the previous and next pages.
-@revision[version=1.0 date=2011-06-15 status=final]
+@revision[version=3.32 date=2018-10-20 status=final]
 
 [xsl:params]
 $node: A `links` or `page` element to link from.
@@ -431,6 +431,11 @@ This template outputs links to the previous and next page in a Mallard series,
 if they exist. The block containing the links is end-floated by default. The
 links use the text "Previous" and "Next", although the actual page titles are
 used for tooltips.
+
+If $node is part of a series-type stack, this template uses the previous and
+next pages in the stack. Otherwise, the previous page is a page with a next-type
+link to $node, and the next page is whatever is pointed to by the next-type link
+in $node.
 
 If the `links` element has the style hint `top`, it will be inserted before
 the page title, instead of in its position on the page. This is handled by the
@@ -445,9 +450,11 @@ calling functions in {mal2html-page}.
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="next" select="$page/mal:info/mal:link[@type='next']"/>
+  <xsl:variable name="stacknext"
+                select="$page[parent::mal:stack[@type='series']]/following-sibling::mal:page[1]"/>
   <xsl:for-each select="$mal.cache">
     <xsl:variable name="prev" select="key('mal.cache.link.key', concat('next:', $linkid))"/>
-    <xsl:if test="$prev or $next">
+    <xsl:if test="$prev or $next or $stacknext">
       <nav class="prevnext pagewide"><div class="inner">
         <xsl:if test="$prev">
           <a>
@@ -471,6 +478,27 @@ calling functions in {mal2html-page}.
           </a>
         </xsl:if>
         <xsl:choose>
+        <xsl:when test="$stacknext">
+          <a>
+            <xsl:attribute name="href">
+              <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$stacknext"/>
+                <xsl:with-param name="xref" select="$stacknext/@id"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:call-template name="mal.link.tooltip">
+                <xsl:with-param name="node" select="$stacknext"/>
+                <xsl:with-param name="xref" select="$stacknext/@id"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:for-each select="$page">
+              <xsl:call-template name="l10n.gettext">
+                <xsl:with-param name="msgid" select="'Next'"/>
+              </xsl:call-template>
+            </xsl:for-each>
+          </a>
+        </xsl:when>
         <xsl:when test="$next">
           <a>
             <xsl:attribute name="href">
@@ -660,6 +688,8 @@ This template calls {mal2html.links.series.prev} and
   <xsl:param name="node" select="."/>
   <xsl:variable name="page" select="$node/ancestor-or-self::mal:page[last()]"/>
   <xsl:variable name="title" select="$node/self::mal:links/mal:title"/>
+  <xsl:variable name="stitle"
+                select="$node/ancestor::mal:stack/mal:info/mal:title[@type='series']"/>
   <xsl:variable name="style" select="concat(' ', $node/@style, ' ')"/>
   <xsl:variable name="role" select="$node/self::mal:links/@role"/>
   <div>
@@ -681,15 +711,22 @@ This template calls {mal2html.links.series.prev} and
       </xsl:choose>
       <xsl:call-template name="mal2html.ui.expander.class">
         <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="hastitle" select="count($title) > 0"/>
+        <xsl:with-param name="hastitle" select="count($title) + count($stitle) > 0"/>
       </xsl:call-template>
     </xsl:attribute>
     <xsl:call-template name="mal2html.ui.expander.data">
       <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="hastitle" select="count($title) > 0"/>
+      <xsl:with-param name="hastitle" select="count($title) + count($stitle) > 0"/>
     </xsl:call-template>
     <div class="inner">
-      <xsl:apply-templates mode="mal2html.block.mode" select="$title"/>
+      <xsl:choose>
+        <xsl:when test="count($title) > 0">
+          <xsl:apply-templates mode="mal2html.block.mode" select="$title[1]"/>
+        </xsl:when>
+        <xsl:when test="count($stitle) > 0">
+          <xsl:apply-templates mode="mal2html.block.mode" select="$stitle[1]"/>
+        </xsl:when>
+      </xsl:choose>
       <div class="region">
         <ul>
           <xsl:call-template name="mal2html.links.series.prev">
@@ -774,7 +811,7 @@ to it.
 <!--**==========================================================================
 mal2html.links.series.next
 Output following links to pages in a series.
-@revision[version=1.0 date=2011-06-15 status=final]
+@revision[version=3.32 date=2018-10-20 status=final]
 
 [xsl:params]
 $node: The current `page` element.
@@ -784,6 +821,9 @@ This template is called by {mal2html.links.series} to output the pages after
 the starting page in the series. This template finds the next page for the page
 $node. It outputs a link to that page, then calls itself recursively on that
 page.
+
+If $node is part of a series-type stack, this template uses the next page in
+the stack. Otherwise, it looks for a next-type link in $node.
 -->
 <xsl:template name="mal2html.links.series.next">
   <xsl:param name="node" select="."/>
@@ -795,7 +835,40 @@ page.
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="next" select="$node/mal:info/mal:link[@type='next']"/>
-  <xsl:if test="$next">
+  <xsl:variable name="stacknext"
+                select="$node[parent::mal:stack[@type='series']]/following-sibling::mal:page[1]"/>
+  <xsl:choose>
+  <xsl:when test="$stacknext">
+    <xsl:for-each select="$mal.cache">
+      <li class="links">
+        <a>
+          <xsl:attribute name="href">
+            <xsl:call-template name="mal.link.target">
+              <xsl:with-param name="node" select="$stacknext"/>
+              <xsl:with-param name="xref" select="$stacknext/@id"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:call-template name="mal.link.tooltip">
+              <xsl:with-param name="node" select="$stacknext"/>
+              <xsl:with-param name="xref" select="$stacknext/@id"/>
+              <xsl:with-param name="role" select="concat($role, ' series')"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="mal.link.content">
+            <xsl:with-param name="node" select="$stacknext"/>
+            <xsl:with-param name="xref" select="$stacknext/@id"/>
+            <xsl:with-param name="role" select="concat($role, ' series')"/>
+          </xsl:call-template>
+        </a>
+      </li>
+      <xsl:call-template name="mal2html.links.series.next">
+        <xsl:with-param name="node" select="key('mal.cache.key', $stacknext/@id)"/>
+        <xsl:with-param name="links" select="$links"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:when>
+  <xsl:when test="$next">
     <xsl:for-each select="$mal.cache">
       <li class="links">
         <a>
@@ -824,7 +897,8 @@ page.
         <xsl:with-param name="links" select="$links"/>
       </xsl:call-template>
     </xsl:for-each>
-  </xsl:if>
+  </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 

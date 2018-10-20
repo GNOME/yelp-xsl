@@ -35,6 +35,11 @@ This stylesheet contains templates to process Mallard `page` and `section`
 elements, including implementations of the interfaces provided by the common
 {html} stylesheet.
 -->
+<xsl:template match="/">
+  <xsl:for-each select="mal:page | mal:stack/mal:page">
+    <xsl:call-template name="html.output"/>
+  </xsl:for-each>
+</xsl:template>
 
 
 <!--@@==========================================================================
@@ -63,7 +68,8 @@ the `page` element. Information is extracted from the `info` element of $node.
 -->
 <xsl:template name="mal2html.page.about">
   <xsl:param name="node" select="."/>
-  <xsl:if test="$node/mal:info/mal:credit or $node/mal:info/mal:license">
+  <xsl:variable name="infos" select="$node/mal:info | $node/parent::mal:stack/mal:info"/>
+  <xsl:if test="$infos/mal:credit or $infos/mal:license">
   <footer class="about ui-expander" role="contentinfo">
     <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
     <div class="inner">
@@ -78,7 +84,7 @@ the `page` element. Information is extracted from the `info` element of $node.
     </div>
     <div class="region">
       <div class="contents">
-        <xsl:variable name="credits" select="$node/mal:info/mal:credit"/>
+        <xsl:variable name="credits" select="$infos/mal:credit"/>
         <xsl:variable name="copyrights"
                       select="$credits[contains(concat(' ', @type, ' '), ' copyright ')]
                               [mal:years]"/>
@@ -147,7 +153,7 @@ the `page` element. Information is extracted from the `info` element of $node.
             <div class="credits-blank"></div>
           </div>
         </xsl:if>
-        <xsl:for-each select="$node/mal:info/mal:license">
+        <xsl:for-each select="$infos/mal:license">
           <div class="license">
             <div class="title">
               <span class="title">

@@ -56,8 +56,20 @@ mal.cache.info
   <xsl:param name="node_in"/>
   <info>
     <xsl:for-each select="$info/*">
-      <xsl:copy-of select="."/>
+      <xsl:choose>
+        <xsl:when test="$node/parent::mal:stack[@type = 'series'] and
+                        self::mal:link[@type = 'next']"/>
+        <xsl:otherwise>
+          <xsl:copy-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:for-each>
+    <xsl:if test="$node/parent::mal:stack[@type = 'series']">
+      <xsl:variable name="next" select="$node/following-sibling::mal:page[1]"/>
+      <xsl:if test="$next">
+        <link type="next" xref="{$next/@id}"/>
+      </xsl:if>
+    </xsl:if>
   </info>
 </xsl:template>
 
@@ -67,12 +79,20 @@ mal.cache.info
 <!-- = /cache:cache = -->
 <xsl:template match='/cache:cache'>
   <cache:cache>
-    <xsl:for-each select="mal:page">
+    <xsl:for-each select="mal:page | mal:stack">
       <xsl:apply-templates select="document(@cache:href)/*">
         <xsl:with-param name="node_in" select="."/>
       </xsl:apply-templates>
     </xsl:for-each>
   </cache:cache>
+</xsl:template>
+
+<!-- = mal:stack = -->
+<xsl:template match="mal:stack">
+  <xsl:param name="node_in"/>
+  <xsl:apply-templates select="mal:page">
+    <xsl:with-param name="node_in" select="$node_in"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <!-- = mal:page = -->
