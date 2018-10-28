@@ -216,6 +216,43 @@ an `xref` or `href` attribute.
   <xsl:call-template name="mal2html.span"/>
 </xsl:template>
 
+<xsl:template mode="mal2html.inline.mode" match="mal:hi">
+  <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
+  <xsl:call-template name="mal2html.span">
+    <xsl:with-param name="class">
+      <xsl:choose>
+        <xsl:when test="contains($style, ' ins ')">
+          <xsl:text>hi-ins</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' del ')">
+          <xsl:text>hi-del</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' red ')">
+          <xsl:text>hi-red</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' orange ')">
+          <xsl:text>hi-orange</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' yellow ')">
+          <xsl:text>hi-yellow</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' green ')">
+          <xsl:text>hi-green</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' blue ')">
+          <xsl:text>hi-blue</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' purple ')">
+          <xsl:text>hi-purple</xsl:text>
+        </xsl:when>
+        <xsl:when test="contains($style, ' gray ')">
+          <xsl:text>hi-gray</xsl:text>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- = key = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:key">
   <xsl:call-template name="mal2html.span"/>

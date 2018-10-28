@@ -1429,6 +1429,29 @@ span.hi {
   background-color: </xsl:text>
     <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
 }
+span.hi.hi-ins {
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.bg.green"/><xsl:text>;
+}
+span.hi.hi-del {
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.bg.red"/><xsl:text>;
+  text-decoration: line-through;
+}
+span.hi.hi-red { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.red"/><xsl:text>; }
+span.hi.hi-orange { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.orange"/><xsl:text>; }
+span.hi.hi-yellow { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.yellow"/><xsl:text>; }
+span.hi.hi-green { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.green"/><xsl:text>; }
+span.hi.hi-blue { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.blue"/><xsl:text>; }
+span.hi.hi-purple { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.purple"/><xsl:text>; }
+span.hi.hi-gray { background-color: </xsl:text>
+  <xsl:value-of select="$color.bg.gray"/><xsl:text>; }
 
 <!-- experimental/gloss -->
 dt.gloss-term {
