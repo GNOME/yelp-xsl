@@ -213,7 +213,14 @@ an `xref` or `href` attribute.
 
 <!-- = hi = -->
 <xsl:template mode="mal2html.inline.mode" match="e:hi">
-  <xsl:call-template name="mal2html.span"/>
+  <xsl:choose>
+    <xsl:when test="parent::mal:hi">
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="mal2html.span"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template mode="mal2html.inline.mode" match="mal:hi">
