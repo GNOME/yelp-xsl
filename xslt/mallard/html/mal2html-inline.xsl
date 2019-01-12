@@ -260,6 +260,25 @@ an `xref` or `href` attribute.
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template mode="mal2html.inline.content.mode" match="mal:hi">
+  <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
+  <xsl:choose>
+    <xsl:when test="contains($style, ' ins ')">
+      <ins>
+        <xsl:apply-templates mode="mal2html.inline.mode"/>
+      </ins>
+    </xsl:when>
+    <xsl:when test="contains($style, ' del ')">
+      <del>
+        <xsl:apply-templates mode="mal2html.inline.mode"/>
+      </del>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates mode="mal2html.inline.mode"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!-- = key = -->
 <xsl:template mode="mal2html.inline.mode" match="mal:key">
   <xsl:call-template name="mal2html.span"/>

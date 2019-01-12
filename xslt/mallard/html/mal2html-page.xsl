@@ -1438,6 +1438,8 @@ span.hi.hi-del {
     <xsl:value-of select="$color.bg.red"/><xsl:text>;
   text-decoration: line-through;
 }
+span.hi.hi-ins ins { text-decoration: none; }
+span.hi.hi-del del { text-decoration: none; }
 span.hi.hi-red { background-color: </xsl:text>
   <xsl:value-of select="$color.bg.red"/><xsl:text>; }
 span.hi.hi-orange { background-color: </xsl:text>
