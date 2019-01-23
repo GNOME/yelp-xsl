@@ -583,7 +583,7 @@ This parameter specifies a shade of red that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.red" select="'#cc0000'"/>
+<xsl:param name="color.red" select="'#c01c28'"/>
 
 
 <!--@@==========================================================================
@@ -627,7 +627,7 @@ This parameter specifies a shade of orange that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.orange" select="'#f57900'"/>
+<xsl:param name="color.orange" select="'#ffa348'"/>
 
 
 <!--@@==========================================================================
@@ -671,7 +671,7 @@ This parameter specifies a shade of yellow that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.yellow" select="'#edd400'"/>
+<xsl:param name="color.yellow" select="'#f8e45c'"/>
 
 
 <!--@@==========================================================================
@@ -717,7 +717,7 @@ This parameter specifies a shade of green that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.green" select="'#73d216'"/>
+<xsl:param name="color.green" select="'#57e389'"/>
 
 
 <!--@@==========================================================================
@@ -761,7 +761,7 @@ This parameter specifies a shade of blue that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.blue" select="'#3465a4'"/>
+<xsl:param name="color.blue" select="'#3584e4'"/>
 
 
 <!--@@==========================================================================
@@ -804,7 +804,7 @@ This parameter specifies a shade of purple that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.purple" select="'#75507b'"/>
+<xsl:param name="color.purple" select="'#a347ba'"/>
 
 
 <!--@@==========================================================================
@@ -848,7 +848,7 @@ This parameter specifies a shade of gray that is suitable for borders and
 other accents. It should have some contrast against background colors, but it
 does not need as high of a contrast as text colors.
 -->
-<xsl:param name="color.gray" select="'#babdb6'"/>
+<xsl:param name="color.gray" select="'#c0bfbc'"/>
 
 
 <!--@@==========================================================================
