@@ -53,6 +53,12 @@
    <tr>
     <td/>
     <td>
+     <p><code>mal:stack</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td/>
+    <td>
      <p><code>mal:page</code></p>
     </td>
    </tr>

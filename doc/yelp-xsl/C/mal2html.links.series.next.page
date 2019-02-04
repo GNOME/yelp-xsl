@@ -4,7 +4,7 @@
   <link type="guide" xref="mal2html-links" group="templates"/>
   <link type="guide" xref="templates" group="mal2html"/>
   <desc>Output following links to pages in a series.</desc>
-  <revision version="1.0" date="2011-06-15" status="final"/>
+  <revision version="3.32" date="2018-10-20" status="final"/>
  </info>
  <title>mal2html.links.series.next</title>
  <synopsis>
@@ -24,6 +24,8 @@
  the starting page in the series. This template finds the next page for the page
  <code>$node</code>. It outputs a link to that page, then calls itself recursively on that
  page.</p>
+ <p>If <code>$node</code> is part of a series-type stack, this template uses the next page in
+ the stack. Otherwise, it looks for a next-type link in <code>$node</code>.</p>
  <list style="compact">
   <title>Calls Parameters</title>
   <item>

@@ -39,6 +39,15 @@
    <p><link xref="color.bg.gray"/></p>
   </item>
   <item>
+   <p><link xref="color.bg.green"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.orange"/></p>
+  </item>
+  <item>
+   <p><link xref="color.bg.purple"/></p>
+  </item>
+  <item>
    <p><link xref="color.bg.red"/></p>
   </item>
   <item>
@@ -97,6 +106,9 @@
   </item>
   <item>
    <p><link xref="html.linktrails.prefix"/></p>
+  </item>
+  <item>
+   <p><link xref="html.output"/></p>
   </item>
   <item>
    <p><link xref="l10n.align.end"/></p>
@@ -178,6 +190,12 @@
    </tr>
   </thead>
   <tbody>
+   <tr>
+    <td/>
+    <td>
+     <p><code>/</code></p>
+    </td>
+   </tr>
    <tr>
     <td/>
     <td>
