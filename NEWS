@@ -1,3 +1,26 @@
+3.32.1
+======
+* Added Mallard 1.1 to supported list for conditionals
+
+3.32.0
+======
+* Updated translations:
+  is    (Sveinn í Felli)
+  nl    (Nathan Follens)
+
+3.31.90
+=======
+* Refresh colors for new GNOME HIG colors
+* Support for Mallard 1.1 hi element
+* Initial work on Mallard 1.2 stack element
+* Added ui-expander-preview style for expanders
+* Converted xsldoc docs to Ducktype
+* Updated translations:
+  be    (Yuras Shumovich)
+  ml    (Anish Sheela)
+  ru    (Stas Solovey)
+  sr    (Марко Костић)
+
 3.30.0
 ======
 * Added stock sidebar support

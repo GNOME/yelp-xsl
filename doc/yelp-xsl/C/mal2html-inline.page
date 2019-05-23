@@ -98,6 +98,14 @@
      <p><code xref="mal2html.inline.content.mode">mal2html.inline.content.mode</code></p>
     </td>
     <td>
+     <p><code>mal:hi</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="mal2html.inline.content.mode">mal2html.inline.content.mode</code></p>
+    </td>
+    <td>
      <p><code>mal:key</code></p>
     </td>
    </tr>
@@ -203,6 +211,14 @@
     </td>
     <td>
      <p><code>e:hi</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="mal2html.inline.mode">mal2html.inline.mode</code></p>
+    </td>
+    <td>
+     <p><code>mal:hi</code></p>
     </td>
    </tr>
    <tr>

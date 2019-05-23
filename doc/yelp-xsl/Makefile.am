@@ -27,7 +27,9 @@ $(xsldoc_ducks): $(xsldoc_xsls) xsldoc.xsl
 	"$(filter %/$(basename $(notdir $@)).xsl,$(xsldoc_xsls))"
 
 $(xsldoc_pages): $(xsldoc_ducks)
-	ducktype -o C/ ducks/*.duck static/*.duck
+	$(mkdir_p) C
+	ls $(srcdir)
+	ducktype -o C/ $(srcdir)/ducks/*.duck $(srcdir)/static/*.duck
 
 endif
 
@@ -37,4 +39,12 @@ xsldoc-clean:
 	rm -f C/*.page
 
 EXTRA_DIST = 			\
+	$(xsldoc_ducks)		\
+	static/index.duck	\
+	static/keys.duck	\
+	static/modes.duck	\
+	static/params.duck	\
+	static/stubs.duck	\
+	static/stylesheets.duck	\
+	static/templates.duck	\
 	xsldoc.xsl

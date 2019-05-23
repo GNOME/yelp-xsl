@@ -4,7 +4,7 @@
   <link type="guide" xref="mal2html-links" group="templates"/>
   <link type="guide" xref="templates" group="mal2html"/>
   <desc>Output links to the previous and next pages.</desc>
-  <revision version="1.0" date="2011-06-15" status="final"/>
+  <revision version="3.32" date="2018-10-20" status="final"/>
  </info>
  <title>mal2html.links.prevnext</title>
  <synopsis>
@@ -20,6 +20,10 @@
  if they exist. The block containing the links is end-floated by default. The
  links use the text "Previous" and "Next", although the actual page titles are
  used for tooltips.</p>
+ <p>If <code>$node</code> is part of a series-type stack, this template uses the previous and
+ next pages in the stack. Otherwise, the previous page is a page with a next-type
+ link to <code>$node</code>, and the next page is whatever is pointed to by the next-type link
+ in <code>$node</code>.</p>
  <p>If the <sys>links</sys> element has the style hint <sys>top</sys>, it will be inserted before
  the page title, instead of in its position on the page. This is handled by the
  calling functions in <code xref="mal2html-page">mal2html-page</code>.</p>

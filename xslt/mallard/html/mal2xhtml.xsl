@@ -57,6 +57,7 @@ http://www.w3.org/ns/ttml/feature/#timing
 <xsl:param name="mal.if.target" select="'target:html target:xhtml'"/>
 <xsl:param name="mal.if.features" select="concat('
 mallard:1.0
+mallard:1.1
 mallard:if/1.0
 ', $ttml.features)"/>
 <xsl:param name="mal.if.maybe" select="'target:mobile'"/>
