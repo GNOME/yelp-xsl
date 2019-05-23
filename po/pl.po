@@ -1,17 +1,17 @@
 # Polish translation for yelp-xsl.
-# Copyright © 2006-2018 the yelp-xsl authors.
+# Copyright © 2006-2019 the yelp-xsl authors.
 # This file is distributed under the same license as the yelp-xsl package.
 # Stanisław Małolepszy <smalolepszy@aviary.pl>, 2006.
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2007.
-# Piotr Drąg <piotrdrag@gmail.com>, 2009-2018.
-# Aviary.pl <community-poland@mozilla.org>, 2006-2018.
+# Piotr Drąg <piotrdrag@gmail.com>, 2009-2019.
+# Aviary.pl <community-poland@mozilla.org>, 2006-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
-"PO-Revision-Date: 2018-07-29 20:40+0200\n"
+"POT-Creation-Date: 2019-05-23 16:48+0000\n"
+"PO-Revision-Date: 2019-05-23 18:50+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -597,3 +597,33 @@ msgstr "„<node/>”"
 #: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr "»<node/>«"
+
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Patrz <seeie/>."
+
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Patrz także <seeie/>."
