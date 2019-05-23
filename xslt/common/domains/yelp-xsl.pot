@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-06-10 13:29-0400\n"
+"POT-Creation-Date: 2019-05-23 11:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -588,3 +588,34 @@ msgstr ""
 #: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr ""
+
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#. 
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#. 
+#. <seeie/> - The actual link or links of the cross reference
+#. 
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr ""
+
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#. 
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#. 
+#. <seeie/> - The actual link or links of the cross reference
+#. 
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr ""
+
