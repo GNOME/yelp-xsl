@@ -4,13 +4,13 @@
 # ahmad riza h nst <ari@160c.afraid.org>, 2005.
 # Imam Musthaqim <imam@infoflow.co.id>, 2005.
 # Andika Triwidada <andika@gmail.com>, 2011, 2012, 2013.
-#
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
-"PO-Revision-Date: 2018-06-26 16:50+0700\n"
+"POT-Creation-Date: 2019-05-23 16:51+0000\n"
+"PO-Revision-Date: 2019-05-31 10:22+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -597,8 +597,32 @@ msgstr "“<node/>”"
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Lihat <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Lihat <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Lihat juga <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Lihat juga <seeie/>."
