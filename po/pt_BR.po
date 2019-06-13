@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation of yelp-xsl.
-# Copyright (C) 2004-2007, 2009-2018 the yelp-xsl authors.
+# Copyright (C) 2004-2019 the yelp-xsl authors.
 # This file is distributed under the same license as the gnome-doc-utils package.
 # Raphael Higino <phhigino@gmail.com>, 2004, 2005.
 # Pedro de Medeiros <pedro.medeiros@gmail.com>, 2005.
@@ -8,23 +8,23 @@
 # Luiz Armesto <luiz.armesto@gmail.com>, 2007.
 # Og Maciel <ogmaciel@gnome.org>, 2011.
 # Gabriel Speckhahn <gabspeck@gmail.com>, 2012.
-# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013.
-# Enrico Nicoletto <liverig@gmail.com>, 2018. 
+# Enrico Nicoletto <liverig@gmail.com>, 2018.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2013-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
-"PO-Revision-Date: 2018-06-27 19:23-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2019-05-23 16:51+0000\n"
+"PO-Revision-Date: 2019-06-13 07:09-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 3.32.0\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: msg/msgstr
@@ -375,7 +375,7 @@ msgstr "Traduzido por"
 #.
 #: yelp-xsl.xml.in:349
 msgid "View images at normal size"
-msgstr "Vizualizar imagens no tamanho normal"
+msgstr "Visualizar imagens no tamanho normal"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -437,7 +437,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -454,10 +454,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -483,10 +483,10 @@ msgstr "de <comment.name/> em <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance
+#.   Some Comment Title
+#.   from Shaun McCance
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -604,11 +604,35 @@ msgstr "\"<node/>\""
 msgid "‘<node/>’"
 msgstr "'<node/>'"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Ver <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Ver <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Ver também <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Ver também <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201C.png"
