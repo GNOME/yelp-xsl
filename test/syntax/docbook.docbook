@@ -46,6 +46,14 @@ int main(char** argv) {
   </example>
 </section>
 
+<section id="awk">
+  <title>Awk</title>
+  <example>
+    <title><code>language="awk"</code></title>
+    <programlisting language="awk"><xi:include parse="text" href="code/awk"/></programlisting>
+  </example>
+</section>
+
 <section id="bash">
   <title>Bash</title>
   <example>
@@ -443,6 +451,14 @@ int main(char** argv) {
   <example>
     <title><code>language="scm"</code></title>
     <programlisting language="scm"><xi:include parse="text" href="code/scheme"/></programlisting>
+  </example>
+</section>
+
+<section id="shell">
+  <title>Shell</title>
+  <example>
+    <title><code>language="shell"</code></title>
+    <screen language="shell"><xi:include parse="text" href="code/shell"/></screen>
   </example>
 </section>
 

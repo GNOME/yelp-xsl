@@ -8,28 +8,36 @@ for Mallard, DocBook, and DITA under test/syntax. A good place to get test
 files is the live demo on highlightjs.org.
 
 [steps]
+. Get prerequisites:
+* dnf install nodejs
+* npm install commander
+
+[steps]
 . Build highlight.pack.js with the default yelp-xsl languages:
-* git clone https://github.com/isagalaev/highlight.js.git
+* git clone https://github.com/highlightjs/highlight.js.git
 * cd highlight.js
 * node tools/build.js $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
+* cp build/highlight.pack.js /path/to/yelp-xsl/js/
 
 You might want to add a language for your local site, keeping all of the
 default languages as well.
 
 [steps]
 . Build highlight.pack.js with language foo plus the default languages:
-* git clone https://github.com/isagalaev/highlight.js.git
+* git clone https://github.com/highlightjs/highlight.js.git
 * cd highlight.js
 * node tools/build.js foo $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
+* cp build/highlight.pack.js /path/to/yelp-xsl/js/
 
 Or you might want to trim highlight.pack.js down to just the languages
 you know you use.
 
 [steps]
 . Build hightlight.pack.js with just languages foo and bar:
-* git clone https://github.com/isagalaev/highlight.js.git
+* git clone https://github.com/highlightjs/highlight.js.git
 * cd highlight.js
 * node tools/build.js foo bar
+* cp build/highlight.pack.js /path/to/yelp-xsl/js/
 
 [note]
   As of 2016-01-03, highlight.pack.js uses the new anonymous function syntax,

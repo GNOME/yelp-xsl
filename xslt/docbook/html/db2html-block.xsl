@@ -645,7 +645,7 @@ This template handles conditional processing.
 </xsl:template>
 
 <xsl:template mode="html.syntax.class.mode"
-              match="programlisting | db:programlisting">
+              match="programlisting | db:programlisting | screen | db:screen">
   <xsl:param name="language" select="translate(@language,
                                      'ABCDEFGHIJKLMNOPQRSTUVWXYX',
                                      'abcdefghijklmnopqrstuvwxyz')"/>
@@ -662,6 +662,10 @@ This template handles conditional processing.
     <!-- AsciiDoc -->
     <xsl:when test="$language = 'asciidoc' or $language = 'adoc'">
       <xsl:text>asciidoc</xsl:text>
+    </xsl:when>
+    <!-- Awk -->
+    <xsl:when test="$language = 'awk'">
+      <xsl:text>awk</xsl:text>
     </xsl:when>
     <!-- Bash -->
     <xsl:when test="$language = 'sh' or $language = 'bash' or
@@ -724,7 +728,7 @@ This template handles conditional processing.
     <xsl:when test="$language = 'go'">
       <xsl:text>go</xsl:text>
     </xsl:when>
-    <!-- Nginx -->
+    <!-- Haml -->
     <xsl:when test="$language = 'haml'">
       <xsl:text>haml</xsl:text>
     </xsl:when>
@@ -817,6 +821,10 @@ This template handles conditional processing.
     <!-- Scheme -->
     <xsl:when test="$language = 'scheme' or $language = 'scm'">
       <xsl:text>scheme</xsl:text>
+    </xsl:when>
+    <!-- Shell -->
+    <xsl:when test="$language = 'shell'">
+      <xsl:text>shell</xsl:text>
     </xsl:when>
     <!-- Smalltalk -->
     <xsl:when test="$language = 'smalltalk'">

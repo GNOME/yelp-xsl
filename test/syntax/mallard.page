@@ -58,6 +58,14 @@ int main(char** argv) {
   </listing>
 </section>
 
+<section id="awk">
+  <title>Awk</title>
+  <listing ui:expanded="false">
+    <title><code>type="awk"</code></title>
+    <code type="awk"><xi:include parse="text" href="code/awk"/></code>
+  </listing>
+</section>
+
 <section id="bash">
   <title>Bash</title>
   <listing ui:expanded="false">
@@ -611,6 +619,14 @@ int main(char** argv) {
   <listing ui:expanded="false">
     <title><code>type="scm"</code></title>
     <code type="scm"><xi:include parse="text" href="code/scheme"/></code>
+  </listing>
+</section>
+
+<section id="shell">
+  <title>Shell</title>
+  <listing ui:expanded="false">
+    <title><code>type="shell"</code></title>
+    <screen type="shell"><xi:include parse="text" href="code/shell"/></screen>
   </listing>
 </section>
 

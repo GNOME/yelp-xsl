@@ -241,6 +241,10 @@ in accordance with the Mallard specification on fallback block content.
                     contains($type, ' asciidoc ') or contains($type, ' adoc ')">
       <xsl:text>asciidoc</xsl:text>
     </xsl:when>
+    <!-- Awk -->
+    <xsl:when test="contains($type, ' awk ')">
+      <xsl:text>awk</xsl:text>
+    </xsl:when>
     <!-- Bash -->
     <xsl:when test="@mime = 'application/x-shellscript' or
                     contains($type, ' sh ') or contains($type, ' bash ') or
@@ -295,7 +299,7 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:when test="@mime = 'text/x-go' or contains($type, ' go ')">
       <xsl:text>go</xsl:text>
     </xsl:when>
-    <!-- Nginx -->
+    <!-- Haml -->
     <xsl:when test="@mime = 'text/x-haml' or contains($type, ' haml ')">
       <xsl:text>haml</xsl:text>
     </xsl:when>
@@ -387,6 +391,10 @@ in accordance with the Mallard specification on fallback block content.
     <!-- Scala -->
     <xsl:when test="@mime = 'text/x-scala' or contains($type, ' scala ')">
       <xsl:text>scala</xsl:text>
+    </xsl:when>
+    <!-- Shell -->
+    <xsl:when test="contains($type, ' shell ')">
+      <xsl:text>shell</xsl:text>
     </xsl:when>
     <!-- Smalltalk -->
     <xsl:when test="@mime = 'text/x-smalltalk' or contains($type, ' smalltalk ')">

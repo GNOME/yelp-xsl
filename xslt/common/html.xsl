@@ -2256,7 +2256,7 @@ All parameters can be automatically computed if not provided.
 .hljs-built_in  { color: <xsl:value-of select="$color.fg.orange"/>; }
 .hljs-bullet    { color: <xsl:value-of select="$color.fg.green"/>; }
 .hljs-class     { }
-.hljs-code      { }
+.hljs-code      { color: <xsl:value-of select="$color.fg.dark"/>; }
 .hljs-comment   { color: <xsl:value-of select="$color.fg.gray"/>; }
 .hljs-doctag    { }
 .hljs-formula   { color: <xsl:value-of select="$color.fg.dark"/>; }

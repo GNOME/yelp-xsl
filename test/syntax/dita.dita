@@ -52,6 +52,16 @@ int main(char** argv) {
   </body>
 </topic>
 
+<topic id="awk">
+  <title>Awk</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="awk"</codeph></title>
+    <codeblock outputclass="awk"><xi:include parse="text" href="code/awk"/></codeblock>
+  </section>
+  </body>
+</topic>
+
 <topic id="bash">
   <title>Bash</title>
   <body>
@@ -524,6 +534,16 @@ int main(char** argv) {
   <section>
     <title><codeph>outputclass="scm"</codeph></title>
     <codeblock outputclass="scm"><xi:include parse="text" href="code/scheme"/></codeblock>
+  </section>
+  </body>
+</topic>
+
+<topic id="shell">
+  <title>Shell</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="shell"</codeph></title>
+    <screen outputclass="shell"><xi:include parse="text" href="code/shell"/></screen>
   </section>
   </body>
 </topic>

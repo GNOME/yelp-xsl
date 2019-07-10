@@ -168,7 +168,7 @@ FIXME
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template mode="html.syntax.class.mode" match="&topic_codeblock;">
+<xsl:template mode="html.syntax.class.mode" match="&topic_codeblock; | &topic_screen;">
   <xsl:param name="language" select="translate(@outputclass,
                                      'ABCDEFGHIJKLMNOPQRSTUVWXYX',
                                      'abcdefghijklmnopqrstuvwxyz')"/>
@@ -184,6 +184,10 @@ FIXME
     <!-- AsciiDoc -->
     <xsl:when test="$language = 'asciidoc' or $language = 'adoc'">
       <xsl:text>asciidoc</xsl:text>
+    </xsl:when>
+    <!-- Awk -->
+    <xsl:when test="$language = 'awk'">
+      <xsl:text>awk</xsl:text>
     </xsl:when>
     <!-- Bash -->
     <xsl:when test="$language = 'sh' or $language = 'bash' or
@@ -246,7 +250,7 @@ FIXME
     <xsl:when test="$language = 'go'">
       <xsl:text>go</xsl:text>
     </xsl:when>
-    <!-- Nginx -->
+    <!-- Haml -->
     <xsl:when test="$language = 'haml'">
       <xsl:text>haml</xsl:text>
     </xsl:when>
@@ -339,6 +343,10 @@ FIXME
     <!-- Scheme -->
     <xsl:when test="$language = 'scheme' or $language = 'scm'">
       <xsl:text>scheme</xsl:text>
+    </xsl:when>
+    <!-- Shell -->
+    <xsl:when test="$language = 'shell'">
+      <xsl:text>shell</xsl:text>
     </xsl:when>
     <!-- Smalltalk -->
     <xsl:when test="$language = 'smalltalk'">
