@@ -308,7 +308,7 @@
      <p><code xref="html.syntax.class.mode">html.syntax.class.mode</code></p>
     </td>
     <td>
-     <p><code>programlisting | db:programlisting</code></p>
+     <p><code>programlisting | db:programlisting | screen | db:screen</code></p>
     </td>
    </tr>
   </tbody>

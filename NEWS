@@ -1,3 +1,15 @@
+3.33.4
+======
+* Update highlight.pack.js to 9.15.8, added awk and shell (Shaun McCance)
+* Removed intltool and other build updates (Jeremy Bicha, Javier Jardón)
+* Updated translations:
+  es    (Daniel Mustieles)
+  hu    (Balázs Úr)
+  id    (Kukuh Syafaat)
+  pl    (Piotr Drąg)
+  pt_BR (Rafael Fontenelle)
+  zh_CN (Mingcong Bai)
+
 3.32.1
 ======
 * Added Mallard 1.1 to supported list for conditionals
