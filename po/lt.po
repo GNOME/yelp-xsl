@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
+"POT-Creation-Date: 2019-05-23 16:51+0000\n"
 "PO-Revision-Date: 2018-08-05 23:15+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
@@ -603,8 +603,32 @@ msgstr "„<node/>“"
 msgid "‘<node/>’"
 msgstr "'<node/>'"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Žiūrėkite <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Žiūrėkite <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Taip pat žiūrėkite <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Taip pat žiūrėkite <seeie/>."
