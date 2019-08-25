@@ -1,5 +1,5 @@
 # French translation for gnome-doc-utils.
-# Copyright (C) 2004-2011 the GNOME Foudnation
+# Copyright (C) 2004-2019 the GNOME Foudnation
 # This file is distributed under the same license as the gnome-doc-utils package.
 #
 # Raphaël Tournoy <lexpas@free.fr>, 2004.
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils fr\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
-"PO-Revision-Date: 2018-06-10 22:34+0200\n"
+"POT-Creation-Date: 2019-05-23 16:51+0000\n"
+"PO-Revision-Date: 2019-08-25 11:34+0200\n"
 "Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
 "Language-Team: français <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -606,11 +606,35 @@ msgstr "« <node/> »"
 msgid "‘<node/>’"
 msgstr "“<node/>”"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Voir <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Voir <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Voir aussi <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Voir aussi <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-00AB.png"
