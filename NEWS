@@ -1,3 +1,13 @@
+3.33.92
+=======
+* Updated translations:
+  ca    (Jordi Mas)
+  de    (Tim Sabsch)
+  eu    (Asier Sarasua Garmendia)
+  fr    (Claude Paroz)
+  lt    (Aurimas Černius)
+  ru    (Stas Solovey)
+
 3.33.4
 ======
 * Update highlight.pack.js to 9.15.8, added awk and shell (Shaun McCance)
