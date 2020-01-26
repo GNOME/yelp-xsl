@@ -1,0 +1,33 @@
+@ducktype/1.0
+@define foo bar
+
+= Hello world
+- Subtitle
+@title[type=link] Link title
+
+[note .tip style="tip"]
+You can use all sorts of semantic elements.
+
+Here is some $em[style=strong](inline) markup.
+Here is an $link[>page#sect](internal link).
+Here is an $link[>>http://example.com](external link).
+Here is $foo;.
+
+  [-] line comment
+
+That was a comment. So is this:
+
+  [--
+  block comment
+  [not markup]
+  --]
+
+== Section
+   [#sectid]
+
+[code python
+      type=python]
+  [[[
+  def this_is():
+    some_code()
+  ]]]

@@ -242,6 +242,14 @@ int main(char** argv) {
   </listing>
 </section>
 
+<section id="ducktype">
+  <title>Ducktype</title>
+  <listing ui:expanded="true">
+    <title><code>type="ducktype"</code></title>
+    <code type="ducktype"><xi:include parse="text" href="code/ducktype"/></code>
+  </listing>
+</section>
+
 <section id="erb">
   <title>Embedded Ruby</title>
   <listing ui:expanded="false">

@@ -12,9 +12,15 @@ files is the live demo on highlightjs.org.
 * dnf install nodejs
 * npm install commander
 
+yelp-xsl also ships with a language definition for Ducktype, which is not
+included in the highlight.js repository at this time. It is in the same
+directory as this README. You will need to copy it into your clone of the
+highlight.js repository.
+
 [steps]
 . Build highlight.pack.js with the default yelp-xsl languages:
 * git clone https://github.com/highlightjs/highlight.js.git
+* cp ducktype.js highlight.js/src/languages/
 * cd highlight.js
 * node tools/build.js $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
 * cp build/highlight.pack.js /path/to/yelp-xsl/js/
@@ -25,6 +31,7 @@ default languages as well.
 [steps]
 . Build highlight.pack.js with language foo plus the default languages:
 * git clone https://github.com/highlightjs/highlight.js.git
+* cp ducktype.js highlight.js/src/languages/
 * cd highlight.js
 * node tools/build.js foo $(find /path/to/yelp-xsl/test/syntax/code/* -exec basename {} \;)
 * cp build/highlight.pack.js /path/to/yelp-xsl/js/
@@ -35,6 +42,7 @@ you know you use.
 [steps]
 . Build hightlight.pack.js with just languages foo and bar:
 * git clone https://github.com/highlightjs/highlight.js.git
+* cp ducktype.js highlight.js/src/languages/
 * cd highlight.js
 * node tools/build.js foo bar
 * cp build/highlight.pack.js /path/to/yelp-xsl/js/

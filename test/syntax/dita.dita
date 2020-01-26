@@ -214,6 +214,16 @@ int main(char** argv) {
   </body>
 </topic>
 
+<topic id="ducktype">
+  <title>Ducktype</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="ducktype"</codeph></title>
+    <codeblock outputclass="ducktype"><xi:include parse="text" href="code/ducktype"/></codeblock>
+  </section>
+  </body>
+</topic>
+
 <topic id="erb">
   <title>Embedded Ruby</title>
   <body>

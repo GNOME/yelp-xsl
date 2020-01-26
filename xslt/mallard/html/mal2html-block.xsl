@@ -291,6 +291,10 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:when test="@mime = 'application/x-dos-batch' or contains($type, ' dos ')">
       <xsl:text>dos</xsl:text>
     </xsl:when>
+    <!-- Ducktype -->
+    <xsl:when test="contains($type, ' ducktype ')">
+      <xsl:text>ducktype</xsl:text>
+    </xsl:when>
     <!-- F# -->
     <xsl:when test="@mime = 'text/x-fsharp' or contains($type, ' fsharp ')">
       <xsl:text>fsharp</xsl:text>

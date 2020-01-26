@@ -182,6 +182,14 @@ int main(char** argv) {
   </example>
 </section>
 
+<section id="ducktype">
+  <title>Ducktype</title>
+  <example>
+    <title><code>language="ducktype"</code></title>
+    <programlisting language="ducktype"><xi:include parse="text" href="code/ducktype"/></programlisting>
+  </example>
+</section>
+
 <section id="erb">
   <title>Embedded Ruby</title>
   <example>

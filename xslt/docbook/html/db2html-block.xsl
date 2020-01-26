@@ -716,6 +716,10 @@ This template handles conditional processing.
     <xsl:when test="$language = 'dos'">
       <xsl:text>dos</xsl:text>
     </xsl:when>
+    <!-- Ducktype -->
+    <xsl:when test="$language = 'ducktype'">
+      <xsl:text>ducktype</xsl:text>
+    </xsl:when>
     <!-- Embedded Ruby -->
     <xsl:when test="$language = 'erb'">
       <xsl:text>erb</xsl:text>
