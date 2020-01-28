@@ -329,7 +329,7 @@ attributes containing slash or colon characters.
 <xsl:template name="mal.link.content.custom">
   <xsl:param name="node" select="."/>
   <xsl:param name="action" select="$node/@action"/>
-  <xsl:param name="xref" select="$node/@xref"/>
+ <xsl:param name="xref" select="$node/@xref"/>
   <xsl:param name="href" select="$node/@href"/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="info" select="/false"/>
@@ -415,9 +415,42 @@ element.
         <xsl:choose>
           <xsl:when test="$target or $info">
             <xsl:variable name="infos" select="$target/mal:info | $info"/>
-            <xsl:variable name="descs" select="$infos/mal:desc"/>
-            <xsl:apply-templates mode="mal.link.content.mode"
-                                 select="$descs[1]/node()"/>
+            <xsl:variable name="typedescs" select="$infos/mal:desc[@type = 'link']"/>
+            <xsl:variable name="notypedescs" select="$infos/mal:desc[not(@type)]"/>
+            <xsl:variable name="typerole">
+              <xsl:for-each select="str:split($role)">
+                <xsl:variable name="thisrole" select="string(.)"/>
+                <xsl:if test="$typedescs[@role=$thisrole]">
+                  <xsl:value-of select="concat($thisrole, ' ')"/>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:variable>
+            <xsl:variable name="notyperole">
+              <xsl:for-each select="str:split($role)">
+                <xsl:variable name="thisrole" select="string(.)"/>
+                <xsl:if test="$notypedescs[@role=$thisrole]">
+                  <xsl:value-of select="concat($thisrole, ' ')"/>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:variable>
+            <xsl:choose>
+              <xsl:when test="$typerole != ''">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$typedescs[@role = substring-before($typerole, ' ')][1]/node()"/>
+              </xsl:when>
+              <xsl:when test="$notyperole != ''">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$notypedescs[@role = substring-before($notyperole, ' ')][1]/node()"/>
+              </xsl:when>
+              <xsl:when test="$typedescs[not(@role)]">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$typedescs[not(@role)][1]/node()"/>
+              </xsl:when>
+              <xsl:when test="$notypedescs[not(@role)]">
+                <xsl:apply-templates mode="mal.link.content.mode"
+                                     select="$notypedescs[not(@role)][1]/node()"/>
+              </xsl:when>
+            </xsl:choose>
           </xsl:when>
         </xsl:choose>
       </xsl:for-each>
