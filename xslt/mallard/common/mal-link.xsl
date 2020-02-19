@@ -961,12 +961,13 @@ The output is a result tree fragment.  To use these results, call
           <xsl:for-each select="$groupslist">
             <xsl:if test="string(.) = $link/@group">
               <xsl:value-of select="position()"/>
+              <xsl:text> </xsl:text>
             </xsl:if>
           </xsl:for-each>
         </xsl:if>
       </xsl:variable>
       <xsl:variable name="groupsort">
-        <xsl:value-of select="$grouppos"/>
+        <xsl:value-of select="substring-before($grouppos, ' ')"/>
         <xsl:if test="string($grouppos) = ''">
           <xsl:value-of select="$defaultpos"/>
         </xsl:if>
@@ -1049,12 +1050,13 @@ The output is a result tree fragment.  To use these results, call
             <xsl:for-each select="$groupslist">
               <xsl:if test="string(.) = $link/@group">
                 <xsl:value-of select="position()"/>
+                <xsl:text> </xsl:text>
               </xsl:if>
             </xsl:for-each>
           </xsl:if>
         </xsl:variable>
         <xsl:variable name="groupsort">
-          <xsl:value-of select="$grouppos"/>
+          <xsl:value-of select="substring-before($grouppos, ' ')"/>
           <xsl:if test="string($grouppos) = ''">
             <xsl:value-of select="$defaultpos"/>
           </xsl:if>
