@@ -71,6 +71,7 @@ msgstr ", དང་"
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:40
+#, fuzzy
 msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 msgstr "<msgid>ཟུར་དེབ་ཨང་ཡིག་</msgid> <msgstr>A</msgstr>"
 
@@ -108,6 +109,7 @@ msgstr "<msgid>ཟུར་དེབ་ཨང་ཡིག་</msgid> <msgstr>A</
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:74
+#, fuzzy
 msgid "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix <number/></msgstr>"
 msgstr "<msgidཟུར་དེ་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>ཟུར་དེབ་<number/></msgstr>"
 
@@ -144,6 +146,7 @@ msgstr "<msgidཟུར་དེ་ཁ་ཡིག་</msgid> <msgstr role='head
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:107
+#, fuzzy
 msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 msgstr "<msgid>ཟུར་དེབ་ཨང་གྲངས་</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
@@ -179,6 +182,7 @@ msgstr "<msgid>ཟུར་དེབ་ཨང་གྲངས་</msgid> <msgstr>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:139
+#, fuzzy
 msgid "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
 msgstr "<msgid>ཟུར་དེབ་ ཨེགསི་རེཕི་</msgid> <msgstr>ཟུར་དེབ་ <number/> ― <title/></msgstr>"
 
@@ -206,6 +210,7 @@ msgstr "<msgid>ཟུར་དེབ་ ཨེགསི་རེཕི་</msgid
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:163
+#, fuzzy
 msgid "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry <label/>.</msgstr>"
 msgstr "<msgid>དེབ་ཐོའི་ཐོ་བཀོད་ལག་ཆས་ཕན་བསླབ་</msgid> <msgstr>དེབ་ཐོའི་ཐོ་བཀོད་སྟོན་<label/>.</msgstr>"
 
@@ -243,6 +248,7 @@ msgstr "<msgid>དེབ་ཐོའི་ཐོ་བཀོད་ལག་ཆ�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:197
+#, fuzzy
 msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
 msgstr "<msgid>དེབ་ཐོའི་.xref</msgid> <msgstr><title/></msgstr>"
 
@@ -284,6 +290,7 @@ msgstr "<msgid>དེབ་ཐོའི་.xref</msgid> <msgstr><title/></msgstr
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:235
+#, fuzzy
 msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 msgstr "<msgid> ལུང་འདྲེན་རྩ་སྒྲིག་</msgid> <msgstr>(<node/>)</msgstr>"
 
@@ -302,6 +309,7 @@ msgstr "<msgid> ལུང་འདྲེན་རྩ་སྒྲིག་</msgid
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:250
+#, fuzzy
 msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>ཀི་དེབ་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -335,6 +343,7 @@ msgstr "<msgid>ཀི་དེབ་ཨང་ཡིག་</msgid> <msgstr>1</msg
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:280
+#, fuzzy
 msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
 msgstr "<msgid>ཀི་དེབ་ཨེགསི་རེཕི་</msgid> <msgstr><title/></msgstr>"
 
@@ -353,6 +362,7 @@ msgstr "<msgid>ཀི་དེབ་ཨེགསི་རེཕི་</msgid> <m
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:295
+#, fuzzy
 msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>ལེའུ་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -390,6 +400,7 @@ msgstr "<msgid>ལེའུ་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:329
+#, fuzzy
 msgid "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter <number/></msgstr>"
 msgstr "<msgid>ལེའུ་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>ལེའུ་<number/></msgstr>"
 
@@ -426,6 +437,7 @@ msgstr "<msgid>ལེའུ་ཁ་ཡིག་</msgid> <msgstr role='header'><
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:362
+#, fuzzy
 msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 msgstr "<msgid>ལེའུ་ཨང་གྲངཤ་</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
@@ -461,6 +473,7 @@ msgstr "<msgid>ལེའུ་ཨང་གྲངཤ་</msgid> <msgstr><parent/>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:394
+#, fuzzy
 msgid "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
 msgstr "<msgid>ལེའུ་ཨེགསི་རེཕི་</msgid> <msgstr>ལེའུ་ <number/> ― <title/></msgstr>"
 
@@ -494,6 +507,7 @@ msgstr "<msgid>ལེའུ་ཨེགསི་རེཕི་</msgid> <msgstr>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:424
+#, fuzzy
 msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 msgstr "<msgid> ལུང་འདྲེན་རྩ་སྒྲིག་format</msgid> <msgstr>(<node/>)</msgstr>"
 
@@ -526,6 +540,7 @@ msgstr "<msgid> ལུང་འདྲེན་རྩ་སྒྲིག་format<
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:453
+#, fuzzy
 msgid "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
 msgstr "<msgid>སའིཊི་ཊའི་ཊཱལ་རྩ་སྒྲིག</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
 
@@ -553,6 +568,7 @@ msgstr "<msgid>སའིཊི་ཊའི་ཊཱལ་རྩ་སྒྲི�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:477
+#, fuzzy
 msgid "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
 msgstr "<msgid>གློག་འཕྲིན་ལག་ཆས་ཕན་བསླབ་</msgid> <msgstr>གློག་འཕྲིན་གཏང་ཡུལ་‘<node/>’.</msgstr>"
 
@@ -571,6 +587,7 @@ msgstr "<msgid>གློག་འཕྲིན་ལག་ཆས་ཕན་བ�
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:492
+#, fuzzy
 msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>དཔེར་བརྗོད་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -608,6 +625,7 @@ msgstr "<msgid>དཔེར་བརྗོད་ཨང་ཡིག་</msgid> <m
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:526
+#, fuzzy
 msgid "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> <msgstr>Example <number/></msgstr>"
 msgstr "<msgid>དཔེར་བརྗོད་ཁ་ཡིག་</msgid> <msgstr role='header'><i>དཔེར་བརྗོད་<number/></i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> <msgstr>Example <number/></msgstr>"
 
@@ -644,6 +662,7 @@ msgstr "<msgid>དཔེར་བརྗོད་ཁ་ཡིག་</msgid> <msgs
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:559
+#, fuzzy
 msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 msgstr "<msgid>དཔེར་བརྗོད་ཨང་གྲངས་</msgid> <msgstr><parent/>-<digit/></msgstr>"
 
@@ -679,6 +698,7 @@ msgstr "<msgid>དཔེར་བརྗོད་ཨང་གྲངས་</msgid>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:591
+#, fuzzy
 msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
 msgstr "<msgid>དཔེར་བརྗོད་ཨེགསི་རེཕི་</msgid> <msgstr>དཔེར་བརྗོད་ <number/></msgstr>"
 
@@ -697,6 +717,7 @@ msgstr "<msgid>དཔེར་བརྗོད་ཨེགསི་རེཕི�
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:606
+#, fuzzy
 msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>ཨང་གྲངས་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -734,6 +755,7 @@ msgstr "<msgid>ཨང་གྲངས་ཨང་ཡིག་</msgid> <msgstr>1</
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:640
+#, fuzzy
 msgid "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>"
 msgstr "<msgid>ཨང་ཡིག་ཁ་ཡིག་</msgid> <msgstr role='header'><i>ཨང་ཡིག་ <number/></i>&#x2003;</msgstr> <msgstr role='li'>ཨང་ཡིག་<number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>"
 
@@ -770,6 +792,7 @@ msgstr "<msgid>ཨང་ཡིག་ཁ་ཡིག་</msgid> <msgstr role='hea
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:673
+#, fuzzy
 msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 msgstr "<msgid>ཨང་ཡིག་ཨང་གྲངས་</msgid> <msgstr><parent/>-<digit/></msgstr>"
 
@@ -805,6 +828,7 @@ msgstr "<msgid>ཨང་ཡིག་ཨང་གྲངས་</msgid> <msgstr><pa
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:705
+#, fuzzy
 msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
 msgstr "<msgid>ཨང་ཡིག་ཨེགསི་རེཕི་</msgid> <msgstr>ཨང་ཡིག་ <number/></msgstr>"
 
@@ -842,6 +866,7 @@ msgstr "<msgid>ཨང་ཡིག་ཨེགསི་རེཕི་</msgid> <m
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:739
+#, fuzzy
 msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
 msgstr "<msgid>ཚིག་ཐོ་ཨེགསི་རེཕི་</msgid> <msgstr><title/></msgstr>"
 
@@ -877,6 +902,7 @@ msgstr "<msgid>ཚིག་ཐོ་ཨེགསི་རེཕི་</msgid> <m
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:771
+#, fuzzy
 msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 msgstr "<msgid> མཱེན་བཱོལ་ནམ་རྩ་སྒྲིག་</msgid> <msgstr>(<node/>)</msgstr>"
 
@@ -904,6 +930,7 @@ msgstr "<msgid> མཱེན་བཱོལ་ནམ་རྩ་སྒྲིག�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:795
+#, fuzzy
 msgid "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for ‘<glossterm/>’.</msgstr>"
 msgstr "<msgid>ཚིག་ཐོ་ཐོ་བཀོད་ལག་ཆས་ཕན་བསླབ་</msgid> <msgstr>གི་དོན་ལུ་ངེས་ཚིག་ལྷག་‘<glossterm/>’.</msgstr>"
 
@@ -939,6 +966,7 @@ msgstr "<msgid>ཚིག་ཐོ་ཐོ་བཀོད་ལག་ཆས་�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:827
+#, fuzzy
 msgid "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 msgstr "<msgid>ཚིག་ཐོ་ཐོ་བཀོད་ཨེགསི་རེཕི་</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 
@@ -976,6 +1004,7 @@ msgstr "<msgid>ཚིག་ཐོ་ཐོ་བཀོད་ཨེགསི་�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:861
+#, fuzzy
 msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
 msgstr "<msgid>གོ་ལོ་སི་རྩ་སྒྲིག་</msgid> <msgstr>བལྟ་ <glosssee/>.</msgstr>"
 
@@ -1014,6 +1043,7 @@ msgstr "<msgid>གོ་ལོ་སི་རྩ་སྒྲིག་</msgid> <m
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:896
+#, fuzzy
 msgid "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
 msgstr "<msgid>གོ་ལོ་སི་ཨཱལ་སོ་རྩ་སྒྲིག་</msgid> <msgstr>ཡང་བལྟ་ <glosssee/>.</msgstr>"
 
@@ -1046,6 +1076,7 @@ msgstr "<msgid>གོ་ལོ་སི་ཨཱལ་སོ་རྩ་སྒ�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:925
+#, fuzzy
 msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 msgstr "<msgid> མཱེན་བཱོལ་ནམ་རྩ་སྒྲིག་format</msgid> <msgstr>(<node/>)</msgstr>"
 
@@ -1064,6 +1095,7 @@ msgstr "<msgid> མཱེན་བཱོལ་ནམ་རྩ་སྒྲིག�
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:940
+#, fuzzy
 msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
 msgstr "<msgid>ཡན་ལག་ཨང་ཡིག་</msgid> <msgstr>I</msgstr>"
 
@@ -1101,6 +1133,7 @@ msgstr "<msgid>ཡན་ལག་ཨང་ཡིག་</msgid> <msgstr>I</msgstr
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:974
+#, fuzzy
 msgid "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
 msgstr "<msgid>ཡན་ལག་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>ཡན་ལག་<number/></msgstr>"
 
@@ -1136,6 +1169,7 @@ msgstr "<msgid>ཡན་ལག་ཁ་ཡིག་</msgid> <msgstr role='header
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1006
+#, fuzzy
 msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
 msgstr "<msgid>ཡན་ལག་ཨེགསི་རེཕི་</msgid> <msgstr>ཡན་ལག་ <number/> ― <title/></msgstr>"
 
@@ -1173,6 +1207,7 @@ msgstr "<msgid>ཡན་ལག་ཨེགསི་རེཕི་</msgid> <msgs
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1040
+#, fuzzy
 msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
 msgstr "<msgid>སྔོན་བརྗོད་ཨེགསི་རེཕི་</msgid> <msgstr><title/></msgstr>"
 
@@ -1191,6 +1226,7 @@ msgstr "<msgid>སྔོན་བརྗོད་ཨེགསི་རེཕི�
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1055
+#, fuzzy
 msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>དྲི་བའི་ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -1225,6 +1261,7 @@ msgstr "<msgid>དྲི་བའི་ཨང་ཡིག་</msgid> <msgstr>1</
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1086
+#, fuzzy
 msgid "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question <number/></msgstr>"
 msgstr "<msgid>དྲི་བའི་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>དྲི་བ་<number/></msgstr>"
 
@@ -1256,6 +1293,7 @@ msgstr "<msgid>དྲི་བའི་ཁ་ཡིག་</msgid> <msgstr role='
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1114
+#, fuzzy
 msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
 msgstr "<msgid>དྲི་བའི་ཨེགསི་རེཕི་</msgid> <msgstr>དྲི་བ་<number/></msgstr>"
 
@@ -1295,6 +1333,7 @@ msgstr "<msgid>དྲི་བའི་ཨེགསི་རེཕི་</msgid>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1150
+#, fuzzy
 msgid "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
 msgstr "<msgid>འདྲེན་ཚིག་རྩ་སྒྲིག་</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
 
@@ -1326,6 +1365,7 @@ msgstr "<msgid>འདྲེན་ཚིག་རྩ་སྒྲིག་</msgid>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1178
+#, fuzzy
 msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
 msgstr "<msgid>གཞི་བསྟུན་ཐོ་བཀོད་་ཨེགསི་རེཕི་</msgid> <msgstr><title/></msgstr>"
 
@@ -1381,6 +1421,7 @@ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1227
+#, fuzzy
 msgid "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
 msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>དབྱེ་ཚན་<number/></msgstr>"
 
@@ -1418,6 +1459,7 @@ msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཁ་ཡ�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1261
+#, fuzzy
 msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཨང་གྲངས་</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
@@ -1453,6 +1495,7 @@ msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཨང་�
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1293
+#, fuzzy
 msgid "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
 msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཨེགསི་རེཕི་</msgid> <msgstr>དབྱེ་ཚན་ <number/> ― <title/></msgstr>"
 
@@ -1471,6 +1514,7 @@ msgstr "<msgid>གཞི་བསྟུན་དབྱེ་ཚན་ཨེག�
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1308
+#, fuzzy
 msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>དབྱེ་ཚན་ཨང་ཡིག་</msgid> <msgstr>༡</msgstr>"
 
@@ -1508,6 +1552,7 @@ msgstr "<msgid>དབྱེ་ཚན་ཨང་ཡིག་</msgid> <msgstr>༡
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1342
+#, fuzzy
 msgid "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
 msgstr "<msgid>དབྱེ་ཚན་ཁ་ཡིག་</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>དབྱེ་ཚན་<number/></msgstr>"
 
@@ -1545,6 +1590,7 @@ msgstr "<msgid>དབྱེ་ཚན་ཁ་ཡིག་</msgid> <msgstr role='
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1376
+#, fuzzy
 msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 msgstr "<msgid>དབྱེ་ཚན་ཨང་གྲངས་</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
@@ -1580,6 +1626,7 @@ msgstr "<msgid>དབྱེ་ཚན་ཨང་གྲངས་</msgid> <msgstr>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1408
+#, fuzzy
 msgid "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
 msgstr "<msgid>དབྱེ་ཚན་ཨེགསི་རེཕི་</msgid> <msgstr>དབྱེ་ཚན་ <number/> ― <title/></msgstr>"
 
@@ -1611,6 +1658,7 @@ msgstr "<msgid>དབྱེ་ཚན་ཨེགསི་རེཕི་</msgid>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1436
+#, fuzzy
 msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
 msgstr "<msgid>སི་ཨཱལ་སོ་རྩ་སྒྲིག་</msgid> <msgstr>ཡང་ ན་ <glosssee/>.</msgstr>བལྟ་"
 
@@ -1642,6 +1690,7 @@ msgstr "<msgid>སི་ཨཱལ་སོ་རྩ་སྒྲིག་</msgid>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1464
+#, fuzzy
 msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
 msgstr "<msgid>སཱི་ རྩ་སྒྲིག་</msgid> <msgstr>See <seeie/>.</msgstr>"
 
@@ -1660,6 +1709,7 @@ msgstr "<msgid>སཱི་ རྩ་སྒྲིག་</msgid> <msgstr>See <see
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1479
+#, fuzzy
 msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>སའི་ནོཔ་ ཆག་དུམ་ ཨང་ཡིག་</msgid> <msgstr>1</msgstr>"
 
@@ -1691,6 +1741,7 @@ msgstr "<msgid>སའི་ནོཔ་ ཆག་དུམ་ ཨང་ཡིག
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1507
+#, fuzzy
 msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
 msgstr "<msgid>སཱི་ནོཔ་ཆག་དུམ་ ཁ་ཡིག་</msgid> <msgstr>ཨང་ཡིག་ <number/></msgstr>"
 
@@ -1709,6 +1760,7 @@ msgstr "<msgid>སཱི་ནོཔ་ཆག་དུམ་ ཁ་ཡིག་<
 #. contact the maintainers about adding formatters for your language.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1522
+#, fuzzy
 msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
 msgstr "<msgid>ཐིག་ཁྲམ་ཨང་ཡིག་</msgid> <msgstr>༡</msgstr>"
 
@@ -1746,6 +1798,7 @@ msgstr "<msgid>ཐིག་ཁྲམ་ཨང་ཡིག་</msgid> <msgstr>༡
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1556
+#, fuzzy
 msgid "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> <msgstr>Table <number/></msgstr>"
 msgstr "<msgid>ཐིག་ཁྲམ་ཁ་ཡིག་</msgid> <msgstr role='header'><i>ཐིག་ཁྲམ་<number/></i>&#x2003;</msgstr> <msgstr role='li'>ཐིག་ཁྲམ་<number/>&#x2002;</msgstr> <msgstr>ཐིག་ཁྲམ་<number/></msgstr>"
 
@@ -1782,6 +1835,7 @@ msgstr "<msgid>ཐིག་ཁྲམ་ཁ་ཡིག་</msgid> <msgstr role='
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1589
+#, fuzzy
 msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 msgstr "<msgid>ཐིག་ཁྲམ་ཨང་གྲངས་</msgid> <msgstr><parent/>-<digit/></msgstr>"
 
@@ -1817,6 +1871,7 @@ msgstr "<msgid>ཐིག་ཁྲམ་ཨང་གྲངས་</msgid> <msgstr>
 #. to mark text as italic, bold, and monospace.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1621
+#, fuzzy
 msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
 msgstr "<msgid>ཐིག་ཁྲམ་ཨེགསི་རེཕི་</msgid> <msgstr>ཐིག་ཁྲམ་ <number/></msgstr>"
 
@@ -1865,6 +1920,7 @@ msgstr "<msgstr form='0'>སྐད་བསྒྱུརཔ་</msgstr> <msgstr f
 #. to 'qanda', this string will be used to label answers.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1645
+#, fuzzy
 msgid "A:&#x2003;"
 msgstr "ཨེ་:&#ཨེགསི་༢༠༠༣;"
 
@@ -1999,6 +2055,7 @@ msgstr "སྔོན་བརྗོད།"
 #. to 'qanda', this string will be used to label questions.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1731
+#, fuzzy
 msgid "Q:&#x2003;"
 msgstr "ཀིའུ་:&#ཨེགསི་༢༠༠༣;"
 
@@ -2088,6 +2145,7 @@ msgstr "default:LTR"
 #. gnome-doc-utils.
 #.
 #: ../xslt/gettext/l10n.xml.in.h:1796
+#, fuzzy
 msgid "watermark-blockquote-201C.png"
 msgstr "ཆུ་རྟགས-ལུང་འདྲེན་སྡེབ་ཚན-201C.png"
 
