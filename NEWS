@@ -1,3 +1,15 @@
+3.36.0
+======
+* Added a syntax highlighter for Ducktype
+* Support multiple desc elements for links (MEP-0008)
+* Fixed missing link when group specified twice on topic links
+* Typo fix in docs
+* Updated translations:
+  dz    (Andre Klapper)
+  en_GB (Zander Brown)
+  ms    (Umarzuki Bin Mochlis Moktar)
+  tr    (Emin Tufan Çetin)
+
 3.34.2
 ======
 * Updated translations:
