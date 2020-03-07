@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-09-03 19:50+0000\n"
+"POT-Creation-Date: 2020-02-14 16:22+0000\n"
 "PO-Revision-Date: 2019-02-24 12:23+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -434,7 +434,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -451,10 +451,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -480,10 +480,10 @@ msgstr "door <comment.name/> op <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance
+#.   Some Comment Title
+#.   from Shaun McCance
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -601,11 +601,35 @@ msgstr "“<node/>”"
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Zie <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Zie <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Zie ook <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Zie ook <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201C.png"
@@ -622,8 +646,12 @@ msgstr "‘<node/>’"
 #~ msgid " — "
 #~ msgstr " — "
 
-#~ msgid "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry <label/>.</msgstr>"
-#~ msgstr "<msgid>biblioentry.tooltip</msgid> <msgstr>Het bibliografie-item weergeven <label/>.</msgstr>"
+#~ msgid ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
+#~ "<label/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Het bibliografie-item "
+#~ "weergeven <label/>.</msgstr>"
 
 #~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 #~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
@@ -631,26 +659,43 @@ msgstr "‘<node/>’"
 #~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 #~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
-#~ msgid "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
-#~ msgstr "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
+#~ msgid ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgstr ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
 
-#~ msgid "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr "<msgid>email.tooltip</msgid> <msgstr>E-mail sturen naar ‘<string/>’.</msgstr>"
+#~ msgid ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>E-mail sturen naar ‘<string/>’.</"
+#~ "msgstr>"
 
 #~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
-#~ msgid "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for ‘<glossterm/>’.</msgstr>"
-#~ msgstr "<msgid>glossentry.tooltip</msgid> <msgstr>De definitie lezen van ‘<glossterm/>’.</msgstr>"
+#~ msgid ""
+#~ "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
+#~ "‘<glossterm/>’.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossentry.tooltip</msgid> <msgstr>De definitie lezen van "
+#~ "‘<glossterm/>’.</msgstr>"
 
-#~ msgid "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgid ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 
 #~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
 #~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Zie <glosssee/>.</msgstr>"
 
-#~ msgid "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr "<msgid>glossseealso.format</msgid> <msgstr>Zie ook <glosssee/>.</msgstr>"
+#~ msgid ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>Zie ook <glosssee/>.</msgstr>"
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
@@ -658,14 +703,24 @@ msgstr "‘<node/>’"
 #~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question <number/></msgstr>"
-#~ msgstr "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Vraag <number/></msgstr>"
+#~ msgid ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Vraag "
+#~ "<number/></msgstr>"
 
 #~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
 #~ msgstr "<msgid>question.xref</msgid> <msgstr>Vraag <number/></msgstr>"
 
-#~ msgid "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
-#~ msgstr "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
+#~ msgid ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgstr ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
 
 #~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
 #~ msgstr "<msgid>seealsoie.format</msgid> <msgstr>Zie ook <seeie/>.</msgstr>"
@@ -682,23 +737,38 @@ msgstr "‘<node/>’"
 #~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
 #~ msgstr "<msgstr form='0'>Auteur</msgstr> <msgstr form='1'>Auteurs</msgstr>"
 
-#~ msgid "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</msgstr>"
-#~ msgstr "<msgstr form='0'>Medewerker</msgstr> <msgstr form='1'>Medewerkers</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Medewerker</msgstr> <msgstr form='1'>Medewerkers</msgstr>"
 
-#~ msgid "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr "<msgstr form='0'>Auteursrecht</msgstr> <msgstr form='1'>Auteursrechten</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Auteursrecht</msgstr> <msgstr form='1'>Auteursrechten</"
+#~ "msgstr>"
 
 #~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr "<msgstr form='0'>Redacteur</msgstr> <msgstr form='1'>Redacteuren</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Redacteur</msgstr> <msgstr form='1'>Redacteuren</msgstr>"
 
-#~ msgid "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other Contributors</msgstr>"
-#~ msgstr "<msgstr form='0'>Andere medewerker</msgstr> <msgstr form='1'>Andere medewerkers</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
+#~ "Contributors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Andere medewerker</msgstr> <msgstr form='1'>Andere "
+#~ "medewerkers</msgstr>"
 
-#~ msgid "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-#~ msgstr "<msgstr form='0'>Uitgever</msgstr> <msgstr form='1'>Uitgevers</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Uitgever</msgstr> <msgstr form='1'>Uitgevers</msgstr>"
 
-#~ msgid "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr "<msgstr form='0'>Vertaler</msgstr> <msgstr form='1'>Vertalers</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Vertaler</msgstr> <msgstr form='1'>Vertalers</msgstr>"
 
 #~ msgid "A:&#x2003;"
 #~ msgstr "A:&#x2003;"
