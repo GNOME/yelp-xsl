@@ -1,34 +1,37 @@
 # Ukrainian translation of gnome-doc-utils.
 # Copyright (C) Free Software Foundation Inc., 2004
 # This file is distributed under the same license as the gnome-doc-utils package.
-# Maxim Dziumanenko <dziumanenko@gmail.com>, 2004-2006
+# Maxim Dziumanenko <dziumanenko@gmail.com>, 2004-2006.
 # Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-18 15:10+0200\n"
-"PO-Revision-Date: 2012-03-18 15:13+0300\n"
-"Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
-"Language-Team: translation@linux.org.ua\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2020-02-14 16:22+0000\n"
+"PO-Revision-Date: 2020-03-08 09:28+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 20.03.70\n"
 "X-Project-Style: gnome\n"
 
+#. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
 #. right-to-left, otherwise translate to default:LTR.  Do *not*
 #. translate it to "predefinito:LTR", if it isn't default:LTR
 #. or default:RTL it will not work.
 #.
-#: yelp-xsl.xml.in:27(msg/msgstr)
+#: yelp-xsl.xml.in:34
 msgid "default:LTR"
 msgstr "default:LTR"
 
+#. (itstool) path: msg/msgstr
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
 #. string of ", ", a list would look like this: A, B, C, D.  Using the
@@ -36,11 +39,12 @@ msgstr "default:LTR"
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:40(msg/msgstr)
+#: yelp-xsl.xml.in:47
 #, no-wrap
 msgid ", "
 msgstr ", "
 
+#. (itstool) path: msg/msgstr
 #. This is used as the final separator in an inline list of three or
 #. more elements.  The string ", " will be used to separate all but
 #. the last pair of elements.  Using these two strings, a list of
@@ -48,21 +52,23 @@ msgstr ", "
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:53(msg/msgstr)
+#: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
 msgstr ", та "
 
+#. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
 #. elements.  A list of two names would be formatted as "Tom and Dick".
 #.
 #. Make sure to include leading or trailing spaces if you want them.
 #.
-#: yelp-xsl.xml.in:64(msg/msgstr)
+#: yelp-xsl.xml.in:71
 #, no-wrap
 msgid " and "
 msgstr " та "
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before questions in a question-and-answer
@@ -71,10 +77,11 @@ msgstr " та "
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label questions.
 #.
-#: yelp-xsl.xml.in:79(msg/msgstr)
+#: yelp-xsl.xml.in:86
 msgid "Q:"
 msgstr "З:"
 
+#. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
 #. This is used as a label before answers in a question-and-answer
@@ -83,244 +90,300 @@ msgstr "З:"
 #. the labelling style for a qandaset.  If the labelling style is set
 #. to 'qanda', this string will be used to label answers.
 #.
-#: yelp-xsl.xml.in:92(msg/msgstr)
+#: yelp-xsl.xml.in:99
 msgid "A:"
 msgstr "В:"
 
+#. (itstool) path: msg/msgstr
 #. Title of the footer containing copyrights, credits, license information,
 #. and other stuff about the page.
 #.
-#: yelp-xsl.xml.in:102(msg/msgstr)
+#: yelp-xsl.xml.in:109
 msgid "About"
 msgstr "Про програму"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:107(msg/msgstr)
+#: yelp-xsl.xml.in:114
 msgid "Advanced"
 msgstr "Додатково"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a bibliography.
-#: yelp-xsl.xml.in:112(msg/msgstr)
+#: yelp-xsl.xml.in:119
 msgid "Bibliography"
 msgstr "Додаткові документи"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:117(msg/msgstr)
+#: yelp-xsl.xml.in:124
 msgid "Bug"
 msgstr "Вада"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written and
 #. reviewed, and it awaiting a final approval.
 #.
-#: yelp-xsl.xml.in:125(msg/msgstr)
+#: yelp-xsl.xml.in:132
 msgid "Candidate"
 msgstr "Кандидат"
 
+#. (itstool) path: msg/msgstr
+#. Accessible title for a caution note.
+#: yelp-xsl.xml.in:137
+msgid "Caution"
+msgstr "Застереження"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:142
+msgid "Close"
+msgstr "Закрити"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:130(msg/msgstr)
+#: yelp-xsl.xml.in:147
 msgid "Colophon"
 msgstr "Післямова"
 
+#. (itstool) path: msg/msgstr
+#. Title for a table of contents for the entire document.
+#: yelp-xsl.xml.in:152
+msgid "Contents"
+msgstr "Зміст"
+
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:135(msg/msgstr)
+#: yelp-xsl.xml.in:157
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
+#. (itstool) path: msg/msgstr
+#. Accessible title for a danger note.
+#: yelp-xsl.xml.in:162
+msgid "Danger"
+msgstr "Небезпечно"
+
+#. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:140(msg/msgstr)
+#: yelp-xsl.xml.in:167
 msgid "Dedication"
 msgstr "Присвячення"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:148(msg/msgstr)
+#: yelp-xsl.xml.in:175
 msgid "Draft"
 msgstr "Чернетка"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:153(msg/msgstr)
+#: yelp-xsl.xml.in:180
 msgid "Edited By"
 msgstr "Редагували"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:161(msg/msgstr)
+#: yelp-xsl.xml.in:188
 msgid "Final"
 msgstr "Фінальна версія"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:166(msg/msgstr)
+#: yelp-xsl.xml.in:193
 msgid "Glossary"
 msgstr "Словник термінів"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:171(msg/msgstr)
+#: yelp-xsl.xml.in:198
 msgid "Important"
 msgstr "Важливе"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:179(msg/msgstr)
+#: yelp-xsl.xml.in:206
 msgid "Incomplete"
 msgstr "Незавершена версія"
 
+#. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:184(msg/msgstr)
+#: yelp-xsl.xml.in:211
 msgid "Index"
 msgstr "Покажчик"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:189(msg/msgstr)
+#: yelp-xsl.xml.in:216
 msgid "Legal"
 msgstr "Права"
 
+#. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:196(msg/msgstr)
+#: yelp-xsl.xml.in:223
 msgid "License"
 msgstr "Ліцензія"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:201(msg/msgstr)
+#: yelp-xsl.xml.in:228
 msgid "Maintained By"
 msgstr "Супроводили"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:206(msg/msgstr)
+#: yelp-xsl.xml.in:233
 msgid "More Information"
 msgstr "Докладніше"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:211(msg/msgstr)
+#: yelp-xsl.xml.in:238
 msgid "Next"
 msgstr "Далі"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:216(msg/msgstr)
+#: yelp-xsl.xml.in:243
 msgid "Note"
 msgstr "Примітка"
 
+#. (itstool) path: msg/msgstr
+#. Title for a list of links to sections on the current page.
+#: yelp-xsl.xml.in:248
+msgid "On This Page"
+msgstr "На цій сторінці"
+
+#. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:224(msg/msgstr)
+#: yelp-xsl.xml.in:256
 msgid "Other Credits"
 msgstr "Інші подяки"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:232(msg/msgstr)
+#: yelp-xsl.xml.in:264
 msgid "Outdated"
 msgstr "Застаріло"
 
+#. (itstool) path: msg/msgstr
+#. Accessible title for a package note.
+#: yelp-xsl.xml.in:269
+msgid "Package"
+msgstr "Пакунок"
+
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:237(msg/msgstr)
+#: yelp-xsl.xml.in:274
 msgid "Pause"
 msgstr "Призупинити"
 
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:242(msg/msgstr)
+#: yelp-xsl.xml.in:279
 msgid "Play"
 msgstr "Програти"
 
+#. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:247(msg/msgstr)
+#: yelp-xsl.xml.in:284
 msgid "Previous"
 msgstr "Назад"
 
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+#: yelp-xsl.xml.in:289
+msgid "Published By"
+msgstr "Опубліковано"
+
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:255(msg/msgstr)
+#: yelp-xsl.xml.in:297
 msgid "Ready for review"
 msgstr "Готовий для рецензії"
 
+#. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:260(msg/msgstr)
+#: yelp-xsl.xml.in:302
 msgid "See Also"
 msgstr "Дивіться також"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:269(msg/msgstr)
+#: yelp-xsl.xml.in:311
 msgid "Scale images down"
-msgstr "Масштабувати зображення вних"
+msgstr "Масштабувати зображення вниз"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:274(msg/msgstr)
+#: yelp-xsl.xml.in:316
 msgid "Sidebar"
 msgstr "Бічна панель"
 
+#. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:281(msg/msgstr)
+#: yelp-xsl.xml.in:323
 msgid "Stub"
 msgstr "Заглушка"
 
+#. (itstool) path: msg/msgstr
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:289(msg/msgstr)
+#: yelp-xsl.xml.in:331
 msgid "Synopsis"
 msgstr "Анотація"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:294(msg/msgstr)
+#: yelp-xsl.xml.in:336
 msgid "Tip"
 msgstr "Підказка"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:299(msg/msgstr)
+#: yelp-xsl.xml.in:341
 msgid "Translated By"
 msgstr "Переклали"
 
+#. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:307(msg/msgstr)
+#: yelp-xsl.xml.in:349
 msgid "View images at normal size"
 msgstr "Переглянути зображення в звичайному розмірі"
 
+#. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:312(msg/msgstr)
+#: yelp-xsl.xml.in:354
 msgid "Warning"
 msgstr "Попередження"
 
+#. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:317(msg/msgstr)
+#: yelp-xsl.xml.in:359
 msgid "Written By"
 msgstr "Автори"
 
-#. This is an image of the opening quotation character for your language.
-#. The image is used as a watermark on blockquote elements.  There are a
-#. number of different quote characters used by various languages, so the
-#. image name is translatable.  The name of the icon should be of the form
-#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
-#. quote character.  For example, some languages use the double angle quotation
-#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
-#.
-#. The image, however, is not automatically created.  Do not translate
-#. this to a value if there isn't a corresponding file in yelp-xsl under
-#. the directory icons/hicolor/48x48/status.
-#.
-#. Languages that use guillemets (angle quotation marks) should use either
-#. 00AB or 00BB, depending on whether the opening quotation is the left
-#. guillemet or the right guillemet.  Languages that use inverted comma
-#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
-#. don't make very nice watermarks, so if you would normally open a quote
-#. with single quotation marks in your language, use the corresponding
-#. double quotation mark for the watermark image.
-#.
-#: yelp-xsl.xml.in:344(msg/msgstr)
-msgid "yelp-quote-201C.png"
-msgstr "yelp-quote-201C.png"
-
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to bibliography entries.
@@ -328,12 +391,13 @@ msgstr "yelp-quote-201C.png"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <label/> - The term being defined by the glossary entry
+#. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:360(msg/msgstr)
+#: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
 msgstr "Переглянути бібліографічний запис <biblioentry.label/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
 #. This is a format message used to format the labels for entries in
 #. a bibliography.  The content of the label is often an abbreviation
@@ -352,10 +416,11 @@ msgstr "Переглянути бібліографічний запис <biblio
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:383(msg/msgstr)
+#: yelp-xsl.xml.in:398
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: citation.label
 #. This is a format message used to format inline citations to other
 #. published works.  The content is typically an abbreviation of the
@@ -365,13 +430,14 @@ msgstr "[<biblioentry.label/>]"
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <citation/> - The text content of the citation element, possibly
-#.               as a link to an entry in the bibliography
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:400(msg/msgstr)
+#: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name-date
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -396,10 +462,11 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:429(msg/msgstr)
+#: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "з <comment.name/> в <comment.date/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: comment.name
 #. This is a format message used to format the citation of a comment
 #. made by an editor of a document. This appears on a new line after
@@ -423,10 +490,11 @@ msgstr "з <comment.name/> в <comment.date/>"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:457(msg/msgstr)
+#: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
 msgstr "з <comment.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: copyright.format
 #. This is a format message used to format copyright notices. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -435,10 +503,11 @@ msgstr "з <comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:470(msg/msgstr)
+#: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
+#. (itstool) path: msg/msgstr
 #. ID: email.tooltip
 #. This is a format message used to format tooltips on mailto: links.
 #. Special elements in the message will be replaced with the appropriate
@@ -446,10 +515,11 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:482(msg/msgstr)
+#: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
 msgstr "Надіслати листа до « <string/>»."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to glossary entries. Special elements in the message will be replaced
@@ -457,10 +527,11 @@ msgstr "Надіслати листа до « <string/>»."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:494(msg/msgstr)
+#: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Прочитати означення для «<glossterm/>»."
 
+#. (itstool) path: msg/msgstr
 #. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -477,10 +548,11 @@ msgstr "Прочитати означення для «<glossterm/>»."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:515(msg/msgstr)
+#: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
 msgstr "Дивіться <glosssee/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
@@ -498,10 +570,11 @@ msgstr "Дивіться <glosssee/>."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:537(msg/msgstr)
+#: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
 msgstr "Також дивіться <glosssee/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations. Special
 #. elements in the message will be replaced with the appropriate content,
@@ -509,10 +582,11 @@ msgstr "Також дивіться <glosssee/>."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:549(msg/msgstr)
+#: yelp-xsl.xml.in:564
 msgid "“<node/>”"
 msgstr "«<node/>»"
 
+#. (itstool) path: msg/msgstr
 #. ID: quote.format
 #. This is a format message used to format inline quotations inside
 #. other inline quotations. Special elements in the message will be
@@ -520,10 +594,11 @@ msgstr "«<node/>»"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:561(msg/msgstr)
+#: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr "«<node/>»"
 
+#. (itstool) path: msg/msgstr
 #. ID: seeie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -534,10 +609,11 @@ msgstr "«<node/>»"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:576(msg/msgstr)
+#: yelp-xsl.xml.in:591
 msgid "See <seeie/>."
 msgstr "Дивіться <seeie/>."
 
+#. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
 #. This is a format message used to format index cross references.
 #. This format message controls the sentence used to present the cross
@@ -548,346 +624,6 @@ msgstr "Дивіться <seeie/>."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:591(msg/msgstr)
+#: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
 msgstr "Також дивіться <seeie/>."
-
-#~ msgid "Contents"
-#~ msgstr "Зміст"
-
-#~ msgid "Further Reading"
-#~ msgstr "Матеріали для подальшого читання"
-
-#~ msgid "Name"
-#~ msgstr "Назва"
-
-#~ msgid "Preface"
-#~ msgstr "Передмова"
-
-#~ msgid " — "
-#~ msgstr " — "
-
-#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-#~ msgstr "<msgid>appendix.digit</msgid> <msgstr>I</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Додаток "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Додаток <number/> ― <title/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Дивіться додатковий документ "
-#~ "<label/>.</msgstr>"
-
-#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
-
-#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Глава "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Глава <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-#~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>\"<node/>\"</"
-#~ "msgstr> <msgstr><i><node/></i></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Надсилати пошту адресату ‘<string/>’."
-#~ "</msgstr>"
-
-#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Приклад <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Приклад <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Приклад <number/></msgstr>"
-
-#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
-#~ msgstr "<msgid>example.xref</msgid> <msgstr>Приклад <number/></msgstr>"
-
-#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Рисунок <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Рисунок <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Рисунок <number/></msgstr>"
-
-#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
-#~ msgstr "<msgid>figure.xref</msgid> <msgstr>Рисунок <number/></msgstr>"
-
-#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
-#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
-
-#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glosssee.format</msgid> <msgstr>Дивіться <glosssee/>.</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>Також дивіться <glosssee/>.</"
-#~ "msgstr>"
-
-#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-
-#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-#~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Частина "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.xref</msgid> <msgstr>Частина <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Запитання "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
-#~ msgstr "<msgid>question.xref</msgid> <msgstr>Запитання <number/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-
-#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-#~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-
-#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Розділ "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Розділ <number/> ― <title/></"
-#~ "msgstr>"
-
-#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Розділ "
-#~ "<number/></msgstr>"
-
-#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-#~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.xref</msgid> <msgstr>Розділ <number/> ― <title/></msgstr>"
-
-#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>seealsoie.format</msgid> <msgstr>Також дивіться <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
-#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Дивіться <seeie/>.</msgstr>"
-
-#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
-
-#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-#~ msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Таблиця <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Таблиця <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Таблиця <number/></msgstr>"
-
-#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-#~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
-#~ msgstr "<msgid>table.xref</msgid> <msgstr>Таблиця <number/></msgstr>"
-
-#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Автор</msgstr> <msgstr form='1'>Автори</msgstr> <msgstr "
-#~ "form='2'>Автори</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Співпрацівник</msgstr> <msgstr form='1'>Співпрацівники</"
-#~ "msgstr> <msgstr form='2'>Співпрацівники</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Авторське право</msgstr> <msgstr form='1'>Авторські "
-#~ "права</msgstr> <msgstr form='2'>Авторські права</msgstr>"
-
-#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Редактор</msgstr> <msgstr form='1'>Редактори</msgstr> "
-#~ "<msgstr form='2'>Редактори</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Інший помічник</msgstr> <msgstr form='1'>Інші помічники</"
-#~ "msgstr> <msgstr form='2'>Інші помічники</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Видавець</msgstr> <msgstr form='1'>Видавець</msgstr> "
-#~ "<msgstr form='2'>Видавці</msgstr>"
-
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>Перекладач</msgstr> <msgstr form='1'>Перекладачі</"
-#~ "msgstr> <msgstr form='2'>Перекладачі</msgstr>"
-
-#~ msgid "A:&#x2003;"
-#~ msgstr "В:&#x2003;"
-
-#~ msgid "About This Document"
-#~ msgstr "Про цей документ"
-
-#~ msgid "Affiliation"
-#~ msgstr "Приналежність"
-
-#~ msgid "Caution"
-#~ msgstr "Застереження"
-
-#~ msgid "Email"
-#~ msgstr "Ел.пошта"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Юридичний статус"
-
-#~ msgid "Q:&#x2003;"
-#~ msgstr "З:&#x2003;"
-
-#~ msgid "Revision History"
-#~ msgstr "Історія створення"
-
-#~ msgid "See"
-#~ msgstr "Дивіться"
