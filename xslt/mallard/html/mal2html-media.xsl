@@ -144,6 +144,7 @@ HTML `video` element.
   </video>
   <xsl:call-template name="html.media.controls">
     <xsl:with-param name="type" select="'video'"/>
+    <xsl:with-param name="ttml" select="not($inline) and tt:tt"/>
   </xsl:call-template>
   <xsl:if test="not($inline)">
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>
@@ -191,6 +192,7 @@ in the source to the `audio` element's fallback content. If $inline is
   </audio>
   <xsl:call-template name="html.media.controls">
     <xsl:with-param name="type" select="'audio'"/>
+    <xsl:with-param name="ttml" select="not($inline) and tt:tt"/>
   </xsl:call-template>
   <xsl:if test="not($inline)">
     <xsl:apply-templates mode="mal2html.ttml.mode" select="tt:tt[1]"/>

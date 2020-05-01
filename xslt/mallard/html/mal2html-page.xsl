@@ -1023,8 +1023,8 @@ div.link-button {
     <xsl:value-of select="$color.fg.blue"/><xsl:text> 1px 1px 0px;
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.fg.blue"/><xsl:text>;
-  padding: 0.2em 0.5em 0.2em 0.5em;
-  border-radius: 2px;
+  padding: 0.2em 0.83em 0.2em 0.83em;
+  border-radius: 4px;
 }
 .link-button a:visited {
   color: </xsl:text>
@@ -1034,8 +1034,12 @@ div.link-button {
   text-decoration: none;
   color: </xsl:text>
     <xsl:value-of select="$color.bg"/><xsl:text>;
-  box-shadow: 1px 1px 1px </xsl:text>
-    <xsl:value-of select="$color.blue"/><xsl:text>;
+  background-color: </xsl:text>
+<xsl:call-template name="color.blend">
+<xsl:with-param name="bg" select="$color.blue"/>
+<xsl:with-param name="fg" select="$color.bg"/>
+<xsl:with-param name="mix" select="0.1"/>
+</xsl:call-template><xsl:text>
 }
 div.link-button a .desc {
   display: block;
@@ -1133,7 +1137,7 @@ div.ui-overlay {
   display: none;
   position: fixed;
   text-align: center;
-  top: 20px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -1151,9 +1155,7 @@ div.ui-overlay > div.inner {
   display: inline-block;
   padding: 8px;
   background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-  box-shadow: 0 2px 4px </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-  border-radius: 6px;
+  border-radius: 4px;
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
 }
 div.ui-overlay img, div.ui-overlay video {
@@ -1164,24 +1166,18 @@ div.ui-overlay > div.inner > div.title { margin-top: -4px; }
 a.ui-overlay-close {
   display: block;
   float: </xsl:text><xsl:value-of select="$right"/><xsl:text>;
-  width: 23px; height: 23px;
-  font-size: 18px; line-height: 23px;
+  width: 30px; height: 30px;
+  font-size: 22px; line-height: 30px;
   font-weight: bold;
   margin-top: -28px;
-  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: -24px;
+  margin-</xsl:text><xsl:value-of select="$right"/><xsl:text>: -26px;
   padding: 1px 2px 3px 2px;
   text-align: center;
   border: none;
   border-radius: 50%;
-  background-color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
-  background-image: radial-gradient(circle farthest-corner at 50% 30%, </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>, </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>);
-  border: 3px solid </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>; 
+  background-color: </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
   color: </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
-  box-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
-  text-shadow: 0 2px 2px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
 }
-
-<!-- links/@uix:thumbs = 'tiles' -->
 div.links-tiles {
   display: flex;
   flex-flow: row wrap;
@@ -1203,13 +1199,13 @@ div.links-tile:empty { padding: 0 10px; height: 0; }
 div.links-tile > a {
   display: block;
   vertical-align: top;
-  padding: 9px;
-  border-radius: 6px;
-  border: solid 1px </xsl:text><xsl:value-of select="$color.bg"/><xsl:text>;
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
 }
 div.links-tile > a:hover {
-  border: solid 1px </xsl:text><xsl:value-of select="$color.bg.blue"/><xsl:text>;
-  box-shadow: 0 1px 2px </xsl:text><xsl:value-of select="$color.blue"/><xsl:text>;
+  background-color: </xsl:text>
+    <xsl:value-of select="$color.bg.blue"/><xsl:text>;
 }
 div.links-tile > a > span.links-tile-img {
   display: block;

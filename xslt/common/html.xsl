@@ -1350,12 +1350,11 @@ section section.links > div.inner > div.hgroup {
 }
 h1, h2, h3, h4, h5, h6, h7 {
   margin: 0; padding: 0;
-  color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
-  font-weight: bold;
+  font-weight: normal;
 }
-h1 { font-size: 2em; }
-h2 { font-size: 1.44em; }
-h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }
+h1 { font-size: 2.4em; }
+h2 { font-size: 1.72em; }
+h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.44em; }
 h3, h4, h5, h6, h7 { font-size: 1em; }
 p { line-height: 1.44em; }
 div, pre, p { margin: 0; padding: 0; }
@@ -1805,16 +1804,14 @@ div.screen {
 }
 ol.steps, ul.steps {
   padding: 0.5em 1em 0.5em 1em;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
   border-</xsl:text><xsl:value-of select="$left"/><xsl:text>: solid 4px </xsl:text>
     <xsl:value-of select="$color.yellow"/><xsl:text>;
-  box-shadow: 0 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray"/><xsl:text>;
 }
 ol.steps .steps {
   padding: 0;
   border: none;
   background-color: unset;
-  box-shadow: none;
 }
 li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 1.44em; }
 li.steps li.steps { margin-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 2.4em; }
@@ -1867,12 +1864,17 @@ span.em-bold {
   font-style: normal; font-weight: bold;
   color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
 }
+a span.em-bold {
+  color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
+}
 pre span.error {
   color: </xsl:text><xsl:value-of select="$color.fg.red"/><xsl:text>;
 }
 span.file { font-family: monospace,monospace; font-size: 0.83em; }
 span.gui, span.guiseq { color: </xsl:text>
   <xsl:value-of select="$color.fg.dark"/><xsl:text>; }
+a span.gui, a span.guiseq { color: </xsl:text>
+  <xsl:value-of select="$color.fg.blue"/><xsl:text>; }
 span.input { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.input {
   font-weight: bold;
@@ -1888,8 +1890,6 @@ kbd {
   border: solid 1px </xsl:text>
     <xsl:value-of select="$color.gray"/><xsl:text>;
   border-radius: 2px;
-  box-shadow: 1px 1px 2px </xsl:text>
-    <xsl:value-of select="$color.gray"/><xsl:text>;
   margin: 0 0.2em 0 0.2em;
   padding: 0.2em 0.5em 0 0.5em;
   white-space: nowrap;
@@ -1902,7 +1902,7 @@ kbd.key-Fn {
 span.key a {
   border-bottom: none;
 }
-a > kbd {
+a kbd {
   color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
   border-color: </xsl:text><xsl:value-of select="$color.fg.blue"/><xsl:text>;
 }
@@ -1911,6 +1911,8 @@ span.keyseq {
     <xsl:value-of select="$color.fg.dark"/><xsl:text>;
   white-space: nowrap
 }
+a span.keyseq { color: </xsl:text>
+  <xsl:value-of select="$color.fg.blue"/><xsl:text>; }
 span.output { font-family: monospace,monospace; font-size: 0.83em; }
 pre span.output {
   color: </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
@@ -1926,8 +1928,7 @@ span.media-audio, span.media-video { display: inline-block; }
 audio, video { display: block; margin: 0; }
 div.media > div.inner { display: inline-block; text-align: center; }
 .media-controls {
-  min-width: 24em;
-  height: 24px;
+  height: 30px;
   margin: 0; padding: 0;
   border-left: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
   border-right: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
@@ -1938,10 +1939,6 @@ div.media > div.inner { display: inline-block; text-align: center; }
   border-bottom-right-radius: 4px;
   display: flex;
   align-items: center;
-}
-.media-audio .media-controls {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 }
 .media-controls > * {
   flex: 0 1 auto;
@@ -1989,8 +1986,8 @@ input.media-range::-moz-range-thumb {
   border-radius: 4px;
 }
 button.media-play {
-  height: 24px;
-  padding: 0 2px 0 2px; line-height: 0;
+  height: 30px;
+  padding: 0 6px 0 6px; line-height: 0;
   background-color: </xsl:text><xsl:value-of select="$color.fg.dark"/><xsl:text>;
   border: none;
   border-</xsl:text><xsl:value-of select="$right"/><xsl:text>: solid 1px </xsl:text>
@@ -2007,8 +2004,8 @@ button.media-play-playing .media-pause { display: inline; }
 .media-time {
   margin: 0;
   font-size: 16px;
-  height: 24px;
-  line-height: 24px;
+  height: 30px;
+  line-height: 30px;
 }
 .media-time > span {
   padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 8px;
@@ -2018,7 +2015,19 @@ button.media-play-playing .media-pause { display: inline; }
   color: </xsl:text><xsl:value-of select="$color.bg.dark"/><xsl:text>;
   opacity: 0.8;
 }
-div.media-ttml { margin: 0; padding: 0; }
+.media-controls-ttml {
+  min-width: 630px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+div.media-ttml {
+  margin: 0; padding: 6px 0;
+  background-color: </xsl:text><xsl:value-of select="$color.bg.gray"/><xsl:text>;
+  border: solid 1px </xsl:text><xsl:value-of select="$color.fg"/><xsl:text>;
+  min-height: 24px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
 .media-ttml-pre { white-space: pre; }
 .media-ttml-nopre { white-space: normal; }
 div.media-ttml-div {
@@ -2029,16 +2038,11 @@ div.media-ttml-div {
 div.media-ttml-p {
   text-align: </xsl:text><xsl:value-of select="$left"/><xsl:text>;
   display: none;
-  margin: 6px auto 0 auto;
-  padding: 6px;
-  max-width: 24em;
-  border: solid 1px </xsl:text>
-    <xsl:value-of select="$color.fg.yellow"/><xsl:text>;
-  background-color: </xsl:text>
-    <xsl:value-of select="$color.bg.yellow"/><xsl:text>;
-  box-shadow: 2px 2px 4px </xsl:text>
-    <xsl:value-of select="$color.gray"/><xsl:text>;
+  margin: 0 auto;
+  max-width: 560px;
+  line-height: 1.44em;
 }
+div.media-ttml-div > * + * { margin-top: 1em; }
 div.yelp-data { display: none; }
 .ui-expander > div.inner > div.title span.title,
 .ui-expander > div.inner > div.hgroup span.title {
@@ -2191,7 +2195,6 @@ section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.content
     margin-right: 10px;
   }
   ol.steps, ul.steps {
-    box-shadow: none;
     padding: 0;
     padding-</xsl:text><xsl:value-of select="$left"/><xsl:text>: 6px;
     padding-</xsl:text><xsl:value-of select="$right"/><xsl:text>: 10px;
@@ -3068,7 +3071,11 @@ It should return a simple language identifier.
 <!--**==========================================================================
 html.media.controls
 Output media controls for a video or audio object.
-@revision[version=3.28 date=2016-02-12 status=final]
+@revision[version=3.38 date=2020-04-30 status=final]
+
+[xsl:params]
+$type: The type of media element, either 'video' or 'audio'.
+$ttml: Whether there are TTML subtitles for this media element.
 
 This template outputs HTML containing controls for a media play for audio or
 video HTML elements. To work with the built-in JavaScript binding code, it
@@ -3076,7 +3083,15 @@ should be placed immediately after the `audio` or `video` element.
 -->
 <xsl:template name="html.media.controls">
   <xsl:param name="type" select="'video'"/>
-  <span class="media-controls media-controls-{$type}">
+  <xsl:param name="ttml" select="false()"/>
+  <div>
+    <xsl:attribute name="class">
+      <xsl:text>media-controls media-controls-</xsl:text>
+      <xsl:value-of select="$type"/>
+      <xsl:if test="$ttml">
+        <xsl:text> media-controls-ttml</xsl:text>
+      </xsl:if>
+    </xsl:attribute>
     <button class="media-play">
       <xsl:attribute name="data-play-label">
         <xsl:call-template name="l10n.gettext">
@@ -3101,7 +3116,7 @@ should be placed immediately after the `audio` or `video` element.
       <span class="media-current">0:00</span>
       <span class="media-duration">-:--</span>
     </span>
-  </span>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>
