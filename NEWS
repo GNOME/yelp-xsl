@@ -1,3 +1,13 @@
+3.37.90
+=======
+* Various styling changes, especially around media and ttml
+* Updated translations:
+  ckb      (Jwtiyar Nariman)
+  nl       (Hannie Dumoleyn)
+  ro       (Florentina Mușat)
+  uk       (Daniel Korostil)
+  zh_CN    (Aron Xu)
+
 3.36.0
 ======
 * Added a syntax highlighter for Ducktype

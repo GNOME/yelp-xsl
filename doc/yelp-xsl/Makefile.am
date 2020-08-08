@@ -37,6 +37,7 @@ endif
 clean-local: xsldoc-clean
 xsldoc-clean:
 	rm -f C/*.page
+	rm -f ducks/*.duck
 
 EXTRA_DIST = 			\
 	$(xsldoc_ducks)		\
