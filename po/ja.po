@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-06-01 19:46+0000\n"
+"POT-Creation-Date: 2020-08-18 10:03+0000\n"
 "PO-Revision-Date: 2020-08-18 18:00+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "候補版"
 #. Accessible title for a caution note.
 #: yelp-xsl.xml.in:137
 msgid "Caution"
-msgstr ""
+msgstr "注意"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an close button.
@@ -164,7 +164,7 @@ msgstr "Creative Commons"
 #. Accessible title for a danger note.
 #: yelp-xsl.xml.in:162
 msgid "Danger"
-msgstr ""
+msgstr "危険性"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
@@ -283,7 +283,7 @@ msgstr "古くなっています"
 #. Accessible title for a package note.
 #: yelp-xsl.xml.in:269
 msgid "Package"
-msgstr ""
+msgstr "パッケージ"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
