@@ -1,19 +1,20 @@
 # ja.po for gnome-doc-utils.
-# Copyright (C) 2004-2009 Shaun McCance <shaunm@gnome.org>
+# Copyright (C) 2004-2007, 2009, 2011-2013, 2020 Shaun McCance <shaunm@gnome.org>
 # This file is distributed under the same license as the gnome-doc-utils package.
 # Satoru SATOH <ss@gnome.gr.jp>, 2004.
-# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2005-2007,2009.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2005-2007, 2009.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009.
 # Hideki Yamane <henrich@debian.org>, 2011.
 # Yasumichi Akahoshi <yasumichi@vinelinux.org>, 2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2012, 2013.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
 "POT-Creation-Date: 2020-06-01 19:46+0000\n"
-"PO-Revision-Date: 2013-08-07 23:59+0900\n"
+"PO-Revision-Date: 2020-08-18 18:00+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -260,7 +261,7 @@ msgstr "注記"
 #. Title for a list of links to sections on the current page.
 #: yelp-xsl.xml.in:248
 msgid "On This Page"
-msgstr ""
+msgstr "このページ内"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
