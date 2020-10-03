@@ -4,9 +4,22 @@
   <link type="guide" xref="html" group="templates"/>
   <link type="guide" xref="templates" group="html"/>
   <desc>Output media controls for a video or audio object.</desc>
-  <revision version="3.28" date="2016-02-12" status="final"/>
+  <revision version="3.38" date="2020-04-30" status="final"/>
  </info>
  <title>html.media.controls</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$type</code></title>
+    <p>The type of media element, either 'video' or 'audio'.</p>
+   </item>
+   <item>
+    <title><code>$ttml</code></title>
+    <p>Whether there are TTML subtitles for this media element.</p>
+   </item>
+  </terms>
+ </synopsis>
  <p>This template outputs HTML containing controls for a media play for audio or
  video HTML elements. To work with the built-in JavaScript binding code, it
  should be placed immediately after the <sys>audio</sys> or <sys>video</sys> element.</p>

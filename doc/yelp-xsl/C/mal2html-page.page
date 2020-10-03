@@ -93,6 +93,9 @@
  <list style="compact">
   <title>Calls Templates</title>
   <item>
+   <p><link xref="color.blend"/></p>
+  </item>
+  <item>
    <p><link xref="html.class.attr"/></p>
   </item>
   <item>
