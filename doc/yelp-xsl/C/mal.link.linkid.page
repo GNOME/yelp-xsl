@@ -23,22 +23,4 @@
  <p>The link ID is used in Mallard cache files to ensure all <sys>id</sys> attributes are
  unique.  All of the templates in this stylesheet that use a link ID use this
  template or <code xref="mal.link.xref.linkid">mal.link.xref.linkid</code>.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache.file"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.prefix"/></p>
-  </item>
- </list>
 </page>

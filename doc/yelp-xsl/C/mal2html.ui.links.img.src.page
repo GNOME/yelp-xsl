@@ -31,10 +31,4 @@
  <p>This template outputs <sys>src</sys> attribute for the HTML <sys>img</sys> element created
  from <code>$thumb</code>. By default, it just copies the <sys>src</sys> attribute of <code>$thumb</code>.
  Override this template if you need to support multi-directory output.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
 </page>

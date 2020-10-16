@@ -33,22 +33,4 @@
  a <sys>/</sys> or <sys>:</sys> in the <sys>xref</sys> attribute. By default, it just outputs the
  value of <code>$href</code>. Override this template to provide behavior for extended
  <sys>xref</sys> attributes.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache.file"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.prefix"/></p>
-  </item>
- </list>
 </page>

@@ -25,22 +25,4 @@
  is always used first. Otherwise, if <code>$role</code> is defined and <code>$node</code> has a link
  title with a matching role, that title is used. Otherwise, if <code>$node</code> has a link
  title with no role, that title is used. Otherwise, the primary title is used.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache.file"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.prefix"/></p>
-  </item>
- </list>
 </page>

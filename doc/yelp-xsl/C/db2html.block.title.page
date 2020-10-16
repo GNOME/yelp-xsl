@@ -23,12 +23,6 @@
  <p>This template formats the contents of <code>$title</code> as a title for a block-level
  element. It is called by <code xref="db2html.block.formal">db2html.block.formal</code>.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="html.syntax.highlight"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="db.chunk.depth-in-chunk"/></p>

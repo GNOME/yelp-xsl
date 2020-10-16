@@ -32,10 +32,4 @@
  element created from <code>$thumb</code>, based on the <sys>uix:overflow</sys> attribute on <code>$node</code>.
  The <code>$width</code> and <code>$height</code> parameters can be computed automatically from the
  <code>$node</code> element.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
 </page>

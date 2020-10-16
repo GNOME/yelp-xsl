@@ -24,10 +24,4 @@
  Otherwise, a non-empty string is output.</p>
  <p>To determine if a term matches a set of matches, call this template for each
  <sys>gloss:match</sys> element, then check if the concatenated result is empty.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
 </page>

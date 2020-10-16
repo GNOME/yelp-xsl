@@ -29,9 +29,6 @@
   <item>
    <p><link xref="db.chunk.basename"/></p>
   </item>
-  <item>
-   <p><link xref="db.chunk.max_depth"/></p>
-  </item>
  </list>
  <list style="compact">
   <title>Calls Keys</title>

@@ -24,22 +24,4 @@
  This may simply be <code>$xref</code>, but if <code>$xref</code> starts with the <sys>#</sys> character, it
  is prefixed with the ID of the page that contains <code>$node</code>.</p>
  <p>See <code xref="mal.link.linkid">mal.link.linkid</code> for more on link IDs.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache.file"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.prefix"/></p>
-  </item>
- </list>
 </page>

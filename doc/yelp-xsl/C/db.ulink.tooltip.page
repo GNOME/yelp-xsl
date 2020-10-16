@@ -20,15 +20,6 @@
   </terms>
  </synopsis>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="db.chunk.basename"/></p>
-  </item>
-  <item>
-   <p><link xref="db.chunk.extension"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="l10n.gettext"/></p>

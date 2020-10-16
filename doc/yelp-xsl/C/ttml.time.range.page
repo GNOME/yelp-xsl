@@ -43,12 +43,6 @@
  and the one that results in the shortest duration is used.</p>
  <p>If there is no end time for the element, the string <sys>∞</sys> is used as the end time.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="ttml.features"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="ttml.time.range"/></p>

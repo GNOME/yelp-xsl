@@ -25,15 +25,6 @@
  </synopsis>
  <p>REMARK: The xrefstyle/role stuff needs to be documented</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="db.chunk.basename"/></p>
-  </item>
-  <item>
-   <p><link xref="db.chunk.extension"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Keys</title>
   <item>
    <p><link xref="db.id.key"/></p>

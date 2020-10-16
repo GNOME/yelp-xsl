@@ -112,12 +112,6 @@
  be able to use the <code>$node</code> and <code>$string</code> parameters in your template. Try to
  use a name that is unique.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="l10n.locale"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Keys</title>
   <item>
    <p><link xref="l10n.msgstr.key"/></p>

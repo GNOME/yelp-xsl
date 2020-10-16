@@ -25,12 +25,6 @@
  </synopsis>
  <p>REMARK: Talk about the different kinds of title blocks</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="db.chunk.max_depth"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="db.chunk.depth-in-chunk"/></p>

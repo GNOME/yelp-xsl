@@ -27,12 +27,6 @@
  <p>This template outputs seealso links for a page or section. It does not extract
  the links itself. They must be passed in with the <code>$links</code> parameter.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="l10n.gettext"/></p>

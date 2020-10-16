@@ -47,12 +47,6 @@
  <p>The <code>$width</code> and <code>$height</code> parameters can be computed automatically from the
  <code>$node</code> element.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="mal2html.ui.links.img.attrs"/></p>

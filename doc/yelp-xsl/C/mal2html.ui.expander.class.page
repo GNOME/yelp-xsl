@@ -28,10 +28,4 @@
  <p>This template also outputs <sys>ui-expander-preview</sys> if <code>$node</code> is an expander and
  it has the style hint <sys>ui-expander-preview</sys>. This is an alternative style
  that shows a scaled down preview of collapsed content.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
 </page>

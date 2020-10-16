@@ -24,63 +24,6 @@
  <code xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code>. This template is useful for adding extra site
  links at the beginning of each link trail.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="color.bg"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.green"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.orange"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.purple"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.yellow"/></p>
-  </item>
-  <item>
-   <p><link xref="color.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.dark"/></p>
-  </item>
-  <item>
-   <p><link xref="color.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.yellow"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal2html.editor_mode"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="html.linktrails.prefix"/></p>

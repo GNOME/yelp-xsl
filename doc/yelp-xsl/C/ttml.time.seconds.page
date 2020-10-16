@@ -23,10 +23,4 @@
  (hours). It returns <sys>0</sys> if the time expression is invalid.</p>
  <p>This template provides support only for the <sys>#time-offset</sys> TTML feature. It
  does not support other methods of specifying times.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="ttml.features"/></p>
-  </item>
- </list>
 </page>

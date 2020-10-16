@@ -37,12 +37,6 @@
  link to output a list item with a link.</p>
  <p>This template handles link sorting.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="mal2html.links.ul.li"/></p>

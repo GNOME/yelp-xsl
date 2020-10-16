@@ -46,12 +46,6 @@
  element will be processed as the title. Otherwise, the optional <code>$title</code>
  parameter will be used if provided.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="html.class.attr"/></p>

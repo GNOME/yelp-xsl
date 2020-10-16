@@ -20,12 +20,6 @@
  element. It's used for the DocBook <sys>blockquote</sys> and <sys>epigraph</sys> elements.</p>
  <p>This template handles conditional processing.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="html.syntax.highlight"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="db.profile.test"/></p>

@@ -23,12 +23,6 @@
  <p>This template outputs copyright information, credits, and license information for
  the division. By default it is called by the <code xref="html.footer.mode">html.footer.mode</code> implementation.</p>
  <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="db.chunk.max_depth"/></p>
-  </item>
- </list>
- <list style="compact">
   <title>Calls Templates</title>
   <item>
    <p><link xref="db.copyright"/></p>

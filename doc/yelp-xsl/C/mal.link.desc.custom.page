@@ -40,22 +40,4 @@
  <p>This template is called by <code xref="mal.link.desc">mal.link.desc</code> to create content for custom links.
  Use this template to support the <sys>action</sys> attribute or extended <sys>xref</sys>
  attributes containing slash or colon characters.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.cache.file"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.default_root"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="mal.link.prefix"/></p>
-  </item>
- </list>
 </page>

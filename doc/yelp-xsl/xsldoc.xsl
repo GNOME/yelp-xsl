@@ -110,7 +110,7 @@ with this program; if not, see <http://www.gnu.org/licenses/>.
             </xsl:message>
           </xsl:if>
           <xsl:call-template name="xsldoc.calls.params">
-            <xsl:with-param name="node" select="/xsl:stylesheet"/>
+            <xsl:with-param name="node" select="$template[1]"/>
           </xsl:call-template>
           <xsl:call-template name="xsldoc.calls.keys">
             <xsl:with-param name="node" select="$template[1]"/>

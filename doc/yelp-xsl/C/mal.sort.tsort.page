@@ -30,9 +30,6 @@
  <list style="compact">
   <title>Calls Parameters</title>
   <item>
-   <p><link xref="mal.cache"/></p>
-  </item>
-  <item>
    <p><link xref="mal.link.default_root"/></p>
   </item>
  </list>

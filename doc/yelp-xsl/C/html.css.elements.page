@@ -49,12 +49,6 @@
    <p><link xref="color.bg.gray"/></p>
   </item>
   <item>
-   <p><link xref="color.bg.green"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.red"/></p>
-  </item>
-  <item>
    <p><link xref="color.bg.yellow"/></p>
   </item>
   <item>
@@ -73,19 +67,7 @@
    <p><link xref="color.fg.gray"/></p>
   </item>
   <item>
-   <p><link xref="color.fg.green"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.orange"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.purple"/></p>
-  </item>
-  <item>
    <p><link xref="color.fg.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.yellow"/></p>
   </item>
   <item>
    <p><link xref="color.gray"/></p>
@@ -95,24 +77,6 @@
   </item>
   <item>
    <p><link xref="color.yellow"/></p>
-  </item>
-  <item>
-   <p><link xref="html.basename"/></p>
-  </item>
-  <item>
-   <p><link xref="html.extension"/></p>
-  </item>
-  <item>
-   <p><link xref="html.sidebar.left"/></p>
-  </item>
-  <item>
-   <p><link xref="html.sidebar.right"/></p>
-  </item>
-  <item>
-   <p><link xref="html.syntax.highlight"/></p>
-  </item>
-  <item>
-   <p><link xref="html.xhtml"/></p>
   </item>
   <item>
    <p><link xref="icons.size.quote"/></p>
