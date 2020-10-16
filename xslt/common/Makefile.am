@@ -1,4 +1,4 @@
-SUBDIRS = domains icons
+SUBDIRS = css domains icons
 
 xsldir=$(datadir)/yelp-xsl/xslt/common
 
@@ -8,6 +8,7 @@ xsl_DATA =			\
 	l10n.xsl		\
 	l10n-numbers.xsl	\
 	html.xsl		\
+	tmpl.xsl		\
 	ttml.xsl		\
 	utils.xsl
 

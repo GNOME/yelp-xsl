@@ -30,6 +30,7 @@ REMARK: Describe this module
 <xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>
 <xsl:import href="../../common/ttml.xsl"/>
+<xsl:import href="../../common/tmpl.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
 <xsl:import href="../common/dita-map.xsl"/>

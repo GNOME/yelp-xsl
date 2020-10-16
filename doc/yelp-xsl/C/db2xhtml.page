@@ -6,6 +6,7 @@
   <link type="topic" xref="color" group="imports"/>
   <link type="topic" xref="icons" group="imports"/>
   <link type="topic" xref="html" group="imports"/>
+  <link type="topic" xref="tmpl" group="imports"/>
   <link type="topic" xref="utils" group="imports"/>
   <link type="topic" xref="db-chunk" group="imports"/>
   <link type="topic" xref="db-common" group="imports"/>

@@ -32,6 +32,7 @@ DocBook documents into XHTML. This stylesheet sets the parameter
 <xsl:import href="../../common/color.xsl"/>
 <xsl:import href="../../common/icons.xsl"/>
 <xsl:import href="../../common/html.xsl"/>
+<xsl:import href="../../common/tmpl.xsl"/>
 <xsl:import href="../../common/utils.xsl"/>
 
 <xsl:import href="../common/db-chunk.xsl"/>

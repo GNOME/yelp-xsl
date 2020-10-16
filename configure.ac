@@ -63,6 +63,7 @@ doc/yelp-xsl/Makefile
 po/Makefile.in
 xslt/Makefile
 xslt/common/Makefile
+xslt/common/css/Makefile
 xslt/common/domains/Makefile
 xslt/common/icons/Makefile
 xslt/docbook/Makefile
