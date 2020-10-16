@@ -1,0 +1,136 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="concept"
+      id="note1">
+  <info>
+    <credit type="author copyright">
+      <name>Shaun McCance</name>
+      <email>shaunm@redhat.com</email>
+      <years>2020</years>
+    </credit>
+
+    <desc>Note some notes. Tip some tips. Warn some warnings.</desc>
+
+    <link type="guide" xref="index"/>
+  </info>
+
+  <title>Notes of a feather</title>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Morbi mauris ipsum, varius quis hendrerit eleifend, lobortis ac risus.
+  In congue ac nunc id luctus.</p>
+
+  <note>
+    <p>Nullam tincidunt, ligula id consequat ullamcorper, risus erat volutpat.
+    Curabitur aliquam ut urna sed molestie. Integer non fringilla dui.</p>
+  </note>
+
+  <p>Ut viverra facilisis dui, et pharetra nibh volutpat et.
+  Nunc vitae ante ac nulla convallis tristique eu sit amet leo.
+  Cras et turpis eu erat fermentum porttitor.</p>
+
+  <note style="sidebar">
+    <p>Donec euismod, nibh quis consequat pellentesque, urna ligula sollicitudin tortor,
+    eu vestibulum libero enim eget metus. Maecenas in iaculis sem.
+    Aenean dignissim pretium metus, eget pharetra neque ultrices et.</p>
+
+    <p>Donec nec diam in eros eleifend pretium ut id dolor.
+    Quisque ut felis enim. Sed tincidunt risus eu feugiat semper.
+    Aliquam malesuada ligula ligula, ac consequat erat mattis efficitur.</p>
+  </note>
+
+
+  <note style="advanced">
+    <title>Advanced</title>
+    <p>Donec dictum tortor lorem, ut mattis est suscipit dapibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Etiam feugiat mi semper mattis rhoncus. Sed laoreet convallis pharetra.
+    Cras semper nulla sit amet nulla dapibus finibus.</p>
+  </note>
+
+  <p>Vestibulum interdum ipsum a faucibus lacinia.
+  Mauris et sem ultrices, ornare velit et, rutrum nisi.</p>
+
+  <note style="bug">
+    <title>Bug</title>
+    <p>Proin bibendum neque nec egestas sodales.
+    Curabitur mattis sapien vitae justo pellentesque eleifend.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    Nulla commodo aliquam enim.</p>
+  </note>
+
+  <p>Cras sit amet ultrices ligula. Donec mattis tincidunt ex ac ullamcorper.
+  Etiam pharetra dignissim ligula, vel tincidunt nisi hendrerit ut.</p>
+
+  <note style="caution">
+    <title>Caution</title>
+    <p>Proin bibendum neque nec egestas sodales.
+    Curabitur mattis sapien vitae justo pellentesque eleifend.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    Nulla commodo aliquam enim.</p>
+  </note>
+
+  <p>Ut viverra facilisis dui, et pharetra nibh volutpat et.
+  Nunc vitae ante ac nulla convallis tristique eu sit amet leo.
+  Cras et turpis eu erat fermentum porttitor.</p>
+
+  <note style="danger">
+    <title>Danger</title>
+    <p>Maecenas posuere urna odio, at congue quam imperdiet a.
+    Suspendisse vulputate sed quam in luctus.
+    Fusce hendrerit scelerisque dui eget faucibus.
+    Vivamus at augue molestie enim lacinia finibus eget a metus.
+    Curabitur non urna neque.</p>
+  </note>
+
+  <p>Cras sit amet ultrices ligula. Donec mattis tincidunt ex ac ullamcorper.
+  Etiam pharetra dignissim ligula, vel tincidunt nisi hendrerit ut.</p>
+
+  <note style="important">
+    <title>Important</title>
+    <p>Etiam eleifend fringilla elementum. Vivamus ac dapibus dui.</p>
+
+    <p>Phasellus et sem eget libero tempus porta at vitae urna.
+    Vestibulum id mauris auctor, tempus risus efficitur, lobortis libero.
+    In dui est, ornare at suscipit non, aliquam eu nulla.</p>
+  </note>
+
+  <p>Pellentesque viverra tincidunt pretium.
+  Sed molestie dui metus, nec imperdiet nulla accumsan nec.
+  Ut consectetur tristique mauris, id rhoncus leo commodo eget.</p>
+
+  <note style="plain">
+    <title>Plain</title>
+    <p>Maecenas posuere urna odio, at congue quam imperdiet a.
+    Suspendisse vulputate sed quam in luctus.
+    Fusce hendrerit scelerisque dui eget faucibus.
+    Vivamus at augue molestie enim lacinia finibus eget a metus.
+    Curabitur non urna neque.</p>
+  </note>
+
+  <p>Ut viverra facilisis dui, et pharetra nibh volutpat et.
+  Nunc vitae ante ac nulla convallis tristique eu sit amet leo.
+  Cras et turpis eu erat fermentum porttitor.</p>
+
+  <note style="tip">
+    <title>Tip</title>
+    <p>Donec dictum tortor lorem, ut mattis est suscipit dapibus.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Etiam feugiat mi semper mattis rhoncus. Sed laoreet convallis pharetra.
+    Cras semper nulla sit amet nulla dapibus finibus.</p>
+  </note>
+
+  <p>Vestibulum interdum ipsum a faucibus lacinia.
+  Mauris et sem ultrices, ornare velit et, rutrum nisi.</p>
+
+  <note style="warning">
+    <title>Warning</title>
+    <p>Proin bibendum neque nec egestas sodales.
+    Curabitur mattis sapien vitae justo pellentesque eleifend.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    Nulla commodo aliquam enim.</p>
+  </note>
+
+  <p>Ut viverra facilisis dui, et pharetra nibh volutpat et.
+  Nunc vitae ante ac nulla convallis tristique eu sit amet leo.
+  Cras et turpis eu erat fermentum porttitor.</p>
+</page>
