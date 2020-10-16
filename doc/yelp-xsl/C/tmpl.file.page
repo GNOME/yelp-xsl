@@ -4,7 +4,7 @@
   <link type="guide" xref="tmpl" group="templates"/>
   <link type="guide" xref="templates" group="tmpl"/>
   <desc>Perform text substitutions on a file.</desc>
-  <revision version="40" date="FIXME" status="FIXME"/>
+  <revision version="40" date="2020-10-16" status="final"/>
  </info>
  <title>tmpl.file</title>
  <synopsis>

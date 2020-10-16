@@ -1222,6 +1222,10 @@ common spacings for block-level elements like paragraphs and lists, defines
 styles for links, and defines four common wrapper divs: `header`, `side`,
 `body`, and `footer`.
 
+This template uses text templates to keep the actual CSS content in a
+separate file, `css/core.css.tmpl`, and do simple param substitutions.
+This makes it easier to update the CSS without working with XSLT.
+
 All parameters can be automatically computed if not provided.
 -->
 <xsl:template name="html.css.core">
@@ -1265,6 +1269,10 @@ Mallard. It defines them using common class names. The common names are often
 the simpler element names from Mallard, although there some class names which
 are not taken from Mallard. Stylesheets which convert to HTML should use the
 appropriate common classes.
+
+This template uses text templates to keep the actual CSS content in a
+separate file, `css/elements.css.tmpl`, and do simple param substitutions.
+This makes it easier to update the CSS without working with XSLT.
 
 All parameters can be automatically computed if not provided.
 -->
@@ -1376,6 +1384,10 @@ highlighting is done at document load time with JavaScript. Text in code blocks
 is broken up into chunks and wrapped in HTML elements with particular classes.
 This template outputs CSS to match those elements and style them with the
 built-in themeable colors from {color}.
+
+This template uses text templates to keep the actual CSS content in a
+separate file, `css/syntax.css.tmpl`, and do simple param substitutions.
+This makes it easier to update the CSS without working with XSLT.
 
 All parameters can be automatically computed if not provided.
 -->

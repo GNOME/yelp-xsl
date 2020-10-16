@@ -24,7 +24,7 @@ along with this program; see the file COPYING.LGPL. If not, see
 <!--!!==========================================================================
 Text Templates
 Perform simple substitutions in text files.
-@revision[version=40 date=FIXME status=FIXME]
+@revision[version=40 date=2020-10-16 status=final]
 
 This stylesheet contains templates to perform simple substitutions on text
 and files containing text. The primary purpose of these templates is to allow
@@ -48,7 +48,7 @@ This stylesheet was added in version 40.
 <!--**==========================================================================
 tmpl.file
 Perform text substitutions on a file.
-@revision[version=40 date=FIXME status=FIXME]
+@revision[version=40 date=2020-10-16 status=final]
 
 [xsl:params]
 $file: The filename of the file to process for substitutions.
@@ -100,7 +100,7 @@ This template was added in version 40.
 <!--**==========================================================================
 tmpl.text
 Perform text substitutions on some text.
-@revision[version=40 date=FIXME status=FIXME]
+@revision[version=40 date=2020-10-16 status=final]
 
 [xsl:params]
 $text: The text to process for substitutions.

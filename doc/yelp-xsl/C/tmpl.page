@@ -3,7 +3,7 @@
  <info>
   <link type="guide" xref="stylesheets" group="tmpl"/>
   <desc>Perform simple substitutions in text files.</desc>
-  <revision version="40" date="FIXME" status="FIXME"/>
+  <revision version="40" date="2020-10-16" status="final"/>
  </info>
  <title>Text Templates</title>
  <p>This stylesheet contains templates to perform simple substitutions on text
