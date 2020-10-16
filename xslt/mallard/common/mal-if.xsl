@@ -39,7 +39,8 @@ The list of supported target tokens.
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template {mal.if.test}. This parameter is meant
 to hold tokens starting with `target:`. It should usually be set by the primary
-importing stylesheet.
+importing stylesheet. The default in this stylesheet is just `''`, but it is
+set to appropriate values by the importing HTML and XHTML stylesheets.
 -->
 <xsl:param name="mal.if.target" select="''"/>
 
@@ -65,7 +66,9 @@ The list of supported feature tokens.
 This parameter takes a space-separated list of tokens to enable for conditional
 processing. It is used by the template {mal.if.test}. This parameter is meant
 to hold tokens that specify the capabilities of these stylesheets. It should
-usually be set by the primary importing stylesheet.
+usually be set by the primary importing stylesheet. The default in this
+stylesheet is just `'mallard:1.0'`, but it is set to a more complete set of
+features by the importing HTML and XHTML stylesheets.
 -->
 <xsl:param name="mal.if.features" select="'
 mallard:1.0

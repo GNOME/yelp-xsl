@@ -10,7 +10,8 @@
  <p>This parameter takes a space-separated list of tokens to enable for conditional
  processing. It is used by the template <code xref="mal.if.test">mal.if.test</code>. This parameter is meant
  to hold tokens starting with <sys>target:</sys>. It should usually be set by the primary
- importing stylesheet.</p>
+ importing stylesheet. The default in this stylesheet is just <sys>''</sys>, but it is
+ set to appropriate values by the importing HTML and XHTML stylesheets.</p>
  <synopsis>
   <terms>
    <item>
