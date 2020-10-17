@@ -81,7 +81,19 @@
    <p><link xref="html.output"/></p>
   </item>
   <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+  <item>
    <p><link xref="l10n.gettext"/></p>
+  </item>
+  <item>
+   <p><link xref="tmpl.file"/></p>
   </item>
  </list>
  <list style="compact">
@@ -234,6 +246,14 @@
    <tr>
     <td>
      <p><code xref="html.body.mode">html.body.mode</code></p>
+    </td>
+    <td>
+     <p><code>*</code></p>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     <p><code xref="html.css.mode">html.css.mode</code></p>
     </td>
     <td>
      <p><code>*</code></p>

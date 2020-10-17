@@ -33,46 +33,7 @@
    <p><link xref="color.bg"/></p>
   </item>
   <item>
-   <p><link xref="color.bg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.green"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.orange"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.purple"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.yellow"/></p>
-  </item>
-  <item>
    <p><link xref="color.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.dark"/></p>
-  </item>
-  <item>
-   <p><link xref="color.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.yellow"/></p>
   </item>
   <item>
    <p><link xref="mal.cache"/></p>
@@ -166,6 +127,9 @@
   </item>
   <item>
    <p><link xref="mal2html.ui.expander.data"/></p>
+  </item>
+  <item>
+   <p><link xref="tmpl.file"/></p>
   </item>
  </list>
  <list style="compact">
