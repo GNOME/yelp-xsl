@@ -9,6 +9,8 @@
     </credit>
 
     <desc>This is the index page, whence all other pages link.</desc>
+
+    <revision date="2020-10-16" status="review"/>
   </info>
 
   <title>Lorem ipsum</title>
@@ -22,6 +24,20 @@
   Vestibulum in pretium ligula. Cras dignissim nisl ligula, non semper diam lobortis sit amet.
   Donec cursus sollicitudin velit, at vulputate enim.</p>
 
-  <links type="topic"/>
+  <links type="topic">
+    <title>Regular links</title>
+  </links>
+
+  <links type="topic" style="2column">
+    <title>Two-column links</title>
+  </links>
+
+  <links type="topic" style="linklist">
+    <title>Link list</title>
+  </links>
+
+  <links type="topic" style="button">
+    <title>Link buttons</title>
+  </links>
 
 </page>
