@@ -6,7 +6,6 @@ xsl_DATA =				\
 	db2html-callout.xsl		\
 	db2html-classsynopsis.xsl	\
 	db2html-cmdsynopsis.xsl		\
-	db2html-css.xsl			\
 	db2html-division.xsl		\
 	db2html-ebnf.xsl		\
 	db2html-footnote.xsl		\

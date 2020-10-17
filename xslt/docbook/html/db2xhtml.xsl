@@ -49,7 +49,6 @@ DocBook documents into XHTML. This stylesheet sets the parameter
 <xsl:include href="db2html-callout.xsl"/>
 <xsl:include href="db2html-classsynopsis.xsl"/>
 <xsl:include href="db2html-cmdsynopsis.xsl"/>
-<xsl:include href="db2html-css.xsl"/>
 <xsl:include href="db2html-division.xsl"/>
 <xsl:include href="db2html-ebnf.xsl"/>
 <xsl:include href="db2html-funcsynopsis.xsl"/>
