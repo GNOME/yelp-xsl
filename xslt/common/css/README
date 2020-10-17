@@ -1,0 +1,21 @@
+These are the CSS text template files used by these XSLT stylesheets.
+They are maintained in separate files to make it easier to work on them.
+You can call variables or XPath expression with double curly braces {{$like_this}}.
+Variables are defined in the XSLT files.
+
+Because of limitations in XSLT, these files do have to be well-formed XML,
+even though we only ever use the text value.
+That means they have to be wrapped in an XML element,
+and any < and & characters have to be escaped as &lt; and &amp;, respectively.
+
+Here's what each file is:
+
+* core.css.tmpl     - The core CSS for general page layout
+* elements.css.tmpl - CSS for element styles common to multiple formats
+* syntax.css.tmpl   - CSS for syntax highlighting, using highlight.js
+* mallard.css.tmpl  - CSS for element styles specific to Mallard
+* docbook.css.tmpl  - CSS for element styles specific to DocBook
+
+The easiest way to test your changes to these files is with the lipsum test document,
+found under test/lipsum from the root of this repository.
+That directory has a README that explains how to use it to test changes.
