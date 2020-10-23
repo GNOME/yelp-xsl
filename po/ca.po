@@ -334,7 +334,7 @@ msgstr "Fes les imatges més petites"
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:316
 msgid "Sidebar"
-msgstr "Nota al marge"
+msgstr "Barra lateral"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
