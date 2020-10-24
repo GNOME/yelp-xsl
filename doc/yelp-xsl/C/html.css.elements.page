@@ -33,55 +33,10 @@
  the simpler element names from Mallard, although there some class names which
  are not taken from Mallard. Stylesheets which convert to HTML should use the
  appropriate common classes.</p>
+ <p>This template uses text templates to keep the actual CSS content in a
+ separate file, <sys>css/elements.css.tmpl</sys>, and do simple param substitutions.
+ This makes it easier to update the CSS without working with XSLT.</p>
  <p>All parameters can be automatically computed if not provided.</p>
- <list style="compact">
-  <title>Calls Parameters</title>
-  <item>
-   <p><link xref="color.bg"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.dark"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.bg.yellow"/></p>
-  </item>
-  <item>
-   <p><link xref="color.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.blue"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.dark"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.fg.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.gray"/></p>
-  </item>
-  <item>
-   <p><link xref="color.red"/></p>
-  </item>
-  <item>
-   <p><link xref="color.yellow"/></p>
-  </item>
-  <item>
-   <p><link xref="icons.size.quote"/></p>
-  </item>
- </list>
  <list style="compact">
   <title>Calls Templates</title>
   <item>
@@ -95,6 +50,9 @@
   </item>
   <item>
    <p><link xref="l10n.gettext"/></p>
+  </item>
+  <item>
+   <p><link xref="tmpl.file"/></p>
   </item>
  </list>
 </page>

@@ -1,0 +1,43 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index">
+  <info>
+    <credit type="author copyright">
+      <name>Shaun McCance</name>
+      <email>shaunm@redhat.com</email>
+      <years>2020</years>
+    </credit>
+
+    <desc>This is the index page, whence all other pages link.</desc>
+
+    <revision date="2020-10-16" status="review"/>
+  </info>
+
+  <title>Lorem ipsum</title>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Morbi mauris ipsum, varius quis hendrerit eleifend, lobortis ac risus.
+  In congue ac nunc id luctus.
+  Nullam tincidunt, ligula id consequat ullamcorper, risus erat volutpat augue, ut sagittis dui erat vitae lacus.
+  Curabitur aliquam ut urna sed molestie. Integer non fringilla dui.
+  Donec at elit id tortor lacinia sollicitudin ut non ligula.
+  Vestibulum in pretium ligula. Cras dignissim nisl ligula, non semper diam lobortis sit amet.
+  Donec cursus sollicitudin velit, at vulputate enim.</p>
+
+  <links type="topic">
+    <title>Regular links</title>
+  </links>
+
+  <links type="topic" style="2column">
+    <title>Two-column links</title>
+  </links>
+
+  <links type="topic" style="linklist">
+    <title>Link list</title>
+  </links>
+
+  <links type="topic" style="button">
+    <title>Link buttons</title>
+  </links>
+
+</page>

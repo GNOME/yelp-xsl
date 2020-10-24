@@ -1,0 +1,34 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="task1">
+  <info>
+    <credit type="author copyright">
+      <name>Shaun McCance</name>
+      <email>shaunm@redhat.com</email>
+      <years>2020</years>
+    </credit>
+
+    <desc>Perform the first action with gusto.</desc>
+
+    <link type="guide" xref="index"/>
+  </info>
+
+  <title>The first task</title>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Morbi mauris ipsum, varius quis hendrerit eleifend, lobortis ac risus.
+  In congue ac nunc id luctus.</p>
+
+  <steps>
+    <item><p>Nullam tincidunt, ligula id consequat ullamcorper, risus erat volutpat.</p></item>
+    <item><p>Curabitur aliquam ut urna sed molestie. Integer non fringilla dui.</p></item>
+    <item>
+      <p>Donec at elit id tortor lacinia sollicitudin ut non ligula.</p>
+      <list>
+        <item><p>Vestibulum in pretium ligula.</p></item>
+        <item><p>Cras dignissim nisl ligula, non semper diam lobortis sit amet.</p></item>
+      </list>
+    </item>
+    <item><p>Donec cursus sollicitudin velit, at vulputate enim.</p></item>
+  </steps>
+</page>

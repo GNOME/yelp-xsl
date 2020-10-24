@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-template" id="tmpl.file">
+ <info>
+  <link type="guide" xref="tmpl" group="templates"/>
+  <link type="guide" xref="templates" group="tmpl"/>
+  <desc>Perform text substitutions on a file.</desc>
+  <revision version="40" date="2020-10-16" status="final"/>
+ </info>
+ <title>tmpl.file</title>
+ <synopsis>
+  <title>Parameters</title>
+  <terms>
+   <item>
+    <title><code>$file</code></title>
+    <p>The filename of the file to process for substitutions.</p>
+   </item>
+   <item>
+    <title><code>$node</code></title>
+    <p>The node to create CSS for.</p>
+   </item>
+   <item>
+    <title><code>$direction</code></title>
+    <p>The directionality of the text, either <sys>ltr</sys> or <sys>rtl</sys>.</p>
+   </item>
+   <item>
+    <title><code>$left</code></title>
+    <p>The starting alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+   <item>
+    <title><code>$right</code></title>
+    <p>The ending alignment, either <sys>left</sys> or <sys>right</sys>.</p>
+   </item>
+  </terms>
+ </synopsis>
+ <p>This template reads the file specified by the <code>$file</code> parameter and performs
+ text substitutions. Due to XSLT limitations, the file must be a well-formed
+ XML document. However, this template simply takes the string value of the
+ document, so it is sufficient to wrap the text in a dummy element and ensure
+ any <sys>&lt;</sys> and <sys>&amp;</sys> characters are escaped.</p>
+ <p>See <code xref="tmpl">tmpl</code> for information on the substitution syntax.</p>
+ <note style="plain">
+  <p>This template was added in version 40.</p>
+ </note>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+  <item>
+   <p><link xref="tmpl.text"/></p>
+  </item>
+ </list>
+</page>

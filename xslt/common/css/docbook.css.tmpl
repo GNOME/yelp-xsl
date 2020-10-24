@@ -1,0 +1,175 @@
+<tmpl>
+div.hgroup.bridgehead { margin-top: 1em; }
+
+<!-- == common == -->
+sub { font-size: 0.83em; }
+sub sub { font-size: 1em; }
+sup { font-size: 0.83em; }
+sup sup { font-size: 1em; }
+table.table-pgwide { width: 100%; }
+table.table-rules-groups thead + *, table.table-rules-rows thead + *,
+table.table-rules-groups tfoot + *, table.table-rules-rows tfoot + *,
+table.table-rules-groups tbody + *, table.table-rules-rows tbody + *,
+table.table-rules-rows tr + * { border-top: solid 1px; }
+table.table-rules-cols td + *, table.table-rules-cols th + * {
+  border-{{$left}}: solid 1px;
+}
+
+td.td-colsep { border-{{$right}}: solid 1px; }
+td.td-rowsep { border-bottom: solid 1px; }
+
+<!-- == bibliography == -->
+span.bibliolabel {
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+div.biblioentry span.title {
+  font-weight: normal;
+  font-style: italic;
+}
+span.citetitle {
+  font-style: italic;
+}
+
+<!-- == block == -->
+div.epigraph {
+  text-align: {{$right}};
+  margin-{{$left}}: 20%;
+  margin-{{$right}}: 0;
+  color: {{$color.fg.dark}};
+}
+div.programlisting .userinput {
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+div.address, div.literallayout { white-space: pre; }
+
+
+<!-- == footnotes == -->
+div.footnotes {
+  border-top: solid 2px {{$color.gray}};
+}
+div.footnote { margin-top: 1.44em; }
+sup.footnote { font-size: 0.83em; }
+a.footnote {
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: none;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-radius: 2px;
+}
+div.footnote > a.footnote {
+  margin-{{$right}}: 0.83em;
+  background-color: {{$color.bg.gray}};
+}
+div.footnote > a.footnote + p { display: inline-block; margin: 0; }
+a.footnote:hover, div.footnote > a.footnote:hover {
+  background-color: {{$color.bg.blue}};
+  box-shadow: 0 0 2px {{$color.blue}};
+}
+
+<!-- == indexes == -->
+dt.ixprimary {
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+dt.ixprimary * { font-style: normal; }
+dt.ixprimary + dt.ixprimary { margin-top: 1em; }
+dd.ixsecondary {
+  color: {{$color.fg.gray}};
+}
+dt.ixsecondary, dt.ixtertiary { margin-top: 0.2em; }
+dd.ixlink, dd.ixsee, dd.ixseealso {
+  color: {{$color.fg.gray}};
+}
+dd.ixlink + dd, dd.ixsee + dd, dd.ixseealso + dd {
+  margin-top: 0.2em;
+}
+dt.ixsecondary:before, dt.ixtertiary:before {
+  content: "⏺";
+  color: {{$color.fg.gray}};
+}
+dd.ixlink:before {
+  content: "⏺";
+  color: {{$color.blue}};
+}
+dd.ixsee:before, dd.ixseealso:before {
+  content: "⏺";
+  color: {{$color.gray}};
+}
+
+<!-- == unsorted == -->
+dl.index dt { margin-top: 0; }
+dl.index dd { margin-top: 0; margin-bottom: 0; }
+dl.indexdiv dt { margin-top: 0; }
+dl.indexdiv dd { margin-top: 0; margin-bottom: 0; }
+dl.setindex dt { margin-top: 0; }
+dl.setindex dd { margin-top: 0; margin-bottom: 0; }
+div.simplelist { margin-{{$left}}: 1.72em; }
+div.simplelist table { margin-left: 0; border: none; }
+div.simplelist td {
+  padding: 0.5em;
+  border-{{$left}}: solid 1px {{$color.gray}};
+}
+div.simplelist td:first-child {
+  padding-{{$left}}: 0;
+  border-{{$left}}: 0;
+}
+
+span.accel { text-decoration: underline; }
+span.email { font-family: monospace,monospace; font-size: 0.83em; }
+span.firstterm { font-style: italic; }
+span.foreignphrase { font-style: italic; }
+
+dt.glossterm span.glossterm { font-style: normal; }
+<!--
+dt.glossterm { margin-left: 0em; }
+dd + dt.glossterm { margin-top: 2em; }
+dd.glossdef, dd.glosssee, dd.glossseealso { margin-top: 0em;  margin-bottom: 0; }
+-->
+
+span.glossterm { font-style: italic; }
+
+span.lineannotation { font-style: italic; }
+span.medialabel { font-style: italic; }
+.methodparam span.parameter { font-style: italic; }
+span.paramdef span.parameter { font-style: italic; }
+span.prompt { font-family: monospace,monospace; font-size: 0.83em; }
+span.wordasword { font-style: italic; }
+<!-- FIXME below -->
+
+dt.question {
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+dd + dt.question { margin-top: 1em; }
+dd.answer {
+  margin-top: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+div.qanda-label {
+  line-height: 1.44em;
+  float: {{$left}};
+  margin-{{$right}}: 1em;
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+dl.qandaset ol, dl.qandaset ul, dl.qandaset table { clear: both; }
+
+div.synopfragment { padding-top: 0.5em; }
+span.co {
+  border-radius: 4px;
+  background-color: {{$color.bg.yellow}};
+  outline: solid 1px {{$color.yellow}};
+}
+span.co a { text-decoration: none; }
+span.co a:hover { text-decoration: none; }
+div.co {
+  margin: 0;
+  float: {{$left}};
+  clear: both;
+}
+</tmpl>

@@ -1,0 +1,241 @@
+<tmpl>
+html { height: 100%; }
+body {
+  font-family: sans-serif;
+  margin: 0; padding: 0;
+  background-color: {{$color.bg}};
+  color: {{$color.fg}};
+  direction: {{$direction}};
+}
+article, aside, nav, header, footer, section {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+main {
+  display: flex;
+  flex-flow: row;
+}
+main > * {
+  flex: 0 0 220px;
+}
+main > div.page {
+  flex-grow: 1;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+div.page > article { flex: 1 0 auto; }
+div.page > header, div.page > footer { flex: 0 1 auto; }
+.pagewide {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+aside.sidebar {
+  width: 300px;
+  padding: 20px 10px;
+  background: {{$color.bg.gray}}
+}
+aside.sidebar-right { order: 3; }
+aside.sidebar section { margin-top: 0; }
+aside.sidebar * { margin-bottom: 20px; }
+aside.sidebar section > div.inner > div.hgroup {
+  border-bottom: none;
+}
+aside.sidebar section h2 {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+article {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 20em;
+  background-color: {{$color.bg}};
+}
+section {
+  margin-top: 2.4em;
+  clear: both;
+}
+section section {
+  margin-top: 1.44em;
+}
+.yelp-hash-highlight {
+  animation-name: yelp-hash-highlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes yelp-hash-highlight {
+  from { transform: translateY(0px) }
+  25%  { transform: translateY(20px); }
+  50%  { transform: translateY(0); }
+  75%  { transform: translateY(10px); }
+  to   { transform: translateY(0px); }
+}
+div.trails {
+  margin: 0 -10px 0 -10px;
+  padding: 0.2em 10px;
+  background-color: {{$color.bg.gray}};
+}
+div.trail {
+  margin: 0.2em 0;
+  padding: 0 1em 0 1em;
+  text-indent: -1em;
+  color: {{$color.fg.dark}};
+}
+a.trail { white-space: nowrap; }
+div.hgroup {
+  margin-bottom: 0.5em;
+  color: {{$color.fg.dark}};
+}
+section > div.inner > div.hgroup {
+  margin-top: 0;
+  border-bottom: solid 1px {{$color.gray}};
+}
+section.links > div.inner > div.hgroup {
+  border-bottom: solid 2px {{$color.fg.blue}};
+}
+section section.links > div.inner > div.hgroup {
+  border: none;
+}
+h1, h2, h3, h4, h5, h6, h7 {
+  margin: 0; padding: 0;
+  font-weight: normal;
+}
+h1 { font-size: 2.4em; }
+h2 { font-size: 1.72em; }
+h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.44em; }
+h3, h4, h5, h6, h7 { font-size: 1em; }
+p { line-height: 1.44em; }
+div, pre, p { margin: 0; padding: 0; }
+div.contents > * + *,
+th > * + *, td > * + *,
+dt > * + *, dd > * + *,
+li > * + * { margin-top: 1em; }
+p img { vertical-align: middle; }
+p.lead { font-size: 1.2em; }
+div.clear {
+  margin: 0; padding: 0;
+  height: 0; line-height: 0;
+  clear: both;
+}
+.center { text-align: center; }
+
+footer.about { margin: 0; }
+footer.about > div.inner > div.hgroup {
+  margin: 0; padding: 0;
+  text-align: center;
+  border: none;
+}
+footer.about > div.inner > div.hgroup > h2 {
+  margin: 0; padding: 0.2em;
+  font-size: inherit;
+}
+footer.about.ui-expander > div.inner > div.hgroup span.title:before {
+  content: "";
+}
+div.copyrights {
+  max-width: 700px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+}
+div.copyright { margin: 0; }
+div.credits {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 720px;
+  margin: 0 auto;
+}
+div.credits > * {
+  vertical-align: top;
+  text-align: left;
+  flex: 1 0 220px;
+  margin: 0;
+  padding: 10px;
+}
+div.credits > *:empty { padding: 0 10px; height: 0; }
+ul.credits, ul.credits li {
+  margin: 0; padding: 0;
+  list-style-type: none;
+}
+ul.credits li {
+  margin-{{$left}}: 1em;
+  text-indent: -1em;
+}
+div.license {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  border-color: {{$color.gray}};
+  border-width: 1px;
+}
+td, th {
+  padding: 0.5em;
+  vertical-align: top;
+  border-color: {{$color.gray}};
+  border-width: 1px;
+}
+thead td, thead th, tfoot td, tfoot th {
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+  background-color: {{$color.bg.dark}};
+}
+th {
+  text-align: {{$left}};
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+
+ul, ol, dl { margin: 0; padding: 0; }
+li {
+  margin: 1em 0 0 0;
+  margin-{{$left}}: 2.4em;
+  padding: 0;
+}
+li:first-child { margin-top: 0; }
+@media (max-width: 480px) {
+  li {
+    margin-{{$left}}: 1.44em;
+  }
+}
+dt { margin-top: 1em; }
+dt:first-child { margin-top: 0; }
+dt + dt { margin-top: 0; }
+dd {
+  margin: 0.2em 0 0 0;
+  margin-{{$left}}: 1.44em;
+}
+dd + dd { margin-top: 1em; }
+ol.compact li { margin-top: 0.2em; }
+ul.compact li { margin-top: 0.2em; }
+ol.compact li:first-child { margin-top: 0; }
+ul.compact li:first-child { margin-top: 0; }
+dl.compact dt { margin-top: 0.2em; }
+dl.compact dt:first-child { margin-top: 0; }
+dl.compact dt + dt { margin-top: 0; }
+
+a {
+  text-decoration: none;
+  color: {{$color.fg.blue}};
+}
+a:visited { color: {{$color.fg.purple}}; }
+a:hover {
+  border-bottom: dotted 1px {{$color.fg.blue}};
+}
+p a {
+  border-bottom: dotted 1px {{$color.fg.blue}};
+}
+a img { border: none; }
+</tmpl>

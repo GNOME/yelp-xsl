@@ -1,0 +1,584 @@
+<tmpl>
+.yelp-svg-fill {
+  fill: {{$color.fg.dark}};
+}
+.yelp-svg-stroke {
+  stroke: {{$color.fg.dark}};
+}
+div.title {
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+div.title h1, div.title h2, div.title h3, div.title h4, div.title h5, div.title h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+div.desc { margin: 0 0 0.2em 0; }
+div.contents + div.desc { margin: 0.2em 0 0 0; }
+pre.contents {
+  padding: 0.5em 1em 0.5em 1em;
+}
+div.links-center { text-align: center; }
+div.links .desc { color: {{$color.fg.gray}}; }
+div.links > div.inner > div.region > div.desc { font-style: italic; }
+div.links ul { margin: 0; padding: 0; }
+div.links ul ul {
+  margin-{{$left}}: 1em;
+}
+li.links {
+  margin: 0.5em 0 0.5em 0;
+  padding: 0;
+  list-style-type: none;
+}
+li.links-head {
+  margin-top: 1em;
+  color: {{$color.fg.gray}};
+  border-bottom: solid 1px {{$color.gray}};
+}
+div.sectionlinks {
+  display: inline-block;
+  padding: 0 1em 0 1em;
+  background-color: {{$color.bg.blue}};
+  border: solid 1px {{$color.fg.blue}};
+}
+div.sectionlinks ul { margin: 0; }
+div.sectionlinks li { padding: 0; }
+div.sectionlinks div.title { margin: 0.5em 0 0.5em 0; }
+div.sectionlinks div.sectionlinks {
+  display: block;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  border: none;
+}
+div.sectionlinks div.sectionlinks li {
+  padding-{{$left}}: 1.44em;
+}
+nav.prevnext { clear: both; }
+div.region > nav.prevnext, div.region + nav.prevnext { margin-top: 1em; }
+nav.prevnext > div.inner { float: {{$right}}; }
+nav.prevnext > div.inner > * {
+  background-color: {{$color.bg.gray}};
+  display: inline-block;
+  position: relative;
+  height: 1.44em;
+  padding: 0.2em 0.83em 0 0.83em;
+  margin-bottom: 1em;
+  border: solid 1px {{$color.gray}};
+}
+nav.prevnext > div.inner > span { visibility: hidden; }
+nav.prevnext > div.inner > a + a {
+  border-{{$left}}: none;
+}
+nav.prevnext > div.inner > a:first-child {
+  border-top-{{$left}}-radius: 2px;
+  border-bottom-{{$left}}-radius: 2px;
+}
+nav.prevnext > div.inner > a:last-of-type {
+  border-top-{{$right}}-radius: 2px;
+  border-bottom-{{$right}}-radius: 2px;
+}
+div.serieslinks {
+  display: inline-block;
+  padding: 0 1em 0 1em;
+  background-color: {{$color.bg.blue}};
+  border: solid 1px {{$color.fg.blue}};
+}
+div.serieslinks ul { margin: 0; }
+div.serieslinks li { padding: 0; }
+div.serieslinks div.title { margin: 0.5em 0 0.5em 0; }
+pre.numbered {
+  margin: 0;
+  padding: 0.5em;
+  float: {{$left}};
+  margin-{{$right}}: 0.5em;
+  text-align: {{$right}};
+  color: {{$color.fg.gray}};
+  background-color: {{$color.bg.yellow}};
+}
+div.code {
+  border: solid 1px {{$color.gray}};
+}
+div.example {
+  border-{{$left}}: solid 4px {{$color.gray}};
+  padding-{{$left}}: 1em;
+}
+div.example > div.inner > div.region > div.desc { font-style: italic; }
+div.figure {
+  display: inline-block;
+  max-width: 100%;
+  margin-{{$left}}: 1.72em;
+}
+div.figure > div.inner {
+  padding: 4px;
+  color: {{$color.fg.dark}};
+  border: solid 1px {{$color.gray}};
+  background-color: {{$color.bg.gray}};
+}
+@media (max-width: 960px) {
+  div.figure {
+    margin-{{$left}}: 0;
+  }
+}
+a.figure-zoom {
+  float: {{$right}};
+}
+a.figure-zoom:hover { border-bottom: none; }
+a.figure-zoom:hover .yelp-svg-fill { fill: {{$color.blue}}; }
+a.figure-zoom:hover .yelp-svg-stroke { stroke: {{$color.blue}}; }
+a.figure-zoom .figure-zoom-out { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-in { display: none; }
+a.figure-zoom.figure-zoomed .figure-zoom-out { display: inline-block; }
+div.figure > div.inner > div.region > div.contents {
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+  clear: both;
+  text-align: center;
+  color: {{$color.fg}};
+  border: solid 1px {{$color.gray}};
+  background-color: {{$color.bg}};
+}
+div.list > div.inner > div.title { margin-bottom: 0.5em; }
+div.listing > div.inner { margin: 0; padding: 0; }
+div.listing > div.inner > div.region > div.desc { font-style: italic; }
+div.note {
+  padding: 6px;
+  border: solid 1px {{$color.bg.dark}};
+  background-color: {{$color.bg.gray}};
+  display: flex;
+  flex-flow: row;
+}
+div.note > * { margin: 0 6px; padding: 0; min-height: 24px; min-width: 24px; }
+div.note-warning > svg .yelp-svg-fill {
+  fill: {{$color.red}};
+}
+div.note-danger {
+  border-color: {{$color.red}};
+}
+div.note-important > svg .yelp-svg-fill {
+  fill: {{$color.blue}};
+}
+div.note-danger > svg .yelp-svg-fill {
+  fill: {{$color.red}};
+  animation-name: yelp-note-danger;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+@keyframes yelp-note-danger {
+  from { fill: {{$color.red}} }
+  50%  { fill: {{$color.gray}} }
+  to   { fill: {{$color.red}} }
+}
+div.note-sidebar {
+  float: {{$right}};
+  max-width: 206px;
+  margin-{{$left}}: 20px;
+  padding: 6px;
+}
+div.quote {
+  padding: 0;
+  min-height: {{$icons.size.quote}}px;
+}
+<!-- There are rules to create the blockquote icon in html.xsl
+     that these simple text templates can't handle. -->
+div.quote > div.inner > div.title {
+  margin: 0;
+  margin-{{$left}}: {{$icons.size.quote}}px;
+}
+blockquote {
+  margin: 0; padding: 0;
+  margin-{{$left}}: {{$icons.size.quote}}px;
+}
+blockquote > *:first-child { margin-top: 0; }
+div.quote > div.inner > div.region > div.cite {
+  margin-top: 0.5em;
+  margin-{{$left}}: {{$icons.size.quote}}px;
+  color: {{$color.fg.gray}};
+}
+div.quote > div.inner > div.region > div.cite::before {
+  <!-- FIXME: i18n -->
+  content: '&#x2015; ';
+  color: {{$color.fg.gray}};
+}
+div.screen {
+  background-color: {{$color.bg.gray}};
+  border: solid 1px {{$color.gray}};
+}
+ol.steps, ul.steps {
+  padding: 0.5em 1em 0.5em 1em;
+  border: solid 1px {{$color.bg.gray}};
+  border-{{$left}}: solid 4px {{$color.yellow}};
+}
+ol.steps .steps {
+  padding: 0;
+  border: none;
+  background-color: unset;
+}
+li.steps { margin-{{$left}}: 1.44em; }
+li.steps li.steps { margin-{{$left}}: 2.4em; }
+div.synopsis > div.inner > div.region > div.contents,
+div.synopsis > div.contents, div.synopsis > pre.contents {
+  padding: 0.5em 1em 0.5em 1em;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: {{$color.fg.blue}};
+  background-color: {{$color.bg.gray}};
+}
+div.synopsis > div.inner > div.region > div.desc { font-style: italic; }
+div.synopsis div.code {
+  background: unset;
+  border: none;
+  padding: 0;
+}
+div.synopsis div.code > pre.contents { margin: 0; padding: 0; }
+div.unknown > div.inner > div.region > div.desc { font-style: italic; }
+div.table > div.desc { font-style: italic; }
+tr.shade {
+  background-color: {{$color.bg.gray}};
+}
+td.shade {
+  background-color: {{$color.bg.gray}};
+}
+tr.shade td.shade {
+  background-color: {{$color.bg.dark}};
+}
+
+span.app { font-style: italic; }
+span.cmd {
+  font-family: monospace,monospace; font-size: 0.83em;
+  background-color: {{$color.bg.gray}};
+  padding: 0 0.2em 0 0.2em;
+}
+span.cmd span.cmd { background-color: unset; padding: 0; }
+pre span.cmd { background-color: unset; padding: 0; }
+span.code {
+  font-family: monospace,monospace; font-size: 0.83em;
+  border-bottom: solid 1px {{$color.bg.dark}};
+}
+span.code span.code { border: none; }
+pre span.code { border: none; }
+span.em { font-style: italic; }
+span.em-bold {
+  font-style: normal; font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+a span.em-bold {
+  color: {{$color.fg.blue}};
+}
+pre span.error {
+  color: {{$color.fg.red}};
+}
+span.file { font-family: monospace,monospace; font-size: 0.83em; }
+span.gui, span.guiseq { color: {{$color.fg.dark}}; }
+a span.gui, a span.guiseq { color: {{$color.fg.blue}}; }
+span.input { font-family: monospace,monospace; font-size: 0.83em; }
+pre span.input {
+  font-weight: bold;
+  color: {{$color.fg.dark}};
+}
+kbd {
+  font-family: inherit;
+  font-size: inherit;
+  color: {{$color.fg.dark}};
+  background-color: {{$color.bg.gray}};
+  border: solid 1px {{$color.gray}};
+  border-radius: 2px;
+  margin: 0 0.2em 0 0.2em;
+  padding: 0.2em 0.5em 0 0.5em;
+  white-space: nowrap;
+}
+kbd.key-Fn {
+  font-weight: bold;
+  color: {{$color.fg.blue}};
+}
+span.key a {
+  border-bottom: none;
+}
+a kbd {
+  color: {{$color.fg.blue}};
+  border-color: {{$color.fg.blue}};
+}
+span.keyseq {
+  color: {{$color.fg.dark}};
+  white-space: nowrap
+}
+a span.keyseq { color: {{$color.fg.blue}}; }
+span.output { font-family: monospace,monospace; font-size: 0.83em; }
+pre span.output {
+  color: {{$color.fg}};
+}
+pre span.prompt {
+  color: {{$color.fg.dark}};
+}
+span.sys { font-family: monospace,monospace; font-size: 0.83em; }
+span.var { font-style: italic; }
+
+.ui-tile-img .media-controls { display: none; }
+span.media-audio, span.media-video { display: inline-block; }
+audio, video { display: block; margin: 0; }
+div.media > div.inner { display: inline-block; text-align: center; }
+.media-controls {
+  height: 30px;
+  margin: 0; padding: 0;
+  border-left: solid 1px {{$color.fg}};
+  border-right: solid 1px {{$color.fg}};
+  border-bottom: solid 1px {{$color.fg}};
+  background-color: {{$color.fg.dark}};
+  color: {{$color.bg}};
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.media-controls > * {
+  flex: 0 1 auto;
+}
+.media-controls > input.media-range {
+  flex: 1 0 auto;
+  background-color: {{$color.fg.dark}};
+  margin: 0 10px;
+  -webkit-appearance: none;
+}
+input.media-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: {{$color.fg.gray}};
+  border-radius: 2px;
+}
+input.media-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: {{$color.bg.dark}};
+  border: solid 1px {{$color.fg.dark}};
+  margin-top: -6px;
+}
+input.media-range::-webkit-slider-thumb:hover,
+input.media-range::-webkit-slider-thumb:focus {
+  background: {{$color.bg.gray}};
+}
+input.media-range::-moz-range-track {
+  height: 4px;
+  background: {{$color.fg.gray}};
+  border-radius: 2px;
+}
+input.media-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background: {{$color.bg.dark}};
+  border: solid 1px {{$color.fg.dark}};
+  margin-top: -6px;
+}
+.media-controls-audio {
+  border-top: solid 1px {{$color.fg}};
+  border-radius: 4px;
+}
+button.media-play {
+  height: 30px;
+  padding: 0 6px 0 6px; line-height: 0;
+  background-color: {{$color.fg.dark}};
+  border: none;
+  border-{{$right}}: solid 1px {{$color.fg}};
+}
+button.media-play:hover, button.media-play:focus {
+  background-color: {{$color.fg.blue}};
+}
+button.media-play .yelp-svg-fill { fill: {{$color.bg.gray}}; }
+button.media-play .media-pause { display: none; }
+button.media-play-playing .media-play { display: none; }
+button.media-play-playing .media-pause { display: inline; }
+.media-time {
+  margin: 0;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+}
+.media-time > span {
+  padding-{{$right}}: 8px;
+}
+.media-duration {
+  font-size: 12px;
+  color: {{$color.bg.dark}};
+  opacity: 0.8;
+}
+.media-controls-ttml {
+  min-width: 630px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+div.media-ttml {
+  margin: 0; padding: 6px 0;
+  background-color: {{$color.bg.gray}};
+  border: solid 1px {{$color.fg}};
+  min-height: 24px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.media-ttml-pre { white-space: pre; }
+.media-ttml-nopre { white-space: normal; }
+div.media-ttml-div {
+  text-align: {{$left}};
+  display: none;
+  margin: 0; padding: 0;
+}
+div.media-ttml-p {
+  text-align: {{$left}};
+  display: none;
+  margin: 0 auto;
+  max-width: 560px;
+  line-height: 1.44em;
+}
+div.media-ttml-div > * + * { margin-top: 1em; }
+div.yelp-data { display: none; }
+.ui-expander > div.inner > div.title span.title,
+.ui-expander > div.inner > div.hgroup span.title {
+  cursor: default;
+}
+.ui-expander > div.inner > div.title span.title:before,
+.ui-expander > div.inner > div.hgroup span.title:before {
+  font-weight: bold;
+  content: "⌃";
+  display: inline-block;
+  margin: 0;
+  color: {{$color.fg.blue}};
+  transform: translateY(0.2em) rotate(0deg);
+  -webkit-transform: translateY(0.2em) rotate(0deg);
+  transition: transform 0.2s linear;
+  transform-origin: 50% 30%;
+  -webkit-transform-origin: 50% 30%;
+  -webkit-transition: -webkit-transform 0.2s linear;
+  margin: 0 0.2em;
+}
+.ui-expander-c > div.inner > div.hgroup { border-bottom: none; }
+<!-- There is a rotation on the arrow in html.xsl that these
+     simple text templates can't handle -->
+.ui-expander > div.inner > div.title:hover,
+.ui-expander > div.inner > div.hgroup:hover * {
+  color: {{$color.fg.blue}};
+}
+.ui-expander > div.inner > div.hgroup > .subtitle {
+  margin-{{$left}}: 2em;
+}
+.ui-expander-c > div.inner > div.region {
+  display: none;
+}
+.ui-expander-e > div.inner > div.region {
+  animation-name: yelp-ui-expander-e;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  transform-origin: 0 0;
+}
+@keyframes yelp-ui-expander-e {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+div.ui-expander-preview > div.inner > div.region {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear, background-color 0.2s linear;
+  animation-name: none;
+}
+div.ui-expander-preview.ui-expander-c > div.inner {
+  max-height: 100px;
+  overflow: hidden;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region {
+  display: block;
+  transform: scaleY(0.4);
+  background-color: {{$color.bg.gray}};
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region:hover {
+  background-color: {{$color.bg.blue}};
+  cursor: zoom-in;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region:hover * {
+  cursor: zoom-in;
+}
+div.ui-expander-preview > div.inner > div.region > * {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear;
+}
+div.ui-expander-preview.ui-expander-c > div.inner > div.region > * {
+  transform: scaleX(0.4);
+}
+section.ui-expander-preview > div.inner > div.region > div.contents{
+  transform-origin: 0 0;
+  transition: transform 0.2s linear, background-color 0.2s linear;
+}
+section.ui-expander-preview.ui-expander-c > div.inner {
+  max-height: 140px;
+  overflow: hidden;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region {
+  display: block;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents {
+  transform: scaleY(0.6);
+  background-color: {{$color.bg.gray}};
+}
+section.ui-expander-preview > div.inner > div.region > div.contents > * {
+  transform-origin: 0 0;
+  transition: transform 0.2s linear;
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents > * {
+  transform: scaleX(0.6);
+}
+section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.contents:hover {
+  background-color: {{$color.bg.blue}};
+  cursor: zoom-in;
+}
+@media only screen and (max-width: 480px) {
+  article > div.region > div.contents > div.example,
+  article > div.region > section > div.inner > div.region > div.contents > div.example {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  div.example {
+    padding-{{$left}}: 6px;
+    padding-{{$right}}: 10px;
+  }
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  article > div.region > div.contents > div.note,
+  article > div.region > section > div.inner > div.region > div.contents > div.note {
+    border-left: none;
+    border-right: none;
+  }
+  div.note-sidebar {
+    float: none;
+    max-width: none;
+    margin-left: inherit;
+    margin-right: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+  }
+  div.note-sidebar > div.inner > div.title,
+  div.note-sidebar > div.inner > div.region > div.contents {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  article > div.region > div.contents > div.steps,
+  article > div.region > section > div.inner > div.region > div.contents > div.steps {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  div.steps > div.inner > div.title {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  ol.steps, ul.steps {
+    padding: 0;
+    padding-{{$left}}: 6px;
+    padding-{{$right}}: 10px;
+  }
+}
+</tmpl>

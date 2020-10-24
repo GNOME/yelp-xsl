@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="guide" style="xslt-stylesheet" id="tmpl">
+ <info>
+  <link type="guide" xref="stylesheets" group="tmpl"/>
+  <desc>Perform simple substitutions in text files.</desc>
+  <revision version="40" date="2020-10-16" status="final"/>
+ </info>
+ <title>Text Templates</title>
+ <p>This stylesheet contains templates to perform simple substitutions on text
+ and files containing text. The primary purpose of these templates is to allow
+ CSS and JavaScript to be maintained in separate files outside the XSLT, but
+ still allow those files to reference variables for things like color themes
+ and text directionality.</p>
+ <p>The substitution evaluates anything between <sys>{{</sys> and <sys>}}</sys>. Usually, this will
+ be a reference to a parameter or variable, but it can be any XPath expression.
+ For example, <sys>{{$color.fg}}</sys> will be replaced with the primary text color.</p>
+ <p>This syntax is similar to XSLT attribute value templates, except that it uses
+ double curly braces to avoid conflicts with the many curly braces used in CSS
+ and JavaScript files.</p>
+ <note style="plain">
+  <p>This stylesheet was added in version 40.</p>
+ </note>
+ <links type="topic" groups="imports" style="linklist">
+  <title>Imports Stylesheets</title>
+ </links>
+ <links type="topic" groups="includes" style="linklist">
+  <title>Includes Stylesheets</title>
+ </links>
+ <links type="topic" groups="params" style="linklist">
+  <title>Defines Parameters</title>
+ </links>
+ <links type="topic" groups="keys" style="linklist">
+  <title>Defines Keys</title>
+ </links>
+ <links type="topic" groups="templates" style="linklist">
+  <title>Defines Templates</title>
+ </links>
+ <links type="topic" groups="modes" style="linklist">
+  <title>Defines Modes</title>
+ </links>
+ <list style="compact">
+  <title>Calls Templates</title>
+  <item>
+   <p><link xref="l10n.align.end"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.align.start"/></p>
+  </item>
+  <item>
+   <p><link xref="l10n.direction"/></p>
+  </item>
+ </list>
+</page>

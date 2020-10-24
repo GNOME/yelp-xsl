@@ -59,7 +59,6 @@ common {html} stylesheet.
 <!--%# html.sidebar.contents.mode -->
 <xsl:template mode="html.sidebar.contents.mode" match="*">
   <xsl:param name="side"/>
-  <xsl:param name="side"/>
   <div class="sidebar-contents">
     <div class="inner">
       <div class="title">
@@ -150,6 +149,30 @@ common {html} stylesheet.
       </xsl:call-template>
     </xsl:for-each>
   </xsl:if>
+</xsl:template>
+
+<!--%# html.css.mode -->
+<xsl:template mode="html.css.mode" match="*">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:call-template name="tmpl.file">
+    <xsl:with-param name="file" select="'css/docbook.css.tmpl'"/>
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
 </xsl:template>
 
 
