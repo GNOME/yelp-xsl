@@ -42,6 +42,11 @@ aside.sidebar {
   padding: 20px 10px;
   background: {{$color.bg.gray}}
 }
+@media only screen and (max-width: 720px) {
+  aside.sidebar {
+    display: none;
+  }
+}
 aside.sidebar-right { order: 3; }
 aside.sidebar section { margin-top: 0; }
 aside.sidebar * { margin-bottom: 20px; }
