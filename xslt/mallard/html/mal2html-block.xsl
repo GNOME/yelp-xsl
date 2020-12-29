@@ -50,7 +50,7 @@ syntax highlighting support based on the `mime` attribute of $node, using
 -->
 <xsl:template name="mal2html.pre">
   <xsl:param name="node" select="."/>
-  <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), 'numbered')"/>
+  <xsl:param name="numbered" select="contains(concat(' ', @style, ' '), ' numbered ')"/>
   <xsl:variable name="if">
     <xsl:call-template name="mal.if.test">
       <xsl:with-param name="node" select="$node"/>
@@ -660,36 +660,37 @@ in accordance with the Mallard specification on fallback block content.
 <!-- = note = -->
 <xsl:template mode="mal2html.block.mode" match="mal:note">
   <xsl:variable name="if"><xsl:call-template name="mal.if.test"/></xsl:variable><xsl:if test="$if != ''">
+  <xsl:variable name="style" select="concat(' ', @style, ' ')"/>
   <xsl:variable name="notetitle">
     <xsl:choose>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' advanced ')">
+      <xsl:when test="contains($style, ' advanced ')">
         <xsl:text>Advanced</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' bug ')">
+      <xsl:when test="contains($style, ' bug ')">
         <xsl:text>Bug</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' caution ')">
+      <xsl:when test="contains($style, ' caution ')">
         <xsl:text>Caution</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' danger ')">
+      <xsl:when test="contains($style, ' danger ')">
         <xsl:text>Danger</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' important ')">
+      <xsl:when test="contains($style, ' important ')">
         <xsl:text>Important</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' package ')">
+      <xsl:when test="contains($style, ' package ')">
         <xsl:text>Package</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' plain ')">
+      <xsl:when test="contains($style, ' plain ')">
         <xsl:text>plain</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' sidebar ')">
+      <xsl:when test="contains($style, ' sidebar ')">
         <xsl:text>Sidebar</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' tip ')">
+      <xsl:when test="contains($style, ' tip ')">
         <xsl:text>Tip</xsl:text>
       </xsl:when>
-      <xsl:when test="contains(concat(' ', @style, ' '), ' warning ')">
+      <xsl:when test="contains($style, ' warning ')">
         <xsl:text>Warning</xsl:text>
       </xsl:when>
       <xsl:otherwise>
