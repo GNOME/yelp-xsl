@@ -16,6 +16,6 @@ Here's what each file is:
 * mallard.css.tmpl  - CSS for element styles specific to Mallard
 * docbook.css.tmpl  - CSS for element styles specific to DocBook
 
-The easiest way to test your changes to these files is with the lipsum test document,
-found under test/lipsum from the root of this repository.
+The easiest way to test your changes to these files is with the mallard test document,
+found under test/mallard from the root of this repository.
 That directory has a README that explains how to use it to test changes.

@@ -1,0 +1,11 @@
+This test shows the colors provided by colors.xsl, including those
+that can be automatically computed. It shows all foreground colors
+on all background color, along with the WCAG contrast ratio to
+ensure accessibility for various visual impairments.
+
+To try things out, just make changes directly to the files in your
+checkout of yelp-xsl. You don't have to build or install your copy
+of yelp-xsl. Just build this preview document. To build this preview
+document, just run:
+
+  ./build.sh

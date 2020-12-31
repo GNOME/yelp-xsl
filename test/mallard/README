@@ -1,0 +1,13 @@
+This document is intended to test out different features and style
+changes for Mallard documents. If you need to test things not in
+this document, feel free to add stuff to this document.
+
+To try things out, just make changes directly to the files in your
+checkout of yelp-xsl. You don't have to build or install your copy
+of yelp-xsl. Just build this preview document. To build this preview
+document, just run:
+
+  ./build.sh
+
+You do need yelp-tools installed for the yelp-build command. It's in
+your distro's packages, and you might have it installed already anyway.

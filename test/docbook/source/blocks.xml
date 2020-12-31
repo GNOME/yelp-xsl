@@ -1,0 +1,486 @@
+<chapter xmlns="http://docbook.org/ns/docbook"
+         id="blocks">
+<title>Some Block Elements</title>
+<titleabbrev>Some Blocks</titleabbrev>
+
+<para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+porttitor condimentum nulla.</para>
+
+<section id="admon">
+  <title>Admonitions</title>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <caution>
+    <title>Beware the Title!</title>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </caution>
+
+  <important>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </important>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <note>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </note>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <note role="bug">
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </note>
+
+  <tip>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </tip>
+
+  <warning>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </warning>
+
+</section> <!-- admon -->
+
+<section id="formal-block">
+  <title>Formal Blocks</title>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <example>
+    <title>An Example</title>
+    <programlisting><![CDATA[
+$(_DOC_LC_DOCS) : $(_DOC_C_DOCS)
+    if ! test -d $(dir $@); then mkdir $(dir $@); fi
+    case "$(srcdir)" in /*) sd="$(srcdir)";; *) sd="../$(srcdir)";;esac; \
+    if [ -f "C/$(notdir $@)" ]; then d="../"; else d="$$sd/"; fi; \
+    (cd $(dir $@) && \
+      $(_xml2po) -e -p \
+          "$${d}$(dir $@)$(patsubst %/$(notdir $@),%,$@).po" \
+              "$${d}C/$(notdir $@)" > $(notdir $@).tmp && \
+                  cp $(notdir $@).tmp $(notdir $@) && rm -f $(notdir $@).tmp)
+]]></programlisting>
+  </example>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <figure>
+    <title>A Figure</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="http://www.gnome.org/projects/orca/images/orca2-sm.jpg"/>
+      </imageobject>
+      <caption><para>The mascot for the <ulink
+      url="http://www.gnome.org/projects/orca/index.html">Orca screen
+      reader</ulink></para></caption>
+    </mediaobject>
+  </figure>
+  <informalfigure>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="http://www.gnome.org/projects/orca/images/orca2-sm.jpg"/>
+      </imageobject>
+      <caption><para>The mascot for the <ulink
+      url="http://www.gnome.org/projects/orca/index.html">Orca screen
+      reader</ulink></para></caption>
+    </mediaobject>
+  </informalfigure>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+</section> <!-- formal-block -->
+
+  <section id="programlisting">
+  <title>Program Listings</title>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <programlisting><![CDATA[
+function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
+  ix = match(line, /[\*\$\@\%\!\#]\{[^\}]*\}/)
+  if (ix > 0) {
+    jx = ix + index(substr(line, ix), "}");
+    pre = substr(line, 1, ix - 1);
+    aft = substr(line, jx);
+    char = substr(line, ix, 1);
+    name = substr(line, ix + 2, jx - ix - 3);
+    id = name;
+    while (sub(/[\.-]/, "_", id));
+    if (char == "!")
+      fmt = "<filename><link linkend='S__%s'>%s</link></filename>";
+    else if (char == "*")
+      fmt = "<function><link linkend='T__%s'>%s</link></function>";
+    else if (char == "%")
+      fmt = "<function><link linkend='M__%s'>%s</link></function>";
+    else if (char == "@") 
+      fmt = "<parameter><link linkend='P__%s'>%s</link></parameter>";
+    else if (char == "$") 
+      fmt = "<parameter>"name"</parameter>";
+    else if (char == "#")
+      fmt = "<literal>"name"</literal>";
+    else
+      fmt = name;
+    return sprintf("%s%s%s",
+		   runline(pre),
+		   sprintf(fmt, id, name),
+		   runline(aft) );
+  } else {
+    return line;
+  }
+}
+]]></programlisting>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+  <programlisting linenumbering="numbered"><![CDATA[
+function runline (line, ix, jx, pre, aft, char, name, id, fmt) {
+  ix = match(line, /[\*\$\@\%\!\#]\{[^\}]*\}/)
+  if (ix > 0) {
+    jx = ix + index(substr(line, ix), "}");
+    pre = substr(line, 1, ix - 1);
+    aft = substr(line, jx);
+    char = substr(line, ix, 1);
+    name = substr(line, ix + 2, jx - ix - 3);
+    id = name;
+    while (sub(/[\.-]/, "_", id));
+    if (char == "!")
+      fmt = "<filename><link linkend='S__%s'>%s</link></filename>";
+    else if (char == "*")
+      fmt = "<function><link linkend='T__%s'>%s</link></function>";
+    else if (char == "%")
+      fmt = "<function><link linkend='M__%s'>%s</link></function>";
+    else if (char == "@") 
+      fmt = "<parameter><link linkend='P__%s'>%s</link></parameter>";
+    else if (char == "$") 
+      fmt = "<parameter>"name"</parameter>";
+    else if (char == "#")
+      fmt = "<literal>"name"</literal>";
+    else
+      fmt = name;
+    return sprintf("%s%s%s",
+		   runline(pre),
+		   sprintf(fmt, id, name),
+		   runline(aft) );
+  } else {
+    return line;
+  }
+}
+]]></programlisting>
+
+<programlisting linenumbering="numbered" continuation="continues">
+BEGIN { print "&lt;section&gt;"; }
+</programlisting>
+
+<programlisting linenumbering="numbered" continuation="continues">
+<![CDATA[/<\!--\!\!/ {
+  inthis = "title";
+  this = "header";
+  next;
+}
+]]></programlisting>
+
+  <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+  faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+  Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+  consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+  Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+  porttitor condimentum nulla.</para>
+
+<programlisting linenumbering="numbered" startinglinenumber="701">
+# The starting line number is 701.
+# So this is line number 72.
+</programlisting>
+
+
+  </section> <!-- programlisting -->
+
+  <section id="screen">
+  <title>Screens</title>
+
+  <para>This <sgmltag>screen</sgmltag> element has <sgmltag>prompt</sgmltag>,
+  <sgmltag>userinput</sgmltag>, and <sgmltag>computeroutput</sgmltag> elements.</para>
+
+  <screen><prompt>[shaunm@verso testbook] </prompt><userinput>make</userinput>
+<computeroutput><![CDATA[if [ ! -d html ]; then mkdir html; fi
+rm -f html/*.*
+xsltproc --timing --nonet --xinclude -o html/ \
+        --param db.chunk.chunk_top 1 \
+        --stringparam theme.icon.admon.path "../../../data/icons/" \
+        --stringparam theme.icon.nav.previous "../../../data/icons/nav-previous.png" \
+        --stringparam theme.icon.nav.next "../../../data/icons/nav-next.png" \
+        ../../xslt/docbook/html/db2html.xsl \
+        testbook.xml
+Parsing stylesheet ../../xslt/docbook/html/db2html.xsl took 0 ms
+Parsing document testbook.xml took 51 ms
+XInclude processing testbook.xml took 0 ms
+Running stylesheet and saving result took 144 ms
+]]></computeroutput></screen>
+
+  <screen linenumbering="numbered"><prompt>[shaunm@verso testbook] </prompt><userinput>make</userinput>
+<computeroutput><![CDATA[if [ ! -d html ]; then mkdir html; fi
+rm -f html/*.*
+xsltproc --timing --nonet --xinclude -o html/ \
+        --param db.chunk.chunk_top 1 \
+        --stringparam theme.icon.admon.path "../../../data/icons/" \
+        --stringparam theme.icon.nav.previous "../../../data/icons/nav-previous.png" \
+        --stringparam theme.icon.nav.next "../../../data/icons/nav-next.png" \
+        ../../xslt/docbook/html/db2html.xsl \
+        testbook.xml
+Parsing stylesheet ../../xslt/docbook/html/db2html.xsl took 0 ms
+Parsing document testbook.xml took 51 ms
+XInclude processing testbook.xml took 0 ms
+Running stylesheet and saving result took 144 ms
+]]></computeroutput></screen>
+
+  </section> <!-- screen -->
+
+<section id="cmdsynopsis">
+  <title>Commands</title>
+  <cmdsynopsis>
+    <command>cd</command>
+    <arg choice="req"><replaceable>directory</replaceable></arg>
+  </cmdsynopsis>
+  <cmdsynopsis>
+    <command>cal</command>
+    <arg>-j</arg>
+    <arg>-y</arg>
+    <arg>month <arg>year</arg></arg>
+  </cmdsynopsis>
+  <cmdsynopsis>
+    <command>chgrp</command>
+    <arg>-R <group>
+      <arg>-H</arg>
+      <arg>-L</arg>
+      <arg>-P</arg>
+    </group></arg>
+    <arg>-f</arg>
+    <arg choice='plain'><replaceable>group</replaceable></arg>
+    <arg rep='repeat' choice='plain'><replaceable>file</replaceable></arg>
+  </cmdsynopsis>
+  <para>Here we use an <sgmltag>sbr</sgmltag> element:</para>
+  <cmdsynopsis>
+    <command>ls</command>
+    <group><arg>--all</arg><arg>--almost-all</arg></group>
+    <sbr/>
+    <arg>--ignore-backups</arg>
+    <sbr/>
+    <arg>--directory</arg>
+    <sbr/>
+    <arg>--human-readable</arg>
+    <sbr/>
+    <arg>--ignore=<replaceable>PATTERN</replaceable></arg>
+    <sbr/>
+    <arg>-l</arg>
+    <sbr/>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+  </cmdsynopsis>
+  <para>And here we put <sgmltag>sbr</sgmltag> elements inside
+  <sgmltag>arg</sgmltag> and <sgmltag>group</sgmltag> elements:</para>
+  <cmdsynopsis>
+    <command>ls</command>
+    <group><arg>--all</arg><sbr/><arg>--almost-all</arg></group>
+    <arg>--ignore=<sbr/><group><replaceable>PATTERN</replaceable><sbr/><replaceable>PATTERN</replaceable><sbr/><replaceable>PATTERN</replaceable></group></arg>
+    <sbr/>
+    <arg>--ignore=<group><replaceable>PATTERN</replaceable><sbr/><replaceable>PATTERN</replaceable><sbr/><replaceable>PATTERN</replaceable></group></arg>
+    <sbr/>
+    <group><arg choice="req">fe=<sbr/>fi</arg><arg>fo</arg><sbr/><arg>fum</arg></group>
+    <sbr/>
+    <arg>-l</arg>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+  </cmdsynopsis>
+
+  <para>Also, <sgmltag>sbr</sgmltag> tags with fragments:</para>
+  <cmdsynopsis>
+    <command>foo</command>
+    <group><synopfragmentref linkend="synopfrag1"/><arg>foo</arg><sbr/><arg>bar</arg></group>
+    <arg><synopfragmentref linkend="synopfrag2"/>foo=<sbr/>bar</arg>
+    <synopfragment id="synopfrag1">
+      <group><arg>foo</arg><sbr/><arg>bar</arg></group>
+      <arg>foo=<sbr/>bar</arg>
+    </synopfragment>
+    <synopfragment id="synopfrag2">
+      <group><arg>foo</arg><sbr/><arg>bar</arg></group>
+      <arg>foo=<sbr/>bar</arg>
+    </synopfragment>
+  </cmdsynopsis>
+
+  <para>Here we put two <sgmltag>cmdsynopsis</sgmltag> elements inside
+  a single <sgmltag>synopsis</sgmltag> element:</para>
+  <synopsis><cmdsynopsis>
+    <command>grep</command>
+    <arg><replaceable>options</replaceable></arg>
+    <arg choice="plain"><replaceable>PATTERN</replaceable></arg>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+    </cmdsynopsis><cmdsynopsis>
+    <command>grep</command>
+    <arg><replaceable>options</replaceable></arg>
+    <group>
+      <arg>-e <replaceable>PATTERN</replaceable></arg>
+      <arg>-f <replaceable>FILE</replaceable></arg>
+    </group>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+  </cmdsynopsis></synopsis>
+  <para>Here we just put both commands in a single <sgmltag>cmdsynopsis</sgmltag>
+  element:</para>
+  <cmdsynopsis>
+    <command>grep</command>
+    <arg><replaceable>options</replaceable></arg>
+    <arg choice="plain"><replaceable>PATTERN</replaceable></arg>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+    <command>grep</command>
+    <arg><replaceable>options</replaceable></arg>
+    <group>
+      <arg>-e <replaceable>PATTERN</replaceable></arg>
+      <arg>-f <replaceable>FILE</replaceable></arg>
+    </group>
+    <arg rep="repeat"><replaceable>FILE</replaceable></arg>
+  </cmdsynopsis>
+</section>
+
+<section id="misc-block">
+  <title>Miscellaneous</title>
+
+  <epigraph>
+    <attribution>Henry Spencer</attribution>
+    <para>Those who do not understand Unix are condemned to reinvent it,
+    poorly.</para>
+  </epigraph>
+
+  <para>The above was brought to you courtesy of the <sgmltag>epigraph</sgmltag>
+  element.  Now here is an <sgmltag>address</sgmltag> element:</para>
+
+  <address>Free Software Foundation
+51 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA</address>
+
+  <para>Here is a <sgmltag>blockquote</sgmltag> element:</para>
+
+  <blockquote>
+    <attribution>Richard Stallman, from the <ulink
+    url="http://www.gnu.org/gnu/manifesto.html">GNU Manifeto</ulink></attribution>
+    <para>I consider that the golden rule requires that if I like a program
+    I must share it with other people who like it. Software sellers want to
+    divide the users and conquer them, making each user agree not to share
+    with others. I refuse to break solidarity with other users in this way.
+    I cannot in good conscience sign a nondisclosure agreement or a software
+    license agreement. For years I worked within the Artificial Intelligence
+    Lab to resist such tendencies and other inhospitalities, but eventually
+    they had gone too far: I could not remain in an institution where such
+    things are done for me against my will.</para>
+  </blockquote>
+
+  <formalpara>
+    <title>Formal Paragraph</title>
+    <para>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed risus dui,
+    faucibus at, blandit eu, congue in, sem. Suspendisse nec mi. Sed vel augue.
+    Cras egestas. Vivamus nisi. Fusce neque. Aenean posuere, orci non lacinia
+    consectetuer, neque libero semper metus, ut ullamcorper eros lorem at tellus.
+    Ut ante tellus, iaculis at, tincidunt quis, ultrices at, ligula. Pellentesque
+    porttitor condimentum nulla.</para>
+  </formalpara>
+
+  <para>Next we have a <sgmltag>literallayout</sgmltag> element:</para>
+
+  <literallayout>This is a line.
+This is another line.
+  This line is indented.</literallayout>
+
+  <para>And here is a <sgmltag>synopsis</sgmltag> element:</para>
+  <synopsis><![CDATA[#include <gtk/gtk.h>
+
+                    GtkButton;
+GtkWidget*          gtk_button_new                      (void);
+GtkWidget*          gtk_button_new_with_label           (const gchar *label);
+GtkWidget*          gtk_button_new_with_mnemonic        (const gchar *label);
+GtkWidget*          gtk_button_new_from_stock           (const gchar *stock_id);
+]]></synopsis>
+  <synopsis linenumbering="numbered"><![CDATA[#include <gtk/gtk.h>
+void                gtk_button_pressed                  (GtkButton *button);
+void                gtk_button_released                 (GtkButton *button);
+void                gtk_button_clicked                  (GtkButton *button);
+void                gtk_button_enter                    (GtkButton *button);
+void                gtk_button_leave                    (GtkButton *button);
+]]></synopsis>
+
+<!-- FIXME:
+glossary stuff
+-->
+
+</section> <!-- misc-block -->
+
+</chapter>

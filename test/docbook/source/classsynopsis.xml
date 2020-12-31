@@ -1,0 +1,214 @@
+<chapter xmlns="http://docbook.org/ns/docbook"
+         id="classsynopsis">
+<title>Class Synopses</title>
+
+<section id="classsynopsis-cpp">
+<title>C++</title>
+
+<para>Here is a <sgmltag>classsynopsis</sgmltag>:</para>
+<classsynopsis language="cpp">
+  <ooclass><classname>Button</classname></ooclass>
+  <ooclass><modifier>public</modifier><classname>Bin</classname></ooclass>
+  <constructorsynopsis>
+    <modifier>public</modifier>
+    <methodname>Button</methodname>
+    <void/>
+  </constructorsynopsis>
+  <constructorsynopsis>
+    <modifier>public</modifier>
+    <modifier>explicit</modifier>
+    <methodparam>
+      <modifier>const</modifier>
+      <type>Glib::ustring&amp;</type>
+      <parameter>label</parameter>
+    </methodparam>
+    <methodparam>
+      <type>bool</type>
+      <parameter>mnemonic</parameter>
+      <initializer>false</initializer>
+    </methodparam>
+  </constructorsynopsis>
+  <destructorsynopsis>
+    <modifier>public</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+  </destructorsynopsis>
+  <fieldsynopsis>
+    <modifier>private</modifier>
+    <modifier>friend</modifier>
+    <type>class</type>
+    <varname>Button_Class</varname>
+  </fieldsynopsis>
+  <fieldsynopsis>
+    <modifier>private</modifier>
+    <modifier>static</modifier>
+    <type>CppClassType</type>
+    <varname>button_class_</varname>
+  </fieldsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_pressed</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_released</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_clicked</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_enter</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_leave</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>protected</modifier>
+    <modifier>virtual</modifier>
+    <void/>
+    <methodname>on_activate</methodname>
+    <void/>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>public</modifier>
+    <type>GType</type>
+    <methodname>get_type</methodname>
+    <void/>
+    <modifier>G_GNUC_CONST</modifier>
+  </methodsynopsis>
+  <methodsynopsis>
+    <modifier>public</modifier>
+    <type>GType</type>
+    <methodname>get_base_type</methodname>
+    <void/>
+    <modifier>G_GNUC_CONST</modifier>
+  </methodsynopsis>
+  <fieldsynopsis>
+    <modifier>public</modifier>
+    <modifier>static</modifier>
+    <type>bool</type>
+    <varname>fake</varname>
+    <initializer>true</initializer>
+  </fieldsynopsis>
+</classsynopsis>
+
+<para>Here is a standalone <sgmltag>methodsynopsis</sgmltag>:</para>
+<methodsynopsis language="cpp">
+<modifier>public</modifier>
+<void/>
+<methodname>frobnicate</methodname>
+<methodparam><type>Foo</type><parameter>foo</parameter></methodparam>
+<methodparam><modifier>const</modifier><type>bool</type><parameter>frob</parameter><initializer>true</initializer></methodparam>
+<modifier>FROB</modifier>
+</methodsynopsis>
+
+</section> <!-- classsynopsis-cpp -->
+
+<section id="classsynopsis-csharp">
+<title>C#</title>
+</section> <!-- classsynopsis-csharp -->
+
+<section id="classsynopsis-java">
+<title>Java</title>
+</section> <!-- classsynopsis-java -->
+
+<section id="classsynopsis-python">
+<title>Python</title>
+
+<para>Here is a <sgmltag>classsynopsis</sgmltag>:</para>
+<classsynopsis language="python">
+<ooclass><classname>gtk.Button</classname></ooclass>
+<ooclass><classname>gtk.Bin</classname></ooclass>
+<constructorsynopsis>
+  <methodparam>
+    <parameter>label</parameter>
+    <initializer>None</initializer>
+  </methodparam>
+  <methodparam>
+    <parameter>stock</parameter>
+    <initializer>None</initializer>
+  </methodparam>
+  <methodparam>
+    <parameter>use_underline</parameter>
+    <initializer>True</initializer>
+  </methodparam>
+</constructorsynopsis>
+<destructorsynopsis><void/></destructorsynopsis>
+<methodsynopsis><methodname>pressed</methodname><void/></methodsynopsis>
+<methodsynopsis><methodname>released</methodname><void/></methodsynopsis>
+<methodsynopsis><methodname>clicked</methodname><void/></methodsynopsis>
+<methodsynopsis><methodname>enter</methodname><void/></methodsynopsis>
+<methodsynopsis><methodname>leave</methodname><void/></methodsynopsis>
+<methodsynopsis>
+  <methodname>set_relief</methodname>
+  <methodparam><parameter>newstyle</parameter></methodparam>
+</methodsynopsis>
+<methodsynopsis><methodname>get_relief</methodname><void/></methodsynopsis>
+<fieldsynopsis><varname>fake</varname><initializer>True</initializer></fieldsynopsis>
+</classsynopsis>
+
+<para>Here we use <sgmltag>modifier</sgmltag> for Python decorators:</para>
+<classsynopsis language="python">
+<ooclass><classname>Decorated</classname></ooclass>
+<ooclass><classname>Base1</classname></ooclass>
+<ooclass><classname>Base2</classname></ooclass>
+<ooclass><classname>Base3</classname></ooclass>
+<constructorsynopsis>
+  <modifier>@constructor</modifier>
+  <methodname>create</methodname>
+  <methodparam><parameter>input</parameter></methodparam>
+</constructorsynopsis>
+<destructorsynopsis>
+  <modifier>@destructor</modifier>
+  <methodname>destroy</methodname>
+  <void/>
+</destructorsynopsis>
+<fieldsynopsis>
+  <modifier>@private</modifier>
+  <varname>parts</varname>
+  <initializer>None</initializer>
+</fieldsynopsis>
+<methodsynopsis>
+  <modifier>@classmethod</modifier>
+  <methodname>find_all</methodname>
+  <void/>
+</methodsynopsis>
+</classsynopsis>
+
+<para>Here we use annotations from
+<ulink url="http://www.python.org/dev/peps/pep-3107/">PEP 3107</ulink>:</para>
+<methodsynopsis language="python">
+  <type>Frobnicated</type>
+  <methodname>frobnicate</methodname>
+  <methodparam>
+    <type>Frobnicatable</type>
+    <parameter>frob</parameter>
+  </methodparam>
+  <methodparam>
+    <type>bool</type>
+    <parameter>thorough</parameter>
+    <initializer>False</initializer>
+  </methodparam>
+</methodsynopsis>
+
+</section> <!-- classsynopsis-python -->
+
+</chapter>

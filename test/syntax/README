@@ -1,0 +1,9 @@
+This test shows the syntax highlighting for different languages in
+different formats. yelp-xsl uses highlight.js for syntax highlighting.
+
+To try things out, just make changes directly to the files in your
+checkout of yelp-xsl. You don't have to build or install your copy
+of yelp-xsl. Just build this preview document. To build this preview
+document, just run:
+
+  ./build.sh

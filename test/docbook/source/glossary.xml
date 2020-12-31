@@ -1,0 +1,42 @@
+<glossary id="glossary">
+  <glossdiv id="glossary-div">
+    <title>A Glossary Division</title>
+    <glosslist>
+      <title>A Glossary List</title>
+      <glossentry>
+        <glossterm>applet</glossterm>
+        <glossdef>
+          <para>An applet is a small, interactive application that resides within
+          a panel, for example the <application>CD Player</application>. Each
+          applet has a simple user interface that you can operate with the mouse
+          or keyboard.</para>
+        </glossdef>
+      </glossentry>
+      <glossentry id="gloss-button">
+        <glossterm>button</glossterm>
+        <glossdef>
+          <para>The thing you press.</para>
+        </glossdef>
+      </glossentry>
+      <glossentry>
+        <glossterm>desktop</glossterm>
+        <glossdef>
+          <para>The part of the GNOME Desktop where there are no interface
+          graphical items, such as panels and windows.</para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+    <glossentry id="gloss-background">
+      <glossterm>desktop background</glossterm>
+      <abbrev>background</abbrev>
+      <glossdef>
+        <para>The image or color that is applied to your desktop.</para>
+        <glossseealso otherterm="gloss-background"/>
+      </glossdef>
+    </glossentry>
+    <glossentry>
+      <glossterm>desktop</glossterm>
+      <glosssee otherterm="gloss-background"/>
+    </glossentry>
+  </glossdiv> <!-- glossary-div -->
+</glossary>
