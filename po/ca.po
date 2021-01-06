@@ -313,7 +313,7 @@ msgstr "Publicat per"
 #.
 #: yelp-xsl.xml.in:297
 msgid "Ready for review"
-msgstr "Preparat per revisar"
+msgstr "Preparat per a revisar"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
