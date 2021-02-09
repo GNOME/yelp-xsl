@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" style="xslt-param" id="html.grid.size">
+ <info>
+  <link type="guide" xref="html" group="params"/>
+  <link type="guide" xref="params" group="html"/>
+  <desc>The width of the page for grid layouts.</desc>
+  <revision version="40" date="2021-01-09" status="final"/>
+ </info>
+ <title>html.grid.size</title>
+ <p>This parameter sets the width of the main page content, including padding, but
+ excluding any sidebars. These stylesheets frequently use flexible grids for
+ layouts, and columnds are based on this parameter. This parameter should be a
+ multiple of 12 for best results. Common grid sizes are 1200, 1080, and 960.</p>
+ <synopsis>
+  <terms>
+   <item>
+    <title><code>html.grid.size</code></title>
+    <p><code>1080</code></p>
+   </item>
+  </terms>
+ </synopsis>
+</page>

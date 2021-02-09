@@ -176,8 +176,7 @@ div.links-tiles {
   margin: 0 -10px;
 }
 div.links-tile {
-  max-width: 300px;
-  flex: 1 0 300px;
+  flex: 1 0 {{$html.grid.size div 3 - 20}}px;
   vertical-align: top;
   margin: 0;
   padding: 10px;
@@ -227,7 +226,7 @@ div.links-grid-container {
   clear: both;
 }
 div.links-grid {
-  flex: 1 0 300px;
+  flex: 1 0 {{$html.grid.size div 3 - 20}}px;
   padding: 10px;
 }
 div.links-grid:empty { padding: 0 10px; height: 0; }
@@ -368,7 +367,7 @@ div.links-twocolumn {
   margin-right: -10px;
 }
 div.links-twocolumn > div.links-divs {
-  flex: 1 0 320px;
+  flex: 1 0 {{$html.grid.size div 3}}px;
   vertical-align: top;
   margin: 0;
 }

@@ -24,11 +24,27 @@
   Vestibulum in pretium ligula. Cras dignissim nisl ligula, non semper diam lobortis sit amet.
   Donec cursus sollicitudin velit, at vulputate enim.</p>
 
+<!--
+The stylesheets won't render all of these at once,
+so uncomment whatever you want to test.
+-->
+
   <links type="topic">
     <title>Regular links</title>
   </links>
 
+<!--
+  <links type="topic"
+         xmlns:uix="http://projectmallard.org/experimental/ui/"
+         uix:thumbs="tiles">
+    <title>Thumb tile links</title>
+  </links>
+
   <links type="topic" style="2column">
+    <title>Two-column links</title>
+  </links>
+
+  <links type="topic" style="grid">
     <title>Two-column links</title>
   </links>
 
@@ -39,5 +55,6 @@
   <links type="topic" style="button">
     <title>Link buttons</title>
   </links>
+-->
 
 </page>

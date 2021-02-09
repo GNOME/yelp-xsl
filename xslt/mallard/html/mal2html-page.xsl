@@ -70,7 +70,7 @@ the `page` element. Information is extracted from the `info` element of $node.
   <xsl:param name="node" select="."/>
   <xsl:variable name="infos" select="$node/mal:info | $node/parent::mal:stack/mal:info"/>
   <xsl:if test="$infos/mal:credit or $infos/mal:license">
-  <footer class="about ui-expander" role="contentinfo">
+  <div class="about ui-expander" role="contentinfo">
     <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
     <div class="inner">
     <div class="hgroup">
@@ -179,7 +179,7 @@ the `page` element. Information is extracted from the `info` element of $node.
       </div>
     </div>
     </div>
-  </footer>
+  </div>
   </xsl:if>
 </xsl:template>
 

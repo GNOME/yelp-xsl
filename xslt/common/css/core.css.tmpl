@@ -31,7 +31,7 @@ main > div.page {
 div.page > article { flex: 1 0 auto; }
 div.page > header, div.page > footer { flex: 0 1 auto; }
 .pagewide {
-  max-width: 940px;
+  max-width: {{$html.grid.size - 20}}px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;
@@ -131,42 +131,39 @@ div.clear {
 }
 .center { text-align: center; }
 
-footer.about { margin: 0; }
-footer.about > div.inner > div.hgroup {
+footer { background: #ddd; }
+footer div.about {
+  max-width: {{2 * $html.grid.size div 3 - 20}}px;
+  margin: 0 auto;
+}
+footer div.about > div.inner > div.hgroup {
   margin: 0; padding: 0;
   text-align: center;
   border: none;
 }
-footer.about > div.inner > div.hgroup > h2 {
+footer div.about > div.inner > div.hgroup > h2 {
   margin: 0; padding: 0.2em;
   font-size: inherit;
 }
-footer.about.ui-expander > div.inner > div.hgroup span.title:before {
+footer div.about.ui-expander > div.inner > div.hgroup span.title:before {
   content: "";
 }
-div.copyrights {
-  max-width: 700px;
-  text-align: center;
-  padding: 10px;
-  margin: 0 auto;
-}
+div.copyrights { text-align: center; }
 div.copyright { margin: 0; }
 div.credits {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
   justify-content: flex-start;
-  max-width: 720px;
-  margin: 0 auto;
+  margin: 0 -10px;
 }
 div.credits > * {
   vertical-align: top;
   text-align: left;
-  flex: 1 0 220px;
-  margin: 0;
+  flex: 1 0 {{$html.grid.size div 3 - 60}}px;
   padding: 10px;
 }
-div.credits > *:empty { padding: 0 10px; height: 0; }
+div.credits > *:empty { padding: 0; height: 0; }
 ul.credits, ul.credits li {
   margin: 0; padding: 0;
   list-style-type: none;
@@ -176,9 +173,7 @@ ul.credits li {
   text-indent: -1em;
 }
 div.license {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
 table {

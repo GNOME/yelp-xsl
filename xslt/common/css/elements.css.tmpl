@@ -144,13 +144,13 @@ div.list > div.inner > div.title { margin-bottom: 0.5em; }
 div.listing > div.inner { margin: 0; padding: 0; }
 div.listing > div.inner > div.region > div.desc { font-style: italic; }
 div.note {
-  padding: 6px;
+  padding: 10px 0;
   border: solid 1px {{$color.bg.dark}};
   background-color: {{$color.bg.gray}};
   display: flex;
   flex-flow: row;
 }
-div.note > * { margin: 0 6px; padding: 0; min-height: 24px; min-width: 24px; }
+div.note > * { margin: 0 10px; padding: 0; min-height: 24px; min-width: 24px; }
 div.note-warning > svg .yelp-svg-fill {
   fill: {{$color.red}};
 }
@@ -174,9 +174,8 @@ div.note-danger > svg .yelp-svg-fill {
 }
 div.note-sidebar {
   float: {{$right}};
-  max-width: 206px;
+  max-width: {{$html.grid.size div 4 - 22}}px;
   margin-{{$left}}: 20px;
-  padding: 6px;
 }
 div.quote {
   padding: 0;
@@ -553,19 +552,6 @@ section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.content
     border-left: none;
     border-right: none;
   }
-  div.note-sidebar {
-    float: none;
-    max-width: none;
-    margin-left: inherit;
-    margin-right: inherit;
-    padding-left: inherit;
-    padding-right: inherit;
-  }
-  div.note-sidebar > div.inner > div.title,
-  div.note-sidebar > div.inner > div.region > div.contents {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
   article > div.region > div.contents > div.steps,
   article > div.region > section > div.inner > div.region > div.contents > div.steps {
     margin-left: -10px;
@@ -579,6 +565,16 @@ section.ui-expander-preview.ui-expander-c > div.inner > div.region > div.content
     padding: 0;
     padding-{{$left}}: 6px;
     padding-{{$right}}: 10px;
+  }
+}
+@media only screen and (max-width: {{$html.grid.size div 2}}px) {
+  div.note-sidebar {
+    float: none;
+    max-width: none;
+    margin-left: inherit;
+    margin-right: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
   }
 }
 </tmpl>

@@ -176,6 +176,23 @@ should include the leading dot. By default, `.xhtml` will be used if
 
 
 <!--@@==========================================================================
+html.grid.size
+The width of the page for grid layouts.
+@revision[version=40 date=2021-01-09 status=final]
+
+This parameter sets the width of the main page content, including padding, but
+excluding any sidebars. These stylesheets frequently use flexible grids for
+layouts, and columnds are based on this parameter. This parameter should be a
+multiple of 12 for best results. Common grid sizes are 1200, 1080, and 960.
+-->
+<xsl:param name="html.grid.size" select="1080"/>
+<xsl:variable name="html.grid.col1" select="$html.grid.size - 20"/>
+<xsl:variable name="html.grid.col2" select="$html.grid.size div 2 - 20"/>
+<xsl:variable name="html.grid.col3" select="$html.grid.size div 3 - 20"/>
+<xsl:variable name="html.grid.col4" select="$html.grid.size div 4 - 20"/>
+
+
+<!--@@==========================================================================
 html.css.root
 The URI root for external CSS files.
 @revision[version=1.0 date=2010-12-06 status=final]

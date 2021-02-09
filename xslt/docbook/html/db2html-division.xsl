@@ -472,7 +472,7 @@ the division. By default it is called by the {html.footer.mode} implementation.
   <xsl:variable name="legal" select="$info/legalnotice | $info/db:legalnotice"/>
   <xsl:if test="$copyrights or $authors or $editors or $translators or
                 $publishers or $othercredits or $legal">
-    <footer class="about ui-expander" role="contentinfo">
+    <div class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
       <div class="hgroup">
@@ -549,7 +549,7 @@ the division. By default it is called by the {html.footer.mode} implementation.
         </div>
       </div>
       </div>
-    </footer>
+    </div>
   </xsl:if>
 </xsl:template>
 

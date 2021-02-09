@@ -205,7 +205,7 @@ REMARK: Describe this module
   <xsl:variable name="publishers" select="$info/&topic_publisher;"/>
   <xsl:variable name="others" select="$info/&topic_author;[not(@type = 'creator' or @type = 'translator')]"/>
   <xsl:if test="$copyrights or $authors or $translators or $publishers or $others">
-    <footer class="about ui-expander" role="contentinfo">
+    <div class="about ui-expander" role="contentinfo">
       <div class="yelp-data yelp-data-ui-expander" data-yelp-expanded="false"/>
       <div class="inner">
         <div class="hgroup">
@@ -259,7 +259,7 @@ REMARK: Describe this module
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   </xsl:if>
 </xsl:template>
 

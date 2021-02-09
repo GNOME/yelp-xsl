@@ -1,0 +1,51 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:uix="http://projectmallard.org/experimental/ui/"
+      type="topic" style="concept"
+      id="credit1">
+  <info>
+    <credit type="author copyright">
+      <name>Shaun McCance</name>
+      <email>shaunm@redhat.com</email>
+      <years>2020</years>
+    </credit>
+
+    <credit type="editor">
+      <name>Rupert Monkey</name>
+      <years>2020</years>
+    </credit>
+
+    <credit type="illustrator">
+      <name>Wanda the Fish</name>
+      <years>2020</years>
+    </credit>
+
+    <credit type="translator">
+      <name>Wilbur</name>
+      <years>2020</years>
+    </credit>
+
+    <license href="https://creativecommons.org/licenses/by-sa/3.0/">
+      <p>This work is licensed under a <link href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+      Commons Attribution-ShareAlike 3.0 Unported License</link>.</p>
+    </license>
+
+    <desc>Clicky clicky the about expander at the bottom.</desc>
+
+    <uix:thumb src="yelp.svg"/>
+
+    <link type="guide" xref="index"/>
+  </info>
+
+  <title>Credit where due</title>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Morbi mauris ipsum, varius quis hendrerit eleifend, lobortis ac risus.
+  In congue ac nunc id luctus.</p>
+
+  <p>Nullam tincidunt, ligula id consequat ullamcorper, risus erat volutpat.
+  Curabitur aliquam ut urna sed molestie. Integer non fringilla dui.</p>
+
+  <p>Ut viverra facilisis dui, et pharetra nibh volutpat et.
+  Nunc vitae ante ac nulla convallis tristique eu sit amet leo.
+  Cras et turpis eu erat fermentum porttitor.</p>
+</page>
