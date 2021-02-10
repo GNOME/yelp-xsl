@@ -12,6 +12,7 @@
     <desc>Perform the first action with gusto.</desc>
 
     <uix:thumb src="yelp.svg"/>
+    <uix:thumb role="experimental-gnome-tiles" src="banner-help.svg"/>
 
     <link type="guide" xref="index"/>
   </info>

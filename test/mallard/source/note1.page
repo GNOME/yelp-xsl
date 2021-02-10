@@ -12,6 +12,7 @@
     <desc>Note some notes. Tip some tips. Warn some warnings.</desc>
 
     <uix:thumb src="yelp.svg"/>
+    <uix:thumb role="experimental-gnome-tiles" src="banner-help.svg"/>
 
     <link type="guide" xref="index"/>
   </info>

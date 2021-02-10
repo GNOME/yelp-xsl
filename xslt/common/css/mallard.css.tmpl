@@ -166,6 +166,7 @@ a.ui-overlay-close {
   background-color: {{$color.blue}};
   color: {{$color.bg}};
 }
+<!-- FIXME drop this in favor of tiles CSS in core.css -->
 div.links-tiles {
   display: flex;
   flex-flow: row wrap;
@@ -212,6 +213,39 @@ div.links-tile > a > span.links-tile-text > span.desc {
   display: block;
   margin: 0.2em 0 0 0;
   color: {{$color.fg.dark}};
+}
+
+<!-- links/@style = 'experimental-gnome-tiles' -->
+a.ex-gnome-tile {
+  display: block;
+  border: solid 1px {{$color.gray}};
+  transition: box-shadow 0.5s linear;
+}
+a.ex-gnome-tile:hover {
+  box-shadow: 0px 2px 4px {{$color.gray}};
+}
+span.ex-gnome-tile-banner {
+  display: block;
+  height: 112px;
+  background: {{$color.fg.blue}};
+  overflow: hidden;
+}
+span.ex-gnome-tile-banner img {
+  width: 128px; height: 128px;
+  margin-{{$left}}: 64px;
+  margin-top: -8px;  
+  transform: rotate(-10deg);
+}
+span.ex-gnome-tile-title {
+  color: {{$color.fg}};
+  display: block;
+  margin: 10px 20px;
+  font-size: 1.2em;
+}
+span.ex-gnome-tile-desc {
+  color: {{$color.fg.gray}};
+  display: block;
+  margin: 10px 20px;
 }
 
 <!-- links/@style = 'grid' -->

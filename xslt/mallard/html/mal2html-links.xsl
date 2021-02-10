@@ -145,6 +145,7 @@ parameter will be used if provided.
               <xsl:with-param name="links" select="$links"/>
             </xsl:call-template>
           </xsl:when>
+          <!-- FIXME delete this style -->
           <xsl:when test="$uithumbs = 'tiles'">
             <xsl:call-template name="mal2html.ui.links.tiles">
               <xsl:with-param name="node" select="$node"/>
@@ -152,6 +153,7 @@ parameter will be used if provided.
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
+          <!-- FIXME delete this style -->
           <xsl:when test="$uithumbs = 'hover'">
             <xsl:call-template name="_mal2html.ui.links.hover">
               <xsl:with-param name="node" select="$node"/>
@@ -159,10 +161,18 @@ parameter will be used if provided.
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
+          <!-- FIXME delete this style -->
           <xsl:when test="contains($style, ' mouseovers ')">
             <xsl:call-template name="_mal2html.links.mouseovers">
               <xsl:with-param name="node" select="$node"/>
               <xsl:with-param name="links" select="$links"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="contains($style, ' experimental-gnome-tiles ')">
+            <xsl:call-template name="_mal2html.links.experimental_gnome_tiles">
+              <xsl:with-param name="node" select="$node"/>
+              <xsl:with-param name="links" select="$links"/>
+              <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="contains($style, ' toronto ') or contains($style, ' grid ')">
@@ -172,6 +182,7 @@ parameter will be used if provided.
               <xsl:with-param name="role" select="$role"/>
             </xsl:call-template>
           </xsl:when>
+          <!-- FIXME delete this style -->
           <xsl:when test="contains($style, ' norwich ')">
             <xsl:call-template name="_mal2html.links.norwich">
               <xsl:with-param name="node" select="$node"/>
@@ -1233,6 +1244,89 @@ when determining which links to output.
     </div>
   </div>
   <div class="clear"/>
+</xsl:template>
+
+
+<!--#* _mal2html.links.experimental_gnome_tiles -->
+<xsl:template name="_mal2html.links.experimental_gnome_tiles">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="links"/>
+  <xsl:param name="role"/>
+  <div class="tiles">
+    <xsl:for-each select="$links">
+      <xsl:sort data-type="number" select="@groupsort"/>
+      <xsl:sort select="mal:title[@type = 'sort']"/>
+      <xsl:variable name="link" select="."/>
+      <xsl:for-each select="$mal.cache">
+        <xsl:variable name="target" select="key('mal.cache.key', $link/@xref)"/>
+        <div class="tile3 {$link/@class}">
+          <xsl:for-each select="$link/@*">
+            <xsl:if test="starts-with(name(.), 'data-')">
+              <xsl:copy-of select="."/>
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:variable name="infos" select="$target/mal:info | $link[@href]/mal:info"/>
+          <xsl:variable name="thumbs" select="$infos/uix:thumb[@role='experimental-gnome-tiles']"/>
+          <a class="ex-gnome-tile">
+            <xsl:attribute name="href">
+              <xsl:call-template name="mal.link.target">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$link/@xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:call-template name="mal.link.tooltip">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$link/@xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="info" select="$link[@href]/mal:info"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <span class="ex-gnome-tile-banner">
+              <xsl:call-template name="mal2html.ui.links.img">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="thumbs" select="$thumbs"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="height" select="128"/>
+              </xsl:call-template>
+            </span>
+            <span class="ex-gnome-tile-title">
+              <xsl:call-template name="mal.link.content">
+                <xsl:with-param name="node" select="$node"/>
+                <xsl:with-param name="xref" select="$link/@xref"/>
+                <xsl:with-param name="href" select="$link/@href"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="info" select="$link[@href]/mal:info"/>
+              </xsl:call-template>
+            </span>
+            <xsl:if test="not(contains(concat(' ', $node/@style, ' '), ' nodesc '))">
+              <xsl:variable name="desc">
+                <xsl:call-template name="mal.link.desc">
+                  <xsl:with-param name="node" select="$node"/>
+                  <xsl:with-param name="xref" select="$link/@xref"/>
+                  <xsl:with-param name="href" select="$link/@href"/>
+                  <xsl:with-param name="role" select="$role"/>
+                  <xsl:with-param name="info" select="$link[@href]/mal:info"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:variable name="desc_" select="exsl:node-set($desc)/node()"/>
+              <xsl:if test="$desc_">
+                <span class="ex-gnome-tile-desc">
+                  <xsl:apply-templates mode="_mal2html.links.divs.nolink.mode"
+                                       select="$desc_"/>
+                </span>
+              </xsl:if>
+            </xsl:if>
+          </a>
+        </div>
+      </xsl:for-each>
+    </xsl:for-each>
+    <!-- blank tiles for homogeneous sizing -->
+    <div class="links-tile"></div>
+    <div class="links-tile"></div>
+  </div>
 </xsl:template>
 
 

@@ -226,6 +226,27 @@ dl.compact dt { margin-top: 0.2em; }
 dl.compact dt:first-child { margin-top: 0; }
 dl.compact dt + dt { margin-top: 0; }
 
+div.tiles {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: stretch;
+  vertical-align: top;
+  clear: both;
+  margin: 0 -10px;
+}
+div.tiles > * {
+  vertical-align: top;
+  margin: 0;
+  padding: 10px;
+  max-width: none;
+}
+div.tiles > *:empty { padding: 0 10px; height: 0; }
+div.tile4 { flex: 1 0 {{$html.grid.size div 4 - 20}}px; }
+div.tile3 { flex: 1 0 {{$html.grid.size div 3 - 20}}px; }
+div.tile2 { flex: 1 0 {{$html.grid.size div 2 - 20}}px; }
+div.tile1 { flex: 1 0 {{$html.grid.size - 20}}px; }
+
 a {
   text-decoration: none;
   color: {{$color.fg.blue}};
