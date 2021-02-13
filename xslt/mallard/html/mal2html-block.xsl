@@ -259,7 +259,7 @@ in accordance with the Mallard specification on fallback block content.
     <!-- C# -->
     <xsl:when test="@mime = 'text/x-csharp' or
                     contains($type, ' cs ') or contains($type, ' csharp ')">
-      <xsl:text>cs</xsl:text>
+      <xsl:text>csharp</xsl:text>
     </xsl:when>
     <!-- C++ -->
     <xsl:when test="@mime = 'text/x-c++hdr' or @mime = 'text/x-c++src' or
@@ -404,6 +404,10 @@ in accordance with the Mallard specification on fallback block content.
     <xsl:when test="@mime = 'text/x-smalltalk' or contains($type, ' smalltalk ')">
       <xsl:text>smalltalk</xsl:text>
     </xsl:when>
+    <!-- SML -->
+    <xsl:when test="contains($type, ' sml ')">
+      <xsl:text>sml</xsl:text>
+    </xsl:when>
     <!-- SQL -->
     <xsl:when test="@mime = 'application/sql' or contains($type, ' sql ')">
       <xsl:text>sql</xsl:text>
@@ -416,7 +420,7 @@ in accordance with the Mallard specification on fallback block content.
     <!-- TeX -->
     <xsl:when test="@mime = 'text/x-tex' or
                     contains($type, ' tex ') or contains($type, ' latex ')">
-      <xsl:text>tex</xsl:text>
+      <xsl:text>latex</xsl:text>
     </xsl:when>
     <!-- Vala -->
     <xsl:when test="@mime = 'text/x-vala' or contains($type, ' vala ')">

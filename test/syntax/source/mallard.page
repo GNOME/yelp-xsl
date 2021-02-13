@@ -102,19 +102,19 @@ int main(char** argv) {
   </listing>
 </section>
 
-<section id="cs">
+<section id="csharp">
   <title>C#</title>
   <listing ui:expanded="false">
     <title><code>mime="text/x-csharp"</code></title>
-    <code mime="text/x-csharp"><xi:include parse="text" href="code/cs"/></code>
+    <code mime="text/x-csharp"><xi:include parse="text" href="code/csharp"/></code>
   </listing>
   <listing ui:expanded="false">
     <title><code>type="cs"</code></title>
-    <code type="cs"><xi:include parse="text" href="code/cs"/></code>
+    <code type="cs"><xi:include parse="text" href="code/csharp"/></code>
   </listing>
   <listing ui:expanded="false">
     <title><code>type="csharp"</code></title>
-    <code type="csharp"><xi:include parse="text" href="code/cs"/></code>
+    <code type="csharp"><xi:include parse="text" href="code/csharp"/></code>
   </listing>
 </section>
 
@@ -650,6 +650,14 @@ int main(char** argv) {
   </listing>
 </section>
 
+<section id="sml">
+  <title>SML</title>
+  <listing ui:expanded="false">
+    <title><code>type="sml"</code></title>
+    <code type="sml"><xi:include parse="text" href="code/sml"/></code>
+  </listing>
+</section>
+
 <section id="sql">
   <title>SQL</title>
   <listing ui:expanded="false">
@@ -678,15 +686,15 @@ int main(char** argv) {
   <title>TeX</title>
   <listing ui:expanded="false">
     <title><code>mime="text/x-tex"</code></title>
-    <code mime="text/x-tex"><xi:include parse="text" href="code/tex"/></code>
+    <code mime="text/x-tex"><xi:include parse="text" href="code/latex"/></code>
   </listing>
   <listing ui:expanded="false">
     <title><code>type="tex"</code></title>
-    <code type="tex"><xi:include parse="text" href="code/tex"/></code>
+    <code type="tex"><xi:include parse="text" href="code/latex"/></code>
   </listing>
   <listing ui:expanded="false">
     <title><code>type="latex"</code></title>
-    <code type="latex"><xi:include parse="text" href="code/tex"/></code>
+    <code type="latex"><xi:include parse="text" href="code/latex"/></code>
   </listing>
 </section>
 

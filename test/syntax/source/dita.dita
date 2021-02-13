@@ -94,16 +94,16 @@ int main(char** argv) {
   </body>
 </topic>
 
-<topic id="cs">
+<topic id="csharp">
   <title>C#</title>
   <body>
   <section>
     <title><codeph>outputclass="cs"</codeph></title>
-    <codeblock outputclass="cs"><xi:include parse="text" href="code/cs"/></codeblock>
+    <codeblock outputclass="cs"><xi:include parse="text" href="code/csharp"/></codeblock>
   </section>
   <section>
     <title><codeph>outputclass="csharp"</codeph></title>
-    <codeblock outputclass="csharp"><xi:include parse="text" href="code/cs"/></codeblock>
+    <codeblock outputclass="csharp"><xi:include parse="text" href="code/csharp"/></codeblock>
   </section>
   </body>
 </topic>
@@ -568,6 +568,16 @@ int main(char** argv) {
   </body>
 </topic>
 
+<topic id="sml">
+  <title>SML</title>
+  <body>
+  <section>
+    <title><codeph>outputclass="sml"</codeph></title>
+    <codeblock outputclass="sml"><xi:include parse="text" href="code/sml"/></codeblock>
+  </section>
+  </body>
+</topic>
+
 <topic id="sql">
   <title>SQL</title>
   <body>
@@ -605,11 +615,11 @@ int main(char** argv) {
   <body>
   <section>
     <title><codeph>outputclass="tex"</codeph></title>
-    <codeblock outputclass="tex"><xi:include parse="text" href="code/tex"/></codeblock>
+    <codeblock outputclass="tex"><xi:include parse="text" href="code/latex"/></codeblock>
   </section>
   <section>
     <title><codeph>outputclass="latex"</codeph></title>
-    <codeblock outputclass="latex"><xi:include parse="text" href="code/tex"/></codeblock>
+    <codeblock outputclass="latex"><xi:include parse="text" href="code/latex"/></codeblock>
   </section>
   </body>
 </topic>

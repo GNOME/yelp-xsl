@@ -82,15 +82,15 @@ int main(char** argv) {
   </example>
 </section>
 
-<section id="cs">
+<section id="csharp">
   <title>C#</title>
   <example>
     <title><code>language="cs"</code></title>
-    <programlisting language="cs"><xi:include parse="text" href="code/cs"/></programlisting>
+    <programlisting language="cs"><xi:include parse="text" href="code/csharp"/></programlisting>
   </example>
   <example>
     <title><code>language="csharp"</code></title>
-    <programlisting language="csharp"><xi:include parse="text" href="code/cs"/></programlisting>
+    <programlisting language="csharp"><xi:include parse="text" href="code/csharp"/></programlisting>
   </example>
 </section>
 
@@ -478,6 +478,14 @@ int main(char** argv) {
   </example>
 </section>
 
+<section id="sml">
+  <title>SML</title>
+  <example>
+    <title><code>language="sml"</code></title>
+    <programlisting language="sml"><xi:include parse="text" href="code/sml"/></programlisting>
+  </example>
+</section>
+
 <section id="sql">
   <title>SQL</title>
   <example>
@@ -510,11 +518,11 @@ int main(char** argv) {
   <title>TeX</title>
   <example>
     <title><code>language="tex"</code></title>
-    <programlisting language="tex"><xi:include parse="text" href="code/tex"/></programlisting>
+    <programlisting language="tex"><xi:include parse="text" href="code/latex"/></programlisting>
   </example>
   <example>
     <title><code>language="latex"</code></title>
-    <programlisting language="latex"><xi:include parse="text" href="code/tex"/></programlisting>
+    <programlisting language="latex"><xi:include parse="text" href="code/latex"/></programlisting>
   </example>
 </section>
 

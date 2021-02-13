@@ -5,7 +5,8 @@ Website: https://twitter.com/shaunm
 Category: markup
 */
 
-function(hljs) {
+/** @type LanguageFn */
+export default function(hljs) {
   var ATTRLIST = {
     endsWithParent: true,
     relevance: 0,

@@ -678,7 +678,7 @@ This template handles conditional processing.
     </xsl:when>
     <!-- C# -->
     <xsl:when test="$language = 'cs' or $language = 'csharp'">
-      <xsl:text>cs</xsl:text>
+      <xsl:text>csharp</xsl:text>
     </xsl:when>
     <!-- C++ -->
     <xsl:when test="$language = 'cpp' or $language = 'c++'">
@@ -834,6 +834,10 @@ This template handles conditional processing.
     <xsl:when test="$language = 'smalltalk'">
       <xsl:text>smalltalk</xsl:text>
     </xsl:when>
+    <!-- SML -->
+    <xsl:when test="$language = 'sml'">
+      <xsl:text>sml</xsl:text>
+    </xsl:when>
     <!-- SQL -->
     <xsl:when test="$language = 'sql' or $language = 'sql92' or
                     $language = 'sql1999' or $language = 'sql2003'">
@@ -845,7 +849,7 @@ This template handles conditional processing.
     </xsl:when>
     <!-- TeX -->
     <xsl:when test="$language = 'tex' or $language = 'latex'">
-      <xsl:text>tex</xsl:text>
+      <xsl:text>latex</xsl:text>
     </xsl:when>
     <!-- Vala -->
     <xsl:when test="$language = 'vala'">
