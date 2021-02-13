@@ -23,7 +23,7 @@
  as <code>$node</code> to this template. Importing stylesheets should also implement
  <code xref="html.header.mode">html.header.mode</code> to output link trails and <code xref="html.footer.mode">html.footer.mode</code> to output
  credits and other page information.</p>
- <p>This template outputs the HTML <sys>body</sys> element, which takes it attributes
+ <p>This template outputs the HTML <sys>body</sys> element, which takes its attributes
  from two sources. First, it calls <code xref="html.lang.attrs">html.lang.attrs</code>, which automatically
  outputs correct <sys>lang</sys>, <sys>xml:lang</sys>, and <sys>dir</sys> attributes. It then calls
  <code xref="html.body.attr.mode">html.body.attr.mode</code> on <code>$node</code> for additional attributes.</p>

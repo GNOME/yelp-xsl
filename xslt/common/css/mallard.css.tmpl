@@ -215,37 +215,71 @@ div.links-tile > a > span.links-tile-text > span.desc {
   color: {{$color.fg.dark}};
 }
 
-<!-- links/@style = 'experimental-gnome-tiles' -->
-a.ex-gnome-tile {
+<!-- links/@style = 'experimental-gnome-splash' -->
+a.ex-gnome-top {
   display: block;
   border: solid 1px {{$color.gray}};
+  border-radius: 4px;
   transition: box-shadow 0.5s linear;
 }
-a.ex-gnome-tile:hover {
+a.ex-gnome-top:hover {
   box-shadow: 0px 2px 4px {{$color.gray}};
 }
-span.ex-gnome-tile-banner {
+span.ex-gnome-top-banner {
   display: block;
-  height: 112px;
-  background: {{$color.fg.blue}};
+  height: 10px;
+  background: {{$color.green}};
   overflow: hidden;
 }
-span.ex-gnome-tile-banner img {
-  width: 128px; height: 128px;
-  margin-{{$left}}: 64px;
-  margin-top: -8px;  
-  transform: rotate(-10deg);
-}
-span.ex-gnome-tile-title {
+span.ex-gnome-top-title {
   color: {{$color.fg}};
   display: block;
   margin: 10px 20px;
   font-size: 1.2em;
 }
-span.ex-gnome-tile-desc {
+span.ex-gnome-top-desc {
   color: {{$color.fg.gray}};
   display: block;
   margin: 10px 20px;
+}
+
+<!-- links/@style = 'experimental-gnome-tiles' -->
+a.ex-gnome-tile {
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  border: solid 1px {{$color.gray}};
+  border-radius: 4px;
+  transition: box-shadow 0.5s linear;
+}
+a.ex-gnome-tile:hover {
+  box-shadow: 0px 2px 4px {{$color.gray}};
+}
+span.ex-gnome-tiles-banner {
+  display: block;
+  flex: 0 0 64px;
+  background: {{$color.fg.blue}};
+  overflow: hidden;
+}
+span.ex-gnome-tiles-banner img {
+  width: 64px; height: 64px;
+  margin: 10px 0;
+  transform: rotate(-10deg);
+}
+span.ex-gnome-tiles-text {
+  display: block;
+  margin: 10px;
+}
+span.ex-gnome-tiles-title {
+  color: {{$color.fg}};
+  display: block;
+  margin: 0;
+  font-size: 1.2em;
+}
+span.ex-gnome-tiles-desc {
+  color: {{$color.fg.gray}};
+  display: block;
+  margin-top: 10px;
 }
 
 <!-- links/@style = 'grid' -->

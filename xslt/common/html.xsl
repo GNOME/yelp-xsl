@@ -365,7 +365,7 @@ as $node to this template. Importing stylesheets should also implement
 {html.header.mode} to output link trails and {html.footer.mode} to output
 credits and other page information.
 
-This template outputs the HTML `body` element, which takes it attributes
+This template outputs the HTML `body` element, which takes its attributes
 from two sources. First, it calls {html.lang.attrs}, which automatically
 outputs correct `lang`, `xml:lang`, and `dir` attributes. It then calls
 {html.body.attr.mode} on $node for additional attributes.

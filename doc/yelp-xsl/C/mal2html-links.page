@@ -75,6 +75,9 @@
    <p><link xref="mal2html.ui.expander.data"/></p>
   </item>
   <item>
+   <p><link xref="mal2html.ui.links.img"/></p>
+  </item>
+  <item>
    <p><link xref="mal2html.ui.links.tiles"/></p>
   </item>
  </list>
