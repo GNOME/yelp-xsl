@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the yelp-xls package.
 #
 # Matjaž Horvat <m@owca.info>, 2006.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2011.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007–2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xls master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-07-29 18:43+0000\n"
-"PO-Revision-Date: 2018-08-03 12:05+0200\n"
+"POT-Creation-Date: 2021-02-13 16:45+0000\n"
+"PO-Revision-Date: 2021-02-21 00:37+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -183,7 +183,7 @@ msgstr "Osnutek"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:180
 msgid "Edited By"
-msgstr "Uredniki"
+msgstr "Uredniki:"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
@@ -236,7 +236,7 @@ msgstr "Dovoljenje"
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:228
 msgid "Maintained By"
-msgstr "Vzdrževalci"
+msgstr "Vzdrževalci:"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
@@ -382,7 +382,7 @@ msgstr "Opozorilo"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:359
 msgid "Written By"
-msgstr "Avtorji"
+msgstr "Avtorji:"
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
@@ -518,7 +518,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
-msgstr "Pošljite elektronsko sporočilo na ‘<string/>’."
+msgstr "Pošljite elektronsko sporočilo na »<string/>«."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -530,7 +530,7 @@ msgstr "Pošljite elektronsko sporočilo na ‘<string/>’."
 #.
 #: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "Preberite definicijo pojma ‘<glossterm/>’."
+msgstr "Preberite definicijo pojma »<glossterm/>«."
 
 #. (itstool) path: msg/msgstr
 #. ID: glosssee.format
@@ -585,7 +585,7 @@ msgstr "Poglejte si tudi <glosssee/>."
 #.
 #: yelp-xsl.xml.in:564
 msgid "“<node/>”"
-msgstr "“<node/>”"
+msgstr "»<node/>«"
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -597,13 +597,37 @@ msgstr "“<node/>”"
 #.
 #: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
-msgstr "‘<node/>’"
+msgstr "»<node/>«"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Poglejte si <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Poglejte si <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Poglejte si tudi <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Poglejte si tudi <seeie/>."
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201C.png"
