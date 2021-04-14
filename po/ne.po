@@ -10,10 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
-"xsl&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-05-23 15:05+0000\n"
-"PO-Revision-Date: 2017-08-17 14:59+0545\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2020-06-01 19:46+0000\n"
+"PO-Revision-Date: 2021-04-14 12:45+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. (itstool) path: msg/msgstr
@@ -132,26 +131,44 @@ msgid "Candidate"
 msgstr "उमेद्वार"
 
 #. (itstool) path: msg/msgstr
-#. Accessible title for an close button.
+#. Accessible title for a caution note.
 #: yelp-xsl.xml.in:137
+msgid "Caution"
+msgstr "सावधानी"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:142
 msgid "Close"
 msgstr "बन्दगर्नुहोस्"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a colophon section.
-#: yelp-xsl.xml.in:142
+#: yelp-xsl.xml.in:147
 msgid "Colophon"
 msgstr "कोलोफोन"
 
 #. (itstool) path: msg/msgstr
+#. Title for a table of contents for the entire document.
+#: yelp-xsl.xml.in:152
+msgid "Contents"
+msgstr "सामग्रीहरू"
+
+#. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:147
+#: yelp-xsl.xml.in:157
 msgid "Creative Commons"
-msgstr ""
+msgstr "क्रियटिभ कमन्स"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a danger note.
+#: yelp-xsl.xml.in:162
+msgid "Danger"
+msgstr "खतरा"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
-#: yelp-xsl.xml.in:152
+#: yelp-xsl.xml.in:167
 msgid "Dedication"
 msgstr "समर्पण"
 
@@ -159,13 +176,13 @@ msgstr "समर्पण"
 #. Revision status of a document or page. Most content has been
 #. written, but revisions are still happening.
 #.
-#: yelp-xsl.xml.in:160
+#: yelp-xsl.xml.in:175
 msgid "Draft"
 msgstr "ड्राफ्ट"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of editors.
-#: yelp-xsl.xml.in:165
+#: yelp-xsl.xml.in:180
 msgid "Edited By"
 msgstr "सम्पादक"
 
@@ -173,19 +190,19 @@ msgstr "सम्पादक"
 #. Revision status of a document or page. A senior member of the
 #. documentation team has reviewed and approved.
 #.
-#: yelp-xsl.xml.in:173
+#: yelp-xsl.xml.in:188
 msgid "Final"
 msgstr "अन्तिम"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
-#: yelp-xsl.xml.in:178
+#: yelp-xsl.xml.in:193
 msgid "Glossary"
 msgstr "शब्दकोश"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
-#: yelp-xsl.xml.in:183
+#: yelp-xsl.xml.in:198
 msgid "Important"
 msgstr "महत्वपूर्ण"
 
@@ -193,58 +210,64 @@ msgstr "महत्वपूर्ण"
 #. Revision status of a document or page. Work has begun, but
 #. not all content has been written.
 #.
-#: yelp-xsl.xml.in:191
+#: yelp-xsl.xml.in:206
 msgid "Incomplete"
 msgstr "अपूर्"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:196
+#: yelp-xsl.xml.in:211
 msgid "Index"
 msgstr "अनुक्रमणिका"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:201
+#: yelp-xsl.xml.in:216
 msgid "Legal"
 msgstr "कानूनी"
 
 #. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
-#: yelp-xsl.xml.in:208
+#: yelp-xsl.xml.in:223
 msgid "License"
 msgstr "इजाजतपत्र"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
-#: yelp-xsl.xml.in:213
+#: yelp-xsl.xml.in:228
 msgid "Maintained By"
-msgstr ""
+msgstr "ब्यब्स्थापक"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:218
+#: yelp-xsl.xml.in:233
 msgid "More Information"
 msgstr "थप जानकारी"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:223
+#: yelp-xsl.xml.in:238
 msgid "Next"
 msgstr "पछिल्लो"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note.
-#: yelp-xsl.xml.in:228
+#: yelp-xsl.xml.in:243
 msgid "Note"
 msgstr "द्रष्टव्य"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of links to sections on the current page.
+#: yelp-xsl.xml.in:248
+msgid "On This Page"
+msgstr "यो पृष्ठमा"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
 #. or other types we have specific lists for.
 #.
-#: yelp-xsl.xml.in:236
+#: yelp-xsl.xml.in:256
 msgid "Other Credits"
 msgstr "अन्य श्रेयहरू"
 
@@ -252,31 +275,37 @@ msgstr "अन्य श्रेयहरू"
 #. Revision status of a document or page. Content was once current,
 #. but needs to be updated to reflect software updates.
 #.
-#: yelp-xsl.xml.in:244
+#: yelp-xsl.xml.in:264
 msgid "Outdated"
 msgstr "पुरानो"
 
 #. (itstool) path: msg/msgstr
+#. Accessible title for a package note.
+#: yelp-xsl.xml.in:269
+msgid "Package"
+msgstr "प्याकेज"
+
+#. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:249
+#: yelp-xsl.xml.in:274
 msgid "Pause"
 msgstr "Pause"
 
 #. (itstool) path: msg/msgstr
 #. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:254
+#: yelp-xsl.xml.in:279
 msgid "Play"
 msgstr "बजाउनुहोस्"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:259
+#: yelp-xsl.xml.in:284
 msgid "Previous"
 msgstr "अघिल्लो"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of publishers.
-#: yelp-xsl.xml.in:264
+#: yelp-xsl.xml.in:289
 msgid "Published By"
 msgstr "प्रकाशिक"
 
@@ -284,13 +313,13 @@ msgstr "प्रकाशिक"
 #. Revision status of a document or page. Content has been written
 #. and should be reviewed by other team members.
 #.
-#: yelp-xsl.xml.in:272
+#: yelp-xsl.xml.in:297
 msgid "Ready for review"
 msgstr "पुनरावलोकन गर्न तयार"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:277
+#: yelp-xsl.xml.in:302
 msgid "See Also"
 msgstr "हेर्नुहोस् पनि"
 
@@ -299,21 +328,20 @@ msgstr "हेर्नुहोस् पनि"
 #. This is used a tooltip on a link to shrink images back down after
 #. they've been expanded to full size.
 #.
-#: yelp-xsl.xml.in:286
-#, fuzzy
+#: yelp-xsl.xml.in:311
 msgid "Scale images down"
-msgstr "तल"
+msgstr "छवि मापन घटाउनुहोस्"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:291
+#: yelp-xsl.xml.in:316
 msgid "Sidebar"
 msgstr "छेउपट्टी"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
 #.
-#: yelp-xsl.xml.in:298
+#: yelp-xsl.xml.in:323
 msgid "Stub"
 msgstr "ठुटो"
 
@@ -321,19 +349,19 @@ msgstr "ठुटो"
 #. Default title for a refsynopsisdiv element. This is the common section
 #. title found in most UNIX man pages.
 #.
-#: yelp-xsl.xml.in:306
+#: yelp-xsl.xml.in:331
 msgid "Synopsis"
 msgstr "संक्षेप"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
-#: yelp-xsl.xml.in:311
+#: yelp-xsl.xml.in:336
 msgid "Tip"
 msgstr "टिप"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
-#: yelp-xsl.xml.in:316
+#: yelp-xsl.xml.in:341
 msgid "Translated By"
 msgstr "अनुवादक"
 
@@ -341,19 +369,19 @@ msgstr "अनुवादक"
 #. Figures can automatically scale images down to fit the page width.
 #. This is used a tooltip on a link to expand images to full size.
 #.
-#: yelp-xsl.xml.in:324
+#: yelp-xsl.xml.in:349
 msgid "View images at normal size"
 msgstr "साधारण साइजमा छवि हेर्नुहोस्"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
-#: yelp-xsl.xml.in:329
+#: yelp-xsl.xml.in:354
 msgid "Warning"
 msgstr "चेतावनी"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of authors.
-#: yelp-xsl.xml.in:334
+#: yelp-xsl.xml.in:359
 msgid "Written By"
 msgstr "लेखक"
 
@@ -367,9 +395,9 @@ msgstr "लेखक"
 #.
 #. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:350
+#: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "सन्दर्भसूची प्रबिष्टि हेर्नुहोस् <biblioentry.label/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
@@ -390,7 +418,7 @@ msgstr ""
 #.
 #. <biblioentry.label/> - The text content of the bibliography label
 #.
-#: yelp-xsl.xml.in:373
+#: yelp-xsl.xml.in:398
 msgid "[<biblioentry.label/>]"
 msgstr "[<biblioentry.label/>]"
 
@@ -407,7 +435,7 @@ msgstr "[<biblioentry.label/>]"
 #. <citation.label/> - The text content of the citation element, possibly
 #. as a link to an entry in the bibliography
 #.
-#: yelp-xsl.xml.in:390
+#: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
 msgstr "[<citation.label/>]"
 
@@ -436,7 +464,7 @@ msgstr "[<citation.label/>]"
 #. <comment.name/> - The name of the person making the comment
 #. <comment.date/> - The date the comment was made
 #.
-#: yelp-xsl.xml.in:419
+#: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
 msgstr "<comment.name/>ले <comment.date/> मा सम्पादन"
 
@@ -464,7 +492,7 @@ msgstr "<comment.name/>ले <comment.date/> मा सम्पादन"
 #.
 #. <comment.name/> - The name of the person making the comment
 #.
-#: yelp-xsl.xml.in:447
+#: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
 msgstr "<comment.name/>"
 
@@ -477,7 +505,7 @@ msgstr "<comment.name/>"
 #. <copyright.years/> - The years the copyrightable material was made
 #. <copyright.name/>  - The person or entity that holds the copyright
 #.
-#: yelp-xsl.xml.in:460
+#: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
 msgstr "© <copyright.years/> <copyright.name/>"
 
@@ -489,7 +517,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #. <string/> - The linked-to email address
 #.
-#: yelp-xsl.xml.in:472
+#: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
 msgstr " ‘<string/>’लाई इमेल पठाउनुहोस्."
 
@@ -501,10 +529,7 @@ msgstr " ‘<string/>’लाई इमेल पठाउनुहोस्."
 #.
 #. <glossterm/> - The term being defined by the glossary entry
 #.
-#: yelp-xsl.xml.in:484
-#| msgid ""
-#| "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
-#| "‘<glossterm/>’.</msgstr>"
+#: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr " ‘<glossterm/>’को परिभाषा पढ्नुहोस्."
 
@@ -525,7 +550,7 @@ msgstr " ‘<glossterm/>’को परिभाषा पढ्नुहोस
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:505
+#: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
 msgstr "<glosssee/>हेर्नुहोस्."
 
@@ -547,7 +572,7 @@ msgstr "<glosssee/>हेर्नुहोस्."
 #.
 #. <glosssee/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:527
+#: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
 msgstr "<glosssee/> पनि हेर्नुहोस्."
 
@@ -559,7 +584,7 @@ msgstr "<glosssee/> पनि हेर्नुहोस्."
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:539
+#: yelp-xsl.xml.in:564
 msgid "“<node/>”"
 msgstr "“<node/>”"
 
@@ -571,7 +596,7 @@ msgstr "“<node/>”"
 #.
 #. <node/> - The text content of the quote element
 #.
-#: yelp-xsl.xml.in:551
+#: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
 msgstr "‘<node/>’"
 
@@ -586,7 +611,7 @@ msgstr "‘<node/>’"
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:566
+#: yelp-xsl.xml.in:591
 msgid "See <seeie/>."
 msgstr "<seeie/>हेर्नुहोस्."
 
@@ -601,7 +626,7 @@ msgstr "<seeie/>हेर्नुहोस्."
 #.
 #. <seeie/> - The actual link or links of the cross reference
 #.
-#: yelp-xsl.xml.in:581
+#: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
 msgstr "<seeie/>पनि हेर्नुहोस्."
 
@@ -611,29 +636,17 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 #~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix <number/></msgstr>"
+#~ msgstr "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix <number/></msgstr>"
 
 #~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-#~ "<label/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>सन्दर्भ सूची प्रविष्टि हेर्नुहोस् <label/>।"
-#~ "</msgstr>"
+#~ msgid "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry <label/>.</msgstr>"
+#~ msgstr "<msgid>biblioentry.tooltip</msgid> <msgstr>सन्दर्भ सूची प्रविष्टि हेर्नुहोस् <label/>।</msgstr>"
 
 #~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
 #~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
@@ -650,48 +663,29 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>chapter.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-#~ "<number/></msgstr>"
+#~ msgid "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter <number/></msgstr>"
+#~ msgstr "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter <number/></msgstr>"
 
 #~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>chapter.xref</msgid> <msgstr>अध्याय <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>chapter.xref</msgid> <msgstr>अध्याय <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 #~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
-#~ msgstr ""
-#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgid "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
+#~ msgstr "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> <msgstr><i><node/></i></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgid "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
 #~ msgstr "<msgid>email.tooltip</msgid> <msgstr>इमेल पठाउनुहोस्‘<string/>’।</msgstr>"
 
 #~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>example.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Example <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>example.label</msgid> <msgstr role='header'><i>उद्दाहरण <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>उदाहरण <number/>&#x2002;</msgstr> "
-#~ "<msgstr>उदाहरण <number/></msgstr>"
+#~ msgid "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> <msgstr>Example <number/></msgstr>"
+#~ msgstr "<msgid>example.label</msgid> <msgstr role='header'><i>उद्दाहरण <number/></i>&#x2003;</msgstr> <msgstr role='li'>उदाहरण <number/>&#x2002;</msgstr> <msgstr>उदाहरण <number/></msgstr>"
 
 #~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -702,14 +696,8 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Figure <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>रेखाचित्र <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>रेखाचित्र <number/>&#x2002;</msgstr> "
-#~ "<msgstr>रेखाचित्र <number/></msgstr>"
+#~ msgid "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>"
+#~ msgstr "<msgid>figure.label</msgid> <msgstr role='header'><i>रेखाचित्र <number/></i>&#x2003;</msgstr> <msgstr role='li'>रेखाचित्र <number/>&#x2002;</msgstr> <msgstr>रेखाचित्र <number/></msgstr>"
 
 #~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -723,20 +711,14 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
-#~ "<msgstr>‘<glossterm/>’</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
-#~ "<msgstr>‘<glossterm/>’</msgstr>"
+#~ msgid "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 
 #~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
 #~ msgstr "<msgid>glosssee.format</msgid> <msgstr> <glosssee/>हेर्नुहोस् ।</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-#~ msgstr ""
-#~ "<msgid>glossseealso.format</msgid> <msgstr> <glosssee/>पनि हेर्नुहोस् ।</msgstr>"
+#~ msgid "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glossseealso.format</msgid> <msgstr> <glosssee/>पनि हेर्नुहोस् ।</msgstr>"
 
 #~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
 #~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
@@ -744,12 +726,8 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
 #~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> "
-#~ "<msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> "
-#~ "<msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
+#~ msgid "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
+#~ msgstr "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
 
 #~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
 #~ msgstr "<msgid>part.xref</msgid> <msgstr>भाग <number/> ― <title/></msgstr>"
@@ -760,24 +738,14 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>question.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>प्रश्न <number/"
-#~ "></msgstr>"
+#~ msgid "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>प्रश्न <number/></msgstr>"
 
 #~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
 #~ msgstr "<msgid>question.xref</msgid> <msgstr>प्रश्न <number/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
-#~ msgstr ""
-#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgid "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
+#~ msgstr "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> <msgstr>“<node/>”</msgstr>"
 
 #~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
 #~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
@@ -785,40 +753,25 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>refsection.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>खण्ड <number/></"
-#~ "msgstr>"
+#~ msgid "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
+#~ msgstr "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>खण्ड <number/></msgstr>"
 
 #~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>refsection.xref</msgid> <msgstr>खण्ड <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>refsection.xref</msgid> <msgstr>खण्ड <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>section.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-#~ "<number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x२००३;</"
-#~ "msgstr> <msgstr role='li'><number/>.&#x२००२;</msgstr> <msgstr>खण्ड <number/></"
-#~ "msgstr>"
+#~ msgid "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section <number/></msgstr>"
+#~ msgstr "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x२००३;</msgstr> <msgstr role='li'><number/>.&#x२००२;</msgstr> <msgstr>खण्ड <number/></msgstr>"
 
 #~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 #~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#~ msgid ""
-#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
 #~ msgstr "<msgid>section.xref</msgid> <msgstr>खण्ड <number/> ― <title/></msgstr>"
 
 #~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
@@ -836,14 +789,8 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
 #~ msgstr "<msgid>table.digit</msgid> <msgstr>१</msgstr>"
 
-#~ msgid ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-#~ "<msgstr>Table <number/></msgstr>"
-#~ msgstr ""
-#~ "<msgid>table.label</msgid> <msgstr role='header'><i>तालिका <number/></"
-#~ "i>&#x२००३;</msgstr> <msgstr role='li'>तालिका <number/>&#x२००२;</msgstr> "
-#~ "<msgstr>तालिका <number/></msgstr>"
+#~ msgid "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> <msgstr>Table <number/></msgstr>"
+#~ msgstr "<msgid>table.label</msgid> <msgstr role='header'><i>तालिका <number/></i>&#x२००३;</msgstr> <msgstr role='li'>तालिका <number/>&#x२००२;</msgstr> <msgstr>तालिका <number/></msgstr>"
 
 #~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 #~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
@@ -854,32 +801,22 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 #~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
 #~ msgstr "<msgstr form='०'>लेखक</msgstr> <msgstr form='१'>लेखकहरू</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-#~ "msgstr>"
+#~ msgid "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</msgstr>"
 #~ msgstr "<msgstr form='0'>सहायोगी</msgstr> <msgstr form='१'>सहयोगी</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>प्रतिलिपि अधिकार</msgstr> <msgstr form='१'>प्रतिलिपि "
-#~ "अधिकारहरू</msgstr>"
+#~ msgid "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr "<msgstr form='0'>प्रतिलिपि अधिकार</msgstr> <msgstr form='१'>प्रतिलिपि अधिकारहरू</msgstr>"
 
 #~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
 #~ msgstr "<msgstr form='0'>सम्पादक</msgstr> <msgstr form='१'>सम्पादकहरू</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-#~ "Contributors</msgstr>"
-#~ msgstr ""
-#~ "<msgstr form='0'>अन्य सहयोगी</msgstr> <msgstr form='१'>अन्य  सहयोगीहरू</msgstr>"
+#~ msgid "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other Contributors</msgstr>"
+#~ msgstr "<msgstr form='0'>अन्य सहयोगी</msgstr> <msgstr form='१'>अन्य  सहयोगीहरू</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgid "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
 #~ msgstr "<msgstr form='0'>प्रकाशक</msgstr> <msgstr form='१'>प्रकाशकहरू</msgstr>"
 
-#~ msgid ""
-#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgid "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
 #~ msgstr "<msgstr form='0'>अनुवादक</msgstr> <msgstr form='१'>अनुवादकहरू</msgstr>"
 
 #~ msgid "A:&#x2003;"
@@ -890,12 +827,6 @@ msgstr "<seeie/>पनि हेर्नुहोस्."
 
 #~ msgid "Affiliation"
 #~ msgstr "सम्बद्धन"
-
-#~ msgid "Caution"
-#~ msgstr "सावधानी"
-
-#~ msgid "Contents"
-#~ msgstr "सामग्रीहरू"
 
 #~ msgid "Email"
 #~ msgstr "इमेल"
