@@ -476,6 +476,7 @@ the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
   <xsl:param name="color"/>
   <xsl:param name="target" select="5"/>
   <xsl:param name="recdepth" select="0"/>
+  <xsl:param name="name"/>
   <xsl:variable name="newcolor">
     <xsl:call-template name="color.blend">
       <xsl:with-param name="bg" select="$color"/>
@@ -490,13 +491,18 @@ the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
     </xsl:call-template>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$recdepth > 10">
-      <xsl:message>
-        <xsl:text>Recursion depth exceeded calculating fg color</xsl:text>
-      </xsl:message>
+    <xsl:when test="$contrast >= $target">
       <xsl:value-of select="$newcolor"/>
     </xsl:when>
-    <xsl:when test="$contrast >= $target">
+    <xsl:when test="$recdepth > 10">
+      <xsl:message>
+        <xsl:text>Recursion depth exceeded calculating </xsl:text>
+        <xsl:if test="$name">
+          <xsl:value-of select="concat($name, ' ')"/>
+        </xsl:if>
+        <xsl:text>fg color. Using </xsl:text>
+        <xsl:value-of select="$newcolor"/>
+      </xsl:message>
       <xsl:value-of select="$newcolor"/>
     </xsl:when>
     <xsl:otherwise>
@@ -504,17 +510,47 @@ the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
         <xsl:with-param name="color" select="$newcolor"/>
         <xsl:with-param name="target" select="$target"/>
         <xsl:with-param name="recdepth" select="$recdepth + 1"/>
+        <xsl:with-param name="name" select="$name"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 
+<!--#@ color.background -->
+<xsl:variable name="_color.isinverse">
+  <xsl:variable name="contrast">
+    <xsl:call-template name="color.contrast">
+      <xsl:with-param name="bg" select="'#000000'"/>
+      <xsl:with-param name="fg" select="$color.fg"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$contrast > 5">
+      <xsl:text>1</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>0</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+
 <!--#* _color.bgify -->
 <xsl:template name="_color.bgify">
   <xsl:param name="color"/>
-  <xsl:param name="target" select="19"/>
+  <xsl:param name="target">
+    <xsl:choose>
+      <xsl:when test="normalize-space($_color.isinverse) = '1'">
+        <xsl:value-of select="11"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="19"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
   <xsl:param name="recdepth" select="0"/>
+  <xsl:param name="name"/>
   <xsl:variable name="newcolor">
     <xsl:call-template name="color.blend">
       <xsl:with-param name="bg" select="$color"/>
@@ -529,13 +565,18 @@ the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
     </xsl:call-template>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="$recdepth > 20">
-      <xsl:message>
-        <xsl:text>Recursion depth exceeded calculating bg color</xsl:text>
-      </xsl:message>
+    <xsl:when test="$contrast >= $target">
       <xsl:value-of select="$newcolor"/>
     </xsl:when>
-    <xsl:when test="$contrast >= $target">
+    <xsl:when test="$recdepth > 20">
+      <xsl:message>
+        <xsl:text>Recursion depth exceeded calculating </xsl:text>
+        <xsl:if test="$name">
+          <xsl:value-of select="concat($name, ' ')"/>
+        </xsl:if>
+        <xsl:text>bg color. Using </xsl:text>
+        <xsl:value-of select="$newcolor"/>
+      </xsl:message>
       <xsl:value-of select="$newcolor"/>
     </xsl:when>
     <xsl:otherwise>
@@ -543,6 +584,7 @@ the `rgb()` scheme. Otherwise, it uses the `rgba()` scheme.
         <xsl:with-param name="color" select="$newcolor"/>
         <xsl:with-param name="target" select="$target"/>
         <xsl:with-param name="recdepth" select="$recdepth + 1"/>
+        <xsl:with-param name="name" select="$name"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -598,6 +640,7 @@ automatically computed based on {color.red} and {color.fg}.
 <xsl:param name="color.fg.red">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.red"/>
+    <xsl:with-param name="name" select="'red'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -614,6 +657,7 @@ it can be automatically computed based on {color.red} and {color.bg}.
 <xsl:param name="color.bg.red">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.red"/>
+    <xsl:with-param name="name" select="'red'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -642,6 +686,7 @@ automatically computed based on {color.orange} and {color.fg}.
 <xsl:param name="color.fg.orange">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.orange"/>
+    <xsl:with-param name="name" select="'orange'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -658,6 +703,7 @@ it can be automatically computed based on {color.orange} and {color.bg}.
 <xsl:param name="color.bg.orange">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.orange"/>
+    <xsl:with-param name="name" select="'orange'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -687,6 +733,7 @@ automatically computed based on {color.yellow} and {color.fg}.
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.yellow"/>
     <xsl:with-param name="target" select="5.5"/>
+    <xsl:with-param name="name" select="'yellow'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -703,7 +750,17 @@ it can be automatically computed based on {color.yellow} and {color.bg}.
 <xsl:param name="color.bg.yellow">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.yellow"/>
-    <xsl:with-param name="target" select="20"/>
+    <xsl:with-param name="target">
+      <xsl:choose>
+        <xsl:when test="normalize-space($_color.isinverse) = '1'">
+          <xsl:value-of select="9"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="20"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="name" select="'yellow'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -732,6 +789,7 @@ automatically computed based on {color.green} and {color.fg}.
 <xsl:param name="color.fg.green">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.green"/>
+    <xsl:with-param name="name" select="'green'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -748,6 +806,7 @@ it can be automatically computed based on {color.green} and {color.bg}.
 <xsl:param name="color.bg.green">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.green"/>
+    <xsl:with-param name="name" select="'green'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -776,6 +835,7 @@ automatically computed based on {color.blue} and {color.fg}.
 <xsl:param name="color.fg.blue">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.blue"/>
+    <xsl:with-param name="name" select="'blue'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -791,6 +851,7 @@ it can be automatically computed based on {color.blue} and {color.bg}.
 <xsl:param name="color.bg.blue">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.blue"/>
+    <xsl:with-param name="name" select="'blue'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -819,6 +880,7 @@ automatically computed based on {color.purple} and {color.fg}.
 <xsl:param name="color.fg.purple">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.purple"/>
+    <xsl:with-param name="name" select="'purple'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -835,6 +897,7 @@ it can be automatically computed based on {color.purple} and {color.bg}.
 <xsl:param name="color.bg.purple">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.purple"/>
+    <xsl:with-param name="name" select="'purple'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -863,6 +926,7 @@ automatically computed based on {color.gray} and {color.fg}.
 <xsl:param name="color.fg.gray">
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.gray"/>
+    <xsl:with-param name="name" select="'gray'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -879,6 +943,7 @@ it can be automatically computed based on {color.gray} and {color.bg}.
 <xsl:param name="color.bg.gray">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.gray"/>
+    <xsl:with-param name="name" select="'gray'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -898,6 +963,7 @@ specified, it can be automatically computed based on {color.gray} and
   <xsl:call-template name="_color.fgify">
     <xsl:with-param name="color" select="$color.gray"/>
     <xsl:with-param name="target" select="8"/>
+    <xsl:with-param name="name" select="'dark'"/>
   </xsl:call-template>
 </xsl:param>
 
@@ -917,7 +983,17 @@ specified, it can be automatically computed based on {color.gray} and
 <xsl:param name="color.bg.dark">
   <xsl:call-template name="_color.bgify">
     <xsl:with-param name="color" select="$color.gray"/>
-    <xsl:with-param name="target" select="17"/>
+    <xsl:with-param name="target">
+      <xsl:choose>
+        <xsl:when test="normalize-space($_color.isinverse) = '1'">
+          <xsl:value-of select="9"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="17"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:with-param>
+    <xsl:with-param name="name" select="'dark'"/>
   </xsl:call-template>
 </xsl:param>
 
