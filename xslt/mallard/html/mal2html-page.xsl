@@ -778,7 +778,7 @@ templates that handle `page` and `section` elements.
 
 <!-- page | section -->
 <xsl:template match="mal:page | mal:section">
-  <xsl:variable name="type" select="/mal:page/@type"/>
+  <xsl:variable name="type" select="ancestor-or-self::mal:page[1]/@type"/>
   <xsl:variable name="depth" select="count(ancestor-or-self::mal:section) + 1"/>
   <xsl:variable name="topiclinks">
     <xsl:if test="$type = 'guide'">
