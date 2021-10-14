@@ -632,7 +632,7 @@ element containing $node.
     <xsl:for-each select="$node/mal:section">
       <xsl:call-template name="mal2html.links.ul.li">
         <xsl:with-param name="node" select="$node"/>
-        <xsl:with-param name="xref" select="concat(/mal:page/@id, '#', @id)"/>
+        <xsl:with-param name="xref" select="concat(ancestor::mal:page[1]/@id, '#', @id)"/>
         <xsl:with-param name="role" select="concat($role, ' section')"/>
         <xsl:with-param name="nodesc" select="$nodesc"/>
       </xsl:call-template>
