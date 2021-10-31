@@ -100,7 +100,9 @@ http://projectmallard.org/ui/1.0/ui_expanded.html</xsl:text>
     <xsl:variable name="title_c" select="$node/mal:info/mal:title[@type = 'ui:collapsed'][1]"/>
     <div class="yelp-data yelp-data-ui-expander">
       <xsl:attribute name="dir">
-        <xsl:call-template name="l10n.direction"/>
+        <xsl:call-template name="l10n.direction">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
       </xsl:attribute>
       <xsl:attribute name="data-yelp-expanded">
         <xsl:choose>

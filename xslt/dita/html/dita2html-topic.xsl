@@ -387,7 +387,9 @@ html.sidebar.sections.mode
 <xsl:template mode="html.header.mode" match="&map_topicref;">
   <xsl:variable name="node" select="."/>
   <xsl:variable name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="sep">
     <xsl:choose>

@@ -185,9 +185,7 @@ an `xref` or `href` attribute.
 <xsl:template mode="mal2html.inline.content.mode" match="mal:guiseq">
   <xsl:variable name="arrow">
     <xsl:variable name="dir">
-      <xsl:call-template name="l10n.direction">
-        <xsl:with-param name="lang" select="ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
-      </xsl:call-template>
+      <xsl:call-template name="l10n.direction"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$dir = 'rtl'">

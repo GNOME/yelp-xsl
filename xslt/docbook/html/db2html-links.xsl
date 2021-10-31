@@ -45,7 +45,9 @@ as that template's `node` parameter.
 <xsl:template name="db2html.links.linktrail">
   <xsl:param name="node" select="."/>
   <xsl:variable name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="$node/ancestor::*">

@@ -4,12 +4,16 @@
   <link type="guide" xref="mal2html-page" group="templates"/>
   <link type="guide" xref="templates" group="mal2html"/>
   <desc>Output one trail of guide links.</desc>
-  <revision version="3.20" date="2015-09-19" status="final"/>
+  <revision version="42" date="2021-10-30" status="final"/>
  </info>
  <title>mal2html.page.linktrails.trail</title>
  <synopsis>
   <title>Parameters</title>
   <terms>
+   <item>
+    <title><code>$page</code></title>
+    <p>The source element for which an output page is being made.</p>
+   </item>
    <item>
     <title><code>$node</code></title>
     <p>A <sys>link</sys> element from <code xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
@@ -20,6 +24,9 @@
  single link trail. It calls <code xref="html.linktrails.prefix">html.linktrails.prefix</code> (by way of 
  <code xref="mal2html.page.linktrails.trail.prefix">mal2html.page.linktrails.trail.prefix</code>) to output a custom boilerplate prefix,
  then calls <code xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code> to output the actual links.</p>
+ <note style="plain">
+  <p>The <code>$page</code> parameter was added in version 42.</p>
+ </note>
  <list style="compact">
   <title>Calls Templates</title>
   <item>

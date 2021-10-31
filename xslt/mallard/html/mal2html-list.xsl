@@ -367,7 +367,7 @@ neighboring `item` elements, and passes that prefix to child elements.
               <xsl:if test="$lines">
                 <xsl:variable name="dir">
                   <xsl:call-template name="l10n.direction">
-                    <xsl:with-param name="lang" select="$item/ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+                    <xsl:with-param name="node" select="$item"/>
                   </xsl:call-template>
                 </xsl:variable>
                 <xsl:value-of select="translate(translate(translate(translate(

@@ -7,10 +7,14 @@
  </info>
  <title>mal2html.page.linktrails.trail.prefix</title>
  <p>:Stub: true
- @revision[version=3.20 date=2015-09-17 status=final]</p>
+ @revision[version=42 date=2021-10-30 status=final]</p>
  <synopsis>
   <title>Parameters</title>
   <terms>
+   <item>
+    <title><code>$page</code></title>
+    <p>The source element for which an output page is being made.</p>
+   </item>
    <item>
     <title><code>$node</code></title>
     <p>A <sys>link</sys> element from <code xref="mal.link.linktrails">mal.link.linktrails</code>.</p>
@@ -23,6 +27,9 @@
  each link trail before the normal links are output with
  <code xref="mal2html.page.linktrails.link">mal2html.page.linktrails.link</code>. This template is useful for adding extra site
  links at the beginning of each link trail.</p>
+ <note style="plain">
+  <p>The <code>$page</code> parameter was added in version 42.</p>
+ </note>
  <list style="compact">
   <title>Calls Templates</title>
   <item>

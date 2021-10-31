@@ -63,6 +63,11 @@ The top-level locale of the document.
 This parameter provides the top-level locale of the document, taken from either
 the `xml:lang` or the `lang` parameter of the root element. It holds the
 locale exactly as specified in the document, with no normalization.
+
+[note .warning]
+This parameter is deprecated. When processing multiple pages in a stack, you
+cannot rely on a single global locale. Instead, when you need a locale, you
+should look for an `ancestor-or-self` node with the appropriate attribute.
 -->
 <xsl:param name="l10n.locale">
   <xsl:choose>
@@ -508,23 +513,43 @@ as well as the plural rules in the Unicode CLDR.
 <!--**==========================================================================
 l10n.direction
 Determine the text direction for a language.
-@revision[version=3.18 date=2015-08-13 status=final]
+@revision[version=42 date=2021-10-30 status=final]
 
 [xsl:params]
+$node: The node to find the direction for.
 $lang: The locale to use to determine the text direction.
 
-This template returns the text direction for the language $lang. It returns
-`"ltr"` for left-to-right languages and `"rtl"` for right-to-left languages.
-If $lang is not provided, it defaults to {l10n.locale}, the top-level locale
-of the document.
+This template returns the text direction for the language $lang. If $lang is
+not provided, it looks for the nearest node to $node with a locale attribute,
+either `xml:lang` or `lang`.
+
+This template returns `"ltr"` for left-to-right languages and `"rtl"` for
+right-to-left languages.
 
 This template calls {l10n.gettext} with the string `default:LTR` in the domain
 `yelp-xsl`. The language is right-to-left if the string `default:RTL` is
 returned. Otherwise, it is left-to-right. (This particular string is used to
 match the string used in GTK+, enabling translation memory.)
+
+[note .plain]
+The $node parameter was added in version 42, and the default value of the
+$lang parameter was changed accordingly.
 -->
 <xsl:template name="l10n.direction">
-  <xsl:param name="lang" select="$l10n.locale"/>
+  <xsl:param name="node" select="."/>
+  <xsl:param name="lang">
+    <xsl:choose>
+      <xsl:when test="$node/ancestor-or-self::*[@xml:lang]">
+        <xsl:value-of select="$node/ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+      </xsl:when>
+      <xsl:when test="$node/ancestor-or-self::*[@lang]">
+        <xsl:value-of select="$node/ancestor-or-self::*[@lang][1]/@xml:lang"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$l10n.locale"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
   <xsl:variable name="direction">
     <xsl:for-each select="/*">
       <xsl:call-template name="l10n.gettext">

@@ -72,7 +72,9 @@ This template was added in version 40.
   <xsl:param name="file"/>
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">

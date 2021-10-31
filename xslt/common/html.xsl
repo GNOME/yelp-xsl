@@ -878,16 +878,21 @@ trails would otherwise be present.
 html.linktrails.prefix
 Stub to output extra content before a link trail.
 @xsl:stub
-@revision[version=3.28 date=2017-05-24 status=final]
+@revision[version=42 date=2021-10-30 status=final]
 
 [xsl:params]
+$page: The source element for which an output page is being made.
 $node: A source-specific element providing information about the link trail.
 
 This template is a stub. It is called by templates that output link trails
 before the normal links are output. This template is useful for adding extra
 site links at the beginning of each link trail.
+
+[note .plain]
+The $page parameter was added in version 42.
 -->
 <xsl:template name="html.linktrails.prefix">
+  <xsl:param name="page" select="."/>
   <xsl:param name="node" select="."/>
 </xsl:template>
 
@@ -1104,7 +1109,9 @@ dimensions. All parameters can be automatically computed if not provided.
 <xsl:template name="html.css">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
@@ -1146,7 +1153,9 @@ calls the template {html.css.custom}.
 <xsl:template name="html.css.content">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
@@ -1248,7 +1257,9 @@ All parameters can be automatically computed if not provided.
 <xsl:template name="html.css.core">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
@@ -1296,7 +1307,9 @@ All parameters can be automatically computed if not provided.
 <xsl:template name="html.css.elements">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
@@ -1411,7 +1424,9 @@ All parameters can be automatically computed if not provided.
 <xsl:template name="html.css.syntax">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">
@@ -1453,7 +1468,9 @@ template to provide additional CSS that will be used by all HTML output.
 <xsl:template name="html.css.custom">
   <xsl:param name="node" select="."/>
   <xsl:param name="direction">
-    <xsl:call-template name="l10n.direction"/>
+    <xsl:call-template name="l10n.direction">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:param>
   <xsl:param name="left">
     <xsl:call-template name="l10n.align.start">

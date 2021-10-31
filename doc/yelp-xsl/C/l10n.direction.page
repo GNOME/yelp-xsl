@@ -4,26 +4,35 @@
   <link type="guide" xref="l10n" group="templates"/>
   <link type="guide" xref="templates" group="l10n"/>
   <desc>Determine the text direction for a language.</desc>
-  <revision version="3.18" date="2015-08-13" status="final"/>
+  <revision version="42" date="2021-10-30" status="final"/>
  </info>
  <title>l10n.direction</title>
  <synopsis>
   <title>Parameters</title>
   <terms>
    <item>
+    <title><code>$node</code></title>
+    <p>The node to find the direction for.</p>
+   </item>
+   <item>
     <title><code>$lang</code></title>
     <p>The locale to use to determine the text direction.</p>
    </item>
   </terms>
  </synopsis>
- <p>This template returns the text direction for the language <code>$lang</code>. It returns
- <sys>"ltr"</sys> for left-to-right languages and <sys>"rtl"</sys> for right-to-left languages.
- If <code>$lang</code> is not provided, it defaults to <code xref="l10n.locale">l10n.locale</code>, the top-level locale
- of the document.</p>
+ <p>This template returns the text direction for the language <code>$lang</code>. If <code>$lang</code> is
+ not provided, it looks for the nearest node to <code>$node</code> with a locale attribute,
+ either <sys>xml:lang</sys> or <sys>lang</sys>.</p>
+ <p>This template returns <sys>"ltr"</sys> for left-to-right languages and <sys>"rtl"</sys> for
+ right-to-left languages.</p>
  <p>This template calls <code xref="l10n.gettext">l10n.gettext</code> with the string <sys>default:LTR</sys> in the domain
  <sys>yelp-xsl</sys>. The language is right-to-left if the string <sys>default:RTL</sys> is
  returned. Otherwise, it is left-to-right. (This particular string is used to
  match the string used in GTK+, enabling translation memory.)</p>
+ <note style="plain">
+  <p>The <code>$node</code> parameter was added in version 42, and the default value of the
+  <code>$lang</code> parameter was changed accordingly.</p>
+ </note>
  <list style="compact">
   <title>Calls Parameters</title>
   <item>

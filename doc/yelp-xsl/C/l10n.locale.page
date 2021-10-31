@@ -10,4 +10,9 @@
  <p>This parameter provides the top-level locale of the document, taken from either
  the <sys>xml:lang</sys> or the <sys>lang</sys> parameter of the root element. It holds the
  locale exactly as specified in the document, with no normalization.</p>
+ <note style="warning">
+  <p>This parameter is deprecated. When processing multiple pages in a stack, you
+  cannot rely on a single global locale. Instead, when you need a locale, you
+  should look for an <sys>ancestor-or-self</sys> node with the appropriate attribute.</p>
+ </note>
 </page>
