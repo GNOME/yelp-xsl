@@ -1,7 +1,7 @@
 # Abkhazian translation for yelp-xsl.
 # Copyright (C) 2022 yelp-xsl's COPYRIGHT HOLDER
 # This file is distributed under the same license as the yelp-xsl package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Наала Нанба <naala-nanba@rambler.ru>\n, 2022R.
 #
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
 "POT-Creation-Date: 2021-10-31 17:37+0000\n"
 "PO-Revision-Date: 2021-10-31 17:37+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Наала Нанба <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <ab@li.org>\n"
 "Language: ab\n"
 "MIME-Version: 1.0\n"
