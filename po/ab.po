@@ -95,7 +95,7 @@ msgstr "О"
 #.
 #: yelp-xsl.xml.in:109
 msgid "About"
-msgstr "Зегь ирзеиҧшу адыррақәа "
+msgstr "Зегьы ирзеиҧшу адыррақәа"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an advanced note.
@@ -197,7 +197,7 @@ msgstr "Атерминқәа ржәар"
 #. Accessible title for an important note.
 #: yelp-xsl.xml.in:198
 msgid "Important"
-msgstr ""
+msgstr "Ихадароу"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Work has begun, but
@@ -211,7 +211,7 @@ msgstr "Ихырқәшам"
 #. Default title for an index of terms in a book.
 #: yelp-xsl.xml.in:211
 msgid "Index"
-msgstr "Ихадароу"
+msgstr "Ахы"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
@@ -390,7 +390,7 @@ msgstr "Иҩҩуп"
 #.
 #: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Абиблиография ахәҭа ахәашра"
+msgstr "Абиблиография ахәҭа ахәаҧшра"
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
@@ -413,7 +413,7 @@ msgstr "Абиблиография ахәҭа ахәашра"
 #.
 #: yelp-xsl.xml.in:398
 msgid "[<biblioentry.label/>]"
-msgstr ""
+msgstr "[<biblioentry.label/>]"
 
 #. (itstool) path: msg/msgstr
 #. ID: citation.label
@@ -430,7 +430,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
-msgstr ""
+msgstr "[<citation.label/>]"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name-date
@@ -459,7 +459,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
-msgstr ""
+msgstr "<comment.name/> аҟынтә,<comment.date/> ахь "
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name
@@ -487,7 +487,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
-msgstr ""
+msgstr "<comment.name/> аҟынтә"
 
 #. (itstool) path: msg/msgstr
 #. ID: copyright.format
@@ -500,7 +500,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: email.tooltip
@@ -512,7 +512,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
-msgstr ""
+msgstr "Аел. ҧошьҭа ‘<string/>’ ала ацҳамҭа ашьҭра"
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -524,7 +524,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
+msgstr "Шәаҧхьа аилкаара ‘<glossterm/>’"
 
 #. (itstool) path: msg/msgstr
 #. ID: glosssee.format
@@ -545,7 +545,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "Шәахәаҧш <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
@@ -567,7 +567,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "Насгьы шәахәаҧш <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -579,7 +579,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:564
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>”"
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -591,7 +591,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
-msgstr ""
+msgstr "‘<node/>’"
 
 #. (itstool) path: msg/msgstr
 #. ID: seeie.format
@@ -606,7 +606,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:591
 msgid "See <seeie/>."
-msgstr ""
+msgstr "Шәахәаҧш <seeie/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
@@ -621,4 +621,4 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
-msgstr ""
+msgstr "Насгьы шәахәаҧш <seeie/>."
