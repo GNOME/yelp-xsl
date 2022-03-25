@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-06-01 19:46+0000\n"
-"PO-Revision-Date: 2021-09-23 15:04+0200\n"
+"POT-Creation-Date: 2021-10-28 18:10+0000\n"
+"PO-Revision-Date: 2022-03-25 13:20+0100\n"
 "Last-Translator: antisa <antisamail@email.t-com.hr>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -244,7 +244,7 @@ msgstr "Više informacija"
 #. Link text for a link to the next page in a series.
 #: yelp-xsl.xml.in:238
 msgid "Next"
-msgstr "Sljedeća"
+msgstr "Sljedeće"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a note.
@@ -296,7 +296,7 @@ msgstr "Pokreni"
 #. Link text for a link to the previous page in a series.
 #: yelp-xsl.xml.in:284
 msgid "Previous"
-msgstr "Prethodna"
+msgstr "Prijašnje"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of publishers.
@@ -316,7 +316,7 @@ msgstr "Spremno za recenziju"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:302
 msgid "See Also"
-msgstr "Pogledajte i"
+msgstr "Dodatno pogledajte"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
