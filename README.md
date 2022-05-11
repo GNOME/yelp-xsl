@@ -1,5 +1,5 @@
-ABOUT
-=====
+# Yelp XSL
+
 yelp-xsl is a collection of programs and data files to help you build,
 maintain, and distribute documentation. It provides XSLT stylesheets
 that can be built upon for help viewers and publishing systems. These
