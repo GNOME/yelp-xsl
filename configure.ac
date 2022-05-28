@@ -3,7 +3,7 @@ AC_INIT([yelp-xsl],[42.0],[https://gitlab.gnome.org/gnome/yelp-xsl/issues])
 
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11.2 no-dist-gzip dist-bzip2])
+AM_INIT_AUTOMAKE([1.11.2 no-dist-gzip dist-bzip2 foreign])
 
 # Check for programs
 dnl  In the interest of portability, we don't use GNU awk extensions,
