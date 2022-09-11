@@ -1,15 +1,15 @@
 # Swedish translation for yelp-xsl.
-# Copyright © 2004-2018 Free Software Foundation, Inc.
+# Copyright © 2004-2022 Free Software Foundation, Inc.
 # Christian Rose <menthos@menthos.com>, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2009, 2011, 2012.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2018.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2018, 2022.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2018-06-10 17:31+0000\n"
+"POT-Creation-Date: 2022-06-13 15:17+0000\n"
 "PO-Revision-Date: 2018-08-10 00:00+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -429,7 +429,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -446,10 +446,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -475,10 +475,10 @@ msgstr "från <comment.name/> den <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance
+#.   Some Comment Title
+#.   from Shaun McCance
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -596,8 +596,32 @@ msgstr "”<node/>”"
 msgid "‘<node/>’"
 msgstr "’<node/>’"
 
-#~ msgid "See <seeie/>."
-#~ msgstr "Se <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:591
+msgid "See <seeie/>."
+msgstr "Se <seeie/>."
 
-#~ msgid "See also <seeie/>."
-#~ msgstr "Se även <seeie/>."
+#. (itstool) path: msg/msgstr
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <seeie/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:606
+msgid "See also <seeie/>."
+msgstr "Se även <seeie/>."
