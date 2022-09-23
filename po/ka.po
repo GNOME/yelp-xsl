@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
 "POT-Creation-Date: 2022-06-13 15:17+0000\n"
-"PO-Revision-Date: 2022-07-24 07:05+0200\n"
+"PO-Revision-Date: 2022-09-23 19:40+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -232,7 +232,7 @@ msgstr "ლიცენზია"
 #. Title for a list of maintainers.
 #: yelp-xsl.xml.in:228
 msgid "Maintained By"
-msgstr ""
+msgstr "პროექტს უძღვება"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of guide links.
@@ -264,7 +264,7 @@ msgstr "ამ გვერდზე"
 #.
 #: yelp-xsl.xml.in:256
 msgid "Other Credits"
-msgstr ""
+msgstr "სხვები"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
@@ -338,7 +338,7 @@ msgstr "გვერდითა ზოლი"
 #.
 #: yelp-xsl.xml.in:323
 msgid "Stub"
-msgstr ""
+msgstr "ადგილი"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a refsynopsisdiv element. This is the common section
@@ -392,7 +392,7 @@ msgstr "დაწერილია"
 #.
 #: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "ბიბლიოგრაფიის ჩანაწერის დათვალიერება <biblioentry.label/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
@@ -461,7 +461,7 @@ msgstr "[<citation.label/>]"
 #.
 #: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
-msgstr ""
+msgstr "<comment.name/>-დან <comment.date/>-ზე"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name
@@ -489,7 +489,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:472
 msgid "from <comment.name/>"
-msgstr ""
+msgstr "<comment.name/> -დან"
 
 #. (itstool) path: msg/msgstr
 #. ID: copyright.format
@@ -502,7 +502,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:485
 msgid "© <copyright.years/> <copyright.name/>"
-msgstr ""
+msgstr "© <copyright.years/> <copyright.name/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: email.tooltip
@@ -514,7 +514,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
-msgstr ""
+msgstr "‘<string/>’-სთვის ელფოსტის გაგზავნა."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -526,7 +526,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr ""
+msgstr "‘<glossterm/>’ -ის აღწერის წაკითხვა."
 
 #. (itstool) path: msg/msgstr
 #. ID: glosssee.format
@@ -547,7 +547,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
-msgstr ""
+msgstr "<glosssee/> -ის ნახვა."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
@@ -569,7 +569,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr ""
+msgstr "ასევე იხილეთ <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -581,7 +581,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:564
 msgid "“<node/>”"
-msgstr ""
+msgstr "“<node/>”"
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -593,7 +593,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:576
 msgid "‘<node/>’"
-msgstr ""
+msgstr "‘<node/>’"
 
 #. (itstool) path: msg/msgstr
 #. ID: seeie.format
