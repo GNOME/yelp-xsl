@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/gnome/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-07-01 19:19+0000\n"
-"PO-Revision-Date: 2018-09-05 18:00+0800\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2023-01-25 22:38+0000\n"
+"PO-Revision-Date: 2023-04-01 21:00+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -323,7 +323,7 @@ msgstr "准备校对"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:302
 msgid "See Also"
-msgstr "亦见"
+msgstr "另请参阅"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -435,7 +435,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#.                     as a link to an entry in the bibliography
+#. as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -452,10 +452,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
+#. Some Comment Title
+#. from Shaun McCance on 2010-06-03
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -481,10 +481,10 @@ msgstr "来自 <comment.name/>，于 <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#.   Some Comment Title
-#.   from Shaun McCance
+#. Some Comment Title
+#. from Shaun McCance
 #.
-#.   Here is the text of the comment.
+#. Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -576,7 +576,7 @@ msgstr "参见 <glosssee/>。"
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr "亦见 <glosssee/>。"
+msgstr "另请参阅 <glosssee/>。"
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -630,7 +630,7 @@ msgstr "参见 <seeie/>。"
 #.
 #: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
-msgstr "亦见 <seeie/>。"
+msgstr "另请参阅 <seeie/>。"
 
 #~ msgid "yelp-quote-201C.png"
 #~ msgstr "yelp-quote-201C.png"
