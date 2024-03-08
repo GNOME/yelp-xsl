@@ -3,13 +3,13 @@
 #
 # Peteris Krisjanis <peteris.krisjanis@ttc.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006.
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2019, 2020.
+# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2019, 2024 Rūdofls Mazurs <rudolfs.mazurs@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-09-13 05:31+0000\n"
-"PO-Revision-Date: 2020-09-15 21:38+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2023-01-25 22:35+0000\n"
+"PO-Revision-Date: 2024-03-08 23:09+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -18,851 +18,465 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #. (itstool) path: msg/msgstr
-#. Translate to default:RTL if your language should be displayed
-#. right-to-left, otherwise translate to default:LTR.  Do *not*
-#. translate it to "predefinito:LTR", if it isn't default:LTR
-#. or default:RTL it will not work.
-#.
-#: yelp-xsl.xml.in:34
-msgid "default:LTR"
-msgstr "default:LTR"
-
-#. (itstool) path: msg/msgstr
-#. This is used a simple list item seperator in places where simple
-#. inline lists have to be constructed dynamically.  Using the default
-#. string of ", ", a list would look like this: A, B, C, D.  Using the
-#. nonsensical string " - ", a list would look like this: A - B - C - D.
-#.
-#. Make sure to include leading or trailing spaces if you want them.
-#.
-#: yelp-xsl.xml.in:47
-#, no-wrap
-msgid ", "
-msgstr ", "
-
-#. (itstool) path: msg/msgstr
-#. This is used as the final separator in an inline list of three or
-#. more elements.  The string ", " will be used to separate all but
-#. the last pair of elements.  Using these two strings, a list of
-#. names would be formatted as "Tom, Dick, and Harry".
-#.
-#. Make sure to include leading or trailing spaces if you want them.
-#.
-#: yelp-xsl.xml.in:60
-#, no-wrap
-msgid ", and "
-msgstr " un "
-
-#. (itstool) path: msg/msgstr
-#. This is used as a list item seperator for inline lists of exactly two
-#. elements.  A list of two names would be formatted as "Tom and Dick".
-#.
-#. Make sure to include leading or trailing spaces if you want them.
-#.
-#: yelp-xsl.xml.in:71
-#, no-wrap
-msgid " and "
-msgstr " un "
-
-#. (itstool) path: msg/msgstr
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
-#. This is used as a label before questions in a question-and-answer
-#. set.  Typically, questions are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label questions.
-#.
-#: yelp-xsl.xml.in:86
-msgid "Q:"
-msgstr "J:"
-
-#. (itstool) path: msg/msgstr
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
-#. This is used as a label before answers in a question-and-answer
-#. set.  Typically, answers are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label answers.
-#.
-#: yelp-xsl.xml.in:99
-msgid "A:"
-msgstr "A:"
-
-#. (itstool) path: msg/msgstr
-#. Title of the footer containing copyrights, credits, license information,
-#. and other stuff about the page.
-#.
-#: yelp-xsl.xml.in:109
-msgid "About"
-msgstr "Par"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for an advanced note.
-#: yelp-xsl.xml.in:114
-msgid "Advanced"
-msgstr "Paplašināti"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a bibliography.
-#: yelp-xsl.xml.in:119
-msgid "Bibliography"
-msgstr "Bibliogrāfija"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a note about a software bug.
-#: yelp-xsl.xml.in:124
-msgid "Bug"
-msgstr "Kļūda"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. Content has been written and
-#. reviewed, and it awaiting a final approval.
-#.
-#: yelp-xsl.xml.in:132
-msgid "Candidate"
-msgstr "Kandidāts"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a caution note.
-#: yelp-xsl.xml.in:137
-msgid "Caution"
-msgstr "Brīdinājums"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for an close button.
-#: yelp-xsl.xml.in:142
-msgid "Close"
-msgstr "Aizvērt"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a colophon section.
-#: yelp-xsl.xml.in:147
-msgid "Colophon"
-msgstr "Izdošanas ziņas"
-
-#. (itstool) path: msg/msgstr
-#. Title for a table of contents for the entire document.
-#: yelp-xsl.xml.in:152
-msgid "Contents"
-msgstr "Saturs"
-
-#. (itstool) path: msg/msgstr
-#. Title for license information when it's a CC license.
-#: yelp-xsl.xml.in:157
-msgid "Creative Commons"
-msgstr "Creative Commons"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a danger note.
-#: yelp-xsl.xml.in:162
-msgid "Danger"
-msgstr "Bīstami"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a dedication section.
-#: yelp-xsl.xml.in:167
-msgid "Dedication"
-msgstr "Veltījums"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. Most content has been
-#. written, but revisions are still happening.
-#.
-#: yelp-xsl.xml.in:175
-msgid "Draft"
-msgstr "Melnraksts"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of editors.
-#: yelp-xsl.xml.in:180
-msgid "Edited By"
-msgstr "Rediģēja"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. A senior member of the
-#. documentation team has reviewed and approved.
-#.
-#: yelp-xsl.xml.in:188
-msgid "Final"
-msgstr "Pabeigts"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a glossary.
-#: yelp-xsl.xml.in:193
-msgid "Glossary"
-msgstr "Vārdnīca"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for an important note.
-#: yelp-xsl.xml.in:198
-msgid "Important"
-msgstr "Svarīgi"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. Work has begun, but
-#. not all content has been written.
-#.
-#: yelp-xsl.xml.in:206
-msgid "Incomplete"
-msgstr "Nepabeigts"
-
-#. (itstool) path: msg/msgstr
-#. Default title for an index of terms in a book.
-#: yelp-xsl.xml.in:211
-msgid "Index"
-msgstr "Satura rādītājs"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a DocBook legal notice.
-#: yelp-xsl.xml.in:216
-msgid "Legal"
-msgstr "Juridiskā informācija"
-
-#. (itstool) path: msg/msgstr
-#. Generic title for license information when it's not a known license.
-#.
-#: yelp-xsl.xml.in:223
-msgid "License"
-msgstr "Licence"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of maintainers.
-#: yelp-xsl.xml.in:228
-msgid "Maintained By"
-msgstr "Uzturētāji"
-
-#. (itstool) path: msg/msgstr
-#. Automatic heading above a list of guide links.
-#: yelp-xsl.xml.in:233
-msgid "More Information"
-msgstr "Vairāk informācijas"
-
-#. (itstool) path: msg/msgstr
-#. Link text for a link to the next page in a series.
-#: yelp-xsl.xml.in:238
-#| msgid "Next Page"
-msgid "Next"
-msgstr "Nākamā"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a note.
-#: yelp-xsl.xml.in:243
-msgid "Note"
-msgstr "Piezīme"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of links to sections on the current page.
-#: yelp-xsl.xml.in:248
-msgid "On This Page"
-msgstr "Šajā lapā"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list contributors other than authors, editors, translators,
-#. or other types we have specific lists for.
-#.
-#: yelp-xsl.xml.in:256
-msgid "Other Credits"
-msgstr "Citi veidotāji"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. Content was once current,
-#. but needs to be updated to reflect software updates.
-#.
-#: yelp-xsl.xml.in:264
-msgid "Outdated"
-msgstr "Novecojis"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a package note.
-#: yelp-xsl.xml.in:269
-msgid "Package"
-msgstr "Pakotne"
-
-#. (itstool) path: msg/msgstr
-#. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:274
-msgid "Pause"
-msgstr "Pauzēt"
-
-#. (itstool) path: msg/msgstr
-#. Tooltip on play/pause buttons for audio and video objects.
-#: yelp-xsl.xml.in:279
-msgid "Play"
-msgstr "Atskaņot"
-
-#. (itstool) path: msg/msgstr
-#. Link text for a link to the previous page in a series.
-#: yelp-xsl.xml.in:284
-#| msgid "Previous Page"
-msgid "Previous"
-msgstr "Iepriekšējā"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of publishers.
-#: yelp-xsl.xml.in:289
-msgid "Published By"
-msgstr "Izdeva"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. Content has been written
-#. and should be reviewed by other team members.
-#.
-#: yelp-xsl.xml.in:297
-msgid "Ready for review"
-msgstr "Gatavs recenzēšanai"
-
-#. (itstool) path: msg/msgstr
-#. Automatic heading above a list of see-also links.
-#: yelp-xsl.xml.in:302
-msgid "See Also"
-msgstr "Skatīt arī"
-
-#. (itstool) path: msg/msgstr
-#. Figures can automatically scale images down to fit the page width.
-#. This is used a tooltip on a link to shrink images back down after
-#. they've been expanded to full size.
-#.
-#: yelp-xsl.xml.in:311
-msgid "Scale images down"
-msgstr "Samazināt attēlus"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a sidebar note.
-#: yelp-xsl.xml.in:316
-msgid "Sidebar"
-msgstr "Sānjosla"
-
-#. (itstool) path: msg/msgstr
-#. Revision status of a document or page. No content has been written yet.
-#.
-#: yelp-xsl.xml.in:323
-msgid "Stub"
-msgstr "Aizmetnis"
-
-#. (itstool) path: msg/msgstr
-#. Default title for a refsynopsisdiv element. This is the common section
-#. title found in most UNIX man pages.
-#.
-#: yelp-xsl.xml.in:331
-msgid "Synopsis"
-msgstr "Kopsavilkums"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a tip.
-#: yelp-xsl.xml.in:336
-msgid "Tip"
-msgstr "Padoms"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of translators.
-#: yelp-xsl.xml.in:341
-msgid "Translated By"
-msgstr "Tulkoja"
-
-#. (itstool) path: msg/msgstr
-#. Figures can automatically scale images down to fit the page width.
-#. This is used a tooltip on a link to expand images to full size.
-#.
-#: yelp-xsl.xml.in:349
-msgid "View images at normal size"
-msgstr "Skatīt attēlus normālā izmērā"
-
-#. (itstool) path: msg/msgstr
-#. Accessible title for a warning.
-#: yelp-xsl.xml.in:354
-msgid "Warning"
-msgstr "Brīdinājums"
-
-#. (itstool) path: msg/msgstr
-#. Title for a list of authors.
-#: yelp-xsl.xml.in:359
-msgid "Written By"
-msgstr "Rakstīja"
-
-#. (itstool) path: msg/msgstr
-#. ID: biblioentry.tooltip
-#. This is a format message used to format tooltips on cross references
-#. to bibliography entries.
-#.
-#. Special elements in the message will be replaced with the
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <biblioentry.label/> - The term being defined by the glossary entry
+#. <string/> - The package to install
 #.
-#: yelp-xsl.xml.in:375
-msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Skatīt bibliogrāfijas ierakstu <biblioentry.label/>."
+#: data/domains/yelp.xml.in:36
+msgid "Install <string/>"
+msgstr "Instalēt <string/>"
 
-#. (itstool) path: msg/msgstr
-#. ID: biblioentry.label
-#. This is a format message used to format the labels for entries in
-#. a bibliography.  The content of the label is often an abbreviation
-#. of the authors' names and the year of publication.  In English,
-#. these are generally formatted with [square brackets] surrounding
-#. them.
-#.
-#. This string is similar to citation.label, but they are used in
-#. different places.  The citation formatter is used when referencing
-#. a bibliography entry in running prose.  This formatter is used for
-#. the actual bibliography entry.  You may use the same formatting for
-#. both, but you don't have to.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <biblioentry.label/> - The text content of the bibliography label
-#.
-#: yelp-xsl.xml.in:398
-msgid "[<biblioentry.label/>]"
-msgstr "[<biblioentry.label/>]"
+#: data/yelp.appdata.xml.in:25 src/yelp-application.c:269
+#: src/yelp-window.c:1192 yelp.desktop.in:3
+msgid "Help"
+msgstr "Palīdzība"
 
-#. (itstool) path: msg/msgstr
-#. ID: citation.label
-#. This is a format message used to format inline citations to other
-#. published works.  The content is typically an abbreviation of the
-#. authors' last names.  In English, this abbreviation is usually
-#. written inside [square brackets].
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <citation.label/> - The text content of the citation element, possibly
-#.                     as a link to an entry in the bibliography
-#.
-#: yelp-xsl.xml.in:415
-msgid "[<citation.label/>]"
-msgstr "[<citation.label/>]"
+#: data/yelp.appdata.xml.in:26
+msgid "Help viewer for GNOME"
+msgstr "Palīdzības skatītājs GNOME videi"
 
-#. (itstool) path: msg/msgstr
-#. ID: comment.name-date
-#. This is a format message used to format the citation of a comment
-#. made by an editor of a document. This appears on a new line after
-#. the title of the comment, if a title is present, or as the first
-#. line if a title is not present.
-#.
-#. This string is used when both the name and the date are supplied.
-#. In English, a title together with this format string might produce
-#. something like this:
-#.
-#.   Some Comment Title
-#.   from Shaun McCance on 2010-06-03
-#.
-#.   Here is the text of the comment.
-#.
-#. If only a name is supplied, and no date, then comment.name is used
-#. instead of this string.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <comment.name/> - The name of the person making the comment
-#. <comment.date/> - The date the comment was made
-#.
-#: yelp-xsl.xml.in:444
-msgid "from <comment.name/> on <comment.date/>"
-msgstr "no <comment.name/> <comment.date/>"
+#: data/yelp.appdata.xml.in:28
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp ir GNOME palīdzības skatītājs. Tas ir noklusējuma Mallard skatītājs, "
+"bet tas var attēlot arī DocBook, info, man un HTML dokumentāciju."
 
-#. (itstool) path: msg/msgstr
-#. ID: comment.name
-#. This is a format message used to format the citation of a comment
-#. made by an editor of a document. This appears on a new line after
-#. the title of the comment, if a title is present, or as the first
-#. line if a title is not present.
-#.
-#. This string is used when only the name of the commenter is supplied.
-#. In English, a title together with this format string might produce
-#. something like this:
-#.
-#.   Some Comment Title
-#.   from Shaun McCance
-#.
-#.   Here is the text of the comment.
-#.
-#. If a date is also supplied, then comment.name-date is used instead
-#. of this string.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <comment.name/> - The name of the person making the comment
-#.
-#: yelp-xsl.xml.in:472
-msgid "from <comment.name/>"
-msgstr "no <comment.name/>"
+#: data/yelp.appdata.xml.in:32
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+"Ar to var viegli atrast vajadzīgo dokumentāciju; tajā ir interaktīva "
+"meklēšana un grāmatzīmes."
 
-#. (itstool) path: msg/msgstr
-#. ID: copyright.format
-#. This is a format message used to format copyright notices. Special
-#. elements in the message will be replaced with the appropriate content,
-#. as follows:
-#.
-#. <copyright.years/> - The years the copyrightable material was made
-#. <copyright.name/>  - The person or entity that holds the copyright
-#.
-#: yelp-xsl.xml.in:485
-msgid "© <copyright.years/> <copyright.name/>"
-msgstr "© <copyright.years/> <copyright.name/>"
+#: data/yelp.appdata.xml.in:36
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Tam ir arī redaktora režīms, kas rāda redakcionālos komentārus un pārskatu "
+"statusus, kad rediģē Mallard dokumentus."
 
-#. (itstool) path: msg/msgstr
-#. ID: email.tooltip
-#. This is a format message used to format tooltips on mailto: links.
-#. Special elements in the message will be replaced with the appropriate
-#. content, as follows:
-#.
-#. <string/> - The linked-to email address
-#.
-#: yelp-xsl.xml.in:497
-#| msgid "Send email to %s"
-msgid "Send email to ‘<string/>’."
-msgstr "Sūtīt e-pastu uz “<string/>”."
+#: data/yelp.appdata.xml.in:51
+msgid "The GNOME Project"
+msgstr "GNOME projekts"
 
-#. (itstool) path: msg/msgstr
-#. ID: glossentry.tooltip
-#. This is a format message used to format tooltips on cross references
-#. to glossary entries. Special elements in the message will be replaced
-#. with the appropriate content, as follows:
-#.
-#. <glossterm/> - The term being defined by the glossary entry
-#.
-#: yelp-xsl.xml.in:509
-msgid "Read the definition for ‘<glossterm/>’."
-msgstr "Izlasīt “<glossterm/>” definīciju."
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
+msgid "Invalid compressed data"
+msgstr "Nederīgi saspiestie dati"
 
-#. (itstool) path: msg/msgstr
-#. ID: glosssee.format
-#. This is a format message used to format glossary cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.  For the formatting of the actual
-#. link, see the message glossentry.xref.
-#.
-#. One or more glosssee elements are presented as a links to the user
-#. in the glossary, formatted as a single prose sentence.  For example,
-#. if the user is being directed to the entry "foo", the glosssee may
-#. be formatted as "See foo."
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <glosssee/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:530
-msgid "See <glosssee/>."
-msgstr "Skatīt <glosssee/>."
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
+msgid "Not enough memory"
+msgstr "Nepietiek atmiņas"
 
-#. (itstool) path: msg/msgstr
-#. ID: glossseealso.format
-#. This is a format message used to format glossary cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.  For the formatting of the actual
-#. link, see the message glossentry.xref.
-#.
-#. One or more glossseealso elements are presented as a links to the
-#. user in the glossary, formatted as a single prose sentence.  For
-#. example, if the user is being directed to the entries "foo", "bar",
-#. and "baz", the glossseealso may be formatted as "See also foo, bar,
-#. baz."
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <glosssee/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:552
-msgid "See also <glosssee/>."
-msgstr "Skatīt arī <glosssee/>."
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220
+#: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
+#: libyelp/yelp-man-document.c:198
+#, c-format
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Lapa “%s” netika atrasta dokumentā “%s”."
 
-#. (itstool) path: msg/msgstr
-#. ID: quote.format
-#. This is a format message used to format inline quotations. Special
-#. elements in the message will be replaced with the appropriate content,
-#. as follows:
-#.
-#. <node/> - The text content of the quote element
-#.
-#: yelp-xsl.xml.in:564
-msgid "“<node/>”"
-msgstr "“<node/>”"
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
+msgid "The file does not exist."
+msgstr "Datne neeksistē."
 
-#. (itstool) path: msg/msgstr
-#. ID: quote.format
-#. This is a format message used to format inline quotations inside
-#. other inline quotations. Special elements in the message will be
-#. replaced with the appropriate content, as follows:
-#.
-#. <node/> - The text content of the quote element
-#.
-#: yelp-xsl.xml.in:576
-msgid "‘<node/>’"
-msgstr "“<node/>”"
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Datne “%s” neeksistē."
 
-#. (itstool) path: msg/msgstr
-#. ID: seeie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:591
-msgid "See <seeie/>."
-msgstr "Skatīt <seeie/>."
+#: libyelp/yelp-docbook-document.c:365
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Datni ar nosaukumu “%s” nevar parsēt, tāpēc ka tā nav korekti noformēts XML "
+"dokuments."
 
-#. (itstool) path: msg/msgstr
-#. ID: seealsoie.format
-#. This is a format message used to format index cross references.
-#. This format message controls the sentence used to present the cross
-#. reference, not the link itself.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <seeie/> - The actual link or links of the cross reference
-#.
-#: yelp-xsl.xml.in:606
-msgid "See also <seeie/>."
-msgstr "Skatīt arī <seeie/>."
+#: libyelp/yelp-docbook-document.c:378
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Datni ar nosaukumu “%s” nevar parsēt, tāpēc, ka viena vai vairākas iekļautās "
+"datnes nav korekti noformēts XML dokuments."
 
-#~ msgid "Install <string/>"
-#~ msgstr "Instalēt <string/>"
+#: libyelp/yelp-docbook-document.c:813
+msgid "Unknown"
+msgstr "Nezināms"
+
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "Pieprasītā lapa netika atrasta dokumentā “%s”."
+
+#: libyelp/yelp-document.c:888
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Meklēšanas rezultāti, meklējot \"%s\""
+
+#: libyelp/yelp-document.c:898
+msgid "No matching help pages found."
+msgstr "Netika atrastas atbilstošas palīdzības lapas."
+
+#: libyelp/yelp-error.c:35
+msgid "An unknown error occurred."
+msgstr "Gadījās nezināma kļūda."
+
+#: libyelp/yelp-help-list.c:537
+msgid "All Help Documents"
+msgstr "Visi palīdzības dokumenti"
+
+#: libyelp/yelp-info-document.c:382
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Datni ar nosaukumu “%s“ nevar parsēt, tāpēc ka tā nav pareizi noformēta info "
+"lapa."
+
+#: libyelp/yelp-mallard-document.c:354
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Direktorijs “%s” neeksistē."
+
+#: libyelp/yelp-search-entry.c:435
+#, c-format
+msgid "Search for “%s”"
+msgstr "Meklēt “%s”"
+
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "XSLT stilu saraksts “%s” vai nu neeksistē, vai arī nav pareizs."
+
+#: libyelp/yelp-transform.c:528
+msgid "No href attribute found on yelp:document\n"
+msgstr "yelp:document nesatur href atribūtu\n"
+
+#: libyelp/yelp-transform.c:543
+msgid "Out of memory"
+msgstr "Nepietiek atmiņas"
+
+#: libyelp/yelp-view.c:253
+msgid "C_opy Code Block"
+msgstr "K_opēt koda bloku"
+
+#: libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "_Kopēt saites adresi"
+
+#: libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Atvērt saiti"
+
+#: libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Atvērt saiti jaunā _logā"
+
+#: libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "_Instalēt pakotnes"
+
+#: libyelp/yelp-view.c:283
+msgid "Save Code _Block As…"
+msgstr "Saglabāt koda _bloku kā…"
+
+#: libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Kopēt tekstu"
+
+#: libyelp/yelp-view.c:845 libyelp/yelp-view.c:2162
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI “%s“ nenorāda uz derīgu lapu."
+
+#: libyelp/yelp-view.c:851 libyelp/yelp-view.c:2168
+msgid "The URI does not point to a valid page."
+msgstr "URI nenorāda uz derīgu lapu."
+
+#: libyelp/yelp-view.c:856 libyelp/yelp-view.c:2174
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "Nevarēja pasēt URI “%s”."
+
+#: libyelp/yelp-view.c:861
+msgid "Unknown Error."
+msgstr "Nezināma kļūda."
+
+#: libyelp/yelp-view.c:1015
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"Jums nav PackageKit. Pakotņu instalēšanas saitēm ir nepieciešams PackageKit."
+
+#: libyelp/yelp-view.c:1262
+msgid "Save Image"
+msgstr "Saglabāt attēlu"
+
+#: libyelp/yelp-view.c:1361
+msgid "Save Code"
+msgstr "Saglabāt kodu"
+
+#: libyelp/yelp-view.c:1457
+#, c-format
+msgid "Send email to %s"
+msgstr "Sūtīt e-pasta vēstuli uz %s"
+
+#: libyelp/yelp-view.c:1561
+msgid "_Save Image As…"
+msgstr "_Saglabāt attēlu kā..."
+
+#: libyelp/yelp-view.c:1562
+msgid "_Save Video As…"
+msgstr "_Saglabāt video kā…"
+
+#: libyelp/yelp-view.c:1570
+msgid "S_end Image To…"
+msgstr "Sūtīt attēlu _uz…"
+
+#: libyelp/yelp-view.c:1571
+msgid "S_end Video To…"
+msgstr "Sūtīt vid_eo uz…"
+
+#: libyelp/yelp-view.c:1926
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Nevarēja ielādēt “%s“ dokumentu"
+
+#: libyelp/yelp-view.c:1932
+msgid "Could not load a document"
+msgstr "Nevarēja ielādēt dokumentu"
+
+#: libyelp/yelp-view.c:1987
+msgid "Document Not Found"
+msgstr "Dokuments nav atrasts"
+
+#: libyelp/yelp-view.c:1989
+msgid "Page Not Found"
+msgstr "Lapa nav atrasta"
+
+#: libyelp/yelp-view.c:1992
+msgid "Cannot Read"
+msgstr "Nevar nolasīt"
+
+#: libyelp/yelp-view.c:1998
+msgid "Unknown Error"
+msgstr "Nezināma kļūda"
+
+#: libyelp/yelp-view.c:2018
+msgid "Search for packages containing this document."
+msgstr "Meklēt pakotnes, kas satur šo dokumentu."
+
+#: src/yelp-application.c:60
+msgid "Turn on editor mode"
+msgstr "Ieslēgt redaktora režīmu"
+
+#: src/yelp-window.c:346
+msgid "Back"
+msgstr "Atpakaļ"
+
+#: src/yelp-window.c:353
+msgid "Forward"
+msgstr "Uz priekšu"
+
+#: src/yelp-window.c:364
+msgid "Menu"
+msgstr "Izvēlne"
+
+#: src/yelp-window.c:369
+msgid "New Window"
+msgstr "Jauns logs"
+
+#: src/yelp-window.c:370
+msgid "Find…"
+msgstr "Meklēt…"
+
+#: src/yelp-window.c:371
+msgid "Print…"
+msgstr "Drukāt…"
+
+#: src/yelp-window.c:376
+msgid "Previous Page"
+msgstr "Iepriekšējā lappuse"
+
+#: src/yelp-window.c:377
+msgid "Next Page"
+msgstr "Nākamā lappuse"
+
+#: src/yelp-window.c:382
+msgid "Larger Text"
+msgstr "Lielāks teksts"
+
+#: src/yelp-window.c:383
+msgid "Smaller Text"
+msgstr "Mazāks teksts"
+
+#: src/yelp-window.c:388
+msgid "All Help"
+msgstr "Visa palīdzība"
+
+#: src/yelp-window.c:410
+msgid "Search (Ctrl+S)"
+msgstr "Meklēt (Ctrl+S)"
+
+#: src/yelp-window.c:427
+msgid "Bookmarks"
+msgstr "Grāmatzīmes"
+
+#: src/yelp-window.c:444
+msgid "No bookmarks"
+msgstr "Nav grāmatzīmju"
+
+#: src/yelp-window.c:452
+msgid "Add Bookmark"
+msgstr "Pievienot Grāmatzīmi"
+
+#: src/yelp-window.c:458
+msgid "Remove Bookmark"
+msgstr "Izņemt grāmatzīmi"
+
+#: yelp.desktop.in:4
+msgid "Get help with GNOME"
+msgstr "Saņemt palīdzību ar GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
+msgid "documentation;information;manual;help;"
+msgstr "dokumentācija;informācija;rokasgrāmata;palīdzība;palīgā;"
 
 #~ msgid "GNOME Help"
 #~ msgstr "GNOME palīdzība"
 
-#~ msgid "Help viewer for GNOME"
-#~ msgstr "Palīdzības skatītājs GNOME videi"
-
-#~ msgid ""
-#~ "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it "
-#~ "can also display DocBook, info, man, and HTML documentation."
-#~ msgstr ""
-#~ "Yelp ir GNOME palīdzības skatītājs. Tas ir noklusējuma Mallard skatītājs, "
-#~ "bet tas var attēlot arī DocBook, info, man un HTML dokumentāciju."
-
-#~ msgid ""
-#~ "It makes it easy to find the documentation you need, with interactive "
-#~ "search and bookmarks."
-#~ msgstr ""
-#~ "Ar to var viegli atrast vajadzīgo dokumentāciju; tajā ir interaktīva "
-#~ "meklēšana un grāmatzīmes."
-
-#~ msgid ""
-#~ "It also has an editor mode, which shows editorial comments and revision "
-#~ "statuses when editing Mallard documents."
-#~ msgstr ""
-#~ "Tam ir arī redaktora režīms, kas rāda redakcionālos komentārus un "
-#~ "pārskatu statusus, kad rediģē Mallard dokumentus."
-
-#~ msgid "The GNOME Project"
-#~ msgstr "GNOME projekts"
-
-#~ msgid "Invalid compressed data"
-#~ msgstr "Nederīgi saspiestie dati"
-
-#~ msgid "Not enough memory"
-#~ msgstr "Nepietiek atmiņas"
-
-#~ msgid "The page ‘%s’ was not found in the document ‘%s’."
-#~ msgstr "Lapa “%s” netika atrasta dokumentā “%s”."
-
-#~ msgid "The file does not exist."
-#~ msgstr "Datne neeksistē."
-
-#~ msgid "The file ‘%s’ does not exist."
-#~ msgstr "Datne “%s” neeksistē."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Datni ar nosaukumu “%s” nevar parsēt, tāpēc ka tā nav korekti noformēts "
-#~ "XML dokuments."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because one or more of its included "
-#~ "files is not a well-formed XML document."
-#~ msgstr ""
-#~ "Datni ar nosaukumu “%s” nevar parsēt, tāpēc, ka viena vai vairākas "
-#~ "iekļautās datnes nav korekti noformēts XML dokuments."
-
-#~ msgid "Unknown"
-#~ msgstr "Nezināms"
-
-#~ msgid "The requested page was not found in the document ‘%s’."
-#~ msgstr "Pieprasītā lapa netika atrasta dokumentā “%s”."
-
-#~ msgid "Search results for “%s”"
-#~ msgstr "Meklēšanas rezultāti, meklējot \"%s\""
-
+#, c-format
 #~ msgid "No matching help pages found in “%s”."
 #~ msgstr "Netika atrastas atbilstošas palīdzības lapas iekš “%s”."
 
-#~ msgid "No matching help pages found."
-#~ msgstr "Netika atrastas atbilstošas palīdzības lapas."
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
 
-#~ msgid "An unknown error occurred."
-#~ msgstr "Gadījās nezināma kļūda."
+#~ msgid "Indexed"
+#~ msgstr "Indeksēts"
 
-#~ msgid "All Help Documents"
-#~ msgstr "Visi palīdzības dokumenti"
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Vai dokumenta saturs ir ticis indeksēts"
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed info "
-#~ "page."
-#~ msgstr ""
-#~ "Datni ar nosaukumu “%s“ nevar parsēt, tāpēc ka tā nav pareizi noformēta "
-#~ "info lapa."
+#~ msgid "Document URI"
+#~ msgstr "Dokumenta URI"
 
-#~ msgid "The directory ‘%s’ does not exist."
-#~ msgstr "Direktorija “%s” neeksistē."
+#~ msgid "The URI which identifies the document"
+#~ msgstr "URI, kas identificē dokumentu"
 
-#~ msgid "Search for “%s”"
-#~ msgstr "Meklēt “%s”"
+#~ msgid "View"
+#~ msgstr "Skats"
 
-#~ msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-#~ msgstr "XSLT stilu saraksts “%s” vai nu neeksistē, vai arī nav pareizs."
+#~ msgid "A YelpView instance to control"
+#~ msgstr "YelpView instance, ko vadīt"
 
-#~ msgid "No href attribute found on yelp:document\n"
-#~ msgstr "yelp:document nesatur href atribūtu\n"
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "YelpBookmarks realizācijas instance"
 
-#~ msgid "Out of memory"
-#~ msgstr "Nepietiek atmiņas"
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
 
-#~ msgid "C_opy Code Block"
-#~ msgstr "K_opēt koda bloku"
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "GtkSettings objekts, no kā saņemt iestatījumus"
 
-#~ msgid "_Copy Link Location"
-#~ msgstr "_Kopēt saites adresi"
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
 
-#~ msgid "_Open Link"
-#~ msgstr "_Atvērt saiti"
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "GtkIconTheme objekts, no kā saņemt ikonas"
 
-#~ msgid "Open Link in New _Window"
-#~ msgstr "Atvērt saiti jaunā _logā"
+#~ msgid "Font Adjustment"
+#~ msgstr "Fontu pieregulēšana"
 
-#~ msgid "_Install Packages"
-#~ msgstr "_Instalēt pakotnes"
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "Izmēra regulējums, ko pievienot fonta izmēram"
 
-#~ msgid "Save Code _Block As…"
-#~ msgstr "Saglabāt koda _bloku kā…"
+#~ msgid "Show Text Cursor"
+#~ msgstr "Radīt teksta kursoru"
 
-#~ msgid "_Copy Text"
-#~ msgstr "_Kopēt tekstu"
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Rādīt teksta kursoru pieejamākai navigācijai"
 
-#~ msgid "The URI ‘%s’ does not point to a valid page."
-#~ msgstr "URI “%s“ nenorāda uz derīgu lapu."
+#~ msgid "Editor Mode"
+#~ msgstr "Redaktora režīms"
 
-#~ msgid "The URI does not point to a valid page."
-#~ msgstr "URI nenorāda uz derīgu lapu."
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Aktivēt iespējas, kas noder redaktoram"
 
-#~ msgid "The URI ‘%s’ could not be parsed."
-#~ msgstr "Nevarēja pasēt URI “%s”."
+#~ msgid "Database filename"
+#~ msgstr "Datubāzes datnes nosaukums"
 
-#~ msgid "Unknown Error."
-#~ msgstr "Nezināma kļūda."
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Nosaukums sqlite datubāzes datnei"
 
-#~ msgid ""
-#~ "You do not have PackageKit. Package install links require PackageKit."
-#~ msgstr ""
-#~ "Jums nav PackageKit. Pakotņu instalēšanas saitēm ir nepieciešams "
-#~ "PackageKit."
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT stilu saraksts"
 
-#~ msgid "Save Image"
-#~ msgstr "Saglabāt attēlu"
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "XSLT stilu saraksta atrašanās vieta"
 
-#~ msgid "Save Code"
-#~ msgstr "Saglabāt kodu"
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
 
-#~ msgid "_Save Image As…"
-#~ msgstr "_Saglabāt attēlu kā..."
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "YelpUri ar pašreizējo atrašanās vietu"
 
-#~ msgid "_Save Video As…"
-#~ msgstr "_Saglabāt video kā…"
+#~ msgid "Loading State"
+#~ msgstr "Ielādē stāvokli"
 
-#~ msgid "S_end Image To…"
-#~ msgstr "Sūtīt attēlu _uz…"
+#~ msgid "The loading state of the view"
+#~ msgstr "Ielādē skata stāvokli"
 
-#~ msgid "S_end Video To…"
-#~ msgstr "Sūtīt vid_eo uz…"
+#~ msgid "Page ID"
+#~ msgstr "Lapas ID"
 
-#~ msgid "Could not load a document for ‘%s’"
-#~ msgstr "Nevarēja ielādēt “%s“ dokumentu"
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "Saknes lapas ID lapai, kas tagad tiek skatīta"
 
-#~ msgid "Could not load a document"
-#~ msgstr "Nevarēja ielādēt dokumentu"
+#~ msgid "Root Title"
+#~ msgstr "Saknes virsraksts"
 
-#~ msgid "Document Not Found"
-#~ msgstr "Dokuments nav atrasts"
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Saknes lapas virsraksts lapai, kas tagad tiek skatīta"
 
-#~ msgid "Page Not Found"
-#~ msgstr "Lapa nav atrasta"
+#~ msgid "Page Title"
+#~ msgstr "Lapas virsraksts"
 
-#~ msgid "Cannot Read"
-#~ msgstr "Nevar nolasīt"
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Virsraksts lapai, kas tagad tiek skatīta"
 
-#~ msgid "Unknown Error"
-#~ msgstr "Nezināma kļūda"
+#~ msgid "Page Description"
+#~ msgstr "Lapas apraksts"
 
-#~ msgid "Search for packages containing this document."
-#~ msgstr "Meklēt pakotnes, kas satur šo dokumentu."
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Apraksts lapai, kas tagad tiek skatīta"
 
-#~ msgid "Turn on editor mode"
-#~ msgstr "Ieslēgt redaktora režīmu"
+#~ msgid "Page Icon"
+#~ msgstr "Lapas ikona"
 
-#~ msgid "Help"
-#~ msgstr "Palīdzība"
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Ikona lapai, kas tagad tiek skatīta"
 
-#~ msgid "Back"
-#~ msgstr "Atpakaļ"
+#~ msgid "Application"
+#~ msgstr "Lietotne"
 
-#~ msgid "Forward"
-#~ msgstr "Uz priekšu"
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "YelpApplication instance, kas vada šo logu"
 
-#~ msgid "Menu"
-#~ msgstr "Izvēlne"
-
-#~ msgid "New Window"
-#~ msgstr "Jauns logs"
-
-#~ msgid "Find…"
-#~ msgstr "Meklēt…"
-
-#~ msgid "Print…"
-#~ msgstr "Drukāt…"
-
-#~ msgid "Larger Text"
-#~ msgstr "Lielāks teksts"
-
-#~ msgid "Smaller Text"
-#~ msgstr "Mazāks teksts"
-
-#~ msgid "All Help"
-#~ msgstr "Visa palīdzība"
-
-#~ msgid "Search (Ctrl+S)"
-#~ msgstr "Meklēt (Ctrl+S)"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Grāmatzīmes"
-
-#~ msgid "No bookmarks"
-#~ msgstr "Nav grāmatzīmju"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Pievienot Grāmatzīmi"
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "Izņemt grāmatzīmi"
-
-#~ msgid "Get help with GNOME"
-#~ msgstr "Saņemt palīdzību ar GNOME"
-
-#~ msgid "documentation;information;manual;help;"
-#~ msgstr "dokumentācija;informācija;rokasgrāmata;palīdzība;palīgā;"
