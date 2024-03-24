@@ -8,21 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues/\n"
-"POT-Creation-Date: 2024-03-09 11:37+0000\n"
-"PO-Revision-Date: 2024-03-12 12:21+0100\n"
-"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"POT-Creation-Date: 2024-03-12 11:22+0000\n"
+"PO-Revision-Date: 2024-03-24 21:44+0100\n"
+"Last-Translator: sa\n"
 "Language-Team: Kabyle <>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-DL-Team: kab\n"
 "X-DL-Module: yelp-xsl\n"
 "X-DL-Branch: master\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"Plural-Forms: nplurals=2; plural=n>1\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -32,7 +32,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:34
 msgid "default:LTR"
-msgstr "Amezwer:LTR"
+msgstr "amezwer:LTR"
 
 #. (itstool) path: msg/msgstr
 #. This is used a simple list item seperator in places where simple
@@ -58,7 +58,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
-msgstr ""
+msgstr ", akked "
 
 #. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
@@ -69,7 +69,7 @@ msgstr ""
 #: yelp-xsl.xml.in:71
 #, no-wrap
 msgid " and "
-msgstr ""
+msgstr " akked "
 
 #. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -129,7 +129,7 @@ msgstr "Abug"
 #.
 #: yelp-xsl.xml.in:132
 msgid "Candidate"
-msgstr ""
+msgstr "Amzazwar"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a caution note.
@@ -147,7 +147,7 @@ msgstr "Mdel"
 #. Default title for a colophon section.
 #: yelp-xsl.xml.in:147
 msgid "Colophon"
-msgstr ""
+msgstr "Agbur"
 
 #. (itstool) path: msg/msgstr
 #. Title for a table of contents for the entire document.
@@ -165,7 +165,7 @@ msgstr "Creative Commons"
 #. Accessible title for a danger note.
 #: yelp-xsl.xml.in:162
 msgid "Danger"
-msgstr ""
+msgstr "Amihi"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a dedication section.
@@ -199,13 +199,13 @@ msgstr "Aneggaru"
 #. Default title for a glossary.
 #: yelp-xsl.xml.in:193
 msgid "Glossary"
-msgstr ""
+msgstr "Amawal"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
 #: yelp-xsl.xml.in:198
 msgid "Important"
-msgstr ""
+msgstr "Axatar"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Work has begun, but
@@ -213,7 +213,7 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:206
 msgid "Incomplete"
-msgstr ""
+msgstr "D arummid"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
@@ -270,7 +270,7 @@ msgstr "Deg usebter-a"
 #.
 #: yelp-xsl.xml.in:256
 msgid "Other Credits"
-msgstr ""
+msgstr "Isemdan niḍen"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
@@ -316,7 +316,7 @@ msgstr "Yettwasuffɣed sɣur"
 #.
 #: yelp-xsl.xml.in:297
 msgid "Ready for review"
-msgstr ""
+msgstr "Yewjed i usenqed"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
@@ -331,7 +331,7 @@ msgstr "Wali daɣen"
 #.
 #: yelp-xsl.xml.in:311
 msgid "Scale images down"
-msgstr ""
+msgstr "Semẓiy tugniwin"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
@@ -344,7 +344,7 @@ msgstr "Afeggag n yidis"
 #.
 #: yelp-xsl.xml.in:323
 msgid "Stub"
-msgstr ""
+msgstr "Ixef"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a refsynopsisdiv element. This is the common section
@@ -352,13 +352,13 @@ msgstr ""
 #.
 #: yelp-xsl.xml.in:331
 msgid "Synopsis"
-msgstr ""
+msgstr "Synopsis"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a tip.
 #: yelp-xsl.xml.in:336
 msgid "Tip"
-msgstr ""
+msgstr "Asmigel"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of translators.
@@ -372,7 +372,7 @@ msgstr "Yettwasuqqel sɣur"
 #.
 #: yelp-xsl.xml.in:349
 msgid "View images at normal size"
-msgstr ""
+msgstr "Sekn tugniwin s teɣzi tamagnut"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -398,7 +398,7 @@ msgstr "Yettwaru sɣur"
 #.
 #: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr ""
+msgstr "Sken anekcum tabiblyugrafit <biblioentry.label/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
