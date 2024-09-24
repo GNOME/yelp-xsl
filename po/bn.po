@@ -7,872 +7,453 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-25 19:02+0600\n"
-"PO-Revision-Date: 2006-08-25 18:59+0600\n"
-"Last-Translator: Jamil Ahmed <itsjamil@gmail.com>\n"
-"Language-Team: Bangla <gnome-translation@bengalinux.org>\n"
-"Language: bn\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-"
+"xsl&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2011-11-11 12:54+0000\n"
+"PO-Revision-Date: 2011-11-28 10:59+0600\n"
+"Last-Translator: Ayesha Akhtar <ayesha@ankur.org.bd>\n"
+"Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+#. Translate to default:RTL if your language should be displayed
+#. right-to-left, otherwise translate to default:LTR.  Do *not*
+#. translate it to "predefinito:LTR", if it isn't default:LTR
+#. or default:RTL it will not work.
 #.
+#: yelp-xsl.xml.in:27(msg/msgstr)
+msgid "default:LTR"
+msgstr "পূর্বনির্ধারিত:LTR"
+
 #. This is used a simple list item seperator in places where simple
 #. inline lists have to be constructed dynamically.  Using the default
 #. string of ", ", a list would look like this: A, B, C, D.  Using the
 #. nonsensical string " - ", a list would look like this: A - B - C - D.
 #.
-#: ../xslt/gettext/l10n.xml.in.h:7
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:40(msg/msgstr)
+#, no-wrap
 msgid ", "
 msgstr ", "
 
+#. This is used as the final separator in an inline list of three or
+#. more elements.  The string ", " will be used to separate all but
+#. the last pair of elements.  Using these two strings, a list of
+#. names would be formatted as "Tom, Dick, and Harry".
 #.
-#. The number formatter used for appendix numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
+#. Make sure to include leading or trailing spaces if you want them.
 #.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:22
-msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
-msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
+#: yelp-xsl.xml.in:53(msg/msgstr)
+#, no-wrap
+msgid ", and "
+msgstr ", এবং"
 
+#. This is used as a list item seperator for inline lists of exactly two
+#. elements.  A list of two names would be formatted as "Tom and Dick".
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#. Make sure to include leading or trailing spaces if you want them.
 #.
-#. This is a format message used to format labels for appendices.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the appendix
-#. titleabbrev - The titleabbrev of the appendix, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the appendix, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:56
-msgid ""
-"<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
-"<number/></msgstr>"
-msgstr ""
-"<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>পরিশিষ্ট "
-"<number/></msgstr>"
+#: yelp-xsl.xml.in:64(msg/msgstr)
+#, no-wrap
+msgid " and "
+msgstr "এবং"
 
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#. This is used as a label before questions in a question-and-answer
+#. set.  Typically, questions are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label questions.
 #.
-#. This is a format message used to format numbers for appendices.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. appendix might be referenced.  The number for an appendix includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4.B indicates the second appendix in the fourth top-level element.  In
-#. this example, 4 is referred to as the parent number, and B is referred
-#. to as the appendix digit.  This format message constructs a full number
-#. from a parent number and an appendix digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the appendix's parent element
-#. digit  - The number of the appendix in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:89
-msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#: yelp-xsl.xml.in:79(msg/msgstr)
+msgid "Q:"
+msgstr "Q:"
 
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#. This is used as a label before answers in a question-and-answer
+#. set.  Typically, answers are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label answers.
 #.
-#. This is a format message used to format cross references to appendices.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the appendix
-#. titleabbrev - The titleabbrev of the appendix, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the appendix, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:121
-msgid ""
-"<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></msgstr>"
-msgstr ""
-"<msgid>appendix.xref</msgid> <msgstr>পরিশিষ্ট <number/> ― <title/></msgstr>"
+#: yelp-xsl.xml.in:92(msg/msgstr)
+msgid "A:"
+msgstr "A:"
 
-# sam:
-# <msgid>glossentry.tooltip</msgid> <msgstr>‘<glossterm/>’ এর সজ্ঞা পড়ো। </msgstr>
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#: yelp-xsl.xml.in:102(msg/msgstr)
+msgid "About"
+msgstr "সম্পর্কিত"
+
+#. Accessible title for an advanced note.
+#: yelp-xsl.xml.in:107(msg/msgstr)
+msgid "Advanced"
+msgstr "উচ্চ পর্যায়ের"
+
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:112(msg/msgstr)
+msgid "Bibliography"
+msgstr "গ্রন্থপঞ্জি"
+
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:117(msg/msgstr)
+msgid "Bug"
+msgstr "বাগ"
+
+#. Revision status of a document or page. Content has been written and
+#. reviewed, and it awaiting a final approval.
 #.
+#: yelp-xsl.xml.in:125(msg/msgstr)
+msgid "Candidate"
+msgstr "প্রার্থী"
+
+# As per the Oxford Dictionary: "colophon is a noun. it means publisher's imprint, on the title-page. or tailpiece in a manuscript or book, giving the writer's or printer's name, date, etc." - mak
+#. Default title for a colophon section.
+#: yelp-xsl.xml.in:130(msg/msgstr)
+msgid "Colophon"
+msgstr "প্রকাশনার সীল"
+
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:135(msg/msgstr)
+msgid "Creative Commons"
+msgstr "সাধারণ সৃজনক্ষম"
+
+#. Default title for a dedication section.
+#: yelp-xsl.xml.in:140(msg/msgstr)
+msgid "Dedication"
+msgstr "সমর্পণ"
+
+#. Revision status of a document or page. Most content has been
+#. written, but revisions are still happening.
+#.
+#: yelp-xsl.xml.in:148(msg/msgstr)
+msgid "Draft"
+msgstr "খসড়া"
+
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:153(msg/msgstr)
+msgid "Edited By"
+msgstr "সম্পাদনা করা হয়েছে"
+
+#. Revision status of a document or page. A senior member of the
+#. documentation team has reviewed and approved.
+#.
+#: yelp-xsl.xml.in:161(msg/msgstr)
+msgid "Final"
+msgstr "চূড়ান্ত"
+
+#. Default title for a glossary.
+#: yelp-xsl.xml.in:166(msg/msgstr)
+msgid "Glossary"
+msgstr "শব্দাবলী"
+
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:171(msg/msgstr)
+msgid "Important"
+msgstr "গুরুত্বপূর্ণ"
+
+#. Revision status of a document or page. Work has begun, but
+#. not all content has been written.
+#.
+#: yelp-xsl.xml.in:179(msg/msgstr)
+msgid "Incomplete"
+msgstr "অসম্পূর্ণ"
+
+#. Default title for an index of terms in a book.
+#: yelp-xsl.xml.in:184(msg/msgstr)
+msgid "Index"
+msgstr "সূচী"
+
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:189(msg/msgstr)
+msgid "Legal"
+msgstr "বৈধ"
+
+#. Generic title for license information when it's not a known license.
+#.
+#: yelp-xsl.xml.in:196(msg/msgstr)
+msgid "License"
+msgstr "লাইসেন্স"
+
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:201(msg/msgstr)
+msgid "Maintained By"
+msgstr "বজায় রাখা হয়েছে"
+
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:206(msg/msgstr)
+msgid "More Information"
+msgstr "আরও তথ্য"
+
+#. Link text for a link to the next page in a series.
+#: yelp-xsl.xml.in:211(msg/msgstr)
+msgid "Next"
+msgstr "পরবর্তী"
+
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:216(msg/msgstr)
+msgid "Note"
+msgstr "নোট"
+
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:224(msg/msgstr)
+msgid "Other Credits"
+msgstr "অন্যান্য ক্রেডিট"
+
+#. Revision status of a document or page. Content was once current,
+#. but needs to be updated to reflect software updates.
+#.
+#: yelp-xsl.xml.in:232(msg/msgstr)
+msgid "Outdated"
+msgstr "পুরান"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:237(msg/msgstr)
+msgid "Pause"
+msgstr "বিরতি"
+
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:242(msg/msgstr)
+msgid "Play"
+msgstr "চালান"
+
+#. Link text for a link to the previous page in a series.
+#: yelp-xsl.xml.in:247(msg/msgstr)
+msgid "Previous"
+msgstr "পূর্ববর্তী "
+
+#. Revision status of a document or page. Content has been written
+#. and should be reviewed by other team members.
+#.
+#: yelp-xsl.xml.in:255(msg/msgstr)
+msgid "Ready for review"
+msgstr "পর্যালোচনার জন্য প্রস্তুত"
+
+#. Automatic heading above a list of see-also links.
+#: yelp-xsl.xml.in:260(msg/msgstr)
+msgid "See Also"
+msgstr "অতিরিক্ত দেখুন"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to shrink images back down after
+#. they've been expanded to full size.
+#.
+#: yelp-xsl.xml.in:269(msg/msgstr)
+msgid "Scale images down"
+msgstr "চিত্রের নিচের আকার পরিবর্তন করুন"
+
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:274(msg/msgstr)
+msgid "Sidebar"
+msgstr "সাইড বার"
+
+#. Revision status of a document or page. No content has been written yet.
+#.
+#: yelp-xsl.xml.in:281(msg/msgstr)
+msgid "Stub"
+msgstr "স্টাব"
+
+#. Default title for a refsynopsisdiv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:289(msg/msgstr)
+msgid "Synopsis"
+msgstr "সারাংশ"
+
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:294(msg/msgstr)
+msgid "Tip"
+msgstr "ইঙ্গিত"
+
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:299(msg/msgstr)
+msgid "Translated By"
+msgstr "অনুবাদ করা হয়েছে"
+
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to expand images to full size.
+#.
+#: yelp-xsl.xml.in:307(msg/msgstr)
+msgid "View images at normal size"
+msgstr "চিত্র সাধারণ আকারে প্রদর্শন"
+
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:312(msg/msgstr)
+msgid "Warning"
+msgstr "সতর্কবাণী"
+
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:317(msg/msgstr)
+msgid "Written By"
+msgstr "লেখা হয়েছে"
+
+#. This is an image of the opening quotation character for your language.
+#. The image is used as a watermark on blockquote elements.  There are a
+#. number of different quote characters used by various languages, so the
+#. image name is translatable.  The name of the icon should be of the form
+#. "yelp-quote-XXXX.png", where XXXX is the Unicode code point of the opening
+#. quote character.  For example, some languages use the double angle quotation
+#. mark.  Translators for these languages should use "yelp-quote-00AB.png".
+#.
+#. The image, however, is not automatically created.  Do not translate
+#. this to a value if there isn't a corresponding file in yelp-xsl under
+#. the directory icons/hicolor/48x48/status.
+#.
+#. Languages that use guillemets (angle quotation marks) should use either
+#. 00AB or 00BB, depending on whether the opening quotation is the left
+#. guillemet or the right guillemet.  Languages that use inverted comma
+#. quotation marks should use 201C, 201D, or 201E.  Single quotation marks
+#. don't make very nice watermarks, so if you would normally open a quote
+#. with single quotation marks in your language, use the corresponding
+#. double quotation mark for the watermark image.
+#.
+#: yelp-xsl.xml.in:344(msg/msgstr)
+msgid "yelp-quote-201C.png"
+msgstr "yelp-quote-201C.png"
+
+#. ID: biblioentry.tooltip
 #. This is a format message used to format tooltips on cross references
 #. to bibliography entries.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. label - The term being defined by the glossary entry
+#. <label/> - The term being defined by the glossary entry
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the label, simply write left angle bracket, label,  slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:145
-msgid ""
-"<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
-"<label/>.</msgstr>"
-msgstr ""
-"<msgid>biblioentry.tooltip</msgid> <msgstr>গ্রন্থপঞ্জির <label/> এন্ট্রি দেখুন।</"
-"msgstr>"
+#: yelp-xsl.xml.in:360(msg/msgstr)
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "তথ্যসূত্রের ভুক্তি প্রদর্শন <biblioentry.label/>।"
 
+#. ID: biblioentry.label
+#. This is a format message used to format the labels for entries in
+#. a bibliography.  The content of the label is often an abbreviation
+#. of the authors' names and the year of publication.  In English,
+#. these are generally formatted with [square brackets] surrounding
+#. them.
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to bibliographies.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
+#. This string is similar to citation.format, but they are used in
+#. different places.  The citation formatter is used when referencing
+#. a bibliography entry in running prose.  This formatter is used for
+#. the actual bibliography entry.  You may use the same formatting for
+#. both, but you don't have to.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. title       - The title of the figure
-#. titleabbrev - The titleabbrev of the figure, or just the title
-#. if no titleabbrev exists
+#. <biblioentry.label/> - The text content of the bibliography label
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Note that authors are not required to provide explicit titles for
-#. bibliographies.  If the author does not provide a title, the
-#. translatable string 'Bibliography' is used as a default.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:179
-msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
-msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
+#: yelp-xsl.xml.in:383(msg/msgstr)
+msgid "[<biblioentry.label/>]"
+msgstr "[<biblioentry.label/>]"
 
-#.
-#. The number formatter used for book numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:194
-msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to books.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
+#. ID: citation.label
+#. This is a format message used to format inline citations to other
+#. published works.  The content is typically an abbreviation of the
+#. authors' last names.  In English, this abbreviation is usually
+#. written inside [square brackets].
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. title       - The title of the book
-#. titleabbrev - The titleabbrev of the book, or just the title
-#. if no titleabbrev exists
+#. <citation/> - The text content of the citation element, possibly
+#.               as a link to an entry in the bibliography
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:224
-msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
-msgstr "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
+#: yelp-xsl.xml.in:400(msg/msgstr)
+msgid "[<citation.label/>]"
+msgstr "[<citation.label/>]"
 
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
 #.
-#. The number formatter used for chapter numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
 #.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
+#.   Here is the text of the comment.
 #.
-#: ../xslt/gettext/l10n.xml.in.h:239
-msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for chapters.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. title       - The title of the chapter
-#. titleabbrev - The titleabbrev of the chapter, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the chapter, possibly including
-#. the number of the parent element
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:273
-msgid ""
-"<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
-"<number/></msgstr>"
-msgstr ""
-"<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>অধ্যায় <number/"
-"></msgstr>"
+#: yelp-xsl.xml.in:429(msg/msgstr)
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "থেকে <comment.name/> তে <comment.date/>"
 
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
 #.
-#. This is a format message used to format numbers for chapters.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. chapter might be referenced.  The number for a chapter includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4.2 indicates the second chapter in the fourth top-level element.  In
-#. this example, 4 is referred to as the parent number, and B is referred
-#. to as the chapter digit.  This format message constructs a full number
-#. from a parent number and a chapter digit.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. parent - The full number of the chapter's parent element
-#. digit  - The number of the chapter in its parent element,
-#. not including any leading numbers from the parent
-#. element
+#. <comment.name/> - The name of the person making the comment
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:306
-msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#: yelp-xsl.xml.in:457(msg/msgstr)
+msgid "from <comment.name/>"
+msgstr "থেকে <comment.name/>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to chapters
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the chapter
-#. titleabbrev - The titleabbrev of the chapter, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the chapter, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:338
-msgid ""
-"<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
-msgstr ""
-"<msgid>chapter.xref</msgid> <msgstr>অধ্যায় <number/> ― <title/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. citetitle - The title of a cited work
-#. http://docbook.org/tdg/en/html/citetitle.html
-#.
-#. This is a format message used to format inline title citations.
-#. This template uses roles to control how the citation is formatted.
-#. The role indicates the type of work being cited, and is taken from
-#. the pubwork attribute of the citetitle element.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. node - The text content of the citetitle element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the node, simply write left angle bracket, node, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:367
-msgid ""
-"<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-"<msgstr><i><node/></i></msgstr>"
-msgstr ""
-"<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
-"<msgstr><i><node/></i></msgstr>"
-
-# sam:
-# <msgid>email.tooltip</msgid> <msgstr>‘<node/>’ - কে ই-মেইল করো।</msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format tooltips on mailto: links
-#. created from DocBook's email element.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. string - The linked-to email address
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the email address, simply write left angle bracket, string,
-#. slash, right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:391
-msgid ""
-"<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
-msgstr ""
-"<msgid>email.tooltip</msgid> <msgstr>‘<string/>'কে ই-মেইল পাঠানো হবে।</"
-"msgstr>"
-
-#.
-#. The number formatter used for example numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:406
-msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
-
-# sam:
-# <msgid>example.label</msgid> <msgstr role='header'><i>উদাহরণ <number/></i>&#x2003;</msgstr> <msgstr role='li'>উদাহরণ <number/>&#x2002;</msgstr> <msgstr>উদাহরণ <number/></msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for examples.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the example
-#. titleabbrev - The titleabbrev of the example, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the example, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:440
-msgid ""
-"<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
-"<msgstr>Example <number/></msgstr>"
-msgstr ""
-"<msgid>example.label</msgid> <msgstr role='header'><i>উদাহরণ <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>উদাহরণ <number/>&#x2002;</msgstr> "
-"<msgstr>উদাহরণ <number/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format numbers for example.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. example might be referenced.  The number for an example includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4-3 indicates the third example in the fourth top-level chapter.  In
-#. this example, 4 is referred to as the parent number, and 3 is referred
-#. to as the example digit.  This format message constructs a full number
-#. from a parent number and an example digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the example's parent element
-#. digit  - The number of the example in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:473
-msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to examples.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the example
-#. titleabbrev - The titleabbrev of the example, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the example, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:505
-msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
-msgstr "<msgid>example.xref</msgid> <msgstr>উদাহরণ <number/></msgstr>"
-
-#.
-#. The number formatter used for figure numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:520
-msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
-
-# sam: চিত্র
-# <msgid>figure.label</msgid> <msgstr role='header'><i>চিত্র <number/></i>&#x2003;</msgstr> <msgstr role='li'>চিত্র <number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for figures.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the figure
-#. titleabbrev - The titleabbrev of the figure, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the figure, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:554
-msgid ""
-"<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
-"<msgstr>Figure <number/></msgstr>"
-msgstr ""
-"<msgid>figure.label</msgid> <msgstr role='header'><i>চিত্র <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>চিত্র <number/>&#x2002;</msgstr> "
-"<msgstr>চিত্র <number/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format numbers for figure.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. figure might be referenced.  The number for a figure includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4-3 indicates the third figure in the fourth top-level chapter.  In
-#. this figure, 4 is referred to as the parent number, and 3 is referred
-#. to as the figure digit.  This format message constructs a full number
-#. from a parent number and a figure digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the figure's parent element
-#. digit  - The number of the figure in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:587
-msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to figures.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the figure
-#. titleabbrev - The titleabbrev of the figure, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the figure, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:619
-msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
-msgstr "<msgid>figure.xref</msgid> <msgstr>চিত্র <number/></msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to glossaries.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the figure
-#. titleabbrev - The titleabbrev of the figure, or just the title
-#. if no titleabbrev exists
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Note that authors are not required to provide explicit titles for
-#. glossaries.  If the author does not provide a title, the translatable
-#. string 'Glossary' is used as a default.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:653
-msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
-msgstr "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
+#. ID: email.tooltip
+#. This is a format message used to format tooltips on mailto: links.
+#. Special elements in the message will be replaced with the appropriate
+#. content, as follows:
+#.
+#. <string/> - The linked-to email address
+#.
+#: yelp-xsl.xml.in:469(msg/msgstr)
+msgid "Send email to ‘<string/>’."
+msgstr "‘<string/>’ এ ইমেইল পাঠান।"
 
 # sam:
 # <msgid>glossentry.tooltip</msgid> <msgstr>‘<glossterm/>’ এর সজ্ঞা পড়ো। </msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
+#. ID: glossentry.tooltip
 #. This is a format message used to format tooltips on cross references
-#. to glossary entries.
+#. to glossary entries. Special elements in the message will be replaced
+#. with the appropriate content, as follows:
 #.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
+#. <glossterm/> - The term being defined by the glossary entry
 #.
-#. glossterm - The term being defined by the glossary entry
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the glossterm, simply write left angle bracket, glossterm,
-#. slash, right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:677
-msgid ""
-"<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
-"‘<glossterm/>’.</msgstr>"
-msgstr ""
-"<msgid>glossentry.tooltip</msgid> <msgstr>এর সংজ্ঞা পড়ো<glossterm/>’।</msgstr>"
+#: yelp-xsl.xml.in:481(msg/msgstr)
+#| msgid ""
+#| "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
+#| "‘<glossterm/>’.</msgstr>"
+msgid "Read the definition for ‘<glossterm/>’."
+msgstr "‘<glossterm/>’ এর জন্য সংজ্ঞা পড়ুন।"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to glossary
-#. entries.  Multiple roles can be provided to allow document translators to
-#. select how to format each cross reference using the xrefstyle attribute.
-#. If your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. In addition, the 'glosssee' role will be used for cross references
-#. from glosssee or glossseealso elements.  These are used in other
-#. glossary entries to direct the user to the linked-to entry.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. glossterm - The term being defined by the glossary entry
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the glossterm, simply write left angle bracket, glossterm,
-#. slash, right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:709
-msgid ""
-"<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
-"<msgstr>‘<glossterm/>’</msgstr>"
-msgstr ""
-"<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></msgstr> "
-"<msgstr>‘<glossterm/>’</msgstr>"
-
-# sam:
-# <msgid>glosssee.format</msgid> <msgstr><glosssee/> দেখো। </msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. glosssee - A cross reference from one glossentry to another
-#. http://docbook.org/tdg/en/html/glosssee.html
-#.
+#. ID: glosssee.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.  For the formatting of the actual
@@ -886,32 +467,13 @@ msgstr ""
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. glosssee - The actual link or links of the cross reference
+#. <glosssee/> - The actual link or links of the cross reference
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the glosssee, simply write left angle bracket, glosssee,
-#. slash, right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:743
-msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
-msgstr "<msgid>glosssee.format</msgid> <msgstr>দেখো <glosssee/>।</msgstr>"
+#: yelp-xsl.xml.in:502(msg/msgstr)
+msgid "See <glosssee/>."
+msgstr "দেখুন <glosssee/>।"
 
-# sam:
-# <msgid>glossseealso.format</msgid> <msgstr><glosssee/> -ও দেখো। </msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. glossseealso - A cross reference from one glossentry to another
-#. http://docbook.org/tdg/en/html/glossseealso.html
-#.
+#. ID: glossseealso.format
 #. This is a format message used to format glossary cross references.
 #. This format message controls the sentence used to present the cross
 #. reference, not the link itself.  For the formatting of the actual
@@ -926,1009 +488,382 @@ msgstr "<msgid>glosssee.format</msgid> <msgstr>দেখো <glosssee/>।</msgs
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. glosssee - The actual link or links of the cross reference
+#. <glosssee/> - The actual link or links of the cross reference
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the glosssee, simply write left angle bracket, glosssee,
-#. slash, right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:778
-msgid ""
-"<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
-msgstr ""
-"<msgid>glossseealso.format</msgid> <msgstr> -ও দেখো <glosssee/>।</msgstr>"
+#: yelp-xsl.xml.in:524(msg/msgstr)
+msgid "See also <glosssee/>."
+msgstr "আরও দেখুন <glosssee/>।"
 
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
 #.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
+#. <node/> - The text content of the quote element
 #.
-#. manvolnum - A reference volume number
-#. http://docbook.org/tdg/en/html/manvolnum.html
+#: yelp-xsl.xml.in:536(msg/msgstr)
+msgid "“<node/>”"
+msgstr "“<node/>”"
+
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
 #.
-#. This is a format message used to format manvolnum elements.
-#. A manvolnum is typically a number or short string used to
-#. identify a section of man pages.  It is typically placed
-#. inside parentheses.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:548(msg/msgstr)
+msgid "‘<node/>’"
+msgstr "‘<node/>’"
+
+#. ID: seeie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. node - The text content of the manvolnum element
+#. <seeie/> - The actual link or links of the cross reference
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the node, simply write left angle bracket, node, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:807
-msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
-msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+#: yelp-xsl.xml.in:563(msg/msgstr)
+msgid "See <seeie/>."
+msgstr "দেখুন <seeie/>।"
 
-#.
-#. The number formatter used for part numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:822
-msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
-
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for parts.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
+#. ID: seealsoie.format
+#. This is a format message used to format index cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.
 #.
 #. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. title       - The title of the part
-#. titleabbrev - The titleabbrev of the part, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the part, possibly including
-#. the number of the parent element
+#. <seeie/> - The actual link or links of the cross reference
 #.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:856
-msgid ""
-"<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> "
-"<msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part <number/></msgstr>"
-msgstr ""
-"<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</msgstr> "
-"<msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>অংশ <number/></msgstr>"
+#: yelp-xsl.xml.in:578(msg/msgstr)
+msgid "See also <seeie/>."
+msgstr "আরও দেখুন <seeie/>।"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to parts
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the part
-#. titleabbrev - The titleabbrev of the part, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the part, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:888
-msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
-msgstr "<msgid>part.xref</msgid> <msgstr>অংশ <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
+#~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to prefaces.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the figure
-#. titleabbrev - The titleabbrev of the figure, or just the title
-#. if no titleabbrev exists
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Note that authors are not required to provide explicit titles for
-#. prefaces.  If the author does not provide a title, the translatable
-#. string 'Preface' is used as a default.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:922
-msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
-msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgid ""
+#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>পরিশিষ্ট "
+#~ "<number/></msgstr>"
 
-#.
-#. The number formatter used for question numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:937
-msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for questions in
-#. question-and-answer sets.  Labels are used before the question
-#. both in the question-and-answer list and in table of questions
-#. listings.  Multiple roles can be used to provide different
-#. formattings for different uses of labels.  The following roles
-#. may be used with this format message:
-#.
-#. header - Used for labels inside the question-and-answer set
-#. li     - Used for labels in table of questions listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. number - The number of the question in its containing qandaset
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the number, simply write left angle bracket, number, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:968
-msgid ""
-"<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
-"<number/></msgstr>"
-msgstr ""
-"<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>প্রশ্ন <number/"
-"></msgstr>"
+#~ msgid ""
+#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgid>appendix.xref</msgid> <msgstr>পরিশিষ্ট <number/> ― <title/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to questions
-#. in question-and-answer sets.  Multiple roles can be provided to allow
-#. document translators to select how to format each cross reference
-#. using the xrefstyle attribute.  If your language needs to provide
-#. different cross reference formattings for different parts of speech,
-#. you should provide multiple roles for cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. number - The number of the question in its containing qandaset
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the number, simply write left angle bracket, number, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:996
-msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
-msgstr "<msgid>question.xref</msgid> <msgstr>প্রশ্ন <number/></msgstr>"
+# sam:
+# <msgid>glossentry.tooltip</msgid> <msgstr>‘<glossterm/>’ এর সজ্ঞা পড়ো। </msgstr>
+#~ msgid ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
+#~ "<label/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>গ্রন্থপঞ্জির <label/> এন্ট্রি "
+#~ "দেখুন।</msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. quote - An inline quotation
-#. http://docbook.org/tdg/en/html/quote.html
-#.
-#. This is a format message used to format inline quotations.  This template
-#. uses roles to control how the quotation is formatted.  The role indicates
-#. whether this is an outer or inner quotation.  Quotations nested inside
-#. another quotation are inner quotations.  Many languages have an alternate
-#. notation for nested quotations.
-#.
-#. These stylesheets only provide two levels of quotation formatting.  If
-#. quote elements are nested deeper, the stylesheets will alternate between
-#. the 'outer' and 'inner' roles.  If your language uses different formatting
-#. for deeper quotations, please contact the maintainers, and we will try to
-#. implement a more flexible formatting mechanism.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. node - The text content of the quote element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the node, simply write left angle bracket, node, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1032
-msgid ""
-"<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-"<msgstr>“<node/>”</msgstr>"
-msgstr ""
-"<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
-"<msgstr>“<node/>”</msgstr>"
+#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to reference
-#. pages.  Multiple roles can be provided to allow document translators
-#. to select how to format each cross reference using the xrefstyle
-#. attribute.  If your language needs to provide different cross
-#. reference formattings for different parts of speech, you should
-#. provide multiple roles for cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the reference page
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1060
-msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
-msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
 
-#.
-#. The number formatter used for reference section numbers.  This can
-#. be one of "1", "A", "a", "I", or "i", without the quotes.  These
-#. formatters provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1075
-msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for reference sections.
-#. Labels are used before the title in places like headers and table of
-#. contents listings.  Multiple roles can be used to provide different
-#. formattings for different uses of labels.  The following roles may
-#. be used with this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the section
-#. titleabbrev - The titleabbrev of the section, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the section, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1109
-msgid ""
-"<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-"<number/></msgstr>"
-msgstr ""
-"<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>খন্ড <number/></"
-"msgstr>"
+#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format numbers for reference sections.
-#. Numbers are used in labels, cross references, and any other place where
-#. the section might be referenced.  The number for a section includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4.3.9 indicates the ninth section in the third section of the fourth
-#. top-level section or chapter.  In this example, 4.3 is referred to as
-#. the parent number, and 9 is referred to as the section digit.  This
-#. format message constructs a full number from a parent number and a
-#. section digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the section's parent element
-#. digit  - The number of the section in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1143
-msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-msgstr "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgid ""
+#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>অধ্যায় "
+#~ "<number/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to reference
-#. sections.  Multiple roles can be provided to allow document translators
-#. to select how to format each cross reference using the xrefstyle attribute.
-#. If your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the section
-#. titleabbrev - The titleabbrev of the section, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the section, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1175
-msgid ""
-"<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-msgstr ""
-"<msgid>refsection.xref</msgid> <msgstr>খন্ড <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
 
-#.
-#. The number formatter used for section numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1190
-msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+#~ msgid ""
+#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>chapter.xref</msgid> <msgstr>অধ্যায় <number/> ― <title/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for sections.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the section
-#. titleabbrev - The titleabbrev of the section, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the section, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1224
-msgid ""
-"<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
-"<number/></msgstr>"
-msgstr ""
-"<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
-"msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>খন্ড <number/></"
-"msgstr>"
+#~ msgid ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
+#~ msgstr ""
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format numbers for sections.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. section might be referenced.  The number for a section includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4.3.9 indicates the ninth section in the third section of the fourth
-#. top-level section or chapter.  In this example, 4.3 is referred to as
-#. the parent number, and 9 is referred to as the section digit.  This
-#. format message constructs a full number from a parent number and a
-#. section digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the section's parent element
-#. digit  - The number of the section in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1258
-msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
-msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+# sam:
+# <msgid>email.tooltip</msgid> <msgstr>‘<node/>’ - কে ই-মেইল করো।</msgstr>
+#~ msgid ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>email.tooltip</msgid> <msgstr>‘<string/>'কে ই-মেইল পাঠানো হবে।</"
+#~ "msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to sections.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the section
-#. titleabbrev - The titleabbrev of the section, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the section, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1290
-msgid ""
-"<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
-msgstr "<msgid>section.xref</msgid> <msgstr>খন্ড <number/> ― <title/></msgstr>"
+#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 
-#.
-#. The number formatter used for table numbers.  This can be one of
-#. "1", "A", "a", "I", or "i", without the quotes.  These formatters
-#. provide the following results:
-#.
-#. 1    2    3    4    5    6    7    8    9   10   11   12   13   14
-#. A    B    C    D    E    F    G    H    I    J    K    L    M    N
-#. a    b    c    d    e    f    g    h    i    j    k    l    m    n
-#. I   II  III   IV    V   VI  VII VIII   IX    X   XI  XII XIII  XIV
-#. i   ii  iii   iv    v   vi  vii viii   ix    x   xi  xii xiii  xiv
-#.
-#. Non-Western languages probably need additional formatters.  Please
-#. contact the maintainers about adding formatters for your language.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1305
-msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
-msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
+# sam:
+# <msgid>example.label</msgid> <msgstr role='header'><i>উদাহরণ <number/></i>&#x2003;</msgstr> <msgstr role='li'>উদাহরণ <number/>&#x2002;</msgstr> <msgstr>উদাহরণ <number/></msgstr>
+#~ msgid ""
+#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Example <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>example.label</msgid> <msgstr role='header'><i>উদাহরণ <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>উদাহরণ <number/>&#x2002;</msgstr> "
+#~ "<msgstr>উদাহরণ <number/></msgstr>"
+
+#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+
+#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
+#~ msgstr "<msgid>example.xref</msgid> <msgstr>উদাহরণ <number/></msgstr>"
+
+#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
+
+# sam: চিত্র
+# <msgid>figure.label</msgid> <msgstr role='header'><i>চিত্র <number/></i>&#x2003;</msgstr> <msgstr role='li'>চিত্র <number/>&#x2002;</msgstr> <msgstr>Figure <number/></msgstr>
+#~ msgid ""
+#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Figure <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>চিত্র <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>চিত্র <number/>&#x2002;</msgstr> "
+#~ "<msgstr>চিত্র <number/></msgstr>"
+
+#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+
+#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
+#~ msgstr "<msgid>figure.xref</msgid> <msgstr>চিত্র <number/></msgstr>"
+
+#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
+
+# sam:
+# <msgid>glosssee.format</msgid> <msgstr><glosssee/> দেখো। </msgstr>
+#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glosssee.format</msgid> <msgstr>দেখো <glosssee/>।</msgstr>"
+
+# sam:
+# <msgid>glossseealso.format</msgid> <msgstr><glosssee/> -ও দেখো। </msgstr>
+#~ msgid ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
+#~ msgstr ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr> -ও দেখো <glosssee/>।</msgstr>"
+
+#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+
+#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
+#~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>অংশ <number/"
+#~ "></msgstr>"
+
+#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
+#~ msgstr "<msgid>part.xref</msgid> <msgstr>অংশ <number/> ― <title/></msgstr>"
+
+#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>প্রশ্ন "
+#~ "<number/></msgstr>"
+
+#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.xref</msgid> <msgstr>প্রশ্ন <number/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgstr ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+
+#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>খন্ড <number/"
+#~ "></msgstr>"
+
+#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgid>refsection.xref</msgid> <msgstr>খন্ড <number/> ― <title/></msgstr>"
+
+#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>খন্ড <number/"
+#~ "></msgstr>"
+
+#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>section.xref</msgid> <msgstr>খন্ড <number/> ― <title/></msgstr>"
+
+#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
 
 # sam:
 # <msgid>table.label</msgid> <msgstr role='header'><i>টেবিল <number/></i>&#x2003;</msgstr> <msgstr role='li'>টেবিল <number/>&#x2002;</msgstr> <msgstr>টেবিল <number/></msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format labels for tables.  Labels
-#. are used before the title in places like headers and table of contents
-#. listings.  Multiple roles can be used to provide different formattings
-#. for different uses of labels.  The following roles may be used with
-#. this format message:
-#.
-#. header - Used for labels in headers
-#. li     - Used for labels in table of contents listings
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the table
-#. titleabbrev - The titleabbrev of the table, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the table, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1339
-msgid ""
-"<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
-"<msgstr>Table <number/></msgstr>"
-msgstr ""
-"<msgid>table.label</msgid> <msgstr role='header'><i>টেবিল <number/></"
-"i>&#x2003;</msgstr> <msgstr role='li'>টেবিল <number/>&#x2002;</msgstr> "
-"<msgstr>টেবিল <number/></msgstr>"
+#~ msgid ""
+#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Table <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>table.label</msgid> <msgstr role='header'><i>টেবিল <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>টেবিল <number/>&#x2002;</msgstr> "
+#~ "<msgstr>টেবিল <number/></msgstr>"
 
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format numbers for table.  Numbers
-#. are used in labels, cross references, and any other place where the
-#. table might be referenced.  The number for a table includes the
-#. number for its parent element, if applicable.  For example, the number
-#. 4-3 indicates the third table in the fourth top-level chapter.  In
-#. this table, 4 is referred to as the parent number, and 3 is referred
-#. to as the table digit.  This format message constructs a full number
-#. from a parent number and a table digit.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. parent - The full number of the table's parent element
-#. digit  - The number of the table in its parent element,
-#. not including any leading numbers from the parent
-#. element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the digit, simply write left angle bracket, digit, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1372
-msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
-msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 
 # সাম:
 # <msgid>table.xref</msgid> <msgstr>টেবিল <number/></msgstr>
-#.
-#. This is a special format message.  Please read the full translator
-#. documentation before translating this message.  The documentation
-#. is maintained as part of the stylesheet documentation in DocBook.
-#. For your convenience, it has also been converted to an HTML file
-#. named STYLESHEETS.xml in the i18n directory.
-#.
-#. This is a format message used to format cross references to tables.
-#. Multiple roles can be provided to allow document translators to select
-#. how to format each cross reference using the xrefstyle attribute.  If
-#. your language needs to provide different cross reference formattings
-#. for different parts of speech, you should provide multiple roles for
-#. cross reference formatters.
-#.
-#. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. title       - The title of the table
-#. titleabbrev - The titleabbrev of the table, or just the title
-#. if no titleabbrev exists
-#. number      - The full number of the table, possibly including
-#. the number of the parent element
-#.
-#. These should be written as empty XML elements.  Due to limitations
-#. in intltool, I can't write XML content in translator comments.  To
-#. insert the title, simply write left angle bracket, title, slash,
-#. right angle bracket.
-#.
-#. Additionally, format messages can use the i, b, and tt markup tags
-#. to mark text as italic, bold, and monospace.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1404
-msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
-msgstr "<msgid>table.xref</msgid> <msgstr>টেবিল <number/></msgstr>"
+#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
+#~ msgstr "<msgid>table.xref</msgid> <msgstr>টেবিল <number/></msgstr>"
 
-#. Used as a header before a list of authors.
-#: ../xslt/gettext/l10n.xml.in.h:1406
-msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
-msgstr "<msgstr form='0'>Author</msgstr> <msgstr form='1'>লেখক</msgstr>"
+#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
+#~ msgstr "<msgstr form='0'>Author</msgstr> <msgstr form='1'>লেখক</msgstr>"
 
 # sam:
 # <msgstr form='0'>সাহায্যকারী</msgstr> <msgstr form='1'>সাহায্যকারী</msgstr>
-#. Used as a header before a list of collaborators.
-#: ../xslt/gettext/l10n.xml.in.h:1408
-msgid ""
-"<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
-"msgstr>"
-msgstr ""
-"<msgstr form='0'>সাহায্যকারী</msgstr> <msgstr form='1'>সাহায্যকারী</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>সাহায্যকারী</msgstr> <msgstr form='1'>সাহায্যকারী</msgstr>"
 
 # sam:
 # <msgstr form='0'>কপিরাইট</msgstr> <msgstr form='1'>কপিরাইট</msgstr>
-#. Used as a header before a list of copyrights.
-#: ../xslt/gettext/l10n.xml.in.h:1410
-msgid ""
-"<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
-msgstr "<msgstr form='0'>কপিরাইট</msgstr> <msgstr form='1'>কপিরাইট</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr "<msgstr form='0'>কপিরাইট</msgstr> <msgstr form='1'>কপিরাইট</msgstr>"
 
 # sam: i am not sure why the first word is not translated...
 # <msgstr form='0'>সম্পাদক</msgstr> <msgstr form='1'>সম্পাদক</msgstr>
-#. Used as a header before a list of editors.
-#: ../xslt/gettext/l10n.xml.in.h:1412
-msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
-msgstr "<msgstr form='0'>সম্পাদক</msgstr> <msgstr form='1'>সম্পাদক</msgstr>"
+#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
+#~ msgstr "<msgstr form='0'>সম্পাদক</msgstr> <msgstr form='1'>সম্পাদক</msgstr>"
 
-#. Used as a header before a list of contributors.
-#: ../xslt/gettext/l10n.xml.in.h:1414
-msgid ""
-"<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
-"Contributors</msgstr>"
-msgstr ""
-"<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>অন্যান্য "
-"অবদানকারী</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
+#~ "Contributors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>অন্যান্য "
+#~ "অবদানকারী</msgstr>"
 
 # sam:
 # <msgstr form='0'>প্রকাশক</msgstr> <msgstr form='1'>প্রকাশক</msgstr>
-#. Used as a header before a list of publishers.
-#: ../xslt/gettext/l10n.xml.in.h:1416
-msgid ""
-"<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
-msgstr "<msgstr form='0'>প্রকাশক</msgstr> <msgstr form='1'>প্রকাশক</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgstr "<msgstr form='0'>প্রকাশক</msgstr> <msgstr form='1'>প্রকাশক</msgstr>"
 
 # sam: i am not sure why the first word is not translated...
 # <msgstr form='0'>সম্পাদক</msgstr> <msgstr form='1'>সম্পাদক</msgstr>
-#. Used as a header before a list of translators.
-#: ../xslt/gettext/l10n.xml.in.h:1418
-msgid ""
-"<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
-msgstr "<msgstr form='0'>অনুবাদক</msgstr> <msgstr form='1'>অনুবাদক</msgstr>"
+#~ msgid ""
+#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr "<msgstr form='0'>অনুবাদক</msgstr> <msgstr form='1'>অনুবাদক</msgstr>"
 
-#.
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
-#. This is used as a label before answers in a question-and-answer
-#. set.  Typically, answers are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label answers.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1428
-msgid "A:&#x2003;"
-msgstr "A:&#x2003;"
+#~ msgid "A:&#x2003;"
+#~ msgstr "A:&#x2003;"
 
-#. Used for links to the titlepage.
-#: ../xslt/gettext/l10n.xml.in.h:1430
-msgid "About This Document"
-msgstr "এই ডকুমেন্ট সম্পর্কে"
+#~ msgid "About This Document"
+#~ msgstr "এই ডকুমেন্ট সম্পর্কে"
 
 # If the given example being used, then
 # "Shaun McCance
 # এর সাথে সম্পর্কযুক্ত: GNOME Documentation Project"
 # which make sense - mak
-#.
-#. http://www.docbook.org/tdg/en/html/affiliation.html
-#.
-#. This is used as a label before affiliations when listing
-#. authors and other contributors to the document.  For example:
-#.
-#. Shaun McCance
-#. Affiliation: GNOME Documentation Project
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1440
-msgid "Affiliation"
-msgstr "এর সাথে সম্পর্কযুক্ত"
+#~ msgid "Affiliation"
+#~ msgstr "এর সাথে সম্পর্কযুক্ত"
 
-#. Used as a title for a bibliography.
-#: ../xslt/gettext/l10n.xml.in.h:1442
-msgid "Bibliography"
-msgstr "গ্রন্থপঞ্জি"
+#~ msgid "Caution"
+#~ msgstr "সতর্কতা"
 
-#.
-#. http://www.docbook.org/tdg/en/html/caution.html
-#. This is used as a default title for caution elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1447
-msgid "Caution"
-msgstr "সতর্কতা"
+#~ msgid "Email"
+#~ msgstr "ই-মেইল"
 
-# As per the Oxford Dictionary: "colophon is a noun. it means publisher's imprint, on the title-page. or tailpiece in a manuscript or book, giving the writer's or printer's name, date, etc." - mak
-#.
-#. http://www.docbook.org/tdg/en/html/colophon.html
-#. This is used as a default title for colophon elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1452
-msgid "Colophon"
-msgstr "প্রকাশনার সীল"
+#~ msgid "Legal Notice"
+#~ msgstr "আইনি বিজ্ঞপ্তি"
 
-#.
-#. http://www.docbook.org/tdg/en/html/dedication.html
-#. This is used as a default title for dedication elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1457
-msgid "Dedication"
-msgstr "সমর্পণ"
+#~ msgid "Name"
+#~ msgstr "নাম"
 
-#.
-#. http://www.docbook.org/tdg/en/html/affiliation.html
-#.
-#. This is used as a label before email addresses when listing
-#. authors and other contributors to the document.  For example:
-#.
-#. Shaun McCance
-#. Email: shaunm@gnome.org
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1467
-msgid "Email"
-msgstr "ই-মেইল"
+#~ msgid "Preface"
+#~ msgstr "প্রস্তাবনা"
 
-#.
-#. http://www.docbook.org/tdg/en/html/glossary.html
-#. This is used as a default title for glossary elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1472
-msgid "Glossary"
-msgstr "শব্দাবলী"
+#~ msgid "Q:&#x2003;"
+#~ msgstr "Q:&#x2003;"
 
-#.
-#. http://www.docbook.org/tdg/en/html/important.html
-#. This is used as a default title for important elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1477
-msgid "Important"
-msgstr "গুরুত্বপূর্ণ"
+#~ msgid "Revision History"
+#~ msgstr "পরিমার্জন ইতিহাস"
 
-#.
-#. http://www.docbook.org/tdg/en/html/index.html
-#. This is used as a default title for index elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1482
-msgid "Index"
-msgstr "সূচী"
-
-#.
-#. http://www.docbook.org/tdg/en/html/legalnotice.html
-#. This is used as a default title for legalnotice elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1487
-msgid "Legal Notice"
-msgstr "আইনি বিজ্ঞপ্তি"
-
-#.
-#. http://www.docbook.org/tdg/en/html/refnamediv.html
-#. This is used as the title for refnamediv elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1492
-msgid "Name"
-msgstr "নাম"
-
-#.
-#. http://www.docbook.org/tdg/en/html/note.html
-#. This is used as a default title for note elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1497
-msgid "Note"
-msgstr "নোট"
-
-#.
-#. http://www.docbook.org/tdg/en/html/preface.html
-#. This is used as a default title for preface elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1502
-msgid "Preface"
-msgstr "প্রস্তাবনা"
-
-#.
-#. http://www.docbook.org/tdg/en/html/qandaentry.html
-#.
-#. This is used as a label before questions in a question-and-answer
-#. set.  Typically, questions are simply numbered and answers are not
-#. labelled at all.  However, DocBook allows document authors to set
-#. the labelling style for a qandaset.  If the labelling style is set
-#. to 'qanda', this string will be used to label questions.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1512
-msgid "Q:&#x2003;"
-msgstr "Q:&#x2003;"
-
-#.
-#. http://www.docbook.org/tdg/en/html/revhistory.html
-#. This is used as a header before the revision history.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1517
-msgid "Revision History"
-msgstr "পরিমার্জন ইতিহাস"
-
-#.
-#. Used for the <see> element.
-#. FIXME: this should be a format string.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1522
-msgid "See"
-msgstr "দেখুন"
-
-#.
-#. Used for the <seealso> element.
-#. FIXME: this should be a format string.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1527
-msgid "See Also"
-msgstr "অতিরিক্ত দেখুন"
-
-#.
-#. http://www.docbook.org/tdg/en/html/refsynopsisdiv.html
-#. This is used as the default title for refsynopsisdiv elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1532
-msgid "Synopsis"
-msgstr "সারাংশ"
-
-#.
-#. http://www.docbook.org/tdg/en/html/tip.html
-#. This is used as a default title for tip elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1537
-msgid "Tip"
-msgstr "ইঙ্গিত"
-
-#.
-#. http://www.docbook.org/tdg/en/html/warning.html
-#. This is used as a default title for warning elements.
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1542
-msgid "Warning"
-msgstr "সতর্কবাণী"
-
-#.
-#. Translate to default:RTL if your language should be displayed
-#. right-to-left, otherwise translate to default:LTR.  Do *not*
-#. translate it to "predefinito:LTR", if it it isn't default:LTR
-#. or default:RTL it will not work
-#.
-#: ../xslt/gettext/l10n.xml.in.h:1549
-msgid "default:LTR"
-msgstr "default:LTR"
+#~ msgid "See"
+#~ msgstr "দেখুন"
