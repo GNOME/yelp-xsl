@@ -1,23 +1,13 @@
 project('yelp-xsl',
-  version: '3.27.90',
+  version: '42.2',
   license: ['GPL2+', 'LGPL2.1+', 'MIT'],
-  meson_version: '>= 0.43.0',
+  meson_version: '>= 0.63.0',
 )
 
 i18n = import('i18n')
 
-# Versioning
 version = meson.project_version()
-version_arr = version.split('.')
-version_major = version_arr[0].to_int()
-version_minor = version_arr[1].to_int()
-version_micro = version_arr[2].to_int()
-
 package_name = meson.project_name()
-
-# Paths
-srcdir = meson.source_root()
-builddir = meson.build_root()
 
 prefix = get_option('prefix')
 
@@ -34,6 +24,20 @@ xsltproc_prg = find_program('xsltproc', required: true)
 itstool_prg = find_program('itstool', required: true)
 
 awk_prg = find_program('awk', required: false)
+
+itstool = find_program('itstool')
+r = run_command(itstool, '--version', check: true)
+if r.returncode() != 0
+  error('failed to run itstool --version')
+endif
+parts = r.stdout().strip().split()
+if parts.length() != 2
+  error('unexpected output from itstool --version')
+endif
+if parts[1].version_compare('<1.2.0')
+  error('itstool >= 1.2.0 is required to build the translation XML files')
+endif
+
 
 # Options
 build_yelp_manual = get_option('yelp_manual')

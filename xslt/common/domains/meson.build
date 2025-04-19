@@ -1,14 +1,21 @@
-i18n.merge_file(
-  'yelp-xsl.xml',
-  input: 'yelp-xsl.xml.in',
-  output: 'yelp-xsl.xml',
-  po_dir: join_paths(srcdir, 'po'),
-  data_dirs: join_paths(srcdir, 'po'),
-  type: 'xml',
-  install: true,
-  install_dir: join_paths(
-    pkgxsltdir,
-    'common',
-    'domains'
-  )
-)
+gen_yelp_xml = find_program('gen_yelp_xml.sh')
+msgfmt = find_program('msgfmt')
+
+custom_target('yelp-xsl-xml-domain',
+              input: 'yelp-xsl.xml.in',
+              output: 'yelp-xsl.xml',
+              command: [
+                gen_yelp_xml,
+                '--po-dir', join_paths(meson.project_source_root(), 'po'),
+                '--itstool', itstool,
+                '--msgfmt', msgfmt,
+                '--input', '@INPUT@',
+                '--output', '@OUTPUT@',
+                '--target', 'yelp-xml-domain',
+              ],
+              install: true,
+              install_dir: join_paths(datadir,
+                                      'yelp-xsl',
+                                      'xslt',
+                                      'common',
+                                      'domains'))
