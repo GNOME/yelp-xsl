@@ -6,7 +6,7 @@ custom_target('yelp-xsl-xml-domain',
               output: 'yelp-xsl.xml',
               command: [
                 gen_yelp_xml,
-                '--po-dir', join_paths(meson.project_source_root(), 'po'),
+                '--po-dir', '@0@'.format(meson.project_source_root() / 'po'),
                 '--itstool', itstool,
                 '--msgfmt', msgfmt,
                 '--input', '@INPUT@',
@@ -14,8 +14,4 @@ custom_target('yelp-xsl-xml-domain',
                 '--target', 'yelp-xml-domain',
               ],
               install: true,
-              install_dir: join_paths(datadir,
-                                      'yelp-xsl',
-                                      'xslt',
-                                      'common',
-                                      'domains'))
+              install_dir: datadir / 'yelp-xsl/xslt/common/domains')

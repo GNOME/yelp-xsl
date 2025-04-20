@@ -1,7 +1,7 @@
 project('yelp-xsl',
   version: '42.2',
   license: ['GPL2+', 'LGPL2.1+', 'MIT'],
-  meson_version: '>= 0.63.0',
+  meson_version: '>= 1.3',
 )
 
 i18n = import('i18n')
