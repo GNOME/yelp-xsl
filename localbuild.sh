@@ -8,8 +8,6 @@
 command -v msgfmt >/dev/null 2>&1 || { echo >&2 "msgfmt required to build yelp-xsl"; exit 1; }
 command -v itstool >/dev/null 2>&1 || { echo >&2 "itstool required to build yelp-xsl"; exit 1; }
 
-YELP_XSL_VERSION=$(grep '^AC_INIT(' configure.ac | sed -e 's/^[^,]*,\[//' -e 's/\].*//')
-
 ALL_LINGUAS=$(grep -v '^#' po/LINGUAS | tr '\n' ' ')
 
 for lang in $ALL_LINGUAS; do
