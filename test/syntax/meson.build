@@ -5,7 +5,7 @@ if get_option('dita') == true
     args: [
       '--xinclude',
       yelp_xslt_dita_html_test_data.get(0), # dita2html.xsl
-      files('dita.dita'),
+      files('source/dita.dita'),
     ],
   )
 endif
@@ -18,7 +18,7 @@ if get_option('docbook') == true
       '--xinclude',
       '--param', 'db.chunk.max_depth', '0',
       yelp_xslt_docbook_html_test_data.get(0), # db2html.xsl
-      files('docbook.docbook'),
+      files('source/docbook.docbook'),
     ],
   )
 endif
@@ -30,7 +30,7 @@ if get_option('mallard') == true
     args: [
       '--xinclude',
       yelp_xslt_mallard_html_test_data.get(0), # mal2html.xsl
-      files('mallard.page'),
+      files('source/mallard.page'),
     ],
   )
 endif

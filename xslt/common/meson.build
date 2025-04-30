@@ -4,6 +4,7 @@ yelp_xslt_common_data = [
   'l10n.xsl',
   'l10n-numbers.xsl',
   'html.xsl',
+  'tmpl.xsl',
   'ttml.xsl',
   'utils.xsl',
 ]
