@@ -58,3 +58,4 @@ fedora-x86_64:
     when: "always"
     paths:
       - "${TARBALL_ARTIFACT_PATH}"
+      - "_build/meson-logs/"
