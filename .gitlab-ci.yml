@@ -2,17 +2,17 @@ include:
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+    inputs:
+      grcov-c: "disabled"
   - project: "Infrastructure/freedesktop-ci-templates"
     file: "templates/fedora.yml"
     ref: "3511e80d2edb5bbff1de2b224d44d05996528834"
   - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
     inputs:
-      dist-job-name: "fedora-x86_64"
-      tarball-artifact-path: "${TARBALL_ARTIFACT_PATH}"
+      dist-job-name: "build-gnomeos"
 
 variables:
   FDO_UPSTREAM_REPO: GNOME/yelp-xsl
-  TARBALL_ARTIFACT_PATH: "_build/meson-dist/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tar.xz"
 
 stages:
   - prepare
@@ -55,4 +55,4 @@ fedora-x86_64:
     name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}"
     when: "always"
     paths:
-      - "${TARBALL_ARTIFACT_PATH}"
+      - "_build/meson-logs/"
