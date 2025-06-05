@@ -2,6 +2,8 @@ include:
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
   - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+    inputs:
+      grcov-c: "disabled"
   - project: "Infrastructure/freedesktop-ci-templates"
     file: "templates/fedora.yml"
     ref: "3511e80d2edb5bbff1de2b224d44d05996528834"
