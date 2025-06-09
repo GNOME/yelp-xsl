@@ -409,7 +409,7 @@ elements. See those templates for further extension points.
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
       <xsl:if test="$html.csp.nonce != ''">
-        <meta http-equiv="Content-Security-Policy" content="script-src 'nonce-{$html.csp.nonce}'; style-src 'nonce-{$html.csp.nonce}'; "/>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'nonce-{$html.csp.nonce}';"/>
       </xsl:if>
       <meta name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
