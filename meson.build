@@ -1,5 +1,5 @@
 project('yelp-xsl',
-  version: '42.2',
+  version: '42.3',
   license: ['GPL2+', 'LGPL2.1+', 'MIT'],
   meson_version: '>= 1.3',
 )
