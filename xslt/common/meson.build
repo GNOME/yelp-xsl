@@ -17,6 +17,7 @@ install_data(
   )
 )
 
+subdir('css')
 subdir('domains')
 subdir('icons')
 
