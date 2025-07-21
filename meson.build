@@ -19,7 +19,6 @@ pkgxsltdir = join_paths(pkgdir, 'xslt')
 pkgjsdir = join_paths(pkgdir, 'js')
 
 # Dependencies
-xmllint_prg = find_program('xmllint', required: true)
 xsltproc_prg = find_program('xsltproc', required: true)
 itstool_prg = find_program('itstool', required: true)
 
