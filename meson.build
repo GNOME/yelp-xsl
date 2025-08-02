@@ -19,24 +19,12 @@ pkgxsltdir = join_paths(pkgdir, 'xslt')
 pkgjsdir = join_paths(pkgdir, 'js')
 
 # Dependencies
-xmllint_prg = find_program('xmllint', required: true)
 xsltproc_prg = find_program('xsltproc', required: true)
 itstool_prg = find_program('itstool', required: true)
 
 awk_prg = find_program('awk', required: false)
 
-itstool = find_program('itstool')
-r = run_command(itstool, '--version', check: true)
-if r.returncode() != 0
-  error('failed to run itstool --version')
-endif
-parts = r.stdout().strip().split()
-if parts.length() != 2
-  error('unexpected output from itstool --version')
-endif
-if parts[1].version_compare('<1.2.0')
-  error('itstool >= 1.2.0 is required to build the translation XML files')
-endif
+itstool = find_program('itstool', version: '>=1.2.0')
 
 
 # Options
