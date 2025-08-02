@@ -1,3 +1,10 @@
+49.beta
+=======
+* Change the bg color of tiles for better color contrast (Shaun McCance)
+* Meson build system cleanups (Eli Schwartz)
+* Updated translations:
+  uz    (Baxrom Raxmatov)
+
 42.3
 ====
 * Fix CVE-2025-3155 (parrot409, Shaun McCance)
