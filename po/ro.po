@@ -4,22 +4,23 @@
 # Dan Damian <dand@gnome.ro>, 2005-2006.
 # Adi Roiban https://launchpad.net/~adiroiban, 2009
 # Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2014.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-06-01 19:46+0000\n"
-"PO-Revision-Date: 2020-06-19 09:49+0300\n"
-"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
-"gmail [dot] com>\n"
-"Language-Team: Gnome Romanian Translation Team\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues/\n"
+"POT-Creation-Date: 2025-09-11 00:19+0000\n"
+"PO-Revision-Date: 2025-10-07 12:35+0200\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 2.3.1\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
 "X-Project-Style: gnome\n"
 
@@ -108,7 +109,7 @@ msgstr "Despre"
 #. Accessible title for an advanced note.
 #: yelp-xsl.xml.in:114
 msgid "Advanced"
-msgstr "Avansat"
+msgstr "Avansate"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a bibliography.
@@ -128,7 +129,7 @@ msgstr "Defect de programare"
 #.
 #: yelp-xsl.xml.in:132
 msgid "Candidate"
-msgstr "Candidat"
+msgstr "Revizuit"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a caution note.
@@ -152,7 +153,7 @@ msgstr "Colofon"
 #. Title for a table of contents for the entire document.
 #: yelp-xsl.xml.in:152
 msgid "Contents"
-msgstr "Conținuturi"
+msgstr "Conținut"
 
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
@@ -192,7 +193,7 @@ msgstr "Modificat de"
 #.
 #: yelp-xsl.xml.in:188
 msgid "Final"
-msgstr "Final"
+msgstr "Definitiv"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
@@ -218,20 +219,20 @@ msgstr "Incomplet"
 #. Default title for an index of terms in a book.
 #: yelp-xsl.xml.in:211
 msgid "Index"
-msgstr "Cuprins"
+msgstr "Index"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
 #: yelp-xsl.xml.in:216
 msgid "Legal"
-msgstr "Legale"
+msgstr "Mențiuni Legale"
 
 #. (itstool) path: msg/msgstr
 #. Generic title for license information when it's not a known license.
 #.
 #: yelp-xsl.xml.in:223
 msgid "License"
-msgstr "Licență"
+msgstr "Licența"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list of maintainers.
@@ -243,7 +244,7 @@ msgstr "Întreținut de"
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:233
 msgid "More Information"
-msgstr "Mai multe informații"
+msgstr "Alte informații"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
@@ -336,7 +337,7 @@ msgstr "Micșorează imaginile"
 #. Accessible title for a sidebar note.
 #: yelp-xsl.xml.in:316
 msgid "Sidebar"
-msgstr "Bară laterală"
+msgstr "Panoul lateral"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. No content has been written yet.
@@ -371,7 +372,7 @@ msgstr "Tradus de"
 #.
 #: yelp-xsl.xml.in:349
 msgid "View images at normal size"
-msgstr "Vizualizați imaginile la dimensiunea normală"
+msgstr "Arată imaginile la mărimea normală"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -397,7 +398,7 @@ msgstr "Autori"
 #.
 #: yelp-xsl.xml.in:375
 msgid "View the bibliography entry <biblioentry.label/>."
-msgstr "Vizualizați informațiile bibliografice <biblioentry.label/>."
+msgstr "Arată informațiile bibliografice <biblioentry.label/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.label
@@ -433,7 +434,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -450,10 +451,10 @@ msgstr "[<citation.label/>]"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -479,10 +480,10 @@ msgstr "de la <comment.name/> la <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance
+#.   Some Comment Title
+#.   from Shaun McCance
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -519,7 +520,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
-msgstr "Trimiteți email către „<string/>”."
+msgstr "Trimite e-mail la „<string/>”."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossentry.tooltip
@@ -531,7 +532,7 @@ msgstr "Trimiteți email către „<string/>”."
 #.
 #: yelp-xsl.xml.in:509
 msgid "Read the definition for ‘<glossterm/>’."
-msgstr "Citiți definiția pentru „<glossterm/>”."
+msgstr "Citește definiția pentru „<glossterm/>”."
 
 #. (itstool) path: msg/msgstr
 #. ID: glosssee.format
@@ -552,7 +553,7 @@ msgstr "Citiți definiția pentru „<glossterm/>”."
 #.
 #: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
-msgstr "Consultați <glosssee/>."
+msgstr "A se vedea <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
@@ -574,7 +575,7 @@ msgstr "Consultați <glosssee/>."
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr "Consultați și <glosssee/>."
+msgstr "A se vedea și <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -613,7 +614,7 @@ msgstr "„<node/>”"
 #.
 #: yelp-xsl.xml.in:591
 msgid "See <seeie/>."
-msgstr "Consultați <seeie/>."
+msgstr "A se vedea <seeie/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: seealsoie.format
@@ -628,7 +629,4 @@ msgstr "Consultați <seeie/>."
 #.
 #: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
-msgstr "Consultați și <seeie/>."
-
-#~ msgid "yelp-quote-201C.png"
-#~ msgstr "201E"
+msgstr "A se vedea și <seeie/>."
