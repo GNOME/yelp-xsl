@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-doc-utils 0.5.1\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2022-07-24 05:06+0000\n"
-"PO-Revision-Date: 2024-02-23 00:13+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues/\n"
+"POT-Creation-Date: 2025-10-11 04:15+0000\n"
+"PO-Revision-Date: 2025-10-24 12:01+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-09-01 04:04+0000\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -213,7 +213,7 @@ msgstr "ยังไม่สมบูรณ์"
 #. Default title for an index of terms in a book.
 #: yelp-xsl.xml.in:211
 msgid "Index"
-msgstr "ดรรชนี"
+msgstr "ดัชนี"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a DocBook legal notice.
@@ -264,7 +264,7 @@ msgstr "ในหน้านี้"
 #.
 #: yelp-xsl.xml.in:256
 msgid "Other Credits"
-msgstr "เครดิตอื่นๆ"
+msgstr "เครดิตอื่น ๆ"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
