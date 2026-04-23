@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp-xsl\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
-"POT-Creation-Date: 2020-06-01 19:46+0000\n"
-"PO-Revision-Date: 2020-09-17 14:11+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues/\n"
+"POT-Creation-Date: 2019-05-23 15:58+0000\n"
+"PO-Revision-Date: 2026-04-23 16:32+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -183,7 +183,7 @@ msgstr "Koncept"
 #. Title for a list of editors.
 #: yelp-xsl.xml.in:180
 msgid "Edited By"
-msgstr "Upravil"
+msgstr "Editori"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. A senior member of the
@@ -191,7 +191,7 @@ msgstr "Upravil"
 #.
 #: yelp-xsl.xml.in:188
 msgid "Final"
-msgstr "Konečná verzia"
+msgstr "Dokončené"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
@@ -211,7 +211,7 @@ msgstr "Dôležité"
 #.
 #: yelp-xsl.xml.in:206
 msgid "Incomplete"
-msgstr "Neúplná verzia"
+msgstr "Nedokončené"
 
 #. (itstool) path: msg/msgstr
 #. Default title for an index of terms in a book.
@@ -276,7 +276,7 @@ msgstr "Ďalší prispievatelia"
 #.
 #: yelp-xsl.xml.in:264
 msgid "Outdated"
-msgstr "Zastaraná verzia"
+msgstr "Zastarané"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a package note.
@@ -306,7 +306,7 @@ msgstr "Predchádzajúca"
 #. Title for a list of publishers.
 #: yelp-xsl.xml.in:289
 msgid "Published By"
-msgstr "Vydal"
+msgstr "Vydavatelia"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content has been written
@@ -314,7 +314,7 @@ msgstr "Vydal"
 #.
 #: yelp-xsl.xml.in:297
 msgid "Ready for review"
-msgstr "Verzia pripravená na revíziu"
+msgstr "Pripravené na revíziu"
 
 #. (itstool) path: msg/msgstr
 #. Automatic heading above a list of see-also links.
@@ -329,7 +329,7 @@ msgstr "Súvisiace časti"
 #.
 #: yelp-xsl.xml.in:311
 msgid "Scale images down"
-msgstr "Zmenší obrázok"
+msgstr "Zmenší obrázky"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
@@ -385,7 +385,7 @@ msgstr "Upozornenie"
 #. Title for a list of authors.
 #: yelp-xsl.xml.in:359
 msgid "Written By"
-msgstr "Napísal"
+msgstr "Autori"
 
 #. (itstool) path: msg/msgstr
 #. ID: biblioentry.tooltip
@@ -435,7 +435,7 @@ msgstr "[<biblioentry.label/>]"
 #. appropriate content, as follows:
 #.
 #. <citation.label/> - The text content of the citation element, possibly
-#. as a link to an entry in the bibliography
+#.                     as a link to an entry in the bibliography
 #.
 #: yelp-xsl.xml.in:415
 msgid "[<citation.label/>]"
@@ -452,10 +452,10 @@ msgstr "(<citation.label/>)"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance on 2010-06-03
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If only a name is supplied, and no date, then comment.name is used
 #. instead of this string.
@@ -468,7 +468,7 @@ msgstr "(<citation.label/>)"
 #.
 #: yelp-xsl.xml.in:444
 msgid "from <comment.name/> on <comment.date/>"
-msgstr "od autora <comment.name/> dňa <comment.date/>"
+msgstr "od <comment.name/> dňa <comment.date/>"
 
 #. (itstool) path: msg/msgstr
 #. ID: comment.name
@@ -481,10 +481,10 @@ msgstr "od autora <comment.name/> dňa <comment.date/>"
 #. In English, a title together with this format string might produce
 #. something like this:
 #.
-#. Some Comment Title
-#. from Shaun McCance
+#.   Some Comment Title
+#.   from Shaun McCance
 #.
-#. Here is the text of the comment.
+#.   Here is the text of the comment.
 #.
 #. If a date is also supplied, then comment.name-date is used instead
 #. of this string.
@@ -522,7 +522,7 @@ msgstr "© <copyright.years/> <copyright.name/>"
 #.
 #: yelp-xsl.xml.in:497
 msgid "Send email to ‘<string/>’."
-msgstr "Odošle email „<string/>“."
+msgstr "Odošle e-mail „<string/>“."
 
 # tooltip
 #. (itstool) path: msg/msgstr
@@ -556,7 +556,7 @@ msgstr "Prečíta definíciu pre „<glossterm/>“."
 #.
 #: yelp-xsl.xml.in:530
 msgid "See <glosssee/>."
-msgstr "Pozrieť <glosssee/>."
+msgstr "Navštívi <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: glossseealso.format
