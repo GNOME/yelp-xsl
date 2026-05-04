@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: yelp-xsl master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues/\n"
 "POT-Creation-Date: 2019-05-23 15:58+0000\n"
-"PO-Revision-Date: 2026-01-27 15:32+0000\n"
+"PO-Revision-Date: 2026-05-04 19:13+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #. (itstool) path: msg/msgstr
 #. Translate to default:RTL if your language should be displayed
@@ -154,7 +154,7 @@ msgstr "Arwodh"
 #. Title for a table of contents for the entire document.
 #: yelp-xsl.xml.in:152
 msgid "Contents"
-msgstr "Dalgh"
+msgstr "Rol an Folen"
 
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
@@ -200,7 +200,7 @@ msgstr "Finek"
 #. Default title for a glossary.
 #: yelp-xsl.xml.in:193
 msgid "Glossary"
-msgstr "Gerlyvryn"
+msgstr "Gerlyver"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
@@ -245,7 +245,7 @@ msgstr "Gwithys Gans"
 #. Automatic heading above a list of guide links.
 #: yelp-xsl.xml.in:233
 msgid "More Information"
-msgstr "Kedhlow Moy"
+msgstr "Moy Kedhlow"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the next page in a series.
@@ -263,7 +263,7 @@ msgstr "Noten"
 #. Title for a list of links to sections on the current page.
 #: yelp-xsl.xml.in:248
 msgid "On This Page"
-msgstr "War An Folen Ma"
+msgstr "War'n Folen Ma"
 
 #. (itstool) path: msg/msgstr
 #. Title for a list contributors other than authors, editors, translators,
@@ -323,7 +323,7 @@ msgstr "Parys rag breusyans"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:302
 msgid "See Also"
-msgstr "Gweles Maga Ta"
+msgstr "Gweles Ynwedh"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -332,7 +332,7 @@ msgstr "Gweles Maga Ta"
 #.
 #: yelp-xsl.xml.in:311
 msgid "Scale images down"
-msgstr "Byghanhe avenyow"
+msgstr "Byghanhe skeusennow"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a sidebar note.
@@ -373,7 +373,7 @@ msgstr "Treylys Gans"
 #.
 #: yelp-xsl.xml.in:349
 msgid "View images at normal size"
-msgstr "Gweles avenyow yn braster normal"
+msgstr "Gweles skeusennow yn braster normal"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for a warning.
@@ -576,7 +576,7 @@ msgstr "Gweles <glosssee/>."
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr "Gweles maga ta <glosssee/>."
+msgstr "Gweles ynwedh <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -630,4 +630,4 @@ msgstr "Gweles ‘<seeie/>’"
 #.
 #: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
-msgstr "Gweles maga ta <seeie/>."
+msgstr "Gweles ynwedh <seeie/>."
