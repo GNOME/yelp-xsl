@@ -53,7 +53,7 @@ msgstr ", "
 #: yelp-xsl.xml.in:60
 #, no-wrap
 msgid ", and "
-msgstr ", og "
+msgstr " og "
 
 #. (itstool) path: msg/msgstr
 #. This is used as a list item seperator for inline lists of exactly two
@@ -76,9 +76,8 @@ msgstr " og "
 #. to 'qanda', this string will be used to label questions.
 #.
 #: yelp-xsl.xml.in:86
-#, fuzzy
 msgid "Q:"
-msgstr "Q:"
+msgstr "S:"
 
 #. (itstool) path: msg/msgstr
 #. http://www.docbook.org/tdg/en/html/qandaentry.html
@@ -90,9 +89,8 @@ msgstr "Q:"
 #. to 'qanda', this string will be used to label answers.
 #.
 #: yelp-xsl.xml.in:99
-#, fuzzy
 msgid "A:"
-msgstr "A:"
+msgstr "Sv:"
 
 #. (itstool) path: msg/msgstr
 #. Title of the footer containing copyrights, credits, license information,
@@ -132,7 +130,7 @@ msgstr "Kandidat"
 #. Accessible title for a caution note.
 #: yelp-xsl.xml.in:137
 msgid "Caution"
-msgstr "Åtvaring"
+msgstr "Varsel"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an close button.
@@ -155,7 +153,6 @@ msgstr "Innhald"
 #. (itstool) path: msg/msgstr
 #. Title for license information when it's a CC license.
 #: yelp-xsl.xml.in:157
-#, fuzzy
 msgid "Creative Commons"
 msgstr "Creative Commons"
 
@@ -169,7 +166,7 @@ msgstr "Fare"
 #. Default title for a dedication section.
 #: yelp-xsl.xml.in:167
 msgid "Dedication"
-msgstr "Tileigna"
+msgstr "Tileigning"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Most content has been
@@ -191,13 +188,13 @@ msgstr "Redigert av"
 #.
 #: yelp-xsl.xml.in:188
 msgid "Final"
-msgstr "Slutts"
+msgstr "Endeleg"
 
 #. (itstool) path: msg/msgstr
 #. Default title for a glossary.
 #: yelp-xsl.xml.in:193
 msgid "Glossary"
-msgstr "Ordbok"
+msgstr "Ordliste"
 
 #. (itstool) path: msg/msgstr
 #. Accessible title for an important note.
@@ -268,7 +265,7 @@ msgstr "På denne sida"
 #.
 #: yelp-xsl.xml.in:256
 msgid "Other Credits"
-msgstr "Andre kredittar"
+msgstr "Andre bidrag"
 
 #. (itstool) path: msg/msgstr
 #. Revision status of a document or page. Content was once current,
@@ -294,7 +291,7 @@ msgstr "Pause"
 #. Tooltip on play/pause buttons for audio and video objects.
 #: yelp-xsl.xml.in:279
 msgid "Play"
-msgstr "Spel"
+msgstr "Spel av"
 
 #. (itstool) path: msg/msgstr
 #. Link text for a link to the previous page in a series.
@@ -320,7 +317,7 @@ msgstr "Klar til vurdering"
 #. Automatic heading above a list of see-also links.
 #: yelp-xsl.xml.in:302
 msgid "See Also"
-msgstr "SjÃ¥ Ã²g"
+msgstr "Sjå òg"
 
 #. (itstool) path: msg/msgstr
 #. Figures can automatically scale images down to fit the page width.
@@ -529,9 +526,6 @@ msgstr "Send e-post til «<string/>»."
 #. <glossterm/> - The term being defined by the glossary entry
 #.
 #: yelp-xsl.xml.in:509
-#| msgid ""
-#| "<msgid>glossentry.tooltip</msgid> <msgstr>Read the definition for "
-#| "‘<glossterm/>’.</msgstr>"
 msgid "Read the definition for ‘<glossterm/>’."
 msgstr "Les definisjonen for «<glossterm/>»."
 
@@ -576,7 +570,7 @@ msgstr "Sjå <glosssee/>."
 #.
 #: yelp-xsl.xml.in:552
 msgid "See also <glosssee/>."
-msgstr "Sjå også <glosssee/>."
+msgstr "Sjå òg <glosssee/>."
 
 #. (itstool) path: msg/msgstr
 #. ID: quote.format
@@ -630,7 +624,7 @@ msgstr "Sjå <seeie/>."
 #.
 #: yelp-xsl.xml.in:606
 msgid "See also <seeie/>."
-msgstr "Sjå og <seeie/>."
+msgstr "Sjå òg <seeie/>."
 
 #~ msgid " — "
 #~ msgstr " — "
