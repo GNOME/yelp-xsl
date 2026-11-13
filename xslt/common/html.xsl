@@ -2221,7 +2221,7 @@ if $dir is non-empty.
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="$parent/@its:dir">
-        <xsl:value-of select="$node/@its:dir"/>
+        <xsl:value-of select="$parent/@its:dir"/>
       </xsl:when>
       <xsl:when test="string($lang) != ''">
         <xsl:call-template name="l10n.direction">
