@@ -362,7 +362,7 @@ parent elements.
 <!--**==========================================================================
 html.page
 Create an HTML document.
-@revision[version=3.28 date=2017-08-04 status=final]
+@revision[version=50 date=2026-11-13 status=candidate]
 
 [xsl:params]
 $node: The node to create HTML for.
@@ -375,10 +375,16 @@ as $node to this template. Importing stylesheets should also implement
 {html.header.mode} to output link trails and {html.footer.mode} to output
 credits and other page information.
 
-This template outputs the HTML `body` element, which takes its attributes
+This template outputs the HTML `html` element, which takes its attributes
 from two sources. First, it calls {html.lang.attrs}, which automatically
-outputs correct `lang`, `xml:lang`, and `dir` attributes. It then calls
-{html.body.attr.mode} on $node for additional attributes.
+outputs correct `lang`, `xml:lang`, and `dir` attributes. If $node has no
+language, it uses the nearest ancestor that has one. It then calls
+{html.html.attr.mode} on $node for additional attributes. Attributes from
+{html.html.attr.mode} replace attributes of the same name.
+
+Additionally, this template outputs the HTML `body` element, which also takes
+its attributes from two sources. First, it calls {html.lang.attrs} on $node. 
+It then calls {html.body.attr.mode} on $node for additional attributes.
 
 This template also calls a number of stub templates that can be overridden
 by extension stylesheets.
@@ -404,6 +410,12 @@ elements. See those templates for further extension points.
 <xsl:template name="html.page">
   <xsl:param name="node" select="."/>
   <html>
+    <xsl:call-template name="html.lang.attrs">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="parent"
+                      select="$node/ancestor::*[@xml:lang or @lang][1]"/>
+    </xsl:call-template>
+    <xsl:apply-templates mode="html.html.attr.mode" select="$node"/>
     <head>
       <xsl:call-template name="html.head.top.custom">
         <xsl:with-param name="node" select="$node"/>
@@ -494,6 +506,20 @@ element. No attributes are output by default. Importing stylesheets may
 implement this node to add attributes for styling, data, or other purposes.
 -->
 <xsl:template mode="html.body.attr.mode" match="*"/>
+
+
+<!--%%==========================================================================
+html.html.attr.mode
+Output attributes for the HTML `html` element.
+@revision[version=50 date=2026-11-13 status=candidate]
+
+This mode is called by {html.page} to output attributes on the HTML `html`
+element. It is called after {html.lang.attrs}, so attributes output by this
+mode replace the `lang`, `xml:lang`, and `dir` attributes. No attributes are
+output by default. Importing stylesheets may implement this mode to add
+attributes for styling, data, or other purposes.
+-->
+<xsl:template mode="html.html.attr.mode" match="*"/>
 
 
 <!--**==========================================================================
